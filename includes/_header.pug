@@ -1,0 +1,72 @@
+header
+  nav.navbar.navbar-default.navbar-fixed-top
+    .container
+      .navbar-header
+        button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        //a.navbar-brand(href='#') Drink Circle
+        a.navbar-brand(href='index.html')
+          img(src="assets/images/logo_white.png", alt="")
+        //- a
+      #navbar.navbar-collapse.collapse
+        //- form.navbar-form.navbar-left(role='search')
+        //-   .form-group
+        //-     .search
+        //-       i.fa.fa-search
+        //-       input.form-control(type='text', placeholder='Search')
+        //-     //- search
+        //-   //- form-group
+        //- //- form
+
+        ul.nav.navbar-nav.navbar-left.minisite
+          li
+            a.dd(href='drinksdirect.html', data-flag='drinksdirect')
+              span drinksdirect
+              span.fa-stack
+                i.fa.fa-circle.fa-stack-2x
+                i.fa.fa-arrow-circle-right.fa-2x
+              //- span
+          li
+            a.tc(href='thecircle.html', data-flag='thecircle')
+              span the circle
+              span.fa-stack
+                i.fa.fa-circle.fa-stack-2x
+                i.fa.fa-circle-o.fa-2x
+              //- span
+          li
+            a.da(href='drinkadvisor2.html', data-flag='drinkadvisor')
+              span drinkadvisor
+              span.fa-stack
+                i.fa.fa-circle.fa-stack-2x
+                i.fa.fa-question-circle.fa-2x
+              //- span
+        //- ul
+        ul.nav.navbar-nav.navbar-right.logged-in
+          li
+            a.info(href='profile.html')
+              img(src="assets/images/img_advisor_1.jpg", alt="")
+              | &nbsp;Hi Andrew!
+            //- a
+          //- li
+          li
+            a.notification(href='#')
+              i.fa.fa-globe
+              .counter 2
+            //- a
+          //- li
+        //- ul
+        ul.nav.navbar-nav.navbar-right.logged-out
+          li
+            a(href='#')
+              | 1
+              i.fa.fa-shopping-cart
+          li
+            a(href='#') join
+          li.hidden-xs
+            p.navbar-text |
+          li
+            a(href='profile.html') sign in
+      // /.nav-collapse

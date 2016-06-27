@@ -1,0 +1,258 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+
+  //- style
+
+
+block content
+
+  .banner.advisor
+    .gradient
+    h1.jumbo Welcome to a new world of drinking
+      br
+      small rate, review and compare
+    .action
+      a.btn.btn-success.btn-lg
+        i.fa.fa-envelope
+        | &nbsp;&nbsp;&nbsp;Signup with Email
+      a.btn.btn-info.btn-lg
+        i.fa.fa-facebook
+        | &nbsp;&nbsp;&nbsp;Continue with Facebook
+      .util
+        a(href="#")
+          | Download our app
+        //- a
+        | &nbsp;&nbsp;
+        i.fa.fa-android
+        | &nbsp;
+        i.fa.fa-apple
+      //- util
+    //- action
+  //- banner-home
+
+  section.profile
+    h2.direct Welcome to
+      span &nbsp;drinkadvisor
+    //- h2
+    .container
+      .row
+        .col-md-8.col-md-offset-2
+          form
+            .form-group
+              .text-center What drinks have you tried lately?
+              label &nbsp;&nbsp;rate a drink&nbsp;&middot;&nbsp;write a review
+              .icon_search
+                input.form-control.input-lg(type='text', placeholder='Search products...')
+                i.fa.fa-search
+              //- icon_search
+            //- form-group
+            .form-group
+              .text-center What would you like a rating on?
+              label &nbsp;&nbsp;get a rating
+              .icon_search
+                input.form-control.input-lg(type='text', placeholder='Search products...')
+                i.fa.fa-search
+              //- icon_search
+            //- form-group
+          //- form
+        //- col-md-8
+      //- row
+    //- container
+  //- section
+  section
+    .container
+      .product-wrap
+        .row
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 93
+                //- ctr
+                img.img-prod(src="assets/images/products/bottle8.png", alt="")
+                .details
+                  .name Corona Extra
+                    br
+                    small Beer
+                  .price $49.95
+                    small.text-muted &nbsp;per case
+                //- details
+                .stats
+                  span.ratings 334 ratings
+                  span.reviews 88 reviews
+              //- .thumb
+            //- .product
+          //- col-md-4
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 84
+                //- ctr
+                img.img-prod(src="assets/images/products/bottle1.png", alt="")
+                .details
+                  .name Gentleman's Agreement
+                    br
+                    small Margaret River Cabernet Suvignon
+                  .price $10.00
+                    small.text-muted &nbsp;per bottle
+                //- details
+                .stats
+                  span.ratings 84 ratings
+                  span.reviews 120 reviews
+              //- .thumb
+            //- .product
+          //- col-md-4
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 91
+                //- ctr
+                img.img-prod(src="assets/images/products/bottle7.png", alt="")
+                .details
+                  .name Chivas Regal
+                    br
+                    small 12 Year Old Scotch Whiskey 700ml
+                  .price $38.90
+                    small.text-muted &nbsp;per case
+                //- details
+                .stats
+                  span.ratings 160 ratings
+                  span.reviews 30 reviews
+              //- .thumb
+            //- .product
+          //- col-md-4
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 89
+                //- ctr
+                img.img-prod(src="assets/images/products/bottle6.png", alt="")
+                .details
+                  .name Sieur d'Arques
+                    br
+                    small Grande Cuv&eacute;e 1531 de Aimery
+                  .price $16.20
+                    small.text-muted &nbsp;per bottle
+                //- details
+                .stats
+                  span.ratings 62 ratings
+                  span.reviews 12 reviews
+              //- .thumb
+            //- .product
+          //- col-md-4
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 95
+                //- ctr
+                img.img-prod(src="assets/images/products/bottle5.png", alt="")
+                .details
+                  .name Absolut
+                    br
+                    small Vodka
+                  .price $49.90
+                    small.text-muted &nbsp;per bottle
+                //- details
+                .stats
+                  span.ratings 200 ratings
+                  span.reviews 88 reviews
+              //- .thumb
+            //- .product
+          //- col-md-4
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 90
+                //- ctr
+                img.img-prod(src="assets/images/products/bottle4.png", alt="")
+                .details
+                  .name Kim Crawford
+                    br
+                    small Suvignon Blac
+                  .price $14.90
+                    small.text-muted &nbsp;per bottle
+                //- details
+                .stats
+                  span.ratings 156 ratings
+                  span.reviews 59 reviews
+              //- .thumb
+            //- .product
+          //- col-md-4
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 95
+                //- ctr
+                img.img-prod(src="assets/images/products/bottle3.png", alt="")
+                .details
+                  .name Heineken
+                    br
+                    small Lager Stubbies
+                  .price $42.95
+                    small.text-muted &nbsp;per case
+                //- details
+                .stats
+                  span.ratings 520 ratings
+                  span.reviews 132 reviews
+              //- .thumb
+            //- .product
+          //- col-md-4
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 97
+                //- ctr
+                img.img-prod(src="assets/images/products/bottle2.png", alt="")
+                .details
+                  .name Sticks
+                    br
+                    small Pinot Noir
+                  .price $16.20
+                    small.text-muted &nbsp;per bottle
+                //- details
+                .stats
+                  span.ratings 69 ratings
+                  span.reviews 13 reviews
+              //- .thumb
+            //- .product
+          //- col-md-4
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 92
+                //- ctr
+                img.img-prod(src="assets/images/products/bottle9.png", alt="")
+                .details
+                  .name Tempus Two
+                    br
+                    small Botrytis Semillon 250ml
+                  .price $49.95
+                    small.text-muted &nbsp;per bottle
+                //- details
+                .stats
+                  span.ratings 19 ratings
+                  span.reviews 4 reviews
+              //- .thumb
+            //- .product
+          //- col-md-4
+        //- row
+      //- .product-wrap
+    //- container
+  //- section
+
+block scripts
+  // External Script goes here...
+  script.
+    $(document).ready(function(){
+
+    });

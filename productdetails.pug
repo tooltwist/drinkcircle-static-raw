@@ -1,0 +1,638 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+
+  //- style
+
+
+block content
+
+  section.productdetails
+    .container
+      p.bread
+        a(href="#") drinksdirect
+        | &nbsp;/&nbsp;
+        a(href="#") Brokenwood
+        | &nbsp;/&nbsp;
+        a(href="#")
+          strong Graveyard Vineyard Shiraz
+      //- bread
+      .row
+        .col-md-5
+          .stage
+            img(src="assets/images/products/brokenwood.png", alt="")
+          //- stage
+        //- col-md-5
+        .col-md-7.product-detail-wrap
+          .infos
+            .row
+              .col-md-3
+                .stats
+                  .rate-counter
+                    .ring
+                      img(src="assets/images/ring.png", alt="")
+                      .count 94
+                    //- ring
+                    p.text
+                      a(href="#") 334 Ratings
+                  //- rate-counter
+                  p
+                    strong
+                      a(href="seller.html") view sellers page
+                  p
+                    strong
+                      a(href="#") shipping info
+                //- stats
+              //- col-md-3
+              .col-md-6
+                .inventory
+                  h1 Brokenwood
+                    br
+                    small Graveyard Vineyard Shiraz
+                  //- h1
+                  .pricing
+                    table
+                      tr
+                        td
+                          a.button.v1(href="#", target="_blank") 6 pack
+                        //- td
+                        td
+                          a.button.v2(href="#", target="_blank") 5 cases
+                        //- td
+                        td
+                          a.button.v3(href="#", target="_blank") 10 cases
+                        //- td
+                      //- tr
+                      tr
+                        td
+                          strong.price $25.99
+                          .label-quantity per bottle
+                        //- td
+                        td
+                          strong.price $21.99
+                          .label-quantity per bottle
+                        //- td
+                        td
+                          strong.price $19.99
+                          .label-quantity per bottle
+                        //- td
+                      //- tr
+                    //- table
+                  //- pricing
+                //- inventory
+              //- col-md-9
+              .col-md-3
+                .stats
+                  .actions
+                    a.button.v4.inline(href='#myActiveCircles', data-toggle="collapse") (3) live circles&nbsp;
+                    br
+                    br
+                    a.button.v4.inline(href='#') create a circle
+                  //- actions
+                //- stats
+              //- col-md-3
+            //- row
+            hr
+            #myActiveCircles.collapse
+              .active-circles
+                .list_groups.groups
+                  .content
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            .ring
+                            img(src='assets/images/circles/circles_8.png', alt='')
+                      span.form-control
+                        p
+                          a(href='#')
+                            strong Adrian Southern
+                              br
+                              | 10 case circle
+                            //- strong
+                          //- a
+                        //- p
+                        | (4)
+                        strong people joined |
+                        | (7)
+                        strong cases sold
+                        a.button.v5.inline.request(href='#')
+                          span.hidden-xs request to join
+                          span.visible-xs + join
+                        //- a
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            .ring
+                            img(src='assets/images/circles/circles_1.png', alt='')
+                      span.form-control
+                        p
+                          a(href='#')
+                            strong Charmaine Stevens
+                              br
+                              | 5 case circle
+                            //- strong
+                          //- a
+                        //- p
+                        | (2)
+                        strong people joined |
+                        | (2)
+                        strong cases sold
+                        a.button.v5.inline.request(href='#')
+                          span.hidden-xs request to join
+                          span.visible-xs + join
+                        //- a
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            .ring
+                            img(src='assets/images/circles/circles_7.png', alt='')
+                      span.form-control
+                        p
+                          a(href='#')
+                            strong Northern Beaches Golf Club
+                              br
+                              | 10 case circle
+                            //- strong
+                          //- a
+                        //- p
+                        | (7)
+                        strong people joined |
+                        | (9)
+                        strong cases sold
+                        a.button.v5.inline.request(href='#')
+                          span.hidden-xs request to join
+                          span.visible-xs + join
+                        //- a
+                  .expand
+                    a(href='#myActiveCircles', data-toggle='collapse')
+                      i.fa.fa-caret-up
+                  //- expand
+              //- active-circles
+            //- #myActiveCircles
+            .about
+              p.desc Brokenwood Shiraz is a ripe and generous Shiraz with lifted cherry and mint aromas nicely balanced with sweet chocolate notes on the nose and a soft rich palate with savoury cedary flavours and fine grained tannins on the finish.
+              .row
+                .col-xs-4.col-md-4
+                  p
+                    strong variety
+                    br
+                    | Shiraz
+                  //- p
+                //- col-md-4
+                .col-xs-4.col-md-4
+                  p
+                    strong region
+                    br
+                    | Hunter Valley
+                  //- p
+                //- col-md-4
+                .col-xs-4.col-md-4
+                  p
+                    strong alcohol
+                    br
+                    | 14.5%
+                  //- p
+                //- col-md-4
+              //- row
+              .row
+                .col-xs-4.col-md-4
+                  p
+                    strong vintage
+                    br
+                    | 2010
+                  //- p
+                //- col-md-4
+                .col-xs-4.col-md-4
+                  p
+                    strong free delivery
+                    br
+                    | Australia wide
+                  //- p
+                //- col-md-4
+                .col-xs-4.col-md-4
+                  p.share
+                    strong share:
+                      a(href="#", target="_blank")
+                        i.fa.fa-twitter
+                      //- a
+                      a(href="#", target="_blank")
+                        i.fa.fa-facebook
+                      //- a
+                      a(href="#", target="_blank")
+                        i.fa.fa-google-plus
+                      //- a
+                      a(href="#", target="_blank")
+                        i.fa.fa-envelope
+                      //- a
+                  //- p.share
+                //- col-md-4
+              //- row
+              .expand
+                a(href='#', data-toggle='collapse')
+                  | show more
+                  i.fa.fa-caret-down
+              //- expand
+            //- about
+            .reviews
+              .row
+                .col-md-6
+                  strong Customer Reviews
+                    br
+                  | 88 Reviews
+                //- col-md-6
+                .col-md-6
+                  .btn-review-wrap
+                    a.button.inline.v3(href="#") Write a review
+                    a.button.inline.v1(href="#") Rate a product
+                  //- btn-review-wrap
+                //- col-md-6
+              //- row
+              .review
+                .list_groups
+                  .content
+                    .counter
+                      .ring
+                        img(src="assets/images/ring.png", alt="")
+                        .count 96
+                      //- ring
+                    //- counter
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_1.jpg', alt='')
+                      span.form-control
+                        strong Quality Shiraz
+                        br
+                        small
+                          | by
+                          a(href="profile.html") Andrew Steer
+                          | | May 26, 2016
+                        //- small
+                        p.comment I really 'dig' this Shiraz. It's definitely 'one out of the box'. You can 'lay this one to rest' for a while or drink it right now!
+                      //- span
+                    //- input-group
+                  //- content
+                  .footer
+                    .row
+                      .col-md-8
+                        small 100 people found this helpful. Was this review helpful to you?
+                          strong Yes
+                          | /
+                          strong No
+                      //- col-md-8
+                      .col-md-4
+                        .right-to-center.basecolor
+                          small
+                            strong
+                              a(href="#") like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            strong
+                              a(href="#") comment
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            strong
+                              a(href="#") share
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-4
+                    //- row
+                  //- footer
+                //- list_groups
+                .list_groups
+                  .content
+                    .counter
+                      .ring
+                        img(src="assets/images/ring.png", alt="")
+                        .count 91
+                      //- ring
+                    //- counter
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_2.jpg', alt='')
+                      span.form-control
+                        strong A beautiful wine
+                        br
+                        small
+                          | by
+                          a(href="#") Carter Smith
+                          | | May 26, 2016
+                        //- small
+                        p.comment A beautiful Hunter Valley Red and very pleasing to the palate. Great value for the price.
+                      //- span
+                    //- input-group
+                  //- content
+                  .footer
+                    .row
+                      .col-md-8
+                        small 100 people found this helpful. Was this review helpful to you?
+                          strong Yes
+                          | /
+                          strong No
+                      //- col-md-8
+                      .col-md-4
+                        .right-to-center.basecolor
+                          small
+                            strong
+                              a(href="#") like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            strong
+                              a(href="#") comment
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            strong
+                              a(href="#") share
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-4
+                    //- row
+                  //- footer
+                //- list_groups
+                .list_groups
+                  .content
+                    .counter
+                      .ring
+                        img(src="assets/images/ring.png", alt="")
+                        .count 82
+                      //- ring
+                    //- counter
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_5.jpg', alt='')
+                      span.form-control
+                        strong Very disappointing
+                        br
+                        small
+                          | by
+                          a(href="#") Mary James
+                          | | May 26, 2016
+                        //- small
+                        p.comment Not up to the quality of previous vintages. Still a not a bad drop but not nearly as good as the 2012.
+                      //- span
+                    //- input-group
+                  //- content
+                  .footer
+                    .row
+                      .col-md-8
+                        small 100 people found this helpful. Was this review helpful to you?
+                          strong Yes
+                          | /
+                          strong No
+                      //- col-md-8
+                      .col-md-4
+                        .right-to-center.basecolor
+                          small
+                            strong
+                              a(href="#") like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            strong
+                              a(href="#") comment
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            strong
+                              a(href="#") share
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-4
+                    //- row
+                    .comment
+                      .list_groups
+                        .content
+                          .input-group
+                            span.input-group-addon
+                              .thumb
+                                .img
+                                  img(src='assets/images/users/user_7.jpg', alt='')
+                            span.form-control
+                              strong Comment: Very disappointing
+                              br
+                              small
+                                | by
+                                a(href="#") Susie O'Brian
+                                | | May 26, 2016
+                              //- small
+                              p.comment I can't agree Mary. Like you I also enjoyed the previous vintages but I also loved this one. I've recommended this to several friends who have been very impressed.
+                            //- span
+                          //- input-group
+                        //- content
+                      //- list_groups
+                    //- comment
+                  //- footer
+                  .footer
+                    .row
+                      .col-md-8
+                        small 100 people found this helpful. Was this review helpful to you?
+                          strong Yes
+                          | /
+                          strong No
+                      //- col-md-8
+                      .col-md-4
+                        .right-to-center.basecolor
+                          small
+                            strong
+                              a(href="#") like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            strong
+                              a(href="#") comment
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            strong
+                              a(href="#") share
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-4
+                    //- row
+                  //- footer
+                //- list_groups
+                br
+                p.text-center
+                  strong
+                    a.basecolor(href="#") load more
+                  //- strong
+                  hr
+                //- p
+
+                strong Questions
+                br
+                | 2 Questions about the product
+                //- p
+                .list_groups
+                  .content
+                    br
+                    .col-md-12
+                      form
+                        .form-group
+                          p.help-block Ask a question about this product
+                          input.form-control(type='text', placeholder='Write your questions here.(ex: Is the wine from?)')
+                        //- form-group
+                        .form-group
+                          input.form-control(type='text', placeholder='Write the details here.')
+                        //- form-group
+                      //- form
+                    //- col-md-12
+                  //- content
+                  .clearfix
+                  .footer
+                    .row
+                      .col-md-12
+                        .right-to-center.basecolor
+                          small
+                            strong
+                              a(href="#") submit
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-12
+                    //- row
+                  //- footer
+                //- list_groups
+                .list_groups
+                  .content
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_1.jpg', alt='')
+                      span.form-control
+                        small
+                          | by
+                          a(href="profile") Andrew Steer
+                          | | May 25, 2016
+                        //- small
+                        p.comment Hi! has anybody tried this with waygu steak with asparagus saute potatoes?
+                      //- span
+                    //- input-group
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_2.jpg', alt='')
+                      span.form-control
+                        small
+                          | by
+                          a(href="#") Carter Smith
+                          | | May 26, 2016
+                        //- small
+                        p.comment I had it with char grill ribeye fillet medium rare and i finished the whole bottle :)
+                      //- span
+                    //- input-group
+                    .col-md-12
+                      .right-to-center.basecolor
+                        p
+                          small
+                            strong
+                              a(href="#") like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            strong
+                              a(href="#") comment
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            strong
+                              a(href="#") share
+                            //- strong
+                          //- small
+                        //- p
+                      //- right-to-center
+                    //- col-md-12
+                    hr
+                    .commentbox
+                      .input-group
+                        span.input-group-addon
+                          .thumb
+                            .img
+                              img(src='assets/images/anonymous.png', alt='')
+                            //- img
+                          //- thumb
+                        //- span
+                        span.form-control
+                          .row
+                            .col-md-12
+                              textarea.form-control(rows='3', placeholder='Write your comment here.')
+                            //- col-md-12
+                          //- row
+                        //- span
+                      //- input-group
+                    //- commentbox
+                  //- content
+
+                  .footer
+                    .row
+                      .col-md-12
+                        .pull-left
+                          .basecolor
+                            small
+                              strong
+                                a(href="#") image
+                              //- strong
+                              | &nbsp;&nbsp;&nbsp;
+                              strong
+                                a(href="#") video
+                              //- strong
+                              | &nbsp;&nbsp;&nbsp;
+                              strong
+                                a(href="#") link
+                              //- strong
+                              | &nbsp;&nbsp;&nbsp;
+                              strong
+                                a(href="#") file
+                              //- strong
+                            //- small
+                          //- p
+                        //-
+                        .right-to-center.basecolor
+                          small
+                            strong
+                              a(href="#") submit
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-12
+                    //- row
+                  //- footer
+                //- list_groups
+              //- review
+            //- reviews
+          //- infos
+        //- col-md-7
+      //- row
+    //- container
+  //- section
+
+block scripts
+  // External Script goes here...
+  script.
+    $(document).ready(function(){
+      $(window).on("load resize", function() {
+        if ( $(this).width() > 991 ) {
+          $('section.productdetails').outerHeight(function(){
+            var top = $('nav.navbar').outerHeight();
+            var bottom = $('footer').outerHeight(true);
+            var screenHeight = $(window.top).height();
+
+            return (screenHeight - (top + bottom));
+          });
+          $('.product-detail-wrap, .productdetails .stage').height(function() {
+            return $('section.productdetails').height() - $('.bread').outerHeight();
+          });
+        } else {
+          $('section.productdetails, .product-detail-wrap, .productdetails .stage').height("");
+        }
+      });
+    });

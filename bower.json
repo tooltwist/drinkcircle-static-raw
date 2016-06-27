@@ -1,0 +1,23 @@
+{
+  "name": "portfolio",
+  "description": "Project Dependencies",
+  "main": "gulpfile.js",
+  "authors": [
+    "Rodan Luzuriaga"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery.cookie": "https://github.com/carhartl/jquery-cookie.git#~1.4.1",
+    "font-awesome": "fontawesome#^4.5.0",
+    "jquery": "^2.2.3",
+    "animate.css": "git@github.com:daneden/animate.css.git#^3.5.1"
+  }
+}

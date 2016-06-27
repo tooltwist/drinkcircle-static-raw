@@ -1,0 +1,270 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    section.site .brief i {
+      right: -34px;
+      left: inherit;
+      margin-right: 0;
+    }
+    section.site .brief.dd h4 span a,
+    section.site .brief.c h4 span a,
+    section.site .brief.di h4 span a {
+      color: #5a5a5a;
+    }
+    section.site .brief.dd h4 span i,
+    section.site .brief.dd h4 span a:hover,
+    .navbar .minisite li a.dd i {
+      color: #1A93D1;
+    }
+    section.site .brief.c h4 span i,
+    section.site .brief.c h4 span a:hover,
+    .navbar .minisite li a.tc i {
+      color: #41B54B;
+    }
+    section.site .brief.di h4 span i,
+    section.site .brief.di h4 span a:hover,
+    .navbar .minisite li a.da i {
+      color: #E93D3D;
+    }
+  //- style
+
+block content
+
+  .banner.home
+    .gradient
+    h1.jumbo Welcome to a new world of drinking
+    .action
+      a.btn.btn-success.btn-lg
+        i.fa.fa-envelope
+        span.hidden-xs &nbsp;&nbsp;&nbsp;Signup with Email
+      a.btn.btn-info.btn-lg
+        i.fa.fa-facebook
+        span.hidden-xs &nbsp;&nbsp;&nbsp;Continue with Facebook
+      .util
+        a(href="#")
+          | Download our app
+        //- a
+        | &nbsp;&nbsp;
+        i.fa.fa-android
+        | &nbsp;
+        i.fa.fa-apple
+      //- util
+    //- action
+  //- banner-home
+
+  section.site
+    h2 Features you'll love...
+    .container
+      .row
+        .col-xs-10.col-sm-4.col-md-4.col-xs-offset-1.col-sm-offset-0.col-md-offset-0
+          .brief.dd
+            h4
+              span
+                i.fa.fa-arrow-circle-right
+                a(href="drinksdirect.html") drinksdirect
+            p Why pay retail when you can
+              br.hidden-xs
+              | &nbsp;buy direct from the producers.
+            //- p
+            a(href="drinksdirect.html") learn more
+          //- brief
+        //- col-md-4
+        .col-xs-10.col-sm-4.col-md-4.col-xs-offset-1.col-sm-offset-0.col-md-offset-0
+          .brief.c
+            h4
+              span
+                i.fa.fa-circle-o
+                a(href="thecircle.html") thecircle
+            p Buy with friends
+              br.hidden-xs
+              | &nbsp;for great group savings.
+            //- p
+            a(href="thecircle.html") learn more
+          //- brief
+        //- col-md-4
+        .col-xs-10.col-sm-4.col-md-4.col-xs-offset-1.col-sm-offset-0.col-md-offset-0
+          .brief.di
+            h4
+              span
+                i.fa.fa-question-circle
+                a(href="drinkadvisor.html") drinkadvisor
+            p Thousands of opinions
+              br.hidden-xs
+              | &nbsp;from drinkers just like you.
+            //- p
+            a(href="drinkadvisor.html") learn more
+            //- p
+          //- brief
+        //- col-md-4
+      //- row
+    //- container
+  //- section
+
+  section.activity
+    .container
+      .row
+        .col-sm-6.col-md-4
+          .type.story
+            img(src="assets/images/activity/image-1.png", alt="")
+            .caption
+              h1 Drinking wine
+                br
+                | can improve
+                br
+                | your sex life
+              .action
+                a(href="#") Full Story
+              //- button
+            //- caption
+          //- type
+        //- col-md-4
+        .col-sm-6.col-md-4
+          .type.post
+            .shared
+              img(src="assets/images/activity/image-2.png", alt="")
+              .caption
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/likes/likes_10.png', alt='')
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    a(href='#')
+                      strong Taylors Wines
+                    //- a
+                    br
+                    | Matt Damon enjoying a Taylors Merlot on his recent trip to Sydney...
+                    a(href="#") See more
+                  //- span
+                //- input-group
+              //- caption
+            //- shared
+          //- type
+        //- col-md-4
+        .col-sm-6.col-md-4
+          .type.story
+            img(src="assets/images/activity/image-3.png", alt="")
+            .caption
+              h1 Hottest 100 Aussie
+                br
+                | Craft Beers Of 2015
+              .action
+                a(href="#") Full Story
+              //- button
+            //- caption
+          //- type
+        //- col-md-4
+        .col-sm-6.col-md-4
+          .type.story
+            img(src="assets/images/activity/image-4.png", alt="")
+            .caption
+              h1 Why Wine Doesn't
+                br
+                | Make You Fat
+              .action
+                a(href="#") Full Story
+              //- button
+            //- caption
+          //- type
+        //- col-md-4
+        .col-sm-6.col-md-4
+          .type.story
+            img(src="assets/images/activity/image-5.png", alt="")
+            .caption
+              h1 Chat with over
+                br
+                | 1,500 producers
+              .action
+                a(href="#") Find your favourites
+              //- button
+            //- caption
+          //- type
+        //- col-md-4
+        .col-sm-6.col-md-4
+          .type.post
+            .shared
+              img(src="assets/images/activity/image-6.png", alt="")
+              .caption
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/likes/likes_1.png', alt='')
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    a(href='seller.html')
+                      strong Brokenwood Wines
+                    //- a
+                    br
+                    | RRP $65 End of bin clearance exclusive to our circle followers $29 be quick 200 cases only...
+                    a(href="seller.html") See more
+                  //- span
+                //- input-group
+              //- caption
+            //- shared
+          //- type
+        //- col-md-4
+        .col-sm-6.col-md-4
+          .type.story
+            img(src="assets/images/activity/image-7.png", alt="")
+            .caption
+              h1 Make Champagne
+                br
+                | and Sparkling Shiraz
+                br
+                | in a SodaStream
+              .action
+                a(href="#") Full Story
+              //- button
+            //- caption
+          //- type
+        //- col-md-4
+        .col-sm-6.col-md-4
+          .type.story.guide
+            img(src="assets/images/activity/image-8.png", alt="")
+            .caption
+              h1 The Guide To
+                br
+                | Cooking With Wine
+              .action
+                a(href="#") Full Story
+              //- button
+            //- caption
+          //- type
+        //- col-md-4
+        .col-sm-6.col-md-4
+          .type.story
+            img(src="assets/images/activity/image-9.png", alt="")
+            .caption
+              h1 The Worlds Top 50
+                br
+                | Most Expensive
+                br
+                | Wines
+              .action
+                a(href="#") Full Story
+              //- button
+            //- caption
+          //- type
+        //- col-md-4
+      //- row
+      .loadmore
+        a(href="#", target="_blank") show more
+      //- loadmore
+    //- container
+  //- section
+
+block scripts
+  // External Script goes here...
+  script.
+    $.cookie('pageactive', '', {path: '/'});
+
+    $(document).ready(function(){
+
+    });

@@ -1,0 +1,338 @@
+.grid_groups,
+.list_groups,
+.list_search_groups {
+  // Specifics
+  &.reviews, &.feed, &.events, &.sellerinfo {
+    @at-root &.reviews {
+      margin-top: 27px;
+    }
+    @at-root &.sellerinfo {
+      padding: 0;
+      h4 {
+        margin: 0;
+        padding: 10px;
+      }
+      .content {
+        padding: 0;
+        .input-group-addon {
+          padding: 5px;
+          min-width: 55px;
+        }
+        a {
+          color: #777;
+        }
+      }
+    }
+    .thumb .img {
+      @include box(35px);
+      img {
+        @include box(auto);
+        padding: 0;
+      }
+    }
+  }
+  &.groups {
+    .input-group-addon {
+      .img {
+        img {
+          padding: 11px;
+        }
+      }
+    }
+  }
+  &.messaging, &.likes {
+    .thumb .img img {
+      padding: 0;
+    }
+  }
+  &.circles, &.friends, &.likes {
+    .thumb .img {
+      @include box(auto);
+    }
+  }
+  & { //- ROOT == ROOT == ROOT == ROOT == ROOT == ROOT == ROOT == ROOT == ROOT == ROOT
+    margin-top: 20px;
+    background: white;
+		border: 1px solid #eee;
+		outline: 1px solid whitesmoke;
+		font-size: 14px;
+		padding: 15px 0 0;
+  }
+  .thumb {
+    .img {
+      @include border-radius(50%);
+      @include box(80px);
+      position: relative;
+      overflow: hidden;
+      img {
+        padding: 8px;
+        @include border-radius(50%);
+      }
+    }
+    .ring {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: transparent url('../../assets/images/ring.png') center center no-repeat;
+      background-size: 100%;
+    }
+    .name {
+      font-size: 11px;
+      text-align: center;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      span {
+        white-space: nowrap;
+      }
+    }
+  }
+  .more {
+    padding: 5px;
+    text-align: center;
+    background: whitesmoke;
+    a {
+      // color: #777;
+    }
+  }
+  a.share {
+    position: absolute;
+    right: 5px;
+    bottom: 7px;
+    color: #777;
+    font-size: 12px;
+    text-decoration: none;
+    &:hover {
+      color: #bbb;
+    }
+  }
+  .search {
+		padding: 5px;
+		position: relative;
+		input {
+			box-shadow: none;
+			height: 26px;
+			padding-left: 25px;
+			border-color: #ddd;
+			@include border-radius(0);
+		}
+		&:before {
+			font-family: 'FontAwesome';
+			content: "\f002";
+			position: absolute;
+			left: 14px;
+			top: 10px;
+			color: #aaa;
+			font-size: 12px;
+		}
+		a {
+			position: absolute;
+			right: 12px;
+			top: 8px;
+			text-decoration: none;
+			color: #bbb;
+			&:hover {
+				color: #333;
+			}
+		}
+	}
+}
+
+
+// Individual Groups
+.grid_groups {
+	.content {
+		padding: 3px
+	}
+	.thumb {
+		padding: 2px;
+		// min-height: 80px;
+		overflow: hidden;
+		img {
+			max-width: 100%;
+			min-width: 100%;
+		}
+	}
+	h4 {
+		margin-top: 0;
+		padding: 0 10px;
+		small {
+			margin-left: 5px;
+      a {
+        color: #41B54B;
+      }
+		}
+		a {
+			color: inherit;
+		}
+	}
+}
+.list_groups {
+	.head {
+		padding: 0 10px;
+		h4 {
+			margin-top: 0;
+			margin-bottom: 0;
+			small {
+				margin-left: 5px;
+        a {
+          color: #41B54B;
+        }
+			}
+			a {
+				color: inherit;
+			}
+		}
+	}
+	.content {
+		padding: 0 5px;
+		max-height: 400px;
+		overflow: scroll;
+		.input-group {
+			padding: 5px 0;
+			& + .input-group {
+				border-top: 1px solid #eee;
+			}
+			.input-group-addon {
+				@include border-radius(0);
+				background: none;
+				border: 0;
+				padding: 4px 8px 4px 2px;
+				.img {
+					// @include box(80px);
+					overflow: hidden;
+					position: relative;
+					img {
+						max-width: 100%;
+						position: absolute;
+						left: 0;
+						right: 0;
+						margin: auto;
+						bottom: 0;
+						top: 0;
+					}
+				}
+        .badge {
+          font-size: 10px;
+          font-weight: lighter;
+          background: #41B54B;
+        }
+			}
+			.input-group-addon {
+				vertical-align: middle;
+			}
+			span.form-control {
+				border: 0;
+				box-shadow: none;
+				padding: 8px 0;
+				height: auto;
+				font-size: 12px;
+				background: none;
+				p {
+					margin-top: 5px;
+					a {
+						font-size: 12px;
+						margin-right: 5px;
+					}
+					small {
+						color: #aaa;
+					}
+				}
+			}
+		}
+	}
+  .map {
+    img {
+      min-width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+.list_search_groups {
+	.head {
+		padding: 0 10px;
+		h4 {
+			margin-top: 0;
+			margin-bottom: 0;
+			small {
+				margin-left: 5px;
+        a {
+          color: #41B54B;
+        }
+			}
+			a {
+				color: inherit;
+			}
+		}
+	}
+	.content {
+		padding: 0 15px;
+		max-height: 400px;
+		overflow: scroll;
+		a {
+			color: #777;
+			display: block;
+			text-decoration: none;
+		}
+		.input-group {
+			// padding: 5px 0;
+			& + .input-group {
+				// border-top: 1px solid #eee;
+			}
+			.input-group-addon {
+				@include border-radius(0);
+				background: none;
+				border: 0;
+				padding: 4px 8px 4px 2px;
+				.img {
+					@include box(25px);
+          @include border-radius(50%);
+					overflow: hidden;
+					position: relative;
+					img {
+						max-width: 100%;
+						position: absolute;
+						left: 0;
+						right: 0;
+						margin: auto;
+						bottom: 0;
+						top: 0;
+					}
+				}
+			}
+			.input-group-addon {
+				vertical-align: middle;
+			}
+			.form-control {
+				border: 0;
+				box-shadow: none;
+				padding: 8px 0;
+				height: auto;
+				font-size: 12px;
+				background: none;
+				a {
+					font-size: 12px;
+					margin-right: 5px;
+					&:after {
+						font-family: 'FontAwesome';
+						content: "\f111";
+						position: absolute;
+						right: 0;
+						color: #bbb;
+					}
+					&.online {
+						&:after {
+							color: #41B54B;
+						}
+					}
+					&.offline + small {
+						font-style: italic;
+					}
+				}
+				small {
+					color: gray;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,811 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  .banner.userprofile.seller
+    .gradient
+    .info
+      .container
+        .row
+          .col-sm-3.col-md-3
+            .photo
+              .img
+                a(href="#")
+                  i.fa.fa-camera
+                //- a
+                img(src="assets/images/producers/brokenwood/logo.jpg", alt="")
+              //- img
+              .name
+                span Brokenwood Wines&nbsp;
+                sup
+                  a(href="#")
+                    i.fa.fa-pencil
+                    span edit profile
+                  //- a
+                //- sup
+                br
+                small Winery &amp; Vineyard
+              //- name
+            //- photo
+          //- col-md-3
+        //- row
+        .row
+          .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
+            .userprofilemenu
+              nav.menu
+                ul
+                  li
+                    a.active(href="#") Shop
+                  //- li
+                  li
+                    a(href="#") Photos
+                  //- li
+                  li
+                    a(href="#") Reviews
+                  //- li
+                  li
+                    a(href="#") Events
+                  //- li
+                //- ul
+              //- nav
+            //- userprofilemenu
+          //- col-md-6
+        //- row
+      //- container
+    //- info
+  //- banner-home
+
+  section.userprofile
+    .container
+      .row
+        .col-md-3
+          .search.circle
+            a(href="#", target="_blank")
+              i.fa.fa-search
+            //- a
+            input.form-control(type='text', placeholder='search the circle...')
+          //- search
+          .intro
+            h4 Winery &amp; Vineyard &middot; Pokolbin, New South Wales
+            .rating-status
+              | 4.6
+              .stars
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star-half-o
+              //- stars
+            //- rating-status
+          //- intro
+          .search.page
+            a(href="#", target="_blank")
+              i.fa.fa-search
+            //- a
+            input.form-control(type='text', placeholder='search for posts on this page...')
+          //- search
+          .list_groups.sellerinfo
+            .content
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-users
+                span.form-control
+                  a(href="#") 4,842 people like this
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-map-marker
+                span.form-control
+                  a(href="#") 2,982 people have been here
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-clock-o
+                span.form-control
+                  a(href="#")
+                    | Open · 9:30AM - 5:00PM
+                    br
+                    | Get additional info
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-user-plus
+                span.form-control
+                  a(href="#")
+                    | Invite friends to like this Page
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .badge
+                    | 4.6
+                    i.fa.fa-star
+                span.form-control
+                  a(href="#")
+                    | 4.6 of 5 stars · 89 reviews
+                    br
+                    | View Reviews
+                  //- p
+                //- span
+              //- input-group
+            //- content
+          //- sellerinfo
+          .intro
+            .livecircles
+              img(src="assets/images/ring.png", alt="")
+              h4.text
+                .count 884
+                a(href="#") live circles
+            //- livecircles
+          //- intro
+          .list_groups.sellerinfo
+            .content
+              h4
+                a(href="#") About
+              //- h4
+              .map
+                img(src="assets/images/static_map.png", alt="")
+              //-
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-share
+                span.form-control
+                  a(href="#") 401-427 McDonalds Rd Pokolbin, NSW
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-phone
+                span.form-control
+                  a(href="#") +61 2 4998 7559
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-clock-o
+                span.form-control
+                  a(href="#")
+                    | Open
+                    br
+                    | Today 9:30AM - 5:00PM
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-question-circle-o
+                span.form-control
+                  a(href="#")
+                    | Ask for Brokenwood Wines's price range
+                  //- p
+                //- span
+              //- input-group
+            //- content
+          //- sellerinfo
+          .grid_groups.friends
+            h4
+              a(href="#") Photos
+              small (
+                a(href="#") 213
+                | )
+            //- h4
+            .content
+              .container-fluid
+                .row
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_1.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_2.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_3.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_4.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_5.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_6.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_7.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_8.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_9.png", alt="")
+                  //- col-md-4
+                //- row
+              //- container
+            //- content
+          //- grid_groups
+        //- col-md-3
+        .col-md-6
+          .composer
+            .head
+              a(href="#")
+                i.fa.fa-pencil
+                | Status
+              a(href="#")
+                i.fa.fa-picture-o
+                | Photo/Video
+              a(href="#")
+                i.fa.fa-calendar-o
+                | Event
+            //- head
+            .content
+              textarea.form-control(rows='2')
+            //- content
+            .controls
+              a(href="#")
+                i.fa.fa-camera
+              //- a
+              a(href="#")
+                i.fa.fa-user-plus
+              //- a
+              a(href="#")
+                i.fa.fa-smile-o
+              //- a
+              a(href="#")
+                i.fa.fa-map-marker
+              //- a
+              a(href="#")
+                i.fa.fa-clock-o
+              //- a
+
+              a.post(href="#")
+                i.fa.fa-send-o
+                | Post
+              //- a
+            //- controls
+          //- composer
+
+          .timeline
+            .content
+              .head
+                .user
+                  .img
+                    img(src="assets/images/producers/brokenwood/logo.jpg", alt="")
+                  //- img
+                  a(href="seller.html") Brokenwood Wines
+                //- user
+                .more
+                  a(href="#")
+                    i.fa.fa-chevron-down
+                  //- a
+                //- more
+              //- header
+              .inner
+                .caption
+                  p RRP $65 End of bin clearance exclusive to our circle followers $29 be quick 200 cases only...
+                    a(href="#") See more
+                //- caption
+                .post
+                  .shared
+                    img(src="assets/images/activity/image-6.png", alt="")
+                  //- shared
+                //- post
+              //- inner
+              br
+              a(href="#")
+                i.fa.fa-heart
+                | &nbsp;216
+            //- content
+            .controls
+              a(href="#")
+                i.fa.fa-heart
+                | Like
+              //- a
+              a(href="#")
+                i.fa.fa-comment
+                | Comment
+              //- a
+              a(href="#")
+                i.fa.fa-share
+                | Share
+              //- a
+            //- controls
+            .footer
+              .comments
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/users/user_3.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    strong
+                      a(href="#", target="_blank") Darren Crone
+                    //- strong
+                    | Hey mate this came through this morning I'm down for 3 cases better jump on it straight away?
+                    p
+                      a(href="#") Like
+                      | &nbsp;&middot;&nbsp;
+                      a(href="#") Reply
+                      | &middot;
+                      small &nbsp;May 15 at 9:53am
+                //- input-group
+                .indent
+                  .input-group
+                    span.input-group-addon
+                      .thumb
+                        .img
+                          img(src="assets/images/img_advisor_1.jpg", alt="")
+                        //- img
+                      //- thumb
+                    //- input-group-addon
+                    span.form-control
+                      strong
+                        a(href="profile.html") Andrew Steer
+                      //- strong
+                      | thanks for the heads up mate I just ordered 3 cases too. Passed it on Phil and Arv as well! Hope they're not too late it's nearly all gone!
+                      p
+                        a(href="#") Like
+                        | &nbsp;&middot;&nbsp;
+                        a(href="#") Reply
+                        | &middot;
+                        small &nbsp;May 15 at 10:55am
+                  //- input-group
+                  .input-group
+                    span.input-group-addon
+                      .thumb
+                        .img
+                          img(src="assets/images/users/user_4.jpg", alt="")
+                        //- img
+                      //- thumb
+                    //- input-group-addon
+                    span.form-control
+                      strong
+                        a(href="#", target="_blank") Phil Callender
+                      //- strong
+                      | thanks Darren just managed to get 2 cases but Arv missed out! Let me know if any other buys like that come up and I'll do the same.
+                      p
+                        a(href="#") Like
+                        | &nbsp;&middot;&nbsp;
+                        a(href="#") Reply
+                        | &middot;
+                        small &nbsp;May 15 at 11:23am
+                  //- input-group
+                //- indent
+              //- comments
+              .comment
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/producers/brokenwood/logo.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  input.form-control(type='text', placeholder='Write a comment...')
+                  span.input-group-addon
+                    a(href="#")
+                      i.fa.fa-camera
+                    //- a
+                  //- input-group-addon
+                //- input-group
+              //- comment
+            //- footer
+          //- timeline
+          .timeline
+            .content
+              .head
+                .user
+                  .img
+                    img(src="assets/images/producers/brokenwood/logo.jpg", alt="")
+                  //- img
+                  a(href="seller.html") Brokenwood Wines
+                //- user
+                .more
+                  a(href="#")
+                    i.fa.fa-chevron-down
+                  //- a
+                //- more
+              //- header
+              .inner
+                .caption
+                  p Join us on the waterfront at the beautiful Anchorage, Port Stephens to celebrate the release of the much anticipated, award winning 2014 Graveyard Vineyard Shiraz. To book your seats contact the Events Team on (02) 4984 0350 or events@anchorageportstephens.com.au
+                //- caption
+                .post
+                  .shared
+                    img(src="assets/images/posts/p1.jpg", alt="")
+                  //- shared
+                //- post
+              //- inner
+              br
+              a(href="#")
+                i.fa.fa-heart
+                | &nbsp;111
+            //- content
+            .controls
+              a(href="#")
+                i.fa.fa-heart
+                | Like
+              //- a
+              a(href="#")
+                i.fa.fa-comment
+                | Comment
+              //- a
+              a(href="#")
+                i.fa.fa-share
+                | Share
+              //- a
+            //- controls
+            .footer
+              .comments
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/users/user_5.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    strong
+                      a(href="#", target="_blank") Cathy Gadd
+                    //- strong
+                    | Looking forward to this, should be awesome !
+                    p
+                      a(href="#") Like
+                      | &nbsp;&middot;&nbsp;
+                      a(href="#") Reply
+                      | &middot;
+                      small &nbsp;May 8 at 6:58am
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/users/user_6.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    strong
+                      a(href="#", target="_blank") Graeme Brunton
+                    //- strong
+                    | See you there Mal I'll be in room 32
+                    p
+                      a(href="#") Like
+                      | &nbsp;&middot;&nbsp;
+                      a(href="#") Reply
+                      | &middot;
+                      small &nbsp;May 21 at 6:01pm
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/users/user_7.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    strong
+                      a(href="#", target="_blank") Kathy Coombe
+                    //- strong
+                    | This sounds a bit special Caitlin Coombe.
+                    p
+                      a(href="#") Like
+                      | &nbsp;&middot;&nbsp;
+                      a(href="#") Reply
+                      | &middot;
+                      small &nbsp;May 21 at 9:13am
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/users/user_8.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    strong
+                      a(href="#", target="_blank") Melissa-Jane Laney
+                    //- strong
+                    a(href="#") Alisha-jane Laney
+                    p
+                      a(href="#") Like
+                      | &nbsp;&middot;&nbsp;
+                      a(href="#") Reply
+                      | &middot;
+                      small &nbsp;May 12 at 5:55am
+                //- input-group
+              //- comments
+              .comment
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/producers/brokenwood/logo.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  input.form-control(type='text', placeholder='Write a comment...')
+                  span.input-group-addon
+                    a(href="#")
+                      i.fa.fa-camera
+                    //- a
+                  //- input-group-addon
+                //- input-group
+              //- comment
+            //- footer
+          //- timeline
+        //- col-md-6
+        .col-md-3
+          .list_groups.reviews
+            .head
+              h4
+                a(href="#") Reviews
+                small (
+                  a(href="#") 89
+                  | )
+              //- h4
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/reviewers/rev1.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Belinda May Goman
+                  //- a
+                  br
+                  | 5
+                  i.fa.fa-star
+                  | &nbsp;
+                  | We visited your cellar door yesterday &amp; enjoy...
+                  a(href="#") see more
+                  br
+                  small April 11, 2016
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/reviewers/rev2.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Arne De Boer
+                  //- a
+                  br
+                  | 5
+                  i.fa.fa-star
+                  | &nbsp;
+                  | What a nice place. Me and my girlfriend had a love...
+                  a(href="#") see more
+                  br
+                  small April 11, 2016
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/img_advisor_1.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  strong Tell people what you think
+                  br
+                  a.rate(href="#", target="_blank")
+                    i.fa.fa-star-o
+                      i.fa.fa-star-o
+                        i.fa.fa-star-o
+                          i.fa.fa-star-o
+                            i.fa.fa-star-o
+                          //- i
+                        //- i
+                      //- i
+                    //- i
+                  //- a
+                //- span
+              //- input-group
+            //- content
+            .search
+              input.form-control(type='text', placeholder='search reviews...')
+            //- search
+            .more
+              a(href="#") See all
+            //- more
+          //- feed
+
+          .list_groups.feed
+            .head
+              h4
+                a(href="#") Latest
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/activity/img_advisor_2.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Rodan Luzuriaga
+                  | likes your photo.
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/img_advisor_1.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="profile.html")
+                    strong Andrew Steer
+                  | commented on your post.
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/activity/img_advisor_2.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Rodan Luzuriaga
+                  | shared your post.
+                  //- p
+                //- span
+              //- input-group
+            //- content
+          //- feed
+
+          .list_search_groups.messaging
+            .head
+              h4 Live chat
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/users/user_3.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a.online(href="#") Darren Crone
+                  small online
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/users/user_2.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a.offline(href="#") Rodan Luzuriaga
+                  small 2hours ago
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/users/user_1.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a.online(href="profile.html") Andrew Steer
+                  small online
+                  //- p
+                //- span
+              //- input-group
+            //- content
+            .search
+              input.form-control(type='text')
+              a.new(href="#")
+                i.fa.fa-pencil-square-o
+              //- a
+            //- search
+          //- messaging
+          .list_groups.events
+            .head
+              h4
+                a(href="#") Events
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/producers/brokenwood/logo.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Captain's Table Dinner - Monthly
+                  br
+                  | Brokenwood Wines
+                  br
+                  small Fri, 03/06/2016
+                    br
+                    | 5:30 PM
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/producers/brokenwood/logo.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong The Grazing Blaze
+                  br
+                  | Brokenwood Wines
+                  br
+                  small Sat, 11/06/2016
+                    br
+                    | 4:00 PM to 8:00 PM
+                  //- p
+                //- span
+              //- input-group
+            //- content
+            .more
+              a(href="#") See all
+            //- more
+          //- list_groups
+        //- col-md-3
+      //- row
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(document).ready(function(){
+
+    });

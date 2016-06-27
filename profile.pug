@@ -1,0 +1,1064 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  .banner.userprofile
+    .gradient
+    .info
+      .container
+        .row
+          .col-sm-3.col-md-3
+            .photo
+              .img
+                a(href="#")
+                  i.fa.fa-camera
+                //- a
+                img(src="assets/images/img_advisor_1.jpg", alt="")
+              //- img
+              .name
+                span Andrew Steer&nbsp;
+                sup
+                  a(href="#")
+                    i.fa.fa-pencil
+                    span edit profile
+                  //- a
+                //- sup
+              //- name
+            //- photo
+          //- col-md-3
+        //- row
+        .row
+          .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
+            .userprofilemenu
+              nav.menu
+                ul
+                  li
+                    a.active(href="#") Timeline
+                  //- li
+                  li
+                    a(href="#") About
+                  //- li
+                  li
+                    a(href="#") Friends
+                  //- li
+                  li
+                    a(href="#") Circles
+                  //- li
+                  li
+                    a(href="#") Reviews
+                  //- li
+                  li
+                    a(href="#") Favourites
+                  //- li
+                //- ul
+              //- nav
+            //- userprofilemenu
+          //- col-md-6
+        //- row
+      //- container
+    //- info
+  //- banner-home
+
+  section.userprofile
+    .container
+      .row
+        .col-md-3
+          .search.circle
+            a(href="#", target="_blank")
+              i.fa.fa-search
+            //- a
+            input.form-control(type='text', placeholder='search the circle...')
+          //- search
+          .intro
+            h4 Interests
+            p
+              a(href="#") Craft Beers
+              br
+              a(href="#") Shiraz
+              br
+              a(href="#") Chadonnay
+              br
+              a(href="#") Cooking Italian food
+              br
+              a(href="#") Golf
+              br
+              a(href="#") Surfing
+            //- p
+            hr
+            .info
+              p
+                i.fa.fa-briefcase
+                span Works at
+                span.text-muted drinkcircle
+              //- p
+              p
+                i.fa.fa-graduation-cap
+                span Studied at
+                span.text-muted Pittwater High School
+              //- p
+              p
+                i.fa.fa-home
+                span Lives in
+                span.text-muted Palm Beach, New South Wales, Australia
+              //- p
+              p
+                i.fa.fa-map-marker
+                span From
+                span.text-muted Sydney, Australia
+              //- p
+            //- info
+          //- intro
+          .list_groups.groups
+            .head
+              h4
+                a(href="#") Active circles
+                small (
+                  a(href="#") 5
+                  | )
+              //- h4
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      .ring
+                      img(src="assets/images/circles/circles_8.png", alt="")
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Adrian Southern
+                  //- a
+                  br
+                  | Brokenwood Shiraz 2010
+                  br
+                  | 10 case buy
+                  br
+                  strong 3 cases left
+                  a.share(href="#")
+                    i.fa.fa-share
+                    | &nbsp;share
+                  //- a
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      .ring
+                      img(src="assets/images/circles/circles_1.png", alt="")
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Sharmaine Stevens
+                  //- a
+                  br
+                  | Corona Extra
+                  br
+                  | 10 case buy
+                  br
+                  strong 2 cases left
+                  a.share(href="#")
+                    i.fa.fa-share
+                    | &nbsp;share
+                  //- a
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      .ring
+                      img(src="assets/images/circles/circles_7.png", alt="")
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Bayview Golf club
+                  //- a
+                  br
+                  | Chivas Regal
+                  br
+                  | 1 case buy
+                  br
+                  strong 4 bottles left
+                  a.share(href="#")
+                    i.fa.fa-share
+                    | &nbsp;share
+                  //- a
+                //- span
+              //- input-group
+            //- content
+            .more
+              a(href="#") See all
+            //- more
+          //- list_groups
+          .grid_groups.circles
+            h4
+              a(href="#") My circles
+              small (
+                a(href="#") 12
+                | )
+            //- h4
+            .content
+              .container-fluid
+                .row
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/circles/circles_1.png", alt="")
+                    //- img
+                    .name
+                      span Erica Cianci
+                    //- name
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/circles/circles_2.png", alt="")
+                    //- img
+                    .name
+                      span Alec Dito...
+                    //- name
+                    //nto
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/circles/circles_3.png", alt="")
+                    //- img
+                    .name
+                      span Steven Ho...
+                    //- name
+                    //ng
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/circles/circles_4.png", alt="")
+                    //- img
+                    .name
+                      span Noah Bond
+                    //- name
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/circles/circles_5.png", alt="")
+                    //- img
+                    .name
+                      span Ivan Bert...
+                    //- name
+                    //ona
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/circles/circles_6.png", alt="")
+                    //- img
+                    .name
+                      span Sean Trei...
+                    //- name
+                    //ser
+                  //- col-md-4
+                //- row
+              //- container
+            //- content
+            .more
+              a(href="#") See all
+            //- more
+          //- circles
+          .grid_groups.friends
+            h4
+              a(href="#") Friends
+              small (
+                a(href="#") 120
+                | )
+            //- h4
+            .content
+              .container-fluid
+                .row
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/friends/friends_1.png", alt="")
+                    //- img
+                    .name
+                      span Michael B...
+                    //- name
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/friends/friends_2.png", alt="")
+                    //- img
+                    .name
+                      span Georgia B...
+                    //- name
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/friends/friends_3.png", alt="")
+                    //- img
+                    .name
+                      span Nick Byrne
+                    //- name
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/friends/friends_4.png", alt="")
+                    //- img
+                    .name
+                      span Greg Stee...
+                    //- name
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/friends/friends_5.png", alt="")
+                    //- img
+                    .name
+                      span Amity Dela...
+                    //- name
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/friends/friends_6.png", alt="")
+                    //- img
+                    .name
+                      span Monica Ho...
+                    //- name
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/friends/friends_7.png", alt="")
+                    //- img
+                    .name
+                      span Max Farrow
+                    //- name
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/friends/friends_8.png", alt="")
+                    //- img
+                    .name
+                      span Michael Kay
+                    //- name
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      img(src="assets/images/friends/friends_9.png", alt="")
+                    //- img
+                    .name
+                      span Ian Nuttall
+                    //- name
+                  //- col-md-4
+                //- row
+              //- container
+            //- content
+            .more
+              a(href="#") See all
+            //- more
+          //- grid_groups
+          .list_groups.groups
+            .head
+              h4
+                a(href="#") Groups
+                small (
+                  a(href="#") 23
+                  | )
+              //- h4
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/circles/circles_1.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong northern beaches shiraz lovers
+                  br
+                  | 897 members
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/circles/circles_2.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong sydney pinot drinkers
+                  br
+                  | 168 members
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/circles/circles_3.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong hunter valley red fans
+                  br
+                  | 753 members
+                  //- p
+                //- span
+              //- input-group
+            //- content
+          //- list_groups
+          .grid_groups.friends
+            h4
+              a(href="#") Photos
+              small (
+                a(href="#") 213
+                | )
+            //- h4
+            .content
+              .container-fluid
+                .row
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_1.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_2.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_3.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_4.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_5.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_6.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_7.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_8.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_9.png", alt="")
+                  //- col-md-4
+                //- row
+              //- container
+            //- content
+          //- grid_groups
+          .grid_groups.likes
+            h4
+              a(href="#") Likes
+              small (
+                a(href="#") 16
+                | )
+            //- h4
+            .content
+              .container-fluid
+                .row
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      a(href="seller.html")
+                        img(src="assets/images/likes/likes_1.png", alt="")
+                      //- a
+                    //- img
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      a(href="#")
+                        img(src="assets/images/likes/likes_2.png", alt="")
+                      //- a
+                    //- img
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      a(href="#")
+                        img(src="assets/images/likes/likes_3.png", alt="")
+                      //- a
+                    //- img
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      a(href="#")
+                        img(src="assets/images/likes/likes_4.png", alt="")
+                      //- a
+                    //- img
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      a(href="#")
+                        img(src="assets/images/likes/likes_5.png", alt="")
+                      //- a
+                    //- img
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      a(href="#")
+                        img(src="assets/images/likes/likes_6.png", alt="")
+                      //- a
+                    //- img
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      a(href="#")
+                        img(src="assets/images/likes/likes_7.png", alt="")
+                      //- a
+                    //- img
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      a(href="#")
+                        img(src="assets/images/likes/likes_8.png", alt="")
+                      //- a
+                    //- img
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    .img
+                      a(href="#")
+                        img(src="assets/images/likes/likes_9.png", alt="")
+                      //- a
+                    //- img
+                  //- col-md-4
+                //- row
+              //- container
+            //- content
+          //- grid_groups
+        //- col-md-3
+        .col-md-6
+          .composer
+            .head
+              a(href="#")
+                i.fa.fa-pencil
+                | Status
+              a(href="#")
+                i.fa.fa-picture-o
+                | Photo/Video
+              a(href="#")
+                i.fa.fa-calendar-o
+                | Event
+            //- head
+            .content
+              textarea.form-control(rows='2')
+            //- content
+            .controls
+              a(href="#")
+                i.fa.fa-camera
+              //- a
+              a(href="#")
+                i.fa.fa-user-plus
+              //- a
+              a(href="#")
+                i.fa.fa-smile-o
+              //- a
+              a(href="#")
+                i.fa.fa-map-marker
+              //- a
+              a(href="#")
+                i.fa.fa-clock-o
+              //- a
+
+              a.post(href="#")
+                i.fa.fa-send-o
+                | Post
+              //- a
+            //- controls
+          //- composer
+
+          .timeline
+            .content
+              .head
+                .user
+                  .img
+                    img(src="assets/images/users/user_3.jpg", alt="")
+                  //- img
+                  a(href="#", target="_blank") Darren Crone
+                //- user
+                .more
+                  a(href="#")
+                    i.fa.fa-chevron-down
+                  //- a
+                //- more
+              //- header
+              .inner
+                .caption
+                  p Hey mate this came through this morning I'm down for 3 cases better jump on it straight away?
+                //- caption
+                .post
+                  .shared
+                    img(src="assets/images/activity/image-6.png", alt="")
+                    .caption
+                      .input-group
+                        span.input-group-addon
+                          .thumb
+                            .img
+                              img(src='assets/images/likes/likes_1.png', alt='')
+                            //- img
+                          //- thumb
+                        //- input-group-addon
+                        span.form-control
+                          a(href='seller.html')
+                            strong Brokenwood Wines
+                          //- a
+                          br
+                          | RRP $65 End of bin clearance exclusive to our circle followers $29 be quick 200 cases only...
+                          a(href="seller.html") See more
+                        //- span
+                      //- input-group
+                    //- caption
+                  //- shared
+                //- post
+                //- p.views
+                //-   //- small 361,733 Views
+                //- //- views
+                //- .description
+                //-   |
+                //- //- description
+              //- inner
+            //- content
+            .controls
+              a(href="#")
+                i.fa.fa-heart
+                | Like
+              //- a
+              a(href="#")
+                i.fa.fa-comment
+                | Comment
+              //- a
+              a(href="#")
+                i.fa.fa-share
+                | Share
+              //- a
+            //- controls
+            .footer
+              .comments
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/img_advisor_1.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    strong
+                      a(href="profile.html") Andrew Steer
+                    //- strong
+                    | thanks for the heads up mate I just ordered 3 cases too. Passed it on Phil and Arv as well! Hope they're not too late it's nearly all gone!
+                    p
+                      a(href="#") Like
+                      | &nbsp;&middot;&nbsp;
+                      a(href="#") Reply
+                      | &middot;
+                      small &nbsp;May 15 at 10:55am
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/users/user_4.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    strong
+                      a(href="#", target="_blank") Phil Callender
+                    //- strong
+                    | thanks Darren just managed to get 2 cases but Arv missed out! Let me know if any other buys like that come up and I'll do the same.
+                    p
+                      a(href="#") Like
+                      | &nbsp;&middot;&nbsp;
+                      a(href="#") Reply
+                      | &middot;
+                      small &nbsp;May 15 at 11:23am
+                //- input-group
+              //- comments
+              .comment
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/img_advisor_1.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  input.form-control(type='text', placeholder='Write a comment...')
+                  span.input-group-addon
+                    a(href="#")
+                      i.fa.fa-camera
+                    //- a
+                  //- input-group-addon
+                //- input-group
+              //- comment
+            //- footer
+          //- timeline
+
+          .timeline
+            .content
+              .head
+                .user
+                  .img
+                    img(src="assets/images/producers/4pines/logo.jpg", alt="")
+                  //- img
+                  a(href="#", target="_blank") 4 Pines Brewing Company
+                //- user
+                .more
+                  a(href="#")
+                    i.fa.fa-chevron-down
+                  //- a
+                //- more
+              //- header
+              .inner
+                .caption
+                  //- p Hey mate this came through this morning I'm down for 3 cases better jump on it straight away?
+                //- caption
+                .post
+                  .shared
+                    img(src="assets/images/producers/4pines/post1.jpg", alt="")
+                    .caption
+                      .input-group
+                        span.input-group-addon
+                          .thumb
+                            .img
+                              img(src='assets/images/producers/4pines/logo.jpg', alt='')
+                            //- img
+                          //- thumb
+                        //- input-group-addon
+                        span.form-control
+                          a(href='seller.html')
+                            strong 4 Pines Brewing Company
+                          //- a
+                          br
+                          | Guess what Beer Lovers? American Amber Ale in a bottle! Ready to be filled tomorrow, ready to be...
+                          a(href="seller.html") See more
+                        //- span
+                      //- input-group
+                    //- caption
+                  //- shared
+                //- post
+                //- p.views
+                //-   //- small 361,733 Views
+                //- //- views
+                //- .description
+                //-   |
+                //- //- description
+              //- inner
+            //- content
+            .controls
+              a(href="#")
+                i.fa.fa-heart
+                | Like
+              //- a
+              a(href="#")
+                i.fa.fa-comment
+                | Comment
+              //- a
+              a(href="#")
+                i.fa.fa-share
+                | Share
+              //- a
+            //- controls
+            .footer
+              //- .comments
+              //-   .input-group
+              //-     span.input-group-addon
+              //-       .thumb
+              //-         .img
+              //-           img(src="assets/images/img_advisor_1.jpg", alt="")
+              //-         //- img
+              //-       //- thumb
+              //-     //- input-group-addon
+              //-     span.form-control
+              //-       strong
+              //-         a(href="profile.html") Andrew Steer
+              //-       //- strong
+              //-       | thanks for the heads up mate I just ordered 3 cases too. Passed it on Phil and Arv as well! Hope they're not too late it's nearly all gone!
+              //-       p
+              //-         a(href="#") Like
+              //-         | &nbsp;&middot;&nbsp;
+              //-         a(href="#") Reply
+              //-         | &middot;
+              //-         small &nbsp;May 15 at 10:55am
+              //-   //- input-group
+              //-   .input-group
+              //-     span.input-group-addon
+              //-       .thumb
+              //-         .img
+              //-           img(src="assets/images/users/user_4.jpg", alt="")
+              //-         //- img
+              //-       //- thumb
+              //-     //- input-group-addon
+              //-     span.form-control
+              //-       strong
+              //-         a(href="#", target="_blank") Phil Callender
+              //-       //- strong
+              //-       | thanks Darren just managed to get 2 cases but Arv missed out! Let me know if any other buys like that come up and I'll do the same.
+              //-       p
+              //-         a(href="#") Like
+              //-         | &nbsp;&middot;&nbsp;
+              //-         a(href="#") Reply
+              //-         | &middot;
+              //-         small &nbsp;May 15 at 11:23am
+              //-   //- input-group
+              //- //- comments
+              .comment
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/img_advisor_1.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  input.form-control(type='text', placeholder='Write a comment...')
+                  span.input-group-addon
+                    a(href="#")
+                      i.fa.fa-camera
+                    //- a
+                  //- input-group-addon
+                //- input-group
+              //- comment
+            //- footer
+          //- timeline
+
+        //- col-md-6
+        .col-md-3
+          .list_groups.reviews
+            .head
+              h4
+                a(href="#") Reviews
+                small (
+                  a(href="#") 55
+                  | )
+              //- h4
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/products/bottle8.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Corona Extra
+                  //- a
+                  br
+                  | Imported Beer
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/products/bottle1.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="productdetails")
+                    strong Brokenwood
+                  //- a
+                  br
+                  | Graveyard Vineyard Shiraz
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/products/bottle7.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Chivas Regal
+                  //- a
+                  br
+                  | 12 Year Old Scotch Whisky 700ml
+                  //- p
+                //- span
+              //- input-group
+            //- content
+            .search
+              input.form-control(type='text', placeholder='search reviews...')
+            //- search
+            .more
+              a(href="#") See all
+            //- more
+          //- feed
+
+          .list_groups.feed
+            .head
+              h4
+                a(href="#") Latest
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/activity/img_advisor_2.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Rodan Luzuriaga
+                  | likes a photo.
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/img_advisor_1.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="profile.html")
+                    strong Andrew Steer
+                  | commented on his own post.
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/activity/img_advisor_2.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Rodan Luzuriaga
+                  | shared a post.
+                  //- p
+                //- span
+              //- input-group
+            //- content
+          //- feed
+
+          .list_search_groups.messaging
+            .head
+              h4 Live chat
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/users/user_3.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a.online(href="#") Darren Crone
+                  small online
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/users/user_2.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a.offline(href="#") Rodan Luzuriaga
+                  small 2hours ago
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/users/user_1.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a.online(href="profile.html") Andrew Steer
+                  small online
+                  //- p
+                //- span
+              //- input-group
+            //- content
+            .search
+              input.form-control(type='text')
+              a.new(href="#")
+                i.fa.fa-pencil-square-o
+              //- a
+            //- search
+          //- messaging
+          .list_groups.events
+            .head
+              h4
+                a(href="#") Events
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/likes/likes_1.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong brokenwood wine tasting
+                  br
+                  | 401-407 mcdonalds rd pokolbin nsw
+                  br
+                  small Saturday October 10th 2pm
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/likes/likes_2.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong margan wines wedding
+                  br
+                  | 1238 milbrodale rd broke nsw
+                  br
+                  small Saturday October 24th 4pm
+                  //- p
+                //- span
+              //- input-group
+            //- content
+          //- list_groups
+        //- col-md-3
+      //- row
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(document).ready(function(){
+
+    });

@@ -1,0 +1,169 @@
+
+
+.thumb {
+    text-align:center;
+}
+
+.product {
+
+}
+.product .thumb .details {
+    border-top:none;
+    padding-top:5px;
+}
+
+.product .thumb .ctr {
+    top: 45px;
+    right: 40px;
+}
+.product .thumb .details .name {
+    font-weight: 400 !important;
+    font-size: 22px;
+    color: #3E3E3E;
+    border-bottom: none;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-bottom: 0;
+    line-height: 1.1;
+}
+.prodPrice {
+    color: #363636;
+    font-size: 22px;
+    font-weight: 600;
+}
+.prices {
+    padding:0 30px;
+}
+.prices p {
+    color: #757575;
+    font-size: 14px;
+    font-weight: 100;
+}
+.prices .col-sm-4 {
+    padding: 5px;
+}
+
+
+.footnote {
+    color: #2794ce;
+}
+
+.green-alert {
+    text-align: right;
+    margin-top: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 0px 20px;
+}
+
+
+.link-1 {
+    color: #1A93D1;
+    right: 0;
+    position: absolute;
+    top: -30px;
+    width: 100%;
+    text-align: center;
+    @media screen and (min-width: 991px) {
+      right: -110px;
+      top: 12px;
+      width: auto;
+    }
+}
+
+/*
+PRODUCT DETAILS
+*/
+
+#productDetails {
+    margin-top:70px;
+}
+
+.productImg-container {
+    text-align:center;
+}
+.productImg-container img {
+    max-width:430px;
+    width:100%;
+}
+
+.title h3 {
+    text-align: center;
+    color: #363636;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.title .ctr {
+    position: absolute;
+    top: 25px;
+    left: 15px;
+    width: 75px;
+    height: 73px;
+    background: transparent url("../assets/images/ring.png") center center no-repeat;
+}
+.title .count {
+    display: block;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    padding: 17px 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.blue-btn {
+    font-size: 16px;
+    color: white;
+    background: #2794ce;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    padding: 8px;
+    min-width: 85px;
+}
+
+.green-btn {
+    font-size: 15px;
+    color: white;
+    background: #46b34f;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    padding: 8px;
+    min-width: 100%;
+    white-space: nowrap;
+}
+
+/* Description */
+.desc {
+    font-size:12px;
+    margin-bottom: 30px;
+}
+
+.product-description {
+    padding: 20px 0;
+    border-top: 1px solid #bababa;
+}
+.product-description .fa {
+    color: #a2abb4;
+    margin-left: 5px;
+}
+.product-description p {
+    font-size: 14px;
+    color: #555555;
+}
+.product-description p strong {
+    font-weight: 600;
+}
+
+.toggle {
+    text-align: right;
+    padding-top: 20px;
+}
+.toggle button {
+    border:none;
+    background:none;
+    font-size: 14px;
+    color: #41b54a;
+}
