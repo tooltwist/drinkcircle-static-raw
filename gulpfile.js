@@ -6,8 +6,8 @@ var browserSync   = require('browser-sync').create();
 var autoprefixer = require('gulp-autoprefixer');
 var exec = require('child_process').exec;
 
-var root = '../ttstatic.github.io/'; // always add slash('/') at the end
-var dir = 'drinkcircle'; // project folder
+var root = './'; // always add slash('/') at the end
+var dir = 'public'; // project folder
 var paths = {
   pug: ['./*.pug', '!**[^_]/*.pug'],
   scss: 'assets/css/**/*.scss'
