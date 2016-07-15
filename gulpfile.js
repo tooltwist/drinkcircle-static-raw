@@ -110,7 +110,8 @@ gulp.task('serve', function() {
   browserSync.init({
     server: {
       baseDir: root + dir
-    }
+    },
+    tunnel: true
   });
   gulp.watch(paths.scss, ['sass']);
   gulp.watch('./**/*.pug',['pug']);
