@@ -1,0 +1,535 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  .banner.userprofile.seller
+    .gradient
+    .info
+      .container
+        .row
+          .col-sm-3.col-md-3
+            .photo
+              .img.square
+                a(href="#")
+                  i.fa.fa-camera
+                //- a
+                img(src="assets/images/producers/brokenwood/logo.jpg", alt="")
+              //- img
+              .name
+                span Brokenwood Wines&nbsp;
+                sup
+                  a(href="#")
+                    i.fa.fa-pencil
+                    span edit profile
+                  //- a
+                //- sup
+                br
+                small Winery &amp; Vineyard
+              //- name
+            //- photo
+          //- col-md-3
+        //- row
+        .row
+          .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
+            .userprofilemenu
+              nav.menu
+                ul
+                  li
+                    a.active(href="#") Shop
+                  //- li
+                  li
+                    a(href="#") Photos
+                  //- li
+                  li
+                    a(href="#") Reviews
+                  //- li
+                  li
+                    a(href="#") Events
+                  //- li
+                //- ul
+              //- nav
+            //- userprofilemenu
+          //- col-md-6
+        //- row
+      //- container
+    //- info
+  //- banner-home
+
+
+
+  section.userprofile
+    .container
+      .row
+        .col-md-3
+          br
+          .search.form-icon
+            a.icon(href='#', target='_blank')
+              i.fa.fa-search
+            //- a
+            input.form-control(type='text', placeholder='search brokenwood...')
+          //- search
+          .seller-categories
+            h3 Wines
+            h4
+              a(href="#") Cricket Pitch
+            //- h4
+            h4
+              a(href="#") Varietal
+            //- h4
+            h4
+              a(href="#") Single Vineyard
+            //- h4
+            h4
+              a(href="#") Icon
+            //- h4
+            h4
+              a(href="#") Dessert
+            //- h4
+            h4
+              a(href="#") Packs &amp; Specials
+            //- h4
+          //- card
+        //- col-md-3
+        .col-md-9
+          br
+          .product-wrap
+            .row
+              // 1 Product
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 93
+                        span points
+                      //- count
+                    img.img-prod.card(src='//www.brokenwood.com.au/assets/images/products/pictures/CricketPitchRed1.jpg', alt='')
+                    // Edit
+                    .details
+                      p
+                      .name
+                        a(href="#") 2014 Cricket&nbsp;
+                          br.visible-md.visible-lg
+                          | Pitch Red
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                small from&nbsp;
+                                big $39.99
+                              //- a
+
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $49.99
+                                      small &nbsp;per case
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $44.99
+                                      small &nbsp;per cases
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 20
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $39.99
+                                      small &nbsp;per cases
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr.silver
+                      .count 94
+                        span points
+                      //- count
+                    //- ctr
+                    a(href="#")
+                      img.img-prod.card(src='//www.brokenwood.com.au/assets/images/products/pictures/CricketPitchWhite1.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href="#") 2015 Cricket Pitch White
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                small from&nbsp;
+                                big $19.99
+                              //- a
+
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $29.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $19.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr.bronze
+                      .count 91
+                        span points
+                      //- count
+                    //- ctr
+                    a(href="#")
+                      img.img-prod.card(src='//www.brokenwood.com.au/assets/images/products/pictures/PinotGris.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href="#") 2015 Pinot&nbsp;
+                          br.visible-md.visible-lg
+                          | Gris
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                small from&nbsp;
+                                big $32.99
+                              //- a
+
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $33.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $32.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr.silver
+                      .count 89
+                        span points
+                      //- count
+                    //- ctr
+                    a(href="#")
+                      img.img-prod.card(src='//www.brokenwood.com.au/assets/images/products/pictures/LatePickedSemillon11.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href="#") 2015 Late Picked Semillon
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                small from&nbsp;
+                                big $11.99
+                              //- a
+
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 12
+                                      br
+                                      | pack
+                                    //- span
+                                    span.price $16.20
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $13.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $11.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 95
+                        span points
+                      //- count
+                    //- ctr
+                    a(href="#")
+                      img.img-prod.card(src='//www.brokenwood.com.au/assets/images/products/pictures/IndigoVineyardShiraz.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href="#") 2014 Indigo Vineyard Shiraz
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                small from&nbsp;
+                                big $43.99
+                              //- a
+
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $49.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $44.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $43.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr.bronze
+                      .count 90
+                        span points
+                      //- count
+                    //- ctr
+                    a(href="#")
+                      img.img-prod.card(src='//www.brokenwood.com.au/assets/images/products/pictures/GraveyardVineyardShiraz11.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href="#") 2014 Graveyard Vineyard Shiraz
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                small from&nbsp;
+                                big $12.99
+                              //- a
+
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 12
+                                      br
+                                      | pack
+                                    //- span
+                                    span.price $14.90
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $13.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $12.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+            //- row
+          //- product-wrap
+        //- col-md-9
+      //- row
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+      $('.popover_price[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<ul class="cost">' + $(this).parent().find("ul").html() + '</ul>';
+        },
+        title: function(){
+          return jQuery(this).data('title') + '<span class="close">&times;</span>';
+        }
+      }).on('shown.bs.popover', function(e) {
+        var popover = jQuery(this);
+        $(this).parent().find('.popover span.close').on('click', function(e) {
+          popover.popover('hide');
+        });
+      }).click(function(e) {
+        e.preventDefault();
+      });
+    });
+  //- script.

@@ -1,0 +1,540 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  section.userprofile.myprofile.simple
+    .container
+      .row
+        .col-md-3
+
+        //- col-md-3
+        .col-md-9
+          br
+          h3.title My Profile
+        //- col-md-9
+      //- row
+      .row
+        .col-md-3
+          .card.myprofile-menu
+            ul(role="tablist")
+              li.active(role="presentation")
+                a(href="#tab-personal-details", role="tab", data-toggle="tab") Personal Details
+              //- li
+              li(role="presentation")
+                a(href="#tab-billing-shipping", role="tab", data-toggle="tab") Billing &amp; Shipping
+              //- li
+              li(role="presentation")
+                a(href="#tab-work", role="tab", data-toggle="tab") Work
+              //- li
+              li(role="presentation")
+                a(href="#tab-education", role="tab", data-toggle="tab") Education
+              //- li
+              li(role="presentation")
+                a(href="#tab-login-details", role="tab", data-toggle="tab") Login Details
+              //- li
+            //- ul
+        //- col-md-3
+        .col-md-9
+          .tab-content
+            .tab-pane.active#tab-personal-details(role="tabpanel")
+              .card
+                .row
+                  .col-md-6
+                    .form-group
+                      label(for='pd-fname') First Name
+                      input#pd-fname.form-control(type='text', placeholder='')
+                    //- form-group
+                  //- col-md-6
+                  .col-md-6
+                    .form-group
+                      label(for='pd-lname') Last Name
+                      input#pd-lname.form-control(type='text', placeholder='')
+                    //- form-group
+                  //- col-md-6
+                //- row
+                .row
+                  .col-md-3
+                    .form-group
+                      label(for='pd-bday') Date of Birth
+                      input#pd-bday.form-control(type='date', placeholder='')
+                    //- form-group
+                  //- col-md-3
+                //- row
+                h3 Interests
+                .row
+                  .col-md-6
+                    .form-group
+                      label(for='pd-indetails') Details
+                      input#pd-indetails.form-control(type='text', placeholder='')
+                    //- form-group
+                  //- col-md-6
+                  .col-md-6
+                    .form-group
+                      label(for='pd-tags') Tags
+                      input#pd-tags.form-control(type='text', placeholder='')
+                    //- form-group
+                  //- col-md-6
+                //- row
+                hr
+                .actions-wrap
+                  a.btn.btn-success(href="#") Save
+                //- actions-wrap
+              //- card
+            //- tab-pane
+            .tab-pane#tab-billing-shipping(role="tabpanel")
+              .card
+                .myprofile-addresses
+                  .row
+                    .col-md-6
+                      address
+                        span.name John Jones
+                        br
+                        span.phone 423 568
+                        br
+                        span.address1 19 Beaudesert Rd., Brisbane,
+                        br
+                        span.address2 QLD 4757 Australia
+                        .actions
+                          a(href="#") Edit
+                          |&nbsp;
+                          i (Default: Billing, Current Location)
+                        //- actions
+
+                        a.delete-address(href="#")
+                          i.fa.fa-trash
+                        //- a
+                      //- address
+                    //- col-md-6
+                    .col-md-6
+                      address
+                        span.name John Jones
+                        br
+                        span.phone 423 568
+                        br
+                        span.address1 19 Beaudesert Rd., Brisbane,
+                        br
+                        span.address2 QLD 4757 Australia
+                        .actions
+                          a(href="#") Edit
+                        //- actions
+
+                        a.delete-address(href="#")
+                          i.fa.fa-trash
+                        //- a
+                      //- address
+                    //- col-md-6
+                  //- row
+                //- myprofile-addresses
+                .add-new-address
+                  a.btn.btn-warning(href="#myprofile-add-new-address", data-toggle="collapse") Add a new address&nbsp;
+                    i.fa.fa-plus
+                //- add-new-address
+
+                #myprofile-add-new-address.collapse.card
+                  .row
+                    .col-md-6
+                      .form-group
+                        label(for='bsd-fname') First Name
+                        input#bsd-fname.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                    .col-md-6
+                      .form-group
+                        label(for='bsd-lname') Last Name
+                        input#bsd-lname.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                  //- row
+                  .row
+                    .col-md-6
+                      .form-group
+                        label(for='bsd-phone') Telephone
+                        input#bsd-phone.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                  //- row
+                  .row
+                    .col-md-6
+                      .form-group
+                        label(for='bsd-street') Street Address
+                        input#bsd-street.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                    .col-md-6
+                      .form-group
+                        label(for='bsd-street-2') Street Address 2
+                        input#bsd-street-2.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                  //- row
+                  .row
+                    .col-md-6
+                      .form-group
+                        label(for='bsd-suburb') Suburb
+                        input#bsd-suburb.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                    .col-md-6
+                      .form-group
+                        label(for='bsd-state') State
+                        input#bsd-state.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                  //- row
+                  .row
+                    .col-md-6
+                      .form-group
+                        label(for='bsd-postcode') Postcode
+                        input#bsd-postcode.form-control(type='number', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                    .col-md-6
+                      .form-group
+                        label(for='bsd-country') Country
+                        select#bsd-country.form-control
+                          option Australia
+                        //- select
+                      //- form-group
+                    //- col-md-6
+                  //- row
+                  .row
+                    .col-md-6
+                      .form-group
+                        label(for='bsd-default-') Set as Default:
+                        .checkbox
+                          label
+                            input(type='checkbox', value='')
+                            | Shipping Address
+                          //- label
+                        //- checkbox
+                        .checkbox
+                          label
+                            input(type='checkbox', value='')
+                            | Billing Address
+                          //- label
+                        //- checkbox
+                        .checkbox
+                          label
+                            input(type='checkbox', value='')
+                            | Current Location
+                          //- label
+                        //- checkbox
+                        .checkbox
+                          label
+                            input(type='checkbox', value='')
+                            | Hometown
+                          //- label
+                        //- checkbox
+                      //- form-group
+                    //- col-md-6
+                  //- row
+
+                  hr
+                  .actions-wrap
+                    a.btn.btn-success(href="#") Save
+                    | &nbsp;
+                    a.btn.btn-default(href="#") Cancel
+                  //- actions-wrap
+                //- myprofile-add-new-address
+              //- card
+            //- tab-pane
+
+            .tab-pane#tab-work(role="tabpanel")
+              .card
+                .myprofile-work
+                  .media
+                    .media-left
+                      a(href='#')
+                        img.media-object(src='http://placehold.it/50', alt='Company Logo')
+                      //- a
+                    //- media-left
+                    .media-body
+                      h4.media-heading Twist Resources Inc.
+                      small Front-End Developer / Designer &middot; February 2015 to present &middot; Clark, Pampanga, Philippines
+                      br
+                      small.text-muted
+                        | » Create and maintain responsive layout using Bootstrap and Purecss
+                        br
+                        | » Assist developers to resolve front end issues.
+                        br
+                        | » Support in using ToolTwist Designer Development Platform
+                    //- media-body
+                  //- media
+                  .media
+                    .media-left
+                      a(href='#')
+                        img.media-object(src='http://placehold.it/50', alt='Company Logo')
+                      //- a
+                    //- media-left
+                    .media-body
+                      h4.media-heading Z getcare Systems
+                      small Web Designer &middot; May 4, 2009 to November 21, 2012 &middot; Angeles City
+                      br
+                      small.text-muted
+                        | » Converted PDF image mock-ups into HTML pages
+                        br
+                        | » Maintained Web Applications layout and resolved browser compatibility issues
+                        br
+                        | » Integrate mock-ups on the application
+                        br
+                        | » Apply skinning using different style sheets on a single code base application
+                    //- media-body
+                  //- media
+                //- myprofile-work
+                br
+                .add-new-work
+                  a.btn.btn-warning(href="#myprofile-add-new-work", data-toggle="collapse") Add a new work&nbsp;
+                    i.fa.fa-plus
+                //- add-new-work
+
+                #myprofile-add-new-work.collapse.card
+                  .row
+                    .col-md-6
+                      .form-group
+                        label(for='pwork-company') Company
+                        input#pwork-company.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                    .col-md-6
+                      .form-group
+                        label(for='pwork-position') Position
+                        input#pwork-position.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                  //- row
+                  .row
+                    .col-md-6
+                      .form-group
+                        label(for='pwork-city') Location
+                        input#pwork-city.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                  //- row
+                  .row
+                    .col-md-12
+                      .form-group
+                        label(for='pwork-description') Description
+                        textarea#pwork-description.form-control(rows="3")
+                      //- form-group
+                    //- col-md-12
+                  //- row
+                  .row
+                    .col-md-6
+                      .form-group
+                        label(for='pwork-default-') Time Period:
+                        .checkbox
+                          label
+                            input(type='checkbox', value='')
+                            | I currently work here
+                          //- label
+                        //- checkbox
+                      //- form-group
+                    //- col-md-6
+                  //- row
+                  .row
+                    .col-md-3
+                      .form-group
+                        label(for='pwork-date-from') From
+                        input#pwork-date-from.form-control(type='date', placeholder='')
+                      //- form-group
+                    //- col-md-3
+                    .col-md-3
+                      .form-group
+                        label(for='pwork-date-to') to
+                        input#pwork-date-to.form-control(type='date', placeholder='')
+                      //- form-group
+                    //- col-md-3
+                  //- row
+
+                  hr
+                  .actions-wrap
+                    a.btn.btn-success(href="#") Save
+                    | &nbsp;
+                    a.btn.btn-default(href="#") Cancel
+                  //- actions-wrap
+                //- myprofile-add-new-address
+              //- card
+            //- tab-pane
+
+            .tab-pane#tab-education(role="tabpanel")
+              .card
+                .myprofile-education
+                  .media
+                    .media-left
+                      a(href='#')
+                        img.media-object(src='http://placehold.it/50', alt='Company Logo')
+                      //- a
+                    //- media-left
+                    .media-body
+                      .dropdown.more-options
+                        button#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                          i.fa.fa-ellipsis-v
+                        //- button
+                        ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                          li
+                            a(href='#') Edit
+                          //- li
+                          li
+                            a(href='#') Delete
+                          //- li
+                          li.divider(role='separator')
+                          li
+                            a(href='#') Separated link
+                          //- li
+                        //- ul
+                      //- dropdown
+                      h4.media-heading Holy Angel University
+                      small 2003 to Aug 2006 &middot; ...
+                    //- media-body
+                  //- media
+                  .media
+                    .media-left
+                      a(href='#')
+                        img.media-object(src='http://placehold.it/50', alt='Company Logo')
+                      //- a
+                    //- media-left
+                    .media-body
+                      .dropdown.more-options
+                        button#dropdownMenu1.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                          i.fa.fa-ellipsis-v
+                        //- button
+                        ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                          li
+                            a(href='#') Edit
+                          //- li
+                          li
+                            a(href='#') Delete
+                          //- li
+                          li.divider(role='separator')
+                          li
+                            a(href='#') Separated link
+                          //- li
+                        //- ul
+                      //- dropdown
+                      h4.media-heading ACNTS
+                      small Class of 2003 &middot; Angeles City
+                    //- media-body
+                  //- media
+                //- myprofile-work
+                br
+                .add-new-education
+                  a.btn.btn-warning(href="#myprofile-add-new-education", data-toggle="collapse") Add a new education&nbsp;
+                    i.fa.fa-plus
+                //- add-new-work
+
+                #myprofile-add-new-education.collapse.card
+                  .row
+                    .col-md-6
+                      .form-group
+                        label(for='peduc-school') School
+                        input#peduc-school.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                    .col-md-3
+                      .form-group
+                        label(for='peduc-date-from') From
+                        input#peduc-date-from.form-control(type='date', placeholder='')
+                      //- form-group
+                    //- col-md-3
+                    .col-md-3
+                      .form-group
+                        label(for='peduc-date-to') To
+                        input#peduc-date-to.form-control(type='date', placeholder='')
+                      //- form-group
+                    //- col-md-3
+                  //- row
+                  .row
+                    .col-md-12
+                      .form-group
+                        label(for='peduc-description') Description
+                        textarea#peduc-description.form-control(rows="3")
+                      //- form-group
+                    //- col-md-12
+                  //- row
+
+                  hr
+                  .actions-wrap
+                    a.btn.btn-success(href="#") Save
+                    | &nbsp;
+                    a.btn.btn-default(href="#") Cancel
+                  //- actions-wrap
+                //- myprofile-add-new-address
+              //- card
+            //- tab-pane
+
+            .tab-pane#tab-login-details(role="tabpanel")
+              .card
+                .row
+                  .col-md-6
+                    .form-group
+                      label(for='ld-email') Email
+                      input#ld-email.form-control(type='email', placeholder='')
+                    //- form-group
+                  //- col-md-6
+                  .col-md-6
+                    .form-group
+                      label(for='ld-cemail') Confirm Email
+                      input#ld-cemail.form-control(type='email', placeholder='')
+                    //- form-group
+                  //- col-md-6
+                //- row
+                .row
+                  .col-md-6
+                    .form-group
+                      label(for='ld-password') Password
+                      input#ld-password.form-control(type='password', placeholder='')
+                    //- form-group
+                  //- col-md-6
+                  .col-md-6
+                    .form-group
+                      label(for='ld-cpassword') Confirm Password
+                      input#ld-cpassword.form-control(type='password', placeholder='')
+                    //- form-group
+                  //- col-md-6
+                //- row
+                hr
+                .actions-wrap
+                  a.btn.btn-success(href="#") Save
+                //- actions-wrap
+              //- card
+            //- tab-pane
+          //- product-wrap
+        //- col-md-9
+      //- row
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+      $('.popover_price[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<ul class="cost">' + $(this).parent().find("ul").html() + '</ul>';
+        },
+        title: function(){
+          return jQuery(this).data('title') + '<span class="close">&times;</span>';
+        }
+      }).on('shown.bs.popover', function(e) {
+        var popover = jQuery(this);
+        $(this).parent().find('.popover span.close').on('click', function(e) {
+          popover.popover('hide');
+        });
+      }).click(function(e) {
+        e.preventDefault();
+      });
+    });
+  //- script.

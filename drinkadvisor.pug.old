@@ -1,0 +1,461 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  .banner.advisor
+    .gradient
+    h1.jumbo Welcome to a new world of drinking
+      br
+      small rate, review and compare
+  //- banner-home
+
+  section.profile.da
+    img.img-circle.photo(src="assets/images/img_advisor_1.jpg", alt="")
+    h2.advisor Welcome back Andrew! 
+      i.fa.fa-question-circle
+    //- h2
+    .container
+      .row
+        .col-md-8.col-md-offset-2
+          form
+            .form-group
+              //- .text-center What would you like to get a rating on?
+              .icon_search
+                input.form-control.input-lg(type='text', placeholder='What drink would you like to rate or review?')
+                i.fa.fa-search
+              //- icon_search
+            //- form-group
+            .form-group
+              //- .text-center What drinks have you tried lately?
+              .icon_search
+                input.form-control.input-lg(type='text', placeholder='What drink would you like to get a rating or review on?')
+                i.fa.fa-search
+              //- icon_search
+            //- form-group
+          //- form
+        //- col-md-8
+      //- row
+    //- container
+  //- section
+
+  section
+    .container
+      .product-wrap
+        .row
+          // 1 Product
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 93
+                img.img-prod(src='assets/images/products/p1.jpg', alt='')
+                // Edit
+                .details
+                  .name
+                    a(href="#") Corona Extra
+                    br
+                    small Imported Beer
+                  //- name
+                  .prices.row
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $49.99
+                      p per cases
+                      a.button.v1(href='#') 1 case
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $44.99
+                      p per cases
+                      a.button.v2(href='#') 5 cases
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $39.99
+                      p per cases
+                      a.button.v3(href='#') 20 cases
+                    //- col-xs-4
+                  //- detail
+                  p.stats
+                    span.ratings 624 ratings
+                    | |
+                    span.reviews 121 reviews
+                    | |
+                    span.reviews 102 live circles
+                  //- p
+                  .rate
+                    a.button.v6.inline(href="#") rate | write a review
+                  //- rate
+              // End
+          // Product End
+          // 1 Product
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 94
+                //- ctr
+                a(href="productdetails.html")
+                  img.img-prod(src='assets/images/products/p2.jpg', alt='')
+                //- a
+                // Edit
+                .details
+                  .name
+                    a(href="productdetails.html") Brokenwood
+                    br
+                    small Graveyard Vineyard
+                  //- name
+                  .prices.row
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $25.99
+                      p per bottle
+                      a.button.v1(href='#') 1 case
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $21.99
+                      p per bottle
+                      a.button.v2(href='#') 5 cases
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $19.99
+                      p per bottle
+                      a.button.v3(href='#') 10 cases
+                    //- col-xs-4
+                  //- prices
+                  p.stats
+                    span.ratings 334 ratings
+                    | |
+                    span.reviews 88 reviews
+                  //- p
+                  .rate
+                    a.button.v6.inline(href="#") rate | write a review
+                  //- rate
+              // End
+          // Product End
+          // 1 Product
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 91
+                //- ctr
+                a(href="#")
+                  img.img-prod(src='assets/images/products/p3.jpg', alt='')
+                //- a
+                // Edit
+                .details
+                  .name
+                    a(href="#") Chivas Regal
+                    br
+                    small 12 Year Old Scotch Whisky 700mL
+                  //- name
+                  .prices.row
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $34.99
+                      p per bottle
+                      a.button.v1(href='#') 1 bottle
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $33.99
+                      p per bottle
+                      a.button.v2(href='#') 1 case
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $32.99
+                      p per bottle
+                      a.button.v3(href='#') 3 cases
+                    //- col-xs-4
+                  //- prices
+                  p.stats
+                    span.ratings 160 ratings
+                    | |
+                    span.reviews 30 reviews
+                  //- p
+                  .rate
+                    a.button.v6.inline(href="#") rate | write a review
+                  //- rate
+              // End
+          // Product End
+          // 1 Product
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 89
+                //- ctr
+                a(href="#")
+                  img.img-prod(src='assets/images/products/p4.jpg', alt='')
+                //- a
+                // Edit
+                .details
+                  .name
+                    a(href="#") Sieur d'Arques
+                    br
+                    small Grande Cuvée 1531 de Aimery
+                  //- name
+                  .prices.row
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $16.20
+                      p per bottle
+                      a.button.v1(href='#') 12 pack
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $13.99
+                      p per bottle
+                      a.button.v2(href='#') 5 cases
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $11.99
+                      p per bottle
+                      a.button.v3(href='#') 10 cases
+                    //- col-xs-4
+                  //- prices
+                  p.stats
+                    span.ratings 62 ratings
+                    | |
+                    span.reviews 12 reviews
+                  //- p
+                  .rate
+                    a.button.v6.inline(href="#") rate | write a review
+                  //- rate
+              // End
+          // Product End
+          // 1 Product
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 95
+                //- ctr
+                a(href="#")
+                  img.img-prod(src='assets/images/products/p5.jpg', alt='')
+                //- a
+                // Edit
+                .details
+                  .name
+                    a(href="#") Absolut
+                    br
+                    small Vodka
+                  //- name
+                  .prices.row
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $49.90
+                      p per bottle
+                      a.button.v1(href='#') 1 bottle
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $44.99
+                      p per bottle
+                      a.button.v2(href='#') 1 case
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $43.99
+                      p per bottle
+                      a.button.v3(href='#') 3 case
+                    //- col-xs-4
+                  //- prices
+                  p.stats
+                    span.ratings 200 ratings
+                    | |
+                    span.reviews 88 reviews
+                    | |
+                    span.reviews 5 live circles
+                  //- p
+                  .rate
+                    a.button.v6.inline(href="#") rate | write a review
+                  //- rate
+              // End
+          // Product End
+          // 1 Product
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 90
+                //- ctr
+                a(href="#")
+                  img.img-prod(src='assets/images/products/p6.jpg', alt='')
+                //- a
+                // Edit
+                .details
+                  .name
+                    a(href="#") Kim Crawford
+                    br
+                    small Sauvignon Blanc
+                  //- name
+                  .prices.row
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $14.90
+                      p per bottle
+                      a.button.v1(href='#') 12 pack
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $13.99
+                      p per bottle
+                      a.button.v2(href='#') 5 cases
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $12.99
+                      p per bottle
+                      a.button.v3(href='#') 10 cases
+                    //- col-xs-4
+                  //- prices
+                  p.stats
+                    span.ratings 156 ratings
+                    | |
+                    span.reviews 59 reviews
+                  //- p
+                  .rate
+                    a.button.v6.inline(href="#") rate | write a review
+                  //- rate
+              // End
+          // Product End
+          // 1 Product
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 95
+                //- ctr
+                a(href="#")
+                  img.img-prod(src='assets/images/products/p7.jpg', alt='')
+                //- a
+                // Edit
+                .details
+                  .name
+                    a(href="#") Heineken
+                    br
+                    small Lager Stubbies
+                  //- name
+                  .prices.row
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $42.95
+                      p per bottle
+                      a.button.v1(href='#') 1 case
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $39.99
+                      p per bottle
+                      a.button.v2(href='#') 5 cases
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $36.99
+                      p per bottle
+                      a.button.v3(href='#') 20 cases
+                    //- col-xs-4
+                  //- prices
+                  p.stats
+                    span.ratings 520 ratings
+                    | |
+                    span.reviews 132 reviews
+                  //- p
+                  .rate
+                    a.button.v6.inline(href="#") rate | write a review
+                  //- rate
+              // End
+          // Product End
+          // 1 Product
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 97
+                //- ctr
+                a(href="#")
+                  img.img-prod(src='assets/images/products/p8.jpg', alt='')
+                //- a
+                // Edit
+                .details
+                  .name
+                    a(href="#") Sticks
+                    br
+                    small Pinot Noir
+                  //- name
+                  .prices.row
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $16.20
+                      p per bottle
+                      a.button.v1(href='#') 6 pack
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $15.50
+                      p per bottle
+                      a.button.v2(href='#') 5 cases
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $14.99
+                      p per bottle
+                      a.button.v3(href='#') 10 cases
+                    //- col-xs-4
+                  //- prices
+                  p.stats
+                    span.ratings 69 ratings
+                    | |
+                    span.reviews 13 reviews
+                  //- p
+                  .rate
+                    a.button.v6.inline(href="#") rate | write a review
+                  //- rate
+              // End
+          // Product End
+          // 1 Product
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 92
+                //- ctr
+                a(href="#")
+                  img.img-prod(src='assets/images/products/p9.jpg', alt='')
+                //- a
+                // Edit
+                .details
+                  .name
+                    a(href="#") Tempus Two
+                    br
+                    small Botrytis Semillon 250mL
+                  //- name
+                  .prices.row
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $14.25
+                      p per bottle
+                      a.button.v1(href='#') 1 bottle
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $13.50
+                      p per bottle
+                      a.button.v2(href='#') 1 case
+                    //- col-xs-4
+                    .col-xs-4.col-sm-4.col-md-4
+                      h5.prodPrice $12.50
+                      p per bottle
+                      a.button.v3(href='#') 3 cases
+                    //- col-xs-4
+                  //- prices
+                  p.stats
+                    span.ratings 19 ratings
+                    | |
+                    span.reviews 4 reviews
+                    | |
+                    span.reviews 1 live circle
+                  //- p
+                  .rate
+                    a.button.v6.inline(href="#") rate | write a review
+                  //- rate
+              // End
+  //- section
+
+block scripts
+  // External Script goes here...
+  script.
+    $(document).ready(function(){
+
+    });

@@ -1,0 +1,20 @@
+#buymode.modal.fade(tabindex='-1', role='dialog')
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        h4#myModalLabel.modal-title Buy Options
+      //- modal-header
+      .modal-body
+        a.btn.btn-success.btn-block(href="#") Buy Now
+        p
+        p.text-center
+          small or
+        a.btn.btn-info.btn-block(href="#")
+          i.fa.fa-group
+          | &nbsp;&nbsp;Join a Group
+      //- modal-body
+    //- modal-content
+  //- modal-dialog
+//- modal

@@ -12,44 +12,55 @@ header
           img(src="assets/images/logo_white.png", alt="")
         //- a
       #navbar.navbar-collapse.collapse
-        //- form.navbar-form.navbar-left(role='search')
-        //-   .form-group
-        //-     .search
-        //-       i.fa.fa-search
-        //-       input.form-control(type='text', placeholder='Search')
-        //-     //- search
-        //-   //- form-group
-        //- //- form
-
         ul.nav.navbar-nav.navbar-left.minisite
           li
             a.dd(href='drinksdirect.html', data-flag='drinksdirect')
-              span drinksdirect
+              span drinksdirect&nbsp;
               span.fa-stack
                 i.fa.fa-circle.fa-stack-2x
                 i.fa.fa-arrow-circle-right.fa-2x
               //- span
           li
             a.tc(href='thecircle.html', data-flag='thecircle')
-              span the circle
+              span circles&nbsp;
               span.fa-stack
                 i.fa.fa-circle.fa-stack-2x
                 i.fa.fa-circle-o.fa-2x
               //- span
           li
-            a.da(href='drinkadvisor2.html', data-flag='drinkadvisor')
-              span drinkadvisor
+            a.da(href='drinkadvisor.html', data-flag='drinkadvisor')
+              span drinkadvisor&nbsp;
               span.fa-stack
                 i.fa.fa-circle.fa-stack-2x
                 i.fa.fa-question-circle.fa-2x
               //- span
         //- ul
         ul.nav.navbar-nav.navbar-right.logged-in
-          li
-            a.info(href='profile.html')
+          li.dropdown
+            a.dropdown-toggle.info(href='profile.html', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
               img(src="assets/images/img_advisor_1.jpg", alt="")
               | &nbsp;Hi Andrew!
-            //- a
+            ul.dropdown-menu
+              li
+                a(href='index.html') Home
+              //- li
+              li
+                a(href='myprofile.html') Profile
+              //- li
+              li
+                a(href='#') Multibuy
+              //- li
+              li
+                a(href='#') Circles
+              //- li
+              li
+                a(href='#') My Orders
+              //- li
+              li.divider(role='separator')
+              li
+                a(href='#') Sign out
+              //- li
+            //- ul
           //- li
           li
             a.notification(href='#')

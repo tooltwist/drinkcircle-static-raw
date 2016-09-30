@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp');
 var clean = require('gulp-clean');
 var pug = require('gulp-pug');
@@ -6,8 +8,8 @@ var browserSync   = require('browser-sync').create();
 var autoprefixer = require('gulp-autoprefixer');
 var exec = require('child_process').exec;
 
-var root = './'; // always add slash('/') at the end
-var dir = 'public'; // project folder
+var root = '../ttstatic.github.io/'; // always add slash('/') at the end
+var dir = 'drinkcircle'; // project folder
 
 var paths = {
   pug: ['./*.pug', '!**[^_]/*.pug'],
@@ -111,8 +113,7 @@ gulp.task('serve', function() {
   browserSync.init({
     server: {
       baseDir: root + dir
-    },
-    tunnel: true
+    }
   });
   gulp.watch(paths.scss, ['sass']);
   gulp.watch('./**/*.pug',['pug']);

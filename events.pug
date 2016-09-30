@@ -1,0 +1,206 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  .banner.userprofile
+    .gradient
+    .info
+      .container
+        .row
+          .col-sm-3.col-md-3
+            .photo
+              .img
+                a(href="#")
+                  i.fa.fa-camera
+                //- a
+                img(src="assets/images/img_advisor_1.jpg", alt="")
+              //- img
+              .name
+                span Andrew Steer&nbsp;
+                sup
+                  a(href="#")
+                    i.fa.fa-pencil
+                    span edit profile
+                  //- a
+                //- sup
+              //- name
+            //- photo
+          //- col-md-3
+        //- row
+        .row
+          .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
+            .userprofilemenu
+              nav.menu
+                ul
+                  li
+                    a.active(href="#") Timeline
+                  //- li
+                  li
+                    a(href="#") About
+                  //- li
+                  li
+                    a(href="#") Friends
+                  //- li
+                  li
+                    a(href="#") Circle buys
+                  //- li
+                  li
+                    a(href="#") Groups
+                  //- li
+                  li
+                    a(href="#") Reviews
+                  //- li
+                //- ul
+              //- nav
+            //- userprofilemenu
+          //- col-md-6
+        //- row
+      //- container
+    //- info
+  //- banner.userprofile
+
+  section.userprofile.events.simple
+    .container
+      .row
+        .col-md-12
+          h3.title Events
+        //- col-md-12
+      //- row
+      .card
+        .row
+          .col-md-3.col-sm-3.col-xs-6
+            .event-tile
+              .event-photo
+                img(src="http://placehold.it/150")
+              //- event-photo
+              .event-thumb-info
+                strong
+                  a(href="#") Jairo and Pinky Wedding
+                //- strong
+                br
+                small Sunday, December 21, 2014 at 2:30 PM - 11:30 PM
+              //- event-thumb-info
+            //- card
+          //- col-md-3
+          .col-md-3.col-sm-3.col-xs-6
+            .event-tile
+              .event-photo
+                img(src="http://placehold.it/150")
+              //- event-photo
+              .event-thumb-info
+                strong
+                  a(href="#") NIGHT RUSH 3 - BBEA Fun Run
+                //- strong
+                br
+                small Saturday, April 27, 2013 at 5:30 PM
+              //- event-thumb-info
+            //- card
+          //- col-md-3
+          .col-md-3.col-sm-3.col-xs-6
+            .event-tile
+              .event-photo
+                img(src="http://placehold.it/150")
+              //- event-photo
+              .event-thumb-info
+                strong
+                  a(href="#") FlipTop Metro Manila presents: Dos Por Dos Finals Unibersikulo x Boom Bap Friday
+                //- strong
+                br
+                small Friday, August 31, 2012 at 8 PM
+              //- event-thumb-info
+            //- card
+          //- col-md-3
+          .col-md-3.col-sm-3.col-xs-6
+            .event-tile
+              .event-photo
+                img(src="http://placehold.it/150")
+              //- event-photo
+              .event-thumb-info
+                strong
+                  a(href="#") Surla - Dayrit Nuptial
+                //- strong
+                br
+                small Sunday, January 15, 2012 at 3 PM - 10 PM
+              //- event-thumb-info
+            //- card
+          //- col-md-3
+          .col-md-3.col-sm-3.col-xs-6
+            .event-tile
+              .event-photo
+                img(src="http://placehold.it/150")
+              //- event-photo
+              .event-thumb-info
+                strong
+                  a(href="#") Jairo and Pinky Wedding
+                //- strong
+                br
+                small Sunday, December 21, 2014 at 2:30 PM - 11:30 PM
+              //- event-thumb-info
+            //- card
+          //- col-md-3
+          .col-md-3.col-sm-3.col-xs-6
+            .event-tile
+              .event-photo
+                img(src="http://placehold.it/150")
+              //- event-photo
+              .event-thumb-info
+                strong
+                  a(href="#") NIGHT RUSH 3 - BBEA Fun Run
+                //- strong
+                br
+                small Saturday, April 27, 2013 at 5:30 PM
+              //- event-thumb-info
+            //- card
+          //- col-md-3
+          .col-md-3.col-sm-3.col-xs-6
+            .event-tile
+              .event-photo
+                img(src="http://placehold.it/150")
+              //- event-photo
+              .event-thumb-info
+                strong
+                  a(href="#") FlipTop Metro Manila presents: Dos Por Dos Finals Unibersikulo x Boom Bap Friday
+                //- strong
+                br
+                small Friday, August 31, 2012 at 8 PM
+              //- event-thumb-info
+            //- card
+          //- col-md-3
+          .col-md-3.col-sm-3.col-xs-6
+            .event-tile
+              .event-photo
+                img(src="http://placehold.it/150")
+              //- event-photo
+              .event-thumb-info
+                strong
+                  a(href="#") Surla - Dayrit Nuptial
+                //- strong
+                br
+                small Sunday, January 15, 2012 at 3 PM - 10 PM
+              //- event-thumb-info
+            //- card
+          //- col-md-3
+        //- row
+      //- card
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+
+    });
+  //- script.

@@ -20,7 +20,7 @@ block content
         .row
           .col-sm-3.col-md-3
             .photo
-              .img
+              .img.square
                 a(href="#")
                   i.fa.fa-camera
                 //- a
@@ -46,7 +46,7 @@ block content
               nav.menu
                 ul
                   li
-                    a.active(href="#") Shop
+                    a.active(href="shop.html") Shop
                   //- li
                   li
                     a(href="#") Photos
@@ -133,18 +133,8 @@ block content
                   //- p
                 //- span
               //- input-group
-              .input-group
-                span.input-group-addon
-                  .badge
-                    | 4.6
-                    i.fa.fa-star
-                span.form-control
-                  a(href="#")
-                    | 4.6 of 5 stars · 89 reviews
-                    br
-                    | View Reviews
-                  //- p
-                //- span
+              .form-group.text-center.linetop
+                button.btn.btn-success(onclick="location.href = 'shop.html'") shop now
               //- input-group
             //- content
           //- sellerinfo
@@ -152,8 +142,11 @@ block content
             .livecircles
               img(src="assets/images/ring.png", alt="")
               h4.text
-                .count 884
-                a(href="#") live circles
+                a(href="#")
+                  .count 884
+                  | active
+                  br
+                  | circle buys
             //- livecircles
           //- intro
           .list_groups.sellerinfo
@@ -242,6 +235,9 @@ block content
                 //- row
               //- container
             //- content
+            .more
+              a(href="#") See all
+            //- more
           //- grid_groups
         //- col-md-3
         .col-md-6
@@ -301,8 +297,8 @@ block content
               //- header
               .inner
                 .caption
-                  p RRP $65 End of bin clearance exclusive to our circle followers $29 be quick 200 cases only...
-                    a(href="#") See more
+                  p RRP $65 End of bin clearance exclusive to our circle followers $29 be quick 200 cases only...&nbsp;
+                    a(href="#") see more
                 //- caption
                 .post
                   .shared
@@ -637,9 +633,9 @@ block content
                 //- span
               //- input-group
             //- content
-            .search
-              input.form-control(type='text', placeholder='search reviews...')
-            //- search
+            .review
+              input.form-control(type='text', placeholder='write a review...')
+            //- review
             .more
               a(href="#") See all
             //- more
@@ -648,7 +644,7 @@ block content
           .list_groups.feed
             .head
               h4
-                a(href="#") Latest
+                a(href="#") Latest activity
             //- head
             .content
               .input-group
@@ -748,6 +744,7 @@ block content
               //- a
             //- search
           //- messaging
+
           .list_groups.events
             .head
               h4
@@ -797,6 +794,61 @@ block content
               a(href="#") See all
             //- more
           //- list_groups
+
+          .list_groups.likedbypage
+            .head
+              h4
+                a(href="#") Liked by this page
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/likes/likes_3.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Hardys
+                  //- | likes your photo.
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/likes/likes_4.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="profile.html")
+                    strong Grant Burge Barossa
+                  //- | commented on your post.
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/likes/likes_7.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Ginger Joe
+                  //- | shared your post.
+                  //- p
+                //- span
+              //- input-group
+            //- content
+            .more
+              a(href="#") See all
+            //- more
+          //- list_groups
+
         //- col-md-3
       //- row
     //- container

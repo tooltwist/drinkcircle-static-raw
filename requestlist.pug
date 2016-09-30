@@ -1,0 +1,145 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  section.userprofile.request-list.simple
+    .container
+      .row
+        .col-md-12
+          h3.title Friend Requests
+        //- col-md-12
+      //- row
+      .card
+        .table-responsive
+          table.table
+            thead
+              tr
+                th
+                th Full Name
+                th Location
+                th
+              //- tr
+            //- thead
+            tbody
+              tr
+                td(width='10%')
+                  img.img-responsive(src='//placehold.it/70')
+                //- td
+                td
+                  | Rodan Luzuriaga
+                //- td
+                td
+                  | Angeles, Pampanga
+                //- td
+                td.text-right
+                  a.btn.btn-success.btn-sm(href='') Confirm
+                  | &nbsp;
+                  a.btn.btn-default.btn-sm(href='') Delete Request
+                //- td
+              //- tr
+              tr
+                td(width='10%')
+                  img.img-responsive(src='//placehold.it/70')
+                //- td
+                td
+                  | Julius Balgue
+                //- td
+                td
+                  | Angeles, Pampanga
+                //- td
+                td.text-right
+                  a.btn.btn-success.btn-sm(href='') Confirm
+                  | &nbsp;
+                  a.btn.btn-default.btn-sm(href='') Delete Request
+                //- td
+              //- tr
+              tr
+                td(width='10%')
+                  img.img-responsive(src='//placehold.it/70')
+                //- td
+                td
+                  | Weyden Herrera
+                //- td
+                td
+                  | Angeles, Pampanga
+                //- td
+                td.text-right
+                  a.btn.btn-success.btn-sm(href='') Confirm
+                  | &nbsp;
+                  a.btn.btn-default.btn-sm(href='') Delete Request
+                //- td
+              //- tr
+              tr
+                td(width='10%')
+                  img.img-responsive(src='//placehold.it/70')
+                //- td
+                td
+                  | Marco Marco
+                //- td
+                td
+                  | Apalit, Pampanga
+                //- td
+                td.text-right
+                  a.btn.btn-success.btn-sm(href='') Confirm
+                  | &nbsp;
+                  a.btn.btn-default.btn-sm(href='') Delete Request
+                //- td
+              //- tr
+              tr
+                td(width='10%')
+                  img.img-responsive(src='//placehold.it/70')
+                //- td
+                td
+                  | Henry Sy
+                //- td
+                td
+                  | Mabalacat, Pampanga
+                //- td
+                td.text-right
+                  a.btn.btn-success.btn-sm(href='') Confirm
+                  | &nbsp;
+                  a.btn.btn-default.btn-sm(href='') Delete Request
+                //- td
+              //- tr
+              tr
+                td(width='10%')
+                  img.img-responsive(src='//placehold.it/70')
+                //- td
+                td
+                  | Marco Marco
+                //- td
+                td
+                  | Apalit, Pampanga
+                //- td
+                td.text-right
+                  a.btn.btn-success.btn-sm(href='') Confirm
+                  | &nbsp;
+                  a.btn.btn-default.btn-sm(href='') Delete Request
+                //- td
+              //- tr
+            //- tbody
+          //- table
+        //- table-responsive
+      //- card
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+
+    });
+  //- script.

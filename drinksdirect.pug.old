@@ -8,11 +8,11 @@ block css
 
 block content
 
-  .banner.advisor
+  .banner.direct
     .gradient
     h1.jumbo Welcome to a new world of drinking
       br
-      small rate, review and compare
+      small direct from the producer
     //- h1
     .action
       a.btn.btn-success.btn-lg
@@ -33,26 +33,19 @@ block content
     //- action
   //- banner-home
 
-  section.profile.da
-    h2.advisor Welcome to drinkadvisor 
-      i.fa.fa-question-circle
+  section.profile.dd
+    h2.direct Welcome to drinksdirect 
+      i.fa.fa-arrow-circle-right
     //- h2
     .container
       .row
         .col-md-8.col-md-offset-2
           form
             .form-group
-              //- .text-center What would you like to get a rating on?
               .icon_search
-                input.form-control.input-lg(type='text', placeholder='What drink would you like to rate or review?')
+                input.form-control.input-lg(type='text', placeholder='Search products...')
                 i.fa.fa-search
-              //- icon_search
-            //- form-group
-            .form-group
-              //- .text-center What drinks have you tried lately?
-              .icon_search
-                input.form-control.input-lg(type='text', placeholder='What drink would you like to get a rating or review on?')
-                i.fa.fa-search
+                a.link-1(href='#') Refine Search
               //- icon_search
             //- form-group
           //- form
@@ -103,9 +96,9 @@ block content
                     | |
                     span.reviews 102 live circles
                   //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
+                  //- .rate
+                  //-   a.button.v6.inline(href="#") rate | write a review
+                  //- //- rate
               // End
           // Product End
           // 1 Product
@@ -147,9 +140,6 @@ block content
                     | |
                     span.reviews 88 reviews
                   //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
               // End
           // Product End
           // 1 Product
@@ -191,9 +181,6 @@ block content
                     | |
                     span.reviews 30 reviews
                   //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
               // End
           // Product End
           // 1 Product
@@ -235,9 +222,6 @@ block content
                     | |
                     span.reviews 12 reviews
                   //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
               // End
           // Product End
           // 1 Product
@@ -281,9 +265,6 @@ block content
                     | |
                     span.reviews 5 live circles
                   //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
               // End
           // Product End
           // 1 Product
@@ -325,9 +306,6 @@ block content
                     | |
                     span.reviews 59 reviews
                   //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
               // End
           // Product End
           // 1 Product
@@ -369,9 +347,6 @@ block content
                     | |
                     span.reviews 132 reviews
                   //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
               // End
           // Product End
           // 1 Product
@@ -413,9 +388,6 @@ block content
                     | |
                     span.reviews 13 reviews
                   //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
               // End
           // Product End
           // 1 Product
@@ -459,9 +431,6 @@ block content
                     | |
                     span.reviews 1 live circle
                   //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
               // End
   //- section
 

@@ -2,12 +2,7 @@ extends ./layout/layout_main.pug
 
 block css
   style.
-    .logged-in {
-      display: block !important;
-    }
-    .logged-out {
-      display: none;
-    }
+
   //- style
 
 
@@ -18,11 +13,28 @@ block content
     h1.jumbo Welcome to a new world of drinking
       br
       small rate, review and compare
+    //- h1
+    .action
+      a.btn.btn-success.btn-lg
+        i.fa.fa-envelope
+        span.hidden-xs &nbsp;&nbsp;&nbsp;Signup with Email
+      a.btn.btn-info.btn-lg
+        i.fa.fa-facebook
+        span.hidden-xs &nbsp;&nbsp;&nbsp;Continue with Facebook
+      .util
+        a(href="#")
+          | Download our app
+        //- a
+        | &nbsp;&nbsp;
+        i.fa.fa-android
+        | &nbsp;
+        i.fa.fa-apple
+      //- util
+    //- action
   //- banner-home
 
   section.profile.da
-    img.img-circle.photo(src="assets/images/img_advisor_1.jpg", alt="")
-    h2.advisor Welcome back Andrew! 
+    h2.advisor Welcome to drinkadvisor
       i.fa.fa-question-circle
     //- h2
     .container
@@ -59,403 +71,815 @@ block content
               .thumb
                 .ctr
                   .count 93
+                    span points
+                  //- count
                 img.img-prod(src='assets/images/products/p1.jpg', alt='')
                 // Edit
                 .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 14&nbsp;
+                          small circle buys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 624&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 121&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
                   .name
                     a(href="#") Corona Extra
                     br
                     small Imported Beer
                   //- name
-                  .prices.row
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $49.99
-                      p per cases
-                      a.button.v1(href='#') 1 case
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $44.99
-                      p per cases
-                      a.button.v2(href='#') 5 cases
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $39.99
-                      p per cases
-                      a.button.v3(href='#') 20 cases
-                    //- col-xs-4
-                  //- detail
-                  p.stats
-                    span.ratings 624 ratings
-                    | |
-                    span.reviews 121 reviews
-                    | |
-                    span.reviews 102 live circles
-                  //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
-              // End
-          // Product End
-          // 1 Product
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                            small from&nbsp;
+                            big $39.99
+                          //- a
+                          br
+                          a(href="#") rate | write a review
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $49.99
+                                  small &nbsp;per case
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $44.99
+                                  small &nbsp;per cases
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 20
+                                  br
+                                  | cases
+                                //- span
+                                span.price $39.99
+                                  small &nbsp;per cases
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+
           .col-sm-6.col-md-4
             .product
               .thumb
-                .ctr
+                .ctr.silver
                   .count 94
+                    span points
+                  //- count
                 //- ctr
                 a(href="productdetails.html")
                   img.img-prod(src='assets/images/products/p2.jpg', alt='')
                 //- a
-                // Edit
                 .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 84&nbsp;
+                          small circle buys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 242&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 88&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
                   .name
-                    a(href="productdetails.html") Brokenwood
+                    a(href="#") Brokenwood
                     br
                     small Graveyard Vineyard
                   //- name
-                  .prices.row
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $25.99
-                      p per bottle
-                      a.button.v1(href='#') 1 case
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $21.99
-                      p per bottle
-                      a.button.v2(href='#') 5 cases
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $19.99
-                      p per bottle
-                      a.button.v3(href='#') 10 cases
-                    //- col-xs-4
-                  //- prices
-                  p.stats
-                    span.ratings 334 ratings
-                    | |
-                    span.reviews 88 reviews
-                  //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
-              // End
-          // Product End
-          // 1 Product
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                            small from&nbsp;
+                            big $19.99
+                          //- a
+                          br
+                          a(href="#") rate | write a review
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $25.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $29.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $19.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+
           .col-sm-6.col-md-4
             .product
               .thumb
-                .ctr
+                .ctr.bronze
                   .count 91
+                    span points
+                  //- count
                 //- ctr
                 a(href="#")
                   img.img-prod(src='assets/images/products/p3.jpg', alt='')
                 //- a
-                // Edit
                 .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 53&nbsp;
+                          small circle buys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 160&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 30&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
                   .name
                     a(href="#") Chivas Regal
                     br
                     small 12 Year Old Scotch Whisky 700mL
                   //- name
-                  .prices.row
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $34.99
-                      p per bottle
-                      a.button.v1(href='#') 1 bottle
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $33.99
-                      p per bottle
-                      a.button.v2(href='#') 1 case
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $32.99
-                      p per bottle
-                      a.button.v3(href='#') 3 cases
-                    //- col-xs-4
-                  //- prices
-                  p.stats
-                    span.ratings 160 ratings
-                    | |
-                    span.reviews 30 reviews
-                  //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
-              // End
-          // Product End
-          // 1 Product
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                            small from&nbsp;
+                            big $32.99
+                          //- a
+                          br
+                          a(href="#") rate | write a review
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | bottle
+                                //- span
+                                span.price $25.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $33.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 3
+                                  br
+                                  | cases
+                                //- span
+                                span.price $32.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+
           .col-sm-6.col-md-4
             .product
               .thumb
-                .ctr
+                .ctr.silver
                   .count 89
+                    span points
+                  //- count
                 //- ctr
                 a(href="#")
                   img.img-prod(src='assets/images/products/p4.jpg', alt='')
                 //- a
-                // Edit
                 .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 43&nbsp;
+                          small circle buys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 160&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 30&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
                   .name
-                    a(href="#") Sieur d'Arques
+                    a(href="#") Mo&eacute;t &amp; Chandon
                     br
-                    small Grande Cuvée 1531 de Aimery
+                    small French Champagne
                   //- name
-                  .prices.row
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $16.20
-                      p per bottle
-                      a.button.v1(href='#') 12 pack
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $13.99
-                      p per bottle
-                      a.button.v2(href='#') 5 cases
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $11.99
-                      p per bottle
-                      a.button.v3(href='#') 10 cases
-                    //- col-xs-4
-                  //- prices
-                  p.stats
-                    span.ratings 62 ratings
-                    | |
-                    span.reviews 12 reviews
-                  //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
-              // End
-          // Product End
-          // 1 Product
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                            small from&nbsp;
+                            big $11.99
+                          //- a
+                          br
+                          a(href="#") rate | write a review
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 12
+                                  br
+                                  | pack
+                                //- span
+                                span.price $16.20
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $13.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $11.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+
           .col-sm-6.col-md-4
             .product
               .thumb
                 .ctr
                   .count 95
+                    span points
+                  //- count
                 //- ctr
                 a(href="#")
                   img.img-prod(src='assets/images/products/p5.jpg', alt='')
                 //- a
-                // Edit
                 .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 20&nbsp;
+                          small circle buys
+                      //- col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 88&nbsp;
+                          small reviews
+                      //- col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 5&nbsp;
+                          small reviews
+                      //- col-md-4
+                    //- .row
+                  //- stats
                   .name
                     a(href="#") Absolut
                     br
                     small Vodka
                   //- name
-                  .prices.row
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $49.90
-                      p per bottle
-                      a.button.v1(href='#') 1 bottle
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $44.99
-                      p per bottle
-                      a.button.v2(href='#') 1 case
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $43.99
-                      p per bottle
-                      a.button.v3(href='#') 3 case
-                    //- col-xs-4
-                  //- prices
-                  p.stats
-                    span.ratings 200 ratings
-                    | |
-                    span.reviews 88 reviews
-                    | |
-                    span.reviews 5 live circles
-                  //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
-              // End
-          // Product End
-          // 1 Product
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                            small from&nbsp;
+                            big $43.99
+                          //- a
+                          br
+                          a(href="#") rate | write a review
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | bottle
+                                //- span
+                                span.price $49.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $44.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 3
+                                  br
+                                  | case
+                                //- span
+                                span.price $43.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+
           .col-sm-6.col-md-4
             .product
               .thumb
-                .ctr
+                .ctr.bronze
                   .count 90
+                    span points
+                  //- count
                 //- ctr
                 a(href="#")
                   img.img-prod(src='assets/images/products/p6.jpg', alt='')
                 //- a
-                // Edit
                 .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 76&nbsp;
+                          small circle buys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 156&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 59&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
                   .name
                     a(href="#") Kim Crawford
                     br
                     small Sauvignon Blanc
                   //- name
-                  .prices.row
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $14.90
-                      p per bottle
-                      a.button.v1(href='#') 12 pack
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $13.99
-                      p per bottle
-                      a.button.v2(href='#') 5 cases
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $12.99
-                      p per bottle
-                      a.button.v3(href='#') 10 cases
-                    //- col-xs-4
-                  //- prices
-                  p.stats
-                    span.ratings 156 ratings
-                    | |
-                    span.reviews 59 reviews
-                  //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
-              // End
-          // Product End
-          // 1 Product
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                            small from&nbsp;
+                            big $12.99
+                          //- a
+                          br
+                          a(href="#") rate | write a review
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 12
+                                  br
+                                  | pack
+                                //- span
+                                span.price $14.90
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $13.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $12.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+
           .col-sm-6.col-md-4
             .product
               .thumb
                 .ctr
                   .count 95
+                    span points
+                  //- count
                 //- ctr
                 a(href="#")
                   img.img-prod(src='assets/images/products/p7.jpg', alt='')
                 //- a
-                // Edit
                 .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 20&nbsp;
+                          small circle buys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 520&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 132&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
                   .name
                     a(href="#") Heineken
                     br
                     small Lager Stubbies
                   //- name
-                  .prices.row
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $42.95
-                      p per bottle
-                      a.button.v1(href='#') 1 case
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $39.99
-                      p per bottle
-                      a.button.v2(href='#') 5 cases
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $36.99
-                      p per bottle
-                      a.button.v3(href='#') 20 cases
-                    //- col-xs-4
-                  //- prices
-                  p.stats
-                    span.ratings 520 ratings
-                    | |
-                    span.reviews 132 reviews
-                  //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
-              // End
-          // Product End
-          // 1 Product
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                            small from&nbsp;
+                            big $36.99
+                          //- a
+                          br
+                          a(href="#") rate | write a review
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $42.95
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $39.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 20
+                                  br
+                                  | cases
+                                //- span
+                                span.price $36.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+
           .col-sm-6.col-md-4
             .product
               .thumb
-                .ctr
+                .ctr.silver
                   .count 97
+                    span points
+                  //- count
                 //- ctr
                 a(href="#")
                   img.img-prod(src='assets/images/products/p8.jpg', alt='')
                 //- a
-                // Edit
                 .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 21&nbsp;
+                          small circle buys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 69&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 13&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
                   .name
                     a(href="#") Sticks
                     br
                     small Pinot Noir
                   //- name
-                  .prices.row
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $16.20
-                      p per bottle
-                      a.button.v1(href='#') 6 pack
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $15.50
-                      p per bottle
-                      a.button.v2(href='#') 5 cases
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $14.99
-                      p per bottle
-                      a.button.v3(href='#') 10 cases
-                    //- col-xs-4
-                  //- prices
-                  p.stats
-                    span.ratings 69 ratings
-                    | |
-                    span.reviews 13 reviews
-                  //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
-              // End
-          // Product End
-          // 1 Product
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                            small from&nbsp;
+                            big $14.99
+                          //- a
+                          br
+                          a(href="#") rate | write a review
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 6
+                                  br
+                                  | pack
+                                //- span
+                                span.price $16.20
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $15.50
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $14.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+
           .col-sm-6.col-md-4
             .product
               .thumb
-                .ctr
+                .ctr.bronze
                   .count 92
+                    span points
+                  //- count
                 //- ctr
                 a(href="#")
                   img.img-prod(src='assets/images/products/p9.jpg', alt='')
                 //- a
-                // Edit
                 .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 98&nbsp;
+                          small circle buys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 19&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 4&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
                   .name
                     a(href="#") Tempus Two
                     br
                     small Botrytis Semillon 250mL
                   //- name
-                  .prices.row
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $14.25
-                      p per bottle
-                      a.button.v1(href='#') 1 bottle
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $13.50
-                      p per bottle
-                      a.button.v2(href='#') 1 case
-                    //- col-xs-4
-                    .col-xs-4.col-sm-4.col-md-4
-                      h5.prodPrice $12.50
-                      p per bottle
-                      a.button.v3(href='#') 3 cases
-                    //- col-xs-4
-                  //- prices
-                  p.stats
-                    span.ratings 19 ratings
-                    | |
-                    span.reviews 4 reviews
-                    | |
-                    span.reviews 1 live circle
-                  //- p
-                  .rate
-                    a.button.v6.inline(href="#") rate | write a review
-                  //- rate
-              // End
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                            small from&nbsp;
+                            big $12.50
+                          //- a
+                          br
+                          a(href="#") rate | write a review
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 6
+                                  br
+                                  | bottle
+                                //- span
+                                span.price $14.25
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | case
+                                //- span
+                                span.price $13.50
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $12.50
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+        //- row
+      //- product-wrap
+    //- container
   //- section
 
 block scripts
   // External Script goes here...
   script.
-    $(document).ready(function(){
-
+    $(function () {
+      $('.popover_price[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<ul class="cost">' + $(this).parent().find("ul").html() + '</ul>';
+        },
+        title: function(){
+          return jQuery(this).data('title') + '<span class="close">&times;</span>';
+        }
+      }).on('shown.bs.popover', function(e) {
+        var popover = jQuery(this);
+        $(this).parent().find('.popover span.close').on('click', function(e) {
+          popover.popover('hide');
+        });
+      }).click(function(e) {
+        e.preventDefault();
+      });
     });
+  //- script.
+//- block scripts

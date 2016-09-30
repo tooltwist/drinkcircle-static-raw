@@ -2,7 +2,6 @@ extends ./layout/layout_main.pug
 
 block css
   style.
-
   //- style
 
 
@@ -16,183 +15,259 @@ block content
         a(href="#") Brokenwood
         | &nbsp;/&nbsp;
         a(href="#")
-          strong Graveyard Vineyard Shiraz
+          strong Graveyard Vineyard Shiraz - 6 pack
+        //- a
+      //- p
       //- bread
       .row
-        .col-md-5
-          .stage
+        .col-md-5.text-center
+          .stage.infos
+            .stats
+              .rate-counter
+                .ring
+                  img(src="assets/images/ring_silver.png", alt="")
+                  .count 94
+                    span points
+                //- ring
+              //- rate-counter
+            //- stats
             img(src="assets/images/products/brokenwood.png", alt="")
           //- stage
+          br
+          p
         //- col-md-5
         .col-md-7.product-detail-wrap
           .infos
             .row
-              .col-md-3
-                .stats
-                  .rate-counter
-                    .ring
-                      img(src="assets/images/ring.png", alt="")
-                      .count 94
-                    //- ring
-                    p.text
-                      a(href="#") 334 Ratings
-                  //- rate-counter
-                  p
-                    strong
-                      a(href="seller.html") view sellers page
-                  p
-                    strong
-                      a(href="#") shipping info
-                //- stats
-              //- col-md-3
-              .col-md-6
+              .col-md-12
                 .inventory
                   h1 Brokenwood
                     br
-                    small Graveyard Vineyard Shiraz
+                    strong
+                      small Graveyard Vineyard Shiraz  - 6 pack
+                    //- strong
+                    br
+                    p
+                    .row
+                      .col-md-4
+                        small
+                          | RRP $29.99&nbsp;
+                          span.pb / bottle
+                        //- small
+                      //- col-md-4
+                      .col-md-4
+                        small
+                          span.avl 500+ available / 319 sold
+                        //- small
+                      //- col-md-4
+                      .col-md-4
+                        small
+                          span.text-danger
+                            i.fa.fa-clock-o
+                            | &nbsp;3d 2hrs left
+                        //- small
+                      //- col-md-4
+                    //- row
                   //- h1
+                  hr
                   .pricing
-                    table
-                      tr
-                        td
-                          a.button.v1(href="#", target="_blank") 6 pack
-                        //- td
-                        td
-                          a.button.v2(href="#", target="_blank") 5 cases
-                        //- td
-                        td
-                          a.button.v3(href="#", target="_blank") 10 cases
-                        //- td
-                      //- tr
-                      tr
-                        td
-                          strong.price $25.99
-                          .label-quantity per bottle
-                        //- td
-                        td
-                          strong.price $21.99
-                          .label-quantity per bottle
-                        //- td
-                        td
-                          strong.price $19.99
-                          .label-quantity per bottle
-                        //- td
-                      //- tr
-                    //- table
+                    .row
+                      .col-md-4.col-sm-4
+                        fieldset.deals.card
+                          legend 1 case
+                          big.lead
+                            strong $25.99
+                          //- big
+                          br
+                          a.btn.btn-success(href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                          br
+                          | save&nbsp;
+                          big.lead
+                            strong.green $4&nbsp;
+                          //- big
+                          | / bottle
+                        //- deals
+                      //- col-md-4
+                      .col-md-4.col-sm-4
+                        fieldset.deals.card
+                          legend 5+ cases
+                          big.lead
+                            strong $21.99
+                          //- big
+                          br
+                          a.btn.btn-success(href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                          br
+                          | save&nbsp;
+                          big.lead
+                            strong.green $8&nbsp;
+                          //- big
+                          | / bottle
+                        //- deals
+                      //- col-md-4
+                      .col-md-4.col-sm-4
+                        fieldset.deals.card
+                          legend 10+ cases
+                          big.lead
+                            strong $19.99
+                          //- big
+                          br
+                          a.btn.btn-success(href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                          br
+                          | save&nbsp;
+                          big.lead
+                            strong.green $10&nbsp;
+                          //- big
+                          | / bottle
+                        //- deals
+                      //- col-md-4
+                    .row
                   //- pricing
                 //- inventory
-              //- col-md-9
-              .col-md-3
-                .stats
-                  .actions
-                    a.button.v4.inline(href='#myActiveCircles', data-toggle="collapse") (3) live circles&nbsp;
-                    br
-                    br
-                    a.button.v4.inline(href='#') create a circle
-                  //- actions
-                //- stats
-              //- col-md-3
+              //- col-md-12
             //- row
             hr
-            #myActiveCircles.collapse
-              .active-circles
-                .list_groups.groups
-                  .content
-                    .input-group
-                      span.input-group-addon
-                        .thumb
-                          .img
-                            .ring
-                            img(src='assets/images/circles/circles_8.png', alt='')
-                      span.form-control
-                        p
-                          a(href='#')
-                            strong Adrian Southern
-                              br
-                              | 10 case circle
-                            //- strong
-                          //- a
-                        //- p
-                        | (4)
-                        strong people joined |
-                        | (7)
-                        strong cases sold
-                        a.button.v5.inline.request(href='#')
-                          span.hidden-xs request to join
-                          span.visible-xs + join
-                        //- a
-                    .input-group
-                      span.input-group-addon
-                        .thumb
-                          .img
-                            .ring
-                            img(src='assets/images/circles/circles_1.png', alt='')
-                      span.form-control
-                        p
-                          a(href='#')
-                            strong Charmaine Stevens
-                              br
-                              | 5 case circle
-                            //- strong
-                          //- a
-                        //- p
-                        | (2)
-                        strong people joined |
-                        | (2)
-                        strong cases sold
-                        a.button.v5.inline.request(href='#')
-                          span.hidden-xs request to join
-                          span.visible-xs + join
-                        //- a
-                    .input-group
-                      span.input-group-addon
-                        .thumb
-                          .img
-                            .ring
-                            img(src='assets/images/circles/circles_7.png', alt='')
-                      span.form-control
-                        p
-                          a(href='#')
-                            strong Northern Beaches Golf Club
-                              br
-                              | 10 case circle
-                            //- strong
-                          //- a
-                        //- p
-                        | (7)
-                        strong people joined |
-                        | (9)
-                        strong cases sold
-                        a.button.v5.inline.request(href='#')
-                          span.hidden-xs request to join
-                          span.visible-xs + join
-                        //- a
-                  .expand
-                    a(href='#myActiveCircles', data-toggle='collapse')
-                      i.fa.fa-caret-up
-                  //- expand
-              //- active-circles
-            //- #myActiveCircles
+            p.lead.text-center
+              | 84 active circle buys
+              span.pull-right
+                a.button.inline.v7(href="#") public
+                | &nbsp;
+                a.button.inline.v7(href="#") friends
+              //- pull-right
+            //- p
+            .row
+              .col-md-4.col-sm-4.text-center
+                .card_rounded
+                  strong Adrian's Circle
+                  br
+                  | 10 case circle
+                  br
+                  | 7 sold /&nbsp;
+                  strong 3 available
+                  p
+                  .avatar
+                    .img
+                      .ring._70p
+                      img(src='assets/images/circles/circles_8.png', alt='')
+                    //- img
+                  //- avatar
+                  br
+                  big.lead
+                    strong $19.99
+                  //- big
+                  br
+                  p
+                  p
+                    a.button.inline.v7(href="#") request to join
+                  //- p
+                  p
+                    i.fa.fa-clock-o
+                    | &nbsp;1d 8hrs left
+                  //- p
+                //- card_rounded
+              //- col-md-4
+              .col-md-4.col-sm-4.text-center
+                .card_rounded
+                  strong Sharmaine's Circle
+                  br
+                  | 10 case circle
+                  br
+                  | 5 sold /&nbsp;
+                  strong 5 available
+                  p
+                  .avatar
+                    .img
+                      .ring._50p
+                      img(src='assets/images/circles/circles_1.png', alt='')
+                    //- img
+                  //- avatar
+                  br
+                  big.lead
+                    strong $19.99
+                  //- big
+                  br
+                  p
+                  p
+                    a.button.inline.v7(href="#") request to join
+                  //- p
+                  p
+                    i.fa.fa-clock-o
+                    | &nbsp;3d 2hrs left
+                  //- p
+                //- card_rounded
+              //- col-md-4
+              .col-md-4.col-sm-4.text-center
+                .card_rounded
+                  strong Jenny's Circle
+                  br
+                  | 5 case circle
+                  br
+                  | 2 sold /&nbsp;
+                  strong 3 available
+                  p
+                  .avatar
+                    .img
+                      .ring._40p
+                      img(src='assets/images/circles/circles_7.png', alt='')
+                    //- img
+                  //- avatar
+                  br
+                  big.lead
+                    strong $21.99
+                  //- big
+                  br
+                  p
+                  p
+                    a.button.inline.v7(href="#") request to join
+                  //- p
+                  p
+                    i.fa.fa-clock-o
+                    | &nbsp;2d 6hrs left
+                  //- p
+                //- card_rounded
+              //- col-md-4
+            //- row
+            br
+            .expand.text-center
+              a(href='#')
+                | more circle buys&nbsp;
+                i.fa.fa-caret-down
+            //- expand
+            hr
+            .text-center
+              a.btn.btn-success(href="#") start a new circle buy
+            //- text-center
+            hr
+
             .about
-              p.desc Brokenwood Shiraz is a ripe and generous Shiraz with lifted cherry and mint aromas nicely balanced with sweet chocolate notes on the nose and a soft rich palate with savoury cedary flavours and fine grained tannins on the finish.
+              p.lead Product Details
+              p.comment
+                strong Brokenwood Graveyard Vineyard Shiraz&nbsp;
+                | is a ripe and generous shiraz with lifted cherry and mint aromas nicely balanced with sweet chocolate notes on the nose and a soft rich palate with savoury cedary flavours and fine grained tannins on the finish.
+              //- p
               .row
                 .col-xs-4.col-md-4
                   p
-                    strong variety
+                    strong.blue variety
                     br
                     | Shiraz
                   //- p
                 //- col-md-4
                 .col-xs-4.col-md-4
                   p
-                    strong region
+                    strong.blue region
                     br
                     | Hunter Valley
                   //- p
                 //- col-md-4
                 .col-xs-4.col-md-4
                   p
-                    strong alcohol
+                    strong.blue alcohol
                     br
                     | 14.5%
                   //- p
@@ -201,21 +276,15 @@ block content
               .row
                 .col-xs-4.col-md-4
                   p
-                    strong vintage
+                    strong.blue vintage
                     br
                     | 2010
                   //- p
                 //- col-md-4
                 .col-xs-4.col-md-4
-                  p
-                    strong free delivery
-                    br
-                    | Australia wide
-                  //- p
-                //- col-md-4
-                .col-xs-4.col-md-4
                   p.share
-                    strong share:
+                    strong.blue share
+                      br
                       a(href="#", target="_blank")
                         i.fa.fa-twitter
                       //- a
@@ -231,23 +300,125 @@ block content
                   //- p.share
                 //- col-md-4
               //- row
-              .expand
+              .expand.text-center
                 a(href='#', data-toggle='collapse')
-                  | show more
+                  | more&nbsp;
                   i.fa.fa-caret-down
               //- expand
             //- about
             .reviews
               .row
-                .col-md-6
-                  strong Customer Reviews
-                    br
+                .col-md-7
+                  p.lead Customer Reviews &amp; Ratings
+                  a.popover_rating(href="#", data-toggle="popover", data-placement="bottom", data-title="Summary") 242 Ratings - Silver (between 100 and 250 ratings)
+                    span.ratings
+                      table
+                        tr
+                          td(width="100")
+                            small 95 - 100
+                          //- td
+                          td(width="300")
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 40%')
+                                span.sr-only 40% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 100 - 120
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 60%')
+                                span.sr-only 60% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 120 - 140
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 20%')
+                                span.sr-only 20% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 140 - 160
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
+                                span.sr-only 0% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 160 - 180
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 40%')
+                                span.sr-only 40% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 180 - 200
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 60%')
+                                span.sr-only 60% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 200 - 220
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
+                                span.sr-only 0% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 220 - 250
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 20%')
+                                span.sr-only 20% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                      //- table
+                    //- ratings
+                  //- popover_rating
+                  br
                   | 88 Reviews
                 //- col-md-6
-                .col-md-6
+                .col-md-5
                   .btn-review-wrap
-                    a.button.inline.v3(href="#") Write a review
-                    a.button.inline.v1(href="#") Rate a product
+                    a.button.inline.v7(href="#") Write a review
+                    a.button.inline.v7(href="#") Rate product
                   //- btn-review-wrap
                 //- col-md-6
               //- row
@@ -256,7 +427,7 @@ block content
                   .content
                     .counter
                       .ring
-                        img(src="assets/images/ring.png", alt="")
+                        img(src="assets/images/ring_silver.png", alt="")
                         .count 96
                       //- ring
                     //- counter
@@ -279,29 +450,19 @@ block content
                   //- content
                   .footer
                     .row
-                      .col-md-8
-                        small 100 people found this helpful. Was this review helpful to you?
-                          strong Yes
-                          | /
-                          strong No
-                      //- col-md-8
-                      .col-md-4
+                      .col-md-12
                         .right-to-center.basecolor
                           small
-                            strong
+                            span.green
                               a(href="#") like
                             //- strong
                             | &nbsp;&nbsp;&nbsp;
-                            strong
+                            span.green
                               a(href="#") comment
-                            //- strong
-                            | &nbsp;&nbsp;&nbsp;
-                            strong
-                              a(href="#") share
                             //- strong
                           //- small
                         //- right-to-center
-                      //- col-md-4
+                      //- col-md-12
                     //- row
                   //- footer
                 //- list_groups
@@ -309,7 +470,7 @@ block content
                   .content
                     .counter
                       .ring
-                        img(src="assets/images/ring.png", alt="")
+                        img(src="assets/images/ring_silver.png", alt="")
                         .count 91
                       //- ring
                     //- counter
@@ -332,29 +493,19 @@ block content
                   //- content
                   .footer
                     .row
-                      .col-md-8
-                        small 100 people found this helpful. Was this review helpful to you?
-                          strong Yes
-                          | /
-                          strong No
-                      //- col-md-8
-                      .col-md-4
+                      .col-md-12
                         .right-to-center.basecolor
                           small
-                            strong
+                            span.green
                               a(href="#") like
                             //- strong
                             | &nbsp;&nbsp;&nbsp;
-                            strong
+                            span.green
                               a(href="#") comment
-                            //- strong
-                            | &nbsp;&nbsp;&nbsp;
-                            strong
-                              a(href="#") share
                             //- strong
                           //- small
                         //- right-to-center
-                      //- col-md-4
+                      //- col-md-12
                     //- row
                   //- footer
                 //- list_groups
@@ -362,7 +513,7 @@ block content
                   .content
                     .counter
                       .ring
-                        img(src="assets/images/ring.png", alt="")
+                        img(src="assets/images/ring_silver.png", alt="")
                         .count 82
                       //- ring
                     //- counter
@@ -385,29 +536,19 @@ block content
                   //- content
                   .footer
                     .row
-                      .col-md-8
-                        small 100 people found this helpful. Was this review helpful to you?
-                          strong Yes
-                          | /
-                          strong No
-                      //- col-md-8
-                      .col-md-4
+                      .col-md-12
                         .right-to-center.basecolor
                           small
-                            strong
+                            span.green
                               a(href="#") like
                             //- strong
                             | &nbsp;&nbsp;&nbsp;
-                            strong
+                            span.green
                               a(href="#") comment
-                            //- strong
-                            | &nbsp;&nbsp;&nbsp;
-                            strong
-                              a(href="#") share
                             //- strong
                           //- small
                         //- right-to-center
-                      //- col-md-4
+                      //- col-md-12
                     //- row
                     .comment
                       .list_groups
@@ -434,67 +575,15 @@ block content
                   //- footer
                   .footer
                     .row
-                      .col-md-8
-                        small 100 people found this helpful. Was this review helpful to you?
-                          strong Yes
-                          | /
-                          strong No
-                      //- col-md-8
-                      .col-md-4
-                        .right-to-center.basecolor
-                          small
-                            strong
-                              a(href="#") like
-                            //- strong
-                            | &nbsp;&nbsp;&nbsp;
-                            strong
-                              a(href="#") comment
-                            //- strong
-                            | &nbsp;&nbsp;&nbsp;
-                            strong
-                              a(href="#") share
-                            //- strong
-                          //- small
-                        //- right-to-center
-                      //- col-md-4
-                    //- row
-                  //- footer
-                //- list_groups
-                br
-                p.text-center
-                  strong
-                    a.basecolor(href="#") load more
-                  //- strong
-                  hr
-                //- p
-
-                strong Questions
-                br
-                | 2 Questions about the product
-                //- p
-                .list_groups
-                  .content
-                    br
-                    .col-md-12
-                      form
-                        .form-group
-                          p.help-block Ask a question about this product
-                          input.form-control(type='text', placeholder='Write your questions here.(ex: Is the wine from?)')
-                        //- form-group
-                        .form-group
-                          input.form-control(type='text', placeholder='Write the details here.')
-                        //- form-group
-                      //- form
-                    //- col-md-12
-                  //- content
-                  .clearfix
-                  .footer
-                    .row
                       .col-md-12
                         .right-to-center.basecolor
                           small
-                            strong
-                              a(href="#") submit
+                            span.green
+                              a(href="#") like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            span.green
+                              a(href="#") comment
                             //- strong
                           //- small
                         //- right-to-center
@@ -502,9 +591,72 @@ block content
                     //- row
                   //- footer
                 //- list_groups
-                .list_groups
+                br
+                .expand.text-center
+                  a(href='#', data-toggle='collapse')
+                    | more&nbsp;
+                    i.fa.fa-caret-down
+                //- expand
+                hr
+
+                p.lead Discussions
+                .list_groups.discussions
                   .content
-                    .input-group
+                    .commentbox
+                      .input-group
+                        span.input-group-addon
+                          .thumb
+                            .img
+                              img(src='assets/images/anonymous.png', alt='')
+                            //- img
+                          //- thumb
+                        //- span
+                        span.form-control
+                          .composer
+                            .head
+                              a(href='#')
+                                i.fa.fa-pencil
+                                | Status
+                              //- a
+                              a(href='#')
+                                i.fa.fa-picture-o
+                                | Photo/Video
+                              //- a
+                              a(href='#')
+                                i.fa.fa-calendar-o
+                                | Event
+                              //- a
+                            //- head
+                            .content
+                              textarea.form-control(rows='4')
+                            //- content
+                            .controls
+                              a(href='#')
+                                i.fa.fa-camera
+                              //- a
+                              a(href='#')
+                                i.fa.fa-user-plus
+                              //- a
+                              a(href='#')
+                                i.fa.fa-smile-o
+                              //- a
+                              a(href='#')
+                                i.fa.fa-map-marker
+                              //- a
+                              a(href='#')
+                                i.fa.fa-clock-o
+                              //- a
+                              a.post(href='#')
+                                i.fa.fa-send-o
+                                | Post
+                              //- a
+                            //- controls
+                          //- composer
+                        //- span
+                      //- input-group
+                    //- commentbox
+
+                    .input-group.discussion-row
                       span.input-group-addon
                         .thumb
                           .img
@@ -517,8 +669,16 @@ block content
                         //- small
                         p.comment Hi! has anybody tried this with waygu steak with asparagus saute potatoes?
                       //- span
+                      .generic-controls
+                        a(href='#')
+                          i.fa.fa-heart
+                          | Like
+                        a(href='#')
+                          i.fa.fa-comment
+                          | Comment
+                      //- generic-controls
                     //- input-group
-                    .input-group
+                    .input-group.discussion-row
                       span.input-group-addon
                         .thumb
                           .img
@@ -531,81 +691,16 @@ block content
                         //- small
                         p.comment I had it with char grill ribeye fillet medium rare and i finished the whole bottle :)
                       //- span
+                      .generic-controls
+                        a(href='#')
+                          i.fa.fa-heart
+                          | Like
+                        a(href='#')
+                          i.fa.fa-comment
+                          | Comment
+                      //- generic-controls
                     //- input-group
-                    .col-md-12
-                      .right-to-center.basecolor
-                        p
-                          small
-                            strong
-                              a(href="#") like
-                            //- strong
-                            | &nbsp;&nbsp;&nbsp;
-                            strong
-                              a(href="#") comment
-                            //- strong
-                            | &nbsp;&nbsp;&nbsp;
-                            strong
-                              a(href="#") share
-                            //- strong
-                          //- small
-                        //- p
-                      //- right-to-center
-                    //- col-md-12
-                    hr
-                    .commentbox
-                      .input-group
-                        span.input-group-addon
-                          .thumb
-                            .img
-                              img(src='assets/images/anonymous.png', alt='')
-                            //- img
-                          //- thumb
-                        //- span
-                        span.form-control
-                          .row
-                            .col-md-12
-                              textarea.form-control(rows='3', placeholder='Write your comment here.')
-                            //- col-md-12
-                          //- row
-                        //- span
-                      //- input-group
-                    //- commentbox
                   //- content
-
-                  .footer
-                    .row
-                      .col-md-12
-                        .pull-left
-                          .basecolor
-                            small
-                              strong
-                                a(href="#") image
-                              //- strong
-                              | &nbsp;&nbsp;&nbsp;
-                              strong
-                                a(href="#") video
-                              //- strong
-                              | &nbsp;&nbsp;&nbsp;
-                              strong
-                                a(href="#") link
-                              //- strong
-                              | &nbsp;&nbsp;&nbsp;
-                              strong
-                                a(href="#") file
-                              //- strong
-                            //- small
-                          //- p
-                        //-
-                        .right-to-center.basecolor
-                          small
-                            strong
-                              a(href="#") submit
-                            //- strong
-                          //- small
-                        //- right-to-center
-                      //- col-md-12
-                    //- row
-                  //- footer
                 //- list_groups
               //- review
             //- reviews
@@ -619,20 +714,41 @@ block scripts
   // External Script goes here...
   script.
     $(document).ready(function(){
-      $(window).on("load resize", function() {
-        if ( $(this).width() > 991 ) {
-          $('section.productdetails').outerHeight(function(){
-            var top = $('nav.navbar').outerHeight();
-            var bottom = $('footer').outerHeight(true);
-            var screenHeight = $(window.top).height();
+      //- $(window).on("load resize", function() {
+      //-   if ( $(this).width() > 991 ) {
+      //-     $('section.productdetails').outerHeight(function(){
+      //-       var top = $('nav.navbar').outerHeight();
+      //-       var bottom = $('footer').outerHeight(true);
+      //-       var screenHeight = $(window.top).height();
+      //-
+      //-       return (screenHeight - (top + bottom));
+      //-     });
+      //-     $('.product-detail-wrap, .productdetails .stage').height(function() {
+      //-       return $('section.productdetails').height() - $('.bread').outerHeight();
+      //-     });
+      //-   } else {
+      //-     $('section.productdetails, .product-detail-wrap, .productdetails .stage').height("");
+      //-   }
+      //- });
+    });
 
-            return (screenHeight - (top + bottom));
-          });
-          $('.product-detail-wrap, .productdetails .stage').height(function() {
-            return $('section.productdetails').height() - $('.bread').outerHeight();
-          });
-        } else {
-          $('section.productdetails, .product-detail-wrap, .productdetails .stage').height("");
-        }
+    $(function () {
+      $('.popover_rating[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<span class="ratings">' + $(this).parent().find("span.ratings").html() + '</span>';
+        },
+        title: function(){
+      		return jQuery(this).data('title') + '<span class="close">&times;</span>';
+      	}
+      }).on('shown.bs.popover', function(e) {
+      	var popover = jQuery(this);
+      	$(this).parent().find('.popover span.close').on('click', function(e) {
+      		popover.popover('hide');
+      	});
+      }).click(function(e) {
+        e.preventDefault();
       });
     });
+  //- script.
+//- block scripts

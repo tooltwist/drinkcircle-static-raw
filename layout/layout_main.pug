@@ -27,12 +27,14 @@ html(lang="en")
     <![endif]-->
     block css
   body
-
+    //- .loader
     include ../includes/_header.pug
 
     block content
 
     include ../includes/_footer.pug
+
+    include ../includes/_modal.pug
 
     // Bower Components
     script(src="bower_components/jquery/dist/jquery.js", type="text/javascript")
@@ -41,5 +43,5 @@ html(lang="en")
     script(src="assets/scripts/ie10-viewport-bug-workaround.js", type="text/javascript")
     script(src="assets/scripts/main.js", type="text/javascript")
 
-    // page scripts goes here...
+    // External Script goes here...
     block scripts
