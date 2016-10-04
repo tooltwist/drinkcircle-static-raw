@@ -83,6 +83,7 @@ var bower = [
     bowerBaseDir + '/jquery.cookie/**/*.*',
     bowerBaseDir + '/animate.css/**/*.*',
     bowerBaseDir + '/font-awesome/**/*.*',
+    bowerBaseDir + '/owl.carousel/dist/**/*.*',
     '!' + bowerBaseDir + '/jquery.cookie/*.json', // Exclude '.json' files
     '!' + bowerBaseDir + '/font-awesome/scss/**', // Exclude 'scss' folder
     '!' + bowerBaseDir + '/font-awesome/less/**', // Exclude 'less' folder

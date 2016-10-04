@@ -1,0 +1,249 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  section.userprofile.request-list.simple
+    .container
+      .row
+        .col-md-12
+          br
+          h3.title Create a Multibuy for Brokenwood - Graveyard Vineyard Shiraz
+        //- col-md-12
+      //- row
+      .card
+        .row
+          .col-md-9
+            p
+              | Total Quantity for Multibuy&nbsp;
+              select.form-control.inline
+                option 10 cases
+              //- select
+            //- p
+            p.text-warning * All circlebuys will be closed in 3 days or less if the closure of the deal is shorter than 3 days.
+          //- col-md-9
+          .col-md-3
+            .alert.alert-warning.countdown
+              | Deal closes in
+              hr
+              h2 2days
+                br
+                | 12:00:01
+              //- h2
+            //- alert
+          //- col-md-3
+        //- row
+      //- card
+      br
+      h4 Your Order
+      .card
+        .row
+          .col-md-4
+            .form-group
+              label Item
+              p.form-control-static Brokenwood - Graveyard Vineyard Shiraz
+            //- form-group
+          //- col-md-4
+          .col-md-3
+            .form-group
+              label Quantity
+              select.form-control
+                option 3 cases
+              //- select
+            //- form-group
+          //- col-md-4
+          .col-md-5
+            .table-responsive
+              table.table
+                thead
+                  tr
+                    th Price
+                    th Subtotal
+                  //- tr
+                //- thead
+                tbody
+                  tr
+                    td $119.94
+                    td $359.82
+                  //- tr
+                  tr
+                    td(colspan='2')
+                      br
+                    //- td
+                  //- tr
+                  tr
+                    td Subtotal
+                    td $359.82
+                  //- tr
+                  tr
+                    td Shipping
+                    td $10.00
+                  //- tr
+                  tr
+                    td GST
+                    td $36.98
+                  //- tr
+                  tr
+                    td(colspan='2')
+                      br
+                    //- td
+                  //- tr
+                  tr
+                    td
+                      strong Grand Total (Incl. GST)
+                    //- td
+                    td
+                      strong $406.802
+                    //- td
+                  //- tr
+                //- tbody
+              //- table
+            //- table-responsive
+          //- col-md-4
+        //- row
+      //- card
+      br
+      h4 Your Details
+      .card
+        .row
+          .col-md-3
+            .form-group
+              label Date of Birth *
+              input.form-control(type='date')
+            //- form-group
+          //- col-md-4
+        //- .row
+        p Drinkcircle supports prohibiting alcohol and tobacco sales to minors.
+        hr
+        p
+          strong Billing Details
+        //- p
+        .row
+          .col-md-3
+            .alert.alert-warning
+              a.text-danger.pull-right(href='')
+                i.fa.fa-times-circle
+              //- a
+              .clearfix
+              p
+                | John Jones
+                br
+                | 423 5678
+                br
+                | 19 Beaudesert Rd. Brisbane,
+                br
+                | QLD 4757
+              //- p
+            //- alert
+          //- col-md-3
+          .col-md-3
+            .alert.alert-warning
+              a.text-danger.pull-right(href='')
+                i.fa.fa-times-circle
+              //- a
+              .clearfix
+              p
+                | John Jones
+                br
+                | 423 5678
+                br
+                | 19 Beaudesert Rd. Brisbane,
+                br
+                | QLD 4757
+              //- p
+            //- alert
+          //- col-md-3
+        //- .row
+        a.btn.btn-success.btn-sm(href='') Add a new address
+        hr
+        .row
+          .col-md-4
+            .form-group
+              label Ship to
+              select.form-control
+                option Other
+              //- select
+            //- form-group
+          //- col-md-4
+        //- row
+        .row
+          .col-md-3
+            .alert.alert-warning
+              a.text-danger.pull-right(href='')
+                i.fa.fa-times-circle
+              //- a
+              .clearfix
+              p
+                | John Jones
+                br
+                | 423 5678
+                br
+                | 19 Beaudesert Rd. Brisbane,
+                br
+                | QLD 4757
+              //- p
+            //- alert
+          //- col-md-3
+          .col-md-3
+            .alert.alert-warning
+              a.text-danger.pull-right(href='')
+                i.fa.fa-times-circle
+              //- a
+              .clearfix
+              p
+                | John Jones
+                br
+                | 423 5678
+                br
+                | 19 Beaudesert Rd. Brisbane,
+                br
+                | QLD 4757
+              //- p
+            //- alert
+          //- col-md-3
+        //- .row
+        a.btn.btn-success.btn-sm(href='') Add a new address
+        hr
+        .row
+          .col-md-4
+            .form-group
+              label Authority to Leave
+              select.form-control
+                option Yes
+              //- select
+            //- form-group
+          //- col-md-4
+          .col-md-12
+            .form-group
+              label Comment
+              textarea.form-control(rows='3')
+            //- form-group
+          //- col-md-4
+        //- row
+      //- card
+
+      br
+      .text-right
+        a.btn.btn-success(href='') Next
+      //- text-right
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+
+    });
+  //- script.

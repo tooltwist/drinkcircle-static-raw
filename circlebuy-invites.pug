@@ -1,0 +1,137 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  section.userprofile.request-list.simple
+    .container
+      .row
+        .col-md-12
+          br
+          h3.title Invite your friends to join your 10 cases of Brokenwood - Graveyard Vineyard Shiraz Multibuy
+        //- col-md-12
+      //- row
+      .card
+        .row
+          .col-md-6
+            .pull-right
+              .checkbox
+                label
+                  input(type='checkbox', value='')
+                  small Include this in the invites
+                //- label
+              //- checkbox
+            //- pull-right
+            h4 Invite by Email
+            .clearfix
+            .input-group
+              input.form-control(type='text', placeholder='email address...')
+              span.input-group-btn
+                button.btn.btn-default(type='button') Add
+              //- span
+            //- input-group
+            p
+            .form-group
+              .card
+                .selection
+                  a(href='') &times;&nbsp;
+                  | fjay@gmail.com
+                //- selection
+                .selection
+                  a(href='') &times;&nbsp;
+                  | cchavez@yahoo.com
+                //- selection
+                .selection
+                  a(href='') &times;&nbsp;
+                  | hmell@gmail.com
+                //- selection
+              //- card
+            //- form-group
+          //- col-md-6
+          .col-md-6
+            .pull-right
+              .checkbox
+                label
+                  input(type='checkbox', value='')
+                  small Include this in the invites
+                //- label
+              //- checkbox
+            //- pull-right
+            h4 Invite by DrinkCircle friends
+            .clearfix
+            .input-group
+              input.form-control(type='text', placeholder='email address...')
+              span.input-group-btn
+                button.btn.btn-default(type='button') Add
+                button.btn.btn-default(type='button') Add all Friends
+              //- span
+            //- input-group
+            p
+            .form-group
+              .card
+                .selection
+                  a(href='') &times;&nbsp;
+                  | Paul Peters
+                //- selection
+                .selection
+                  a(href='') &times;&nbsp;
+                  | Naveen Simons
+                //- selection
+                .selection
+                  a(href='') &times;&nbsp;
+                  | Samantha Davis
+                //- selection
+              //- card
+            //- form-group
+          //- col-md-6
+        //- row
+      //- card
+      hr
+      .row
+        .col-md-12
+          .text-center
+            .form-group
+              label
+                input(type='checkbox')
+                | &nbsp;&nbsp;
+                i.fa.fa-facebook-square.text-primary.fa-2x
+                span &nbsp;Post to Facebook
+              //- label
+        //- col-md-12
+      //- row
+      hr
+      div
+        .row
+          .col-md-12
+            .form-group
+              label Add personalised message:
+              textarea.form-control(rows='5')
+            //- form-group
+          //- col-md-12
+        //- row
+      //- div
+      br
+      .text-right
+        a.btn.btn-success(href='') Create Multibuy &amp; Send Invites
+      //- text-right
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+
+    });
+  //- script.

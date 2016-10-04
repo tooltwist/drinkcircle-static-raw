@@ -4,158 +4,251 @@ block content
 
   .banner.home
     .gradient
-    h1.jumbo Welcome to a new world of drinking
+    .owl-carousel
+      .item
+        img(src='assets/images/banner/banner_slide_1.jpg')
+      //- item
+      .item
+        img(src='assets/images/banner/banner_slide_2.jpg')
+      //- item
+      .item
+        img(src='assets/images/banner/banner_slide_3.jpg')
+      //- item
+      .item
+        img(src='assets/images/banner/banner_slide_4.jpg')
+      //- item
+    //- owl-carousel
+    h1.jumbo The fun marketplace connecting drinklovers and drinkmakers
+      br
+      small Discover. Share. Save. Enjoy
     .action
       a.btn.btn-success.btn-lg
         i.fa.fa-envelope
         span.hidden-xs &nbsp;&nbsp;&nbsp;Signup with Email
+      //- a
       a.btn.btn-info.btn-lg
         i.fa.fa-facebook
         span.hidden-xs &nbsp;&nbsp;&nbsp;Continue with Facebook
-      .util
-        a(href="#")
-          | Download our app
-        //- a
-        | &nbsp;&nbsp;
-        i.fa.fa-android
-        | &nbsp;
-        i.fa.fa-apple
-      //- util
+      //- a
     //- action
   //- banner-home
 
   section.site
-    h2 Features you'll love...
+    //- h2 Features you'll love...
     .container
       .row
         .col-xs-10.col-sm-4.col-md-4.col-xs-offset-1.col-sm-offset-0.col-md-offset-0
           .brief.dd
+            img(src='assets/images/icon_press.png')
             h4
-              span
-                i.fa.fa-arrow-circle-right
-                a(href="drinksdirect.html") drinksdirect
-            p Why pay retail when you can
-              br.hidden-xs
-              | &nbsp;buy direct from the producers.
+              | Meet the drinkmakers
+            p Talk directly to your drinkmakers and build a personal relationship. Get exclusive wine, beer, cider &amp; spirits offers and all the latest news.
             //- p
-            a(href="drinksdirect.html") learn more
-          //- brief
-        //- col-md-4
-        .col-xs-10.col-sm-4.col-md-4.col-xs-offset-1.col-sm-offset-0.col-md-offset-0
-          .brief.c
-            h4
-              span
-                i.fa.fa-circle-o
-                a(href="thecircle.html") circles
-            p Get together with friends
-              br.hidden-xs
-              | &nbsp;for great group savings.
-            //- p
-            a(href="thecircle.html") learn more
+            //- a(href="drinksdirect.html") learn more
           //- brief
         //- col-md-4
         .col-xs-10.col-sm-4.col-md-4.col-xs-offset-1.col-sm-offset-0.col-md-offset-0
           .brief.di
-            h4
-              span
-                i.fa.fa-question-circle
-                a(href="drinkadvisor.html") drinkadvisor
-            p Thousands of opinions
-              br.hidden-xs
-              | &nbsp;from drinkers like you.
+            img(src='assets/images/icon_right.png')
+            h4 Getting it right
+            p Make better choices using accumulated user ratings and top picks from drinkers just like you. Directly compare products for quicker results.
             //- p
-            a(href="drinkadvisor.html") learn more
+            //- a(href="drinkadvisor.html") learn more
             //- p
           //- brief
         //- col-md-4
+        .col-xs-10.col-sm-4.col-md-4.col-xs-offset-1.col-sm-offset-0.col-md-offset-0
+          .brief.c
+            img(src='assets/images/icon_friends.png')
+            h4 Buy with friends
+            p Connect with new &amp; old friends. Buy together for big savings direct from the source. Share your experiences both good and bad.
+            //- p
+            //- a(href="thecircle.html") learn more
+          //- brief
+        //- col-md-4
       //- row
+      br
+      .text-center
+        a.btn.btn-success.btn-lg.super-action-button(href='') Get Started
+      //- text-center
     //- container
   //- section
+
 
   section.activity
     .container
       .row
-        .col-sm-6.col-md-4
-          .type.story
-            img(src="assets/images/activity/image-1.png", alt="")
-            .caption
-              h1 Drinking wine
-                br
-                | can improve
-                br
-                | your sex life
-              .action
-                a(href="//www.lifehacker.com.au/2015/03/studies-reveal-red-wine-is-the-best-alcohol-for-great-sex/", target="_blank") Full Story
-              //- button
-            //- caption
+        .col-sm-6.col-md-4.col-xs-12
+          .type.categories
+            p.title
+              strong.color.green Search 1,588 Drinkmakers
+            div
+              //- 1
+              .col-md-4.col-sm-4.col-xs-4.cat-thumb
+                img(src='assets/images/icon_cat_red.png')
+                a(href='')
+                  small Red
+                //- a
+              //- col-md-4
+              //- 2
+              .col-md-4.col-sm-4.col-xs-4.cat-thumb
+                img(src='assets/images/icon_cat_white.png')
+                a(href='')
+                  small White
+                //- a
+              //- col-md-4
+              //- 3
+              .col-md-4.col-sm-4.col-xs-4.cat-thumb
+                img(src='assets/images/icon_cat_beer.png')
+                a(href='')
+                  small Beer
+                //- a
+              //- col-md-4
+              //- 4
+              .col-md-4.col-sm-4.col-xs-4.cat-thumb
+                img(src='assets/images/icon_cat_sparkling.png')
+                a(href='')
+                  small Sparkling
+                //- a
+              //- col-md-4
+              //- 5
+              .col-md-4.col-sm-4.col-xs-4.cat-thumb
+                img(src='assets/images/icon_cat_spirits.png')
+                a(href='')
+                  small Spirits
+                //- a
+              //- col-md-4
+              //- 6
+              .col-md-4.col-sm-4.col-xs-4.cat-thumb
+                img(src='assets/images/icon_cat_cider.png')
+                a(href='')
+                  small Cider
+                //- a
+              //- col-md-4
+              //- 7
+              .col-md-4.col-sm-4.col-xs-4.cat-thumb
+                img(src='assets/images/icon_cat_organic.png')
+                a(href='')
+                  small Organic
+                //- a
+              //- col-md-4
+              //- 8
+              .col-md-4.col-sm-4.col-xs-4.cat-thumb
+                img(src='assets/images/icon_cat_champagne.png')
+                a(href='')
+                  small Champagne
+                //- a
+              //- col-md-4
+              //- 9
+              .col-md-4.col-sm-4.col-xs-4.cat-thumb
+                img(src='assets/images/icon_cat_dessert.png')
+                a(href='')
+                  small Other
+                //- a
+              //- col-md-4
+              .clearfix
+            //- div
           //- type
         //- col-md-4
-        .col-sm-6.col-md-4
-          .type.post
+
+        .col-sm-6.col-md-4.col-xs-12
+          .type._3.offset-img
             .shared
               img(src="assets/images/activity/image-2.png", alt="")
+              header
+                h1.md Circlebuying
+              //- header
+              footer
+                h3 Buying With Friends Opens
+                  br
+                  | Up a World Of Opportunity
+                //- a.action-btn(href="#") See how it works
+                a.action-btn(href="#") See how it works
+              //- footer
+            //- shared
+          //- type
+        //- col-md-4
+
+        .clearfix.visible-sm
+
+        .col-sm-6.col-md-4.col-xs-12
+          .type.post._1
+            .shared
+              img(src="assets/images/activity/image-1.png", alt="")
+              header
+                h2 Drinking Wine Can
+                  br
+                  | Improve Your Sex Life
+                //- h1
+              //- header
               .caption
                 .input-group
                   span.input-group-addon
                     .thumb
                       .img
-                        img(src='assets/images/likes/likes_10.png', alt='')
+                        img(src='assets/images/favicon.png', alt='')
                       //- img
                     //- thumb
                   //- input-group-addon
                   span.form-control
-                    a(href='seller.html')
-                      strong Taylors Wines
+                    a(href='')
+                      strong Drinkcircle
                     //- a
                     br
-                    | Matt Damon enjoying a Taylors Merlot on his recent trip to Sydney...
-                    a(href="seller.html") See more
+                    | Studies reveal red wine is the drink of choice for great sex...&nbsp;
+                    a(href="") see more
                   //- span
                 //- input-group
               //- caption
             //- shared
           //- type
         //- col-md-4
-        .col-sm-6.col-md-4
-          .type.story
-            img(src="assets/images/activity/image-3.png", alt="")
-            .caption
-              h1 Hottest 100 Aussie
-                br
-                | Craft Beers Of 2015
-              .action
-                a(href="#") Full Story
-              //- button
-            //- caption
+
+        .col-sm-6.col-md-4.col-xs-12
+          .type.post.offset-bottom._1
+            .shared
+              img(src="assets/images/activity/image-8.png", alt="")
+              header
+                h1 The Guide To
+                  br
+                  | Cooking With Wine
+                //- h1
+              //- header
+              //- .caption.post
+              //-   h1 The Guide To
+              //-     br
+              //-     | Cooking With Wine
+              //-     br
+              //-     br
+              //-     br
+              //-     br
+              //-     | &nbsp;
+              //-   //- h1
+              //- //- caption
+              .caption
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/favicon.png', alt='')
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    a(href='')
+                      strong Drinkcircle
+                    //- a
+                    br
+                    | Great tips to make the most from adding wine to your cooking...&nbsp;
+                    a(href="") see more
+                  //- span
+                //- input-group
+              //- caption
+            //- shared
           //- type
         //- col-md-4
-        .col-sm-6.col-md-4
-          .type.story
-            img(src="assets/images/activity/image-4.png", alt="")
-            .caption
-              h1 Why Wine Doesn't
-                br
-                | Make You Fat
-              .action
-                a(href="#") Full Story
-              //- button
-            //- caption
-          //- type
-        //- col-md-4
-        .col-sm-6.col-md-4
-          .type.story
-            img(src="assets/images/activity/image-5.png", alt="")
-            .caption
-              h1 Chat with over
-                br
-                | 1,500 producers
-              .action
-                a(href="#") Find your favourites
-              //- button
-            //- caption
-          //- type
-        //- col-md-4
-        .col-sm-6.col-md-4
+
+        .col-sm-6.col-md-4.col-xs-12
           .type.post
             .shared
               img(src="assets/images/activity/image-6.png", alt="")
@@ -173,57 +266,150 @@ block content
                       strong Brokenwood Wines
                     //- a
                     br
-                    | RRP $65 End of bin clearance exclusive to our circle followers $29 be quick 200 cases only...
-                    a(href="seller.html") See more
+                    | RRP $65 End of bin clearance exclusive for our followers $29 be quick 200 cases only...&nbsp;
+                    a(href="seller.html") see more
                   //- span
                 //- input-group
               //- caption
             //- shared
           //- type
         //- col-md-4
-        .col-sm-6.col-md-4
-          .type.story
-            img(src="assets/images/activity/image-7.png", alt="")
-            .caption
-              h1 Make Champagne
-                br
-                | and Sparkling Shiraz
-                br
-                | in a SodaStream
-              .action
-                a(href="#") Full Story
-              //- button
-            //- caption
+
+        .col-sm-6.col-md-4.col-xs-12
+          .type.post.offset-bottom._1
+            .shared
+              img(src="assets/images/activity/image-3.png", alt="")
+              header
+                h1 Hottest 100 Aussie
+                  br
+                  | Craft Beers Of 2016
+                //- h1
+              //- header
+              //- .caption.post
+              //-   h1 Hottest 100 Aussie
+              //-     br
+              //-     | Craft Beers Of 2016
+              //-     br
+              //-     | &nbsp;
+              //-   //- h1
+              //- //- caption
+              .caption
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/favicon.png', alt='')
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    a(href='')
+                      strong Drinkcircle
+                    //- a
+                    br
+                    | This years hottest 100 list includes a few surprises...&nbsp;
+                    a(href="") see more
+                  //- span
+                //- input-group
+              //- caption
+            //- shared
           //- type
         //- col-md-4
-        .col-sm-6.col-md-4
-          .type.story.guide
-            img(src="assets/images/activity/image-8.png", alt="")
-            .caption
-              h1 The Guide To
-                br
-                | Cooking With Wine
-              .action
-                a(href="#") Full Story
-              //- button
-            //- caption
+
+        .col-sm-6.col-md-4.col-xs-12
+          .type.post.offset-bottom
+            .shared
+              img(src="assets/images/activity/image-7.png", alt="")
+              .caption
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/producers/sticks/logo.png', alt='')
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    a(href='seller-sticks.html')
+                      strong Sticks Wines
+                    //- a
+                    br
+                    | RRP $20 2 day only sale for our followers at $11.99 a bottle...&nbsp;
+                    a(href="seller.html") see more
+                  //- span
+                //- input-group
+              //- caption
+            //- shared
           //- type
         //- col-md-4
-        .col-sm-6.col-md-4
-          .type.story
-            img(src="assets/images/activity/image-9.png", alt="")
-            .caption
-              h1 The Worlds Top 50
-                br
-                | Most Expensive
-                br
-                | Wines
-              .action
-                a(href="#") Full Story
-              //- button
-            //- caption
+
+        .col-sm-6.col-md-4.col-xs-12
+          .type.post.offset-bottom._2
+            .shared
+              img(src="assets/images/activity/image-9.png", alt="")
+              header
+                h1 Why Wine Doesn't
+                  br
+                  | Make You Fat
+                //- h1
+              //- header
+
+              //- .caption.post
+              //-   h1 Why Wine Doesn't
+              //-     br
+              //-     | Make You Fat
+              //-   //- h1
+              //- //- caption
+              .caption
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/favicon.png', alt='')
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    a(href='')
+                      strong Drinkcircle
+                    //- a
+                    br
+                    | Discover the truth that not all alcohol makes you on weight...&nbsp;
+                    a(href="") see more
+                  //- span
+                //- input-group
+              //- caption
+            //- shared
           //- type
         //- col-md-4
+
+        .col-sm-6.col-md-4.col-xs-12
+          .type.post.offset-bottom
+            .shared
+              img(src="assets/images/activity/image-4.png", alt="")
+              .caption
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/producers/kimcrawford/logo.png', alt='')
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    a(href='seller-kim.html')
+                      strong Kim Crawford Wines
+                    //- a
+                    br
+                    | RRP $30 grab your friends and circlebuy this wine for $14.99 a bottle...&nbsp;
+                    a(href="seller.html") see more
+                  //- span
+                //- input-group
+              //- caption
+            //- shared
+          //- type
+        //- col-md-4
+
       //- row
       .loadmore
         a(href="#", target="_blank") show more
@@ -237,5 +423,24 @@ block scripts
     $.cookie('pageactive', '', {path: '/'});
 
     $(document).ready(function(){
-
+      $('.owl-carousel').owlCarousel({
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 6000,
+        autoplayHoverPause: true,
+        //- animateOut: 'fadeOut',
+        autoplaySpeed: 2000,
+        mouseDrag: false,
+        responsive:{
+          0: {
+            items: 1
+          },
+          600: {
+            items: 1
+          },
+          1000: {
+            items: 1
+          }
+        }
+      });
     });
