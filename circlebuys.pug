@@ -1,0 +1,84 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  .banner.home
+    .gradient
+    .banner-static
+      img(src='assets/images/banner/banner_slide_2.jpg')
+    //- banner-static
+    .floating-text
+      .container
+        .col-md-6
+          .left
+            h2
+              | Circlebuying
+            //- h3
+            h3
+              | Join in the fun
+            //- h3
+          //- left
+        //- col-md-6
+        .col-md-6
+          .right
+
+          //- right
+        //- col-md-6
+      //- container
+    //- floating-text
+    .action
+      a.btn.btn-success.btn-lg
+        i.fa.fa-envelope
+        span.hidden-xs &nbsp;&nbsp;&nbsp;Signup with Email
+      //- a
+      a.btn.btn-info.btn-lg
+        i.fa.fa-facebook
+        span.hidden-xs &nbsp;&nbsp;&nbsp;Continue with Facebook
+      //- a
+    //- action
+  //- banner-home
+
+  section
+    .container
+      .row
+        .col-md-12
+          h1.text-center What is Circlebuying?
+        //- col-md-12
+      //- row
+      p Join in a circlebuy
+        br
+        | and save bigtime
+      //- p
+      p
+        | Create a circlebuy
+        br
+        | and save even more
+      //- p
+
+      .row
+        .col-md-12
+          h1.text-center How does Circlebuying work?
+        //- col-md-12
+      //- row
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+
+    });
+  //- script.

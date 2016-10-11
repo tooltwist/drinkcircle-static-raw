@@ -42,6 +42,10 @@ block content
           .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
             .userprofilemenu
               nav.menu
+                a.btn.btn-success.btn-sm.btn-add-friend(href="#")
+                  i.fa.fa-user-plus
+                  | Add friend
+                //- a
                 ul
                   li
                     a.active(href="#") Timeline
@@ -53,10 +57,10 @@ block content
                     a(href="#") Friends
                   //- li
                   li
-                    a(href="#") Circle buys
+                    a(href="#") Circlebuys
                   //- li
                   li
-                    a(href="#") Groups
+                    a(href="#") Circles
                   //- li
                   li
                     a(href="#") Reviews
@@ -74,29 +78,34 @@ block content
     .container
       .row
         .col-md-3
-          .search.circle
-            a(href="#", target="_blank")
-              i.fa.fa-search
-            //- a
-            input.form-control(type='text', placeholder='search the circle...')
-          //- search
+          //- .search.circle
+          //-   a(href="#", target="_blank")
+          //-     i.fa.fa-search
+          //-   //- a
+          //-   input.form-control(type='text', placeholder='search the circle...')
+          //- //- search
           .intro
-            a.btn.btn-success.btn-sm.btn-add-friend(href="#")
-              i.fa.fa-user-plus
-              | Add friend
+            a.btn.btn-success.btn-sm.btn-add-interests(href="#interests", data-toggle="modal")
+              i.fa.fa-plus
+              | Add Interests
+            //- a
             h4 Interests
             p
-              a(href="#") Craft Beers
+              a(href="#") Red Wine
               br
-              a(href="#") Shiraz
+              a(href="#") Beer
               br
-              a(href="#") Chardonnay
+              a(href="#") White Wine
               br
-              a(href="#") Cooking Italian food
+              a(href="#") Travel
               br
-              a(href="#") Golf
+              a(href="#") Sport
               br
-              a(href="#") Surfing
+              a(href="#") Music
+              br
+              a(href="#") Movies
+              br
+              a(href="#") Reading
             //- p
             hr
             .info
@@ -125,7 +134,7 @@ block content
           .list_groups.groups
             .head
               h4
-                a(href="#") My active circle buys
+                a(href="#") My active circlebuys
                 small (
                   a(href="#") 5
                   | )
@@ -209,14 +218,6 @@ block content
               a(href="#") See all
             //- more
           //- list_groups
-          br.clearfix
-          .card
-            small.pull-right
-              a(href="#") refine search
-            //- small
-            p.clearfix
-            input.form-control(type='text', placeholder='Search circle buys...')
-          //- card
           //- .grid_groups.circles
             //- h4
             //-   a(href="#") My circles
@@ -378,7 +379,7 @@ block content
           .list_groups.groups
             .head
               h4
-                a(href="#") Groups
+                a(href="#") Circles
                 small (
                   a(href="#") 23
                   | )
@@ -888,6 +889,96 @@ block content
 
         //- col-md-6
         .col-md-3
+
+          .list_groups.toppicks
+            .head
+              h4.text-center
+                a(href="#") My TOP 10
+              //- h4
+            //- head
+            .content
+              .input-group
+                .points
+                  span 96
+                  small points
+                //- points
+                span.input-group-addon
+                  h4 1.&nbsp;
+                //- span
+                span.input-group-addon
+                  .thumb
+                    .img.square
+                      //- strong
+                      img(src='assets/images/products/p14.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Young Henrys
+                  //- a
+                  br
+                  | Natural Lager
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                .points
+                  span 93
+                  small points
+                //- points
+                span.input-group-addon
+                  h4 2.&nbsp;
+                //- span
+                span.input-group-addon
+                  .thumb
+                    .img.square
+                      //- strong
+                      img(src='assets/images/products/p1.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="#")
+                    strong Corona Extra
+                  //- a
+                  br
+                  | Imported Beer
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                .points
+                  span 94
+                  small points
+                //- points
+                span.input-group-addon
+                  h4 3.&nbsp;
+                //- span
+                span.input-group-addon
+                  .thumb
+                    .img.square
+                      //- strong
+                      img(src='assets/images/products/p2.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="productdetails.html")
+                    strong Brokenwood
+                  //- a
+                  br
+                  | Graveyard Vineyard Shiraz
+                  //- p
+                //- span
+              //- input-group
+
+            //- content
+            //- .search
+            //-   input.form-control(type='text', placeholder='search reviews...')
+            //- //- search
+            .more
+              a(href="#") See all
+            //- more
+          //- feed
+
           .list_groups.reviews
             .head
               h4

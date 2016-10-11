@@ -1,0 +1,585 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+
+  //- style
+
+
+block content
+
+  section
+    .container
+      .row
+        .col-md-3
+          .dc-filters-dropdown
+            .filters-wrap
+              strong(data-toggle='collapse', data-target='#collapse-category') Category
+              #collapse-category.collpase.in
+                ul
+                  li
+                    input(type='checkbox')
+                    | Red Wine
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | White Wine
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Beer
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Cider
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Spirits
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Bubbles
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Organic
+                  //- li
+                //- ul
+              //- collpase
+              strong(data-toggle='collapse', data-target='#collapse-varietal') Varietal
+              #collapse-varietal.collpase.in
+                ul
+                  li
+                    input(type='checkbox')
+                    | Shiraz
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Chardonnay
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Cabernet
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Suvignon
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Pinot Gris
+                  //- li
+                //- ul
+              //- collapse
+              strong(data-toggle='collapse', data-target='#collapse-vintage') Vintage
+              #collapse-vintage.collpase.in
+                ul
+                  li
+                    input(type='checkbox')
+                    | Non Vintage
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | 2016
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | 2015
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Etc.
+                  //- li
+                //- ul
+              //- collapse
+              strong(data-toggle='collapse', data-target='#collapse-pack-size') Pack Size
+              #collapse-pack-size.collpase.in
+                ul
+                  li
+                    input(type='checkbox')
+                    | Single Bottle
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | 6 pack
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | 12 pack
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | 24 pack
+                  //- li
+                //- ul
+              //- collapse
+              strong(data-toggle='collapse', data-target='#collapse-country') Country
+              #collapse-country.collpase.in
+                ul
+                  li
+                    input(type='checkbox')
+                    | Australia
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | France
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Spain
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Italy
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | New Zealand
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Argentina
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | United States
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Chile
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | South Africa
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Greece
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Uruguay
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Portugal
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Romania
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Austria
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Macedonia
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Hungary
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Brazil
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | China
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Germany
+                  //- li
+                //- ul
+              //- collpase
+              strong(data-toggle='collapse', data-target='#collapse-region') Region
+              #collapse-region.collpase.in
+                ul
+                  li
+                    input(type='checkbox')
+                    | Adelaide Hills
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Adelaide Plains
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Alphine Valleys
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Barossa Valley
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Beechworth
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Bendigo
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Blackwood Valley
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Canberra District
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Clare Valley
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Coonawarra
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Cowra
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Currency Creek
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Eden Valley Wineries
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Geelong Wineries
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Geographe Wineries
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Gippsland Wineries
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Glenrowan
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Goulburn Valley
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Grampians Wineries
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Granite Belt Wineries
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Great Southern Wineries
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Gundagai
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Hastings River
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Heathcote Wineries
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Henty
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Hilltops Wineries
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Hunter Valley Wineries
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Kangaroo Island
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | King Valley Wineries
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Langhorne Creek Wineries
+                  //- li
+                //- ul
+              //- collapse
+              strong(data-toggle='collapse', data-target='#collapse-price') Price
+              #collapse-price.collpase.in
+                ul
+                  li
+                    input(type='checkbox')
+                    | Under $10
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | $10 - $20
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | $20 - $30
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | $30 - $40
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | $40 - $50
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | $50 - $60
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | $60 - $80
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | $80 - $100
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | $100 - $150
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | $150 - $200
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Over $200
+                  //- li
+                //- ul
+              //- collapse
+              strong(data-toggle='collapse', data-target='#collapse-ratings') Ratings
+              #collapse-ratings.collpase.in
+                ul
+                  li
+                    input(type='checkbox')
+                    | Over 95
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | 90 - 94
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | 85 - 89
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | 80 - 84
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | 75 - 79
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Less than 74
+                  //- li
+                //- ul
+              //- collapse
+              strong(data-toggle='collapse', data-target='#collapse-awards') Awards
+              #collapse-awards.collpase.in
+                ul
+                  li
+                    input(type='checkbox')
+                    | Trophy
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Gold
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Silver
+                  //- li
+                  li
+                    input(type='checkbox')
+                    | Bronze
+                  //- li
+                //- ul
+              //- collapse
+            //- filters-wrap
+          //- dc-filters-dropdown
+        //- col-md-3
+        .col-md-9.card
+          p
+            small
+              a(href='drinkmakers.html') All Drinkmakers
+          //- p
+          h2 1,588 Wine, Beer, Cider &amp; Spirit makers
+          p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+          .maker-filters
+            input.text-1(type='text', placeholder='...')
+            input.text-2(type='text', placeholder='...')
+            select.select-1
+              option Anywhere
+            //- select
+            a(href='') Search
+          //- maker-filters
+          hr
+          div
+            select.form-control
+              option Best Match
+            //- select
+          //- div
+          .maker-list
+            .row
+              .col-md-5
+                img.maker(src='assets/images/makers/brokenwood/brokenwood.jpg')
+                p.visible-xs.visible-sm
+              //- col-md-5
+              .col-md-7
+                .media
+                  .media-left
+                    .picture
+                      img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
+                      img.source(src='assets/images/likes/likes_1.png')
+                    //- picture
+                  //- media-left
+                  .media-body
+                    .media-right
+                      a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
+                      | &nbsp;
+                      a.btn.btn-success.btn-xs(href='shop.html') Go to Shop
+                    //- media-right
+                    h4.media-heading Brokenwood Wines
+                    .rating-status.md
+                      span.left 4.6
+                      .stars
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star-half-o
+                      //- stars
+                      span.right.sm
+                        a(href='') 162 reviews
+                    //- rating-status
+                  //- media-body
+                //- media
+                p.address
+                  strong 401-427 McDonalds Rd Pokolbin, New South Wales
+                //- p
+                p.summary Established in 1970, Brokenwood Wines is one of Australia’s most reputable wine labels and a must-visit while you’re in the Hunter Valley. Consistently listed as a 5 star winery.
+                p.summary Brokenwood is home to the famous Graveyard Vineyard Shiraz, the highly acclaimed ILR Reserve Semillon, and the popular Cricket Pitch range...&nbsp;
+                  a(href='seller.html') read more
+              //- col-md-7
+            //- row
+          //- maker-list
+
+          .maker-list
+            .row
+              .col-md-5
+                img.maker(src='assets/images/makers/rosnay/preview.jpg')
+                p.visible-xs.visible-sm
+              //- col-md-5
+              .col-md-7
+                .media
+                  .media-left
+                    .picture
+                      img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
+                      img.source(src='assets/images/makers/rosnay/logo.jpg')
+                    //- picture
+                  //- media-left
+                  .media-body
+                    .media-right
+                      a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
+                      | &nbsp;
+                      a.btn.btn-success.btn-xs(href='shop.html') Go to Shop
+                    //- media-right
+                    h4.media-heading Rosnay Organic
+                    .rating-status.md
+                      span.left 5
+                      .stars
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                        i.fa.fa-star
+                      //- stars
+                      span.right.sm
+                        a(href='') 8 reviews
+                    //- rating-status
+                  //- media-body
+                //- media
+                p.address
+                  strong 510 Rivers Road Canowindra, New South Wales
+                //- p
+                p.summary Rosnay was established by the Statham family at Canowindra, NSW, in 1996, and since 2000 the farm has been a source of many fine organic wines and olive products. Richard and Florence Statham began the project in 1995, and when they found the property in 1996 they named it Rosnay, after Florence's grandfather, Alberic Dulong de Rosnay, who had a vineyard in the French Beaujolais...&nbsp;
+                  a(href='seller.html') read more
+              //- col-md-7
+            //- row
+          //- maker-list
+          hr
+          nav.text-center(aria-label='...')
+            ul.pagination.pagination-sm
+              li
+                a(href='#', aria-label='Previous')
+                  span(aria-hidden='true') «
+              li
+                a(href='#') 1
+              li
+                a(href='#') 2
+              li
+                a(href='#') 3
+              li
+                a(href='#') 4
+              li
+                a(href='#') 5
+              li
+                a(href='#', aria-label='Next')
+                  span(aria-hidden='true') »
+                //- a
+              //- li
+            //- ul
+          //- nav
+        //- col-md-9
+      //- row
+    //- container
+  //- section
+
+block scripts
+  // External Script goes here...
+
+  script.
+    $(function () {
+      $('.popover_price[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<ul class="cost">' + $(this).parent().find("ul").html() + '</ul>';
+        },
+        title: function(){
+          return jQuery(this).data('title') + '<span class="close">&times;</span>';
+        }
+      }).on('shown.bs.popover', function(e) {
+        var popover = jQuery(this);
+        $(this).parent().find('.popover span.close').on('click', function(e) {
+          popover.popover('hide');
+        });
+      }).click(function(e) {
+        e.preventDefault();
+      });
+    });
+  //- script.
+//- block scripts

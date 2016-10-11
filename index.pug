@@ -2,7 +2,7 @@ extends ./layout/layout_main.pug
 
 block content
 
-  .banner.home
+  .banner.home.index
     .gradient
     .owl-carousel
       .item
@@ -21,6 +21,7 @@ block content
     h1.jumbo The fun marketplace connecting drinklovers and drinkmakers
       br
       small Discover. Share. Save. Enjoy
+    //- h1
     .action
       a.btn.btn-success.btn-lg
         i.fa.fa-envelope
@@ -51,7 +52,7 @@ block content
           .brief.di
             img(src='assets/images/icon_right.png')
             h4 Getting it right
-            p Make better choices using accumulated user ratings and top picks from drinkers just like you. Directly compare products for quicker results.
+            p Make better choices using accumulated user ratings and top picks from drinkers just like you. Use the compare tool for quicker results.
             //- p
             //- a(href="drinkadvisor.html") learn more
             //- p
@@ -81,68 +82,70 @@ block content
         .col-sm-6.col-md-4.col-xs-12
           .type.categories
             p.title
-              strong.color.green Search 1,588 Drinkmakers
-            div
+              strong
+                a(href='drinkmakers.html') Search 1,588 Drinkmakers
+            .row.drinktype
               //- 1
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
                 img(src='assets/images/icon_cat_red.png')
-                a(href='')
+                a(href='drinkmakers-red.html')
                   small Red
                 //- a
               //- col-md-4
               //- 2
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
                 img(src='assets/images/icon_cat_white.png')
-                a(href='')
+                a(href='drinkmakers-red.html')
                   small White
                 //- a
               //- col-md-4
               //- 3
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
                 img(src='assets/images/icon_cat_beer.png')
-                a(href='')
+                a(href='drinkmakers-beer.html')
                   small Beer
                 //- a
               //- col-md-4
               //- 4
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
                 img(src='assets/images/icon_cat_sparkling.png')
-                a(href='')
-                  small Sparkling
+                a(href='drinkmakers-red.html')
+                  small Bubbles
                 //- a
               //- col-md-4
               //- 5
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
                 img(src='assets/images/icon_cat_spirits.png')
-                a(href='')
+                a(href='drinkmakers-spirit.html')
                   small Spirits
                 //- a
               //- col-md-4
               //- 6
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
                 img(src='assets/images/icon_cat_cider.png')
-                a(href='')
+                a(href='drinkmakers-beer.html')
                   small Cider
                 //- a
               //- col-md-4
               //- 7
-              .col-md-4.col-sm-4.col-xs-4.cat-thumb
+              .col-md-4.col-sm-4.col-xs-4.cat-thumb.col-md-offset-2.col-sm-offset-2.col-xs-offset-2
                 img(src='assets/images/icon_cat_organic.png')
-                a(href='')
+                a(href='drinkmakers-organic.html')
                   small Organic
                 //- a
               //- col-md-4
               //- 8
-              .col-md-4.col-sm-4.col-xs-4.cat-thumb
-                img(src='assets/images/icon_cat_champagne.png')
-                a(href='')
-                  small Champagne
-                //- a
-              //- col-md-4
+              //-
+                .col-md-4.col-sm-4.col-xs-4.cat-thumb
+                  img(src='assets/images/icon_cat_champagne.png')
+                  a(href='')
+                    small Champagne
+                  //- a
+                //- col-md-4
               //- 9
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
                 img(src='assets/images/icon_cat_dessert.png')
-                a(href='')
+                a(href='drinkmakers-other.html')
                   small Other
                 //- a
               //- col-md-4
@@ -154,16 +157,15 @@ block content
         .col-sm-6.col-md-4.col-xs-12
           .type._3.offset-img
             .shared
-              img(src="assets/images/activity/image-2.png", alt="")
+              img(src="assets/images/activity/image-2.png", alt="", onclick='location.href="business.html"')
               header
                 h1.md Circlebuying
+                  p Buying With Friends Opens
+                    br
+                    | Up a World Of Opportunity
               //- header
               footer
-                h3 Buying With Friends Opens
-                  br
-                  | Up a World Of Opportunity
-                //- a.action-btn(href="#") See how it works
-                a.action-btn(href="#") See how it works
+                a.action-btn(href="circlebuys.html") See how it works
               //- footer
             //- shared
           //- type
@@ -172,9 +174,9 @@ block content
         .clearfix.visible-sm
 
         .col-sm-6.col-md-4.col-xs-12
-          .type.post._1
+          .type.post.offset-bottom._4
             .shared
-              img(src="assets/images/activity/image-1.png", alt="")
+              img(src="assets/images/activity/image-1.png", alt="", onclick='location.href="business.html"')
               header
                 h2 Drinking Wine Can
                   br
@@ -191,12 +193,12 @@ block content
                     //- thumb
                   //- input-group-addon
                   span.form-control
-                    a(href='')
+                    a(href='business.html')
                       strong Drinkcircle
                     //- a
                     br
                     | Studies reveal red wine is the drink of choice for great sex...&nbsp;
-                    a(href="") see more
+                    a(href='business.html') see more
                   //- span
                 //- input-group
               //- caption
@@ -207,7 +209,7 @@ block content
         .col-sm-6.col-md-4.col-xs-12
           .type.post.offset-bottom._1
             .shared
-              img(src="assets/images/activity/image-8.png", alt="")
+              img(src="assets/images/activity/image-8.png", alt="", onclick='location.href="business.html"')
               header
                 h1 The Guide To
                   br
@@ -235,12 +237,12 @@ block content
                     //- thumb
                   //- input-group-addon
                   span.form-control
-                    a(href='')
+                    a(href='business.html')
                       strong Drinkcircle
                     //- a
                     br
                     | Great tips to make the most from adding wine to your cooking...&nbsp;
-                    a(href="") see more
+                    a(href='business.html') see more
                   //- span
                 //- input-group
               //- caption
@@ -251,7 +253,7 @@ block content
         .col-sm-6.col-md-4.col-xs-12
           .type.post
             .shared
-              img(src="assets/images/activity/image-6.png", alt="")
+              img(src="assets/images/activity/image-6.png", alt="", onclick='location.href="seller.html"')
               .caption
                 .input-group
                   span.input-group-addon
@@ -276,11 +278,11 @@ block content
         //- col-md-4
 
         .col-sm-6.col-md-4.col-xs-12
-          .type.post.offset-bottom._1
+          .type.post.offset-bottom._2
             .shared
-              img(src="assets/images/activity/image-3.png", alt="")
+              img(src="assets/images/activity/image-3.png", alt="", onclick='location.href="business.html"')
               header
-                h1 Hottest 100 Aussie
+                h1 Top 10 Aussie
                   br
                   | Craft Beers Of 2016
                 //- h1
@@ -303,12 +305,12 @@ block content
                     //- thumb
                   //- input-group-addon
                   span.form-control
-                    a(href='')
+                    a(href='business.html')
                       strong Drinkcircle
                     //- a
                     br
-                    | This years hottest 100 list includes a few surprises...&nbsp;
-                    a(href="") see more
+                    | This years hottest 10 list includes a few surprises...&nbsp;
+                    a(href='business.html') see more
                   //- span
                 //- input-group
               //- caption
@@ -319,7 +321,7 @@ block content
         .col-sm-6.col-md-4.col-xs-12
           .type.post.offset-bottom
             .shared
-              img(src="assets/images/activity/image-7.png", alt="")
+              img(src="assets/images/activity/image-7.png", alt="", onclick='location.href="seller.html"')
               .caption
                 .input-group
                   span.input-group-addon
@@ -330,7 +332,7 @@ block content
                     //- thumb
                   //- input-group-addon
                   span.form-control
-                    a(href='seller-sticks.html')
+                    a(href='seller.html')
                       strong Sticks Wines
                     //- a
                     br
@@ -346,7 +348,7 @@ block content
         .col-sm-6.col-md-4.col-xs-12
           .type.post.offset-bottom._2
             .shared
-              img(src="assets/images/activity/image-9.png", alt="")
+              img(src="assets/images/activity/image-9.png", alt="", onclick='location.href="business.html"')
               header
                 h1 Why Wine Doesn't
                   br
@@ -370,12 +372,12 @@ block content
                     //- thumb
                   //- input-group-addon
                   span.form-control
-                    a(href='')
+                    a(href='business.html')
                       strong Drinkcircle
                     //- a
                     br
                     | Discover the truth that not all alcohol makes you on weight...&nbsp;
-                    a(href="") see more
+                    a(href='business.html') see more
                   //- span
                 //- input-group
               //- caption
@@ -386,7 +388,7 @@ block content
         .col-sm-6.col-md-4.col-xs-12
           .type.post.offset-bottom
             .shared
-              img(src="assets/images/activity/image-4.png", alt="")
+              img(src="assets/images/activity/image-4.png", alt="", onclick='location.href="seller.html"')
               .caption
                 .input-group
                   span.input-group-addon
@@ -397,7 +399,7 @@ block content
                     //- thumb
                   //- input-group-addon
                   span.form-control
-                    a(href='seller-kim.html')
+                    a(href='seller.html')
                       strong Kim Crawford Wines
                     //- a
                     br
@@ -428,8 +430,8 @@ block scripts
         autoplay: true,
         autoplayTimeout: 6000,
         autoplayHoverPause: true,
-        //- animateOut: 'fadeOut',
-        autoplaySpeed: 2000,
+        animateOut: 'fadeOut',
+        autoplaySpeed: 1000,
         mouseDrag: false,
         responsive:{
           0: {

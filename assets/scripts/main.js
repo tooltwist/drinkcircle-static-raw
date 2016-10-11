@@ -32,6 +32,10 @@ var Main = (function () {
 					}
 				}
 			});
+			$('.navbar-collapse').mouseover(function() {
+				// console.log('test')
+				$('.nav-category').slideDown();
+			});
 
 		},
 

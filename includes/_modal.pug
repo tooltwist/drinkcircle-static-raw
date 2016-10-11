@@ -18,3 +18,156 @@
     //- modal-content
   //- modal-dialog
 //- modal
+
+
+#interests.modal.fade(tabindex='-1', role='dialog')
+  .modal-dialog.modal-lg(role='document')
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        //- button
+        h4.modal-title.text-center Tell us what you like
+          br
+          small Follow topics to see more of what you're interested in
+        //- h4
+      //- modal-header
+      table.filter
+        tr
+          td
+            a(href='') All Topics
+          //- td
+          td
+            .following Following | 0
+          //- td
+          td
+            .topic-search
+              input(type='text', placeholder='Search topics you are interested in')
+              i.fa.fa-search.text-muted
+            //- topic-search
+          //- td
+        //- tr
+      //- table
+      .modal-body
+        .row
+          //- 1
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in9.jpg')
+              .label Red
+            //- interest-thumb
+          //- col-md-3
+          //- 2
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in8.jpg')
+              .label White
+            //- interest-thumb
+          //- col-md-3
+          //- 3
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in3.jpg')
+              .label Beer
+            //- interest-thumb
+          //- col-md-3
+          //- 4
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in1.jpg')
+              .label Spirits
+            //- interest-thumb
+          //- col-md-3
+          //- 5
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in17.jpg')
+              .label Bubbles
+            //- interest-thumb
+          //- col-md-3
+          //- 6
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in13.jpg')
+              .label Cider
+            //- interest-thumb
+          //- col-md-3
+          //- 7
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in5.jpg')
+              .label Travel
+            //- interest-thumb
+          //- col-md-3
+          //- 8
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in10.jpg')
+              .label Cooking
+            //- interest-thumb
+          //- col-md-3
+          //- 9
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in11.jpg')
+              .label Music
+            //- interest-thumb
+          //- col-md-3
+          //- 10
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in14.jpg')
+              .label Movies
+            //- interest-thumb
+          //- col-md-3
+          //- 11
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in16.jpg')
+              .label Sport
+            //- interest-thumb
+          //- col-md-3
+          //- 12
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in12.jpg')
+              .label Outdoors
+            //- interest-thumb
+          //- col-md-3
+          //- 13
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in6.jpg')
+              .label Fashion
+            //- interest-thumb
+          //- col-md-3
+
+          //- 14
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in7.jpg')
+              .label Art
+            //- interest-thumb
+          //- col-md-3
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in2.jpg')
+              .label Dining Out
+            //- interest-thumb
+          //- col-md-3
+          .col-md-3
+            .interest-thumb
+              img(src='assets/images/interests/in4.jpg')
+              .label Reading
+            //- interest-thumb
+          //- col-md-3
+        //- row
+      //- modal-body
+      .modal-footer
+        .text-center
+          button.btn.btn-success.btn-lg(type='button', data-dismiss='modal') Done
+        //- text-cente3
+      //- modal-footer
+    //- modal-content
+  //- modal-dialog
+//- modal

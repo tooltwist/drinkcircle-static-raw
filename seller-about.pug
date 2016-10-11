@@ -1,0 +1,287 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  .banner.userprofile.seller
+    .gradient
+    .info
+      .container
+        .row
+          .col-sm-3.col-md-3
+            .photo
+              .img.square
+                a(href="#")
+                  i.fa.fa-camera
+                //- a
+                img(src="assets/images/producers/brokenwood/logo.jpg", alt="")
+              //- img
+              .name
+                span Brokenwood Wines&nbsp;
+                sup
+                  a(href="#")
+                    i.fa.fa-pencil
+                    span edit profile
+                  //- a
+                //- sup
+                br
+                small Winery &amp; Vineyard
+              //- name
+            //- photo
+          //- col-md-3
+        //- row
+        .row
+          .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
+            .userprofilemenu
+              nav.menu
+                ul
+                  li
+                    a(href="shop.html") Shop
+                  //- li
+                  li
+                    a(href="#") Like
+                  //- li
+                  li
+                    a(href="#") Message
+                  //- li
+                  li
+                    a(href="#") Save
+                  //- li
+                  li
+                    a.active(href="seller-about.html") About
+                  //- li
+                  li
+                    a(href="#") Photos
+                  //- li
+                  li
+                    a(href="seller-reviews.html") Reviews
+                  //- li
+                  li
+                    a(href="#") Events
+                  //- li
+                //- ul
+              //- nav
+            //- userprofilemenu
+          //- col-md-6
+        //- row
+      //- container
+    //- info
+  //- banner-home
+
+  section.userprofile
+    .container
+      .row
+        .col-md-3
+          br
+          .intro.nomtop
+            h4 Winery &amp; Vineyard &middot; Pokolbin, New South Wales
+            .rating-status
+              | 4.6
+              .stars
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star-half-o
+              //- stars
+            //- rating-status
+          //- intro
+          .search.page
+            a(href="#", target="_blank")
+              i.fa.fa-search
+            //- a
+            input.form-control(type='text', placeholder='search for posts on this page...')
+          //- search
+          .list_groups.sellerinfo
+            .content
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-users
+                span.form-control
+                  a(href="#") 4,842 people like this
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-map-marker
+                span.form-control
+                  a(href="#") 2,982 people have been here
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-user-plus
+                span.form-control
+                  a(href="#")
+                    | Invite friends to like this Page
+                  //- p
+                //- span
+              //- input-group
+              .form-group.text-center.linetop
+                button.btn.btn-success(onclick="location.href = 'shop.html'") shop now
+              //- input-group
+            //- content
+          //- sellerinfo
+
+          .grid_groups.friends
+            h4
+              a(href="#") Photos
+              small (
+                a(href="#") 213
+                | )
+            //- h4
+            .content
+              .container-fluid
+                .row
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_1.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_2.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_3.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_4.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_5.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_6.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_7.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_8.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/photos_9.png", alt="")
+                  //- col-md-4
+                //- row
+              //- container
+            //- content
+            .more
+              a(href="#") See all
+            //- more
+          //- grid_groups
+        //- col-md-3
+        .col-md-9
+          br
+          .card
+            .map.about
+              img(src='assets/images/makers/brokenwood/map.png')
+              .map-info.card
+                table
+                  tr
+                    td(widt='30')
+                      i.fa.fa-long-arrow-right
+                    //- td
+                    td
+                      | 401-427 McDonalds Rd
+                      br
+                      | Pokolbin, New South Wales
+                    //- td
+                    td
+                      a.btn.btn-default.btn-sm(href='') Get Directions
+                    //- td
+                  //- tr
+                  tr
+                    td
+                      i.fa.fa-comment
+                    //- td
+                    td
+                      | @BrokenwoodWines
+                    //- td
+                    td
+                      a.btn.btn-default.btn-sm(href='') Message Now
+                    //- td
+                  //- tr
+                //- table
+              //- map-info
+            //- map
+            .row.about-info
+              .col-md-6
+                p.lead Hours
+                hr
+                p
+                  i.fa.fa-clock-o
+                  | &nbsp;
+                  | 9:30AM - 5:00PM
+                  | &nbsp;
+                  i.fa.fa-caret-down
+                //- p
+                br
+                p.lead Business Info
+                hr
+                table(width='100%')
+                  tr
+                    td(width='30')
+                      i.fa.fa-exclamation-circle
+                    //- td
+                    td
+                      | Business Details
+                      table(width='100%')
+                        tr
+                          td.text-muted(width='40%') Parking
+                          td Parking Lot parking
+                        //- tr
+                      //- table
+                    //- td
+                  //- tr
+                  tr
+                    td
+                      i.fa.fa-trophy
+                    //- td
+                    td
+                      | Awards
+                      p LANGTON'S CLASSIFICATION of AUSTRALIAN WINE V - Graveyard Shiraz, Exceptional Status
+                      p SMALL WINERY of the YEAR - 2010 Alia Awards
+                      p CELLAR DOOR &amp; WINE MAKER of the YEAR- 2010 Hunter Valley Legends &amp; Wine Industry Awards
+                    //- td
+                  //- tr
+                  tr
+                    td
+                      i.fa.fa-exclamation-circle
+                    //- td
+                    td
+                      | Products
+                      p Semillon, Sauvignon Blanc, Viognier, Chardonnay, Pinot Gris, Pinot Noir, Shiraz, Sangiovese, Nebbiolo, Cabernet Sauvignon Merlot, Dessert Wine, Fortified Wine.
+                    //- td
+                  //- tr
+                //- table
+              //- .col-md-6
+              .col-md-6
+                p.lead Story
+                hr
+                p Established in 1970, Brokenwood Wines is one of Australia’s most reputable wine labels and a must-visit while you’re in the Hunter Valley. Consistently listed as a 5 star winery.
+                p Brokenwood is home to the famous Graveyard Vineyard Shiraz, the highly acclaimed ILR Reserve Semillon, and the popular Cricket Pitch range.
+              //- .col-md-6
+            //- row
+          //- card
+        //- col-md-9
+      //- row
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(document).ready(function(){
+
+    });

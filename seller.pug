@@ -49,10 +49,22 @@ block content
                     a.active(href="shop.html") Shop
                   //- li
                   li
+                    a(href="#") Like
+                  //- li
+                  li
+                    a(href="#") Message
+                  //- li
+                  li
+                    a(href="#") Save
+                  //- li
+                  li
+                    a(href="seller-about.html") About
+                  //- li
+                  li
                     a(href="#") Photos
                   //- li
                   li
-                    a(href="#") Reviews
+                    a(href="seller-reviews.html") Reviews
                   //- li
                   li
                     a(href="#") Events
@@ -70,12 +82,7 @@ block content
     .container
       .row
         .col-md-3
-          .search.circle
-            a(href="#", target="_blank")
-              i.fa.fa-search
-            //- a
-            input.form-control(type='text', placeholder='search the circle...')
-          //- search
+          br
           .intro
             h4 Winery &amp; Vineyard &middot; Pokolbin, New South Wales
             .rating-status
@@ -243,18 +250,66 @@ block content
         .col-md-6
           .composer
             .head
-              a(href="#")
+              a(href="#composer-tab-status", role="tab", data-toggle="tab")
                 i.fa.fa-pencil
                 | Status
-              a(href="#")
+              a(href="#composer-tab-photo-video", role="tab", data-toggle="tab")
                 i.fa.fa-picture-o
                 | Photo/Video
-              a(href="#")
+              a(href="#composer-tab-events", role="tab", data-toggle="tab")
                 i.fa.fa-calendar-o
-                | Event
+                | Events
             //- head
-            .content
-              textarea.form-control(rows='2')
+            .content.tab-content
+              .tab-pane.active#composer-tab-status(role="tabpanel")
+                textarea.form-control(rows='2')
+              //- composer-tab-status
+              .tab-pane#composer-tab-photo-video(role="tabpanel")
+                .drop-photo
+                  i.fa.fa-picture-o
+                  br
+                  span Drag Photos/Videos Here
+                //- event-photo
+              //- composer-tab-status
+              .tab-pane#composer-tab-events(role="tabpanel")
+                .drop-photo
+                  i.fa.fa-picture-o
+                  br
+                  span Drag Event Photo Here
+                //- event-photo
+                .row
+                  .col-md-12
+                    .form-group
+                      label(for='composer-event-name') Event Name
+                      input#composer-event-name.form-control(type='text', placeholder='')
+                    //- form-group
+                  //- col-md-12
+                  .col-md-12
+                    .form-group
+                      label(for='composer-location') Location
+                      input#composer-location.form-control(type='text', placeholder='')
+                    //- form-group
+                  //- col-md-12
+                  .col-md-6.col-sm-6.col-xs-6
+                    .form-group
+                      label(for='composer-event-date-from') From
+                      input#composer-event-date-from.form-control(type='date', placeholder='')
+                    //- form-group
+                  //- col-md-6
+                  .col-md-6.col-sm-6.col-xs-6
+                    .form-group
+                      label(for='composer-event-date-to') to
+                      input#composer-event-date-to.form-control(type='date', placeholder='')
+                    //- form-group
+                  //- col-md-6
+                  .col-md-12
+                    .form-group
+                      label(for='composer-description') Description
+                      textarea#composer-description.form-control(rows="3")
+                    //- form-group
+                  //- col-md-12
+                //- row
+              //- composer-tab-status
             //- content
             .controls
               a(href="#")

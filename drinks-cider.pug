@@ -1,0 +1,811 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+
+  //- style
+
+
+block content
+
+  .banner.home
+    .gradient
+    .owl-carousel
+      .item
+        img(src='assets/images/banner/banner_slide_1.jpg')
+      //- item
+      .item
+        img(src='assets/images/banner/banner_slide_2.jpg')
+      //- item
+      .item
+        img(src='assets/images/banner/banner_slide_3.jpg')
+      //- item
+      .item
+        img(src='assets/images/banner/banner_slide_4.jpg')
+      //- item
+    //- owl-carousel
+    h1.jumbo The fun marketplace connecting drinklovers and drinkmakers
+      br
+      small Discover. Share. Save. Enjoy
+    .action
+      a.btn.btn-success.btn-lg
+        i.fa.fa-envelope
+        span.hidden-xs &nbsp;&nbsp;&nbsp;Signup with Email
+      //- a
+      a.btn.btn-info.btn-lg
+        i.fa.fa-facebook
+        span.hidden-xs &nbsp;&nbsp;&nbsp;Continue with Facebook
+      //- a
+    //- action
+  //- banner-home
+
+  section.profile.dd
+    //- h2.direct Welcome to drinksdirect
+    //-   i.fa.fa-arrow-circle-right
+    //- //- h2
+    .container
+      .row
+        .col-md-8.col-md-offset-2
+          form
+            .form-group
+              .icon_search.dc-filters
+                input.form-control.input-lg(type='text', placeholder='Search drinks...')
+                a(href='searchresult.html')
+                  i.fa.fa-search
+                //- a
+                a.link-1(href='#refineSearch', data-toggle='collapse') Refine Search
+                #refineSearch.dc-filters-dropdown.collapse
+                  a.close(href='#refineSearch', data-toggle='collapse') &times;
+                  .filters-wrap
+                    .row
+                      .col-md-4
+                        strong Category
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Red Wine
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | White Wine
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Beer
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Cider
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Spirits
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Bubbles
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Organic
+                          //- li
+                        //- ul
+                      //- col-md-4
+                      .col-md-4
+                        strong Varietal
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Shiraz
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Chardonnay
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Cabernet
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Suvignon
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Pinot Gris
+                          //- li
+                        //- ul
+                      //- col-md-4
+                      .col-md-4
+                        strong Vintage
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Non Vintage
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 2016
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 2015
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Etc.
+                          //- li
+                        //- ul
+                      //- col-md-4
+                    //- row
+                    .row
+                      .col-md-4
+                        strong Pack Size
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Single Bottle
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 6 pack
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 12 pack
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 24 pack
+                          //- li
+                        //- ul
+                      //- col-md-4
+                      .col-md-4
+                        strong Country
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Australia
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | France
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Spain
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Italy
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | New Zealand
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Argentina
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | United States
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Chile
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | South Africa
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Greece
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Uruguay
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Portugal
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Romania
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Austria
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Macedonia
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Hungary
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Brazil
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | China
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Germany
+                          //- li
+                        //- ul
+                      //- col-md-4
+                      .col-md-4
+                        strong Region
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Adelaide Hills
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Adelaide Plains
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Alphine Valleys
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Barossa Valley
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Beechworth
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Bendigo
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Blackwood Valley
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Canberra District
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Clare Valley
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Coonawarra
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Cowra
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Currency Creek
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Eden Valley Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Geelong Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Geographe Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Gippsland Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Glenrowan
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Goulburn Valley
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Grampians Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Granite Belt Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Great Southern Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Gundagai
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Hastings River
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Heathcote Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Henty
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Hilltops Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Hunter Valley Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Kangaroo Island
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | King Valley Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Langhorne Creek Wineries
+                          //- li
+                        //- ul
+                      //- col-md-4
+                    //- row
+                    .row
+                      .col-md-4
+                        strong Price
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Under $10
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $10 - $20
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $20 - $30
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $30 - $40
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $40 - $50
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $50 - $60
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $60 - $80
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $80 - $100
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $100 - $150
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $150 - $200
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Over $200
+                          //- li
+                        //- ul
+                      //- col-md-4
+                      .col-md-4
+                        strong Ratings
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Over 95
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 90 - 94
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 85 - 89
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 80 - 84
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 75 - 79
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Less than 74
+                          //- li
+                        //- ul
+                      //- col-md-4
+                      .col-md-4
+                        strong Awards
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Trophy
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Gold
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Silver
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Bronze
+                          //- li
+                        //- ul
+                      //- col-md-4
+                    //- row
+                  //- filters-wrap
+                //- dc-filters-dropdown
+              //- icon_search
+            //- form-group
+          //- form
+        //- col-md-8
+      //- row
+    //- container
+  //- section
+
+  section.drinks
+    .container
+      .product-wrap
+        .row
+          // 1 Product
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 93
+                    span points
+                  //- count
+                img.img-prod(src='assets/images/products/p10.jpg', alt='')
+                // Edit
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 14&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 624&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 121&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href="#") Somersby
+                    br
+                    small Apple Cider
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $39.99
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $49.99
+                                  small &nbsp;per case
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $44.99
+                                  small &nbsp;per cases
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 20
+                                  br
+                                  | cases
+                                //- span
+                                span.price $39.99
+                                  small &nbsp;per cases
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 94
+                    span points
+                  //- count
+                //- ctr
+                a(href="productdetails.html")
+                  img.img-prod(src='assets/images/products/p11.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 84&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 242&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 88&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href="#") Somersby
+                    br
+                    small Blackberry Cider
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $39.99
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $25.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $29.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $19.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 97
+                    span points
+                  //- count
+                //- ctr
+                a(href="productdetails.html")
+                  img.img-prod(src='assets/images/products/p13.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 34&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 110&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href="#")
+                          big 25&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href="#") Young Henrys
+                    br
+                    small Cloudy Cider
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $65.95
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $25.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $29.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $19.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+        //- row
+      //- product-wrap
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+
+  script.
+    $(function () {
+      $('.popover_price[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<ul class="cost">' + $(this).parent().find("ul").html() + '</ul>';
+        },
+        title: function(){
+          return jQuery(this).data('title') + '<span class="close">&times;</span>';
+        }
+      }).on('shown.bs.popover', function(e) {
+        var popover = jQuery(this);
+        $(this).parent().find('.popover span.close').on('click', function(e) {
+          popover.popover('hide');
+        });
+      }).click(function(e) {
+        e.preventDefault();
+      });
+    });
+
+    $(document).ready(function(){
+      $('.owl-carousel').owlCarousel({
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 6000,
+        autoplayHoverPause: true,
+        animateOut: 'fadeOut',
+        autoplaySpeed: 1000,
+        mouseDrag: false,
+        responsive:{
+          0: {
+            items: 1
+          },
+          600: {
+            items: 1
+          },
+          1000: {
+            items: 1
+          }
+        }
+      });
+    });
+  //- script.
+//- block scripts

@@ -251,3 +251,72 @@
   outline: 1px solid whitesmoke;
   border-radius: 8px;
 }
+
+.rating-status {
+  font-size: 18px;
+  span {
+    vertical-align: middle;
+    &.right {
+      margin-left: 5px;
+    }
+    &.xs {
+      font-size: 12px;
+    }
+    &.sm {
+      font-size: 14px;
+    }
+    &.md {
+      font-size: 16px;
+    }
+  }
+  &.md {
+    font-size: 16px;
+  }
+  &.sm {
+    font-size: 14px;
+  }
+  &.xs {
+    font-size: 12px;
+  }
+  .stars {
+    display: inline-block;
+    white-space: nowrap;
+    color: #41B54B;
+    .fa + .fa {
+      margin-left: 5px;
+    }
+  }
+}
+
+.picture {
+  & {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+  }
+  &.round {
+    border-radius: 50%;
+  }
+  img {
+    &.placeholder {
+      &.xs {
+        width: 30px;
+      }
+      &.sm {
+        width: 45px;
+      }
+      &.md {
+        width: 60px;
+      }
+      &.lg {
+        width: 75px;
+      }
+    }
+    &.source {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}

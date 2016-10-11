@@ -1,0 +1,747 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+  //- style
+
+
+block content
+
+  section.productdetails
+    .container
+      p.bread
+        a(href="#") Red
+        | &nbsp;/&nbsp;
+        a(href="#") Sticks
+        | &nbsp;/&nbsp;
+        a(href="#")
+          strong Pinot Noir - 12 pack
+        //- a
+      //- p
+      //- bread
+      .row
+        .col-md-5.text-center
+          .stage.infos
+            .stats
+              .rate-counter
+                .ring
+                  .count 94
+                    span points
+                //- ring
+              //- rate-counter
+            //- stats
+            img(src="assets/images/products/p8.jpg", alt="")
+          //- stage
+          br
+          p
+        //- col-md-5
+        .col-md-7.product-detail-wrap
+          .infos
+            .row
+              .col-md-12
+                .inventory
+                  h1 Sticks
+                    br
+                    strong
+                      small Pinot Noir  - 12 pack
+                    //- strong
+                    br
+                    p
+                    .row
+                      .col-md-4
+                        small
+                          | RRP $22.99&nbsp;
+                          span.pb / bottle
+                        //- small
+                      //- col-md-4
+                      .col-md-4
+                        small
+                          span.avl 300+ available / 95 sold
+                        //- small
+                      //- col-md-4
+                      .col-md-4
+                        small
+                          span.text-danger
+                            //- i.fa.fa-clock-o
+                            //- | &nbsp;1d 2hrs left
+                        //- small
+                      //- col-md-4
+                    //- row
+                  //- h1
+                  hr
+                  .pricing
+                    .row
+                      .col-md-4.col-sm-4
+                        fieldset.deals.card
+                          legend 1 case
+                          big.lead
+                            strong $18.99
+                          //- big
+                          br
+                          a.btn.btn-success(href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                          br
+                          | save&nbsp;
+                          big.lead
+                            strong.green $4&nbsp;
+                          //- big
+                          | / bottle
+                        //- deals
+                      //- col-md-4
+                      .col-md-4.col-sm-4
+                        fieldset.deals.card
+                          legend 5+ cases
+                          big.lead
+                            strong $16.99
+                          //- big
+                          br
+                          a.btn.btn-success(href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                          br
+                          | save&nbsp;
+                          big.lead
+                            strong.green $6&nbsp;
+                          //- big
+                          | / bottle
+                        //- deals
+                      //- col-md-4
+                      .col-md-4.col-sm-4
+                        fieldset.deals.card
+                          legend 10+ cases
+                          big.lead
+                            strong $14.99
+                          //- big
+                          br
+                          a.btn.btn-success(href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                          br
+                          | save&nbsp;
+                          big.lead
+                            strong.green $8&nbsp;
+                          //- big
+                          | / bottle
+                        //- deals
+                      //- col-md-4
+                    .row
+                  //- pricing
+                //- inventory
+              //- col-md-12
+            //- row
+            hr
+            p.lead.text-center
+              | 27 active circlebuys
+              span.pull-right
+                a.button.inline.v7(href="#") public
+                | &nbsp;
+                a.button.inline.v7(href="#") friends
+              //- pull-right
+            //- p
+            .row
+              .col-md-4.col-sm-4.text-center
+                .card_rounded
+                  strong Adrian's circlebuy
+                  br
+                  span.green 3 cases left
+                  br
+                  p
+                  .avatar
+                    .img
+                      .ring._70p
+                      img(src='assets/images/circles/circles_8.png', alt='')
+                    //- img
+                  //- avatar
+                  br
+                  big.lead
+                    strong $14.99
+                  //- big
+                  br
+                  p
+                  p
+                    a.button.inline.v7(href="#") request to join
+                  //- p
+                  p
+                    i.fa.fa-clock-o
+                    | &nbsp;1d 8hrs left
+                  //- p
+                //- card_rounded
+              //- col-md-4
+              .col-md-4.col-sm-4.text-center
+                .card_rounded
+                  strong Sharmaine's circlebuy
+                  br
+                  span.green 5 cases left
+                  br
+                  p
+                  .avatar
+                    .img
+                      .ring._50p
+                      img(src='assets/images/circles/circles_1.png', alt='')
+                    //- img
+                  //- avatar
+                  br
+                  big.lead
+                    strong $16.99
+                  //- big
+                  br
+                  p
+                  p
+                    a.button.inline.v7(href="#") request to join
+                  //- p
+                  p
+                    i.fa.fa-clock-o
+                    | &nbsp;2d 2hrs left
+                  //- p
+                //- card_rounded
+              //- col-md-4
+              .col-md-4.col-sm-4.text-center
+                .card_rounded
+                  strong Jenny's circlebuy
+                  br
+                  span.green 3 cases left
+                  br
+                  p
+                  .avatar
+                    .img
+                      .ring._40p
+                      img(src='assets/images/circles/circles_7.png', alt='')
+                    //- img
+                  //- avatar
+                  br
+                  big.lead
+                    strong $14.99
+                  //- big
+                  br
+                  p
+                  p
+                    a.button.inline.v7(href="#") request to join
+                  //- p
+                  p
+                    i.fa.fa-clock-o
+                    | &nbsp;2d 6hrs left
+                  //- p
+                //- card_rounded
+              //- col-md-4
+            //- row
+            br
+            .expand.text-center
+              a(href='#')
+                | more circlebuys&nbsp;
+                i.fa.fa-caret-down
+            //- expand
+            hr
+            .text-center
+              a.btn.btn-success(href="#") start a new circlebuy
+            //- text-center
+            hr
+
+            .about
+              p.lead Product Details
+              p.comment
+                strong Sticks Pinot Noir&nbsp;
+                | Once again this producer provides us with a handy little number showing plenty of varietal and regional characteristics. Sticks Pinot Noir from Yarra Valley, features lovely red cherry flavours with playfull spices and charry oak influence. Lean with subtle tannins and medium finish.
+              //- p
+              .row
+                .col-xs-4.col-md-4
+                  p
+                    strong.green variety
+                    br
+                    | Pinot Noir
+                  //- p
+                //- col-md-4
+                .col-xs-4.col-md-4
+                  p
+                    strong.green region
+                    br
+                    | Yarra Valley
+                  //- p
+                //- col-md-4
+                .col-xs-4.col-md-4
+                  p
+                    strong.green alcohol
+                    br
+                    | 13.0% (2015)
+                  //- p
+                //- col-md-4
+              //- row
+              .row
+                .col-xs-4.col-md-4
+                  p
+                    strong.green vintage
+                    br
+                    | 2015*
+                  //- p
+                //- col-md-4
+                .col-xs-4.col-md-4
+                  p.share
+                    strong.green share
+                      br
+                      a(href="#", target="_blank")
+                        i.fa.fa-twitter
+                      //- a
+                      a(href="#", target="_blank")
+                        i.fa.fa-facebook
+                      //- a
+                      a(href="#", target="_blank")
+                        i.fa.fa-google-plus
+                      //- a
+                      a(href="#", target="_blank")
+                        i.fa.fa-envelope
+                      //- a
+                  //- p.share
+                //- col-md-4
+              //- row
+              .expand.text-center
+                a(href='#', data-toggle='collapse')
+                  | more&nbsp;
+                  i.fa.fa-caret-down
+              //- expand
+            //- about
+            .reviews
+              .row
+                .col-md-7
+                  p.lead Customer Reviews &amp; Ratings
+                  a.popover_rating(href="#", data-toggle="popover", data-placement="bottom", data-title="Summary") 69 Ratings
+                    span.ratings
+                      table
+                        tr
+                          td(width="100")
+                            small 95 - 100
+                          //- td
+                          td(width="300")
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 40%')
+                                span.sr-only 40% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 100 - 120
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 60%')
+                                span.sr-only 60% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 120 - 140
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 20%')
+                                span.sr-only 20% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 140 - 160
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
+                                span.sr-only 0% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 160 - 180
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 40%')
+                                span.sr-only 40% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 180 - 200
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 60%')
+                                span.sr-only 60% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 200 - 220
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
+                                span.sr-only 0% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                        tr
+                          td
+                            small 220 - 250
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 20%')
+                                span.sr-only 20% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                        //- tr
+                      //- table
+                    //- ratings
+                  //- popover_rating
+                  br
+                  | 13 Reviews
+                //- col-md-6
+                .col-md-5
+                  .btn-review-wrap
+                    a.button.inline.v7(href="#") Write a review
+                    a.button.inline.v7(href="#") Rate product
+                  //- btn-review-wrap
+                //- col-md-6
+              //- row
+              .review
+                .list_groups
+                  .content
+                    .counter
+                      .ring
+                        //- img(src="assets/images/ring_silver.png", alt="")
+                        .count 96
+                      //- ring
+                    //- counter
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_1.jpg', alt='')
+                      span.form-control
+                        strong Quality Pinot
+                        br
+                        small
+                          | by
+                          a(href="profile.html") Andrew Steer
+                          | | May 26, 2016
+                        //- small
+                        p.comment I really 'dig' this Pinot. It's definitely 'one out of the box'. You can 'lay this one to rest' for a while or drink it right now!
+                      //- span
+                    //- input-group
+                  //- content
+                  .footer
+                    .row
+                      .col-md-12
+                        .right-to-center.basecolor
+                          small
+                            span.green
+                              a(href="#") like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            span.green
+                              a(href="#") comment
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-12
+                    //- row
+                  //- footer
+                //- list_groups
+                .list_groups
+                  .content
+                    .counter
+                      .ring
+                        //- img(src="assets/images/ring_silver.png", alt="")
+                        .count 91
+                      //- ring
+                    //- counter
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_2.jpg', alt='')
+                      span.form-control
+                        strong A beautiful wine
+                        br
+                        small
+                          | by
+                          a(href="#") Carter Smith
+                          | | May 26, 2016
+                        //- small
+                        p.comment A beautiful Pinot Noir and very pleasing to the palate. Great value for the price.
+                      //- span
+                    //- input-group
+                  //- content
+                  .footer
+                    .row
+                      .col-md-12
+                        .right-to-center.basecolor
+                          small
+                            span.green
+                              a(href="#") like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            span.green
+                              a(href="#") comment
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-12
+                    //- row
+                  //- footer
+                //- list_groups
+                .list_groups
+                  .content
+                    .counter
+                      .ring
+                        //- img(src="assets/images/ring_silver.png", alt="")
+                        .count 82
+                      //- ring
+                    //- counter
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_5.jpg', alt='')
+                      span.form-control
+                        strong Very disappointing
+                        br
+                        small
+                          | by
+                          a(href="#") Mary James
+                          | | May 26, 2016
+                        //- small
+                        p.comment Not up to the quality of previous vintages. Still a not a bad drop but not nearly as good as the 2012.
+                      //- span
+                    //- input-group
+                  //- content
+                  .footer
+                    .row
+                      .col-md-12
+                        .right-to-center.basecolor
+                          small
+                            span.green
+                              a(href="#") like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            span.green
+                              a(href="#") comment
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-12
+                    //- row
+                    .comment
+                      .list_groups
+                        .content
+                          .input-group
+                            span.input-group-addon
+                              .thumb
+                                .img
+                                  img(src='assets/images/users/user_7.jpg', alt='')
+                            span.form-control
+                              strong Comment: Very disappointing
+                              br
+                              small
+                                | by
+                                a(href="#") Susie O'Brian
+                                | | May 26, 2016
+                              //- small
+                              p.comment I can't agree Mary. Like you I also enjoyed the previous vintages but I also loved this one. I've recommended this to several friends who have been very impressed.
+                            //- span
+                          //- input-group
+                        //- content
+                      //- list_groups
+                    //- comment
+                  //- footer
+                  .footer
+                    .row
+                      .col-md-12
+                        .right-to-center.basecolor
+                          small
+                            span.green
+                              a(href="#") like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            span.green
+                              a(href="#") comment
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-12
+                    //- row
+                  //- footer
+                //- list_groups
+                br
+                .expand.text-center
+                  a(href='#', data-toggle='collapse')
+                    | more&nbsp;
+                    i.fa.fa-caret-down
+                //- expand
+                hr
+
+                p.lead Discussions
+                .list_groups.discussions
+                  .content
+                    .commentbox
+                      .input-group
+                        span.input-group-addon
+                          .thumb
+                            .img
+                              img(src='assets/images/anonymous.png', alt='')
+                            //- img
+                          //- thumb
+                        //- span
+                        span.form-control
+                          .composer
+                            .head
+                              a(href='#')
+                                i.fa.fa-pencil
+                                | Status
+                              //- a
+                              a(href='#')
+                                i.fa.fa-picture-o
+                                | Photo/Video
+                              //- a
+                              a(href='#')
+                                i.fa.fa-calendar-o
+                                | Event
+                              //- a
+                            //- head
+                            .content
+                              textarea.form-control(rows='4')
+                            //- content
+                            .controls
+                              a(href='#')
+                                i.fa.fa-camera
+                              //- a
+                              a(href='#')
+                                i.fa.fa-user-plus
+                              //- a
+                              a(href='#')
+                                i.fa.fa-smile-o
+                              //- a
+                              a(href='#')
+                                i.fa.fa-map-marker
+                              //- a
+                              a(href='#')
+                                i.fa.fa-clock-o
+                              //- a
+                              a.post(href='#')
+                                i.fa.fa-send-o
+                                | Post
+                              //- a
+                            //- controls
+                          //- composer
+                        //- span
+                      //- input-group
+                    //- commentbox
+
+                    .input-group.discussion-row
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_1.jpg', alt='')
+                      span.form-control
+                        small
+                          | by
+                          a(href="profile") Andrew Steer
+                          | | May 25, 2016
+                        //- small
+                        p.comment Hi! has anybody tried this with waygu steak with asparagus saute potatoes?
+                      //- span
+                      .generic-controls
+                        a(href='#')
+                          i.fa.fa-heart
+                          | Like
+                        a(href='#')
+                          i.fa.fa-comment
+                          | Comment
+                      //- generic-controls
+                    //- input-group
+                    .input-group.discussion-row
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_2.jpg', alt='')
+                      span.form-control
+                        small
+                          | by
+                          a(href="#") Carter Smith
+                          | | May 26, 2016
+                        //- small
+                        p.comment I had it with char grill ribeye fillet medium rare and i finished the whole bottle :)
+                      //- span
+                      .generic-controls
+                        a(href='#')
+                          i.fa.fa-heart
+                          | Like
+                        a(href='#')
+                          i.fa.fa-comment
+                          | Comment
+                      //- generic-controls
+                    //- input-group
+                  //- content
+                //- list_groups
+              //- review
+            //- reviews
+          //- infos
+        //- col-md-7
+      //- row
+    //- container
+  //- section
+
+block scripts
+  // External Script goes here...
+  script.
+    $(document).ready(function(){
+      //- $(window).on("load resize", function() {
+      //-   if ( $(this).width() > 991 ) {
+      //-     $('section.productdetails').outerHeight(function(){
+      //-       var top = $('nav.navbar').outerHeight();
+      //-       var bottom = $('footer').outerHeight(true);
+      //-       var screenHeight = $(window.top).height();
+      //-
+      //-       return (screenHeight - (top + bottom));
+      //-     });
+      //-     $('.product-detail-wrap, .productdetails .stage').height(function() {
+      //-       return $('section.productdetails').height() - $('.bread').outerHeight();
+      //-     });
+      //-   } else {
+      //-     $('section.productdetails, .product-detail-wrap, .productdetails .stage').height("");
+      //-   }
+      //- });
+    });
+
+    $(function () {
+      $('.popover_rating[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<span class="ratings">' + $(this).parent().find("span.ratings").html() + '</span>';
+        },
+        title: function(){
+      		return jQuery(this).data('title') + '<span class="close">&times;</span>';
+      	}
+      }).on('shown.bs.popover', function(e) {
+      	var popover = jQuery(this);
+      	$(this).parent().find('.popover span.close').on('click', function(e) {
+      		popover.popover('hide');
+      	});
+      }).click(function(e) {
+        e.preventDefault();
+      });
+    });
+  //- script.
+//- block scripts

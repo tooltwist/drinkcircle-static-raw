@@ -18,6 +18,10 @@ body {
   color: #5a5a5a;
 	background: #F8F8F8;
 	font-size: 16px;
+	margin-top: 50px;
+	@media screen and (min-width: 768px) {
+		margin-top: 105px;
+	}
 }
 
 a {
@@ -43,6 +47,24 @@ input, select, textarea, optgroup {
 
 .modal {
 	z-index: 1062;
+}
+select.form-control {
+	width: 30%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #dedede;
+	border-radius: 0;
+	-webkit-appearance: none;
+	outline: 0;
+	box-shadow: none;
+
+	background: transparent url('../../assets/images/drop_arrow.png') no-repeat;
+	background-position: right center;
 }
 
 // NAVBAR ======================================================================
@@ -87,7 +109,7 @@ input, select, textarea, optgroup {
 			a {
 				font-size: 11px;
 				@media screen and (min-width: 1199px) {
-					font-size: inherit;
+					font-size: 14px;
 				}
 			}
 			> a {
@@ -98,7 +120,7 @@ input, select, textarea, optgroup {
 				& {
 					padding: 15px 10px;
 					@media screen and (min-width: 992px) {
-						padding: 15px 20px;
+						padding: 15px 12px;
 					}
 				}
 				&:hover {
@@ -293,15 +315,25 @@ input, select, textarea, optgroup {
 // =============================================================================
 
 // BANNER ======================================================================
+.banner-static {
+	// margin-top: 50px;
+	@media screen and (min-width: 768px) {
+		// margin-top: 105px;
+	}
+	img {
+		width: 100%;
+	}
+}
 .banner {
+	&:not(.index) {
+		min-height: auto;
+		max-height: 350px;
+		overflow: hidden;
+	}
 	& {
 		& {
 			position: relative;
 			min-height: 250px;
-			margin-top: 50px;
-			@media screen and (min-width: 768px) {
-				margin-top: 106px;
-			}
 		}
 		h1 {
 			&.jumbo {
@@ -312,7 +344,7 @@ input, select, textarea, optgroup {
 		    text-shadow: 0 0 5px #333;
 		    font-size: 3vw;
 				font-weight: 300;
-				z-index: 1;
+				z-index: 4;
 				//
 				bottom: 60px;
 				@media screen and (min-width: 768px) {
@@ -349,6 +381,7 @@ input, select, textarea, optgroup {
 	& {
 		.gradient {
 			position: absolute;
+			z-index: 3;
 			width: 100%;
 			height: 100%;
 			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+100;Neutral+Density */
@@ -367,7 +400,7 @@ input, select, textarea, optgroup {
 				bottom: 20px;
 				width: 90%;
 				text-align: center;
-				z-index: 1;
+				z-index: 3;
 			}
 			.btn {
 				width: 30%;
@@ -428,9 +461,13 @@ input, select, textarea, optgroup {
 			position: relative;
 			background: #41B54B url($bg-userprofile) center center no-repeat;
 			background-size: cover;
+			overflow: visible;
 		}
 		&.seller {
 			background: #41B54B url($bg-seller) center center no-repeat;
+		}
+		&.seller.dc {
+			background: #41B54B url($bg-dc) center center no-repeat;
 		}
 		.gradient {
 			background: none;
@@ -466,6 +503,7 @@ input, select, textarea, optgroup {
 					@include border-radius(50%);
 					overflow: hidden;
 					height: 100%;
+					background: white;
 					img {
 						max-width: 100%;
 						min-width: 100%;
@@ -610,6 +648,7 @@ input, select, textarea, optgroup {
 section {
 	& {
 		padding: 45px 0;
+		// margin-top:
 	}
 	&.simple {
 		& {
@@ -769,7 +808,7 @@ section {
 				.title {
 					text-align: center;
 					padding: 15px 0 0px;
-					margin-bottom: 0;
+					margin-bottom: 12px;
 					font-size: 21px;
 				}
 				.cat-thumb {
@@ -781,7 +820,7 @@ section {
 					text-align: center;
 					img {
 						// max-width: 79%;
-						max-width: 79%;
+						max-width: 58%;
 						width: 87px;
 						@media screen and (max-width: 1199px) {
 							max-width: 64%;
@@ -908,7 +947,7 @@ section {
 				}
 				header {
 					top: auto;
-					bottom: 90px;
+					bottom: 75px;
 					left: 0;
 					color: white;
 					h1 {
@@ -922,6 +961,10 @@ section {
 						&.md {
 							font-size: 42px;
 						}
+						p {
+							font-size: 22px;
+							color: white;
+						}
 					}
 					h2 {
 						margin-top: 20px;
@@ -931,9 +974,8 @@ section {
 					bottom: 0;
 					left: 0;
 					background: white;
-					padding: 2px 0 0;
+					padding: 22px;
 					border: 0;
-					padding-bottom: 2px;
 					h3 {
 						font-size: 22px;
 						margin: 0;
@@ -946,16 +988,37 @@ section {
 				.action-btn {
 					color: #41B54B;
 					border: 1px solid #41B54B;
-					padding: 0px 21px;
+					padding: 8px 20px;
 					border-radius: 3px;
 					text-decoration: none;
 					display: inline-block;
 					line-height: 13px;
+					font-size: 16px;
+					font-weight: 600;
 				}
 				&.offset-img {
 					img {
 						position: relative;
 						top: -65px;
+					}
+				}
+			}
+			&._4 {
+				header, footer {
+					position: absolute;
+					text-align: center;
+					width: 100%;
+				}
+				header {
+					top: auto;
+					bottom: 150px;
+					left: 0;
+					color: white;
+					h1 {
+						font-size: 38px;
+					}
+					h2 {
+						margin-top: 20px;
 					}
 				}
 			}
@@ -1048,7 +1111,7 @@ section {
 	}
 	&.dd {
 		h4, a {
-			color: #1A93D1;
+			color: #41B54B;
 		}
 	}
 	&.c, &.tc {
@@ -1082,7 +1145,7 @@ section {
 		&.dd {
 			.icon_search {
 				i {
-					color: #1A93D1;
+					color: #41B54B;
 				}
 			}
 		}
@@ -1111,17 +1174,6 @@ section {
 					}
 					span.text-muted {
 						color: #41B54B;
-					}
-				}
-			}
-			.rating-status {
-				font-size: 18px;
-				.stars {
-					display: inline-block;
-					white-space: nowrap;
-					color: #41B54B;
-					.fa + .fa {
-						margin-left: 5px;
 					}
 				}
 			}
@@ -1386,11 +1438,64 @@ section {
 // =============================================================================
 
 // PRODUCTS LIST ===============================================================
+section {
+	&.drinks {
+		.product {
+			.thumb {
+				.ctr {
+					@include box(110px);
+					.count {
+						font-size: 62px;
+						span {
+							margin-top: 13px;
+						}
+					}
+				}
+			}
+		}
+		@media screen and (min-width: 768px) {
+			&.results {
+				.product {
+					.thumb {
+						.ctr {
+							@include box(80px);
+							.count {
+								font-size: 36px;
+								padding-top: 15px;
+								span {
+									margin-top: 0px;
+								}
+							}
+						}
+					}
+				}
+				.product .thumb .pricing .buy.drop>ul>li:not(.drop) a.thumb-action {
+					width: 60px;
+					border-width: 1px;
+				}
+				.product .thumb .pricing .buy.drop>ul>li:not(.drop) a {
+					padding: 3px 2px;
+				}
+				.product .thumb .pricing .buy.drop>ul>li.drop {
+					margin: 0px 8px;
+					a {
+						line-height: 28px;
+					}
+				}
+			}
+		}
+	}
+}
 .product {
 	& {
 		// @include box-shadow(0 1px 2px rgba(0, 0, 0, .15));
 		// background: white;
 		// margin-bottom: 30px;
+	}
+	.stats {
+		a {
+			color: inherit;
+		}
 	}
 	.thumb {
 		position: relative;
@@ -1399,9 +1504,9 @@ section {
 			position: absolute;
 			top: 15px;
 			right: 15px;
-			width: 75px;
-			height: 73px;
-			background: white url($bg-ctr-gold) center center no-repeat;
+			@include box(140px);
+			background: white;
+	    border: 8px solid #41B54B;
 	    background-size: 100% 100%;
 			@include border-radius(50%);
 			img {
@@ -1410,17 +1515,23 @@ section {
 			}
 			.count {
 				display: block;
-		    position: absolute;
 		    width: 100%;
 		    text-align: center;
-		    padding: 21px 0;
-		    font-size: 38px;
+		    padding-top: 30px;
+		    font-size: 70px;
 		    font-weight: bold;
 		    line-height: 21px;
 				span {
-					font-size: 9px;
-					font-weight: normal;
-					display: block;
+					font-size: 14px;
+			    font-weight: normal;
+			    display: block;
+			    margin-top: 17px;
+				}
+				small {
+					font-size: 14px;
+			    font-weight: normal;
+			    display: block;
+			    margin-top: 0px;
 				}
 			}
 			&.silver {
@@ -1468,14 +1579,19 @@ section {
 				// font-size: 12px;
 				// background: whitesmoke;
 				text-align: center;
-		    color: #363636;
 				font-size: 14px;
+				big {
+					font-size: 14px;
+				}
 				.reviews {
 					// float: right;
 					color: #2794ce;
 				}
 				small {
 					// color: gray;
+				}
+				a {
+					// color: inherit;
 				}
 			}
 			.rate {
@@ -1507,7 +1623,10 @@ section {
 				}
 				&.drop {
 					& {
-				    margin: 10px 0;
+				    // margin: 10px 0;
+					}
+					.thumb-action {
+
 					}
 					ul li a small {
 						font-size: 14px;
@@ -1516,16 +1635,38 @@ section {
 						margin: 0;
 						padding: 0;
 						list-style: none;
-						> li:first-child {
-							position: relative;
-							> a:first-child {
-								color: white;
-								text-decoration: none;
+						> li {
+							display: inline-block;
+							vertical-align: bottom;
+							a.thumb-action {
+								color: inherit;
+						    text-decoration: none;
+						    font-size: 16px;
+						    padding: 5px 8px;
+						    background: #fff;
+						    border-radius: 5px;
+						    border: 2px solid #41B54B;
+						    vertical-align: bottom;
 								display: inline-block;
-								font-size: 22px;
-								padding: 5px 15px;
-								background: #41b54b;
-								border-radius: 5px;
+								width: 80px;
+							}
+						}
+						> li:not(.drop) {
+							a {
+								font-size: 11px;
+							}
+						}
+						> li.drop {
+							position: relative;
+							vertical-align: middle;
+							margin: 0 22px;
+							a {
+								border: 0;
+								background: none;
+								font-size: 28px;
+								width: auto;
+								padding: 0;
+								line-height: normal;
 							}
 							> a:first-child + a {
 								display: block;
@@ -1657,12 +1798,16 @@ footer {
 
 
 .shared {
-	position: relative;
-	display: inline-block;
-	width: 100%;
+	& {
+		position: relative;
+		display: inline-block;
+		width: 100%;
+		border: 1px solid #eee;
+	}
 	> img {
 		min-width: 100%;
 		max-width: 100%;
+		cursor: pointer;
 	}
 	.caption {
 		position: absolute;
@@ -1704,6 +1849,9 @@ footer {
 			height: auto;
 			font-size: 12px;
 			background: none;
+			h3 {
+				margin-top: 0;
+			}
 		}
 	}
 }
@@ -1763,18 +1911,19 @@ a.rate {
 	hr {
 		border-color: #ddd;
 	}
-	margin-top: 52px;
 	.stage {
 		text-align: center;
 		img {
 			max-height: 100%;
 			max-width: 100%;
+			width: 100%;
 		}
 	}
 	.infos {
 		font-size: 14px;
 		display: inline-block;
 		position: relative;
+		width: 100%;
 		.stats {
 			& {
 				text-align: center;
@@ -1795,7 +1944,9 @@ a.rate {
 					display: inline-block;
 					margin-bottom: 5px;
 					border-radius: 50%;
+			    border: 8px solid #41B54B;
 					background: white;
+					@include box(112px);
 					img {
 						min-width: 112px;
 						max-width: 112px;
@@ -1804,7 +1955,7 @@ a.rate {
 						position: absolute;
 						width: 100%;
 						text-align: center;
-						padding: 35px 0;
+						padding-top: 26px;
 						top: 0;
 						font-size: 50px;
 						font-weight: 700;
@@ -2103,11 +2254,15 @@ a.rate {
 	.ring {
 		display: inline-block;
 		position: relative;
+		@include box(50px);
+		border-radius: 50%;
+		border: 5px solid #41B54B;
 		.count {
 			position: absolute;
 			text-align: center;
 			width: 100%;
 			top: 0;
+			padding: 4px !important;
 		}
 	}
 }
@@ -2371,7 +2526,7 @@ section {
 
 // ADD FRIEND ==================================================================
 
-.btn-add-friend {
+.btn-add-interests {
 	padding: 3px 8px;
 	float: right;
 	margin-top: 5px;
@@ -2381,6 +2536,16 @@ section {
 }
 
 // ADD FRIEND END ==============================================================
+
+.btn-add-friend {
+	padding: 3px 8px;
+	position: absolute;
+	top: 14px;
+	right: 0;
+	i {
+		margin-right: 5px;
+	}
+}
 
 // FRIEND REQUEST LIST =========================================================
 
@@ -2441,6 +2606,9 @@ section {
 .inline {
 	display: inline;
 	width: auto;
+}
+.nomtop {
+	margin-top: 0 !important;
 }
 
 
@@ -2589,10 +2757,10 @@ section {
 	input {
 		padding-left: 30px;
 		@media screen and (min-width: 768px) {
-			width: 400px;
+			width: 380px;
 		}
 		@media screen and (min-width: 991px) {
-			width: 600px;
+			width: 590px;
 		}
 	}
 	i {
@@ -2668,4 +2836,290 @@ section {
 
 .countdown {
 	text-align: center;
+}
+
+.drinktype {
+	margin-bottom: 22px;
+}
+
+.floating-text {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	z-index: 4;
+	color: white;
+	.left {
+		position: absolute;
+		top: 60px;
+		left: 150px;
+		text-align: center;
+		h2 {
+			margin-bottom: 20px;
+			font-size: 46px;
+		}
+		h3 {
+			line-height: 30px;
+		}
+	}
+	.right {
+		position: absolute;
+		top: 90px;
+		right: 0;
+		text-align: center;
+		h2 {
+			margin-bottom: 120px;
+			font-size: 46px;
+		}
+		h3 {
+			line-height: 30px;
+		}
+	}
+}
+
+.maker-filters {
+	display: table;
+	width: 100%;
+	margin-top: 25px;
+	& * {
+		display: table-cell;
+		height: 34px;
+		vertical-align: middle;
+	}
+	input {
+		border: 1px solid #dedede;
+		outline: 0;
+		padding: 5px 8px;
+	}
+	.text-1 {
+		width: 40%;
+		border-right: 0;
+	}
+	.text-2 {
+		width: 30%;
+		border-right: 0;
+	}
+	.select-1 {
+		width: 30%;
+		height: 34px;
+		padding: 6px 12px;
+		font-size: 14px;
+		line-height: 1.42857143;
+		color: #555;
+		background-color: #fff;
+		background-image: none;
+		border: 1px solid #dedede;
+		border-radius: 0;
+		-webkit-appearance: none;
+		outline: 0;
+		display: inline;
+		border-right: 0;
+
+		background: transparent url('../../assets/images/drop_arrow.png') no-repeat;
+		background-position: right center;
+	}
+	a {
+		width: 12%;
+		text-align: center;
+		color: #fff;
+		background: #41B54B;
+		text-decoration: none;
+	}
+}
+
+.maker-list {
+	font-size: 14px;
+	> .row {
+		& {
+			margin-top: 15px;
+		}
+		img {
+			&.maker {
+				width: 100%;
+			}
+		}
+		.media-right {
+			float: right;
+		}
+		.address {
+			margin-top: 10px;
+		}
+	}
+}
+
+.about-info {
+	& {
+		font-size: 14px;
+	}
+	table tr td {
+		padding: 5px;
+		vertical-align: top;
+	}
+}
+
+.map {
+  & {
+    position: relative;
+		font-size: 14px;
+  }
+  &.about {
+    & {
+      margin-bottom: 15px;
+    }
+    img {
+      width: 100%;
+    }
+		.map-info {
+			position: absolute;
+			left: 15px;
+			top: 15px;
+			table tr td {
+				padding: 5px;
+				vertical-align: top;
+			}
+		}
+  }
+}
+
+
+.ratings-content {
+	.nav-tabs {
+		& {
+			background: white;
+			border: 1px solid #ddd;
+			padding: 5px 0;
+		}
+		li {
+			a {
+				border-radius: 0;
+				color: inherit;
+			}
+		}
+		> li {
+			margin: 0;
+			a {
+				&, &:focus, &:active, &:hover {
+					border: 0;
+					background: none;
+				}
+			}
+		}
+		li {
+			&.active {
+				a {
+					color: #41B54B;
+				}
+				&:after {
+					content: '';
+					position: absolute;
+					bottom: -5px;
+					left: 0;
+					width: 100%;
+					height: 4px;
+					background: #41B54B;
+				}
+			}
+		}
+	}
+	.timeline {
+		.badge {
+			background: #41B54B;
+			color: white;
+		}
+	}
+}
+
+.stats {
+	table {
+		width: 100%;
+		td {
+			vertical-align: top;
+			.progress {
+				width: 80%;
+				height: 10px;
+				float: left;
+				margin-top: 5px;
+			}
+			.count {
+				float: right;
+			}
+		}
+	}
+}
+
+
+table {
+	&.filter {
+		width: 100%;
+		td {
+			padding: 5px 10px;
+			border: 1px solid #dedede;
+			border-top: 0;
+			vertical-align: middle;
+			text-align: center;
+			& + td {
+				border-right: 1px solid #dedede;
+			}
+			.topic-search {
+				position: relative;
+				i {
+					position: absolute;
+					left: 10px;
+					top: 8px;
+				}
+				input {
+					width: 100%;
+					height: 34px;
+					padding-left: 30px;
+					border: 0;
+					outline: 0;
+				}
+			}
+		}
+		.following {
+			color: #ccc;
+		}
+	}
+}
+
+.interest-thumb {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	position: relative;
+	img {
+		width: 100%;
+	}
+	.label {
+		text-align: center;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		padding: 15px 10px;
+    font-size: 16px;
+    font-weight: 400;
+
+		background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%);
+		background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+		background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+
+	}
+}
+
+
+.compare-summary {
+	.alert {
+		& {
+			position: relative;
+		}
+		a {
+			&.close {
+				position: absolute;
+				right: 0;
+				top: 0;
+				padding: 10px;
+			}
+		}
+	}
 }
