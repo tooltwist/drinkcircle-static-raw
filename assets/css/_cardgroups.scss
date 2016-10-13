@@ -259,29 +259,6 @@
           margin: 0 5px;
         }
 			}
-      .points {
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-        text-align: center;
-        background: white;
-        width: 3vw;
-        height: 3vw;
-        border-radius: 50%;
-        border: .3vw solid #41B54B;
-        font-weight: bold;
-        font-size: 1.2vw;
-        span, small {
-          display: block;
-          line-height: 12px;
-        }
-        span {
-          margin-top: .5vw;
-        }
-        small {
-          font-size: .5vw;
-        }
-      }
 		}
 	}
   .map {

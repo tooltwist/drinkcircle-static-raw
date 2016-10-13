@@ -23,7 +23,7 @@ block content
       small Discover. Share. Save. Enjoy
     //- h1
     .action
-      a.btn.btn-success.btn-lg
+      a.btn.btn-success.btn-lg(href='#modal_signup', data-toggle='modal')
         i.fa.fa-envelope
         span.hidden-xs &nbsp;&nbsp;&nbsp;Signup with Email
       //- a
@@ -70,7 +70,7 @@ block content
       //- row
       br
       .text-center
-        a.btn.btn-success.btn-lg.super-action-button(href='') Get Started
+        a.btn.btn-success.btn-lg.super-action-button(href='#modal_signup', data-toggle='modal') Get Started
       //- text-center
     //- container
   //- section
@@ -87,50 +87,57 @@ block content
             .row.drinktype
               //- 1
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
-                img(src='assets/images/icon_cat_red.png')
                 a(href='drinkmakers-red.html')
+                  img(src='assets/images/icon_cat_red.png')
+                  br
                   small Red
                 //- a
               //- col-md-4
               //- 2
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
-                img(src='assets/images/icon_cat_white.png')
                 a(href='drinkmakers-red.html')
+                  img(src='assets/images/icon_cat_white.png')
+                  br
                   small White
                 //- a
               //- col-md-4
               //- 3
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
-                img(src='assets/images/icon_cat_beer.png')
                 a(href='drinkmakers-beer.html')
+                  img(src='assets/images/icon_cat_beer.png')
+                  br
                   small Beer
                 //- a
               //- col-md-4
               //- 4
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
-                img(src='assets/images/icon_cat_sparkling.png')
                 a(href='drinkmakers-red.html')
+                  img(src='assets/images/icon_cat_sparkling.png')
+                  br
                   small Bubbles
                 //- a
               //- col-md-4
               //- 5
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
-                img(src='assets/images/icon_cat_spirits.png')
                 a(href='drinkmakers-spirit.html')
+                  img(src='assets/images/icon_cat_spirits.png')
+                  br
                   small Spirits
                 //- a
               //- col-md-4
               //- 6
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
-                img(src='assets/images/icon_cat_cider.png')
                 a(href='drinkmakers-beer.html')
+                  img(src='assets/images/icon_cat_cider.png')
+                  br
                   small Cider
                 //- a
               //- col-md-4
               //- 7
               .col-md-4.col-sm-4.col-xs-4.cat-thumb.col-md-offset-2.col-sm-offset-2.col-xs-offset-2
-                img(src='assets/images/icon_cat_organic.png')
                 a(href='drinkmakers-organic.html')
+                  img(src='assets/images/icon_cat_organic.png')
+                  br
                   small Organic
                 //- a
               //- col-md-4
@@ -144,8 +151,9 @@ block content
                 //- col-md-4
               //- 9
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
-                img(src='assets/images/icon_cat_dessert.png')
                 a(href='drinkmakers-other.html')
+                  img(src='assets/images/icon_cat_dessert.png')
+                  br
                   small Other
                 //- a
               //- col-md-4
@@ -284,7 +292,7 @@ block content
               header
                 h1 Top 10 Aussie
                   br
-                  | Craft Beers Of 2016
+                  | Craft Beers
                 //- h1
               //- header
               //- .caption.post

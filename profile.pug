@@ -134,85 +134,192 @@ block content
           .list_groups.groups
             .head
               h4
-                a(href="#") My active circlebuys
+                a(href="#") My circlebuys
                 small (
                   a(href="#") 5
                   | )
               //- h4
             //- head
             .content
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      .ring
-                      img(src="assets/images/circles/circles_8.png", alt="")
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href="#")
-                    strong Adrian Southern
-                  //- a
-                  br
-                  | Brokenwood Shiraz 2010
-                  br
-                  | 10 case buy
-                  br
-                  strong 3 cases left
-                  a.share(href="#")
-                    i.fa.fa-share
-                    | &nbsp;share
-                  //- a
-                //- span
-              //- input-group
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      .ring
-                      img(src="assets/images/circles/circles_1.png", alt="")
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href="#")
-                    strong Sharmaine Stevens
-                  //- a
-                  br
-                  | Corona Extra
-                  br
-                  | 10 case buy
-                  br
-                  strong 2 cases left
-                  a.share(href="#")
-                    i.fa.fa-share
-                    | &nbsp;share
-                  //- a
-                //- span
-              //- input-group
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      .ring
-                      img(src="assets/images/circles/circles_7.png", alt="")
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href="#")
-                    strong Bayview Golf club
-                  //- a
-                  br
-                  | Chivas Regal
-                  br
-                  | 1 case buy
-                  br
-                  strong 4 bottles left
-                  a.share(href="#")
-                    i.fa.fa-share
-                    | &nbsp;share
-                  //- a
-                //- span
-              //- input-group
+              .productdetails
+                .infos
+                  .row
+                    .col-md-6.col-sm-6.text-center
+                      .card_rounded
+                        span.green Adrian's circlebuy
+                        hr
+                        .row.shortsummary
+                          .col-md-4
+                            p size
+                            p.lead 10
+                              br
+                              small cases
+                            //- p
+                          //- col-md-4
+                          .col-md-4
+                            p sold
+                            p.lead 7
+                              br
+                              small cases
+                            //- p
+                          //- col-md-4
+                          .col-md-4
+                            p left
+                            p.lead 3
+                              br
+                              small cases
+                            //- p
+                          //- col-md-4
+                        //- row
+                        p
+                        .avatar
+                          .img
+                            .ring._70p
+                            img(src='assets/images/circles/circles_8.png', alt='')
+                          //- img
+                          .countdown
+                            //- span.time 32:12
+                            p.lead 04:56
+                            //- span
+                            //- br
+                            small.unit hrs left
+                            //- span
+                          //- countdown
+                        //- avatar
+                        br
+                        p
+                          a.button.inline.v7.joincirclebuy(href="#") join
+                        //- p
+                        p.lead.cbprice $19.99
+                        //- big
+                      //- card_rounded
+                    //- col-md-6
+                    .col-md-6.col-sm-6.text-center
+                      .card_rounded
+                        span.green Sharmaine's circlebuy
+                        hr
+                        .row.shortsummary
+                          .col-md-4
+                            p size
+                            p.lead 10
+                              br
+                              small cases
+                            //- p
+                          //- col-md-4
+                          .col-md-4
+                            p sold
+                            p.lead 5
+                              br
+                              small cases
+                            //- p
+                          //- col-md-4
+                          .col-md-4
+                            p left
+                            p.lead 5
+                              br
+                              small cases
+                            //- p
+                          //- col-md-4
+                        //- row
+                        p
+                        .avatar
+                          .img
+                            .ring._50p
+                            img(src='assets/images/circles/circles_1.png', alt='')
+                          //- img
+                          .countdown
+                            //- span.time 32:12
+                            p.lead 16:08
+                            //- span
+                            //- br
+                            small.unit hrs left
+                            //- span
+                          //- countdown
+                        //- avatar
+                        br
+                        p
+                          a.button.inline.v7.joincirclebuy(href="#") join
+                        //- p
+                        p.lead.cbprice $19.99
+                        //- big
+                      //- card_rounded
+                    //- col-md-6
+                  //- row
+                //- infos
+              //- productdetails
+              //- .input-group
+              //-   span.input-group-addon
+              //-     .thumb
+              //-       .img
+              //-         .ring
+              //-         img(src="assets/images/circles/circles_8.png", alt="")
+              //-       //- img
+              //-     //- thumb
+              //-   span.form-control
+              //-     a(href="#")
+              //-       strong Adrian Southern
+              //-     //- a
+              //-     br
+              //-     | Brokenwood Shiraz 2010
+              //-     br
+              //-     | 10 case buy
+              //-     br
+              //-     strong 3 cases left
+              //-     a.share(href="#")
+              //-       i.fa.fa-share
+              //-       | &nbsp;share
+              //-     //- a
+              //-   //- span
+              //- //- input-group
+              //- .input-group
+              //-   span.input-group-addon
+              //-     .thumb
+              //-       .img
+              //-         .ring
+              //-         img(src="assets/images/circles/circles_1.png", alt="")
+              //-       //- img
+              //-     //- thumb
+              //-   span.form-control
+              //-     a(href="#")
+              //-       strong Sharmaine Stevens
+              //-     //- a
+              //-     br
+              //-     | Corona Extra
+              //-     br
+              //-     | 10 case buy
+              //-     br
+              //-     strong 2 cases left
+              //-     a.share(href="#")
+              //-       i.fa.fa-share
+              //-       | &nbsp;share
+              //-     //- a
+              //-   //- span
+              //- //- input-group
+              //- .input-group
+              //-   span.input-group-addon
+              //-     .thumb
+              //-       .img
+              //-         .ring
+              //-         img(src="assets/images/circles/circles_7.png", alt="")
+              //-       //- img
+              //-     //- thumb
+              //-   span.form-control
+              //-     a(href="#")
+              //-       strong Bayview Golf club
+              //-     //- a
+              //-     br
+              //-     | Chivas Regal
+              //-     br
+              //-     | 1 case buy
+              //-     br
+              //-     strong 4 bottles left
+              //-     a.share(href="#")
+              //-       i.fa.fa-share
+              //-       | &nbsp;share
+              //-     //- a
+              //-   //- span
+              //- //- input-group
+
             //- content
             .more
               a(href="#") See all
@@ -892,84 +999,69 @@ block content
 
           .list_groups.toppicks
             .head
-              h4.text-center
+              h4
+                a.pull-right(href='#modal_edit_toppicks', data-toggle='modal')
+                  i.fa.fa-pencil
+                //- a
                 a(href="#") My TOP 10
               //- h4
             //- head
+            hr
             .content
-              .input-group
-                .points
-                  span 96
-                  small points
-                //- points
-                span.input-group-addon
+              .media
+                .media-left
                   h4 1.&nbsp;
-                //- span
-                span.input-group-addon
-                  .thumb
-                    .img.square
-                      //- strong
-                      img(src='assets/images/products/p14.jpg', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
+                  img.media-object(src='assets/images/products/p14.jpg', alt='')
+                //- media-left
+                .media-body
                   a(href="#")
                     strong Young Henrys
                   //- a
                   br
-                  | Natural Lager
-                  //- p
-                //- span
-              //- input-group
-              .input-group
-                .points
-                  span 93
-                  small points
-                //- points
-                span.input-group-addon
+                  small Natural Lager
+
+                  .points
+                    span 96
+                    small points
+                  //- points
+                //- media-body
+              //- media
+              .media
+                .media-left
                   h4 2.&nbsp;
-                //- span
-                span.input-group-addon
-                  .thumb
-                    .img.square
-                      //- strong
-                      img(src='assets/images/products/p1.jpg', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
+                  img.media-object(src='assets/images/products/p1.jpg', alt='')
+                //- media-left
+                .media-body
                   a(href="#")
                     strong Corona Extra
                   //- a
                   br
-                  | Imported Beer
-                  //- p
-                //- span
-              //- input-group
-              .input-group
-                .points
-                  span 94
-                  small points
-                //- points
-                span.input-group-addon
+                  small Imported Beer
+
+                  .points
+                    span 93
+                    small points
+                  //- points
+                //- media-body
+              //- media
+              .media
+                .media-left
                   h4 3.&nbsp;
-                //- span
-                span.input-group-addon
-                  .thumb
-                    .img.square
-                      //- strong
-                      img(src='assets/images/products/p2.jpg', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
+                  img.media-object(src='assets/images/products/p2.jpg', alt='')
+                //- media-left
+                .media-body
                   a(href="productdetails.html")
                     strong Brokenwood
                   //- a
                   br
-                  | Graveyard Vineyard Shiraz
-                  //- p
-                //- span
-              //- input-group
+                  small Graveyard Vineyard Shiraz
 
+                  .points
+                    span 94
+                    small points
+                  //- points
+                //- media-body
+              //- media
             //- content
             //- .search
             //-   input.form-control(type='text', placeholder='search reviews...')

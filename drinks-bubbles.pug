@@ -28,7 +28,7 @@ block content
       br
       small Discover. Share. Save. Enjoy
     .action
-      a.btn.btn-success.btn-lg
+      a.btn.btn-success.btn-lg(href='#modal_signup', data-toggle='modal')
         i.fa.fa-envelope
         span.hidden-xs &nbsp;&nbsp;&nbsp;Signup with Email
       //- a
@@ -48,15 +48,40 @@ block content
         .col-md-8.col-md-offset-2
           form
             .form-group
-              .icon_search.dc-filters
-                input.form-control.input-lg(type='text', placeholder='Search drinks...')
-                a(href='searchresult.html')
-                  i.fa.fa-search
+              .input-group.dc-filters
+                a.arrow(href='#drop_recent_search', data-toggle='collapse')
+                  i.fa.fa-caret-down
                 //- a
+                input.form-control.input-lg(type='text', placeholder='Search drinks...')
+                span.input-group-btn &nbsp;&nbsp;
+                span.input-group-btn
+                  a.btn.btn-success.btn-lg(href='searchresult.html') Search
+                //- span
                 a.link-1(href='#refineSearch', data-toggle='collapse') Refine Search
-                #refineSearch.dc-filters-dropdown.collapse
+                #drop_recent_search.search-dropdown.collapse
+                  a.close(href='#drop_recent_search', data-toggle='collapse') &times;
+                  .dropdown-wrap
+                    big Suggestions
+                    ul
+                      li
+                        a(href='') Brokenwood - Graveyard Vineyard
+                      //- li
+                    //- ul
+                    big Recent search&nbsp;
+                      small
+                        a(href='') clear
+                      //- small
+                    //- strong
+                    ul
+                      li
+                        a(href='') Corona Extra - Imported Beer
+                      //- li
+                    //- ul
+                  //- .dropdown-wrap
+                //- drop_recent_search
+                #refineSearch.search-dropdown.collapse
                   a.close(href='#refineSearch', data-toggle='collapse') &times;
-                  .filters-wrap
+                  .dropdown-wrap
                     .row
                       .col-md-4
                         strong Category
@@ -470,7 +495,7 @@ block content
                     //- row
                   //- filters-wrap
                 //- dc-filters-dropdown
-              //- icon_search
+              //- input-group
             //- form-group
           //- form
         //- col-md-8
@@ -480,6 +505,23 @@ block content
 
   section.drinks
     .container
+      form.form-inline
+        .form-group
+          label(for='exampleInputName2') Sort by
+          select.form-control
+            option Most popular
+          //- select
+        //- form-group
+        .form-group
+          label(for='exampleInputEmail2') Show
+          select.form-control
+            option 15
+            option 50
+            option 100
+          //- select
+        //- form-group
+      //- form
+      hr
       .product-wrap
         .row
           .col-sm-6.col-md-4
@@ -523,7 +565,7 @@ block content
                     .buy.drop
                       ul
                         li
-                          a.thumb-action(href='') Compare
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
                         //- li
                         li.drop
                           a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
@@ -614,7 +656,7 @@ block content
                     .buy.drop
                       ul
                         li
-                          a.thumb-action(href='') Compare
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
                         //- li
                         li.drop
                           a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="s")
@@ -705,7 +747,7 @@ block content
                     .buy.drop
                       ul
                         li
-                          a.thumb-action(href='') Compare
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
                         //- li
                         li.drop
                           a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="s")
@@ -757,6 +799,29 @@ block content
           //- col
         //- row
       //- product-wrap
+      hr
+      nav.text-center(aria-label='...')
+        ul.pagination.pagination-sm
+          li
+            a(href='#', aria-label='Previous')
+              span(aria-hidden='true') «
+          li
+            a(href='#') 1
+          li
+            a(href='#') 2
+          li
+            a(href='#') 3
+          li
+            a(href='#') 4
+          li
+            a(href='#') 5
+          li
+            a(href='#', aria-label='Next')
+              span(aria-hidden='true') »
+            //- a
+          //- li
+        //- ul
+      //- nav
     //- container
   //- section
 

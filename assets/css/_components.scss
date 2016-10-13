@@ -232,7 +232,11 @@
     border: 0;
     margin-bottom: 0;
     float: left;
-    font-weight: bold;
+  }
+  p {
+    &.lead {
+      margin-bottom: 0;
+    }
   }
   big.lead {
     display: inline-block;
@@ -240,6 +244,7 @@
   }
   .btn {
     margin-bottom: 5px;
+    padding: 2px 25px;
   }
 }
 

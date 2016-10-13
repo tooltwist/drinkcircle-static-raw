@@ -41,9 +41,12 @@ $bg-title-ctr       : '';
   $bg-thumb-ring      : '../../assets/images/ring.png';
   // From(_components.scss)
   $bg-avatar-ring     : '../../assets/images/ring.png';
-  $bg-avatar-ring-70p : '../../assets/images/ring_70p_solid.png';
-  $bg-avatar-ring-50p : '../../assets/images/ring_50p_solid.png';
-  $bg-avatar-ring-40p : '../../assets/images/ring_40p_solid.png';
+  // $bg-avatar-ring-70p : '../../assets/images/ring_70p_solid.png';
+  $bg-avatar-ring-70p : '../../assets/images/cb70.png';
+  // $bg-avatar-ring-50p : '../../assets/images/ring_50p_solid.png';
+  $bg-avatar-ring-50p : '../../assets/images/cb50.png';
+  // $bg-avatar-ring-40p : '../../assets/images/ring_40p_solid.png';
+  $bg-avatar-ring-40p : '../../assets/images/cb40.png';
   // From(_adrian.scss)
   $bg-title-ctr       : '../assets/images/ring.png';
 } @else {

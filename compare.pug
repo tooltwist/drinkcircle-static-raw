@@ -28,7 +28,7 @@ block content
       br
       small Discover. Share. Save. Enjoy
     .action
-      a.btn.btn-success.btn-lg
+      a.btn.btn-success.btn-lg(href='#modal_signup', data-toggle='modal')
         i.fa.fa-envelope
         span.hidden-xs &nbsp;&nbsp;&nbsp;Signup with Email
       //- a
@@ -48,15 +48,40 @@ block content
         .col-md-8.col-md-offset-2
           form
             .form-group
-              .icon_search.dc-filters
-                input.form-control.input-lg(type='text', placeholder='Search drinks...')
-                a(href='searchresult.html')
-                  i.fa.fa-search
+              .input-group.dc-filters
+                a.arrow(href='#drop_recent_search', data-toggle='collapse')
+                  i.fa.fa-caret-down
                 //- a
+                input.form-control.input-lg(type='text', placeholder='Search drinks...')
+                span.input-group-btn &nbsp;&nbsp;
+                span.input-group-btn
+                  a.btn.btn-success.btn-lg(href='searchresult.html') Search
+                //- span
                 a.link-1(href='#refineSearch', data-toggle='collapse') Refine Search
-                #refineSearch.dc-filters-dropdown.collapse
+                #drop_recent_search.search-dropdown.collapse
+                  a.close(href='#drop_recent_search', data-toggle='collapse') &times;
+                  .dropdown-wrap
+                    big Suggestions
+                    ul
+                      li
+                        a(href='') Brokenwood - Graveyard Vineyard
+                      //- li
+                    //- ul
+                    big Recent search&nbsp;
+                      small
+                        a(href='') clear
+                      //- small
+                    //- strong
+                    ul
+                      li
+                        a(href='') Corona Extra - Imported Beer
+                      //- li
+                    //- ul
+                  //- .dropdown-wrap
+                //- drop_recent_search
+                #refineSearch.search-dropdown.collapse
                   a.close(href='#refineSearch', data-toggle='collapse') &times;
-                  .filters-wrap
+                  .dropdown-wrap
                     .row
                       .col-md-4
                         strong Category
@@ -470,11 +495,38 @@ block content
                     //- row
                   //- filters-wrap
                 //- dc-filters-dropdown
-              //- icon_search
+              //- input-group
             //- form-group
           //- form
         //- col-md-8
       //- row
+    //- container
+  //- section
+
+  section.pagenav
+    .container
+      nav.page
+        ul
+          li
+            a(href='drinks-red.html') Red
+          //- li
+          li
+            a(href='drinks-white.html') White
+          //- li
+          li
+            a(href='drinks-beer.html') Beer
+          //- li
+          li
+            a(href='drinks-spirits.html') Spirits
+          //- li
+          li
+            a(href='drinks-bubbles.html') Bubbles
+          //- li
+          li
+            a(href='drinks-cider.html') Cider
+          //- li
+        //- ul
+      //- nav
     //- container
   //- section
 
@@ -566,6 +618,10 @@ block content
                     tr
                       th Shipping
                       td Free
+                    //- tr
+                    tr
+                      th Returns
+                      td 60 days
                     //- tr
                     tr
                       th Ratings
@@ -698,7 +754,7 @@ block content
                     //- tr
                     tr
                       th Alcohol
-                      td 13.0% (2015)
+                      td 13.0%
                     //- tr
                     tr
                       th Vintage
@@ -707,6 +763,10 @@ block content
                     tr
                       th Shipping
                       td $9
+                    //- tr
+                    tr
+                      th Returns
+                      td 30 days
                     //- tr
                     tr
                       th Ratings
@@ -839,7 +899,7 @@ block content
                     //- tr
                     tr
                       th Alcohol
-                      td 14.0% (2015)
+                      td 14.0%
                     //- tr
                     tr
                       th Vintage
@@ -848,6 +908,10 @@ block content
                     tr
                       th Shipping
                       td Free
+                    //- tr
+                    tr
+                      th Returns
+                      td 90 days
                     //- tr
                     tr
                       th Ratings

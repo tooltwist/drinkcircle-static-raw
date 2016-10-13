@@ -18,27 +18,28 @@ block content
     .banner-static
       img(src='assets/images/banner/banner_slide_2.jpg')
     //- banner-static
-    .floating-text
-      .container
-        .col-md-6
-          .left
-            h2
-              | Circlebuying
-            //- h3
-            h3
-              | Join in the fun
-            //- h3
-          //- left
-        //- col-md-6
-        .col-md-6
-          .right
+    h1.jumbo Join in the fun and save big time
+      br
+      small circlebuying
+    //- h1
 
-          //- right
-        //- col-md-6
-      //- container
-    //- floating-text
+    //- .floating-text
+    //-   .container
+    //-     .col-md-12
+    //-       .center
+    //-         h3
+    //-           | Join in the fun
+    //-         //- h3
+    //-         h2
+    //-           | Circlebuying
+    //-         //- h3
+    //-       //- center
+    //-     //- col-md-12
+    //-   //- container
+    //- //- floating-text
+
     .action
-      a.btn.btn-success.btn-lg
+      a.btn.btn-success.btn-lg(href='#modal_signup', data-toggle='modal')
         i.fa.fa-envelope
         span.hidden-xs &nbsp;&nbsp;&nbsp;Signup with Email
       //- a
@@ -50,25 +51,52 @@ block content
   //- banner-home
 
   section
-    .container
+    .container.text-center
       .row
         .col-md-12
-          h1.text-center What is Circlebuying?
+          h1 What is circlebuying?
+          br
+          p.lead circlebuying is the fun new way to get together with friends and save big time on your drinks, directly from the drinkmaker.
         //- col-md-12
       //- row
-      p Join in a circlebuy
-        br
-        | and save bigtime
-      //- p
-      p
-        | Create a circlebuy
-        br
-        | and save even more
-      //- p
-
       .row
         .col-md-12
-          h1.text-center How does Circlebuying work?
+          h1 How do I join a circlebuy?
+          br
+          p.lead It’s really easy to do. Just find a circlebuy that looks good and join on up. You can search&nbsp;
+            a(href='') here.
+        //- col-md-12
+      //- row
+      .row
+        .col-md-12
+          h1 Can I start my own circlebuy?
+          br
+          p.lead You sure can it’s really simple.In just a few clicks you are on your way. Starting your own can also bring extra savings.
+        //- col-md-12
+      //- row
+      .row
+        .col-md-12
+          h1 How do I let my friends know about my circlebuy?
+          br
+          p.lead Simply share the details with your friends on the drinkcircle community or with friends on other social media or email and invite them to join.
+        //- col-md-12
+      //- row
+      .row
+        .col-md-12
+          h1 Where does my drink order go?
+          br
+          p.lead circlebuying gives back the 'power to the people'.
+          p.lead By combining your orders in a circlebuy all members enjoy bulk buy rates and still get their drinks delivered directly their door.
+        //- col-md-12
+      //- row
+      .row
+        .col-md-12
+          h1 Ready for lots of fun and big savings?
+          br
+          p.lead To get started&nbsp;
+            a(href='#modal_signup', data-toggle='modal') click here
+            | .
+          //- p
         //- col-md-12
       //- row
     //- container

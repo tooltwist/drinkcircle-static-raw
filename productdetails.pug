@@ -48,24 +48,17 @@ block content
                     br
                     p
                     .row
-                      .col-md-4
+                      .col-md-6.text-left
                         small
                           | RRP $29.99&nbsp;
                           span.pb / bottle
                         //- small
-                      //- col-md-4
-                      .col-md-4
+                      //- col-md-6
+                      .col-md-6.text-right
                         small
                           span.avl 500+ available / 319 sold
                         //- small
-                      //- col-md-4
-                      .col-md-4
-                        small
-                          //- span.text-danger
-                          //-   i.fa.fa-clock-o
-                          //-   | &nbsp;3d 2hrs left
-                        //- small
-                      //- col-md-4
+                      //- col-md-6
                     //- row
                   //- h1
                   hr
@@ -74,54 +67,39 @@ block content
                       .col-md-4.col-sm-4
                         fieldset.deals.card
                           legend 1 case
-                          big.lead
-                            strong $25.99
-                          //- big
-                          br
+                          p.lead $25.99
                           a.btn.btn-success(href="#", target="_blank")
                             span.num buy now
                           //- a
                           br
                           | save&nbsp;
-                          big.lead
-                            strong.green $4&nbsp;
-                          //- big
+                          p.lead.green.inline $4&nbsp;
                           | / bottle
                         //- deals
                       //- col-md-4
                       .col-md-4.col-sm-4
                         fieldset.deals.card
                           legend 5+ cases
-                          big.lead
-                            strong $21.99
-                          //- big
-                          br
+                          p.lead $21.99
                           a.btn.btn-success(href="#", target="_blank")
                             span.num buy now
                           //- a
                           br
                           | save&nbsp;
-                          big.lead
-                            strong.green $8&nbsp;
-                          //- big
+                          p.lead.green.inline $8&nbsp;
                           | / bottle
                         //- deals
                       //- col-md-4
                       .col-md-4.col-sm-4
                         fieldset.deals.card
                           legend 10+ cases
-                          big.lead
-                            strong $19.99
-                          //- big
-                          br
+                          p.lead $19.99
                           a.btn.btn-success(href="#", target="_blank")
                             span.num buy now
                           //- a
                           br
                           | save&nbsp;
-                          big.lead
-                            strong.green $10&nbsp;
-                          //- big
+                          p.lead.green.inline $10&nbsp;
                           | / bottle
                         //- deals
                       //- col-md-4
@@ -131,104 +109,179 @@ block content
               //- col-md-12
             //- row
             hr
-            p.lead.text-center
-              | 84 active circlebuys
-              span.pull-right
-                a.button.inline.v7(href="#") public
-                | &nbsp;
-                a.button.inline.v7(href="#") friends
-              //- pull-right
-            //- p
+
+            .row
+              .col-md-4
+                a.button.inline.v7(href="#modal_circlebuys", data-toggle='modal') learn more
+              //- col-md-4
+              .col-md-4
+                p.lead.text-center.totalcbcount 84 circlebuys
+              //- col-md-4
+              .col-md-4
+                .text-right
+                  a.button.inline.v7(href="#") public
+                  | &nbsp;
+                  a.button.inline.v7(href="#") friends
+                //- text-right
+              //- col-md-4
+            //- row
+
             .row
               .col-md-4.col-sm-4.text-center
                 .card_rounded
-                  strong Adrian's circlebuy
-                  br
-                  span.green 3 cases left
-                  br
+                  span.green Adrian's circlebuy
+                  hr
+                  .row.shortsummary
+                    .col-md-4
+                      p size
+                      p.lead 10
+                        br
+                        small cases
+                      //- p
+                    //- col-md-4
+                    .col-md-4
+                      p sold
+                      p.lead 7
+                        br
+                        small cases
+                      //- p
+                    //- col-md-4
+                    .col-md-4
+                      p left
+                      p.lead 3
+                        br
+                        small cases
+                      //- p
+                    //- col-md-4
+                  //- row
                   p
                   .avatar
                     .img
                       .ring._70p
                       img(src='assets/images/circles/circles_8.png', alt='')
                     //- img
+                    .countdown
+                      //- span.time 32:12
+                      p.lead 04:56
+                      //- span
+                      //- br
+                      small.unit hrs left
+                      //- span
+                    //- countdown
                   //- avatar
                   br
-                  big.lead
-                    strong $19.99
+                  p
+                    a.button.inline.v7.joincirclebuy(href="#") join
+                  //- p
+                  p.lead.cbprice $19.99
                   //- big
-                  br
-                  p
-                  p
-                    a.button.inline.v7(href="#") request to join
-                  //- p
-                  p
-                    i.fa.fa-clock-o
-                    | &nbsp;1d 8hrs left
-                  //- p
                 //- card_rounded
               //- col-md-4
               .col-md-4.col-sm-4.text-center
                 .card_rounded
-                  strong Sharmaine's circlebuy
-                  br
-                  span.green 5 cases left
-                  br
+                  span.green Sharmaine's circlebuy
+                  hr
+                  .row.shortsummary
+                    .col-md-4
+                      p size
+                      p.lead 10
+                        br
+                        small cases
+                      //- p
+                    //- col-md-4
+                    .col-md-4
+                      p sold
+                      p.lead 5
+                        br
+                        small cases
+                      //- p
+                    //- col-md-4
+                    .col-md-4
+                      p left
+                      p.lead 5
+                        br
+                        small cases
+                      //- p
+                    //- col-md-4
+                  //- row
                   p
                   .avatar
                     .img
                       .ring._50p
                       img(src='assets/images/circles/circles_1.png', alt='')
                     //- img
+                    .countdown
+                      //- span.time 32:12
+                      p.lead 16:08
+                      //- span
+                      //- br
+                      small.unit hrs left
+                      //- span
+                    //- countdown
                   //- avatar
                   br
-                  big.lead
-                    strong $19.99
+                  p
+                    a.button.inline.v7.joincirclebuy(href="#") join
+                  //- p
+                  p.lead.cbprice $19.99
                   //- big
-                  br
-                  p
-                  p
-                    a.button.inline.v7(href="#") request to join
-                  //- p
-                  p
-                    i.fa.fa-clock-o
-                    | &nbsp;2d 2hrs left
-                  //- p
                 //- card_rounded
               //- col-md-4
               .col-md-4.col-sm-4.text-center
                 .card_rounded
-                  strong Jenny's circlebuy
-                  br
-                  span.green 3 cases left
-                  br
+                  span.green Jenny's circlebuy
+                  hr
+                  .row.shortsummary
+                    .col-md-4
+                      p size
+                      p.lead 5
+                        br
+                        small cases
+                      //- p
+                    //- col-md-4
+                    .col-md-4
+                      p sold
+                      p.lead 3
+                        br
+                        small cases
+                      //- p
+                    //- col-md-4
+                    .col-md-4
+                      p left
+                      p.lead 2
+                        br
+                        small cases
+                      //- p
+                    //- col-md-4
+                  //- row
                   p
                   .avatar
                     .img
                       .ring._40p
                       img(src='assets/images/circles/circles_7.png', alt='')
                     //- img
+                    .countdown
+                      //- span.time 32:12
+                      p.lead 32:12
+                      //- span
+                      //- br
+                      small.unit hrs left
+                      //- span
+                    //- countdown
                   //- avatar
                   br
-                  big.lead
-                    strong $21.99
+                  p
+                    a.button.inline.v7.joincirclebuy(href="#") join
+                  //- p
+                  p.lead.cbprice $21.99
                   //- big
-                  br
-                  p
-                  p
-                    a.button.inline.v7(href="#") request to join
-                  //- p
-                  p
-                    i.fa.fa-clock-o
-                    | &nbsp;2d 6hrs left
-                  //- p
                 //- card_rounded
               //- col-md-4
             //- row
             br
             .expand.text-center
               a(href='#')
-                | more circlebuys&nbsp;
+                | show more&nbsp;
                 i.fa.fa-caret-down
             //- expand
             hr
@@ -272,6 +325,13 @@ block content
                     strong.green vintage
                     br
                     | 2010
+                  //- p
+                //- col-md-4
+                .col-xs-4.col-md-4
+                  p
+                    strong.green shipping
+                    br
+                    | Free
                   //- p
                 //- col-md-4
                 .col-xs-4.col-md-4

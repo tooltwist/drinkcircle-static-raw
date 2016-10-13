@@ -111,10 +111,43 @@ block content
             h4
               a(href="#") Packs &amp; Specials
             //- h4
+            hr
+            h4
+              a(href="#") Shipping
+            //- h4
+            h4
+              a(href="#") Return Policy
+            //- h4
+            h4
+              a(href="#") Circlebuys
+            //- h4
+            h4
+              a(href="#") Contact Us
+            //- h4
+            h4
+              a(href="seller.html") About Us
+            //- h4
           //- card
         //- col-md-3
         .col-md-9
           br
+          form.form-inline
+            .form-group
+              label(for='exampleInputName2') Sort by
+              select.form-control
+                option Most popular
+              //- select
+            //- form-group
+            .form-group
+              label(for='exampleInputEmail2') Show
+              select.form-control
+                option 15
+                option 50
+                option 100
+              //- select
+            //- form-group
+          //- form
+          hr
           .product-wrap
             .row
               // 1 Product
@@ -138,7 +171,7 @@ block content
                         .buy.drop
                           ul
                             li
-                              a.thumb-action(href='') Compare
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
                             //- li
                             li.drop
                               a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
@@ -208,7 +241,7 @@ block content
                         .buy.drop
                           ul
                             li
-                              a.thumb-action(href='') Compare
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
                             //- li
                             li.drop
                               a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
@@ -280,7 +313,7 @@ block content
                         .buy.drop
                           ul
                             li
-                              a.thumb-action(href='') Compare
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
                             //- li
                             li.drop
                               a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
@@ -350,7 +383,7 @@ block content
                         .buy.drop
                           ul
                             li
-                              a.thumb-action(href='') Compare
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
                             //- li
                             li.drop
                               a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
@@ -420,7 +453,7 @@ block content
                         .buy.drop
                           ul
                             li
-                              a.thumb-action(href='') Compare
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
                             //- li
                             li.drop
                               a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
@@ -490,7 +523,7 @@ block content
                         .buy.drop
                           ul
                             li
-                              a.thumb-action(href='') Compare
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
                             //- li
                             li.drop
                               a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
@@ -541,6 +574,29 @@ block content
               //- col
             //- row
           //- product-wrap
+          hr
+          nav.text-center(aria-label='...')
+            ul.pagination.pagination-sm
+              li
+                a(href='#', aria-label='Previous')
+                  span(aria-hidden='true') «
+              li
+                a(href='#') 1
+              li
+                a(href='#') 2
+              li
+                a(href='#') 3
+              li
+                a(href='#') 4
+              li
+                a(href='#') 5
+              li
+                a(href='#', aria-label='Next')
+                  span(aria-hidden='true') »
+                //- a
+              //- li
+            //- ul
+          //- nav
         //- col-md-9
       //- row
     //- container

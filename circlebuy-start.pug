@@ -17,28 +17,27 @@ block content
     .container
       .row
         .col-md-12
-          br
-          h3.title Create a Multibuy for Brokenwood - Graveyard Vineyard Shiraz
+          h3.title Create a Circlebuy for Brokenwood - Graveyard Vineyard Shiraz
         //- col-md-12
       //- row
       .card
         .row
           .col-md-9
             p
-              | Total Quantity for Multibuy&nbsp;
+              | Total Quantity for Circlebuy&nbsp;
               select.form-control.inline
                 option 10 cases
               //- select
             //- p
-            p.text-warning * All circlebuys will be closed in 3 days or less if the closure of the deal is shorter than 3 days.
+            p.text-warning * All Circlebuys will expire in 3 days if the Circlebuy is not completed.
           //- col-md-9
           .col-md-3
             .alert.alert-warning.countdown
-              | Deal closes in
+              | Circlebuy closes in
               hr
-              h2 2days
+              h2 48hrs
                 br
-                | 12:00:01
+                small.text-warning 12mins
               //- h2
             //- alert
           //- col-md-3
@@ -56,10 +55,14 @@ block content
           //- col-md-4
           .col-md-3
             .form-group
-              label Quantity
+              label Your quantity
               select.form-control
                 option 3 cases
               //- select
+            //- form-group
+            .form-group
+              label Quantity remaining
+              p.form-control-static 7 cases
             //- form-group
           //- col-md-4
           .col-md-5
@@ -225,7 +228,7 @@ block content
           //- col-md-4
           .col-md-12
             .form-group
-              label Comment
+              label Comment for delivery
               textarea.form-control(rows='3')
             //- form-group
           //- col-md-4
@@ -234,7 +237,7 @@ block content
 
       br
       .text-right
-        a.btn.btn-success(href='') Next
+        a.btn.btn-success.btn-lg(href='circlebuy-invites.html') Next
       //- text-right
     //- container
   //- section
