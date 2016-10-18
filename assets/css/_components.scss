@@ -97,7 +97,8 @@
 		img {
 			padding: 20px;
 			@include border-radius(50%);
-			max-width: 100%;
+			// max-width: 100%;
+      max-height: 100%;
 			position: absolute;
 			left: 0;
 			right: 0;
@@ -112,7 +113,7 @@
 		width: 100%;
 		height: 100%;
 		background: transparent url($bg-avatar-ring) center center no-repeat;
-		background-size: 100%;
+		background-size: auto 100%;
 		&._70p {
 			background-image: url($bg-avatar-ring-70p);
 		}
@@ -121,6 +122,15 @@
 		}
 		&._40p {
 			background-image: url($bg-avatar-ring-40p);
+		}
+    &._s20 {
+			background-image: url($bg-avatar-ring-s20);
+		}
+		&._s6 {
+			background-image: url($bg-avatar-ring-s6);
+		}
+		&._s3 {
+			background-image: url($bg-avatar-ring-s3);
 		}
 	}
 	.name {
@@ -245,6 +255,9 @@
   .btn {
     margin-bottom: 5px;
     padding: 2px 25px;
+  }
+  &.card {
+    background: #ececec;
   }
 }
 

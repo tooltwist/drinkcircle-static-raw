@@ -17,6 +17,9 @@ header
             .form-group.all-search
               i.fa.fa-search
               input.form-control(type='text', placeholder='Search drinks, drinkmakers, ratings, circlebuys, people and more...')
+              a.save-search.color.inherit(href='')
+                i.fa.fa-star-o
+                span.hidden-xs save search
             //- form-group
           //- li
         //- ul
@@ -47,7 +50,7 @@ header
               //- li
             //- ul
           //- li
-          li
+          li.text-center
             a.notification(href='#')
               i.fa.fa-bell
               .counter 2
@@ -83,98 +86,97 @@ header
             //- a
           //- li
         //- ul
-        .clearfix
-        .div
-          ul.nav.navbar-nav.navbar-left.nav-category
-            li
-              a(href='drinks.html') Drinks
-              //- ul
-              //-   li
-              //-     a(href='') Sub Menu
-              //-   //- li
-              //- //- ul
-            //- li
-            li
-              a(href='drinkmakers.html') Drinkmakers
-              //- ul
-              //-   li
-              //-     a(href='') Sub Menu
-              //-   //- li
-              //- //- ul
-            //- li
-            li
-              a(href='drinks-red.html') Red
-              //- ul
-              //-   li
-              //-     a(href='') Sub Menu
-              //-   //- li
-              //- //- ul
-            //- li
-            li
-              a(href='drinks-white.html') White
-              //- ul
-              //-   li
-              //-     a(href='') Sub Menu
-              //-   //- li
-              //- //- ul
-            //- li
-            li
-              a(href='drinks-beer.html') Beer
-              //- ul
-              //-   li
-              //-     a(href='') Sub Menu
-              //-   //- li
-              //- //- ul
-            //- li
-            li
-              a(href='drinks-spirits.html') Spirits
-              //- ul
-              //-   li
-              //-     a(href='') Sub Menu
-              //-   //- li
-              //- //- ul
-            //- li
-            li
-              a(href='drinks-bubbles.html') Bubbles
-              //- ul
-              //-   li
-              //-     a(href='') Sub Menu
-              //-   //- li
-              //- //- ul
-            //- li
-            li
-              a(href='drinks-cider.html') Cider
-              //- ul
-              //-   li
-              //-     a(href='') Sub Menu
-              //-   //- li
-              //- //- ul
-            //- li
-            li
-              a(href='circlebuys.html') Circlebuying
-            //- li
-            li
-              a(href='#interests', data-toggle='modal') Interests
-            //- li
-            li
-              a(href='ratings.html') Ratings
-            //- li
-            li
-              a(href='compare.html') Compare
-            //- li
-            li
-              a(href='profile.html') Post
-              //- ul
-              //-   li
-              //-     a(href='') Sub Menu
-              //-   //- li
-              //- //- ul
-            //- li
-            li
-              a(href='profile.html') Profile
-            //- li
-          //- ul
-        //- col-md-12
+        //- .clearfix
+        //- .div
+        ul.nav.navbar-nav.navbar-left.nav-category
+          li
+            a(href='drinks.html') Drinks
+            //- ul
+            //-   li
+            //-     a(href='') Sub Menu
+            //-   //- li
+            //- //- ul
+          //- li
+          li
+            a(href='drinkmakers.html') Drinkmakers
+            //- ul
+            //-   li
+            //-     a(href='') Sub Menu
+            //-   //- li
+            //- //- ul
+          //- li
+          li
+            a(href='drinks-red.html') Red
+            //- ul
+            //-   li
+            //-     a(href='') Sub Menu
+            //-   //- li
+            //- //- ul
+          //- li
+          li
+            a(href='drinks-white.html') White
+            //- ul
+            //-   li
+            //-     a(href='') Sub Menu
+            //-   //- li
+            //- //- ul
+          //- li
+          li
+            a(href='drinks-beer.html') Beer
+            //- ul
+            //-   li
+            //-     a(href='') Sub Menu
+            //-   //- li
+            //- //- ul
+          //- li
+          li
+            a(href='drinks-spirits.html') Spirits
+            //- ul
+            //-   li
+            //-     a(href='') Sub Menu
+            //-   //- li
+            //- //- ul
+          //- li
+          li
+            a(href='drinks-bubbles.html') Bubbles
+            //- ul
+            //-   li
+            //-     a(href='') Sub Menu
+            //-   //- li
+            //- //- ul
+          //- li
+          li
+            a(href='drinks-cider.html') Cider
+            //- ul
+            //-   li
+            //-     a(href='') Sub Menu
+            //-   //- li
+            //- //- ul
+          //- li
+          li
+            a(href='circlebuying.html') Circlebuys
+          //- li
+          li
+            a(href='#interests', data-toggle='modal') Interests
+          //- li
+          li
+            a(href='ratings.html') Ratings
+          //- li
+          li
+            a(href='compare.html') Compare
+          //- li
+          li
+            a(href='profile.html') Post
+            //- ul
+            //-   li
+            //-     a(href='') Sub Menu
+            //-   //- li
+            //- //- ul
+          //- li
+          li
+            a(href='profile.html') Profile
+          //- li
+        //- ul
       //- #navbar
     //- container
   //- nav

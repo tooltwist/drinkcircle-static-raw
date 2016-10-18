@@ -438,11 +438,25 @@ block content
             //- input-group
           //- maker-filters
           hr
-          div
-            select.form-control.inline
-              option Best Match
-            //- select
-          //- div
+          form.form-inline
+            .form-group
+              label(for='exampleInputName2') Sort by
+              select.form-control
+                option highest rated
+                option most reviews
+                option A to Z
+                option Z to A
+              //- select
+            //- form-group
+            .form-group
+              label(for='exampleInputEmail2') Show
+              select.form-control
+                option 15
+                option 50
+                option 100
+              //- select
+            //- form-group
+          //- form
           .maker-list
             .row
               .col-md-5

@@ -10,9 +10,15 @@ block content
 
   section.drinks.results
     .container
+      .text-center.visible-sm.visible-xs
+        p
+          a.btn.btn-success.btn-block.toggleFilter.collapsed(href='#pageFilter', data-toggle='collapse', expanded='false') Filters&nbsp;
+            i.fa.fa-filter
+        //- p
+      //- text-center
       .row
         .col-md-3
-          .search-dropdown
+          #pageFilter.search-dropdown.collapse
             .dropdown-wrap
               strong(data-toggle='collapse', data-target='#collapse-category') Category
               #collapse-category.collpase.in
@@ -762,7 +768,7 @@ block content
                             //- li
                             li.drop
                               a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                                | $11.99
+                                | $59.99
                               //- a
                               br
                               ul

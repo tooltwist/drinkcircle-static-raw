@@ -40,7 +40,8 @@ block content
             .row
               .col-md-12
                 .inventory
-                  h1 Sticks
+                  h1 Sticks&nbsp;&nbsp;&nbsp;
+                    a.button.inline.v8(href="circlebuys.html") see all drinks
                     br
                     strong
                       small Pinot Noir  - 12 pack
@@ -62,6 +63,7 @@ block content
                     //- row
                   //- h1
                   hr
+                  p.lead.text-center Option 1 : Buy now
                   .pricing
                     .row
                       .col-md-4.col-sm-4
@@ -110,9 +112,12 @@ block content
             //- row
             hr
 
+            p.lead.text-center Option 2 : Join a circlebuy&nbsp;&nbsp;&nbsp;
+              a.button.inline.v8(href="circlebuys.html") learn more
+            //- p
             .row
               .col-md-4
-                a.button.inline.v7(href="#modal_circlebuys", data-toggle='modal') learn more
+                //- p.lead.text-center.totalcbcount Duration: 72hrs
               //- col-md-4
               .col-md-4
                 p.lead.text-center.totalcbcount 27 circlebuys
@@ -282,186 +287,218 @@ block content
             br
             .expand.text-center
               a(href='#')
-                | more circlebuys&nbsp;
+                | show more&nbsp;
                 i.fa.fa-caret-down
             //- expand
             hr
+            p.lead.text-center Option 3 : Create a circlebuy
+              br
+              small(style='font-size: 16px;') creator bonus: 50% off 1 case
             .text-center
-              a.btn.btn-success(href="#") start a new circlebuy
+              a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") create
+              | &nbsp;
+              a.button.inline.v8(href="circlebuys.html") learn more
             //- text-center
             hr
 
             .about
-              p.lead Product Details
-              p.comment
-                strong Sticks Pinot Noir&nbsp;
-                | Once again this producer provides us with a handy little number showing plenty of varietal and regional characteristics. Sticks Pinot Noir from Yarra Valley, features lovely red cherry flavours with playfull spices and charry oak influence. Lean with subtle tannins and medium finish.
-              //- p
-              .row
-                .col-xs-4.col-md-4
-                  p
-                    strong.green variety
-                    br
-                    | Pinot Noir
-                  //- p
-                //- col-md-4
-                .col-xs-4.col-md-4
-                  p
-                    strong.green region
-                    br
-                    | Yarra Valley
-                  //- p
-                //- col-md-4
-                .col-xs-4.col-md-4
-                  p
-                    strong.green alcohol
-                    br
-                    | 13.0% (2015)
-                  //- p
-                //- col-md-4
-              //- row
-              .row
-                .col-xs-4.col-md-4
-                  p
-                    strong.green vintage
-                    br
-                    | 2015*
-                  //- p
-                //- col-md-4
-                .col-xs-4.col-md-4
-                  p
-                    strong.green shipping
-                    br
-                    | $9
-                  //- p
-                //- col-md-4
-                .col-xs-4.col-md-4
-                  p.share
-                    strong.green share
-                      br
-                      a(href="#", target="_blank")
-                        i.fa.fa-twitter
+              .tabs
+                ul.nav.nav-tabs(role='tablist')
+                  li.active(role='presentation')
+                    a(href='#pDetails', role='tab', data-toggle='tab') Product Details
+                  //- li
+                  li(role='presentation')
+                    a(href='#pTastingNotes', role='tab', data-toggle='tab') Tasting Notes
+                  //- li
+                  li(role='presentation')
+                    a(href='#pWineryInfo', role='tab', data-toggle='tab') Winery Information
+                  //- li
+                //- ul
+                .tab-content.card
+                  #pDetails.tab-pane.active(role='tabpanel')
+                    p.comment
+                      strong Sticks Pinot Noir&nbsp;
+                      | Once again this producer provides us with a handy little number showing plenty of varietal and regional characteristics. Sticks Pinot Noir from Yarra Valley, features lovely red cherry flavours with playfull spices and charry oak influence. Lean with subtle tannins and medium finish.
+                    //- p
+                    .row
+                      .col-xs-4.col-md-4
+                        p
+                          strong.green variety
+                          br
+                          | Pinot Noir
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4
+                        p
+                          strong.green region
+                          br
+                          | Yarra Valley
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4
+                        p
+                          strong.green alcohol
+                          br
+                          | 13.0%
+                        //- p
+                      //- col-md-4
+                    //- row
+                    .row
+                      .col-xs-4.col-md-4
+                        p
+                          strong.green vintage
+                          br
+                          | 2015
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4
+                        p
+                          strong.green shipping
+                          br
+                          | $9
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4(data-expand-items)
+                        p
+                          strong.green returns
+                          br
+                          | 30 days
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4(data-expand-items)
+                        p
+                          strong.green case size
+                          br
+                          | 6 bottles
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4(data-expand-items)
+                        p
+                          strong.green standard drinks
+                          br
+                          | 7
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4(data-expand-items)
+                        p
+                          strong.green food matching
+                          br
+                          | Pasta, Duck
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4
+                        p.share
+                          strong.green share
+                            br
+                            a(href="#", target="_blank")
+                              i.fa.fa-twitter
+                            //- a
+                            a(href="#", target="_blank")
+                              i.fa.fa-facebook
+                            //- a
+                            a(href="#", target="_blank")
+                              i.fa.fa-google-plus
+                            //- a
+                            a(href="#", target="_blank")
+                              i.fa.fa-envelope
+                            //- a
+                        //- p.share
+                      //- col-md-4
+                    //- row
+                    .expand.text-center
+                      a(href='#', data-expand)
+                        span.text more
+                        span.text(style='display: none') less
+                        | &nbsp;
+                        i.fa.fa-caret-down
                       //- a
-                      a(href="#", target="_blank")
-                        i.fa.fa-facebook
-                      //- a
-                      a(href="#", target="_blank")
-                        i.fa.fa-google-plus
-                      //- a
-                      a(href="#", target="_blank")
-                        i.fa.fa-envelope
-                      //- a
-                  //- p.share
-                //- col-md-4
-              //- row
-              .expand.text-center
-                a(href='#', data-toggle='collapse')
-                  | more&nbsp;
-                  i.fa.fa-caret-down
-              //- expand
+                    //- expand
+                  //- tab-pane
+                  #pTastingNotes.tab-pane(role='tabpanel')
+
+                  //- tab-pane
+                  #pWineryInfo.tab-pane(role='tabpanel')
+
+                  //- tab-pane
+                //- tab-content
+              //- tabs
             //- about
             .reviews
               .row
                 .col-md-7
                   p.lead Customer Reviews &amp; Ratings
-                  a.popover_rating(href="#", data-toggle="popover", data-placement="bottom", data-title="Summary") 69 Ratings
+                  a.popover_rating(href="#", data-toggle="popover", data-placement="bottom", data-title="Summary") 242 Ratings
                     span.ratings
                       table
                         tr
                           td(width="100")
-                            small 95 - 100
+                            small 90 - 100
                           //- td
-                          td(width="300")
+                          td(width="270")
                             .progress
-                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 40%')
-                                span.sr-only 40% Complete (success)
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width: 100%')
+                                span.sr-only 100% Complete (success)
                               //- progress-bar
                             //- progress
                           //- td
+                          td.text-center(width="50")
+                            small 231
                         //- tr
                         tr
                           td
-                            small 100 - 120
+                            small 80 - 89
                           //- td
                           td
                             .progress
-                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 60%')
-                                span.sr-only 60% Complete (success)
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='10', aria-valuemin='0', aria-valuemax='100', style='width: 10%')
+                                span.sr-only 10% Complete (success)
                               //- progress-bar
                             //- progress
                           //- td
+                          td.text-center
+                            small 10
                         //- tr
                         tr
                           td
-                            small 120 - 140
+                            small 70 - 79
                           //- td
                           td
                             .progress
-                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 20%')
-                                span.sr-only 20% Complete (success)
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='1', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
+                                span.sr-only 1% Complete (success)
                               //- progress-bar
                             //- progress
                           //- td
+                          td.text-center
+                            small 1
                         //- tr
                         tr
                           td
-                            small 140 - 160
+                            small 60 - 69
                           //- td
                           td
                             .progress
-                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
                                 span.sr-only 0% Complete (success)
                               //- progress-bar
                             //- progress
                           //- td
+                          td.text-center
+                            small 0
                         //- tr
                         tr
                           td
-                            small 160 - 180
+                            small 60 below
                           //- td
                           td
                             .progress
-                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 40%')
-                                span.sr-only 40% Complete (success)
-                              //- progress-bar
-                            //- progress
-                          //- td
-                        //- tr
-                        tr
-                          td
-                            small 180 - 200
-                          //- td
-                          td
-                            .progress
-                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 60%')
-                                span.sr-only 60% Complete (success)
-                              //- progress-bar
-                            //- progress
-                          //- td
-                        //- tr
-                        tr
-                          td
-                            small 200 - 220
-                          //- td
-                          td
-                            .progress
-                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
                                 span.sr-only 0% Complete (success)
                               //- progress-bar
                             //- progress
                           //- td
-                        //- tr
-                        tr
-                          td
-                            small 220 - 250
-                          //- td
-                          td
-                            .progress
-                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 20%')
-                                span.sr-only 20% Complete (success)
-                              //- progress-bar
-                            //- progress
-                          //- td
+                          td.text-center
+                            small 0
                         //- tr
                       //- table
                     //- ratings

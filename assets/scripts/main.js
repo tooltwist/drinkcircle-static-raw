@@ -37,6 +37,42 @@ var Main = (function () {
 				$('.nav-category').slideDown();
 			});
 
+			$("[data-expand]").click(function(e) {
+				e.preventDefault();
+				$("[data-expand-items]").toggle();
+				$(this).find('span.text').toggle();
+				$(this).find('i').toggleClass('fa-caret-down fa-caret-up');
+			});
+
+			$('.photos .prev').each(function() {
+				"use strict";
+				var _this = $(this);
+				var wrapW = (_this.parent().width()/2);
+
+				_this.find('img').each(function() {
+					var w = $(this).width();
+					var h = $(this).height();
+					if (w > h) {
+						$(this).height('100%')
+					} else {
+						$(this).width('100%');
+					}
+
+					if ( (_this.width() < wrapW) && (w < h) ) {
+						$(this).height('100%').width('auto');
+					}
+
+				});
+			});
+
+			$(window).on('resize', function() {
+				if ( $(window).width() > 990 ) {
+					$('#pageFilter').css('display', 'block');
+				} else {
+					$('#pageFilter').removeAttr('style');
+				}
+			});
+
 		},
 
 		//--------

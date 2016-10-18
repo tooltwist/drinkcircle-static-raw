@@ -31,6 +31,10 @@ a {
 	}
 }
 
+.btn-link {
+	color: #41B54B;
+}
+
 h1,h2,h3,h4,h5 {
 	// font-family: 'helveticaneuebold', sans-serif;
 }
@@ -62,13 +66,13 @@ select.form-control {
 	outline: 0;
 	box-shadow: none;
 
-	background: white url('../../assets/images/drop_arrow.png') no-repeat;
+	background: white url($drop-arrow) no-repeat;
 	background-position: right center;
 }
 input {
 	&.form-control {
 		// height: 34px;
-		padding: 6px 30px 6px 12px;
+		// padding: 6px 30px 6px 12px;
 		font-size: 16px;
 		color: #555;
 		background-color: #fff;
@@ -147,6 +151,7 @@ input {
 					padding: 0;
 			    margin: 15px 5px;
 					font-size: 20px;
+					display: inline-block;
 					.counter {
 						position: absolute;
 				    left: 12px;
@@ -502,6 +507,7 @@ input {
 				right: 0;
 				margin: auto;
 				bottom: -45px;
+				z-index: 4;
 			}
 			.photo {
 				@include box(150px);
@@ -782,6 +788,7 @@ section {
 				margin-bottom: 30px;
 				// max-height: 395px;
 				overflow: hidden;
+				position: relative;
 			}
 			&.story {
 				& {
@@ -829,7 +836,7 @@ section {
 				}
 				.cat-thumb {
 					// padding: 0 5px 15px;
-					padding: 0 0px 9px;
+					padding: 0 0px 8px;
 					@media screen and (max-width: 1199px) {
 						padding: 0 0px 9px;
 					}
@@ -1038,7 +1045,14 @@ section {
 					}
 				}
 			}
+			a.block {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: 3;
+			}
 		}
+
 		.loadmore {
 			text-align: center;
 			a {
@@ -1675,6 +1689,9 @@ section {
 							position: relative;
 							vertical-align: middle;
 							margin: 0 22px;
+							@media screen and (max-width: 375px) {
+								margin: 0 2px;
+							}
 							a {
 								border: 0;
 								background: none;
@@ -1778,6 +1795,9 @@ section {
 	}
 	&.red {
 		color: #E93D3D;
+	}
+	&.inherit {
+		color: inherit;
 	}
 }
 .heading-center {
@@ -1927,11 +1947,11 @@ a.rate {
 
 .productdetails {
 	@media screen and (min-width: 991px) {
-		overflow: hidden;
+		// overflow: hidden;
 	}
 	.product-detail-wrap {
 		@media screen and (min-width: 991px) {
-			overflow: scroll;
+			// overflow: scroll;
 		}
 	}
 	hr {
@@ -1954,7 +1974,7 @@ a.rate {
 			hr {
 				margin: 10px 0;
 			}
-			background: #ececec;
+			// background: #ececec;
 		}
 		.shortsummary {
 			text-align: center;
@@ -2029,8 +2049,8 @@ a.rate {
 				margin-bottom: 10px;
 				line-height: 30px;
 				font-size: 28px;
-				small {
-					// font-weight: bold;
+				span, a {
+					vertical-align: middle;
 				}
 			}
 			.pricing {
@@ -2224,6 +2244,28 @@ a.rate {
 					max-height: none;
 					overflow: visible;
 				}
+			}
+		}
+	}
+	&.search {
+		.avatar {
+			.img {
+				img {
+					padding: 36px;
+				}
+			}
+		}
+		.card_rounded {
+			margin-bottom: 30px;
+			p.lead {
+				margin-bottom: 0;
+			}
+			hr {
+				margin: 5px 0;
+			}
+			.countdown {
+				position: relative;
+				top: -10px;
 			}
 		}
 	}
@@ -2431,9 +2473,14 @@ a.rate {
 	a.icon {
 		position: absolute;
 		left: 10px;
-		top: 6px;
+		top: 3px;
 		color: #777;
 		text-decoration: none;
+	}
+	&.left {
+	 	input {
+			padding-left: 30px;
+		}
 	}
 }
 
@@ -2629,6 +2676,9 @@ section {
 	&.request-list {
 		table tr td {
 			vertical-align: middle;
+			.dropdown {
+				display: inline-block;
+			}
 		}
 	}
 }
@@ -2685,6 +2735,38 @@ section {
 }
 .nomtop {
 	margin-top: 0 !important;
+}
+.block {
+	display: block;
+}
+.banner-btn-wrap {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	.btns {
+		top: 15px;
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: 100%;
+		text-align: center;
+		position: absolute;
+		@media screen and (min-width: 768px) {
+			width: auto;
+	    position: absolute;
+	    right: 15px;
+	    bottom: 15px;
+	    z-index: 3;
+	    top: initial;
+	    left: initial;
+		}
+		a {
+			margin-left: 5px;
+		}
+	}
 }
 
 
@@ -2858,10 +2940,13 @@ section {
 	input {
 		padding-left: 30px;
 		@media screen and (min-width: 768px) {
-			width: 360px;
+			width: 295px;
 		}
 		@media screen and (min-width: 991px) {
-			width: 570px;
+			width: 510px;
+		}
+		@media screen and (min-width: 1199px) {
+			width: 560px;
 		}
 	}
 	i {
@@ -2869,6 +2954,24 @@ section {
 		left: 9px;
 		top: 9px;
 		color: #ccc;
+	}
+	.save-search {
+		position: absolute;
+		top: 8px;
+		right: 10px;
+		@media screen and (min-width: 768px) {
+			right: -85px;
+		}
+		@media screen and (min-width: 992px) {
+			right: -85px;
+		}
+		@media screen and (min-width: 1199px) {
+			right: -110px;
+		}
+		i {
+			position: initial;
+			margin-right: 5px;
+		}
 	}
 }
 
@@ -2937,6 +3040,7 @@ section {
 
 .countdown {
 	text-align: center;
+	margin-bottom: 0;
 }
 
 .drinktype {
@@ -3328,7 +3432,7 @@ table {
 }
 
 .totalcbcount {
-	font-size: 20px;
+	font-size: 16px;
 }
 
 .list_groups {
@@ -3438,5 +3542,75 @@ nav {
 .input-group-btn {
 	a {
 		border-radius: 0;
+	}
+}
+
+[data-expand-items] {
+	display: none;
+}
+
+
+.el {
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.photos {
+	.prev {
+		padding: 0;
+		height: 250px;
+		max-height: 300px;
+		position: relative;
+		overflow: hidden;
+		img {
+			position: absolute;
+			max-width: none !important;
+			max-height: none;
+		}
+	}
+	.more-photos {
+		position: absolute;
+		color: white;
+		font-size: 34px;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		text-align: center;
+		display: table;
+		width: 100%;
+	}
+}
+
+
+p.lead {
+	a {
+		vertical-align: middle;
+	}
+}
+
+
+section {
+	&.drinks {
+		&.results {
+			.search-dropdown {
+				@media screen and (max-width: 990px) {
+					position: absolute;
+					z-index: 1;
+					background: white;
+					top: 0;
+					left: 0;
+					width: 100%;
+					padding: 15px;
+					border: 1px solid #eee;
+					max-height: 400px;
+					overflow: scroll;
+			    box-shadow: 0px 0px 5px 0px rgba(50,50,50,0.3);
+				}
+			}
+		}
 	}
 }

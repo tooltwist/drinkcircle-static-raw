@@ -1,0 +1,1487 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+
+  //- style
+
+
+block content
+
+  .banner.home
+    .gradient
+    .banner-static
+      img(src='assets/images/banner/banner_slide_2.jpg')
+    //- banner-static
+    h1.jumbo Join in the fun and save big time
+      br
+      small circlebuying
+    //- h1
+
+    .action
+      a.btn.btn-success.btn-lg(href='#modal_signup', data-toggle='modal')
+        i.fa.fa-envelope
+        span.hidden-xs &nbsp;&nbsp;&nbsp;Signup with Email
+      //- a
+      a.btn.btn-info.btn-lg
+        i.fa.fa-facebook
+        span.hidden-xs &nbsp;&nbsp;&nbsp;Continue with Facebook
+      //- a
+    //- action
+  //- banner-home
+
+  section.profile.dd
+    //- h2.direct Welcome to drinksdirect
+    //-   i.fa.fa-arrow-circle-right
+    //- //- h2
+    .container
+      .row
+        .col-md-8.col-md-offset-2
+          form
+            .form-group
+              .input-group.dc-filters
+                a.arrow(href='#drop_recent_search', data-toggle='collapse')
+                  i.fa.fa-caret-down
+                //- a
+                input.form-control.input-lg(type='text', placeholder='Search circlebuys...')
+                span.input-group-btn &nbsp;&nbsp;
+                span.input-group-btn
+                  a.btn.btn-success.btn-lg(href='searchresult.html') Search
+                //- span
+                a.link-1(href='#refineSearch', data-toggle='collapse') Refine Search
+                #drop_recent_search.search-dropdown.collapse
+                  a.close(href='#drop_recent_search', data-toggle='collapse') &times;
+                  .dropdown-wrap
+                    big Suggestions
+                    ul
+                      li
+                        a(href='') Brokenwood - Graveyard Vineyard
+                      //- li
+                    //- ul
+                    big Recent search&nbsp;
+                      small
+                        a(href='') clear
+                      //- small
+                    //- strong
+                    ul
+                      li
+                        a(href='') Corona Extra - Imported Beer
+                      //- li
+                    //- ul
+                  //- .dropdown-wrap
+                //- drop_recent_search
+                #refineSearch.search-dropdown.collapse
+                  a.close(href='#refineSearch', data-toggle='collapse') &times;
+                  .dropdown-wrap
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        strong Category
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Red Wine
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | White Wine
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Beer
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Cider
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Spirits
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Bubbles
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Organic
+                          //- li
+                        //- ul
+                      //- col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
+                        strong Varietal
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Shiraz
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Chardonnay
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Cabernet
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Suvignon
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Pinot Gris
+                          //- li
+                        //- ul
+                      //- col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
+                        strong Vintage
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Non Vintage
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 2016
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 2015
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Etc.
+                          //- li
+                        //- ul
+                      //- col-md-4
+                    //- row
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        strong Pack Size
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Single Bottle
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 6 pack
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 12 pack
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 24 pack
+                          //- li
+                        //- ul
+                      //- col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
+                        strong Country
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Australia
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | France
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Spain
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Italy
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | New Zealand
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Argentina
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | United States
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Chile
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | South Africa
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Greece
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Uruguay
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Portugal
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Romania
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Austria
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Macedonia
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Hungary
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Brazil
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | China
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Germany
+                          //- li
+                        //- ul
+                      //- col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
+                        strong Region
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Adelaide Hills
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Adelaide Plains
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Alphine Valleys
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Barossa Valley
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Beechworth
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Bendigo
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Blackwood Valley
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Canberra District
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Clare Valley
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Coonawarra
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Cowra
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Currency Creek
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Eden Valley Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Geelong Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Geographe Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Gippsland Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Glenrowan
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Goulburn Valley
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Grampians Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Granite Belt Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Great Southern Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Gundagai
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Hastings River
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Heathcote Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Henty
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Hilltops Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Hunter Valley Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Kangaroo Island
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | King Valley Wineries
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Langhorne Creek Wineries
+                          //- li
+                        //- ul
+                      //- col-md-4
+                    //- row
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        strong Price
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Under $10
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $10 - $20
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $20 - $30
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $30 - $40
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $40 - $50
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $50 - $60
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $60 - $80
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $80 - $100
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $100 - $150
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | $150 - $200
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Over $200
+                          //- li
+                        //- ul
+                      //- col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
+                        strong Ratings
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Over 95
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 90 - 94
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 85 - 89
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 80 - 84
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | 75 - 79
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Less than 74
+                          //- li
+                        //- ul
+                      //- col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
+                        strong Awards
+                        ul
+                          li
+                            input(type='checkbox')
+                            | Trophy
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Gold
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Silver
+                          //- li
+                          li
+                            input(type='checkbox')
+                            | Bronze
+                          //- li
+                        //- ul
+                      //- col-md-4
+                    //- row
+                  //- filters-wrap
+                //- dc-filters-dropdown
+              //- input-group
+            //- form-group
+          //- form
+        //- col-md-8
+      //- row
+    //- container
+  //- section
+
+  section.pagenav
+    .container
+      nav.page
+        ul
+          li
+            a(href='drinks-red.html') Red
+          //- li
+          li
+            a(href='drinks-white.html') White
+          //- li
+          li
+            a(href='drinks-beer.html') Beer
+          //- li
+          li
+            a(href='drinks-spirits.html') Spirits
+          //- li
+          li
+            a(href='drinks-bubbles.html') Bubbles
+          //- li
+          li
+            a(href='drinks-cider.html') Cider
+          //- li
+        //- ul
+      //- nav
+    //- container
+  //- section
+
+  section.drinks
+    .container
+      form.form-inline
+        .form-group
+          label(for='exampleInputName2') Sort by
+          select.form-control
+            option finish soonest
+            option my friends
+            option my circles
+            option highest no.
+          //- select
+        //- form-group
+        .form-group
+          label(for='exampleInputEmail2') Show
+          select.form-control
+            option 16
+            option 32
+            option 64
+          //- select
+        //- form-group
+      //- form
+      hr
+      .productdetails.search
+        .row
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Brokenwood
+                br
+                small.el Graveyard Vineyard Shiraz 2010
+              hr
+              span.green Adrian's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 10
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 7
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 3
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._70p
+                  img(src='assets/images/circles/circles_8.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 04:56
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $19.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Sticks
+                br
+                small.el Pinot Noir 2015
+              hr
+              span.green Sharmaine's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 10
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 5
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 5
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._50p
+                  img(src='assets/images/circles/circles_1.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 16:08
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $14.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Rosnay Organic
+                br
+                small.el Triple Blend 2015
+              hr
+              span.green Jenny's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 5
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 3
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 2
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._40p
+                  img(src='assets/images/circles/circles_7.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 32:12
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $19.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Corona Extra
+                br
+                small.el Imported Beer
+              hr
+              span.green Rodan's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 20
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 16
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 4
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._s20
+                  img(src='assets/images/users/user_2.jpg', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 02:04
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $39.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Chivas Regal
+                br
+                small.el 12 Year Old Scotch Whisky
+              hr
+              span.green Rodan's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 20
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 16
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 4
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._s20
+                  img(src='assets/images/users/user_2.jpg', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 02:04
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $32.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Somersby
+                br
+                small.el Apple Cider
+              hr
+              span.green Jeff's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 3
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 2
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 1
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._s3
+                  img(src='assets/images/circles/circles_3.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 08:20
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $39.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Somersby
+                br
+                small.el Blackberry Cider
+              hr
+              span.green Joy's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 6
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 2
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 4
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._s6
+                  img(src='assets/images/friends/friends_6.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 26:21
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $39.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Mo&eacute;t &amp; Chandon
+                br
+                small.el French Champagne
+              hr
+              span.green Sharmaine's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 10
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 5
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 5
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._50p
+                  img(src='assets/images/circles/circles_1.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 16:08
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $59.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Absolut
+                br
+                small.el Vodka
+              hr
+              span.green Jenny's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 5
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 3
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 2
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._40p
+                  img(src='assets/images/circles/circles_7.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 32:12
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $43.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Kim Crawford
+                br
+                small.el Sauvignon Blanc
+              hr
+              span.green Adrian's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 10
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 7
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 3
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._70p
+                  img(src='assets/images/circles/circles_8.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 15:56
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $12.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Heineken
+                br
+                small.el Lager Stubbies
+              hr
+              span.green Jenny's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 3
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 1
+                    br
+                    small case
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 2
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._s3
+                  img(src='assets/images/friends/friends_5.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 18:41
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $36.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Tempus Two
+                br
+                small.el Botrytis Semillon
+              hr
+              span.green Greg's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 10
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 7
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 3
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._70p
+                  img(src='assets/images/friends/friends_7.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 10:32
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $12.50
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Rosnay Organic
+                br
+                small.el Semillon
+              hr
+              span.green Cathy's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 10
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 7
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 3
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._70p
+                  img(src='assets/images/users/user_5.jpg', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 04:56
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $14.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Young Henrys
+                br
+                small.el Natural Lager
+              hr
+              span.green Rodan's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 20
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 16
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 4
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._s20
+                  img(src='assets/images/users/user_2.jpg', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 02:04
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $65.95
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span West Winds Gin
+                br
+                small.el The Sabre
+              hr
+              span.green Jeff's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 6
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 2
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 4
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._s6
+                  img(src='assets/images/circles/circles_3.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 08:20
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $45.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span A by Arras
+                br
+                small.el Premium Cuvee
+              hr
+              span.green Adrian's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 10
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 7
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 3
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._70p
+                  img(src='assets/images/circles/circles_8.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 04:56
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $21.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+        //- row
+      //- productdetails
+      hr
+      nav.text-center(aria-label='...')
+        ul.pagination.pagination-sm
+          li
+            a(href='#', aria-label='Previous')
+              span(aria-hidden='true') «
+          li
+            a(href='#') 1
+          li
+            a(href='#') 2
+          li
+            a(href='#') 3
+          li
+            a(href='#') 4
+          li
+            a(href='#') 5
+          li
+            a(href='#', aria-label='Next')
+              span(aria-hidden='true') »
+            //- a
+          //- li
+        //- ul
+      //- nav
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+
+  script.
+    $(function () {
+      $('.popover_price[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<ul class="cost">' + $(this).parent().find("ul").html() + '</ul>';
+        },
+        title: function(){
+          return jQuery(this).data('title') + '<span class="close">&times;</span>';
+        }
+      }).on('shown.bs.popover', function(e) {
+        var popover = jQuery(this);
+        $(this).parent().find('.popover span.close').on('click', function(e) {
+          popover.popover('hide');
+        });
+      }).click(function(e) {
+        e.preventDefault();
+      });
+    });
+
+    $(document).ready(function(){
+      $('.owl-carousel').owlCarousel({
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 6000,
+        autoplayHoverPause: true,
+        animateOut: 'fadeOut',
+        autoplaySpeed: 1000,
+        mouseDrag: false,
+        responsive:{
+          0: {
+            items: 1
+          },
+          600: {
+            items: 1
+          },
+          1000: {
+            items: 1
+          }
+        }
+      });
+    });
+  //- script.
+//- block scripts

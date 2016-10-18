@@ -1,4 +1,4 @@
-$source   : 'ttstatic'; // change value to 'ttstatic' for local testing
+$source   : ''; // change value to 'ttstatic' for local testing
 
 // Banners(main.scss)
 $banner-home        : '';
@@ -20,8 +20,12 @@ $bg-avatar-ring     : '';
 $bg-avatar-ring-70p : '';
 $bg-avatar-ring-50p : '';
 $bg-avatar-ring-40p : '';
+$bg-avatar-ring-s20 : '';
+$bg-avatar-ring-s6  : '';
+$bg-avatar-ring-s3  : '';
 // From(_adrian.scss)
 $bg-title-ctr       : '';
+$drop-arrow         : '';
 
 @if ($source == 'ttstatic') {
   // Banners(main.scss)
@@ -47,8 +51,12 @@ $bg-title-ctr       : '';
   $bg-avatar-ring-50p : '../../assets/images/cb50.png';
   // $bg-avatar-ring-40p : '../../assets/images/ring_40p_solid.png';
   $bg-avatar-ring-40p : '../../assets/images/cb40.png';
+  $bg-avatar-ring-s20 : '../../assets/images/s20.png';
+  $bg-avatar-ring-s6 : '../../assets/images/s6.png';
+  $bg-avatar-ring-s3 : '../../assets/images/s3.png';
   // From(_adrian.scss)
   $bg-title-ctr       : '../assets/images/ring.png';
+  $drop-arrow         : '../../assets/images/drop_arrow.png';
 } @else {
   // Banners(main.scss)
   $banner-home        : '/ttsvr/cropImage/drinkcircle.images.i_banner_home.jpg';
@@ -67,9 +75,16 @@ $bg-title-ctr       : '';
   $bg-thumb-ring      : '/ttsvr/cropImage/drinkcircle.images.i_ring.png';
   // From(_components.scss)
   $bg-avatar-ring     : '/ttsvr/cropImage/drinkcircle.images.i_ring.png';
+  // $bg-avatar-ring-70p : '../../assets/images/ring_70p_solid.png';
   $bg-avatar-ring-70p : '/ttsvr/cropImage/drinkcircle.images.i_tmp_ring_70p.png';
+  // $bg-avatar-ring-50p : '../../assets/images/ring_50p_solid.png';
   $bg-avatar-ring-50p : '/ttsvr/cropImage/drinkcircle.images.i_tmp_ring_50p.png';
+  // $bg-avatar-ring-40p : '../../assets/images/ring_40p_solid.png';
   $bg-avatar-ring-40p : '/ttsvr/cropImage/drinkcircle.images.i_tmp_ring_40p.png';
+  $bg-avatar-ring-s20 : '/ttsvr/cropImage/drinkcircle.images.i_tmp_ring_s20.png';
+  $bg-avatar-ring-s6 : '/ttsvr/cropImage/drinkcircle.images.i_tmp_ring_s6.png';
+  $bg-avatar-ring-s3 : '/ttsvr/cropImage/drinkcircle.images.i_tmp_ring_s3.png';
   // From(_adrian.scss)
   $bg-title-ctr       : '/ttsvr/cropImage/drinkcircle.images.i_ring.png';
+  $drop-arrow         : '/ttsvr/cropImage/drinkcircle.images.i_drop_arrow.png';
 }

@@ -15,6 +15,12 @@ block content
 
   .banner.userprofile.seller
     .gradient
+    .container.banner-btn-wrap
+      .btns
+        a.btn.btn-default.btn-sm.editprofile(href='') edit profile
+        a.btn.btn-default.btn-sm.editprofile(href='') preview public profile
+      //- btns
+    //- container
     .info
       .container
         .row
@@ -28,12 +34,12 @@ block content
               //- img
               .name
                 span Brokenwood Wines&nbsp;
-                sup
-                  a(href="#")
-                    i.fa.fa-pencil
-                    span edit profile
-                  //- a
                 //- sup
+                //-   a(href="#")
+                //-     i.fa.fa-pencil
+                //-     span edit profile
+                //-   //- a
+                //- //- sup
                 br
                 small Winery &amp; Vineyard
               //- name
@@ -47,6 +53,9 @@ block content
                 ul
                   li
                     a.active(href="shop.html") Shop
+                  //- li
+                  li
+                    a(href="#") News
                   //- li
                   li
                     a(href="#") Like
@@ -332,6 +341,15 @@ block content
               //- a
             //- controls
           //- composer
+
+          .timeline
+            .form-icon
+              input.form-control(type='text', placeholder='Search for a post...')
+              a.icon(href='')
+                i.fa.fa-search
+              //- a
+            //- form-icon
+          //- timeline
 
           .timeline
             .content
