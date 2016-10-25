@@ -65,7 +65,7 @@ var Main = (function () {
 				});
 			});
 
-			$(window).on('resize', function() {
+			$(window).on('load resize', function() {
 				if ( $(window).width() > 990 ) {
 					$('#pageFilter').css('display', 'block');
 				} else {
