@@ -1,0 +1,556 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  .banner.userprofile.seller.ww
+    .gradient
+    .info
+      .container
+        .row
+          .col-sm-3.col-md-3
+            .photo
+              .img.square
+                a(href="#")
+                  i.fa.fa-camera
+                //- a
+                img(src="assets/images/producers/westwinds/logo.png", alt="")
+              //- img
+              .name
+                span The West Winds Gin&nbsp;
+                sup
+                  a(href="#")
+                    i.fa.fa-pencil
+                    span edit profile
+                  //- a
+                //- sup
+                br
+                small Craft Spirits
+              //- name
+            //- photo
+          //- col-md-3
+        //- row
+        .row
+          .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
+            .userprofilemenu
+              nav.menu
+                ul
+                  li
+                    a.active(href="shop-ww.html") Shop
+                  //- li
+                  li
+                    a(href="#") Like
+                  //- li
+                  li
+                    a(href="#") Message
+                  //- li
+                  li
+                    a(href="#") Save
+                  //- li
+                  li
+                    a(href="seller-about.html") About
+                  //- li
+                  li
+                    a(href="#") Photos
+                  //- li
+                  li
+                    a(href="seller-reviews.html") Reviews
+                  //- li
+                  li
+                    a(href="#") Events
+                  //- li
+                //- ul
+              //- nav
+            //- userprofilemenu
+          //- col-md-6
+        //- row
+      //- container
+    //- info
+  //- banner-home
+
+
+
+  section.userprofile.drinks.results
+    .container
+      .row
+        .col-md-3
+          br
+          .search.form-icon
+            a.icon(href='#', target='_blank')
+              i.fa.fa-search
+            //- a
+            input.form-control(type='text', placeholder='search west winds...')
+          //- search
+          .seller-categories
+            h3 Gins
+            h4
+              a(href="#") The Broadside Navy Strength
+            //- h4
+            h4
+              a(href="#") The Captain's Cut 500ml
+            //- h4
+            h4
+              a(href="#") The Cutlass
+            //- h4
+            h4
+              a(href="#") The Maidenii Voyage
+            //- h4
+            h4
+              a(href="#") The Sabre
+            //- h4
+            hr
+            h4
+              a(href="#") Shipping
+            //- h4
+            h4
+              a(href="#") Return Policy
+            //- h4
+            h4
+              a(href="#") Circlebuys
+            //- h4
+            h4
+              a(href="#") Contact Us
+            //- h4
+            h4
+              a(href="seller.html") About Us
+            //- h4
+          //- card
+        //- col-md-3
+        .col-md-9
+          br
+          form.form-inline
+            .form-group
+              label(for='exampleInputName2') Sort by
+              select.form-control
+                option Most popular
+              //- select
+            //- form-group
+            .form-group
+              label(for='exampleInputEmail2') Show
+              select.form-control
+                option 15
+                option 50
+                option 100
+              //- select
+            //- form-group
+          //- form
+          hr
+          .product-wrap
+            .row
+              // 1 Product
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 93
+                        span points
+                      //- count
+                    img.img-prod.card(src='assets/images/producers/westwinds/prod1.jpg', alt='')
+                    // Edit
+                    .details
+                      p
+                      .name
+                        a(href="#") The Broadside Navy Strength
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $120.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $49.99
+                                      small &nbsp;per case
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $44.99
+                                      small &nbsp;per cases
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 20
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $39.99
+                                      small &nbsp;per cases
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='') View
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 91
+                        span points
+                      //- count
+                    //- ctr
+                    a(href="#")
+                      img.img-prod.card(src='assets/images/producers/westwinds/prod2.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href="#") The Captain's Cut
+                          br.visible-md.visible-lg
+                          | 500ml
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $99.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $29.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $19.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='') View
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 92
+                        span points
+                      //- count
+                    //- ctr
+                    a(href="#")
+                      img.img-prod.card(src='assets/images/producers/westwinds/prod3.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href="#") The Cutlass
+                          span.visible-md.visible-lg &nbsp;
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $79.99
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $33.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $32.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='') View
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 95
+                        span points
+                      //- count
+                    //- ctr
+                    a(href="#")
+                      img.img-prod.card(src='assets/images/producers/westwinds/prod4.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href="#") The Maidenii&nbsp;
+                          br.visible-md.visible-lg
+                          | Voyage
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $99.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 12
+                                      br
+                                      | pack
+                                    //- span
+                                    span.price $16.20
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $13.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $11.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='') View
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 96
+                        span points
+                      //- count
+                    //- ctr
+                    a(href="#")
+                      img.img-prod.card(src='assets/images/producers/westwinds/prod5.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href="#") The Sabre
+                          span.visible-md.visible-lg &nbsp;
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $59.99
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $49.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $44.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $43.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='') View
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+            //- row
+          //- product-wrap
+          hr
+          nav.text-center(aria-label='...')
+            ul.pagination.pagination-sm
+              li
+                a(href='#', aria-label='Previous')
+                  span(aria-hidden='true') «
+              li
+                a(href='#') 1
+              li
+                a(href='#') 2
+              li
+                a(href='#') 3
+              li
+                a(href='#') 4
+              li
+                a(href='#') 5
+              li
+                a(href='#', aria-label='Next')
+                  span(aria-hidden='true') »
+                //- a
+              //- li
+            //- ul
+          //- nav
+        //- col-md-9
+      //- row
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+      $('.popover_price[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<ul class="cost">' + $(this).parent().find("ul").html() + '</ul>';
+        },
+        title: function(){
+          return jQuery(this).data('title') + '<span class="close">&times;</span>';
+        }
+      }).on('shown.bs.popover', function(e) {
+        var popover = jQuery(this);
+        $(this).parent().find('.popover span.close').on('click', function(e) {
+          popover.popover('hide');
+        });
+      }).click(function(e) {
+        e.preventDefault();
+      });
+    });
+  //- script.

@@ -38,6 +38,13 @@ a {
 h1,h2,h3,h4,h5 {
 	// font-family: 'helveticaneuebold', sans-serif;
 }
+* > h1,
+* > h2,
+* > h3,
+* > h4,
+* > h5 {
+	margin-top: 0;
+}
 i.fa {
 	vertical-align: middle;
 }
@@ -47,6 +54,11 @@ i.fa {
 }
 input, select, textarea, optgroup {
 	font-size: 16px;
+}
+.form-group {
+	input, i.fa {
+		vertical-align: middle;
+	}
 }
 
 .modal {
@@ -350,6 +362,13 @@ input {
 		min-height: auto;
 		max-height: 350px;
 		overflow: hidden;
+		small {
+			margin-top: 10px !important;
+		}
+		.jumbo {
+			line-height: 44px !important;
+			// bottom: 100px;
+		}
 	}
 	& {
 		& {
@@ -372,6 +391,7 @@ input {
 					bottom: 150px;
 					// font-size: 42px;
 					font-size: 2.2vw;
+					line-height: 55px;
 				}
 				//
 				i {
@@ -486,9 +506,15 @@ input {
 		}
 		&.seller {
 			background: #41B54B url($bg-seller) center center no-repeat;
+			 background-size: cover;
 		}
 		&.seller.dc {
 			background: #41B54B url($bg-dc) center center no-repeat;
+			 background-size: cover;
+		}
+		&.seller.ww {
+			background: #41B54B url($bg-ww) center center no-repeat;
+			 background-size: cover;
 		}
 		.gradient {
 			background: none;
@@ -1576,7 +1602,7 @@ section {
 			// padding: 35px;
 		}
 		.details {
-			padding: 0 15px 15px;
+			padding: 0 5px 15px;
 			position: relative;
 			// border-top: 1px solid #eee;
 			.name {

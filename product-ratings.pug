@@ -1,0 +1,61 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  section.userprofile.simple
+    .container
+      .row
+        .col-md-12
+          h3.title Review for 2015 Cricket Pitch White
+        //- col-md-12
+      //- row
+      .card
+        p Rate the product from 0 - 100
+        .form-group
+          a(href='')
+            i.fa.fa-minus-circle
+          //- a
+          | &nbsp;
+          input(type='text', value='88')
+          | &nbsp;
+          a(href='')
+            i.fa.fa-plus-circle
+          //- a
+        //- form-group
+        hr
+        p Your Review (optional)
+        ol
+          li Describe the product and specific details of your experience.
+          li Be respectful.
+          li Focus on the facts.
+          li Write at least 20 words.
+        //- ol
+        .form-group
+          textarea.form-control(rows='5')
+        //- form-group
+        .text-right
+          a.btn.btn-success(href='') Submit
+        //- text-right
+      //- card
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+
+    });
+  //- script.

@@ -10,27 +10,14 @@ block content
 
   .banner.home
     .gradient
-    .owl-carousel
-      .item
-        img(src='assets/images/banner/banner_slide_1.jpg')
-      //- item
-      .item
-        img(src='assets/images/banner/banner_slide_2.jpg')
-      //- item
-      .item
-        img(src='assets/images/banner/banner_slide_3.jpg')
-      //- item
-      .item
-        img(src='assets/images/banner/banner_slide_4.jpg')
-      //- item
-    //- owl-carousel
-    h1.jumbo
-      | The fun marketplace connecting drinklovers and drinkmakers
+    .banner-static
+      img(src='assets/images/banner/banner_slide_2.jpg')
+    //- banner-static
+    h1.jumbo Join in the fun and save big time
       br
-      | it's the new way to save.
-      br
-      small Discover. Share. Enjoy.
+      small circlebuying
     //- h1
+
     .action
       a.btn.btn-success.btn-lg(href='#modal_signup', data-toggle='modal')
         i.fa.fa-envelope
@@ -56,7 +43,7 @@ block content
                 a.arrow(href='#drop_recent_search', data-toggle='collapse')
                   i.fa.fa-caret-down
                 //- a
-                input.form-control.input-lg(type='text', placeholder='Search drinks...')
+                input.form-control.input-lg(type='text', placeholder='Search circlebuys...')
                 span.input-group-btn &nbsp;&nbsp;
                 span.input-group-btn
                   a.btn.btn-success.btn-lg(href='searchresult.html') Search
@@ -87,7 +74,7 @@ block content
                   a.close(href='#refineSearch', data-toggle='collapse') &times;
                   .dropdown-wrap
                     .row
-                      .col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
                         strong Category
                         ul
                           li
@@ -120,7 +107,7 @@ block content
                           //- li
                         //- ul
                       //- col-md-4
-                      .col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
                         strong Varietal
                         ul
                           li
@@ -145,7 +132,7 @@ block content
                           //- li
                         //- ul
                       //- col-md-4
-                      .col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
                         strong Vintage
                         ul
                           li
@@ -168,7 +155,7 @@ block content
                       //- col-md-4
                     //- row
                     .row
-                      .col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
                         strong Pack Size
                         ul
                           li
@@ -189,7 +176,7 @@ block content
                           //- li
                         //- ul
                       //- col-md-4
-                      .col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
                         strong Country
                         ul
                           li
@@ -270,7 +257,7 @@ block content
                           //- li
                         //- ul
                       //- col-md-4
-                      .col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
                         strong Region
                         ul
                           li
@@ -397,7 +384,7 @@ block content
                       //- col-md-4
                     //- row
                     .row
-                      .col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
                         strong Price
                         ul
                           li
@@ -446,7 +433,7 @@ block content
                           //- li
                         //- ul
                       //- col-md-4
-                      .col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
                         strong Ratings
                         ul
                           li
@@ -475,7 +462,7 @@ block content
                           //- li
                         //- ul
                       //- col-md-4
-                      .col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
                         strong Awards
                         ul
                           li
@@ -512,22 +499,22 @@ block content
       nav.page
         ul
           li
-            a(href='drinks-red.html') Red
+            a(href='circlebuying-red.html') Red
           //- li
           li
-            a(href='drinks-white.html') White
+            a(href='circlebuying-white.html') White
           //- li
           li
-            a(href='drinks-beer.html') Beer
+            a(href='circlebuying-beer.html') Beer
           //- li
           li
-            a(href='drinks-spirits.html') Spirits
+            a(href='circlebuying-spirits.html') Spirits
           //- li
           li
-            a(href='drinks-bubbles.html') Bubbles
+            a(href='circlebuying-bubbles.html') Bubbles
           //- li
           li
-            a(href='drinks-cider.html') Cider
+            a(href='circlebuying-cider.html') Cider
           //- li
         //- ul
       //- nav
@@ -540,299 +527,188 @@ block content
         .form-group
           label(for='exampleInputName2') Sort by
           select.form-control
-            option highest rated
-            option most reviews
-            option A to Z
-            option Z to A
+            option finish soonest
+            option my friends
+            option my circles
+            option highest no.
           //- select
         //- form-group
         .form-group
           label(for='exampleInputEmail2') Show
           select.form-control
-            option 15
-            option 30
-            option 60
+            option 16
+            option 32
+            option 64
           //- select
         //- form-group
       //- form
       hr
-      .product-wrap
+      .productdetails.search
         .row
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 91
-                    span points
-                  //- count
-                //- ctr
-                a(href="#")
-                  img.img-prod(src='assets/images/products/p3.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href="#")
-                          big 53&nbsp;
-                          small circlebuys
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href="#")
-                          big 160&nbsp;
-                          small ratings
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href="#")
-                          big 30&nbsp;
-                          small reviews
-                      //- col-md-6
-                    //- .row
-                  //- stats
-                  .name
-                    a(href="#") Chivas Regal
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Chivas Regal
+                br
+                small.el 12 Year Old Scotch Whisky
+              hr
+              span.green Rodan's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 20
                     br
-                    small 12 Year Old Scotch Whisky 700mL
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $32.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | bottle
-                                //- span
-                                span.price $25.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | case
-                                //- span
-                                span.price $33.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 3
-                                  br
-                                  | cases
-                                //- span
-                                span.price $32.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 95
-                    span points
-                  //- count
-                //- ctr
-                a(href="#")
-                  img.img-prod(src='assets/images/products/p5.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href="#")
-                          big 20&nbsp;
-                          small circlebuys
-                      //- col-md-4
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href="#")
-                          big 88&nbsp;
-                          small ratings
-                      //- col-md-4
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href="#")
-                          big 5&nbsp;
-                          small reviews
-                      //- col-md-4
-                    //- .row
-                  //- stats
-                  .name
-                    a(href="#") Absolut
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 16
                     br
-                    small Vodka
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $43.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | bottle
-                                //- span
-                                span.price $49.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | case
-                                //- span
-                                span.price $44.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 3
-                                  br
-                                  | case
-                                //- span
-                                span.price $43.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 98
-                    span points
-                  //- count
-                //- ctr
-                a(href="#")
-                  img.img-prod(src='assets/images/products/p15.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href="#")
-                          big 11&nbsp;
-                          small circlebuys
-                      //- col-md-4
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href="#")
-                          big 48&nbsp;
-                          small ratings
-                      //- col-md-4
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href="#")
-                          big 11&nbsp;
-                          small reviews
-                      //- col-md-4
-                    //- .row
-                  //- stats
-                  .name
-                    a(href="#") West Winds Gin
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 4
                     br
-                    small The Sabre
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $45.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | bottle
-                                //- span
-                                span.price $49.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | case
-                                //- span
-                                span.price $44.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 3
-                                  br
-                                  | case
-                                //- span
-                                span.price $43.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._s20
+                  img(src='assets/images/users/user_2.jpg', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 02:04
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $32.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span Absolut
+                br
+                small.el Vodka
+              hr
+              span.green Jenny's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 5
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 3
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 2
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._40p
+                  img(src='assets/images/circles/circles_7.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 32:12
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $43.99
+              //- big
+            //- card_rounded
+          //- col-md-3
+          .col-md-3.col-sm-6.text-center
+            .card_rounded
+              span West Winds Gin
+                br
+                small.el The Sabre
+              hr
+              span.green Jeff's circlebuy
+              hr
+              .row.shortsummary
+                .col-md-4.col-sm-4.col-xs-4
+                  p size
+                  p.lead 6
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p sold
+                  p.lead 2
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+                .col-md-4.col-sm-4.col-xs-4
+                  p left
+                  p.lead 4
+                    br
+                    small cases
+                  //- p
+                //- col-md-4
+              //- row
+              p
+              .avatar
+                .img
+                  .ring._s6
+                  img(src='assets/images/circles/circles_3.png', alt='')
+                //- img
+                .countdown
+                  //- span.time 32:12
+                  p.lead 08:20
+                  //- span
+                  //- br
+                  small.unit hrs left
+                  //- span
+                //- countdown
+              //- avatar
+              br
+              p
+                a.button.inline.v7.joincirclebuy(href="#") join
+              //- p
+              p.lead.cbprice $45.99
+              //- big
+            //- card_rounded
+          //- col-md-3
         //- row
-      //- product-wrap
+      //- productdetails
       hr
       nav.text-center(aria-label='...')
         ul.pagination.pagination-sm
