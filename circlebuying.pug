@@ -55,17 +55,17 @@ block content
                     big Suggestions
                     ul
                       li
-                        a(href='') Brokenwood - Graveyard Vineyard
+                        a(href='#modal_coming_soon', data-toggle='modal') Brokenwood - Graveyard Vineyard
                       //- li
                     //- ul
                     big Recent search&nbsp;
                       small
-                        a(href='') clear
+                        a(href='#modal_coming_soon', data-toggle='modal') clear
                       //- small
                     //- strong
                     ul
                       li
-                        a(href='') Corona Extra - Imported Beer
+                        a(href='#modal_coming_soon', data-toggle='modal') Corona Extra - Imported Beer
                       //- li
                     //- ul
                   //- .dropdown-wrap
@@ -491,6 +491,9 @@ block content
           //- form
         //- col-md-8
       //- row
+      br
+      .text-center
+        a.btn-action-1(href='circlebuy-start.html') Create a circlebuy
     //- container
   //- section
 
@@ -547,35 +550,33 @@ block content
         .row
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Brokenwood
-                br
-                small.el Graveyard Vineyard Shiraz 2010
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Brokenwood
+                  br
+                  small.el Graveyard Vineyard Shiraz 2010
+                //- span
+              //- a
               hr
-              span.green Adrian's circlebuy
+              span Adrian's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 10
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 7
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 7
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 3
+                  p.lead
+                    span.green 3
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -584,52 +585,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 04:56
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;04:56.12
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $119.94
+              hr.short
               p.lead.cbprice $19.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Sticks
-                br
-                small.el Pinot Noir 2015
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Sticks
+                  br
+                  small.el Pinot Noir 2015
+                //- span
+              //- a
               hr
-              span.green Sharmaine's circlebuy
+              span Sharmaine's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 10
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 5
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 5
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 5
+                  p.lead
+                    span.green 5
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -638,52 +644,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 16:08
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;16:08.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $89.94
+              hr.short
               p.lead.cbprice $14.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails-sticks.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Rosnay Organic
-                br
-                small.el Triple Blend 2015
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Rosnay Organic
+                  br
+                  small.el Triple Blend 2015
+                //- span
+              //- a
               hr
-              span.green Jenny's circlebuy
+              span Jenny's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 5
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 3
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 3
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 2
+                  p.lead
+                    span.green 2
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -692,52 +703,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 32:12
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;32:12.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $119.94
+              hr.short
               p.lead.cbprice $19.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails-rosnay.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Corona Extra
-                br
-                small.el Imported Beer
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Corona Extra
+                  br
+                  small.el Imported Beer
+                //- span
+              //- a
               hr
-              span.green Rodan's circlebuy
+              span Rodan's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 20
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 16
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 16
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 4
+                  p.lead
+                    span.green 4
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -746,52 +762,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 02:04
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;02:04.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $239.94
+              hr.short
               p.lead.cbprice $39.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Chivas Regal
-                br
-                small.el 12 Year Old Scotch Whisky
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Chivas Regal
+                  br
+                  small.el 12 Year Old Scotch Whisky
+                //- span
+              //- a
               hr
-              span.green Rodan's circlebuy
+              span Rodan's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 20
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 16
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 16
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 4
+                  p.lead
+                    span.green 4
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -800,52 +821,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 02:04
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;02:04.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $197.94
+              hr.short
               p.lead.cbprice $32.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Somersby
-                br
-                small.el Apple Cider
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Somersby
+                  br
+                  small.el Apple Cider
+                //- span
+              //- a
               hr
-              span.green Jeff's circlebuy
+              span Jeff's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 3
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 2
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 2
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 1
+                  p.lead
+                    span.green 1
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -854,52 +880,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 08:20
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;08:20.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $239.94
+              hr.short
               p.lead.cbprice $39.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Somersby
-                br
-                small.el Blackberry Cider
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Somersby
+                  br
+                  small.el Blackberry Cider
+                //- span
+              //- a
               hr
-              span.green Joy's circlebuy
+              span Joy's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 6
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 2
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 2
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 4
+                  p.lead
+                    span.green 4
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -908,52 +939,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 26:21
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;26:21.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $239.94
+              hr.short
               p.lead.cbprice $39.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Mo&eacute;t &amp; Chandon
-                br
-                small.el French Champagne
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Mo&eacute;t &amp; Chandon
+                  br
+                  small.el French Champagne
+                //- span
+              //- a
               hr
-              span.green Sharmaine's circlebuy
+              span Sharmaine's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 10
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 5
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 5
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 5
+                  p.lead
+                    span.green 5
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -962,52 +998,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 16:08
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;16:08.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $359.94
+              hr.short
               p.lead.cbprice $59.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Absolut
-                br
-                small.el Vodka
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Absolut
+                  br
+                  small.el Vodka
+                //- span
+              //- a
               hr
-              span.green Jenny's circlebuy
+              span Jenny's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 5
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 3
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 3
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 2
+                  p.lead
+                    span.green 2
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -1016,52 +1057,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 32:12
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;32:12.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $263.94
+              hr.short
               p.lead.cbprice $43.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Kim Crawford
-                br
-                small.el Sauvignon Blanc
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Kim Crawford
+                  br
+                  small.el Sauvignon Blanc
+                //- span
+              //- a
               hr
-              span.green Adrian's circlebuy
+              span Adrian's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 10
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 7
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 7
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 3
+                  p.lead
+                    span.green 3
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -1070,52 +1116,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 15:56
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;15:56.12
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $77.94
+              hr.short
               p.lead.cbprice $12.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Heineken
-                br
-                small.el Lager Stubbies
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Heineken
+                  br
+                  small.el Lager Stubbies
+                //- span
+              //- a
               hr
-              span.green Jenny's circlebuy
+              span Jenny's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 3
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 1
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 1
-                    br
-                    small case
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 2
+                  p.lead
+                    span.green 2
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -1124,52 +1175,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 18:41
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;18:41.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $221.94
+              hr.short
               p.lead.cbprice $36.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Tempus Two
-                br
-                small.el Botrytis Semillon
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Tempus Two
+                  br
+                  small.el Botrytis Semillon
+                //- span
+              //- a
               hr
-              span.green Greg's circlebuy
+              span Greg's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 10
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 7
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 7
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 3
+                  p.lead
+                    span.green 3
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -1178,52 +1234,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 10:32
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;10:32.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $75
+              hr.short
               p.lead.cbprice $12.50
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Rosnay Organic
-                br
-                small.el Semillon
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Rosnay Organic
+                  br
+                  small.el Semillon
+                //- span
+              //- a
               hr
-              span.green Cathy's circlebuy
+              span Cathy's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 10
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 7
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 7
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 3
+                  p.lead
+                    span.green 3
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -1232,52 +1293,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 04:56
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;04:56.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $89.94
+              hr.short
               p.lead.cbprice $14.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span Young Henrys
-                br
-                small.el Natural Lager
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span Young Henrys
+                  br
+                  small.el Natural Lager
+                //- span
+              //- a
               hr
-              span.green Rodan's circlebuy
+              span Rodan's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 20
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 16
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 16
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 4
+                  p.lead
+                    span.green 4
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -1286,52 +1352,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 02:04
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;02:04.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $395.7
+              hr.short
               p.lead.cbprice $65.95
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span West Winds Gin
-                br
-                small.el The Sabre
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span West Winds Gin
+                  br
+                  small.el The Sabre
+                //- span
+              //- a
               hr
-              span.green Jeff's circlebuy
+              span Jeff's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 6
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 2
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 2
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 4
+                  p.lead
+                    span.green 4
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -1340,52 +1411,57 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 08:20
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;08:20.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $275.94
+              hr.short
               p.lead.cbprice $45.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
           .col-md-3.col-sm-6.text-center
             .card_rounded
-              span A by Arras
-                br
-                small.el Premium Cuvee
+              a(href='#modal_coming_soon', data-toggle='modal')
+                span A by Arras
+                  br
+                  small.el Premium Cuvee
+                //- span
+              //- a
               hr
-              span.green Adrian's circlebuy
+              span Adrian's circlebuy
               hr
-              .row.shortsummary
-                .col-md-4.col-sm-4.col-xs-4
-                  p size
-                  p.lead 10
+              .shortsummary
+                .sold
+                  p.cases-sold sold
+                  p.lead
+                    span.green 7
                     br
                     small cases
                   //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
-                  p sold
-                  p.lead 7
-                    br
-                    small cases
-                  //- p
-                //- col-md-4
-                .col-md-4.col-sm-4.col-xs-4
+                //- sold
+                .left
                   p left
-                  p.lead 3
+                  p.lead
+                    span.green 3
                     br
                     small cases
                   //- p
-                //- col-md-4
-              //- row
+                //- left
+              //- shortsummary
               p
               .avatar
                 .img
@@ -1394,18 +1470,25 @@ block content
                 //- img
                 .countdown
                   //- span.time 32:12
-                  p.lead 04:56
-                  //- span
-                  //- br
-                  small.unit hrs left
+                  br
+                  p
+                    i.fa.fa-clock-o
+                    span &nbsp;04:56.00
+                  //- p
+                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p
-                a.button.inline.v7.joincirclebuy(href="#") join
-              //- p
+              p 6 pack - $131.94
+              hr.short
               p.lead.cbprice $21.99
+                small &nbsp;/ bottle
+              p
+                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                | &nbsp;
+                a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+              //- p
               //- big
             //- card_rounded
           //- col-md-3
@@ -1418,15 +1501,15 @@ block content
             a(href='#', aria-label='Previous')
               span(aria-hidden='true') «
           li
-            a(href='#') 1
+            a(href='#modal_coming_soon', data-toggle='modal') 1
           li
-            a(href='#') 2
+            a(href='#modal_coming_soon', data-toggle='modal') 2
           li
-            a(href='#') 3
+            a(href='#modal_coming_soon', data-toggle='modal') 3
           li
-            a(href='#') 4
+            a(href='#modal_coming_soon', data-toggle='modal') 4
           li
-            a(href='#') 5
+            a(href='#modal_coming_soon', data-toggle='modal') 5
           li
             a(href='#', aria-label='Next')
               span(aria-hidden='true') »

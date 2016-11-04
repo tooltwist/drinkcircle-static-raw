@@ -44,33 +44,46 @@ block content
         .col-xs-10.col-sm-4.col-md-4.col-xs-offset-1.col-sm-offset-0.col-md-offset-0
           .brief.dd
             img(src='assets/images/icon_press.png')
-            h4
-              | Meet the drinkmakers
+            p.clearfix
+            p.clearfix
+            h4.green Meet the drinkmakers
             p Get to personally know your drinkmakers on our social community. Get exclusive wine, beer, cider &amp; spirits offers and all the latest news.
             //- p
-            //- a(href="drinksdirect.html") learn more
+            br
+            a.button.v8(href="drinkmakers.html") view
           //- brief
         //- col-md-4
         .col-xs-10.col-sm-4.col-md-4.col-xs-offset-1.col-sm-offset-0.col-md-offset-0
           .brief.di
             img(src='assets/images/icon_right.png')
-            h4 Find the best match
-            p Find your perfect drink using our accumulated user ratings and top picks from dinkers like you. Use our comparison module for a better match.
+            p.clearfix
+            p.clearfix
+            h4.green Find the best match
+            p Find your perfect drink using accumulated user ratings and top picks from drinkers like you.
+              br
+              | Use our comparison module for a better match.
             //- p
-            //- a(href="drinkadvisor.html") learn more
+            br
+            a.button.v8(href="compare.html") view
             //- p
           //- brief
         //- col-md-4
         .col-xs-10.col-sm-4.col-md-4.col-xs-offset-1.col-sm-offset-0.col-md-offset-0
           .brief.c
             img(src='assets/images/icon_friends.png')
-            h4 Buying with friends
-            p Connect with new &amp; old friends. Buy together for big savings direct from the source. Share your experiences both good and bad.
+            p.clearfix
+            p.clearfix
+            h4.green Buying with friends
+            p Connect with new &amp; old friends. Buy together for big savings direct from the source.
+              br
+              | Share your experiences both good and bad.
             //- p
-            //- a(href="thecircle.html") learn more
+            br
+            a.button.v8(href="circlebuys.html") view
           //- brief
         //- col-md-4
       //- row
+      br
       br
       .text-center
         a.btn.btn-success.btn-lg.super-action-button(href='#modal_signup', data-toggle='modal') Get Started
@@ -85,8 +98,7 @@ block content
         .col-sm-6.col-md-4.col-xs-12
           .type.categories
             p.title
-              strong
-                a(href='drinkmakers.html') Search 1,588 Drinkmakers
+              a(href='drinkmakers.html') Search Drinkmakers
             .row.drinktype
               //- 1
               .col-md-4.col-sm-4.col-xs-4.cat-thumb
@@ -148,7 +160,7 @@ block content
               //-
                 .col-md-4.col-sm-4.col-xs-4.cat-thumb
                   img(src='assets/images/icon_cat_champagne.png')
-                  a(href='')
+                  a(href='#modal_coming_soon', data-toggle='modal')
                     small Champagne
                   //- a
                 //- col-md-4
@@ -186,7 +198,7 @@ block content
         .clearfix.visible-sm
 
         .col-sm-6.col-md-4.col-xs-12
-          .type.post.offset-bottom._4
+          .type.post.offset-bottom._5
             a.block(href='business.html#drinking')
             .shared
               img(src="assets/images/activity/image-1.png", alt="")
@@ -220,32 +232,26 @@ block content
         //- col-md-4
 
         .col-sm-6.col-md-4.col-xs-12
-          .type.post.offset-bottom._1
-            a.block(href='business.html#cooking')
+          .type.post.offset-bottom
+            a.block(href='seller-ww.html')
             .shared
-              img(src="assets/images/activity/image-8.png", alt="")
-              header
-                h1 The Guide To
-                  br
-                  | Cooking With Wine
-                //- h1
-              //- header
+              img(src="assets/images/producers/westwinds/activity1.png", alt="")
               .caption
                 .input-group
                   span.input-group-addon
                     .thumb
                       .img
-                        img(src='assets/images/favicon.png', alt='')
+                        img(src='assets/images/producers/westwinds/logo.png', alt='')
                       //- img
                     //- thumb
                   //- input-group-addon
                   span.form-control
-                    a(href='business.html')
-                      strong Drinkcircle
+                    a(href='seller.html')
+                      strong The West Winds Gin
                     //- a
                     br
-                    | Great tips to make the most from adding wine to your cooking...&nbsp;
-                    a(href='business.html') see more
+                    | The Broadside is one of the most brazen and aggressive tacti...&nbsp;
+                    a(href="seller.html") see more
                   //- span
                 //- input-group
               //- caption
@@ -282,14 +288,42 @@ block content
         //- col-md-4
 
         .col-sm-6.col-md-4.col-xs-12
-          .type.post.offset-bottom._2
-            a.block(href='business.html#top10')
+          .type.post.offset-bottom
+            a.block(href='seller-yh.html')
             .shared
-              img(src="assets/images/activity/image-3.png", alt="")
+              img(src="assets/images/producers/yh/activity1.png", alt="")
+              .caption
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/producers/yh/logo.jpg', alt='')
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    a(href='seller-yh.html')
+                      strong Young Henrys
+                    //- a
+                    br
+                    | Mates! Our lovechild with Jameson Irish Whiskey is born and we’ve nam...&nbsp;
+                    a(href="seller-yh.html") see more
+                  //- span
+                //- input-group
+              //- caption
+            //- shared
+          //- type
+        //- col-md-4
+
+        .col-sm-6.col-md-4.col-xs-12
+          .type.post.offset-bottom._2
+            a.block(href='business.html#cooking')
+            .shared
+              img(src="assets/images/activity/image-8.png", alt="")
               header
-                h1 Top 10 Aussie
+                h1 The Guide To
                   br
-                  | Craft Beers
+                  | Cooking With Wine
                 //- h1
               //- header
               .caption
@@ -306,36 +340,8 @@ block content
                       strong Drinkcircle
                     //- a
                     br
-                    | This years hottest 10 list includes a few surprises...&nbsp;
+                    | Great tips to make the most from adding wine to your cooking...&nbsp;
                     a(href='business.html') see more
-                  //- span
-                //- input-group
-              //- caption
-            //- shared
-          //- type
-        //- col-md-4
-
-        .col-sm-6.col-md-4.col-xs-12
-          .type.post.offset-bottom
-            a.block(href='seller.html')
-            .shared
-              img(src="assets/images/activity/image-7.png", alt="")
-              .caption
-                .input-group
-                  span.input-group-addon
-                    .thumb
-                      .img
-                        img(src='assets/images/producers/sticks/logo.png', alt='')
-                      //- img
-                    //- thumb
-                  //- input-group-addon
-                  span.form-control
-                    a(href='seller.html')
-                      strong Sticks Wines
-                    //- a
-                    br
-                    | RRP $20 2 day only sale for our followers at $11.99 a bottle...&nbsp;
-                    a(href="seller.html") see more
                   //- span
                 //- input-group
               //- caption
@@ -378,26 +384,32 @@ block content
         //- col-md-4
 
         .col-sm-6.col-md-4.col-xs-12
-          .type.post.offset-bottom
-            a.block(href='seller.html')
+          .type.post.offset-bottom._2
+            a.block(href='business.html#top10')
             .shared
-              img(src="assets/images/activity/image-4.png", alt="")
+              img(src="assets/images/activity/image-3.png", alt="")
+              header
+                h1 Top 10 Aussie
+                  br
+                  | Craft Beers
+                //- h1
+              //- header
               .caption
                 .input-group
                   span.input-group-addon
                     .thumb
                       .img
-                        img(src='assets/images/producers/kimcrawford/logo.png', alt='')
+                        img(src='assets/images/favicon.png', alt='')
                       //- img
                     //- thumb
                   //- input-group-addon
                   span.form-control
-                    a(href='seller.html')
-                      strong Kim Crawford Wines
+                    a(href='business.html')
+                      strong Drinkcircle
                     //- a
                     br
-                    | RRP $30 grab your friends and circlebuy this wine for $14.99 a bottle...&nbsp;
-                    a(href="seller.html") see more
+                    | This years hottest 10 list includes a few surprises...&nbsp;
+                    a(href='business.html') see more
                   //- span
                 //- input-group
               //- caption

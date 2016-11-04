@@ -38,11 +38,11 @@ a {
 h1,h2,h3,h4,h5 {
 	// font-family: 'helveticaneuebold', sans-serif;
 }
-* > h1,
-* > h2,
-* > h3,
-* > h4,
-* > h5 {
+* section > h1,
+* section > h2,
+* section > h3,
+* section > h4,
+* section > h5 {
 	margin-top: 0;
 }
 i.fa {
@@ -93,6 +93,26 @@ input {
 		border-radius: 0;
 		outline: 0;
 		box-shadow: none;
+	}
+}
+p {
+	a {
+		vertical-align: bottom !important;
+	}
+	i, span {
+		vertical-align: middle;
+	}
+}
+.form-inline {
+	.form-group {
+			margin-right: 10px;
+	}
+}
+hr {
+	&.short {
+		width: 150px;
+		max-width: 100%;
+		margin: 5px auto !important;
 	}
 }
 
@@ -388,7 +408,7 @@ input {
 				//
 				bottom: 60px;
 				@media screen and (min-width: 768px) {
-					bottom: 150px;
+					bottom: 120px;
 					// font-size: 42px;
 					font-size: 2.2vw;
 					line-height: 55px;
@@ -506,15 +526,19 @@ input {
 		}
 		&.seller {
 			background: #41B54B url($bg-seller) center center no-repeat;
-			 background-size: cover;
+			background-size: cover;
 		}
 		&.seller.dc {
 			background: #41B54B url($bg-dc) center center no-repeat;
-			 background-size: cover;
+			background-size: cover;
 		}
 		&.seller.ww {
 			background: #41B54B url($bg-ww) center center no-repeat;
-			 background-size: cover;
+			background-size: cover;
+		}
+		&.seller.yh {
+			background: #41B54B url($bg-yh) center center no-repeat;
+		 	background-size: cover;
 		}
 		.gradient {
 			background: none;
@@ -555,6 +579,7 @@ input {
 					img {
 						max-width: 100%;
 						min-width: 100%;
+						padding: 5px;
 					}
 					&:hover a {
 						display: inline;
@@ -747,11 +772,15 @@ section {
 			}
 			& {
 				> a {
-					color: inherit;
+					// color: inherit;
+					clear: both;
+					margin-top: 10px;
+					display: inline;
 					padding: 5px 15px;
 					background: white;
 					border-radius: 5px;
 					text-decoration: none;
+					border-width: 1px;
 				}
 			}
 			&.dd {
@@ -877,7 +906,7 @@ section {
 					}
 					small {
 						display: block;
-						font-weight: bold;
+						// font-weight: bold;
 						font-size: 16px;
 					}
 				}
@@ -920,7 +949,7 @@ section {
 					width: 100%;
 				}
 				header {
-					top: 0;
+					top: 20px;
 					left: 0;
 					color: white;
 					h1 {
@@ -977,7 +1006,7 @@ section {
 				}
 				header {
 					top: auto;
-					bottom: 100px;
+					bottom: 115px;
 					left: 0;
 					color: white;
 					h1 {
@@ -1068,6 +1097,70 @@ section {
 					}
 					h2 {
 						margin-top: 20px;
+					}
+				}
+			}
+			&._5 {
+				header, footer {
+					position: absolute;
+					text-align: center;
+					width: 100%;
+				}
+				header {
+					top: auto;
+					bottom: 95px;
+					left: 0;
+					color: white;
+					h1 {
+						// font-size: 38px;
+						&.xs {
+							font-size: 28px;
+						}
+						&.sm {
+							font-size: 26px;
+						}
+						&.md {
+							font-size: 42px;
+						}
+						p {
+							font-size: 22px;
+							color: white;
+						}
+					}
+					h2 {
+						margin-top: 20px;
+					}
+				}
+				footer {
+					bottom: 0;
+					left: 0;
+					background: white;
+					padding: 22px;
+					border: 0;
+					h3 {
+						font-size: 22px;
+						margin: 0;
+					}
+					a {
+						font-size: 12px;
+						color: #41B54B;
+					}
+				}
+				.action-btn {
+					color: #41B54B;
+					border: 1px solid #41B54B;
+					padding: 8px 20px;
+					border-radius: 3px;
+					text-decoration: none;
+					display: inline-block;
+					line-height: 13px;
+					font-size: 16px;
+					font-weight: 600;
+				}
+				&.offset-img {
+					img {
+						position: relative;
+						top: -65px;
 					}
 				}
 			}
@@ -1172,6 +1265,7 @@ section {
 		h4, a {
 			color: #41B54B;
 		}
+		padding: 30px 0;
 	}
 	&.c, &.tc {
 		h4, a {
@@ -1525,7 +1619,7 @@ section {
 					}
 				}
 				.product .thumb .pricing .buy.drop>ul>li:not(.drop) a.thumb-action {
-					width: 60px;
+					width: 65px;
 					border-width: 1px;
 				}
 				.product .thumb .pricing .buy.drop>ul>li:not(.drop) a {
@@ -1534,7 +1628,7 @@ section {
 				.product .thumb .pricing .buy.drop>ul>li.drop {
 					margin: 0px 8px;
 					a {
-						line-height: 28px;
+						line-height: 23px;
 					}
 				}
 			}
@@ -1607,7 +1701,7 @@ section {
 			// border-top: 1px solid #eee;
 			.name {
 				font-weight: 400;
-				font-size: 22px;
+				font-size: 16px;
 				padding-bottom: 10px;
 				padding-top: 10px;
 				line-height: 1.1;
@@ -1721,7 +1815,7 @@ section {
 							a {
 								border: 0;
 								background: none;
-								font-size: 28px;
+								font-size: 24px;
 								width: auto;
 								padding: 0;
 								line-height: normal;
@@ -1802,7 +1896,7 @@ section {
 	}
 	a {
 		line-height: 32px;
-		color: lighten(gray, 15%);
+		color: inherit;
 		&:hover {
 			color: gray;
 			text-decoration: none;
@@ -1991,6 +2085,46 @@ a.rate {
 			width: 100%;
 		}
 	}
+	.shortsummary {
+		& {
+			position: relative;
+		}
+		.sold {
+			position: absolute;
+			left: 0;
+			top: 45px;
+		}
+		.left {
+			position: absolute;
+			right: 0;
+			top: 45px;
+		}
+		p {
+			margin-bottom: 0;
+		}
+		p.lead {
+			line-height: 16px;
+			margin-top: 5px;
+			small {
+				font-size: 13px;
+			}
+		}
+		&:not(.cases-left) {
+			p.lead * {
+				color: inherit;
+			}
+		}
+		.cases-left * {
+			font-weight: bold;
+		}
+		.cases-left {
+			p {
+				span {
+					font-size: 24px;
+				}
+			}
+		}
+	}
 	.infos {
 		font-size: 14px;
 		display: inline-block;
@@ -2013,7 +2147,7 @@ a.rate {
 					small {
 						font-size: 10px;
 						display: block;
-						line-height: 5px;
+						// line-height: 5px;
 					}
 				}
 			}
@@ -2163,7 +2297,7 @@ a.rate {
 			.countdown {
 				position: absolute;
 				width: 100%;
-				bottom: -25px;
+				bottom: -35px;
 				p {
 					&.lead {
 						margin-bottom: 0;
@@ -2285,13 +2419,18 @@ a.rate {
 			margin-bottom: 30px;
 			p.lead {
 				margin-bottom: 0;
+				// margin-top: 5px;
 			}
 			hr {
 				margin: 5px 0;
 			}
 			.countdown {
 				position: relative;
-				top: -10px;
+				top: -6px;
+				line-height: 8px;
+				hr {
+					margin-top: 15px;
+				}
 			}
 		}
 	}
@@ -3062,6 +3201,11 @@ section {
 .super-action-button {
 	padding-left: 50px;
 	padding-right: 50px;
+	&._white {
+		background: white;
+		border: 1px solid #41B54B;
+		color: #41B54B;
+	}
 }
 
 .countdown {
@@ -3447,7 +3591,7 @@ table {
 
 .joincirclebuy {
 	padding: 2px 25px;
-	margin-top: 5px;
+	margin: 15px 5px 0;
 	display: inline-block;
 }
 
@@ -3455,6 +3599,10 @@ table {
 	margin-bottom: 0;
 	font-size: 26px;
 	line-height: 24px;
+	margin-top: 15px;
+	small {
+		font-size: 14px;
+	}
 }
 
 .totalcbcount {
@@ -3638,5 +3786,35 @@ section {
 				}
 			}
 		}
+	}
+}
+
+
+.btn-action-1 {
+	margin-top: 5px;
+	display: inline-block;
+	color: #41B54B;
+	white-space: nowrap;
+	border: 1px solid #41B54B;
+	text-align: center;
+	font-size: 16px;
+	border-radius: 5px;
+	font-weight: 600;
+	padding: 2px 6px;
+	background: white;
+}
+
+.relative {
+	position: relative;
+}
+.absolute {
+	position: absolute;
+	&._right {
+		top: 0;
+		right: 0;
+	}
+	&._left {
+		top: 0;
+		left: 0;
 	}
 }

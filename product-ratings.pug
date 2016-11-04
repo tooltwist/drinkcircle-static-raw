@@ -23,29 +23,46 @@ block content
       .card
         p Rate the product from 0 - 100
         .form-group
-          a(href='')
+          a(href='#modal_coming_soon', data-toggle='modal')
             i.fa.fa-minus-circle
           //- a
           | &nbsp;
           input(type='text', value='88')
           | &nbsp;
-          a(href='')
+          a(href='#modal_coming_soon', data-toggle='modal')
             i.fa.fa-plus-circle
           //- a
         //- form-group
         hr
-        p Your Review (optional)
+        p
+          strong Your Review (optional)
+        //- p
         ol
           li Describe the product and specific details of your experience.
           li Be respectful.
           li Focus on the facts.
           li Write at least 20 words.
         //- ol
+        .row
+          .col-md-6
+            .form-group
+              label Add a heading for you review
+              input.form-control(type='text')
+            //- form-group
+          //- col-md-6
+        //- row
         .form-group
+          label Your review
           textarea.form-control(rows='5')
         //- form-group
+        .checkbox
+          label
+            input(type='checkbox')
+            | &nbsp;I would recommend this drink to a friend
+          //- label
+        //- checkbox
         .text-right
-          a.btn.btn-success(href='') Submit
+          a.btn.btn-success(href='#modal_coming_soon', data-toggle='modal') Submit
         //- text-right
       //- card
     //- container

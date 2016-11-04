@@ -35,13 +35,13 @@
       table.filter
         tr
           td
-            a(href='') Select all interests
+            a(href='#modal_coming_soon', data-toggle='modal') Select all interests
           //- td
           td
             .following Liking | 0
           //- td
           td
-            a(href='') Find other drinklovers with similar interests
+            a(href='#modal_coming_soon', data-toggle='modal') Find other drinklovers with similar interests
           //- td
         //- tr
       //- table
@@ -349,21 +349,21 @@
         .row.compare-summary
           .col-md-4
             .alert.alert-success
-              a.close(href='') &times;
+              a.close(href='#modal_coming_soon', data-toggle='modal') &times;
               strong Brokenwood
               p Graveyard Vineyard
             //- alert
           //- col-md-4
           .col-md-4
             .alert.alert-success
-              a.close(href='') &times;
+              a.close(href='#modal_coming_soon', data-toggle='modal') &times;
               strong Sticks
               p Pinot Noir
             //- alert
           //- col-md-4
           .col-md-4
             .alert.alert-success
-              a.close(href='') &times;
+              a.close(href='#modal_coming_soon', data-toggle='modal') &times;
               strong Rosnay Organic
               p Triple Blend
             //- alert
@@ -372,7 +372,7 @@
       //- modal-body
       .modal-footer
         .text-center
-          a.btn.btn-success.btn-lg(href='') Compare 3 drinks
+          a.btn.btn-success.btn-lg(href='#modal_coming_soon', data-toggle='modal') Compare 3 drinks
         //- text-cente3
       //- modal-footer
     //- modal-content
@@ -391,7 +391,7 @@
       //- modal-header
       .modal-body
         .form-group
-          a.joinfb.btn.btn-primary.btn-block(href='')
+          a.joinfb.btn.btn-primary.btn-block(href='#modal_coming_soon', data-toggle='modal')
             span Join using&nbsp;
             img(src='assets/images/facebook.png')
         //- form-group
@@ -409,7 +409,7 @@
           input.form-control(type='text', placeholder='Mobile')
         //- form-group
         .form-group
-          a.btn.btn-success.btn-block(href='') Join using email
+          a.btn.btn-success.btn-block(href='#modal_coming_soon', data-toggle='modal') Join using email
         //- form-group
         table
           tr
@@ -421,9 +421,9 @@
             td
               small
                 | I'm 18 years or over and agree to Drinkcircle's&nbsp;
-                a(href='') terms of use
+                a(href='#modal_coming_soon', data-toggle='modal') terms of use
                 | &nbsp;and&nbsp;
-                a(href='') privacy policy
+                a(href='#modal_coming_soon', data-toggle='modal') privacy policy
                 | .
               //- small
             //- td
@@ -433,8 +433,8 @@
         br
         small.links
           p.text-center
-            a.pull-left(href='') Want to login instead?
-            a.pull-right(href='') Forgot your password?
+            a.pull-left(href='#modal_coming_soon', data-toggle='modal') Want to login instead?
+            a.pull-right(href='#modal_coming_soon', data-toggle='modal') Forgot your password?
             .clearfix
           //- p
         //- small
@@ -471,7 +471,7 @@
                 img.preview(src='assets/images/products/p14.jpg', alt='')
               //- th
               th
-                a(href="#")
+                a(href='#modal_coming_soon', data-toggle='modal')
                   strong Young Henrys
                 //- a
                 br
@@ -484,7 +484,7 @@
                 //- points
               //- th
               th
-                a(href="#")
+                a(href='#modal_coming_soon', data-toggle='modal')
                   i.fa.fa-trash-o
                 //- a
               //- th
@@ -495,7 +495,7 @@
                 img.preview(src='assets/images/products/p1.jpg', alt='')
               //- th
               th
-                a(href="#")
+                a(href='#modal_coming_soon', data-toggle='modal')
                   strong Corona Extra
                 //- a
                 br
@@ -508,7 +508,7 @@
                 //- points
               //- th
               th
-                a(href="#")
+                a(href='#modal_coming_soon', data-toggle='modal')
                   i.fa.fa-trash-o
                 //- a
               //- th
@@ -531,7 +531,7 @@
                 //- points
               //- th
               th
-                a(href="#")
+                a(href='#modal_coming_soon', data-toggle='modal')
                   i.fa.fa-trash-o
                 //- a
               //- th
@@ -542,11 +542,27 @@
       .modal-footer
         .text-center
           p Drag and drop to adjust positions.
-          a.btn.btn-success.btn-lg(href='')
+          a.btn.btn-success.btn-lg(href='#modal_coming_soon', data-toggle='modal')
             i.fa.fa-plus
             | &nbsp;Add a Drink
         //- text-cente3
       //- modal-footer
+    //- modal-content
+  //- modal-dialog
+//- modal
+
+
+#modal_coming_soon.modal.fade(tabindex='-1', role='dialog')
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+        h4#myModalLabel.modal-title Page under construction
+      //- modal-header
+      .modal-body
+        p Coming soon...
+      //- modal-body
     //- modal-content
   //- modal-dialog
 //- modal
