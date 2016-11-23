@@ -2095,6 +2095,11 @@ a.rate {
 			// overflow: scroll;
 		}
 	}
+	h1, p {
+		a {
+			vertical-align: middle !important;
+		}
+	}
 	hr {
 		border-color: #ddd;
 	}
@@ -3878,4 +3883,9 @@ section {
 	.joincirclebuy {
 		padding: 3px 10px;
 	}
+}
+
+
+.pdetail-info-text {
+	font-size: 24px;
 }
