@@ -2,6 +2,9 @@ extends ./layout/layout_main.pug
 
 block css
   style.
+    body {
+      background: #dadada;
+    }
   //- style
 
 
@@ -156,31 +159,28 @@ block content
             .row
               .col-md-4.col-sm-4.text-center
                 .card_rounded
-                  span.green Adrian's circlebuy
+                  span Adrian's circlebuy
+                    br
+                    | 10 cases
                   hr
-                  .row.shortsummary
-                    .col-md-4
-                      p size
-                      p.lead 10
+                  .shortsummary
+                    .sold
+                      p.cases-sold sold
+                      p.lead
+                        span.green 7
                         br
-                        small cases
+                        //- small cases
                       //- p
-                    //- col-md-4
-                    .col-md-4
-                      p sold
-                      p.lead 7
-                        br
-                        small cases
-                      //- p
-                    //- col-md-4
-                    .col-md-4
+                    //- sold
+                    .left
                       p left
-                      p.lead 3
+                      p.lead
+                        span.green 3
                         br
-                        small cases
+                        //- small cases
                       //- p
-                    //- col-md-4
-                  //- row
+                    //- left
+                  //- shortsummary
                   p
                   .avatar
                     .img
@@ -189,48 +189,52 @@ block content
                     //- img
                     .countdown
                       //- span.time 32:12
-                      p.lead 04:56
-                      //- span
-                      //- br
-                      small.unit hrs left
+                      br
+                      p
+                        i.fa.fa-clock-o
+                        span &nbsp;04:56.12
+                      //- p
                       //- span
                     //- countdown
                   //- avatar
                   br
                   p
-                    a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                    a.button.inline.v8.joincirclebuy(href="circlebuy-start.html") join
+                    | &nbsp;
+                    a.button.inline.v8.joincirclebuy(href="productdetails.html") view
                   //- p
                   p.lead.cbprice $13.99
+                    small &nbsp;/ bottle
+                  //- p
+                  hr.short
+                  p 6 pack - $119.94
                   //- big
                 //- card_rounded
               //- col-md-4
               .col-md-4.col-sm-4.text-center
                 .card_rounded
-                  span.green Sharmaine's circlebuy
+                  span Sharmaine's circlebuy
+                    br
+                    | 10 cases
                   hr
-                  .row.shortsummary
-                    .col-md-4
-                      p size
-                      p.lead 10
+                  .shortsummary
+                    .sold
+                      p.cases-sold sold
+                      p.lead
+                        span.green 5
                         br
-                        small cases
+                        //- small cases
                       //- p
-                    //- col-md-4
-                    .col-md-4
-                      p sold
-                      p.lead 5
-                        br
-                        small cases
-                      //- p
-                    //- col-md-4
-                    .col-md-4
+                    //- sold
+                    .left
                       p left
-                      p.lead 5
+                      p.lead
+                        span.green 5
                         br
-                        small cases
+                        //- small cases
                       //- p
-                    //- col-md-4
-                  //- row
+                    //- left
+                  //- shortsummary
                   p
                   .avatar
                     .img
@@ -239,48 +243,52 @@ block content
                     //- img
                     .countdown
                       //- span.time 32:12
-                      p.lead 16:08
-                      //- span
-                      //- br
-                      small.unit hrs left
+                      br
+                      p
+                        i.fa.fa-clock-o
+                        span &nbsp;16:08.00
+                      //- p
                       //- span
                     //- countdown
                   //- avatar
                   br
                   p
-                    a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                    a.button.inline.v8.joincirclebuy(href="circlebuy-start.html") join
+                    | &nbsp;
+                    a.button.inline.v8.joincirclebuy(href="productdetails-sticks.html") view
                   //- p
                   p.lead.cbprice $15.99
+                    small &nbsp;/ bottle
+                  //- p
+                  hr.short
+                  p 12 pack - $179.88
                   //- big
                 //- card_rounded
               //- col-md-4
               .col-md-4.col-sm-4.text-center
                 .card_rounded
-                  span.green Jenny's circlebuy
+                  span Jenny's circlebuy
+                    br
+                    | 5 cases
                   hr
-                  .row.shortsummary
-                    .col-md-4
-                      p size
-                      p.lead 5
+                  .shortsummary
+                    .sold
+                      p.cases-sold sold
+                      p.lead
+                        span.green 3
                         br
-                        small cases
+                        //- small cases
                       //- p
-                    //- col-md-4
-                    .col-md-4
-                      p sold
-                      p.lead 3
-                        br
-                        small cases
-                      //- p
-                    //- col-md-4
-                    .col-md-4
+                    //- sold
+                    .left
                       p left
-                      p.lead 2
+                      p.lead
+                        span.green 2
                         br
-                        small cases
+                        //- small cases
                       //- p
-                    //- col-md-4
-                  //- row
+                    //- left
+                  //- shortsummary
                   p
                   .avatar
                     .img
@@ -289,18 +297,25 @@ block content
                     //- img
                     .countdown
                       //- span.time 32:12
-                      p.lead 32:12
-                      //- span
-                      //- br
-                      small.unit hrs left
+                      br
+                      p
+                        i.fa.fa-clock-o
+                        span &nbsp;32:12.00
+                      //- p
                       //- span
                     //- countdown
                   //- avatar
                   br
                   p
-                    a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                    a.button.inline.v8.joincirclebuy(href="circlebuy-start.html") join
+                    | &nbsp;
+                    a.button.inline.v8.joincirclebuy(href="productdetails-rosnay.html") view
                   //- p
-                  p.lead.cbprice $13.99
+                  p.lead.cbprice 13.99
+                    small &nbsp;/ bottle
+                  //- p
+                  hr.short
+                  p 12 pack - $167.88
                   //- big
                 //- card_rounded
               //- col-md-4

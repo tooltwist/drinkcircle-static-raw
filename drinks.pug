@@ -509,146 +509,67 @@ block content
 
   section.pagenav
     .container
-      nav.page
-        ul
-          li
-            a(href='drinks-red.html') Red
-          //- li
-          li
-            a(href='drinks-white.html') White
-          //- li
-          li
-            a(href='drinks-beer.html') Beer
-          //- li
-          li
-            a(href='drinks-spirits.html') Spirits
-          //- li
-          li
-            a(href='drinks-bubbles.html') Bubbles
-          //- li
-          li
-            a(href='drinks-cider.html') Cider
-          //- li
-        //- ul
-      //- nav
+      .row
+        .col-md-3.text-center
+          p
+          form.form-inline
+            .form-group
+              label(for='exampleInputName2') Sort by
+              select.form-control
+                option highest rated
+                option most reviews
+                option A to Z
+                option Z to A
+              //- select
+            //- form-group
+          //- form
+        //- col-md-4
+        .col-md-6
+          nav.page
+            ul
+              li
+                a(href='drinks-red.html') Red
+              //- li
+              li
+                a(href='drinks-white.html') White
+              //- li
+              li
+                a(href='drinks-beer.html') Beer
+              //- li
+              li
+                a(href='drinks-spirits.html') Spirits
+              //- li
+              li
+                a(href='drinks-bubbles.html') Bubbles
+              //- li
+              li
+                a(href='drinks-cider.html') Cider
+              //- li
+            //- ul
+          //- nav
+        //- col-md-4
+        .col-md-3.text-center
+          p
+          form.form-inline
+            .form-group
+              label(for='exampleInputEmail2') Show
+              select.form-control
+                option 15
+                option 30
+                option 60
+              //- select
+            //- form-group
+          //- form
+        //- col-md-4
+      //- row
     //- container
   //- section
 
   section.drinks
     .container
-      form.form-inline
-        .form-group
-          label(for='exampleInputName2') Sort by
-          select.form-control
-            option highest rated
-            option most reviews
-            option A to Z
-            option Z to A
-          //- select
-        //- form-group
-        .form-group
-          label(for='exampleInputEmail2') Show
-          select.form-control
-            option 15
-            option 30
-            option 60
-          //- select
-        //- form-group
-      //- form
-      hr
       .product-wrap
         .row
           // 1 Product
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 93
-                    span points
-                  //- count
-                img.img-prod(src='assets/images/products/p1.jpg', alt='')
-                // Edit
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 14&nbsp;
-                          small circlebuys
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 624&nbsp;
-                          small ratings
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 121&nbsp;
-                          small reviews
-                      //- col-md-6
-                    //- .row
-                  //- stats
-                  .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Corona Extra
-                    br
-                    small Imported Beer
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $39.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | case
-                                //- span
-                                span.price $49.99
-                                  small &nbsp;per case
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 5
-                                  br
-                                  | cases
-                                //- span
-                                span.price $44.99
-                                  small &nbsp;per cases
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 20
-                                  br
-                                  | cases
-                                //- span
-                                span.price $39.99
-                                  small &nbsp;per cases
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='productdetails.html') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-
           .col-sm-6.col-md-4
             .product
               .thumb
@@ -740,927 +661,6 @@ block content
               //- thumb
             //- product
           //- col
-
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 91
-                    span points
-                  //- count
-                //- ctr
-                a(href='#modal_coming_soon', data-toggle='modal')
-                  img.img-prod(src='assets/images/products/p3.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 53&nbsp;
-                          small circlebuys
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 160&nbsp;
-                          small ratings
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 30&nbsp;
-                          small reviews
-                      //- col-md-6
-                    //- .row
-                  //- stats
-                  .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Chivas Regal
-                    br
-                    small 12 Year Old Scotch Whisky 700mL
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $32.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | bottle
-                                //- span
-                                span.price $25.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | case
-                                //- span
-                                span.price $33.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 3
-                                  br
-                                  | cases
-                                //- span
-                                span.price $32.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='productdetails.html') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 89
-                    span points
-                  //- count
-                //- ctr
-                a(href='#modal_coming_soon', data-toggle='modal')
-                  img.img-prod(src='assets/images/products/p4.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 43&nbsp;
-                          small circlebuys
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 160&nbsp;
-                          small ratings
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 30&nbsp;
-                          small reviews
-                      //- col-md-6
-                    //- .row
-                  //- stats
-                  .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Mo&eacute;t &amp; Chandon
-                    br
-                    small French Champagne
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $59.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 12
-                                  br
-                                  | pack
-                                //- span
-                                span.price $16.20
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 5
-                                  br
-                                  | cases
-                                //- span
-                                span.price $13.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 10
-                                  br
-                                  | cases
-                                //- span
-                                span.price $11.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='productdetails.html') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 95
-                    span points
-                  //- count
-                //- ctr
-                a(href='#modal_coming_soon', data-toggle='modal')
-                  img.img-prod(src='assets/images/products/p5.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 20&nbsp;
-                          small circlebuys
-                      //- col-md-4
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 88&nbsp;
-                          small reviews
-                      //- col-md-4
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 5&nbsp;
-                          small reviews
-                      //- col-md-4
-                    //- .row
-                  //- stats
-                  .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Absolut
-                    br
-                    small Vodka
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $43.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | bottle
-                                //- span
-                                span.price $49.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | case
-                                //- span
-                                span.price $44.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 3
-                                  br
-                                  | case
-                                //- span
-                                span.price $43.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='productdetails.html') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 90
-                    span points
-                  //- count
-                //- ctr
-                a(href='#modal_coming_soon', data-toggle='modal')
-                  img.img-prod(src='assets/images/products/p6.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 76&nbsp;
-                          small circlebuys
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 156&nbsp;
-                          small ratings
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 59&nbsp;
-                          small reviews
-                      //- col-md-6
-                    //- .row
-                  //- stats
-                  .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Kim Crawford
-                    br
-                    small Sauvignon Blanc
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $12.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 12
-                                  br
-                                  | pack
-                                //- span
-                                span.price $14.90
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 5
-                                  br
-                                  | cases
-                                //- span
-                                span.price $13.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 10
-                                  br
-                                  | cases
-                                //- span
-                                span.price $12.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='productdetails.html') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 95
-                    span points
-                  //- count
-                //- ctr
-                a(href='#modal_coming_soon', data-toggle='modal')
-                  img.img-prod(src='assets/images/products/p7.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 20&nbsp;
-                          small circlebuys
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 520&nbsp;
-                          small ratings
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 132&nbsp;
-                          small reviews
-                      //- col-md-6
-                    //- .row
-                  //- stats
-                  .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Heineken
-                    br
-                    small Lager Stubbies
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $36.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | case
-                                //- span
-                                span.price $42.95
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 5
-                                  br
-                                  | cases
-                                //- span
-                                span.price $39.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 20
-                                  br
-                                  | cases
-                                //- span
-                                span.price $36.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='productdetails.html') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 97
-                    span points
-                  //- count
-                //- ctr
-                a(href="productdetails-sticks.html")
-                  img.img-prod(src='assets/images/products/p8.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 21&nbsp;
-                          small circlebuys
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 69&nbsp;
-                          small ratings
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 13&nbsp;
-                          small reviews
-                      //- col-md-6
-                    //- .row
-                  //- stats
-                  .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Sticks
-                    br
-                    small Pinot Noir
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $14.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 6
-                                  br
-                                  | pack
-                                //- span
-                                span.price $16.20
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 5
-                                  br
-                                  | cases
-                                //- span
-                                span.price $15.50
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 10
-                                  br
-                                  | cases
-                                //- span
-                                span.price $14.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='productdetails-sticks.html') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 92
-                    span points
-                  //- count
-                //- ctr
-                a(href='#modal_coming_soon', data-toggle='modal')
-                  img.img-prod(src='assets/images/products/p9.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 98&nbsp;
-                          small circlebuys
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 19&nbsp;
-                          small ratings
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 4&nbsp;
-                          small reviews
-                      //- col-md-6
-                    //- .row
-                  //- stats
-                  .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Tempus Two
-                    br
-                    small Botrytis Semillon 250mL
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $12.50
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 6
-                                  br
-                                  | bottle
-                                //- span
-                                span.price $14.25
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 5
-                                  br
-                                  | case
-                                //- span
-                                span.price $13.50
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 10
-                                  br
-                                  | cases
-                                //- span
-                                span.price $12.50
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='productdetails.html') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 96
-                    span points
-                  //- count
-                //- ctr
-                a(href="productdetails-rosnay.html")
-                  img.img-prod(src='assets/images/products/p17.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 9&nbsp;
-                          small circlebuys
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 34&nbsp;
-                          small ratings
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 8&nbsp;
-                          small reviews
-                      //- col-md-6
-                    //- .row
-                  //- stats
-                  .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Rosnay Organic
-                    br
-                    small Triple Blend
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $19.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 6
-                                  br
-                                  | pack
-                                //- span
-                                span.price $16.20
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 5
-                                  br
-                                  | cases
-                                //- span
-                                span.price $15.50
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 10
-                                  br
-                                  | cases
-                                //- span
-                                span.price $14.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='productdetails-rosnay.html') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 97
-                    span points
-                  //- count
-                //- ctr
-                a(href='#modal_coming_soon', data-toggle='modal')
-                  img.img-prod(src='assets/images/products/p16.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 21&nbsp;
-                          small circlebuys
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 69&nbsp;
-                          small ratings
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 13&nbsp;
-                          small reviews
-                      //- col-md-6
-                    //- .row
-                  //- stats
-                  .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Rosnay Organic
-                    br
-                    small Semillon
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $14.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 6
-                                  br
-                                  | pack
-                                //- span
-                                span.price $16.20
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 5
-                                  br
-                                  | cases
-                                //- span
-                                span.price $15.50
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 10
-                                  br
-                                  | cases
-                                //- span
-                                span.price $14.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='productdetails.html') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 96
-                    span points
-                  //- count
-                //- ctr
-                a(href='#modal_coming_soon', data-toggle='modal')
-                  img.img-prod(src='assets/images/products/p14.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 32&nbsp;
-                          small circlebuys
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 111&nbsp;
-                          small ratings
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 45&nbsp;
-                          small reviews
-                      //- col-md-6
-                    //- .row
-                  //- stats
-                  .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Young Henrys
-                    br
-                    small Natural Lager
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $65.95
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | case
-                                //- span
-                                span.price $42.95
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 5
-                                  br
-                                  | cases
-                                //- span
-                                span.price $39.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 20
-                                  br
-                                  | cases
-                                //- span
-                                span.price $36.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='productdetails.html') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-
           .col-sm-6.col-md-4
             .product
               .thumb
@@ -1752,7 +752,1096 @@ block content
               //- thumb
             //- product
           //- col
-
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 97
+                    span points
+                  //- count
+                //- ctr
+                a(href="productdetails.html")
+                  img.img-prod(src='assets/images/products/p13.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 34&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 110&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 25&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href='#modal_coming_soon', data-toggle='modal') Young Henrys
+                    br
+                    small Cloudy Cider
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $65.95
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $25.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $29.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $19.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='productdetails.html') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 93
+                    span points
+                  //- count
+                img.img-prod(src='assets/images/products/p1.jpg', alt='')
+                // Edit
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 14&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 624&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 121&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href='#modal_coming_soon', data-toggle='modal') Corona Extra
+                    br
+                    small Imported Beer
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $39.99
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $49.99
+                                  small &nbsp;per case
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $44.99
+                                  small &nbsp;per cases
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 20
+                                  br
+                                  | cases
+                                //- span
+                                span.price $39.99
+                                  small &nbsp;per cases
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='productdetails.html') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 91
+                    span points
+                  //- count
+                //- ctr
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  img.img-prod(src='assets/images/products/p3.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 53&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 160&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 30&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href='#modal_coming_soon', data-toggle='modal') Chivas Regal
+                    br
+                    small 12 Year Old Scotch Whisky 700mL
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $32.99
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | bottle
+                                //- span
+                                span.price $25.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $33.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 3
+                                  br
+                                  | cases
+                                //- span
+                                span.price $32.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='productdetails.html') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 89
+                    span points
+                  //- count
+                //- ctr
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  img.img-prod(src='assets/images/products/p4.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 43&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 160&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 30&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href='#modal_coming_soon', data-toggle='modal') Mo&eacute;t &amp; Chandon
+                    br
+                    small French Champagne
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $59.99
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 12
+                                  br
+                                  | pack
+                                //- span
+                                span.price $16.20
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $13.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $11.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='productdetails.html') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 95
+                    span points
+                  //- count
+                //- ctr
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  img.img-prod(src='assets/images/products/p5.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 20&nbsp;
+                          small circlebuys
+                      //- col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 88&nbsp;
+                          small reviews
+                      //- col-md-4
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 5&nbsp;
+                          small reviews
+                      //- col-md-4
+                    //- .row
+                  //- stats
+                  .name
+                    a(href='#modal_coming_soon', data-toggle='modal') Absolut
+                    br
+                    small Vodka
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $43.99
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | bottle
+                                //- span
+                                span.price $49.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $44.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 3
+                                  br
+                                  | case
+                                //- span
+                                span.price $43.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='productdetails.html') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 90
+                    span points
+                  //- count
+                //- ctr
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  img.img-prod(src='assets/images/products/p6.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 76&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 156&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 59&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href='#modal_coming_soon', data-toggle='modal') Kim Crawford
+                    br
+                    small Sauvignon Blanc
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $12.99
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 12
+                                  br
+                                  | pack
+                                //- span
+                                span.price $14.90
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $13.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $12.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='productdetails.html') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 95
+                    span points
+                  //- count
+                //- ctr
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  img.img-prod(src='assets/images/products/p7.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 20&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 520&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 132&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href='#modal_coming_soon', data-toggle='modal') Heineken
+                    br
+                    small Lager Stubbies
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $36.99
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $42.95
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $39.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 20
+                                  br
+                                  | cases
+                                //- span
+                                span.price $36.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='productdetails.html') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 97
+                    span points
+                  //- count
+                //- ctr
+                a(href="productdetails-sticks.html")
+                  img.img-prod(src='assets/images/products/p8.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 21&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 69&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 13&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href='#modal_coming_soon', data-toggle='modal') Sticks
+                    br
+                    small Pinot Noir
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $14.99
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 6
+                                  br
+                                  | pack
+                                //- span
+                                span.price $16.20
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $15.50
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $14.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='productdetails-sticks.html') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 92
+                    span points
+                  //- count
+                //- ctr
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  img.img-prod(src='assets/images/products/p9.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 98&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 19&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 4&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href='#modal_coming_soon', data-toggle='modal') Tempus Two
+                    br
+                    small Botrytis Semillon 250mL
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $12.50
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 6
+                                  br
+                                  | bottle
+                                //- span
+                                span.price $14.25
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | case
+                                //- span
+                                span.price $13.50
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $12.50
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='productdetails.html') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 96
+                    span points
+                  //- count
+                //- ctr
+                a(href="productdetails-rosnay.html")
+                  img.img-prod(src='assets/images/products/p17.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 9&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 34&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 8&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href='#modal_coming_soon', data-toggle='modal') Rosnay Organic
+                    br
+                    small Triple Blend
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $19.99
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 6
+                                  br
+                                  | pack
+                                //- span
+                                span.price $16.20
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $15.50
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $14.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='productdetails-rosnay.html') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 97
+                    span points
+                  //- count
+                //- ctr
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  img.img-prod(src='assets/images/products/p16.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 21&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 69&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 13&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href='#modal_coming_soon', data-toggle='modal') Rosnay Organic
+                    br
+                    small Semillon
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $14.99
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 6
+                                  br
+                                  | pack
+                                //- span
+                                span.price $16.20
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $15.50
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 10
+                                  br
+                                  | cases
+                                //- span
+                                span.price $14.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='productdetails.html') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
+          .col-sm-6.col-md-4
+            .product
+              .thumb
+                .ctr
+                  .count 96
+                    span points
+                  //- count
+                //- ctr
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  img.img-prod(src='assets/images/products/p14.jpg', alt='')
+                //- a
+                .details
+                  p
+                  .stats
+                    .row
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 32&nbsp;
+                          small circlebuys
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 111&nbsp;
+                          small ratings
+                      //- col-md-6
+                      .col-md-4.col-sm-4.col-xs-4
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          big 45&nbsp;
+                          small reviews
+                      //- col-md-6
+                    //- .row
+                  //- stats
+                  .name
+                    a(href='#modal_coming_soon', data-toggle='modal') Young Henrys
+                    br
+                    small Natural Lager
+                  //- name
+                  .pricing
+                    .buy.drop
+                      ul
+                        li
+                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                        //- li
+                        li.drop
+                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
+                            | $65.95
+                          //- a
+                          br
+                          ul
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 1
+                                  br
+                                  | case
+                                //- span
+                                span.price $42.95
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 5
+                                  br
+                                  | cases
+                                //- span
+                                span.price $39.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                            li
+                              a(href="#", data-toggle="modal", data-target="#buymode")
+                                span.qty 20
+                                  br
+                                  | cases
+                                //- span
+                                span.price $36.99
+                                  small &nbsp;per bottle
+                              //- a
+                            //- li
+                          //- ul
+                        //- li
+                        li
+                          a.thumb-action(href='productdetails.html') View
+                        //- li
+                      //- ul
+                    //-buy
+                  //- pricing
+                //- details
+              //- thumb
+            //- product
+          //- col
           .col-sm-6.col-md-4
             .product
               .thumb
@@ -1844,7 +1933,6 @@ block content
               //- thumb
             //- product
           //- col
-
           .col-sm-6.col-md-4
             .product
               .thumb
@@ -1936,7 +2024,6 @@ block content
               //- thumb
             //- product
           //- col
-
           .col-sm-6.col-md-4
             .product
               .thumb
@@ -2026,7 +2113,6 @@ block content
               //- thumb
             //- product
           //- col
-
           .col-sm-6.col-md-4
             .product
               .thumb
@@ -2073,98 +2159,6 @@ block content
                         li.drop
                           a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
                             | $39.99
-                          //- a
-                          br
-                          ul
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 1
-                                  br
-                                  | case
-                                //- span
-                                span.price $25.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 5
-                                  br
-                                  | cases
-                                //- span
-                                span.price $29.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                            li
-                              a(href="#", data-toggle="modal", data-target="#buymode")
-                                span.qty 10
-                                  br
-                                  | cases
-                                //- span
-                                span.price $19.99
-                                  small &nbsp;per bottle
-                              //- a
-                            //- li
-                          //- ul
-                        //- li
-                        li
-                          a.thumb-action(href='productdetails.html') View
-                        //- li
-                      //- ul
-                    //-buy
-                  //- pricing
-                //- details
-              //- thumb
-            //- product
-          //- col
-
-          .col-sm-6.col-md-4
-            .product
-              .thumb
-                .ctr
-                  .count 97
-                    span points
-                  //- count
-                //- ctr
-                a(href="productdetails.html")
-                  img.img-prod(src='assets/images/products/p13.jpg', alt='')
-                //- a
-                .details
-                  p
-                  .stats
-                    .row
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 34&nbsp;
-                          small circlebuys
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 110&nbsp;
-                          small ratings
-                      //- col-md-6
-                      .col-md-4.col-sm-4.col-xs-4
-                        a(href='#modal_coming_soon', data-toggle='modal')
-                          big 25&nbsp;
-                          small reviews
-                      //- col-md-6
-                    //- .row
-                  //- stats
-                  .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Young Henrys
-                    br
-                    small Cloudy Cider
-                  //- name
-                  .pricing
-                    .buy.drop
-                      ul
-                        li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
-                        //- li
-                        li.drop
-                          a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="circlebuys")
-                            | $65.95
                           //- a
                           br
                           ul

@@ -1,0 +1,1029 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  .banner.userprofile.seller.ro
+    .gradient
+    .info
+      .container
+        .row
+          .col-sm-3.col-md-3
+            .photo
+              .img.square
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  i.fa.fa-camera
+                //- a
+                img(src="assets/images/producers/rosnay/logo.jpg", alt="")
+              //- img
+              .name
+                span Rosnay Organic&nbsp;
+                sup
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    i.fa.fa-pencil
+                    span edit profile
+                  //- a
+                //- sup
+                br
+                small Organic Wines
+              //- name
+            //- photo
+          //- col-md-3
+        //- row
+        .row
+          .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
+            .userprofilemenu
+              nav.menu
+                ul
+                  li
+                    a.active(href="shop-ro.html") Shop
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Shipping
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Return Policy
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Circlebuys
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Contact Us
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') About Us
+                  //- li
+                  li
+                    a(href="seller-ro.html") News Feed
+                  //- li
+                //- ul
+              //- nav
+            //- userprofilemenu
+          //- col-md-6
+        //- row
+      //- container
+    //- info
+  //- banner-home
+
+
+
+  section.userprofile.drinks.results
+    .container
+      .row
+        .col-md-3
+          br
+          .search.form-icon
+            a.icon(href='#', target='_blank')
+              i.fa.fa-search
+            //- a
+            input.form-control(type='text', placeholder='search rosnay organic...')
+          //- search
+          .seller-categories
+            h3 Organic Wines
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Garage Wine Number 1
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Grand-Mere Reserve White
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Grand-Pere Reserve Red 2013
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Blanc 2011 Reserve
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Sparkling Rose 2011
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Vintage Sparkling 2012
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Freedom White
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Blanc 2013
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Triple Blend 2011
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Semillon 2012
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Shiraz 2009
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Chardonnay 2015
+            //- h4
+          //- card
+        //- col-md-3
+        .col-md-9
+          br
+          form.form-inline
+            .form-group
+              label(for='exampleInputName2') Sort by
+              select.form-control
+                option Most popular
+              //- select
+            //- form-group
+            .form-group
+              label(for='exampleInputEmail2') Show
+              select.form-control
+                option 15
+                option 50
+                option 100
+              //- select
+            //- form-group
+          //- form
+          hr
+          .product-wrap
+            .row
+              // 1 Product
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 93
+                        span points
+                      //- count
+                    img.img-prod.card(src='assets/images/producers/rosnay/prod1.png', alt='')
+                    // Edit
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') Garage Wine Number 1
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $34.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $49.99
+                                      small &nbsp;per case
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $44.99
+                                      small &nbsp;per cases
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 20
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $39.99
+                                      small &nbsp;per cases
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 91
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/rosnay/prod2.png', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') Grand-Mere Reserve White
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $30.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $29.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $19.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 91
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/rosnay/prod3.png', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') Grand-Pere Reserve Red 2013
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $30.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $29.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $19.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 93
+                        span points
+                      //- count
+                    img.img-prod.card(src='assets/images/producers/rosnay/prod4.png', alt='')
+                    // Edit
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') Blanc 2011 Reserve
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $22.50
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $49.99
+                                      small &nbsp;per case
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $44.99
+                                      small &nbsp;per cases
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 20
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $39.99
+                                      small &nbsp;per cases
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 91
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/rosnay/prod5.png', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') Sparkling Rose 2011
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $21.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $29.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $19.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 91
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/rosnay/prod6.png', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') Vintage Sparkling 2012
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $21.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $29.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $19.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 92
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/rosnay/prod7.png', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') Freedom White
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $18.50
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $33.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $32.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 92
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/rosnay/prod8.png', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') Blanc 2013
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $18.50
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $33.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $32.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 95
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/rosnay/prod9.png', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') Triple Blend 2011
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $18.50
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 12
+                                      br
+                                      | pack
+                                    //- span
+                                    span.price $16.20
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $13.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $11.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 95
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/rosnay/prod10.png', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') Semillon 2012
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $18.50
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 12
+                                      br
+                                      | pack
+                                    //- span
+                                    span.price $16.20
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $13.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $11.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 96
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/rosnay/prod11.png', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') Shiraz 2009
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $18.50
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $49.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $44.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $43.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 96
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/rosnay/prod12.png', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') Chardonnay 2015
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $18.50
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $49.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $44.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $43.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+            //- row
+          //- product-wrap
+          hr
+          nav.text-center(aria-label='...')
+            ul.pagination.pagination-sm
+              li
+                a(href='#', aria-label='Previous')
+                  span(aria-hidden='true') «
+              li
+                a(href='#modal_coming_soon', data-toggle='modal') 1
+              li
+                a(href='#modal_coming_soon', data-toggle='modal') 2
+              li
+                a(href='#modal_coming_soon', data-toggle='modal') 3
+              li
+                a(href='#modal_coming_soon', data-toggle='modal') 4
+              li
+                a(href='#modal_coming_soon', data-toggle='modal') 5
+              li
+                a(href='#', aria-label='Next')
+                  span(aria-hidden='true') »
+                //- a
+              //- li
+            //- ul
+          //- nav
+        //- col-md-9
+      //- row
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+      $('.popover_price[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<ul class="cost">' + $(this).parent().find("ul").html() + '</ul>';
+        },
+        title: function(){
+          return jQuery(this).data('title') + '<span class="close">&times;</span>';
+        }
+      }).on('shown.bs.popover', function(e) {
+        var popover = jQuery(this);
+        $(this).parent().find('.popover span.close').on('click', function(e) {
+          popover.popover('hide');
+        });
+      }).click(function(e) {
+        e.preventDefault();
+      });
+    });
+  //- script.

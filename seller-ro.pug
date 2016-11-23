@@ -1,0 +1,940 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  .banner.userprofile.seller.ro
+    .gradient
+    .container.banner-btn-wrap
+      .btns
+        a.btn.btn-default.btn-sm.editprofile(href='#modal_coming_soon', data-toggle='modal') edit profile
+        a.btn.btn-default.btn-sm.editprofile(href='#modal_coming_soon', data-toggle='modal') preview public profile
+      //- btns
+    //- container
+    .info
+      .container
+        .row
+          .col-sm-3.col-md-3
+            .photo
+              .img.square
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  i.fa.fa-camera
+                //- a
+                img(src="assets/images/producers/rosnay/logo.jpg", alt="")
+              //- img
+              .name
+                span Rosnay Organic&nbsp;
+                //- sup
+                //-   a(href='#modal_coming_soon', data-toggle='modal')
+                //-     i.fa.fa-pencil
+                //-     span edit profile
+                //-   //- a
+                //- //- sup
+                br
+                small Organic Wines
+              //- name
+            //- photo
+          //- col-md-3
+        //- row
+        .row
+          .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
+            .userprofilemenu
+              nav.menu
+                ul
+                  li
+                    a.active(href="shop-ro.html") Shop
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') News
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Like
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Message
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Save
+                  //- li
+                  li
+                    a(href="seller-about.html") About
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Photos
+                  //- li
+                  li
+                    a(href="seller-reviews.html") Reviews
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Events
+                  //- li
+                //- ul
+              //- nav
+            //- userprofilemenu
+          //- col-md-6
+        //- row
+      //- container
+    //- info
+  //- banner-home
+
+  section.userprofile
+    .container
+      .row
+        .col-md-3
+          br
+          .intro
+            h4 Organic Wines &middot; 510 Rivers Road Canowindra, New South Wales
+            .rating-status
+              | 4.6
+              .stars
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star-half-o
+              //- stars
+            //- rating-status
+          //- intro
+          .search.page
+            a(href="#", target="_blank")
+              i.fa.fa-search
+            //- a
+            input.form-control(type='text', placeholder='search for posts on this page...')
+          //- search
+          .list_groups.sellerinfo
+            .content
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-users
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal') 1,079 people like this
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-map-marker
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal') 157 people have been here
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-clock-o
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    | Open · 9:30AM - 5:00PM
+                    br
+                    | Get additional info
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-user-plus
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    | Invite friends to like this Page
+                  //- p
+                //- span
+              //- input-group
+              .form-group.text-center.linetop
+                button.btn.btn-success(onclick="location.href = 'shop.html'") shop now
+              //- input-group
+            //- content
+          //- sellerinfo
+          .intro.sibling
+            .livecircles
+              h4.text
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  .count 124 circlebuys
+                //- a
+              //- h4
+            //- livecircles
+          //- intro
+          .list_groups.sellerinfo
+            .content
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') About
+              //- h4
+              .map
+                img(src="assets/images/static_map.png", alt="")
+              //-
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-share
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal') 510 Rivers Road Canowindra, NSW 2804
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-phone
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal') 1300 ROSNAY (1300 767629)
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-clock-o
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    | Open
+                    br
+                    | Today 9:30AM - 5:00PM
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  i.fa.fa-question-circle-o
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    | Ask for Rosnay Organic's price range
+                  //- p
+                //- span
+              //- input-group
+            //- content
+          //- sellerinfo
+          .grid_groups.friends
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') Photos
+              small (
+                a(href='#modal_coming_soon', data-toggle='modal') 40
+                | )
+            //- h4
+            .content
+              .container-fluid
+                .row
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/rosnay/1.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/rosnay/2.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/rosnay/3.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/rosnay/4.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/rosnay/5.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/rosnay/6.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/rosnay/7.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/rosnay/8.png", alt="")
+                  //- col-md-4
+                  .col-xs-4.col-sm-4.col-md-4.thumb
+                    img(src="assets/images/photos/rosnay/9.png", alt="")
+                  //- col-md-4
+                //- row
+              //- container
+            //- content
+            .more
+              a(href='#modal_coming_soon', data-toggle='modal') See all
+            //- more
+          //- grid_groups
+        //- col-md-3
+        .col-md-6
+          .composer
+            .head
+              a(href="#composer-tab-status", role="tab", data-toggle="tab")
+                i.fa.fa-pencil
+                | Status
+              a(href="#composer-tab-photo-video", role="tab", data-toggle="tab")
+                i.fa.fa-picture-o
+                | Photo/Video
+              a(href="#composer-tab-events", role="tab", data-toggle="tab")
+                i.fa.fa-calendar-o
+                | Events
+            //- head
+            .content.tab-content
+              .tab-pane.active#composer-tab-status(role="tabpanel")
+                textarea.form-control(rows='2')
+              //- composer-tab-status
+              .tab-pane#composer-tab-photo-video(role="tabpanel")
+                .drop-photo
+                  i.fa.fa-picture-o
+                  br
+                  span Drag Photos/Videos Here
+                //- event-photo
+              //- composer-tab-status
+              .tab-pane#composer-tab-events(role="tabpanel")
+                .drop-photo
+                  i.fa.fa-picture-o
+                  br
+                  span Drag Event Photo Here
+                //- event-photo
+                .row
+                  .col-md-12
+                    .form-group
+                      label(for='composer-event-name') Event Name
+                      input#composer-event-name.form-control(type='text', placeholder='')
+                    //- form-group
+                  //- col-md-12
+                  .col-md-12
+                    .form-group
+                      label(for='composer-location') Location
+                      input#composer-location.form-control(type='text', placeholder='')
+                    //- form-group
+                  //- col-md-12
+                  .col-md-6.col-sm-6.col-xs-6
+                    .form-group
+                      label(for='composer-event-date-from') From
+                      input#composer-event-date-from.form-control(type='date', placeholder='')
+                    //- form-group
+                  //- col-md-6
+                  .col-md-6.col-sm-6.col-xs-6
+                    .form-group
+                      label(for='composer-event-date-to') to
+                      input#composer-event-date-to.form-control(type='date', placeholder='')
+                    //- form-group
+                  //- col-md-6
+                  .col-md-12
+                    .form-group
+                      label(for='composer-description') Description
+                      textarea#composer-description.form-control(rows="3")
+                    //- form-group
+                  //- col-md-12
+                //- row
+              //- composer-tab-status
+            //- content
+            .controls
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-camera
+              //- a
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-user-plus
+              //- a
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-smile-o
+              //- a
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-map-marker
+              //- a
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-clock-o
+              //- a
+
+              a.post(href="#")
+                i.fa.fa-send-o
+                | Post
+              //- a
+            //- controls
+          //- composer
+
+          .timeline
+            .form-icon.left
+              input.form-control(type='text', placeholder='Search for a post...')
+              a.icon(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-search
+              //- a
+            //- form-icon
+          //- timeline
+
+          .timeline
+            .content
+              .head
+                .user
+                  .img
+                    img(src="assets/images/producers/rosnay/logo.jpg", alt="")
+                  //- img
+                  a(href="seller-ro.html") Rosnay Organic
+                //- user
+                .more
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    i.fa.fa-chevron-down
+                  //- a
+                //- more
+              //- header
+              .inner
+                .caption
+                  p A story about Rosnay in today's Weekly Times - Australia's biggest rural newspaper! Thankyou&nbsp;
+                    a(href='#modal_coming_soon', data-toggle='modal') The Weekly Times
+                //- caption
+                .post
+                  .shared
+                    img(src="assets/images/producers/rosnay/post1.png", alt="")
+                  //- shared
+                //- post
+              //- inner
+              br
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-heart
+                | &nbsp;199
+            //- content
+            .controls
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-heart
+                | Like
+              //- a
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-comment
+                | Comment
+              //- a
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-share
+                | Share
+              //- a
+            //- controls
+            .footer
+              .comments
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/users/user_3.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    strong
+                      a(href="#", target="_blank") Darren Crone
+                    //- strong
+                    | Also in This month's Organic Gardener.
+                    p
+                      a(href='#modal_coming_soon', data-toggle='modal') Like
+                      | &nbsp;&middot;&nbsp;
+                      a(href='#modal_coming_soon', data-toggle='modal') Reply
+                      | &middot;
+                      small &nbsp;August 31 at 5:50pm
+                //- input-group
+              //- comments
+              .comment
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/producers/rosnay/logo.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  input.form-control(type='text', placeholder='Write a comment...')
+                  span.input-group-addon
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      i.fa.fa-camera
+                    //- a
+                  //- input-group-addon
+                //- input-group
+              //- comment
+            //- footer
+          //- timeline
+          .timeline
+            .content
+              .head
+                .user
+                  .img
+                    img(src="assets/images/producers/rosnay/logo.jpg", alt="")
+                  //- img
+                  a(href="seller-ro.html") Rosnay Organic
+                //- user
+                .more
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    i.fa.fa-chevron-down
+                  //- a
+                //- more
+              //- header
+              .inner
+                .caption
+                  p Looking forward to the annual sales trip to QLD and northern NSW and this will be the final event for anyone up near Noosa!
+                //- caption
+                .post
+                  .shared
+                    img(src="assets/images/producers/rosnay/post2.png", alt="")
+                  //- shared
+                //- post
+              //- inner
+              br
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-heart
+                | &nbsp;16
+            //- content
+            .controls
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-heart
+                | Like
+              //- a
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-comment
+                | Comment
+              //- a
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-share
+                | Share
+              //- a
+            //- controls
+            .footer
+              .comments
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/users/user_5.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    strong
+                      a(href="#", target="_blank") Cathy Gadd
+                    //- strong
+                    |  Looking forward to the event
+                    p
+                      a(href='#modal_coming_soon', data-toggle='modal') Like
+                      | &nbsp;&middot;&nbsp;
+                      a(href='#modal_coming_soon', data-toggle='modal') Reply
+                      | &middot;
+                      small &nbsp;July 23 at 5:33pm
+                //- input-group
+              //- comments
+              .comment
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/producers/rosnay/logo.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  input.form-control(type='text', placeholder='Write a comment...')
+                  span.input-group-addon
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      i.fa.fa-camera
+                    //- a
+                  //- input-group-addon
+                //- input-group
+              //- comment
+            //- footer
+          //- timeline
+          .timeline
+            .content
+              .head
+                .user
+                  .img
+                    img(src="assets/images/producers/rosnay/logo.jpg", alt="")
+                  //- img
+                  a(href="seller-ro.html") Rosnay Organic
+                //- user
+                .more
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    i.fa.fa-chevron-down
+                  //- a
+                //- more
+              //- header
+              .inner
+                .caption
+                  p Final pressing for&nbsp;
+                    a(href='') #v16
+                    | &nbsp;with the late harvest shiraz garage wine. Sweet- literally! Picked when well raisined on the vine 2 weeks ago.
+                  //- p
+                //- caption
+                .post
+                  .shared
+                    img(src="assets/images/producers/rosnay/post3.png", alt="")
+                  //- shared
+                //- post
+              //- inner
+              br
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-heart
+                | &nbsp;30
+            //- content
+            .controls
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-heart
+                | Like
+              //- a
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-comment
+                | Comment
+              //- a
+              a(href='#modal_coming_soon', data-toggle='modal')
+                i.fa.fa-share
+                | Share
+              //- a
+            //- controls
+            .footer
+              .comments
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/users/user_5.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  span.form-control
+                    strong
+                      a(href="#", target="_blank") Cathy Gadd
+                    //- strong
+                    |  A visit would appear appropriate ....
+                    p
+                      a(href='#modal_coming_soon', data-toggle='modal') Like
+                      | &nbsp;&middot;&nbsp;
+                      a(href='#modal_coming_soon', data-toggle='modal') Reply
+                      | &middot;
+                      small &nbsp;March 17 at 7:30pm
+                //- input-group
+              //- comments
+              .comment
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src="assets/images/producers/rosnay/logo.jpg", alt="")
+                      //- img
+                    //- thumb
+                  //- input-group-addon
+                  input.form-control(type='text', placeholder='Write a comment...')
+                  span.input-group-addon
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      i.fa.fa-camera
+                    //- a
+                  //- input-group-addon
+                //- input-group
+              //- comment
+            //- footer
+          //- timeline
+        //- col-md-6
+        .col-md-3
+          .list_groups.reviews
+            .head
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Reviews
+                small (
+                  a(href='#modal_coming_soon', data-toggle='modal') 89
+                  | )
+              //- h4
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/reviewers/rev1.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    strong Belinda May Goman
+                  //- a
+                  br
+                  | 5
+                  i.fa.fa-star
+                  | &nbsp;
+                  | We visited your cellar door yesterday &amp; enjoy...
+                  a(href='#modal_coming_soon', data-toggle='modal') see more
+                  br
+                  small April 11, 2016
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/reviewers/rev2.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    strong Arne De Boer
+                  //- a
+                  br
+                  | 5
+                  i.fa.fa-star
+                  | &nbsp;
+                  | What a nice place. Me and my girlfriend had a love...
+                  a(href='#modal_coming_soon', data-toggle='modal') see more
+                  br
+                  small April 11, 2016
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/img_advisor_1.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  strong Tell people what you think
+                  br
+                  a.rate(href="#", target="_blank")
+                    i.fa.fa-star-o
+                      i.fa.fa-star-o
+                        i.fa.fa-star-o
+                          i.fa.fa-star-o
+                            i.fa.fa-star-o
+                          //- i
+                        //- i
+                      //- i
+                    //- i
+                  //- a
+                //- span
+              //- input-group
+            //- content
+            .review
+              input.form-control(type='text', placeholder='write a review...')
+            //- review
+            .more
+              a(href='#modal_coming_soon', data-toggle='modal') See all
+            //- more
+          //- feed
+
+          .list_groups.feed
+            .head
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Latest activity
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/activity/img_advisor_2.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    strong Rodan Luzuriaga
+                  | likes your photo.
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/img_advisor_1.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="profile.html")
+                    strong Andrew Steer
+                  | commented on your post.
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/activity/img_advisor_2.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    strong Rodan Luzuriaga
+                  | shared your post.
+                  //- p
+                //- span
+              //- input-group
+            //- content
+          //- feed
+
+          .list_search_groups.messaging
+            .head
+              h4 Live chat
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/users/user_3.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a.online(href="#") Darren Crone
+                  small online
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/users/user_2.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a.offline(href="#") Rodan Luzuriaga
+                  small 2hours ago
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/users/user_1.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a.online(href="profile.html") Andrew Steer
+                  small online
+                  //- p
+                //- span
+              //- input-group
+            //- content
+            .search
+              input.form-control(type='text')
+              a.new(href="#")
+                i.fa.fa-pencil-square-o
+              //- a
+            //- search
+          //- messaging
+
+          .list_groups.events
+            .head
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Events
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/producers/rosnay/logo.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    strong Juniperlooza
+                  br
+                  | Rosnay Organic
+                  br
+                  small 11/19 - 11/20 2016
+                    br
+                    | 5:30 PM
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/producers/rosnay/logo.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    strong Meet The Maker Gin Evening
+                  br
+                  | Rosnay Organic
+                  br
+                  small 08/17/2016
+                    br
+                    | 6:30 PM
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/producers/rosnay/logo.jpg', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    strong Stop, Snapper time! at Steamboat Sundays
+                  br
+                  | Rosnay Organic
+                  br
+                  small 02/14/2016
+                    br
+                    | 12:00 PM
+                  //- p
+                //- span
+              //- input-group
+            //- content
+            .more
+              a(href='#modal_coming_soon', data-toggle='modal') See all
+            //- more
+          //- list_groups
+
+          .list_groups.likedbypage
+            .head
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Liked by this page
+            //- head
+            .content
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/likes/likes_3.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    strong Hardys
+                  //- | likes your photo.
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/likes/likes_4.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href="profile.html")
+                    strong Grant Burge Barossa
+                  //- | commented on your post.
+                  //- p
+                //- span
+              //- input-group
+              .input-group
+                span.input-group-addon
+                  .thumb
+                    .img
+                      img(src='assets/images/likes/likes_7.png', alt='')
+                    //- img
+                  //- thumb
+                span.form-control
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    strong Ginger Joe
+                  //- | shared your post.
+                  //- p
+                //- span
+              //- input-group
+            //- content
+            .more
+              a(href='#modal_coming_soon', data-toggle='modal') See all
+            //- more
+          //- list_groups
+
+        //- col-md-3
+      //- row
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(document).ready(function(){
+
+    });

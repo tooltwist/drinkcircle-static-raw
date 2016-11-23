@@ -132,6 +132,18 @@
 		&._s3 {
 			background-image: url($bg-avatar-ring-s3);
 		}
+    &.cb3of12 {
+			background-image: url($bg-avatar-ring-cb3of12);
+		}
+    &.cb6of12 {
+			background-image: url($bg-avatar-ring-cb6of12);
+		}
+    &.cb7of12 {
+			background-image: url($bg-avatar-ring-cb7of12);
+		}
+    &.cb8of12 {
+			background-image: url($bg-avatar-ring-cb8of12);
+		}
 	}
 	.name {
 		font-size: 11px;
@@ -263,10 +275,10 @@
 
 
 .card_rounded {
-  padding: 15px;
+  padding: 5px 15px 0 15px;
   background: white;
   border: 1px solid #eee;
-  outline: 1px solid whitesmoke;
+  // outline: 1px solid whitesmoke;
   border-radius: 8px;
 }
 

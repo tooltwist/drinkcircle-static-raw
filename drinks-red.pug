@@ -509,53 +509,64 @@ block content
 
   section.pagenav
     .container
-      nav.page
-        ul
-          li
-            a(href='drinks-red.html') Red
-          //- li
-          li
-            a(href='drinks-white.html') White
-          //- li
-          li
-            a(href='drinks-beer.html') Beer
-          //- li
-          li
-            a(href='drinks-spirits.html') Spirits
-          //- li
-          li
-            a(href='drinks-bubbles.html') Bubbles
-          //- li
-          li
-            a(href='drinks-cider.html') Cider
-          //- li
-        //- ul
-      //- nav
+      .row
+        .col-md-3.text-center
+          p
+          form.form-inline
+            .form-group
+              label(for='exampleInputName2') Sort by
+              select.form-control
+                option highest rated
+                option most reviews
+                option A to Z
+                option Z to A
+              //- select
+            //- form-group
+          //- form
+        //- col-md-4
+        .col-md-6
+          nav.page
+            ul
+              li
+                a(href='drinks-red.html') Red
+              //- li
+              li
+                a(href='drinks-white.html') White
+              //- li
+              li
+                a(href='drinks-beer.html') Beer
+              //- li
+              li
+                a(href='drinks-spirits.html') Spirits
+              //- li
+              li
+                a(href='drinks-bubbles.html') Bubbles
+              //- li
+              li
+                a(href='drinks-cider.html') Cider
+              //- li
+            //- ul
+          //- nav
+        //- col-md-4
+        .col-md-3.text-center
+          p
+          form.form-inline
+            .form-group
+              label(for='exampleInputEmail2') Show
+              select.form-control
+                option 15
+                option 30
+                option 60
+              //- select
+            //- form-group
+          //- form
+        //- col-md-4
+      //- row
     //- container
   //- section
 
   section.drinks
     .container
-      form.form-inline
-        .form-group
-          label(for='exampleInputName2') Sort by
-          select.form-control
-            option highest rated
-            option most reviews
-            option A to Z
-            option Z to A
-          //- select
-        //- form-group
-        .form-group
-          label(for='exampleInputEmail2') Show
-          select.form-control
-            option 15
-            option 30
-            option 60
-          //- select
-        //- form-group
-      //- form
-      hr
       .product-wrap
         .row
           .col-sm-6.col-md-4

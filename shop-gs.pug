@@ -1,0 +1,1101 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  .banner.userprofile.seller.gs
+    .gradient
+    .info
+      .container
+        .row
+          .col-sm-3.col-md-3
+            .photo
+              .img.square
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  i.fa.fa-camera
+                //- a
+                img(src="assets/images/producers/gs/logo.jpg", alt="")
+              //- img
+              .name
+                span Giant Steps&nbsp;
+                sup
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    i.fa.fa-pencil
+                    span edit profile
+                  //- a
+                //- sup
+                br
+                small Wines
+              //- name
+            //- photo
+          //- col-md-3
+        //- row
+        .row
+          .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
+            .userprofilemenu
+              nav.menu
+                ul
+                  li
+                    a.active(href="shop-gs.html") Shop
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Shipping
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Return Policy
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Circlebuys
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') Contact Us
+                  //- li
+                  li
+                    a(href='#modal_coming_soon', data-toggle='modal') About Us
+                  //- li
+                  li
+                    a(href="seller-gs.html") News Feed
+                  //- li
+                //- ul
+              //- nav
+            //- userprofilemenu
+          //- col-md-6
+        //- row
+      //- container
+    //- info
+  //- banner-home
+
+
+
+  section.userprofile.drinks.results
+    .container
+      .row
+        .col-md-3
+          br
+          .search.form-icon
+            a.icon(href='#', target='_blank')
+              i.fa.fa-search
+            //- a
+            input.form-control(type='text', placeholder='search giant steps...')
+          //- search
+          .seller-categories
+            h3 Wines
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Yarra Valley Chardonnay
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Lusatia Park Vineyard Chardonnay
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Sexton Vineyard Chardonnay
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Tarraford Vineyard Chardonnay
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Yarra Valley Pinot Noir
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Applejack Vineyard Pinot Noir
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Lusatia Park Vineyard Pinot Noir
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Primavera Vineyard Pinot Noir
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Sexton Vineyard Pinot Noir
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Yarra Valley Syrah
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Tarraford Vineyard Syrah
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Yarra Valley Merlot
+            //- h4
+            h4
+              a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Harry's Monster
+            //- h4
+          //- card
+        //- col-md-3
+        .col-md-9
+          br
+          form.form-inline
+            .form-group
+              label(for='exampleInputName2') Sort by
+              select.form-control
+                option Most popular
+              //- select
+            //- form-group
+            .form-group
+              label(for='exampleInputEmail2') Show
+              select.form-control
+                option 15
+                option 50
+                option 100
+              //- select
+            //- form-group
+          //- form
+          hr
+          .product-wrap
+            .row
+              // 1 Product
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 93
+                        span points
+                      //- count
+                    img.img-prod.card(src='assets/images/producers/gs/prod1.jpg', alt='')
+                    // Edit
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Yarra Valley Chardonnay
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $35.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $49.99
+                                      small &nbsp;per case
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $44.99
+                                      small &nbsp;per cases
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 20
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $39.99
+                                      small &nbsp;per cases
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 91
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/gs/prod2.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Lusatia Park Vineyard Chardonnay
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $45.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $29.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $19.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 91
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/gs/prod3.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Sexton Vineyard Chardonnay
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $45.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $29.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $19.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 93
+                        span points
+                      //- count
+                    img.img-prod.card(src='assets/images/producers/gs/prod4.jpg', alt='')
+                    // Edit
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Tarraford Vineyard Chardonnay
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $45.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $49.99
+                                      small &nbsp;per case
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $44.99
+                                      small &nbsp;per cases
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 20
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $39.99
+                                      small &nbsp;per cases
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 91
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/gs/prod5.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Yarra Valley Pinot Noir
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $35.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $29.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $19.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 91
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/gs/prod6.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Applejack Vineyard Pinot Noir
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $50.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 5
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $29.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 10
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $19.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 92
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/gs/prod7.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Lusatia Park Vineyard Pinot Noir
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $50.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $33.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $32.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 92
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/gs/prod8.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Primavera Vineyard Pinot Noir
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $50.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $33.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $32.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 92
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/gs/prod8.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Sexton Vineyard Pinot Noir
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $50.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $33.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $32.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 92
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/gs/prod8.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Yarra Valley Syrah
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $35.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $33.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $32.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 92
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/gs/prod8.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Tarraford Vineyard Syrah
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $50.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $33.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $32.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 92
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/gs/prod8.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Yarra Valley Merlot
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $35.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $33.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $32.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+              .col-sm-6.col-md-4
+                .product
+                  .thumb
+                    .ctr
+                      .count 92
+                        span points
+                      //- count
+                    //- ctr
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      img.img-prod.card(src='assets/images/producers/gs/prod8.jpg', alt='')
+                    //- a
+                    .details
+                      p
+                      .name
+                        a(href='#modal_coming_soon', data-toggle='modal') 2015 Giant Steps Harry's Monster
+                      //- name
+                      .pricing
+                        .buy.drop
+                          ul
+                            li
+                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                            //- li
+                            li.drop
+                              a.thumb-action.popover_price(href="#", data-toggle="popover", data-placement="bottom", data-title="Circle Buys")
+                                | $55.00
+                              //- a
+                              ul
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | bottle
+                                    //- span
+                                    span.price $25.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 1
+                                      br
+                                      | case
+                                    //- span
+                                    span.price $33.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                                li
+                                  a(href="#", data-toggle="modal", data-target="#buymode")
+                                    span.qty 3
+                                      br
+                                      | cases
+                                    //- span
+                                    span.price $32.99
+                                      small &nbsp;per bottle
+                                  //- a
+                                //- li
+                              //- ul
+                            //- li
+                            li
+                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                            //- li
+                          //- ul
+                        //-buy
+                      //- pricing
+                    //- details
+                  //- thumb
+                //- product
+              //- col
+            //- row
+          //- product-wrap
+          hr
+          nav.text-center(aria-label='...')
+            ul.pagination.pagination-sm
+              li
+                a(href='#', aria-label='Previous')
+                  span(aria-hidden='true') «
+              li
+                a(href='#modal_coming_soon', data-toggle='modal') 1
+              li
+                a(href='#modal_coming_soon', data-toggle='modal') 2
+              li
+                a(href='#modal_coming_soon', data-toggle='modal') 3
+              li
+                a(href='#modal_coming_soon', data-toggle='modal') 4
+              li
+                a(href='#modal_coming_soon', data-toggle='modal') 5
+              li
+                a(href='#', aria-label='Next')
+                  span(aria-hidden='true') »
+                //- a
+              //- li
+            //- ul
+          //- nav
+        //- col-md-9
+      //- row
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+      $('.popover_price[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<ul class="cost">' + $(this).parent().find("ul").html() + '</ul>';
+        },
+        title: function(){
+          return jQuery(this).data('title') + '<span class="close">&times;</span>';
+        }
+      }).on('shown.bs.popover', function(e) {
+        var popover = jQuery(this);
+        $(this).parent().find('.popover span.close').on('click', function(e) {
+          popover.popover('hide');
+        });
+      }).click(function(e) {
+        e.preventDefault();
+      });
+    });
+  //- script.

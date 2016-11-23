@@ -496,53 +496,64 @@ block content
 
   section.pagenav
     .container
-      nav.page
-        ul
-          li
-            a(href='circlebuying-red.html') Red
-          //- li
-          li
-            a(href='circlebuying-white.html') White
-          //- li
-          li
-            a(href='circlebuying-beer.html') Beer
-          //- li
-          li
-            a(href='circlebuying-spirits.html') Spirits
-          //- li
-          li
-            a(href='circlebuying-bubbles.html') Bubbles
-          //- li
-          li
-            a(href='circlebuying-cider.html') Cider
-          //- li
-        //- ul
-      //- nav
+      .row
+        .col-md-3.text-center
+          p
+          form.form-inline
+            .form-group
+              label(for='exampleInputName2') Sort by
+              select.form-control
+                option finish soonest
+                option my friends
+                option my circles
+                option highest no.
+              //- select
+            //- form-group
+          //- form
+        //- col-md-4
+        .col-md-6
+          nav.page
+            ul
+              li
+                a(href='circlebuying-red.html') Red
+              //- li
+              li
+                a(href='circlebuying-white.html') White
+              //- li
+              li
+                a(href='circlebuying-beer.html') Beer
+              //- li
+              li
+                a(href='circlebuying-spirits.html') Spirits
+              //- li
+              li
+                a(href='circlebuying-bubbles.html') Bubbles
+              //- li
+              li
+                a(href='circlebuying-cider.html') Cider
+              //- li
+            //- ul
+          //- nav
+        //- col-md-4
+        .col-md-3.text-center
+          p
+          form.form-inline
+            .form-group
+              label(for='exampleInputEmail2') Show
+              select.form-control
+                option 16
+                option 32
+                option 64
+              //- select
+            //- form-group
+          //- form
+        //- col-md-4
+      //- row
     //- container
   //- section
 
   section.drinks
     .container
-      form.form-inline
-        .form-group
-          label(for='exampleInputName2') Sort by
-          select.form-control
-            option finish soonest
-            option my friends
-            option my circles
-            option highest no.
-          //- select
-        //- form-group
-        .form-group
-          label(for='exampleInputEmail2') Show
-          select.form-control
-            option 16
-            option 32
-            option 64
-          //- select
-        //- form-group
-      //- form
-      hr
       .productdetails.search
         .row
           .col-md-3.col-sm-6.text-center
@@ -555,6 +566,8 @@ block content
               //- a
               hr
               span Adrian's circlebuy
+                br
+                | 10 cases
               hr
               .shortsummary
                 .sold
@@ -562,7 +575,7 @@ block content
                   p.lead
                     span.green 7
                     br
-                    small cases
+                    //- small cases
                   //- p
                 //- sold
                 .left
@@ -570,7 +583,7 @@ block content
                   p.lead
                     span.green 3
                     br
-                    small cases
+                    //- small cases
                   //- p
                 //- left
               //- shortsummary
@@ -587,20 +600,20 @@ block content
                     i.fa.fa-clock-o
                     span &nbsp;04:56.12
                   //- p
-                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p 6 pack - $119.94
-              hr.short
-              p.lead.cbprice $19.99
-                small &nbsp;/ bottle
               p
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                a.button.inline.v8.joincirclebuy(href="circlebuy-start.html") join
                 | &nbsp;
                 a.button.inline.v8.joincirclebuy(href="productdetails.html") view
               //- p
+              p.lead.cbprice $19.99
+                small &nbsp;/ bottle
+              //- p
+              hr.short
+              p 6 pack - $119.94
               //- big
             //- card_rounded
           //- col-md-3
@@ -614,6 +627,8 @@ block content
               //- a
               hr
               span Sharmaine's circlebuy
+                br
+                | 10 cases
               hr
               .shortsummary
                 .sold
@@ -621,7 +636,7 @@ block content
                   p.lead
                     span.green 5
                     br
-                    small cases
+                    //- small cases
                   //- p
                 //- sold
                 .left
@@ -629,7 +644,7 @@ block content
                   p.lead
                     span.green 5
                     br
-                    small cases
+                    //- small cases
                   //- p
                 //- left
               //- shortsummary
@@ -646,20 +661,20 @@ block content
                     i.fa.fa-clock-o
                     span &nbsp;16:08.00
                   //- p
-                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p 6 pack - $89.94
-              hr.short
-              p.lead.cbprice $14.99
-                small &nbsp;/ bottle
               p
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                a.button.inline.v8.joincirclebuy(href="circlebuy-start.html") join
                 | &nbsp;
                 a.button.inline.v8.joincirclebuy(href="productdetails-sticks.html") view
               //- p
+              p.lead.cbprice $14.99
+                small &nbsp;/ bottle
+              //- p
+              hr.short
+              p 12 pack - $179.88
               //- big
             //- card_rounded
           //- col-md-3
@@ -673,6 +688,8 @@ block content
               //- a
               hr
               span Jenny's circlebuy
+                br
+                | 5 cases
               hr
               .shortsummary
                 .sold
@@ -680,7 +697,7 @@ block content
                   p.lead
                     span.green 3
                     br
-                    small cases
+                    //- small cases
                   //- p
                 //- sold
                 .left
@@ -688,7 +705,7 @@ block content
                   p.lead
                     span.green 2
                     br
-                    small cases
+                    //- small cases
                   //- p
                 //- left
               //- shortsummary
@@ -705,20 +722,20 @@ block content
                     i.fa.fa-clock-o
                     span &nbsp;32:12.00
                   //- p
-                  hr
                   //- span
                 //- countdown
               //- avatar
               br
-              p 6 pack - $119.94
-              hr.short
-              p.lead.cbprice $19.99
-                small &nbsp;/ bottle
               p
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                a.button.inline.v8.joincirclebuy(href="circlebuy-start.html") join
                 | &nbsp;
                 a.button.inline.v8.joincirclebuy(href="productdetails-rosnay.html") view
               //- p
+              p.lead.cbprice $13.99
+                small &nbsp;/ bottle
+              //- p
+              hr.short
+              p 12 pack - $167.88
               //- big
             //- card_rounded
           //- col-md-3
