@@ -2,9 +2,7 @@ extends ./layout/layout_main.pug
 
 block css
   style.
-    body {
-      background: #dadada;
-    }
+
   //- style
 
 
@@ -25,8 +23,7 @@ block content
       .row
         .col-md-5.text-center
           h1
-            span Brokenwood&nbsp;&nbsp;&nbsp;
-            a.button.inline.v8(href="shop.html") see all drinks
+            span Brokenwood
             br
             strong
               small Graveyard Vineyard Shiraz  - 6 pack
@@ -49,6 +46,7 @@ block content
           //- h1
           hr
           .stage.infos
+            a.button.inline.v8.absolute._left.see-all-drinks(href="shop.html") see all drinks
             .stats
               .rate-counter
                 .ring
@@ -57,7 +55,7 @@ block content
                 //- ring
               //- rate-counter
             //- stats
-            img(src="assets/images/products/brokenwood.png", alt="")
+            img(src="//www.brokenwood.com.au/assets/images/products/pictures/GraveyardVineyardShiraz11.jpg", alt="")
           //- stage
           br
           p
@@ -74,39 +72,45 @@ block content
                       .col-md-4.col-sm-4
                         fieldset.deals.card
                           legend 1 case
-                          p.lead $25.99
+                          p.lead
+                              strong $25.99
                           a.btn.btn-success(href="#", target="_blank")
                             span.num buy now
                           //- a
                           br
                           | save&nbsp;
-                          p.lead.green.inline $4&nbsp;
+                          p.lead.green.inline
+                            strong $4&nbsp;
                           | / bottle
                         //- deals
                       //- col-md-4
                       .col-md-4.col-sm-4
                         fieldset.deals.card
                           legend 5+ cases
-                          p.lead $21.99
+                          p.lead
+                              strong $21.99
                           a.btn.btn-success(href="#", target="_blank")
                             span.num buy now
                           //- a
                           br
                           | save&nbsp;
-                          p.lead.green.inline $8&nbsp;
+                          p.lead.green.inline
+                            strong $8&nbsp;
                           | / bottle
                         //- deals
                       //- col-md-4
                       .col-md-4.col-sm-4
                         fieldset.deals.card
                           legend 10+ cases
-                          p.lead $19.99
+                          p.lead
+                              strong $19.99
                           a.btn.btn-success(href="#", target="_blank")
                             span.num buy now
                           //- a
                           br
                           | save&nbsp;
-                          p.lead.green.inline $10&nbsp;
+                          p.lead.green.inline
+                            strong $10&nbsp;
                           | / bottle
                         //- deals
                       //- col-md-4
@@ -125,18 +129,22 @@ block content
               .col-md-4.col-md-offset-2
                 fieldset.deals.card
                   legend 5 case circlebuy
-                  p.lead $21.99
+                  p.lead
+                    strong $21.99
                   | save&nbsp;
-                  p.lead.green.inline $8&nbsp;
+                  p.lead.green.inline
+                    strong $8&nbsp;
                   | / bottle
                 //- deals
               //- col
               .col-md-4
                 fieldset.deals.card
                   legend 10 case circlebuy
-                  p.lead $19.99
+                  p.lead
+                    strong $19.99
                   | save&nbsp;
-                  p.lead.green.inline $10&nbsp;
+                  p.lead.green.inline
+                    strong $10&nbsp;
                   | / bottle
                 //- deals
               //- col-md-5
@@ -159,11 +167,20 @@ block content
             //- row
 
             .row
-              .col-md-4.col-sm-4.text-center
+              .col-md-6.col-sm-6.text-center
                 .card_rounded
+                  a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
+                    span Brokenwood
+                      br
+                      small.el Graveyard Vineyard Shiraz 2010
+                    //- span
+                  //- a
+                  hr
                   span Adrian's circlebuy
                     br
-                    | 10 cases
+                    | 10 cases -&nbsp;
+                    strong SAVE $8&nbsp;
+                    small /bottle
                   hr
                   .shortsummary
                     .sold
@@ -201,23 +218,35 @@ block content
                   //- avatar
                   br
                   p
-                    a.button.inline.v8.joincirclebuy(href="circlebuy-start.html") join
+                    a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
                     | &nbsp;
-                    a.button.inline.v8.joincirclebuy(href="productdetails.html") view
+                    a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                    | &nbsp;
+                    a.button.inline.v8.joincirclebuy(href="") watch
                   //- p
-                  p.lead.cbprice $19.99
+                  p.cbpromo-price 6 pack - $119.94
+                  hr.short
+                  p.lead.cbprice
+                    strong  $19.99
                     small &nbsp;/ bottle
                   //- p
-                  hr.short
-                  p 6 pack - $119.94
                   //- big
                 //- card_rounded
-              //- col-md-4
-              .col-md-4.col-sm-4.text-center
+              //- col-md-3
+              .col-md-6.col-sm-6.text-center
                 .card_rounded
+                  a(href='#modal_preview_detail_sticks', data-toggle='modal')
+                    span Sticks
+                      br
+                      small.el Pinot Noir 2015
+                    //- span
+                  //- a
+                  hr
                   span Sharmaine's circlebuy
                     br
-                    | 10 cases
+                    | 10 cases -&nbsp;
+                    strong SAVE $8&nbsp;
+                    small /bottle
                   hr
                   .shortsummary
                     .sold
@@ -255,72 +284,21 @@ block content
                   //- avatar
                   br
                   p
-                    a.button.inline.v8.joincirclebuy(href="circlebuy-start.html") join
+                    a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
                     | &nbsp;
-                    a.button.inline.v8.joincirclebuy(href="productdetails-sticks.html") view
+                    a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                    | &nbsp;
+                    a.button.inline.v8.joincirclebuy(href="") watch
                   //- p
-                  p.lead.cbprice $19.99
+                  p.cbpromo-price 12 pack - $179.88
+                  hr.short
+                  p.lead.cbprice
+                    strong  $14.99
                     small &nbsp;/ bottle
                   //- p
-                  hr.short
-                  p 12 pack - $179.88
                   //- big
                 //- card_rounded
-              //- col-md-4
-              .col-md-4.col-sm-4.text-center
-                .card_rounded
-                  span Jenny's circlebuy
-                    br
-                    | 5 cases
-                  hr
-                  .shortsummary
-                    .sold
-                      p.cases-sold sold
-                      p.lead
-                        span.green 3
-                        br
-                        //- small cases
-                      //- p
-                    //- sold
-                    .left
-                      p left
-                      p.lead
-                        span.green 2
-                        br
-                        //- small cases
-                      //- p
-                    //- left
-                  //- shortsummary
-                  p
-                  .avatar
-                    .img
-                      .ring._40p
-                      img(src='assets/images/circles/circles_7.png', alt='')
-                    //- img
-                    .countdown
-                      //- span.time 32:12
-                      br
-                      p
-                        i.fa.fa-clock-o
-                        span &nbsp;32:12.00
-                      //- p
-                      //- span
-                    //- countdown
-                  //- avatar
-                  br
-                  p
-                    a.button.inline.v8.joincirclebuy(href="circlebuy-start.html") join
-                    | &nbsp;
-                    a.button.inline.v8.joincirclebuy(href="productdetails-rosnay.html") view
-                  //- p
-                  p.lead.cbprice 21.99
-                    small &nbsp;/ bottle
-                  //- p
-                  hr.short
-                  p 12 pack - $167.88
-                  //- big
-                //- card_rounded
-              //- col-md-4
+              //- col-md-3
             //- row
             br
             .expand.text-center

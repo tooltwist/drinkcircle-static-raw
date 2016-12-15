@@ -17,7 +17,7 @@ body {
 	font-family: 'Open Sans', sans-serif;
   color: #5a5a5a;
 	// background: #dadada;
-	background: whitesmoke;
+	// background: whitesmoke;
 	font-size: 16px;
 	margin-top: 50px;
 	@media screen and (min-width: 768px) {
@@ -602,17 +602,28 @@ hr {
 						min-width: 100%;
 					}
 					&:hover a {
-						display: inline;
+						display: table;
+						width: 100%;
+						text-decoration: none;
+						i {
+							display: table-cell;
+							vertical-align: bottom;
+						}
 					}
 					a {
 						position: absolute;
-						bottom: 10px;
-						left: 0;
-						right: 0;
-						margin: 0 auto;
-						text-align: center;
-						color: white;
-						display: none;
+				    bottom: 0;
+				    left: 0;
+				    right: 0;
+				    margin: 0 auto;
+				    text-align: center;
+				    color: white;
+				    display: none;
+				    padding: 5px;
+						height: 100%;
+				    background: -webkit-linear-gradient(top, transparent 0%, rgba(0,0,0,0.65) 100%);
+				    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.65) 100%);
+				    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
 					}
 					&.square {
 						@include border-radius(0);
@@ -1715,6 +1726,8 @@ section {
 			max-width: 100%;
 			min-width: 100%;
 			// padding: 35px;
+			padding: 15px;
+			background: white;
 		}
 		.details {
 			padding: 0 5px 15px;
@@ -1725,6 +1738,8 @@ section {
 				font-size: 16px;
 				padding-bottom: 10px;
 				padding-top: 10px;
+				// padding-left: 50px;
+				// padding-right: 50px;
 				line-height: 1.1;
 				overflow: hidden;
 				text-overflow: ellipsis;
@@ -1732,6 +1747,7 @@ section {
 					font-size:17px;
 			    font-weight:300;
 					white-space: nowrap;
+					text-transform: capitalize;
 				}
 				a {
 					color: #3E3E3E;
@@ -1829,6 +1845,7 @@ section {
 						> li.price {
 							font-size: 24px;
 							line-height: 24px;
+							margin: 0 10px;
 						}
 						> li.drop {
 							position: relative;
@@ -2089,7 +2106,9 @@ a.rate {
 }
 
 
-
+section.productdetails {
+	padding-top: 20px;
+}
 .productdetails {
 	@media screen and (min-width: 991px) {
 		// overflow: hidden;
@@ -2168,7 +2187,12 @@ a.rate {
 			hr {
 				margin: 10px 0;
 			}
+			border-color: #41B54B;
 			// background: #ececec;
+			margin: 15px 0;
+			@media screen and (min-width: 768px) {
+				margin: 0;
+			}
 		}
 		.shortsummary {
 			text-align: center;
@@ -2331,7 +2355,7 @@ a.rate {
 			.countdown {
 				position: absolute;
 				width: 100%;
-				bottom: -35px;
+				bottom: -26px;
 				p {
 					&.lead {
 						margin-bottom: 0;
@@ -2451,6 +2475,7 @@ a.rate {
 		}
 		.card_rounded {
 			margin-bottom: 30px;
+			border-color: #41B54B;
 			p.lead {
 				margin-bottom: 0;
 				// margin-top: 5px;
@@ -2485,6 +2510,7 @@ a.rate {
 	}
 	&.inline {
 		min-width: inherit;
+		vertical-align: middle;
 	}
 	&:hover {
 		text-decoration: none;
@@ -2551,6 +2577,9 @@ a.rate {
 			background: #348f3b;
 			border-color: #348f3b;
 		}
+	}
+	&.thin-line {
+		border-width: 1px;
 	}
 }
 
@@ -3139,10 +3168,10 @@ section {
 	input {
 		padding-left: 30px;
 		@media screen and (min-width: 768px) {
-			width: 295px;
+			width: 265px;
 		}
 		@media screen and (min-width: 991px) {
-			width: 510px;
+			width: 480px;
 		}
 		@media screen and (min-width: 1199px) {
 			width: 560px;
@@ -3624,7 +3653,7 @@ table {
 }
 
 .joincirclebuy {
-	padding: 2px 25px;
+	padding: 2px 15px;
 	margin: 0 5px 0;
 	display: inline-block;
 }
@@ -3633,10 +3662,13 @@ table {
 	margin-bottom: 0;
 	font-size: 26px;
 	line-height: 24px;
-	margin-top: 15px;
+	margin-top: 5px;
 	small {
 		font-size: 14px;
 	}
+}
+.cbpromo-price {
+	margin-bottom: 0;
 }
 
 .totalcbcount {
@@ -3653,11 +3685,11 @@ table {
 			}
 			.shortsummary .sold,
 			.shortsummary .left {
-				top: 10px;
-				font-size: 8px;
+				// top: 10px;
+				// font-size: 8px;
 				p.lead {
 					span {
-						font-size: 16px;
+						// font-size: 16px;
 					}
 				}
 			}
@@ -3681,8 +3713,8 @@ table {
 					margin: 0;
 				}
 				.joincirclebuy {
-					padding: 2px 4px;
-					margin: 0;
+					padding: 2px 8px;
+					margin: 0 10px;
 					font-size: 10px;
 				}
 			}
@@ -3695,10 +3727,10 @@ table {
 				.img {
 					// width: 100%;
 					// height: 100px;
-					@include box(50px);
+					// @include box(50px);
 					margin: auto;
 					img {
-						padding: 12px;
+						// padding: 12px;
 					}
 				}
 				.countdown {
@@ -3878,18 +3910,203 @@ section {
 
 .product-detail-wrap {
 	.avatar .img {
-		@include box(100px);
+		// @include box(100px);
 	}
 	.shortsummary .sold,
 	.shortsummary .left {
-		top: 28px;
+		// top: 28px;
 	}
 	.joincirclebuy {
-		padding: 3px 10px;
+		// padding: 3px 10px;
+	}
+	.infos > hr {
+		border-color: #41B54B;
 	}
 }
 
 
 .pdetail-info-text {
 	font-size: 24px;
+}
+
+@media screen and (min-width: 768px) {
+	.product-detail-wrap {
+		margin-top: 31px;
+	}
+}
+
+.see-all-drinks {
+	top: 50px !important;
+}
+
+
+.prod-details {
+	text-align: left;
+	display: flex;
+	.cols {
+		flex-grow: 1;
+		align-self: center;
+		a {
+			display: inline-block;
+		}
+	}
+	.qty {
+		width: 130px;
+	}
+	.price {
+		width: 215px;
+	}
+	.savings {
+		width: 115px;
+	}
+	.more-actions {
+		width: 475px;
+		flex-grow: 2;
+		text-align: left;
+		a {
+			margin-left: 10px;
+			&.buynow {
+				// float: left;
+			}
+		}
+	}
+	.label-qty {
+		width: 110px;
+		text-align: center;
+	}
+	.label-pack {
+		width: 110px;
+		text-align: center;
+	}
+	.label-savings {
+		width: 110px;
+		text-align: center;
+		.lead {
+			font-weight: bold;
+			color: #41B54B;
+			margin: 0;
+		}
+	}
+	.label-bottle {
+		width: 110px;
+		text-align: center;
+		.lead {
+			font-weight: bold;
+		}
+	}
+}
+
+// FOR CIRCLEBUY SECTION
+.circlebuy-table {
+	padding: 10px 0 5px 0;
+	.prod-details {
+		padding: 0;
+		.cols {
+			align-self: baseline;
+		}
+		.label-qty {
+			width: 50px;
+		}
+		.label-savings {
+			strong.middle {
+				vertical-align: middle;
+			}
+		}
+		.label-bottle {
+			width: 80px;
+		}
+		&.tr {
+			.label-qty, .label-pack, .label-bottle {
+				font-size: 16px;
+			}
+			.label-savings {
+				.lead {
+					font-size: 24px;
+				}
+			}
+		}
+	}
+	.prod-details + .prod-details {
+		padding-top: 0;
+	}
+}
+
+.super-customized {
+	.joincirclebuy + .joincirclebuy {
+		margin-left: 35px;
+	}
+	.img {
+		@include box(180px);
+		img {
+    	padding: 43px !important;
+		}
+	}
+	.sold, .left {
+		top: 70px !important;
+	}
+	.sold {
+		left: 6px !important;
+		p:not(.lead) {
+			font-size: 16px;
+		}
+		.lead {
+			span {
+				font-size: 36px !important;
+			}
+		}
+	}
+	.left {
+		right: 6px !important;
+		p:not(.lead) {
+			font-size: 16px;
+		}
+		.lead {
+			span {
+				font-size: 36px !important;
+			}
+		}
+	}
+}
+
+
+.font12 {
+	font-size: 12px;
+}
+
+.user-photo {
+	& {
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 8px;
+	}
+	img {
+		vertical-align: middle;
+		border-radius: 50%;
+	}
+}
+
+.circlebuy-product-photo {
+	img {
+		max-height: 200px;
+		display: block;
+		margin: auto;
+		@media screen and (min-width: 991px) {
+			margin: 0 0 0 auto;
+		}
+	}
+}
+.circlebuys-info {
+	text-align: center;
+}
+.circlebuys {
+	text-align: center;
+	margin-bottom: 5px;
+}
+.circlebuy-members {
+	& {
+		text-align: center;
+	}
+	> div {
+		margin: 5px 0;
+	}
 }

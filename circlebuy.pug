@@ -1,0 +1,175 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  .banner.userprofile
+    .gradient
+    .info
+      .container
+        .row
+          .col-sm-3.col-md-3
+            .photo
+              .img
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  i.fa.fa-camera
+                //- a
+                img(src="assets/images/img_advisor_1.jpg", alt="")
+              //- img
+              .name
+                span Andrew's circlebuy&nbsp;
+                br
+                small Brokenwood - Graveyard Vineyard Shiraz - bottle
+              //- name
+            //- photo
+          //- col-md-3
+        //- row
+      //- container
+    //- info
+  //- banner-home
+
+
+
+  section.userprofile.drinks.results
+    .container
+      br
+      .card.circlebuy
+        .row
+          .col-md-2.col-md-offset-2
+            .circlebuy-product-photo
+              img(src='http://www.brokenwood.com.au/assets/images/products/pictures/GraveyardVineyardShiraz11.jpg')
+            //- circlebuy-product-photo
+          //- col-md-3
+          .col-md-4
+            .circlebuys-info
+              h4 10 bottles circlebuy
+              a(href='') Brokenwood - Graveyard Vineyard Shiraz
+              p 7 bottles sold / 3 bottles left
+              p
+                small
+                  i.fa.fa-clock
+                  | &nbsp;2hrs left - $19.94 per bottle
+                //- small
+              //- p
+              p Status:&nbsp;
+                strong Active
+              //- p
+              a.btn.btn-success(href='') request to join
+            //- circlebuys-info
+          //- col-md-4
+        //- row
+        hr
+        .row
+          .col-md-8.col-md-offset-2
+            .row
+              .col-md-4.col-md-offset-4
+                .circlebuys
+                  h4 Circlebuy Owner
+                  .user-photo
+                    //- Must have IMG tag inside and wrapped with .user-photo style class
+                    img(src='//placehold.it/50', width='30')
+                  //- user-photo
+                  a(href='') Andrew Steer
+                //- circlebuys
+              //- col-md-4
+            //- row
+            .row
+              .col-md-4.col-md-offset-4.text-center
+                h4 Members
+              //- col-md-4
+            //- row
+            .row.circlebuy-members
+              .col-md-4.col-sm-6
+                .user-photo
+                  img(src='//placehold.it/50', width='30')
+                //- user-photo
+                a(href='') Alvin Manalo
+              //- col-md-4
+              .col-md-4.col-sm-6
+                .user-photo
+                  img(src='//placehold.it/50', width='30')
+                //- user-photo
+                a(href='') Alvin Manalo
+              //- col-md-4
+              .col-md-4.col-sm-6
+                .user-photo
+                  img(src='//placehold.it/50', width='30')
+                //- user-photo
+                a(href='') Alvin Manalo
+              //- col-md-4
+              .col-md-4.col-sm-6
+                .user-photo
+                  img(src='//placehold.it/50', width='30')
+                //- user-photo
+                a(href='') Alvin Manalo
+              //- col-md-4
+              .col-md-4.col-sm-6
+                .user-photo
+                  img(src='//placehold.it/50', width='30')
+                //- user-photo
+                a(href='') Alvin Manalo
+              //- col-md-4
+              .col-md-4.col-sm-6
+                .user-photo
+                  img(src='//placehold.it/50', width='30')
+                //- user-photo
+                a(href='') Alvin Manalo
+              //- col-md-4
+              .col-md-4.col-sm-6
+                .user-photo
+                  img(src='//placehold.it/50', width='30')
+                //- user-photo
+                a(href='') Alvin Manalo
+              //- col-md-4
+              .col-md-4.col-sm-6
+                .user-photo
+                  img(src='//placehold.it/50', width='30')
+                //- user-photo
+                a(href='') Alvin Manalo
+              //- col-md-4
+              .col-md-4.col-sm-6
+                .user-photo
+                  img(src='//placehold.it/50', width='30')
+                //- user-photo
+                a(href='') Alvin Manalo
+              //- col-md-4
+            //- row
+          //- col-md-7
+        //- row
+      //- card
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+      $('.popover_price[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<ul class="cost">' + $(this).parent().find("ul").html() + '</ul>';
+        },
+        title: function(){
+          return jQuery(this).data('title') + '<span class="close">&times;</span>';
+        }
+      }).on('shown.bs.popover', function(e) {
+        var popover = jQuery(this);
+        $(this).parent().find('.popover span.close').on('click', function(e) {
+          popover.popover('hide');
+        });
+      }).click(function(e) {
+        e.preventDefault();
+      });
+    });
+  //- script.

@@ -245,10 +245,14 @@
 
 // deals
 .deals {
-  padding: 10px;
+  padding: 10px 0 10px 10px;
   // border: 1px dashed #ccc;
   border-radius: 8px;
   // max-width: 80%;
+  margin: 15px 0;
+  @media screen and (min-width: 768px) {
+    margin: 0;
+  }
   legend {
     font-size: 14px;
     border: 0;
@@ -269,7 +273,10 @@
     padding: 2px 25px;
   }
   &.card {
-    background: #ececec;
+    // background: #ececec;
+    outline: 0;
+    border-color: #41B54B;
+    padding: 5px 10px;
   }
 }
 

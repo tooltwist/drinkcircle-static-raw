@@ -2,7 +2,7 @@ extends ./layout/layout_main.pug
 
 block css
   style.
-    
+
   //- style
 
 
@@ -13,48 +13,49 @@ block content
       p.bread
         a(href='#modal_coming_soon', data-toggle='modal') Red
         | &nbsp;/&nbsp;
-        a(href='#modal_coming_soon', data-toggle='modal') Rosnay Organic
+        a(href='#modal_coming_soon', data-toggle='modal') Brokenwood
         | &nbsp;/&nbsp;
         a(href='#modal_coming_soon', data-toggle='modal')
-          strong Triple Blend - 12 pack
+          strong Graveyard Vineyard Shiraz - 6 pack
         //- a
       //- p
       //- bread
       .row
         .col-md-5.text-center
-          h1 Rosnay Organic&nbsp;&nbsp;&nbsp;
-            a.button.inline.v8(href="shop.html") see all drinks
+          h1
+            span Brokenwood
             br
             strong
-              small Triple Blend  - 12 pack
+              small Graveyard Vineyard Shiraz  - 6 pack
             //- strong
             br
             p
             .row.pdetail-info-text
               .col-md-6.text-left
                 small
-                  | RRP $19.99&nbsp;
+                  | RRP $29.99&nbsp;
                   span.pb / bottle
                 //- small
               //- col-md-6
               .col-md-6.text-right
                 small
-                  span.avl 300+ available / 95 sold
+                  span.avl 500+ available / 319 sold
                 //- small
               //- col-md-6
             //- row
           //- h1
           hr
           .stage.infos
+            a.button.inline.v8.absolute._left.see-all-drinks.thin-line(href="shop.html") see all drinks
             .stats
               .rate-counter
                 .ring
-                  .count 96
+                  .count 94
                     span points
                 //- ring
               //- rate-counter
             //- stats
-            img(src="assets/images/products/p17.jpg", alt="")
+            img(src="//www.brokenwood.com.au/assets/images/products/pictures/GraveyardVineyardShiraz11.jpg", alt="")
           //- stage
           br
           p
@@ -64,102 +65,136 @@ block content
             .row
               .col-md-12
                 .inventory
-                  p.lead.text-center Option 1 : Buy now
                   .pricing
-                    .row
-                      .col-md-4.col-sm-4
-                        fieldset.deals.card
-                          legend 1 case
-                          p.lead $17.99
-                          a.btn.btn-success(href="#", target="_blank")
-                            span.num buy now
-                          //- a
-                          br
-                          | save&nbsp;
-                          p.lead.green.inline $2&nbsp;
-                          | / bottle
-                        //- deals
-                      //- col-md-4
-                      .col-md-4.col-sm-4
-                        fieldset.deals.card
-                          legend 5+ cases
-                          p.lead $15.99
-                          a.btn.btn-success(href="#", target="_blank")
-                            span.num buy now
-                          //- a
-                          br
-                          | save&nbsp;
-                          p.lead.green.inline $4&nbsp;
-                          | / bottle
-                        //- deals
-                      //- col-md-4
-                      .col-md-4.col-sm-4
-                        fieldset.deals.card
-                          legend 10+ cases
-                          p.lead $13.99
-                          a.btn.btn-success(href="#", target="_blank")
-                            span.num buy now
-                          //- a
-                          br
-                          | save&nbsp;
-                          p.lead.green.inline $6&nbsp;
-                          | / bottle
-                        //- deals
-                      //- col-md-4
-                    .row
+                    .prod-details.deals
+                      .label-qty.cols
+                        strong Qty
+                        br
+                      //- qty
+                      .label-bottle.cols
+                        strong Bottle
+                        br
+                      //- label-bottle
+                      .label-pack.cols
+                        strong 6 Pack
+                        br
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        span
+                          strong.green Save
+                        br
+                      //- savings
+                      .more-actions.cols
+                    //- prod-details
+                    .prod-details.deals
+                      .label-qty.cols
+                        span 1 - 4
+                      //- qty
+                      .label-bottle.cols
+                        span $25.99
+                      //- label-bottle
+                      .label-pack.cols
+                        span $155.94
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        strong
+                          big.lead $24.00
+                      //- savings
+                      .more-actions.cols
+                        a.button.inline.v8.buynow.thin-line(href="#", target="_blank")
+                          span.num buy now
+                        //- a
+                      //- more-actions
+                    //- prod-details
+                    .prod-details.deals
+                      .label-qty.cols
+                        span 5 - 9
+                      //- qty
+                      .label-bottle.cols
+                        span $21.99
+                      //- label-bottle
+                      .label-pack.cols
+                        span $131.94
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        strong
+                          big.lead $48.00
+                      //- savings
+                      .more-actions.cols
+                        a.button.inline.v8.buynow.thin-line(href="#", target="_blank")
+                          span.num buy now
+                        //- a
+                        a.button.inline.v7.thin-line(href='circlebuy-join.html') join a circlebuy
+                        a.button.inline.v8.thin-line(href='circlebuy-start.html') create a circlebuy *
+                      //- more-actions
+                    //- prod-details
+                    .prod-details.deals
+                      .label-qty.cols
+                        span 10+
+                      //- qty
+                      .label-bottle.cols
+                        span $19.99
+                      //- label-bottle
+                      .label-pack.cols
+                        span $119.94
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        strong
+                          big.lead $60.00
+                      //- savings
+                      .more-actions.cols
+                        a.button.inline.v8.buynow.thin-line(href="#", target="_blank")
+                          span.num buy now
+                        //- a
+                        a.button.inline.v7.thin-line(href='circlebuy-join.html') join a circlebuy
+                        a.button.inline.v8.thin-line(href='circlebuy-start.html') create a circlebuy *
+                      //- more-actions
+                    //- prod-details
+                    br
+                    p.text-center.relative.font12 * creator bonus: extra 50% off first case
+                      a.green.absolute._right(href="circlebuys.html") learn about circlebuying
+                    //- p
                   //- pricing
                 //- inventory
               //- col-md-12
             //- row
             hr
-
-            p.lead.text-center Option 2 : Join a circlebuy&nbsp;&nbsp;&nbsp;
-              a.button.inline.v8(href="circlebuys.html") learn more
-            //- p
-            .row.text-center
-              .col-md-4.col-md-offset-2
-                fieldset.deals.card
-                  legend 5 case circlebuy
-                  p.lead $15.99
-                  | save&nbsp;
-                  p.lead.green.inline $4&nbsp;
-                  | / bottle
-                //- deals
-              //- col
-              .col-md-4
-                fieldset.deals.card
-                  legend 10 case circlebuy
-                  p.lead $13.99
-                  | save&nbsp;
-                  p.lead.green.inline $6&nbsp;
-                  | / bottle
-                //- deals
-              //- col-md-5
-            //- row
-            br
             .row
               .col-md-4
                 //- p.lead.text-center.totalcbcount Duration: 72hrs
               //- col-md-4
               .col-md-4
-                p.lead.text-center.totalcbcount 9 circlebuys
+                p.lead.text-center.totalcbcount 84 circlebuys to join
               //- col-md-4
               .col-md-4
-                .text-right
-                  a.button.inline.v7(href="#") public
-                  | &nbsp;
-                  a.button.inline.v7(href="#") friends
-                //- text-right
+                //- .text-right
+                //-   a.button.inline.v7(href="#") public
+                //-   | &nbsp;
+                //-   a.button.inline.v7(href="#") friends
+                //- //- text-right
               //- col-md-4
             //- row
 
             .row
-              .col-md-4.col-sm-4.text-center
+              .col-md-6.col-sm-6.text-center.super-customized
                 .card_rounded
-                  span Adrian's circlebuy
-                    br
-                    | 10 cases
+                  a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
+                    big
+                      span Brokenwood
+                        br
+                        small.el Graveyard Vineyard Shiraz 2010
+                      //- span
+                  //- a
                   hr
+                  span
+                    big Adrian's&nbsp;
+                      strong
+                        big 10 case&nbsp;
+                      | circlebuy
                   .shortsummary
                     .sold
                       p.cases-sold sold
@@ -188,86 +223,76 @@ block content
                       //- span.time 32:12
                       br
                       p
-                        i.fa.fa-clock-o
-                        span &nbsp;04:56.12
+                        big
+                          i.fa.fa-clock-o
+                          span &nbsp;04:56.12
                       //- p
                       //- span
                     //- countdown
                   //- avatar
                   br
                   p
-                    a.button.inline.v8.joincirclebuy(href="circlebuy-start.html") join
+                    a.button.inline.v8.joincirclebuy.thin-line(href='productdetails2.html') view
                     | &nbsp;
-                    a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
+                    a.button.inline.v7.joincirclebuy.thin-line(href="circlebuy-start.html") join
+                    | &nbsp;
+                    a.button.inline.v8.joincirclebuy.thin-line(href="") watch
                   //- p
-                  p.lead.cbprice $13.99
-                    small &nbsp;/ bottle
-                  //- p
-                  hr.short
-                  p 6 pack - $119.94
-                  //- big
+                  .circlebuy-table
+                    .prod-details.deals
+                      .label-qty.cols
+                        strong Qty
+                        br
+                      //- qty
+                      .label-bottle.cols
+                        strong Bottle
+                        br
+                      //- label-bottle
+                      .label-pack.cols
+                        strong 6 Pack
+                        br
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        span
+                          strong.green Save
+                        br
+                      //- savings
+                    //- prod-details
+                    .prod-details.deals.tr
+                      .label-qty.cols
+                        span 10
+                      //- qty
+                      .label-bottle.cols
+                        span $19.99
+                      //- label-bottle
+                      .label-pack.cols
+                        span $119.94
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        strong.middle
+                          big.lead $60.00
+                      //- savings
+                    //- prod-details
+                  //- .circlebuy-table
                 //- card_rounded
-              //- col-md-4
-              .col-md-4.col-sm-4.text-center
+              //- col-md-3
+              .col-md-6.col-sm-6.text-center.super-customized
                 .card_rounded
-                  span Sharmaine's circlebuy
-                    br
-                    | 10 cases
-                  hr
-                  .shortsummary
-                    .sold
-                      p.cases-sold sold
-                      p.lead
-                        span.green 5
+                  a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
+                    big
+                      span Brokenwood
                         br
-                        //- small cases
-                      //- p
-                    //- sold
-                    .left
-                      p left
-                      p.lead
-                        span.green 5
-                        br
-                        //- small cases
-                      //- p
-                    //- left
-                  //- shortsummary
-                  p
-                  .avatar
-                    .img
-                      .ring._50p
-                      img(src='assets/images/circles/circles_1.png', alt='')
-                    //- img
-                    .countdown
-                      //- span.time 32:12
-                      br
-                      p
-                        i.fa.fa-clock-o
-                        span &nbsp;16:08.00
-                      //- p
+                        small.el Graveyard Vineyard Shiraz 2010
                       //- span
-                    //- countdown
-                  //- avatar
-                  br
-                  p
-                    a.button.inline.v8.joincirclebuy(href="circlebuy-start.html") join
-                    | &nbsp;
-                    a.button.inline.v8.joincirclebuy(href="productdetails-sticks.html") view
-                  //- p
-                  p.lead.cbprice $15.99
-                    small &nbsp;/ bottle
-                  //- p
-                  hr.short
-                  p 12 pack - $179.88
-                  //- big
-                //- card_rounded
-              //- col-md-4
-              .col-md-4.col-sm-4.text-center
-                .card_rounded
-                  span Jenny's circlebuy
-                    br
-                    | 5 cases
+                  //- a
                   hr
+                  span
+                    big Charmaine's&nbsp;
+                      strong
+                        big 5 case&nbsp;
+                      | circlebuy
                   .shortsummary
                     .sold
                       p.cases-sold sold
@@ -290,48 +315,75 @@ block content
                   .avatar
                     .img
                       .ring._40p
-                      img(src='assets/images/circles/circles_7.png', alt='')
+                      img(src='assets/images/circles/circles_1.png', alt='')
                     //- img
                     .countdown
                       //- span.time 32:12
                       br
                       p
-                        i.fa.fa-clock-o
-                        span &nbsp;32:12.00
+                        big
+                          i.fa.fa-clock-o
+                          span &nbsp;16:08.00
                       //- p
                       //- span
                     //- countdown
                   //- avatar
                   br
                   p
-                    a.button.inline.v8.joincirclebuy(href="circlebuy-start.html") join
+                    a.button.inline.v8.joincirclebuy.thin-line(href='productdetails2.html') view
                     | &nbsp;
-                    a.button.inline.v8.joincirclebuy(href="productdetails-rosnay.html") view
+                    a.button.inline.v7.joincirclebuy.thin-line(href="circlebuy-start.html") join
+                    | &nbsp;
+                    a.button.inline.v8.joincirclebuy.thin-line(href="") watch
                   //- p
-                  p.lead.cbprice 13.99
-                    small &nbsp;/ bottle
-                  //- p
-                  hr.short
-                  p 12 pack - $167.88
-                  //- big
+                  .circlebuy-table
+                    .prod-details.deals
+                      .label-qty.cols
+                        strong Qty
+                        br
+                      //- qty
+                      .label-bottle.cols
+                        strong Bottle
+                        br
+                      //- label-bottle
+                      .label-pack.cols
+                        strong 6 Pack
+                        br
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        span
+                          strong.green Save
+                        br
+                      //- savings
+                    //- prod-details
+                    .prod-details.deals.tr
+                      .label-qty.cols
+                        span 5
+                      //- qty
+                      .label-bottle.cols
+                        span $21.99
+                      //- label-bottle
+                      .label-pack.cols
+                        span $131.94
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        strong.middle
+                          big.lead $48.00
+                      //- savings
+                    //- prod-details
+                  //- .circlebuy-table
                 //- card_rounded
-              //- col-md-4
+              //- col-md-3
             //- row
             br
             .expand.text-center
               a(href='#modal_coming_soon', data-toggle='modal')
-                | show more&nbsp;
+                | more&nbsp;
                 i.fa.fa-caret-down
             //- expand
-            hr
-            p.lead.text-center Option 3 : Create a circlebuy
-              br
-              small(style='font-size: 16px;') creator bonus: 50% off 1 case
-            .text-center
-              a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") create
-              | &nbsp;
-              a.button.inline.v8(href="circlebuys.html") learn more
-            //- text-center
+
             hr
 
             .about
@@ -350,38 +402,36 @@ block content
                 .tab-content.card
                   #pDetails.tab-pane.active(role='tabpanel')
                     p.comment
-                      strong Rosnay Triple Blend&nbsp;
-                      | Whilst Rosnay vineyards include 8 hectares of Shiraz, and 4 hectares of Cabernet, only 2 hectares of Merlot are grown, making it the limiting factor in the amount of Triple Blend produced each year. No varietal Merlot has been bottled so far. In 2014 the Merlot vineyard is being replanted with Grenache, in order to allow a new Triple Blend to be created from 2017 as a Grenache-Shiraz-Mourvedre.
+                      strong Brokenwood Graveyard Vineyard Shiraz&nbsp;
+                      | is a ripe and generous shiraz with lifted cherry and mint aromas nicely balanced with sweet chocolate notes on the nose and a soft rich palate with savoury cedary flavours and fine grained tannins on the finish.
                     //- p
                     .row
                       .col-xs-4.col-md-4
                         p
                           strong.green variety
                           br
-                          | Triple Blend
+                          | Shiraz
                         //- p
                       //- col-md-4
                       .col-xs-4.col-md-4
                         p
                           strong.green region
                           br
-                          | N/A
+                          | Hunter Valley
                         //- p
                       //- col-md-4
                       .col-xs-4.col-md-4
                         p
                           strong.green alcohol
                           br
-                          | 14.0%
+                          | 14.5%
                         //- p
                       //- col-md-4
-                    //- row
-                    .row
                       .col-xs-4.col-md-4
                         p
                           strong.green vintage
                           br
-                          |  2015
+                          | 2010
                         //- p
                       //- col-md-4
                       .col-xs-4.col-md-4
@@ -395,7 +445,7 @@ block content
                         p
                           strong.green returns
                           br
-                          | 90 days
+                          | 60 days
                         //- p
                       //- col-md-4
                       .col-xs-4.col-md-4(data-expand-items)
@@ -409,13 +459,14 @@ block content
                         p
                           strong.green standard drinks
                           br
-                          | 7.5
+                          | 8
+                        //- p
                       //- col-md-4
                       .col-xs-4.col-md-4(data-expand-items)
                         p
                           strong.green food matching
                           br
-                          | Steak, Casserole
+                          | Osso Bucco, Lamb
                         //- p
                       //- col-md-4
                       .col-xs-4.col-md-4
@@ -536,7 +587,7 @@ block content
                     //- ratings
                   //- popover_rating
                   br
-                  | 8 Reviews
+                  | 88 Reviews
                 //- col-md-6
                 .col-md-5
                   .btn-review-wrap
@@ -560,14 +611,14 @@ block content
                           .img
                             img(src='assets/images/users/user_1.jpg', alt='')
                       span.form-control
-                        strong Quality Triple Blend
+                        strong Quality Shiraz
                         br
                         small
                           | by
                           a(href="profile.html") Andrew Steer
                           | | May 26, 2016
                         //- small
-                        p.comment I really 'dig' this Triple Blend. It's definitely 'one out of the box'. You can 'lay this one to rest' for a while or drink it right now!
+                        p.comment I really 'dig' this Shiraz. It's definitely 'one out of the box'. You can 'lay this one to rest' for a while or drink it right now!
                       //- span
                     //- input-group
                   //- content
@@ -610,7 +661,7 @@ block content
                           a(href='#modal_coming_soon', data-toggle='modal') Carter Smith
                           | | May 26, 2016
                         //- small
-                        p.comment A beautiful Triple Blend and very pleasing to the palate. Great value for the price.
+                        p.comment A beautiful Hunter Valley Red and very pleasing to the palate. Great value for the price.
                       //- span
                     //- input-group
                   //- content
