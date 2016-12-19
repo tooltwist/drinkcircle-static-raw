@@ -2140,13 +2140,13 @@ section.productdetails {
 		}
 		.sold {
 			position: absolute;
-			left: 0;
+			left: 10px;
 			top: 52px;
 			font-weight: bold;
 		}
 		.left {
 			position: absolute;
-			right: 0;
+			right: 10px;
 			top: 52px;
 			font-weight: bold;
 		}
@@ -3857,6 +3857,9 @@ p.lead {
 
 section {
 	&.drinks {
+		& {
+			font-size: 14px;
+		}
 		&.results {
 			.search-dropdown {
 				@media screen and (max-width: 990px) {
@@ -4108,5 +4111,11 @@ section {
 	}
 	> div {
 		margin: 5px 0;
+	}
+}
+
+.productdetails {
+	.card_rounded {
+		padding: 5px 5px 0 5px;
 	}
 }

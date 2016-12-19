@@ -555,1072 +555,387 @@ block content
     //- container
   //- section
 
-  //- - var values = [];
-  //- ul
-  //-   each val in values.length ? values : ['There are no values']
-  //-     li= val
+  -
+    var circlebuy = [
+      {
+        catalog   : true,
+        brand     : "Brokenwood",
+        type      : "Graveyard Vineyard Shiraz 2010",
+        name      : "Adrian",
+        qty       : "10",
+        savings   : "8",
+        sold      : "7",
+        left      : "3",
+        ring      : "_70p",
+        img       : "assets/images/circles/circles_8.png",
+        time      : "04:56.12",
+        pack      : "6",
+        packprice : "119.94",
+        price     : "19.99"
+      },
+      {
+        catalog   : true,
+        brand     : "Sticks",
+        type      : "Pinot Noir 2015",
+        name      : "Charmaine",
+        qty       : "10",
+        savings   : "8",
+        sold      : "5",
+        left      : "5",
+        ring      : "_50p",
+        img       : "assets/images/circles/circles_1.png",
+        time      : "16:08.00",
+        pack      : "12",
+        packprice : "179.88",
+        price     : "14.99"
+      },
+      {
+        catalog   : true,
+        brand     : "Rosnay Organic",
+        type      : "Triple Blend 2015",
+        name      : "Jenny",
+        qty       : "5",
+        savings   : "8",
+        sold      : "3",
+        left      : "2",
+        ring      : "_40p",
+        img       : "assets/images/circles/circles_7.png",
+        time      : "32:12.00",
+        pack      : "12",
+        packprice : "167.88",
+        price     : "13.99"
+      },
+      {
+        catalog   : true,
+        brand     : "Corona Extra",
+        type      : "Imported Beer",
+        name      : "Rodan",
+        qty       : "20",
+        savings   : "8",
+        sold      : "16",
+        left      : "4",
+        ring      : "_s20",
+        img       : "assets/images/users/user_2.jpg",
+        time      : "02:04.00",
+        pack      : "24",
+        packprice : "39.99",
+        price     : "39.99"
+      },
+      {
+        catalog   : true,
+        brand     : "Chivas Regal",
+        type      : "12 Year Old Scotch Whisky",
+        name      : "Rodan",
+        qty       : "12",
+        savings   : "8",
+        sold      : "8",
+        left      : "4",
+        ring      : "cb8of12",
+        img       : "assets/images/users/user_2.jpg",
+        time      : "02:04.00",
+        pack      : "",
+        packprice : "",
+        price     : "32.99"
+      },
+      {
+        catalog   : true,
+        brand     : "Somersby",
+        type      : "Apple Cider",
+        name      : "Jeff",
+        qty       : "3",
+        savings   : "8",
+        sold      : "2",
+        left      : "1",
+        ring      : "_s3",
+        img       : "assets/images/circles/circles_3.png",
+        time      : "08:20.00",
+        pack      : "24",
+        packprice : "41.99",
+        price     : "41.99"
+      },
+      {
+        catalog   : true,
+        brand     : "Somersby",
+        type      : "Blackberry Cider",
+        name      : "Joy",
+        qty       : "6",
+        savings   : "8",
+        sold      : "2",
+        left      : "4",
+        ring      : "_s6",
+        img       : "assets/images/friends/friends_6.png",
+        time      : "26:21.00",
+        pack      : "24",
+        packprice : "39.99",
+        price     : "39.99"
+      },
+      {
+        catalog   : true,
+        brand     : "Moet & Chandon",
+        type      : "French Champagne",
+        name      : "Charmaine",
+        qty       : "12",
+        savings   : "8",
+        sold      : "6",
+        left      : "6",
+        ring      : "cb6of12",
+        img       : "assets/images/circles/circles_1.png",
+        time      : "16:08.00",
+        pack      : "",
+        packprice : "",
+        price     : "59.99"
+      },
+      {
+        catalog   : true,
+        brand     : "Absolut",
+        type      : "Vodka",
+        name      : "Jenny",
+        qty       : "12",
+        savings   : "8",
+        sold      : "7",
+        left      : "5",
+        ring      : "cb7of12",
+        img       : "assets/images/circles/circles_7.png",
+        time      : "32:12.00",
+        pack      : "",
+        packprice : "",
+        price     : "43.99"
+      },
+      {
+        catalog   : true,
+        brand     : "Kim Crawford",
+        type      : "Sauvignon Blanc",
+        name      : "Adrian",
+        qty       : "10",
+        savings   : "8",
+        sold      : "7",
+        left      : "3",
+        ring      : "_70p",
+        img       : "assets/images/circles/circles_8.png",
+        time      : "15:56.12",
+        pack      : "6",
+        packprice : "77.94",
+        price     : "12.99"
+      },
+      {
+        catalog   : true,
+        brand     : "Heineken",
+        type      : "Lager Stubbies",
+        name      : "Jenny",
+        qty       : "3",
+        savings   : "8",
+        sold      : "1",
+        left      : "2",
+        ring      : "_s3",
+        img       : "assets/images/friends/friends_5.png",
+        time      : "18:41.00",
+        pack      : "24",
+        packprice : "36.99",
+        price     : "36.99"
+      },
+      {
+        catalog   : true,
+        brand     : "Tempus Two",
+        type      : "Botrytis Semillon",
+        name      : "Greg",
+        qty       : "10",
+        savings   : "8",
+        sold      : "7",
+        left      : "3",
+        ring      : "_70p",
+        img       : "assets/images/friends/friends_7.png",
+        time      : "10:32.00",
+        pack      : "6",
+        packprice : "75",
+        price     : "12.50"
+      },
+      {
+        catalog   : true,
+        brand     : "Rosnay Organic",
+        type      : "Semillon",
+        name      : "Cathy",
+        qty       : "10",
+        savings   : "8",
+        sold      : "7",
+        left      : "3",
+        ring      : "_70p",
+        img       : "assets/images/users/user_5.jpg",
+        time      : "04:56.00",
+        pack      : "12",
+        packprice : "167.88",
+        price     : "13.99"
+      },
+      {
+        catalog   : true,
+        brand     : "Young Henrys",
+        type      : "Natural Lager",
+        name      : "Rodan",
+        qty       : "20",
+        savings   : "8",
+        sold      : "16",
+        left      : "4",
+        ring      : "_s20",
+        img       : "assets/images/users/user_2.jpg",
+        time      : "02:04.00",
+        pack      : "24",
+        packprice : "65.95",
+        price     : "65.95"
+      },
+      {
+        catalog   : true,
+        brand     : "West Winds Gin",
+        type      : "The Sabre",
+        name      : "Jeff",
+        qty       : "12",
+        savings   : "8",
+        sold      : "3",
+        left      : "9",
+        ring      : "cb3of12",
+        img       : "assets/images/circles/circles_3.png",
+        time      : "08:20.00",
+        pack      : "",
+        packprice : "",
+        price     : "45.99"
+      },
+      {
+        catalog   : true,
+        brand     : "A by Arras",
+        type      : "Premium Cuvee",
+        name      : "Adrian",
+        qty       : "10",
+        savings   : "8",
+        sold      : "8",
+        left      : "2",
+        ring      : "_70p",
+        img       : "assets/images/circles/circles_8.png",
+        time      : "04:56.00",
+        pack      : "6",
+        packprice : "131.94",
+        price     : "21.99"
+      },
+      {
+        brand     : "Di Giorgio Family",
+        type      : "Coonawarra Sparkling Blac De Blanc",
+        name      : "Adrian",
+        qty       : "10",
+        savings   : "8",
+        sold      : "8",
+        left      : "2",
+        ring      : "_70p",
+        img       : "assets/images/circles/circles_8.png",
+        time      : "04:56.00",
+        pack      : "6",
+        packprice : "179.94",
+        price     : "29.99"
+      }
+    ]
 
   section.drinks
     .container
       .productdetails.search
         .row
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span Brokenwood
-                  br
-                  small.el Graveyard Vineyard Shiraz 2010
-                //- span
-              //- a
-              hr
-              span Adrian's circlebuy
-                br
-                | 10 cases -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 7
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 3
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring._70p
-                  img(src='assets/images/circles/circles_8.png', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
+          each item, index in circlebuy
+            if circlebuy[index].catalog
+              .col-md-3.col-sm-6.text-center
+                .card_rounded
+                  a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
+                    big
+                      span= circlebuy[index].brand
+                        br
+                        small.el= circlebuy[index].type
+                      //- span
+                  //- a
+                  hr
+                  span
+                    big= circlebuy[index].name + "'s "
+                      strong
+                        big= circlebuy[index].qty + " case "
+                      | circlebuy
+                  .shortsummary
+                    .sold
+                      p.cases-sold sold
+                      p.lead
+                        span.green= circlebuy[index].sold
+                        br
+                        //- small cases
+                      //- p
+                    //- sold
+                    .left
+                      p left
+                      p.lead
+                        span.green= circlebuy[index].left
+                        br
+                        //- small cases
+                      //- p
+                    //- left
+                  //- shortsummary
+                  p
+                  .avatar
+                    .img
+                      div(class=['ring', circlebuy[index].ring])
+                      img(src=circlebuy[index].img, alt='')
+                    //- img
+                    .countdown
+                      //- span.time 32:12
+                      br
+                      p
+                        big
+                          i.fa.fa-clock-o
+                          span= " " + circlebuy[index].time
+                      //- p
+                      //- span
+                    //- countdown
+                  //- avatar
                   br
                   p
-                    i.fa.fa-clock-o
-                    span &nbsp;04:56.12
+                    a.button.inline.v8.joincirclebuy.thin-line(href='productdetails2.html') view
+                    | &nbsp;
+                    a.button.inline.v7.joincirclebuy.thin-line(href="circlebuy-start.html") join
+                    | &nbsp;
+                    a.button.inline.v8.joincirclebuy.thin-line(href="") watch
                   //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price 6 pack - $119.94
-              hr.short
-              p.lead.cbprice
-                strong  $19.99
-                small &nbsp;/ bottle
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_sticks', data-toggle='modal')
-                span Sticks
-                  br
-                  small.el Pinot Noir 2015
-                //- span
-              //- a
-              hr
-              span Sharmaine's circlebuy
-                br
-                | 10 cases -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 5
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 5
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring._50p
-                  img(src='assets/images/circles/circles_1.png', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;16:08.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price 12 pack - $179.88
-              hr.short
-              p.lead.cbprice
-                strong  $14.99
-                small &nbsp;/ bottle
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_rosnay', data-toggle='modal')
-                span Rosnay Organic
-                  br
-                  small.el Triple Blend 2015
-                //- span
-              //- a
-              hr
-              span Jenny's circlebuy
-                br
-                | 5 cases -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 3
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 2
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring._40p
-                  img(src='assets/images/circles/circles_7.png', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;32:12.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price 12 pack - $167.88
-              hr.short
-              p.lead.cbprice
-                strong  $13.99
-                small &nbsp;/ bottle
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span Corona Extra
-                  br
-                  small.el Imported Beer
-                //- span
-              //- a
-              hr
-              span Rodan's circlebuy
-                br
-                | 20 cases -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 16
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 4
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring._s20
-                  img(src='assets/images/users/user_2.jpg', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;02:04.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price 24 pack - $39.99
-              hr.short
-              p.lead.cbprice
-                strong  $39.99
-                small &nbsp;/ case
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span Chivas Regal
-                  br
-                  small.el 12 Year Old Scotch Whisky
-                //- span
-              //- a
-              hr
-              span Rodan's circlebuy
-                br
-                | 12 bottles -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 8
-                    br
-                    //- small bottles
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 4
-                    br
-                    //- small bottles
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring.cb8of12
-                  img(src='assets/images/users/user_2.jpg', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;02:04.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price &nbsp;
-              hr.short
-              //- p 12 pack - $395.88
-              p.lead.cbprice
-                strong  $32.99
-                small &nbsp;/ bottle
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span Somersby
-                  br
-                  small.el Apple Cider
-                //- span
-              //- a
-              hr
-              span Jeff's circlebuy
-                br
-                | 3 cases -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 2
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 1
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring._s3
-                  img(src='assets/images/circles/circles_3.png', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;08:20.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price 24 pack - $41.99
-              hr.short
-              p.lead.cbprice
-                strong  $41.99
-                small &nbsp;/ case
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span Somersby
-                  br
-                  small.el Blackberry Cider
-                //- span
-              //- a
-              hr
-              span Joy's circlebuy
-                br
-                | 6 cases -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 2
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 4
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring._s6
-                  img(src='assets/images/friends/friends_6.png', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;26:21.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price 24 pack - $39.99
-              hr.short
-              p.lead.cbprice
-                strong  $39.99
-                small &nbsp;/ case
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span Mo&eacute;t &amp; Chandon
-                  br
-                  small.el French Champagne
-                //- span
-              //- a
-              hr
-              span Sharmaine's circlebuy
-                br
-                | 12 bottles -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 6
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 6
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring.cb6of12
-                  img(src='assets/images/circles/circles_1.png', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;16:08.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price &nbsp;
-              hr.short
-              p.lead.cbprice
-                strong  $59.99
-                small &nbsp;/ bottle
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span Absolut
-                  br
-                  small.el Vodka
-                //- span
-              //- a
-              hr
-              span Jenny's circlebuy
-                br
-                | 12 bottles -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 7
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 5
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring.cb7of12
-                  img(src='assets/images/circles/circles_7.png', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;32:12.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price &nbsp;
-              hr.short
-              p.lead.cbprice
-                strong  $43.99
-                small &nbsp;/ bottle
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span Kim Crawford
-                  br
-                  small.el Sauvignon Blanc
-                //- span
-              //- a
-              hr
-              span Adrian's circlebuy
-                br
-                | 10 cases -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 7
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 3
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring._70p
-                  img(src='assets/images/circles/circles_8.png', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;15:56.12
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price 6 pack - $77.94
-              hr.short
-              p.lead.cbprice
-                strong  $12.99
-                small &nbsp;/ bottle
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span Heineken
-                  br
-                  small.el Lager Stubbies
-                //- span
-              //- a
-              hr
-              span Jenny's circlebuy
-                br
-                | 3 cases -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 1
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 2
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring._s3
-                  img(src='assets/images/friends/friends_5.png', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;18:41.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price 24 pack - $36.99
-              hr.short
-              p.lead.cbprice
-                strong  $36.99
-                small &nbsp;/ case
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span Tempus Two
-                  br
-                  small.el Botrytis Semillon
-                //- span
-              //- a
-              hr
-              span Greg's circlebuy
-                br
-                | 10 cases -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 7
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 3
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring._70p
-                  img(src='assets/images/friends/friends_7.png', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;10:32.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price 6 pack - $75
-              hr.short
-              p.lead.cbprice
-                strong  $12.50
-                small &nbsp;/ bottle
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_coming_soon', data-toggle='modal')
-                span Rosnay Organic
-                  br
-                  small.el Semillon
-                //- span
-              //- a
-              hr
-              span Cathy's circlebuy
-                br
-                | 10 cases -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 7
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 3
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring._70p
-                  img(src='assets/images/users/user_5.jpg', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;04:56.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price 12 pack - $167.88
-              hr.short
-              p.lead.cbprice
-                strong  $13.99
-                small &nbsp;/ bottle
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span Young Henrys
-                  br
-                  small.el Natural Lager
-                //- span
-              //- a
-              hr
-              span Rodan's circlebuy
-                br
-                | 20 cases -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 16
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 4
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring._s20
-                  img(src='assets/images/users/user_2.jpg', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;02:04.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price 24 pack - $65.95
-              hr.short
-              p.lead.cbprice
-                strong  $65.95
-                small &nbsp;/ case
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span West Winds Gin
-                  br
-                  small.el The Sabre
-                //- span
-              //- a
-              hr
-              span Jeff's circlebuy
-                br
-                | 12 bottles -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 3
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 9
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring.cb3of12
-                  img(src='assets/images/circles/circles_3.png', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;08:20.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price &nbsp;
-              hr.short
-              p.lead.cbprice
-                strong  $45.99
-                small &nbsp;/ bottle
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
-          .col-md-3.col-sm-6.text-center
-            .card_rounded
-              a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                span A by Arras
-                  br
-                  small.el Premium Cuvee
-                //- span
-              //- a
-              hr
-              span Adrian's circlebuy
-                br
-                | 10 cases -&nbsp;
-                strong SAVE $8&nbsp;
-                small /bottle
-              hr
-              .shortsummary
-                .sold
-                  p.cases-sold sold
-                  p.lead
-                    span.green 8
-                    br
-                    //- small cases
-                  //- p
-                //- sold
-                .left
-                  p left
-                  p.lead
-                    span.green 2
-                    br
-                    //- small cases
-                  //- p
-                //- left
-              //- shortsummary
-              p
-              .avatar
-                .img
-                  .ring._70p
-                  img(src='assets/images/circles/circles_8.png', alt='')
-                //- img
-                .countdown
-                  //- span.time 32:12
-                  br
-                  p
-                    i.fa.fa-clock-o
-                    span &nbsp;04:56.00
-                  //- p
-                  //- span
-                //- countdown
-              //- avatar
-              br
-              p
-                a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                | &nbsp;
-                a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                | &nbsp;
-                a.button.inline.v8.joincirclebuy(href="") watch
-              //- p
-              p.cbpromo-price 6 pack - $131.94
-              hr.short
-              p.lead.cbprice
-                strong  $21.99
-                small &nbsp;/ bottle
-              //- p
-              //- big
-            //- card_rounded
-          //- col-md-3
+                  .circlebuy-table
+                    .prod-details.deals
+                      .label-qty.cols
+                        strong Qty
+                        br
+                      //- qty
+                      .label-bottle.cols
+                        strong Bottle
+                        br
+                      //- label-bottle
+                      .label-pack.cols
+                        strong= circlebuy[index].pack + " Pack"
+                        br
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        span
+                          strong.green Save
+                        br
+                      //- savings
+                    //- prod-details
+                    .prod-details.deals.tr
+                      .label-qty.cols
+                        span= circlebuy[index].qty
+                      //- qty
+                      .label-bottle.cols
+                        span= "$ " + circlebuy[index].price
+                      //- label-bottle
+                      .label-pack.cols
+                        span= "$ " + circlebuy[index].packprice
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        strong.middle
+                          big.lead= "$ " + circlebuy[index].savings
+                      //- savings
+                    //- prod-details
+                  //- .circlebuy-table
+                //- card_rounded
+              //- col-md-3
+            //- if
+          //- each
         //- row
       //- productdetails
       hr
