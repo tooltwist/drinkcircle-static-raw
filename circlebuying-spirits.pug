@@ -8,6 +8,8 @@ block css
 
 block content
 
+  include data/circlebuy.pug
+
   .banner.home
     .gradient
     .banner-static
@@ -552,161 +554,111 @@ block content
     //- container
   //- section
 
-  -
-    var circlebuy = [
-      {
-        catalog   : true,
-        brand     : "Chivas Regal",
-        type      : "12 Year Old Scotch Whisky",
-        name      : "Rodan",
-        qty       : "12",
-        savings   : "8",
-        sold      : "8",
-        left      : "4",
-        ring      : "cb8of12",
-        img       : "assets/images/users/user_2.jpg",
-        time      : "02:04.00",
-        pack      : "",
-        packprice : "",
-        price     : "32.99"
-      },
-      {
-        catalog   : true,
-        brand     : "Absolut",
-        type      : "Vodka",
-        name      : "Jenny",
-        qty       : "12",
-        savings   : "8",
-        sold      : "7",
-        left      : "5",
-        ring      : "cb7of12",
-        img       : "assets/images/circles/circles_7.png",
-        time      : "32:12.00",
-        pack      : "",
-        packprice : "",
-        price     : "43.99"
-      },
-      {
-        catalog   : true,
-        brand     : "West Winds Gin",
-        type      : "The Sabre",
-        name      : "Jeff",
-        qty       : "12",
-        savings   : "8",
-        sold      : "3",
-        left      : "9",
-        ring      : "cb3of12",
-        img       : "assets/images/circles/circles_3.png",
-        time      : "08:20.00",
-        pack      : "",
-        packprice : "",
-        price     : "45.99"
-      }
-    ]
-
   section.drinks
     .container
       .productdetails.search
         .row
           each item, index in circlebuy
-            .col-md-3.col-sm-6.text-center
-              .card_rounded
-                a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                  big
-                    span= circlebuy[index].brand
-                      br
-                      small.el= circlebuy[index].type
-                    //- span
-                //- a
-                hr
-                span
-                  big= circlebuy[index].name + "'s "
-                    strong
-                      big= circlebuy[index].qty + " case "
-                    | circlebuy
-                .shortsummary
-                  .sold
-                    p.cases-sold sold
-                    p.lead
-                      span.green= circlebuy[index].sold
-                      br
-                      //- small cases
-                    //- p
-                  //- sold
-                  .left
-                    p left
-                    p.lead
-                      span.green= circlebuy[index].left
-                      br
-                      //- small cases
-                    //- p
-                  //- left
-                //- shortsummary
-                p
-                .avatar
-                  .img
-                    div(class=['ring', circlebuy[index].ring])
-                    img(src=circlebuy[index].img, alt='')
-                  //- img
-                  .countdown
-                    //- span.time 32:12
-                    br
-                    p
-                      big
-                        i.fa.fa-clock-o
-                        span= " " + circlebuy[index].time
-                    //- p
-                    //- span
-                  //- countdown
-                //- avatar
-                br
-                p
-                  a.button.inline.v8.joincirclebuy.thin-line(href='productdetails2.html') view
-                  | &nbsp;
-                  a.button.inline.v7.joincirclebuy.thin-line(href="circlebuy-start.html") join
-                  | &nbsp;
-                  a.button.inline.v8.joincirclebuy.thin-line(href="") watch
-                //- p
-                .circlebuy-table
-                  .prod-details.deals
-                    .label-qty.cols
-                      strong Qty
-                      br
-                    //- qty
-                    .label-bottle.cols
-                      strong Bottle
-                      br
-                    //- label-bottle
-                    .label-pack.cols
-                      strong= circlebuy[index].pack + " Pack"
-                      br
+            if circlebuy[index].filter == "spirits"
+              .col-md-3.col-sm-6.text-center
+                .card_rounded
+                  a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
+                    big
+                      span= circlebuy[index].brand
+                        br
+                        small.el= circlebuy[index].type
                       //- span
-                    //- price
-                    .label-savings.cols
-                      span
-                        strong.green Save
+                  //- a
+                  hr
+                  span
+                    big= circlebuy[index].name + "'s "
+                      strong
+                        big= circlebuy[index].qty + " case "
+                      | circlebuy
+                  .shortsummary
+                    .sold
+                      p.cases-sold sold
+                      p.lead
+                        span.green= circlebuy[index].sold
+                        br
+                        //- small cases
+                      //- p
+                    //- sold
+                    .left
+                      p left
+                      p.lead
+                        span.green= circlebuy[index].left
+                        br
+                        //- small cases
+                      //- p
+                    //- left
+                  //- shortsummary
+                  p
+                  .avatar
+                    .img
+                      div(class=['ring', circlebuy[index].ring])
+                      img(src=circlebuy[index].img, alt='')
+                    //- img
+                    .countdown
+                      //- span.time 32:12
                       br
-                    //- savings
-                  //- prod-details
-                  .prod-details.deals.tr
-                    .label-qty.cols
-                      span= circlebuy[index].qty
-                    //- qty
-                    .label-bottle.cols
-                      span= "$ " + circlebuy[index].price
-                    //- label-bottle
-                    .label-pack.cols
-                      span= "$ " + circlebuy[index].packprice
+                      p
+                        big
+                          i.fa.fa-clock-o
+                          span= " " + circlebuy[index].time
+                      //- p
                       //- span
-                    //- price
-                    .label-savings.cols
-                      strong.middle
-                        big.lead= "$ " + circlebuy[index].savings
-                    //- savings
-                  //- prod-details
-                //- .circlebuy-table
-              //- card_rounded
-            //- col-md-3
+                    //- countdown
+                  //- avatar
+                  br
+                  p
+                    a.button.inline.v8.joincirclebuy.thin-line(href='productdetails2.html') view
+                    | &nbsp;
+                    a.button.inline.v7.joincirclebuy.thin-line(href="circlebuy-start.html") join
+                    | &nbsp;
+                    a.button.inline.v8.joincirclebuy.thin-line(href="") watch
+                  //- p
+                  .circlebuy-table
+                    .prod-details.deals
+                      .label-qty.cols
+                        strong Qty
+                        br
+                      //- qty
+                      .label-bottle.cols
+                        strong Bottle
+                        br
+                      //- label-bottle
+                      .label-pack.cols
+                        strong= circlebuy[index].pack + " Pack"
+                        br
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        span
+                          strong.green Save
+                        br
+                      //- savings
+                    //- prod-details
+                    .prod-details.deals.tr
+                      .label-qty.cols
+                        span= circlebuy[index].qty
+                      //- qty
+                      .label-bottle.cols
+                        span= "$ " + circlebuy[index].price
+                      //- label-bottle
+                      .label-pack.cols
+                        span= "$ " + circlebuy[index].packprice
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        strong.middle
+                          big.lead= "$ " + circlebuy[index].savings
+                      //- savings
+                    //- prod-details
+                  //- .circlebuy-table
+                //- card_rounded
+              //- col-md-3
+            //- if
           //- each
         //- row
       //- productdetails
