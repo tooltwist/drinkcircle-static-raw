@@ -30,6 +30,15 @@ html(lang="en")
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 
+    //
+    //	Prevent flashing of unstyled content (seeing the template before Angular.js runs).
+    //	See http://stackoverflow.com/questions/16074673/angularjs-strategy-to-prevent-flash-of-unstyled-content-for-a-class
+    //
+    style.
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+      display: none !important;
+      }
+
     block css
   body
     //- .loader
