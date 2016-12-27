@@ -136,6 +136,9 @@ gulp.task('copy', function() {
 // - ###########################################################################
 var bowerBaseDir = "./bower_components";
 var bower = [
+    bowerBaseDir + '/accounting/**/*.*',
+    bowerBaseDir + '/angular/**/*.*',
+    bowerBaseDir + '/angular-sanitize/**/*.*',
     bowerBaseDir + '/bootstrap/dist/**/*.*',
     bowerBaseDir + '/jquery/dist/**/*.*',
     bowerBaseDir + '/jquery.cookie/**/*.*',
