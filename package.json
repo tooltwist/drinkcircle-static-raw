@@ -4,15 +4,16 @@
   "description": "Project dependencies",
   "main": "gulpfile.js",
   "dependencies": {
+    "angular-sanitize": "^1.6.1",
     "browser-sync": "^2.13.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-changed": "^1.3.2",
     "gulp-clean": "^0.3.2",
     "gulp-debug": "^3.0.0",
     "gulp-pug": "*",
-    "gulp-changed": "^1.3.2",
-    "gulp-util": "*",
-    "gulp-sass": "^2.3.2"
+    "gulp-sass": "^2.3.2",
+    "gulp-util": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

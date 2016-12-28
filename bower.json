@@ -22,6 +22,7 @@
     "owl.carousel": "https://github.com/OwlCarousel2/OwlCarousel2.git#^2.1.6",
     "angular": "^1.6.1",
     "angular-sanitize": "^1.6.1",
-    "accounting": "^0.3.2"
+    "accounting": "^0.3.2",
+    "moment": "^2.17.1"
   }
 }

@@ -8,38 +8,39 @@ block css
 
 block content
 
-  section.productdetails
+
+  section.productdetails(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
     .container
       p.bread
         a(href='#modal_coming_soon', data-toggle='modal') Red
         | &nbsp;/&nbsp;
-        a(href='#modal_coming_soon', data-toggle='modal') Brokenwood
+        a(href='#modal_coming_soon', data-toggle='modal') {{variant.manufacturer}}
         | &nbsp;/&nbsp;
         a(href='#modal_coming_soon', data-toggle='modal')
-          strong Graveyard Vineyard Shiraz - 6 pack
+          strong {{product.name}}
         //- a
       //- p
       //- bread
       .row
         .col-md-5.text-center
           h1
-            span Brokenwood
+            span {{variant.manufacturer}}
             br
             strong
-              small Graveyard Vineyard Shiraz  - 6 pack
+              small {{variant.name}}
             //- strong
             br
             p
             .row.pdetail-info-text
               .col-md-6.text-left
                 small
-                  | RRP $29.99&nbsp;
+                  | RRP {{rrp}}&nbsp;
                   span.pb / bottle
                 //- small
               //- col-md-6
               .col-md-6.text-right
                 small
-                  span.avl 500+ available / 319 sold
+                  span.avl {{variant.quantity}} available / 319 sold
                 //- small
               //- col-md-6
             //- row
@@ -76,7 +77,7 @@ block content
                         br
                       //- label-bottle
                       .label-pack.cols
-                        strong 6 Pack
+                        strong {{packSize}} Pack
                         br
                         //- span
                       //- price
@@ -84,76 +85,107 @@ block content
                         span
                           strong.green Save
                         br
+                        small.green (per pack)
                       //- savings
                       .more-actions.cols
                     //- prod-details
-                    .prod-details.deals
-                      .label-qty.cols
-                        span 1 - 4
-                      //- qty
-                      .label-bottle.cols
-                        span $25.99
-                      //- label-bottle
-                      .label-pack.cols
-                        span $155.94
-                        //- span
-                      //- price
-                      .label-savings.cols
-                        strong
-                          big.lead $24.00
-                      //- savings
-                      .more-actions.cols
-                        a.button.inline.v8.buynow.thin-line(href="#", target="_blank")
-                          span.num buy now
-                        //- a
-                      //- more-actions
-                    //- prod-details
-                    .prod-details.deals
-                      .label-qty.cols
-                        span 5 - 9
-                      //- qty
-                      .label-bottle.cols
-                        span $21.99
-                      //- label-bottle
-                      .label-pack.cols
-                        span $131.94
-                        //- span
-                      //- price
-                      .label-savings.cols
-                        strong
-                          big.lead $48.00
-                      //- savings
-                      .more-actions.cols
-                        a.button.inline.v8.buynow.thin-line(href="#", target="_blank")
-                          span.num buy now
-                        //- a
-                        a.button.inline.v7.thin-line(href='circlebuy-join.html') join a circlebuy
-                        a.button.inline.v8.thin-line(href='circlebuy-start.html') create a circlebuy *
-                      //- more-actions
-                    //- prod-details
-                    .prod-details.deals
-                      .label-qty.cols
-                        span 10+
-                      //- qty
-                      .label-bottle.cols
-                        span $19.99
-                      //- label-bottle
-                      .label-pack.cols
-                        span $119.94
-                        //- span
-                      //- price
-                      .label-savings.cols
-                        strong
-                          big.lead $60.00
-                      //- savings
-                      .more-actions.cols
-                        a.button.inline.v8.buynow.thin-line(href="#", target="_blank")
-                          span.num buy now
-                        //- a
-                        a.button.inline.v7.thin-line(href='circlebuy-join.html') join a circlebuy
-                        a.button.inline.v8.thin-line(href='circlebuy-start.html') create a circlebuy *
-                      //- more-actions
-                    //- prod-details
+
+                    hr
+                    div(ng-repeat="price in priceTable")
+                      .prod-details.deals
+                        .label-qty.cols
+                          span(style="{{price.style1}}") {{price.label}}
+                        //- qty
+                        .label-bottle.cols
+                          span(style="{{price.style2}}") {{price.unitPrice}}
+                        //- label-bottle
+                        .label-pack.cols
+                          span(style="{{price.style2}}") {{price.packPrice}}
+                          //- span
+                        //- price
+                        .label-savings.cols
+                          strong(ng-if="price.showBuy")
+                            big.lead {{price.save}}
+                          span(ng-if="!price.showBuy" style="{{price.style1}}") {{price.save}}
+                        //- savings
+                        .more-actions.cols
+                          a.button.inline.v8.buynow.thin-line(ng-if="price.showBuy" href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                          a.button.inline.v7.thin-line(ng-if="price.showCircleBuy" href='circlebuy-join.html') join a circlebuy
+                          a.button.inline.v8.thin-line(ng-if="price.showCircleBuy" href='circlebuy-start.html') create a circlebuy *
+                        //- more-actions
+                      //- prod-details
+                    //- div
+
+                    div(ng-if="false")
+                      .prod-details.deals
+                        .label-qty.cols
+                          span 1 - 4
+                        //- qty
+                        .label-bottle.cols
+                          span $25.99
+                        //- label-bottle
+                        .label-pack.cols
+                          span $155.94
+                          //- span
+                        //- price
+                        .label-savings.cols
+                          strong
+                            big.lead $24.00
+                        //- savings
+                        .more-actions.cols
+                          a.button.inline.v8.buynow.thin-line(href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                        //- more-actions
+                      //- prod-details
+                      .prod-details.deals
+                        .label-qty.cols
+                          span 5 - 9
+                        //- qty
+                        .label-bottle.cols
+                          span $21.99
+                        //- label-bottle
+                        .label-pack.cols
+                          span $131.94
+                          //- span
+                        //- price
+                        .label-savings.cols
+                          strong
+                            big.lead $48.00
+                        //- savings
+                        .more-actions.cols
+                          a.button.inline.v8.buynow.thin-line(href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                          a.button.inline.v7.thin-line(href='circlebuy-join.html') join a circlebuy
+                          a.button.inline.v8.thin-line(href='circlebuy-start.html') create a circlebuy *
+                        //- more-actions
+                      //- prod-details
+                      .prod-details.deals
+                        .label-qty.cols
+                          span 10+
+                        //- qty
+                        .label-bottle.cols
+                          span $19.99
+                        //- label-bottle
+                        .label-pack.cols
+                          span $119.94
+                          //- span
+                        //- price
+                        .label-savings.cols
+                          strong
+                            big.lead $60.00
+                        //- savings
+                        .more-actions.cols
+                          a.button.inline.v8.buynow.thin-line(href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                          a.button.inline.v7.thin-line(href='circlebuy-join.html') join a circlebuy
+                          a.button.inline.v8.thin-line(href='circlebuy-start.html') create a circlebuy *
+                        //- more-actions
+                      //- prod-details
                     br
                     p.text-center.relative.font12 * creator bonus: extra 50% off first case
                       a.green.absolute._right(href="circlebuys.html") learn about circlebuying
@@ -168,7 +200,7 @@ block content
                 //- p.lead.text-center.totalcbcount Duration: 72hrs
               //- col-md-4
               .col-md-4
-                p.lead.text-center.totalcbcount 84 circlebuys to join
+                p.lead.text-center.totalcbcount {{numSharedOrders}} circlebuys to join
               //- col-md-4
               .col-md-4
                 //- .text-right
@@ -179,21 +211,29 @@ block content
               //- col-md-4
             //- row
 
+
+            //
+            // Circle Buys short list, initially displayed
+            //
             .row
-              .col-md-6.col-sm-6.text-center.super-customized
-                .card_rounded
+
+              div(ng-repeat="sharedOrder in shortSharedOrdersList").col-md-6.col-sm-6.text-center.super-customized
+                circlebuy-widget
+
+
+                .card_rounded(style="display: none;")
                   a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
                     big
-                      span Brokenwood
+                      span {{sharedOrder.productVariant.manufacturer}}
                         br
-                        small.el Graveyard Vineyard Shiraz 2010
+                        small.el {{sharedOrder.productVariant.name}}
                       //- span
                   //- a
                   hr
                   span
-                    big Adrian's&nbsp;
+                    big {{sharedOrder.sharedOrder.ownerLabel}}&nbsp;
                       strong
-                        big 10 case&nbsp;
+                        big {{sharedOrder.sharedOrder.quantity}} pack&nbsp;
                       | circlebuy
                   .shortsummary
                     .sold
@@ -201,6 +241,7 @@ block content
                       p.lead
                         span.green 7
                         br
+                        small zzz
                         //- small cases
                       //- p
                     //- sold
@@ -209,6 +250,7 @@ block content
                       p.lead
                         span.green 3
                         br
+                        small zzz
                         //- small cases
                       //- p
                     //- left
@@ -225,7 +267,9 @@ block content
                       p
                         big
                           i.fa.fa-clock-o
-                          span &nbsp;04:56.12
+                          | &nbsp;
+                          // This countdown timer gets updated by javascript
+                          span(expiresAt="{{sharedOrder.sharedOrder.expiresAt}}").countdownTimer
                       //- p
                       //- span
                     //- countdown
@@ -249,7 +293,7 @@ block content
                         br
                       //- label-bottle
                       .label-pack.cols
-                        strong 6 Pack
+                        strong {{sharedOrder.productVariant.componentsQty}} Pack
                         br
                         //- span
                       //- price
@@ -261,23 +305,25 @@ block content
                     //- prod-details
                     .prod-details.deals.tr
                       .label-qty.cols
-                        span 10
+                        span {{sharedOrder.sharedOrder.quantity}}
                       //- qty
                       .label-bottle.cols
-                        span $19.99
+                        span {{sharedOrder.d_unitPrice}}
                       //- label-bottle
                       .label-pack.cols
-                        span $119.94
+                        span {{sharedOrder.d_packPrice}}
                         //- span
                       //- price
                       .label-savings.cols
                         strong.middle
-                          big.lead $60.00
+                          big.lead {{sharedOrder.d_packSave}}
                       //- savings
                     //- prod-details
                   //- .circlebuy-table
                 //- card_rounded
               //- col-md-3
+
+              // Initial Dummy circleBuy
               .col-md-6.col-sm-6.text-center.super-customized
                 .card_rounded
                   a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
@@ -378,14 +424,124 @@ block content
               //- col-md-3
             //- row
             br
+
+
+            // Circle Buys long list, initially hidden
             .expand.text-center
-              a(href='#modal_coming_soon', data-toggle='modal')
+              a(href='#initiallyHiddenCircleBuys', data-toggle='collapse')
                 | more&nbsp;
                 i.fa.fa-caret-down
             //- expand
+            .row(id="initiallyHiddenCircleBuys" class="collapse")
+              div(ng-repeat="sharedOrder in longSharedOrdersList").col-md-6.col-sm-6.text-center.super-customized
+                br
+                circlebuy-widget
+                .card_rounded(style="display: none;")
+                  a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
+                    big
+                      span {{sharedOrder.productVariant.manufacturer}}
+                        br
+                        small.el {{sharedOrder.productVariant.name}}
+                      //- span
+                  //- a
+                  hr
+                  span
+                    big {{sharedOrder.sharedOrder.ownerLabel}}&nbsp;
+                      strong
+                        big {{sharedOrder.sharedOrder.quantity}} pack&nbsp;
+                      | circlebuy
+                  .shortsummary
+                    .sold
+                      p.cases-sold sold
+                      p.lead
+                        span.green 7
+                        br
+                        small zzz
+                        //- small cases
+                      //- p
+                    //- sold
+                    .left
+                      p left
+                      p.lead
+                        span.green 3
+                        br
+                        small zzz
+                        //- small cases
+                      //- p
+                    //- left
+                  //- shortsummary
+                  p
+                  .avatar
+                    .img
+                      .ring._70p
+                      img(src='assets/images/circles/circles_8.png', alt='')
+                    //- img
+                    .countdown
+                      //- span.time 32:12
+                      br
+                      p
+                        big
+                          i.fa.fa-clock-o
+                          | &nbsp;
+                          // This countdown timer gets updated by javascript
+                          span(expiresAt="{{sharedOrder.sharedOrder.expiresAt}}").countdownTimer
+                      //- p
+                      //- span
+                    //- countdown
+                  //- avatar
+                  br
+                  p
+                    a.button.inline.v8.joincirclebuy.thin-line(href='productdetails2.html') view
+                    | &nbsp;
+                    a.button.inline.v7.joincirclebuy.thin-line(href="circlebuy-start.html") join
+                    | &nbsp;
+                    a.button.inline.v8.joincirclebuy.thin-line(href="") watch
+                  //- p
+                  .circlebuy-table
+                    .prod-details.deals
+                      .label-qty.cols
+                        strong Qty
+                        br
+                      //- qty
+                      .label-bottle.cols
+                        strong Bottle
+                        br
+                      //- label-bottle
+                      .label-pack.cols
+                        strong {{sharedOrder.productVariant.componentsQty}} Pack
+                        br
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        span
+                          strong.green Save
+                        br
+                      //- savings
+                    //- prod-details
+                    .prod-details.deals.tr
+                      .label-qty.cols
+                        span {{sharedOrder.sharedOrder.quantity}}
+                      //- qty
+                      .label-bottle.cols
+                        span {{sharedOrder.d_unitPrice}}
+                      //- label-bottle
+                      .label-pack.cols
+                        span {{sharedOrder.d_packPrice}}
+                        //- span
+                      //- price
+                      .label-savings.cols
+                        strong.middle
+                          big.lead {{sharedOrder.d_packSave}}
+                      //- savings
+                    //- prod-details
+                  //- .circlebuy-table
+                //- card_rounded
+              //- col-md-3
+            //- row
 
+
+            // Product Details / Tasting Notes / Winery Information
             hr
-
             .about
               .tabs
                 ul.nav.nav-tabs(role='tablist')
@@ -506,6 +662,11 @@ block content
                 //- tab-content
               //- tabs
             //- about
+
+
+
+
+            // Reviews Section
             .reviews
               .row
                 .col-md-7
@@ -773,6 +934,10 @@ block content
                 //- expand
                 hr
 
+
+
+
+                // Discussions
                 p.lead Discussions
                 .list_groups.discussions
                   .content
@@ -888,6 +1053,7 @@ block scripts
   // External Script goes here...
   script.
     $(document).ready(function(){
+
       //- $(window).on("load resize", function() {
       //-   if ( $(this).width() > 991 ) {
       //-     $('section.productdetails').outerHeight(function(){
@@ -924,5 +1090,324 @@ block scripts
         e.preventDefault();
       });
     });
+
+
+    /************************************************************
+     *
+     *    Start of the Angular code.
+     */
+    var app = angular.module('myApp', ['ngSanitize']);
+
+    app.directive('circlebuyWidget', function(){
+      return {
+        restrict: 'E',
+        scope: false,
+        templateUrl: 'circlebuy-widget.html'
+      }
+    });
+
+
+    app.factory('teaService', function($http, $q) {
+      return { // start of object
+
+        /**
+        *	Get details about a product from the TEA API.
+        *	Returns a promise (since $http(req) is asyncronous)
+        */
+        getProduct: function(productId) {
+          var url = 'http://localhost:3000/philChristmas/product/' + productId
+          console.log('url is ' + url)
+
+          // Call the API to get the product details
+          // ZZZZ This should use JSONP, as some browsers do not support CORS.
+          // ZZZZ Unfortunately JSONP does not support headers, so we need
+          // ZZZZ to pass details either in the url or the data. i.e. the
+          // ZZZZ server requires changes.
+          var req = {
+            method: 'GET',
+            url: url,
+            headers: {
+              "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+              "version": "2.0.0"
+            },
+            data: { }
+          }
+
+          // Prepare the promise, so the caller can use .then(fn) to handle the result.
+          var promise = $http(req).then(handleSuccess, handleError);
+          return promise;
+        },
+
+        /**
+        *	Get details about a product from the TEA API.
+        *	Returns a promise (since $http(req) is asyncronous)
+        */
+        getSharedOrders: function(productVariantId) {
+          var url = 'http://localhost:3000/philChristmas/getSharedOrders';
+          console.log('url is ' + url)
+
+          // Call the API to get the product details
+          // ZZZZ This should use JSONP, as some browsers do not support CORS.
+          // ZZZZ Unfortunately JSONP does not support headers, so we need
+          // ZZZZ to pass details either in the url or the data. i.e. the
+          // ZZZZ server requires changes.
+          var req = {
+            method: 'POST',
+            url: url,
+            headers: {
+              "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+              "version": "2.0.0"
+            },
+            data: {
+              productVariantId: productVariantId
+            }
+          }
+
+          // Prepare the promise, so the caller can use .then(fn) to handle the result.
+          var promise = $http(req).then(handleSuccess, handleError);
+          return promise;
+        }
+
+      }; // end of object
+
+
+      function handleSuccess(response) {
+        console.log('success:', response)
+        return response.data;
+      }
+
+      function handleError(resonse){
+        alert('An error occurred calling the TEA API.\nSee the Javascript console for details.')
+        console.log('failure:', response)
+        return null;
+      }
+
+    });
+
+
+
+    // Put the order on the page
+    app.controller('myCtrl', function($scope, teaService) {
+
+        // Initial product load.
+        var NICE_INITIAL_ID = 618
+        $scope.productId = NICE_INITIAL_ID;
+        displayProduct(NICE_INITIAL_ID);
+
+        var NICE_PRODUCT_VARIANT_ID = 6180;
+        displayCircleBuys(NICE_PRODUCT_VARIANT_ID);
+
+        /**
+        *	Display the product with the specified productId.
+        *	This will call the TEA API then update the page.
+        */
+        function displayProduct(productId) {
+
+          // Call the TEA API to get the product details
+          teaService.getProduct(productId).then(function(product){
+
+            // Display the product details
+            $scope.product = product;
+
+            // In Drinkcircle there is one-to-one between products and variants
+            // Check there is only one variant, and it is active. ZZZZ
+            variant = product.variants[0];
+            $scope.variant = variant;
+
+            // Calculate the RRP Prices
+            rrp = $scope.variant.manufacturerPrice;
+            packSize = $scope.variant.componentsQty;
+            rrpPack = rrp * packSize;
+            rrpPack = Math.ceil(rrpPack * 100) / 100; // round to nearest cent
+
+            $scope.available = $scope.variant.quantity;
+            $scope.singlePrice = $scope.variant.pricing[0];
+            $scope.quantityPrice = $scope.singlePrice.quantityPricing;
+
+            $scope.packSize = packSize;
+            $scope.rrp = accounting.formatMoney(rrp);
+
+            var rrpPricing = {
+              min: 1,
+              label: 'RRP',
+              unitPrice: accounting.formatMoney(rrp),
+              packPrice: accounting.formatMoney(rrpPack),
+              save: '$0.00',
+              showBuy: false,
+              showCircleBuy: false,
+              style1: 'font-size: 110%; font-weight: 100%; color: #f22;',
+              style2: 'font-size: 110%; font-weight: 100%; color: #f22; text-decoration: line-through;'
+            };
+
+            // Calculate our non-quantity price
+            var unitPrice = variant.lastPrice;
+            packPrice = unitPrice * packSize;
+            packPrice = Math.ceil(packPrice * 100) / 100; // round to nearest cent
+            packSave = rrpPack - packPrice;
+            packSave = Math.ceil(packSave * 100) / 100; // round to nearest cent
+            var ourPricing = {
+              min: 1,
+              label: '1',
+              unitPrice: accounting.formatMoney(unitPrice),
+              packPrice: accounting.formatMoney(packPrice),
+              save: accounting.formatMoney(packSave),
+              showBuy: true,
+              showCircleBuy: false,
+              styles: ''
+            };
+
+            // Create the prices tables
+            var pTable = [
+              rrpPricing,
+              ourPricing,
+            ];
+
+            // Sort the quantity prices in quantity order.
+            //ZZZZ
+
+            // Now add the quantity prices
+            for (var i = 0; i < $scope.quantityPrice.length; i++) {
+              var qp = $scope.quantityPrice[i];
+
+              var qty = qp.quantity;
+              var qtyPrice = qp.price;
+              packPrice = qtyPrice * packSize;
+              packPrice = Math.ceil(packPrice * 100) / 100; // round to nearest cent
+              packSave = rrpPack - packPrice;
+              packSave = Math.ceil(packSave * 100) / 100; // round to nearest cent
+
+              // Update the label on the previous quantity price
+              // Up till not it should only have the minimum qty.
+              pTable[pTable.length - 1].label += ' - ' + (qty - 1);
+
+
+              pTable.push({
+                min: qty,
+                label: '' + qty,
+                unitPrice: accounting.formatMoney(qtyPrice),
+                packPrice: accounting.formatMoney(packPrice),
+                save: accounting.formatMoney(packSave),
+                showBuy: true,
+                showCircleBuy: true,
+                styles: ''
+              });
+            }
+
+            // Add a '+' onto the final quantity.
+            pTable[pTable.length - 1].label += '+';
+
+
+
+
+            $scope.priceTable = pTable;
+
+          });
+        }
+
+
+        /**
+         *  Display Circle Buys
+         */
+        function displayCircleBuys(productVariantId) {
+
+            // Call the TEA API to get the product details
+            teaService.getSharedOrders(productVariantId).then(function(sharedOrders){
+
+              $scope.numSharedOrders = sharedOrders.length;
+
+              // Put the shared orders into two lists, one that is always
+              // visible, and another when the 'more' button is pressed.
+              var NUM_IN_SHORT_LIST = 1;
+              var NUM_IN_LONG_LIST = 16;
+              var shortSharedOrdersList = [ ];
+              var longSharedOrdersList = [ ];
+              $.each(sharedOrders, function(index, sharedOrder) {
+                if (index < NUM_IN_SHORT_LIST) {
+                  console.log('adding so ' + sharedOrder.shared_order_id + 'to short list', sharedOrder);
+                  shortSharedOrdersList.push(sharedOrder);
+                } else if (index < NUM_IN_SHORT_LIST + NUM_IN_LONG_LIST){
+                  console.log('adding so ' + sharedOrder.shared_order_id + 'to long list', sharedOrder);
+                  longSharedOrdersList.push(sharedOrder);
+                }
+              });
+              $scope.shortSharedOrdersList = shortSharedOrdersList;
+              $scope.longSharedOrdersList = longSharedOrdersList;
+
+              // Calculate the derived (d_) values
+              $.each(sharedOrders, function(index, sharedOrder) {
+                console.log('')
+
+                // Recommended retail price
+                var rrp = sharedOrder.productVariant.manufacturerPrice;
+                var packSize = sharedOrder.productVariant.componentsQty;
+                var rrpPack = rrp * packSize;
+
+                // Work out the bottle and pack price, and the saving
+                var qty = sharedOrder.pricingQuantity.quantity;
+                var price = sharedOrder.pricingQuantity.price;
+                unitPrice = Math.ceil(price * 100) / 100; // round to nearest cent
+                sharedOrder.d_unitPrice = accounting.formatMoney(unitPrice);
+                var packPrice = price * packSize;
+                packPrice = Math.ceil(packPrice * 100) / 100; // round to nearest cent
+                sharedOrder.d_packPrice = accounting.formatMoney(packPrice);
+                var packSave = rrpPack - packPrice;
+                packSave = Math.ceil(packSave * 100) / 100; // round to nearest cent
+                sharedOrder.d_packSave = accounting.formatMoney(packSave);
+
+                console.log('Updated so:', sharedOrder)
+              });
+
+              // Update the countdown timers
+              setInterval(function() {
+                $('.countdownTimer').each( function( index, element ){
+                  var expiresAt = $(element).attr("expiresAt");
+                  $(element).text(expiresAt_HMS(expiresAt));
+                });
+              }, 1000);
+            });
+        }
+
+        // Convert from 2016-12-30T00:00:00.000Z to a
+        // relative time in hours, minutes and seconds.
+        var expiresAt_HMS = function(expiresAt) {
+
+          var expires = moment(expiresAt);
+          var duration = moment.duration(expires.diff(moment.now()));
+
+          var hours = duration.asHours(); // Float
+          if (hours < 0) {
+            return "expired";
+          }
+          var hours = '' + Math.floor(hours);
+          var minutes = '' + duration.minutes()
+          var seconds = '' + duration.seconds()
+          while (hours.length < 2) { hours = '0' + hours; }
+          while (minutes.length < 2) { minutes = '0' + minutes; }
+          while (seconds.length < 2) { seconds = '0' + seconds; }
+
+          expiresAt_hms = hours + ':' + minutes + ':' + seconds;
+          return expiresAt_hms;
+        }
+
+        // Function called when search button is pressed
+        $scope.clickedOnProductSearchButton = function() {
+          displayProduct($scope.productId);
+        }
+
+        // Function called when search button is pressed
+        $scope.clickedOnProductVariant = function(index) {
+          setCurrentVariant(index);
+        }
+
+    });
+
+
+
+
+
+
+
+
+
   //- script.
 //- block scripts
