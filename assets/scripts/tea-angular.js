@@ -8,8 +8,29 @@
     /**
     *	Display the product with the specified productId.
     *	This will call the TEA API then update the page.
+    *
+    * Parameters:
+    *   See philChristmas/getProduct
+    *   - productId
+    *   - productVariantId
+    *
+    * Scope values set:
+    *   - $scope.product
+    *   - $scope.variant
+    *
+    * Derived values:
+    *   - $scope.available = $scope.variant.quantity;
+    *   - $scope.singlePrice = $scope.variant.pricing[0];
+    *   - $scope.quantityPrice = $scope.singlePrice.pricingQuantity;
+    *   - $scope.packSize = packSize;
+    *   - $scope.rrp = accounting.formatMoney(rrp);
+    *
+    * Pricing table (contains )
+    *   - $scope.priceTable = pTable;
+    *   [{min, label, unitPrice, packPrice, save, showBuy, showCircleBuy, styles}]
+    *
     */
-    function getProductAndDisplay(params, $scope, teaService) {
+    function getProductAndDisplay(params, $scope, teaService, callback/*(product)*/) {
       console.log('getProductAndDisplay(). Params=', params)
 
       // Call the TEA API to get the product details
@@ -31,7 +52,7 @@
 
         $scope.available = $scope.variant.quantity;
         $scope.singlePrice = $scope.variant.pricing[0];
-        $scope.quantityPrice = $scope.singlePrice.quantityPricing;
+        $scope.quantityPrice = $scope.singlePrice.pricingQuantity;
 
         $scope.packSize = packSize;
         $scope.rrp = accounting.formatMoney(rrp);
@@ -107,6 +128,8 @@
 
         // Return the price table.
         $scope.priceTable = pTable;
+
+        return callback(product);
       });
     }
 
