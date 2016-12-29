@@ -21,7 +21,7 @@
     * Derived values:
     *   - $scope.available = $scope.variant.quantity;
     *   - $scope.singlePrice = $scope.variant.pricing[0];
-    *   - $scope.quantityPrice = $scope.singlePrice.pricingQuantity;
+    *   - $scope.pricingQuantity = $scope.singlePrice.pricingQuantity;
     *   - $scope.packSize = packSize;
     *   - $scope.rrp = accounting.formatMoney(rrp);
     *
@@ -52,7 +52,7 @@
 
         $scope.available = $scope.variant.quantity;
         $scope.singlePrice = $scope.variant.pricing[0];
-        $scope.quantityPrice = $scope.singlePrice.pricingQuantity;
+        $scope.pricingQuantity = $scope.singlePrice.pricingQuantity;
 
         $scope.packSize = packSize;
         $scope.rrp = accounting.formatMoney(rrp);
@@ -96,8 +96,8 @@
         //ZZZZ
 
         // Now add the quantity prices
-        for (var i = 0; i < $scope.quantityPrice.length; i++) {
-          var qp = $scope.quantityPrice[i];
+        for (var i = 0; i < $scope.pricingQuantity.length; i++) {
+          var qp = $scope.pricingQuantity[i];
 
           var qty = qp.quantity;
           var qtyPrice = qp.price;
