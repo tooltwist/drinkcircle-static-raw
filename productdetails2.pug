@@ -34,7 +34,7 @@ block content
             .row.pdetail-info-text
               .col-md-6.text-left
                 small
-                  | RRP {{rrp}}&nbsp;
+                  | RRP {{tea_calcs.rrp}}&nbsp;
                   span.pb / bottle
                 //- small
               //- col-md-6
@@ -56,7 +56,8 @@ block content
                 //- ring
               //- rate-counter
             //- stats
-            img(src="//www.brokenwood.com.au/assets/images/products/pictures/GraveyardVineyardShiraz11.jpg", alt="")
+            //img(src="//www.brokenwood.com.au/assets/images/products/pictures/GraveyardVineyardShiraz11.jpg", alt="")
+            img(id="product_image" Zsrc="{{ui_variant_image}}", alt="")
           //- stage
           br
           p
@@ -77,7 +78,7 @@ block content
                         br
                       //- label-bottle
                       .label-pack.cols
-                        strong {{packSize}} Pack
+                        strong {{tea_calcs.packSize}} Pack
                         br
                         //- span
                       //- price
@@ -91,7 +92,7 @@ block content
                     //- prod-details
 
                     hr
-                    div(ng-repeat="price in priceTable")
+                    div(ng-repeat="price in tea_calcs.priceTable")
                       .prod-details.deals
                         .label-qty.cols
                           span(style="{{price.style1}}") {{price.label}}
@@ -112,8 +113,8 @@ block content
                           a.button.inline.v8.buynow.thin-line(ng-if="price.showBuy" href="#", target="_blank")
                             span.num buy now
                           //- a
-                          a.button.inline.v7.thin-line(ng-if="price.showCircleBuy" href='circlebuy-join.html') join a circlebuy
-                          a.button.inline.v8.thin-line(ng-if="price.showCircleBuy" href='circlebuy-start.html') create a circlebuy *
+                          a.button.inline.v7.thin-line(ng-if="price.showSharedBuy" href='circlebuy-join.html') join a circlebuy
+                          a.button.inline.v8.thin-line(ng-if="price.showSharedBuy" href='circlebuy-start.html') create a circlebuy *
                         //- more-actions
                       //- prod-details
                     //- div
@@ -200,7 +201,7 @@ block content
                 //- p.lead.text-center.totalcbcount Duration: 72hrs
               //- col-md-4
               .col-md-4
-                p.lead.text-center.totalcbcount {{numSharedOrders}} circlebuys to join
+                p.lead.text-center.totalcbcount {{sharedOrders_num}} circlebuys to join
               //- col-md-4
               .col-md-4
                 //- .text-right
@@ -217,7 +218,7 @@ block content
             //
             .row
 
-              div(ng-repeat="sharedOrder in shortSharedOrdersList").col-md-6.col-sm-6.text-center.super-customized
+              div(ng-repeat="sharedOrder in sharedOrders_shortList").col-md-6.col-sm-6.text-center.super-customized
                 circlebuy-widget
 
               // Initial Dummy circleBuy
@@ -330,7 +331,7 @@ block content
                 i.fa.fa-caret-down
             //- expand
             .row(id="initiallyHiddenCircleBuys" class="collapse")
-              div(ng-repeat="sharedOrder in longSharedOrdersList").col-md-6.col-sm-6.text-center.super-customized
+              div(ng-repeat="sharedOrder in sharedOrders_longList").col-md-6.col-sm-6.text-center.super-customized
                 br
                 circlebuy-widget
             //- row
@@ -901,17 +902,46 @@ block scripts
     // Add the controller for this page
     app.controller('myCtrl', function($scope, teaService) {
 
-        // Look after the product_variant
-        var NICE_PRODUCT_VARIANT_ID = 6180;
-        teaService.getProductAndDisplay({
-          productVariantId: NICE_PRODUCT_VARIANT_ID,
-          needPricing: true
-        }, $scope, teaService);
+      // This code gets the "product" parameter from the
+      // URL so we can use it as productVariantId.
+      var productVariantId = NaN;
+      window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+        if (key === 'product') {
+          productVariantId = parseInt(value);
+        }
+      });
+      console.log('Displaying the page for productVariantId=' + productVariantId);
 
-        // Look after the circle buys
-        teaService.getSharedOrdersAndDisplayAsCircleBuys({
-          productVariantId: NICE_PRODUCT_VARIANT_ID
-        }, $scope, teaService);
+      // During development only
+      var DEFAULT_PRODUCT_VARIANT_ID = 6180;
+      if (isNaN(productVariantId)) {
+        productVariantId = DEFAULT_PRODUCT_VARIANT_ID;
+      }
+
+
+      // Start updating countdownTimers, even though
+      // we won't have any yet.
+      teaService.startCountdownTimers();
+
+
+
+      // Look after the product_variant
+      teaService.getProductAndSetAngularVariables({
+        productVariantId: productVariantId,
+        needPricing: true,
+        needImages: true
+      }, $scope, teaService, function() {
+
+        // Set the product image
+        $('#product_image').attr('src', $scope.tea_variant0_image0);
+      });
+
+
+
+      // Display the circle buys
+      teaService.getSharedOrdersAndSetAngularVariables({
+        productVariantId: productVariantId
+      }, $scope, teaService);
 
     });
 

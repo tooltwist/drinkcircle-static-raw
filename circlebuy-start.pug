@@ -29,12 +29,17 @@ block content
               span Please select an Order Size
             //- alert
             p
-            .form-group(id="so_quantity_group" style="width:200px;").has-feedback
-              label(for="so_quantity").control-label Order Size
-              select(ng-model="so_quantity" ng-change="orderSizeChanged()").form-control.form-control
+            .form-group(id="so_new_orderSize_group" style="width:200px;").has-feedback
+              label(for="so_new_orderSize").control-label Order Size
+
+              // Display for new Circlebuy
+              select(ng-hide="!creating_a_new_circlebuy" ng-model="so_new_orderSize" ng-change="orderSizeChanged()").form-control.form-control
                 option(ng-repeat="pq in pricingQuantityList" value="{{pq.quantity}}" selected="selected") {{pq.quantity}} cases
               //- select
-              span(id="so_quantity_glyphicon" style="zpadding-left:10px;zright:auto;").glyphicon.form-control-feedback
+              span(id="so_new_orderSize_glyphicon").glyphicon.form-control-feedback
+
+              // Display for existing Circlebuy
+              p(ng-hide="creating_a_new_circlebuy") {{so_existing_orderSize}} Cases
             //- p
             p.text-warning * All circlebuys will expire after 3 days from commencement if not completed.
           //- col-md-9
@@ -69,11 +74,12 @@ block content
               label Item
               p.form-control-static {{variant.name}}
               br
-              br
               .card
-                small {{variant.componentsQty}} pack
-                br
-                small {{so_alreadyOrdered}} cases already ordered
+                small Pack size: {{variant.componentsQty}}
+                div(ng-hide="creating_a_new_circlebuy")
+                  small {{so_alreadyOrdered}} cases already ordered
+                  br
+                  small {{so_existing_orderSize-so_alreadyOrdered}} cases required to complete the order
             //- form-group
             .form-group(ng-hide="true")
               label Pack Size
@@ -89,7 +95,7 @@ block content
             .form-group(id="so_yourQuantity_group").has-feedback
               label Your quantity
               select.form-control(ng-model="so_yourQuantity")
-                option(ng-repeat="i in range(so_quantity-so_alreadyOrdered) track by $index" value="{{$index+1}}") {{$index+1}} cases
+                option(ng-repeat="i in rangeForYourQuantity() track by $index" value="{{$index+1}}") {{$index+1}} cases
               //- select
               span(id="so_yourQuantity_glyphicon" style="zpadding-left:10px;zright:auto;").glyphicon.form-control-feedback
             //- form-group
@@ -365,23 +371,106 @@ block scripts
     // Add the controller for this page
     app.controller('myCtrl', function($scope, teaService) {
 
-        /*
-         *  Call TEA to get details of the product.
-         */
-        var NICE_PRODUCT_VARIANT_ID = 6180;
-        teaService.getProductAndDisplay({
-          productVariantId: NICE_PRODUCT_VARIANT_ID,
-          needPricing: true
-        }, $scope, teaService, function gotProduct(product) {
+      // Pre-create variables, so we don't get undefined
+      // errors when angular tries to draw the page before
+      // our TEA functions have returned with data.
+      $scope.sharedOrder = { };
+      $scope.creating_a_new_circlebuy = true;
+      $scope.so_new_orderSize = 0;
+      $scope.so_existing_orderSize = 0;
+      $scope.so_alreadyOrdered = 0;
 
-          // Back from getting the product details.
-          //ZZZZ Handle any error (indicated by product=null)
-          $scope.variant = product.variants[0]; // 1:1 in Drinkcircle
-          $scope.pricingQuantityList = product.variants[0].pricing[0].pricingQuantity;
-          $scope.so_alreadyOrdered = 2;
-          //$scope.so_yourQuantity = '1';
+        // This code gets the "product" parameter from the
+        // URL so we can use it as productVariantId.
+        var productVariantId = NaN;
+        var sharedOrderId = NaN;
+        window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+          if (key === 'product') {
+            productVariantId = parseInt(value);
+          } else if (key === 'circlebuy') {
+            sharedOrderId = parseInt(value);
+          }
         });
 
+        // During development only
+        var DEFAULT_PRODUCT_VARIANT_ID = 6180;
+        if (isNaN(productVariantId)) {
+          productVariantId = DEFAULT_PRODUCT_VARIANT_ID;
+        }
+        console.log('ZZZ productVariantId=' + productVariantId);
+        console.log('ZZZ sharedOrderId=' + sharedOrderId);
+
+        /*
+         *  If a circleBuy has been specified, we'll look up
+         *  the shared_order first, and use it to find the
+         *  productVariantId.
+         *
+         *  Otherwise, we'll work towards creating a new
+         *  shared_order based upon the specified product.
+         */
+
+         if ( !isNaN(sharedOrderId)) {
+
+
+
+           /*
+            *   VIEW AN EXISTING CIRCLEBUY.
+            *
+            *   Look up the sharedOrder.
+            */
+            $scope.creating_a_new_circlebuy = false;
+            console.log('looking up shared_order ', sharedOrderId)
+           teaService.getSharedOrdersAndSetAngularVariables({
+             sharedOrderId: sharedOrderId
+           }, $scope, teaService, function(sharedOrders){
+             console.log('sharedOrders=', sharedOrders)
+             productVariantId = sharedOrders[0].productVariant.productVariantId;
+             //alert('prodvar is ' + productVariantId)
+
+             // Now select the productVariant details
+             teaService.getProductAndSetAngularVariables({
+               productVariantId: productVariantId,
+               needPricing: true
+             }, $scope, teaService, function gotProduct(product) {
+
+               // Back from getting the product details.
+               //ZZZZ Handle any error (indicated by product=null)
+               $scope.variant = product.variants[0]; // 1:1 in Drinkcircle
+               $scope.pricingQuantityList = product.variants[0].pricing[0].pricingQuantity;
+               $scope.sharedOrder.so_alreadyOrdered = 2;
+               //$scope.so_yourQuantity = '1';
+               $scope.junkChooks = 'MEOW';
+               console.log('so=', sharedOrders)
+
+               // Prevent the order size being changed
+               $scope.so_existing_orderSize = sharedOrders[0].sharedOrder.quantity;
+               $scope.finalOrderSize = sharedOrders[0].sharedOrder.quantity;
+               $scope.haveValidOrderSize = true;
+               $scope.so_alreadyOrdered = 2;///ZZZ Calculate this
+             });
+
+           });
+        } else {
+
+
+          /*
+           *    CREATE A NEW CIRCLEBUY
+           *
+           *    Look up the specified product variant.
+           */
+          $scope.creating_a_new_circlebuy = true;
+          teaService.getProductAndSetAngularVariables({
+            productVariantId: productVariantId,
+            needPricing: true
+          }, $scope, teaService, function gotProduct(product) {
+
+            // Back from getting the product details.
+            //ZZZZ Handle any error (indicated by product=null)
+            $scope.variant = product.variants[0]; // 1:1 in Drinkcircle
+            $scope.pricingQuantityList = product.variants[0].pricing[0].pricingQuantity;
+            $scope.so_alreadyOrdered = 0;
+          });
+        }
 
         /*
          *  Set the Initial prices
@@ -407,14 +496,14 @@ block scripts
          *  Look after the Order Size
          */
         $scope.showOrderSizeAlert = function() {
-            return $scope.haveValidOrderSize;
+          return $scope.haveValidOrderSize;
         }
 
         $scope.orderSizeChanged = function() {
-          var qty = $scope.so_quantity;
+          var qty = $scope.so_new_orderSize;
           if (qty) {
-            $('#so_quantity_group').addClass('has-success').removeClass('has-error');
-            $('#so_quantity_glyphicon').addClass('glyphicon-ok').removeClass('glyphicon-remove');
+            $('#so_new_orderSize_group').addClass('has-success').removeClass('has-error');
+            $('#so_new_orderSize_glyphicon').addClass('glyphicon-ok').removeClass('glyphicon-remove');
             qty = parseInt(qty)
             $scope.haveValidOrderSize = true;
             $scope.finalOrderSize = qty;
@@ -423,11 +512,27 @@ block scripts
             $scope.calculatePrices();
             return true;
           } else {
-            $('#so_quantity_group').addClass('has-error').removeClass('has-success');
-            $('#so_quantity_glyphicon').addClass('glyphicon-remove').removeClass('glyphicon-ok');
+            $('#so_new_orderSize_group').addClass('has-error').removeClass('has-success');
+            $('#so_new_orderSize_glyphicon').addClass('glyphicon-remove').removeClass('glyphicon-ok');
             $("#order-alert-div").addClass('alert-danger').removeClass('alert-success');
             $scope.haveValidOrderSize = false;
             return false;
+          }
+        }
+
+        /*
+         *  Return an array with the same number of elements as
+         *  the maximum number in Your Quantity. This is a trick
+         *  used with Angular to allow ng-repeat to iterate over
+         *  a range of numbers.
+         */
+        $scope.rangeForYourQuantity = function() {
+          if ($scope.creating_a_new_circlebuy) {
+            var num = parseInt($scope.so_new_orderSize);
+            return new Array(num);
+          } else {
+            var num = $scope.so_existing_orderSize - $scope.so_alreadyOrdered;
+            return new Array(num);
           }
         }
 
@@ -697,11 +802,6 @@ block scripts
           }
           return [ ]; // num is undefined
         }
-
-        /*// Look after the circle buys
-        teaService.getSharedOrdersAndDisplayAsCircleBuys({
-          productVariantId: NICE_PRODUCT_VARIANT_ID
-        }, $scope, teaService);*/
 
     });
 

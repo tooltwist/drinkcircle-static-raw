@@ -16,22 +16,30 @@
     *
     * Scope values set:
     *   - $scope.product
-    *   - $scope.variant
+    *   - $scope.variant0     (product.variants[0])
+    *   - $scope.pricing0     (product.variants[0].pricing[0])
     *
-    * Derived values:
-    *   - $scope.available = $scope.variant.quantity;
-    *   - $scope.singlePrice = $scope.variant.pricing[0];
-    *   - $scope.pricingQuantity = $scope.singlePrice.pricingQuantity;
+    * Derived values, from first variant and it's first pricing record:
+    *   - $scope.pricingQuantity = $scope.variant[0].pricing[0].pricingQuantity;
     *   - $scope.packSize = packSize;
     *   - $scope.rrp = accounting.formatMoney(rrp);
     *
-    * Pricing table (contains )
-    *   - $scope.priceTable = pTable;
-    *   [{min, label, unitPrice, packPrice, save, showBuy, showCircleBuy, styles}]
+    *   - tea_calcs {
+    *       packSize    (number in the box)
+    *       rrp
+    *       rrpPack
+    *       unitPrice
+    *       packPrice
+    *       tea_calcs.bulkPrices   ([pricing_quantity table])
+    *      }
+    *
+    * Our summary pricing tables:
+    *   - $scope.tea_calcs.priceTable
+    *   [{min, label, unitPrice, packPrice, save, showBuy, showSharedBuy, styles}]
     *
     */
-    function getProductAndDisplay(params, $scope, teaService, callback/*(product)*/) {
-      console.log('getProductAndDisplay(). Params=', params)
+    function getProductAndSetAngularVariables(params, $scope, teaService, callback/*(product)*/) {
+      console.log('getProductAndSetAngularVariables(). Params=', params)
 
       // Call the TEA API to get the product details
       teaService.getProduct(params).then(function(product){
@@ -41,95 +49,125 @@
 
         // In Drinkcircle there is one-to-one between products and variants
         // Check there is only one variant, and it is active. ZZZZ
-        variant = product.variants[0];
-        $scope.variant = variant;
+        var variant0 = product.variants[0];
+        $scope.variant = variant0;
+        $scope.variant0 = variant0;
 
-        // Calculate the RRP Prices
-        rrp = $scope.variant.manufacturerPrice;
-        packSize = $scope.variant.componentsQty;
-        rrpPack = rrp * packSize;
-        rrpPack = Math.ceil(rrpPack * 100) / 100; // round to nearest cent
+        // See if we have an image
+        if (variant0.images && variant0.images.length > 0) {
+          $scope.tea_variant0_image0 = variant0.images[0].imagePath;
+          //'//www.brokenwood.com.au/assets/images/products/pictures/GraveyardVineyardShiraz11.jpg';
+        } else {
+          $scope.tea_variant0_image0 = "NOTFOUND.jpg";
+        }
 
-        $scope.available = $scope.variant.quantity;
-        $scope.singlePrice = $scope.variant.pricing[0];
-        $scope.pricingQuantity = $scope.singlePrice.pricingQuantity;
+        // If we have pricing information, calculate pricing of variant0.
+        {
+          $scope.tea_calcs = { };
+          $scope.tea_calcs.priceTable = [ ];
 
-        $scope.packSize = packSize;
-        $scope.rrp = accounting.formatMoney(rrp);
-
-        var rrpPricing = {
-          min: 1,
-          label: 'RRP',
-          unitPrice: accounting.formatMoney(rrp),
-          packPrice: accounting.formatMoney(rrpPack),
-          save: '$0.00',
-          showBuy: false,
-          showCircleBuy: false,
-          style1: 'font-size: 110%; font-weight: 100%; color: #f22;',
-          style2: 'font-size: 110%; font-weight: 100%; color: #f22; text-decoration: line-through;'
-        };
-
-        // Calculate our non-quantity price
-        var unitPrice = variant.lastPrice;
-        packPrice = unitPrice * packSize;
-        packPrice = Math.ceil(packPrice * 100) / 100; // round to nearest cent
-        packSave = rrpPack - packPrice;
-        packSave = Math.ceil(packSave * 100) / 100; // round to nearest cent
-        var ourPricing = {
-          min: 1,
-          label: '1',
-          unitPrice: accounting.formatMoney(unitPrice),
-          packPrice: accounting.formatMoney(packPrice),
-          save: accounting.formatMoney(packSave),
-          showBuy: true,
-          showCircleBuy: false,
-          styles: ''
-        };
-
-        // Create the prices tables
-        var pTable = [
-          rrpPricing,
-          ourPricing,
-        ];
-
-        // Sort the quantity prices in quantity order.
-        //ZZZZ
-
-        // Now add the quantity prices
-        for (var i = 0; i < $scope.pricingQuantity.length; i++) {
-          var qp = $scope.pricingQuantity[i];
-
-          var qty = qp.quantity;
-          var qtyPrice = qp.price;
-          packPrice = qtyPrice * packSize;
-          packPrice = Math.ceil(packPrice * 100) / 100; // round to nearest cent
-          packSave = rrpPack - packPrice;
-          packSave = Math.ceil(packSave * 100) / 100; // round to nearest cent
-
-          // Update the label on the previous quantity price
-          // Up till not it should only have the minimum qty.
-          pTable[pTable.length - 1].label += ' - ' + (qty - 1);
+          // Set the basic info
+          var packSize = variant0.componentsQty;
+          $scope.tea_calcs.packSize = packSize;
 
 
-          pTable.push({
-            min: qty,
-            label: '' + qty,
-            unitPrice: accounting.formatMoney(qtyPrice),
+          // Calculate the RRP Prices
+          var rrp = variant0.manufacturerPrice;
+          var rrpPack = rrp * packSize;
+          //rrpPack = Math.ceil(rrpPack * 100) / 100; // round to nearest cent
+          $scope.tea_calcs.rrp = accounting.formatMoney(rrp);
+          $scope.tea_calcs.rrpPack = accounting.formatMoney(rrpPack);
+
+          var rrpPricing = {
+            min: 1,
+            label: 'RRP',
+            unitPrice: accounting.formatMoney(rrp),
+            packPrice: accounting.formatMoney(rrpPack),
+            save: '$0.00',
+            showBuy: false,
+            showSharedBuy: false,
+            style1: 'font-size: 110%; font-weight: 100%; color: #f22;',
+            style2: 'font-size: 110%; font-weight: 100%; color: #f22; text-decoration: line-through;'
+          };
+          $scope.tea_calcs.priceTable.push(rrpPricing);
+
+
+          // Calculate our non-quantity price
+          var unitPrice = variant0.lastPrice;
+          var packPrice = unitPrice * packSize;
+          //packPrice = Math.round(packPrice * 100) / 100; // round to nearest cent
+          var packSave = rrpPack - packPrice;
+          //packSave = Math.round(packSave * 100) / 100; // round to nearest cent
+          $scope.tea_calcs.unitPrice = accounting.formatMoney(unitPrice);
+          $scope.tea_calcs.packPrice = accounting.formatMoney(packPrice);
+
+          var ourPricing = {
+            min: 1,
+            label: '1',
+            unitPrice: accounting.formatMoney(unitPrice),
             packPrice: accounting.formatMoney(packPrice),
             save: accounting.formatMoney(packSave),
             showBuy: true,
-            showCircleBuy: true,
+            showSharedBuy: false,
             styles: ''
-          });
+          };
+          $scope.tea_calcs.priceTable.push(ourPricing);
+
+          // Add the 'pricing_quantity' prices to the table.
+          //$scope.singlePrice = variant0.pricing[0];
+          if (variant0.pricing.length < 1) {
+            console.log('No pricing information available for product variant ' + variant0.productVariantId);
+            $scope.tea_calcs.bulkPrices = [ ];
+          } else {
+              $scope.tea_calcs.bulkPrices = variant0.pricing[0].pricingQuantity;
+
+            // Sort the quantity prices in quantity order.
+            //ZZZZ
+
+            // Now add the quantity prices
+            for (var i = 0; i < $scope.tea_calcs.bulkPrices.length; i++) {
+              var qp = $scope.tea_calcs.bulkPrices[i];
+
+              var qty = qp.quantity;
+              var qtyPrice = qp.price;
+              packPrice = qtyPrice * packSize;
+              packPrice = Math.ceil(packPrice * 100) / 100; // round to nearest cent
+              packSave = rrpPack - packPrice;
+              packSave = Math.ceil(packSave * 100) / 100; // round to nearest cent
+
+              // Update the label on the previous price entry,
+              // for example from "1", to "1 - 5".
+              // Up till now the label be the minimum qty.
+              var arr = $scope.tea_calcs.priceTable;
+              arr[arr.length - 1].label += ' - ' + (qty - 1);
+
+              // Add this bulk price to the list
+              var bulkPrice = {
+                min: qty,
+                label: '' + qty,
+                unitPrice: accounting.formatMoney(qtyPrice),
+                packPrice: accounting.formatMoney(packPrice),
+                save: accounting.formatMoney(packSave),
+                showBuy: true,
+                showSharedBuy: true,
+                styles: ''
+              };
+              $scope.tea_calcs.priceTable.push(bulkPrice);
+            }
+
+            // Add a '+' onto the label of the final price,
+            // for example from "10", to "10+".
+            var arr = $scope.tea_calcs.priceTable;
+            arr[arr.length - 1].label += '+';
+          } // have pricing record
+
+          // Return the price table.
+          //$scope.tea_calcs.priceTable = pTable;
         }
 
-        // Add a '+' onto the final quantity.
-        pTable[pTable.length - 1].label += '+';
-
-        // Return the price table.
-        $scope.priceTable = pTable;
-
-        return callback(product);
+        if (callback) {
+          return callback(product);
+        }
       });
     }
 
@@ -150,27 +188,23 @@
      *    - longListSize
      *
      *  This function sets the following values in $scope:
-     *    - $scope.numSharedOrders
+     *    - $scope.sharedOrders_num
      *    - $scope.sharedOrders
-     *    - $scope.shortSharedOrdersList
-     *    - $scope.longSharedOrdersList
+     *    - $scope.sharedOrders_shortList
+     *    - $scope.sharedOrders_longList
      *
      *  It also adds the following values to the sharedOrder records:
      *    - sharedOrder.d_unitPrice
      *    - sharedOrder.d_packPrice
      *    - sharedOrder.d_packSave
-     *
-     *  Any elements similar to
-     *    <... class="countdownTimer" expiresAt="<<sharedOrder.expiresAt>>"></...>
-     *  will have their content updated every second to the time remaining
-     *  to that timestamp (e.g. 32:22:10).
      */
-    function getSharedOrdersAndDisplayAsCircleBuys(paramsForAPI, $scope, teaService) {
+    function getSharedOrdersAndSetAngularVariables(paramsForAPI, $scope, teaService, callback/*(sharedOrders)*/) {
 
+        console.log('getSharedOrdersAndSetAngularVariables', callback)
         // Call the TEA API to get the product details
         teaService.getSharedOrders(paramsForAPI).then(function(sharedOrders){
 
-          $scope.numSharedOrders = sharedOrders.length;
+          $scope.sharedOrders_num = sharedOrders.length;
 
           // Put the shared orders into two lists, one that is always
           // visible, and another when the 'more' button is pressed.
@@ -182,20 +216,20 @@
           if (paramsForAPI.longListSize) {
             NUM_IN_LONG_LIST = params.longListSize;
           }
-          var shortSharedOrdersList = [ ];
-          var longSharedOrdersList = [ ];
+          var sharedOrders_shortList = [ ];
+          var sharedOrders_longList = [ ];
           $.each(sharedOrders, function(index, sharedOrder) {
             if (index < NUM_IN_SHORT_LIST) {
               //console.log('adding so ' + sharedOrder.shared_order_id + 'to short list', sharedOrder);
-              shortSharedOrdersList.push(sharedOrder);
+              sharedOrders_shortList.push(sharedOrder);
             } else if (index < NUM_IN_SHORT_LIST + NUM_IN_LONG_LIST){
               //console.log('adding so ' + sharedOrder.sharedOrder.shared_order_id + 'to long list', sharedOrder);
-              longSharedOrdersList.push(sharedOrder);
+              sharedOrders_longList.push(sharedOrder);
             }
           });
           $scope.sharedOrders = sharedOrders;
-          $scope.shortSharedOrdersList = shortSharedOrdersList;
-          $scope.longSharedOrdersList = longSharedOrdersList;
+          $scope.sharedOrders_shortList = sharedOrders_shortList;
+          $scope.sharedOrders_longList = sharedOrders_longList;
 
           // Calculate the derived (d_) values
           $.each(sharedOrders, function(index, sharedOrder) {
@@ -218,14 +252,29 @@
             sharedOrder.d_packSave = accounting.formatMoney(packSave);
           });
 
-          // Update the countdown timers
-          setInterval(function() {
-            $('.countdownTimer').each( function( index, element ){
-              var expiresAt = $(element).attr("expiresAt");
-              $(element).text(expiresAt_HMS(expiresAt));
-            });
-          }, 1000);
+          // Return the sharedOrders
+          if (callback) {
+            return callback(sharedOrders);
+          }
         });
+
+    } // getSharedOrdersAndSetAngularVariables
+
+    /*
+     *  Any elements similar to
+     *    <... class="countdownTimer" expiresAt="<<sharedOrder.expiresAt>>"></...>
+     *  will have their content updated every second to the time remaining
+     *  to that timestamp (e.g. 32:22:10).
+     */
+    function startCountdownTimers() {
+
+        setInterval(function() {
+          // Update any countdown timers
+          $('.countdownTimer').each( function( index, element ){
+            var expiresAt = $(element).attr("expiresAt");
+            $(element).text(expiresAt_HMS(expiresAt));
+          });
+        }, 1000);
     }
 
 
@@ -266,9 +315,24 @@
 
 
     return {
-      init: function() {
+      init: function(config) {
         console.log('teaAngular.init()');
 
+        // Check the config
+        var protocol = 'http';
+        var host = 'localhost';
+        // var host = '192.168.200.15';
+        var port = 3000;
+        // var host = 'drinkcircle.teaservice.io';
+        // var port = 80;
+        if (config && config.host && config.host != host) {
+          host = config.host;
+        }
+        if (config && config.port && config.port != port) {
+          port = config.port;
+        }
+        var baseUrl = protocol + '://' + host + ':' + port;
+        console.log('baseUrl=' + baseUrl);
 
         // Add a directive for the sharedOrder widget
         app.directive('circlebuyWidget', function(){
@@ -290,7 +354,7 @@
             *	Returns a promise (since $http(req) is asyncronous)
             */
             getProduct: function getProduct(params) {
-              var url = 'http://localhost:3000/philChristmas/product'
+              var url = baseUrl + '/philChristmas/product';
               console.log('url is ' + url)
 
               // Call the API to get the product details
@@ -319,7 +383,7 @@
             *	Returns a promise (since $http(req) is asyncronous)
             */
             getSharedOrders: function getSharedOrders(paramsToAPI) {
-              var url = 'http://localhost:3000/philChristmas/getSharedOrders';
+              var url = baseUrl + '/philChristmas/getSharedOrders';
               console.log('url is ' + url)
 
               // Call the API to get the product details
@@ -344,9 +408,11 @@
 
 
             // Other functions to be exposed by teaService.
-            getProductAndDisplay: getProductAndDisplay,
+            getProductAndSetAngularVariables: getProductAndSetAngularVariables,
 
-            getSharedOrdersAndDisplayAsCircleBuys: getSharedOrdersAndDisplayAsCircleBuys
+            getSharedOrdersAndSetAngularVariables: getSharedOrdersAndSetAngularVariables,
+
+            startCountdownTimers: startCountdownTimers
 
           }; // end of object
         }); // end of app.factory
