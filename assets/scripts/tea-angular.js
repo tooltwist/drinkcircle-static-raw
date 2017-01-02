@@ -1,179 +1,9 @@
 
+/*
+ *  Functions for accessing TEA, using Angular.
+ */
 
   var teaAngular = (function() {
-
-
-
-
-    /**
-    *	Display the product with the specified productId.
-    *	This will call the TEA API then update the page.
-    *
-    * Parameters:
-    *   See philChristmas/getProduct
-    *   - productId
-    *   - productVariantId
-    *
-    * Scope values set:
-    *   - $scope.product
-    *   - $scope.variant0     (product.variants[0])
-    *   - $scope.pricing0     (product.variants[0].pricing[0])
-    *
-    * Derived values, from first variant and it's first pricing record:
-    *   - $scope.pricingQuantity = $scope.variant[0].pricing[0].pricingQuantity;
-    *   - $scope.packSize = packSize;
-    *   - $scope.rrp = accounting.formatMoney(rrp);
-    *
-    *   - tea_calcs {
-    *       packSize    (number in the box)
-    *       rrp
-    *       rrpPack
-    *       unitPrice
-    *       packPrice
-    *       tea_calcs.bulkPrices   ([pricing_quantity table])
-    *      }
-    *
-    * Our summary pricing tables:
-    *   - $scope.tea_calcs.priceTable
-    *   [{min, label, unitPrice, packPrice, save, showBuy, showSharedBuy, styles}]
-    *
-    */
-    function getProductAndSetAngularVariables(params, $scope, teaService, callback/*(product)*/) {
-      console.log('getProductAndSetAngularVariables(). Params=', params)
-
-      // Call the TEA API to get the product details
-      teaService.getProduct(params).then(function(products){
-
-        // Display the product details
-console.log('\n\n\nREPLY FROM getProduct:', products);
-        $scope.product0 = products[0];
-
-        // In Drinkcircle there is one-to-one between products and variants
-        // Check there is only one variant, and it is active. ZZZZ
-        var variant0 = products[0].variants[0];
-console.log('variant0=', variant0);
-        //$scope.variant = variant0;
-        $scope.variant0 = variant0;
-
-        // See if we have an image
-        if (variant0.images && variant0.images.length > 0) {
-          $scope.tea_variant0_image0 = variant0.images[0].imagePath;
-          //'//www.brokenwood.com.au/assets/images/products/pictures/GraveyardVineyardShiraz11.jpg';
-        } else {
-          $scope.tea_variant0_image0 = "NOTFOUND.jpg";
-        }
-
-        // If we have pricing information, calculate pricing of variant0.
-        {
-          $scope.tea_calcs = { };
-          $scope.tea_calcs.priceTable = [ ];
-
-          // Set the basic info
-          var packSize = variant0.componentsQty;
-          $scope.tea_calcs.packSize = packSize;
-
-
-          // Calculate the RRP Prices
-          var rrp = variant0.manufacturerPrice;
-          var rrpPack = rrp * packSize;
-          //rrpPack = Math.ceil(rrpPack * 100) / 100; // round to nearest cent
-          $scope.tea_calcs.rrp = accounting.formatMoney(rrp);
-          $scope.tea_calcs.rrpPack = accounting.formatMoney(rrpPack);
-
-          var rrpPricing = {
-            min: 1,
-            label: 'RRP',
-            unitPrice: accounting.formatMoney(rrp),
-            packPrice: accounting.formatMoney(rrpPack),
-            save: '$0.00',
-            showBuy: false,
-            showSharedBuy: false,
-            style1: 'font-size: 110%; font-weight: 100%; color: #f22;',
-            style2: 'font-size: 110%; font-weight: 100%; color: #f22; text-decoration: line-through;'
-          };
-          $scope.tea_calcs.priceTable.push(rrpPricing);
-
-
-          // Calculate our non-quantity price
-          var unitPrice = variant0.lastPrice;
-          var packPrice = unitPrice * packSize;
-          //packPrice = Math.round(packPrice * 100) / 100; // round to nearest cent
-          var packSave = rrpPack - packPrice;
-          //packSave = Math.round(packSave * 100) / 100; // round to nearest cent
-          $scope.tea_calcs.unitPrice = accounting.formatMoney(unitPrice);
-          $scope.tea_calcs.packPrice = accounting.formatMoney(packPrice);
-
-          var ourPricing = {
-            min: 1,
-            label: '1',
-            unitPrice: accounting.formatMoney(unitPrice),
-            packPrice: accounting.formatMoney(packPrice),
-            save: accounting.formatMoney(packSave),
-            showBuy: true,
-            showSharedBuy: false,
-            styles: ''
-          };
-          $scope.tea_calcs.priceTable.push(ourPricing);
-
-          // Add the 'pricing_quantity' prices to the table.
-          //$scope.singlePrice = variant0.pricing[0];
-          if (variant0.pricing.length < 1) {
-            console.log('No pricing information available for product variant ' + variant0.productVariantId);
-            $scope.tea_calcs.bulkPrices = [ ];
-          } else {
-              $scope.tea_calcs.bulkPrices = variant0.pricing[0].pricingQuantity;
-
-            // Sort the quantity prices in quantity order.
-            //ZZZZ
-
-            // Now add the quantity prices
-            for (var i = 0; i < $scope.tea_calcs.bulkPrices.length; i++) {
-              var qp = $scope.tea_calcs.bulkPrices[i];
-
-              var qty = qp.quantity;
-              var qtyPrice = qp.price;
-              packPrice = qtyPrice * packSize;
-              packPrice = Math.ceil(packPrice * 100) / 100; // round to nearest cent
-              packSave = rrpPack - packPrice;
-              packSave = Math.ceil(packSave * 100) / 100; // round to nearest cent
-
-              // Update the label on the previous price entry,
-              // for example from "1", to "1 - 5".
-              // Up till now the label be the minimum qty.
-              var arr = $scope.tea_calcs.priceTable;
-              arr[arr.length - 1].label += ' - ' + (qty - 1);
-
-              // Add this bulk price to the list
-              var bulkPrice = {
-                min: qty,
-                label: '' + qty,
-                unitPrice: accounting.formatMoney(qtyPrice),
-                packPrice: accounting.formatMoney(packPrice),
-                save: accounting.formatMoney(packSave),
-                showBuy: true,
-                showSharedBuy: true,
-                styles: ''
-              };
-              $scope.tea_calcs.priceTable.push(bulkPrice);
-            }
-
-            // Add a '+' onto the label of the final price,
-            // for example from "10", to "10+".
-            var arr = $scope.tea_calcs.priceTable;
-            arr[arr.length - 1].label += '+';
-          } // have pricing record
-
-          // Return the price table.
-          //$scope.tea_calcs.priceTable = pTable;
-        }
-
-        if (callback) {
-          return callback(products);
-        }
-      });
-    }
-
-
 
     /**
      *  Display Circle Buys
@@ -261,6 +91,128 @@ console.log('variant0=', variant0);
         });
 
     } // getSharedOrdersAndSetAngularVariables
+
+    /*
+    *  Summarise the prices for a product variant and calculate a
+    *  pricing table with information easy to display:
+    *
+    *   Returns: {
+    *       packSize    (number in the box)
+    *       rrp
+    *       rrpPack
+    *       unitPrice
+    *       packPrice
+    *       pricingTable
+    *       tea_calcs.bulkPrices   ([record from the pricing_quantity table])
+    *      }
+    *
+    * The pricing table:
+    *   [{min, label, unitPrice, packPrice, save, showBuy, showSharedBuy, styles}]
+    *
+    */
+    function calculatePriceTable(variant) {
+      var priceInfo = { };
+      priceInfo.priceTable = [ ];
+
+      // Set the basic info
+      var packSize = variant.componentsQty;
+      priceInfo.packSize = packSize;
+
+
+      // Calculate the RRP Prices
+      var rrp = variant.manufacturerPrice;
+      var rrpPack = rrp * packSize;
+      //rrpPack = Math.ceil(rrpPack * 100) / 100; // round to nearest cent
+      priceInfo.rrp = accounting.formatMoney(rrp);
+      priceInfo.rrpPack = accounting.formatMoney(rrpPack);
+
+      var rrpPricing = {
+        min: 1,
+        label: 'RRP',
+        unitPrice: accounting.formatMoney(rrp),
+        packPrice: accounting.formatMoney(rrpPack),
+        save: '$0.00',
+        showBuy: false,
+        showSharedBuy: false,
+        style1: 'font-size: 110%; font-weight: 100%; color: #f22;',
+        style2: 'font-size: 110%; font-weight: 100%; color: #f22; text-decoration: line-through;'
+      };
+      priceInfo.priceTable.push(rrpPricing);
+
+
+      // Calculate our non-quantity price
+      var unitPrice = variant.lastPrice;
+      var packPrice = unitPrice * packSize;
+      //packPrice = Math.round(packPrice * 100) / 100; // round to nearest cent
+      var packSave = rrpPack - packPrice;
+      //packSave = Math.round(packSave * 100) / 100; // round to nearest cent
+      priceInfo.unitPrice = accounting.formatMoney(unitPrice);
+      priceInfo.packPrice = accounting.formatMoney(packPrice);
+
+      var ourPricing = {
+        min: 1,
+        label: '1',
+        unitPrice: accounting.formatMoney(unitPrice),
+        packPrice: accounting.formatMoney(packPrice),
+        save: accounting.formatMoney(packSave),
+        showBuy: true,
+        showSharedBuy: false,
+        styles: ''
+      };
+      priceInfo.priceTable.push(ourPricing);
+
+      // Add the 'pricing_quantity' prices to the table.
+      //$scope.singlePrice = variant.pricing[0];
+      if (variant.pricing.length < 1) {
+        console.log('No pricing information available for product variant ' + variant.productVariantId);
+        priceInfo.bulkPrices = [ ];
+      } else {
+          priceInfo.bulkPrices = variant.pricing[0].pricingQuantity;
+
+        // Sort the quantity prices in quantity order.
+        //ZZZZ
+
+        // Now add the quantity prices
+        for (var i = 0; i < priceInfo.bulkPrices.length; i++) {
+          var qp = priceInfo.bulkPrices[i];
+
+          var qty = qp.quantity;
+          var qtyPrice = qp.price;
+          packPrice = qtyPrice * packSize;
+          packPrice = Math.ceil(packPrice * 100) / 100; // round to nearest cent
+          packSave = rrpPack - packPrice;
+          packSave = Math.ceil(packSave * 100) / 100; // round to nearest cent
+
+          // Update the label on the previous price entry,
+          // for example from "1", to "1 - 5".
+          // Up till now the label be the minimum qty.
+          var arr = priceInfo.priceTable;
+          arr[arr.length - 1].label += ' - ' + (qty - 1);
+
+          // Add this bulk price to the list
+          var bulkPrice = {
+            min: qty,
+            label: '' + qty,
+            unitPrice: accounting.formatMoney(qtyPrice),
+            packPrice: accounting.formatMoney(packPrice),
+            save: accounting.formatMoney(packSave),
+            showBuy: true,
+            showSharedBuy: true,
+            styles: ''
+          };
+          priceInfo.priceTable.push(bulkPrice);
+        }
+
+        // Add a '+' onto the label of the final price,
+        // for example from "10", to "10+".
+        var arr = priceInfo.priceTable;
+        arr[arr.length - 1].label += '+';
+      } // have pricing record
+
+      // Return the price table.
+      //priceInfo.priceTable = pTable;
+      return priceInfo;
+    }
 
     /*
      *  Any elements similar to
@@ -446,11 +398,11 @@ console.log('variant0=', variant0);
 
 
             // Other functions to be exposed by teaService.
-            getProductAndSetAngularVariables: getProductAndSetAngularVariables,
-
             getSharedOrdersAndSetAngularVariables: getSharedOrdersAndSetAngularVariables,
 
-            startCountdownTimers: startCountdownTimers
+            startCountdownTimers: startCountdownTimers,
+
+            calculatePriceTable: calculatePriceTable
 
           }; // end of object
         }); // end of app.factory

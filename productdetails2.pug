@@ -34,7 +34,7 @@ block content
             .row.pdetail-info-text
               .col-md-6.text-left
                 small
-                  | RRP {{tea_calcs.rrp}}&nbsp;
+                  | RRP {{pricingInfo.rrp}}&nbsp;
                   span.pb / bottle
                 //- small
               //- col-md-6
@@ -56,8 +56,7 @@ block content
                 //- ring
               //- rate-counter
             //- stats
-            //img(src="//www.brokenwood.com.au/assets/images/products/pictures/GraveyardVineyardShiraz11.jpg", alt="")
-            img(id="product_image" Zsrc="{{ui_variant_image}}", alt="")
+            img(ng-src="{{variant0_image}}", alt="")
           //- stage
           br
           p
@@ -78,7 +77,7 @@ block content
                         br
                       //- label-bottle
                       .label-pack.cols
-                        strong {{tea_calcs.packSize}} Pack
+                        strong {{pricingInfo.packSize}} Pack
                         br
                         //- span
                       //- price
@@ -92,7 +91,7 @@ block content
                     //- prod-details
 
                     hr
-                    div(ng-repeat="price in tea_calcs.priceTable")
+                    div(ng-repeat="price in pricingInfo.priceTable")
                       .prod-details.deals
                         .label-qty.cols
                           span(style="{{price.style1}}") {{price.label}}
@@ -757,18 +756,36 @@ block scripts
       teaService.startCountdownTimers();
 
 
-
-      // Look after the product_variant
-      teaService.getProductAndSetAngularVariables({
+      // Call the TEA API to get the product details
+      var params = {
         productVariantId: productVariantId,
         needPricing: true,
         needImages: true
-      }, $scope, teaService, function() {
+      };
+      teaService.getProduct(params).then(function(products){
 
-        // Set the product image
-        $('#product_image').attr('src', $scope.tea_variant0_image0);
+        // Display the product details
+        console.log('\n\n\nREPLY FROM getProduct:', products);
+        if (products && products.length > 0 && products[0].variants.length > 0) {
+
+          // In Drinkcircle there is one-to-one between products and variants.
+          $scope.product0 = products[0];
+          $scope.variant0 = products[0].variants[0];
+
+          // See if we have an image for this product variant
+          if ($scope.variant0.images && $scope.variant0.images.length > 0) {
+            $scope.variant0_image = $scope.variant0.images[0].imagePath;
+          } else {
+            $scope.variant0_image = 'NOTFOUND.jpg'; // ZZZZZ
+          }
+
+          // Set the pricing information.
+          $scope.pricingInfo = teaService.calculatePriceTable($scope.variant0);
+        } else {
+          //ZZZ Redirect to an error page or something.
+          alert('unknown product variant ' + productVariantId);
+        }
       });
-
 
 
       // Display the circle buys
