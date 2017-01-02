@@ -11,14 +11,16 @@ block content
 
   section.productdetails(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
     .container
-      p.bread
-        a(href='#modal_coming_soon', data-toggle='modal') Red
-        | &nbsp;/&nbsp;
-        a(href='#modal_coming_soon', data-toggle='modal') {{variant0.manufacturer}}
-        | &nbsp;/&nbsp;
-        a(href='#modal_coming_soon', data-toggle='modal')
-          strong {{variant0.name}}
-        //- a
+      p.bread(ng-repeat="breadcrumbs in product0.breadcrumbs")
+        span(ng-repeat="crumb in breadcrumbs.breadcrumbs")
+          a( href='drinks.html?category={{crumb.categoryId}}', data-toggle='modal') {{crumb.name}}
+          | &nbsp;/&nbsp;
+        span
+          a(href='#modal_coming_soon', data-toggle='modal') {{variant0.manufacturer}}
+          | &nbsp;/&nbsp;
+          a(href='#', data-toggle='modal')
+            strong {{variant0.name}}
+          //- a
       //- p
       //- bread
       .row
@@ -760,7 +762,8 @@ block scripts
       var params = {
         productVariantId: productVariantId,
         needPricing: true,
-        needImages: true
+        needImages: true,
+        needBreadcrumbs: true
       };
       teaService.getProduct(params).then(function(products){
 
