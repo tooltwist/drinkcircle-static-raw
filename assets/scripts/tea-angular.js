@@ -414,6 +414,37 @@ console.log('variant0=', variant0);
             },
 
 
+
+            /**
+            *	  Create a new shared_order.
+            *	  Returns a promise (since $http(req) is asyncronous)
+            */
+            newSharedOrder: function newSharedOrder(paramsToAPI) {
+              var url = baseUrl + '/philChristmas/newSharedOrder';
+              console.log('url is ' + url)
+              console.log('paramsToAPI:', paramsToAPI);
+
+              // Call the API to get the product details
+              // ZZZZ This should use JSONP, as some browsers do not support CORS.
+              // ZZZZ Unfortunately JSONP does not support headers, so we need
+              // ZZZZ to pass details either in the url or the data. i.e. the
+              // ZZZZ server requires changes.
+              var req = {
+                method: 'POST',
+                url: url,
+                headers: {
+                  "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+                  "version": "2.0.0"
+                },
+                data: paramsToAPI
+              };
+
+              // Prepare the promise, so the caller can use .then(fn) to handle the result.
+              var promise = $http(req).then(handleSuccess, handleError);
+              return promise;
+            },
+
+
             // Other functions to be exposed by teaService.
             getProductAndSetAngularVariables: getProductAndSetAngularVariables,
 
