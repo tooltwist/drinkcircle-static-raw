@@ -54,10 +54,12 @@
     //- countdown
   //- avatar
   br
+  status is {{sharedOrder.sharedOrder.status}}
+  br
   p
-    a.button.inline.v8.joincirclebuy.thin-line(href='productdetails2.html') view
+    a.button.inline.v8.joincirclebuy.thin-line(href='circlebuy-start.html?circleBuy={{sharedOrder.sharedOrder.sharedOrderId}}') view
     | &nbsp;
-    a.button.inline.v7.joincirclebuy.thin-line(href="circlebuy-start.html") join
+    a.button.inline.v7.joincirclebuy.thin-line(href="circlebuy-start.html?circleBuy={{sharedOrder.sharedOrder.sharedOrderId}}") join
     | &nbsp;
     a.button.inline.v8.joincirclebuy.thin-line(href="") watch
   //- p
