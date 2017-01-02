@@ -42,15 +42,17 @@
       console.log('getProductAndSetAngularVariables(). Params=', params)
 
       // Call the TEA API to get the product details
-      teaService.getProduct(params).then(function(product){
+      teaService.getProduct(params).then(function(products){
 
         // Display the product details
-        $scope.product = product;
+console.log('\n\n\nREPLY FROM getProduct:', products);
+        $scope.product0 = products[0];
 
         // In Drinkcircle there is one-to-one between products and variants
         // Check there is only one variant, and it is active. ZZZZ
-        var variant0 = product.variants[0];
-        $scope.variant = variant0;
+        var variant0 = products[0].variants[0];
+console.log('variant0=', variant0);
+        //$scope.variant = variant0;
         $scope.variant0 = variant0;
 
         // See if we have an image
@@ -166,7 +168,7 @@
         }
 
         if (callback) {
-          return callback(product);
+          return callback(products);
         }
       });
     }
@@ -208,7 +210,7 @@
 
           // Put the shared orders into two lists, one that is always
           // visible, and another when the 'more' button is pressed.
-          var NUM_IN_SHORT_LIST = 1;
+          var NUM_IN_SHORT_LIST = 2;
           var NUM_IN_LONG_LIST = 16;
           if (paramsForAPI.shortListSize) {
             NUM_IN_SHORT_LIST = params.shortListSize;
@@ -282,12 +284,17 @@
     // relative time in hours, minutes and seconds.
     function expiresAt_HMS(expiresAt) {
 
-      var expires = moment(expiresAt);
-      var duration = moment.duration(expires.diff(moment.now()));
+      if (expiresAt) {
+        var expires = moment(expiresAt);
+        var duration = moment.duration(expires.diff(moment.now()));
 
-      var hours = duration.asHours(); // Float
-      if (hours < 0) {
-        return "expired";
+        var hours = duration.asHours(); // Float
+        if (hours < 0) {
+          return "expired";
+        }
+      } else {
+        // ExpiresAt not set - first order not placed yet
+        return "waiting for first order";
       }
       var hours = '' + Math.floor(hours);
       var minutes = '' + duration.minutes()
