@@ -17,7 +17,14 @@ block content
     .container
       .row
         .col-md-12
-          h3.title Create a circlebuy for {{variant.name}}
+          h3.title(ng-hide="!creating_a_new_circlebuy")
+            | Create a circlebuy for
+            =" "
+            strong {{variant.name}}
+          h3.title(ng-hide="creating_a_new_circlebuy")
+            | Join circlebuy for
+            =" "
+            strong {{variant.name}}
         //- col-md-12
       //- row
       .card
@@ -342,7 +349,7 @@ block content
 
       br
       .text-right
-        button.btn.btn-success.btn-lg(id="so_next_button" ng-click="nextButtonClicked()" ng-disabled="!haveRequiredInformation()" href='circlebuy-invites.html') Next
+        button.btn.btn-success.btn-lg(id="so_next_button" ng-click="nextButtonClicked()" ng-disabled="!haveRequiredInformation()" href='#') Next
       a(id="so_link_to_next_page" nZg-hide="true" href='circlebuy-invites.html') next {{haveRequiredInformation()}}
       //- text-right
     //- container
@@ -385,6 +392,7 @@ block scripts
         var productVariantId = NaN;
         var sharedOrderId = NaN;
         window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+          key = key.toLowerCase();
           if (key === 'product') {
             productVariantId = parseInt(value);
           } else if (key === 'circlebuy') {
@@ -782,13 +790,52 @@ block scripts
             return false;
           }
 
-          // Save the details to the server.
-          //ZZZZZ
+          // Get details of the current user.
+          var customerId = 63;
+          var ownerLabel = "Phil's";
 
-          // Jump to the next page.
-          $('#so_link_to_next_page')[0].click();
-          return true;
-        }
+          if ($scope.creating_a_new_circlebuy) {
+            console.log('ok 0a:');
+            /*
+             *  Create a circlebuy, then the customer order.
+             */
+             teaService.newSharedOrder({
+               "customerId": customerId,
+               "pricingQuantityId": $scope.finalPricingQuantityId,
+               "quantity": $scope.finalOrderSize,
+               "ownerLabel": ownerLabel
+               //"expiresAt": "1970-00-00T00:00:00.000Z"
+             }, $scope, teaService).then(function(data){
+               if (data) {
+                 newSharedOrderId = data.sharedOrderId;
+                 alert('New CircleBuy number is ' + newSharedOrderId);
+
+                 // Jump to the next page.
+               //    $('#so_link_to_next_page')[0].click();
+                var newUrl = 'circlebuy-invites.html?circlebuy=' + newSharedOrderId;
+                console.log('Will jump to: ' + newUrl)
+                window.location.href = newUrl;
+                 /*return false;
+                 return true;*/
+               } else {
+                 // Could not create the new order.
+                 // An error message will have already been logged.
+                 alert('An error occurred creating the circlebuy. Please try again later.');
+               }
+               return false;
+             });
+
+          } else {
+            console.log('ok 0b');
+
+            /*
+             *  Add a customer order to the existing circlebuy.
+             */
+            alert('not creating order yet!');
+          }
+          return false;
+
+        } // nextButtonClicked()
 
 
         /*
