@@ -436,15 +436,20 @@ block scripts
              //alert('prodvar is ' + productVariantId)
 
              // Now select the productVariant details
-             teaService.getProductAndSetAngularVariables({
+             teaService.getProduct({
                productVariantId: productVariantId,
                needPricing: true
-             }, $scope, teaService, function gotProduct(product) {
+             }).then(function(products){
+
+             /*teaService.getProductAndSetAngularVariables({
+               productVariantId: productVariantId,
+               needPricing: true
+             }, $scope, teaService, function gotProduct(product) {*/
 
                // Back from getting the product details.
                //ZZZZ Handle any error (indicated by product=null)
-               $scope.variant = product.variants[0]; // 1:1 in Drinkcircle
-               $scope.pricingQuantityList = product.variants[0].pricing[0].pricingQuantity;
+               $scope.variant = products[0].variants[0]; // 1:1 in Drinkcircle
+               $scope.pricingQuantityList = products[0].variants[0].pricing[0].pricingQuantity;
                $scope.sharedOrder.so_alreadyOrdered = 2;
                //$scope.so_yourQuantity = '1';
                $scope.junkChooks = 'MEOW';
@@ -467,15 +472,20 @@ block scripts
            *    Look up the specified product variant.
            */
           $scope.creating_a_new_circlebuy = true;
-          teaService.getProductAndSetAngularVariables({
+          teaService.getProduct({
             productVariantId: productVariantId,
             needPricing: true
-          }, $scope, teaService, function gotProduct(product) {
+          }).then(function(products){
+
+          /*teaService.getProductAndSetAngularVariables({
+            productVariantId: productVariantId,
+            needPricing: true
+          }, $scope, teaService, function gotProduct(product) {*/
 
             // Back from getting the product details.
             //ZZZZ Handle any error (indicated by product=null)
-            $scope.variant = product.variants[0]; // 1:1 in Drinkcircle
-            $scope.pricingQuantityList = product.variants[0].pricing[0].pricingQuantity;
+            $scope.variant = products[0].variants[0]; // 1:1 in Drinkcircle
+            $scope.pricingQuantityList = products[0].variants[0].pricing[0].pricingQuantity;
             $scope.so_alreadyOrdered = 0;
           });
         }
