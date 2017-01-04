@@ -27,10 +27,23 @@ block content
             strong {{variant.name}}
         //- col-md-12
       //- row
+
+      .card(ng-hide="loggedIn" role="alert")
+        .row
+          .col-md-12
+            // Alert box for login
+            .alert.alert-danger
+              // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
+              span Please Log in to create or join a Circlebuy
+            //- alert
+          //- col-md-12
+        //- row
+      //- card
+
       .card
         .row
           .col-md-9
-            // Alert box
+            // Alert box for order size
             .alert(ng-hide="showOrderSizeAlert()" role="alert").alert-danger
               // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
               span Please select an Order Size
@@ -375,7 +388,7 @@ block scripts
     teaservice.init(app);
 
     // Add the controller for this page
-    app.controller('myCtrl', function($scope, teaService) {
+    app.controller('myCtrl', function($scope, teaService, $timeout) {
 
       // Pre-create variables, so we don't get undefined
       // errors when angular tries to draw the page before
@@ -508,7 +521,6 @@ block scripts
         $scope.haveValidBillingAddress = false;
         $scope.haveValidShippingAddress = false;
 
-
         /*
          *  Look after the Order Size
          */
@@ -592,7 +604,7 @@ block scripts
          *  See if this order will complete the circleBuy.
          */
         $scope.enoughToCompeteTheOrder = function() {
-          if ($scope.haveValidOrderSize && $scope.haveValidYourQty) {
+          if ($scope.haveValidOrderSize && $scope.haveValidYourQty && (authservice.getCurrentUser()!=null)) {
             var totalOrdered = $scope.so_alreadyOrdered + $scope.finalYourQuantity;
             return (totalOrdered >= $scope.finalOrderSize);
           }
@@ -800,11 +812,19 @@ block scripts
           }
 
           // Get details of the current user.
-          var customerId = 63;
-          var ownerLabel = "Phil's";
+          var user = authservice.getCurrentUser();
+          var customerId = user.ttuat;
+          var name = user.firstname;
+          var capitalized = name.replace(/\w\S*/g, function(txt){
+            // Handles multi-word names
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          });
+          var ownerLabel = capitalized + "'s";
+
+          console.log('customerId=' + customerId);
+          console.log('ownerLabel=' + ownerLabel);
 
           if ($scope.creating_a_new_circlebuy) {
-            console.log('ok 0a:');
             /*
              *  Create a circlebuy, then the customer order.
              */
@@ -859,18 +879,32 @@ block scripts
           return [ ]; // num is undefined
         }
 
-    });
 
+        /*
+         *  Set up the login part at the top of the page.
+         */
+        authservice.init({
+          host: 'localhost',
+          port: 9090,
+          tenant: 'nodeclient',
+          pretend: true,
+          onLoggedIn: function() {
 
-    /*
-     *  Set up the login part at the top of the page.
-     */
-    authservice.init({
-      host: 'localhost',
-      port: 9090,
-      tenant: 'nodeclient',
-      pretend: true
+            // Use $timeout, which does the same as $apply, but gives
+            // this controller definition function time to complete.
+            // Otherwise we get an 'inprog' error from Angular.
+            $timeout(function(){
+              $scope.loggedIn = true;
+            }, 100);
+          },
+          onLoggedOut: function() {
+            $timeout(function(){
+              $scope.loggedIn = false;
+            }, 100);
+          }
+        });
+        console.log('Current user:', authservice.getCurrentUser());
+
     });
-    console.log('Current user:', authservice.getCurrentUser());
 
   //- script.
