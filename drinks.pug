@@ -2048,8 +2048,6 @@ block content
     //- container
   //- section
 
-  script(src="assets/scripts/tea-angular.js")
-
 
 block scripts
   // External Script goes here...
@@ -2104,7 +2102,7 @@ block scripts
      */
     var app = angular.module('myApp', ['ngSanitize']);
 
-    teaAngular.init(app);
+    teaservice.init(app);
 
     // Add the controller for this page
     app.controller('myCtrl', function($scope, teaService) {
@@ -2136,6 +2134,7 @@ block scripts
 
       // Get the product details from TEA.
       teaService.getProduct({
+
         categoryId: categoryId,
         needPricing: true,
         needImages: true
@@ -2175,6 +2174,18 @@ block scripts
       }, $scope, teaService);
       */
     });
+
+
+    /*
+     *  Set up the login part at the top of the page.
+     */
+    authservice.init({
+      host: 'localhost',
+      port: 9090,
+      tenant: 'nodeclient',
+      pretend: true
+    });
+    console.log('Current user:', authservice.getCurrentUser());
 
   //- script.
 //- block scripts

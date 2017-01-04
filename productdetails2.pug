@@ -16,8 +16,6 @@ block content
           a( href='drinks.html?category={{crumb.categoryId}}', data-toggle='modal') {{crumb.name}}
           | &nbsp;/&nbsp;
         span
-          a(href='#modal_coming_soon', data-toggle='modal') {{variant0.manufacturer}}
-          | &nbsp;/&nbsp;
           a(href='#', data-toggle='modal')
             strong {{variant0.name}}
           //- a
@@ -680,8 +678,6 @@ block content
     //- container
   //- section
 
-  script(src="assets/scripts/tea-angular.js")
-
 block scripts
   // External Script goes here...
   script.
@@ -731,7 +727,7 @@ block scripts
      */
     var app = angular.module('myApp', ['ngSanitize']);
 
-    teaAngular.init(app);
+    teaservice.init(app);
 
     // Add the controller for this page
     app.controller('myCtrl', function($scope, teaService) {
@@ -744,7 +740,7 @@ block scripts
           productVariantId = parseInt(value);
         }
       });
-      console.log('Displaying the page for productVariantId=' + productVariantId);
+      //console.log('Displaying the page for productVariantId=' + productVariantId);
 
       // During development only
       var DEFAULT_PRODUCT_VARIANT_ID = 6180;
@@ -797,6 +793,24 @@ block scripts
       }, $scope, teaService);
 
     });
+
+
+    /*
+     *  Set up the login part at the top of the page.
+     */
+    authservice.init({
+      host: 'localhost',
+      port: 9090,
+      tenant: 'nodeclient',
+      pretend: true,
+      onLoggedIn: function() {
+        console.log('logged in');
+      },
+      onLoggedOut: function() {
+        console.log('logged out');
+      }
+    });
+    console.log('Current user:', authservice.getCurrentUser());
 
   //- script.
 //- block scripts

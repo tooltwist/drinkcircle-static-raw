@@ -247,4 +247,19 @@ block scripts
     $(function () {
 
     });
+
+
+
+    /*
+     *  Set up the login part at the top of the page.
+     */
+    authservice.init({
+      host: 'localhost',
+      port: 9090,
+      tenant: 'nodeclient',
+      pretend: true
+    });
+    console.log('Current user:', authservice.getCurrentUser());
+
+
   //- script.

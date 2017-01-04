@@ -3,7 +3,7 @@
  *  Functions for accessing TEA, using Angular.
  */
 
-  var teaAngular = (function() {
+  var teaservice = (function() {
 
     /**
      *  Display Circle Buys
@@ -275,7 +275,7 @@
 
     return {
       init: function(config) {
-        console.log('teaAngular.init()');
+        console.log('teaservice.init()');
 
         // Check the config
         var protocol = 'http';
@@ -291,7 +291,7 @@
           port = config.port;
         }
         var baseUrl = protocol + '://' + host + ':' + port;
-        console.log('baseUrl=' + baseUrl);
+        //console.log('baseUrl=' + baseUrl);
 
         // Add a directive for the sharedOrder widget
         app.directive('circlebuyWidget', function(){
@@ -299,6 +299,16 @@
             restrict: 'E',
             scope: false,
             templateUrl: 'circlebuy-widget.html'
+          }
+        });
+
+        // Add an Angular directive for the login widget
+        console.log('adding directive for login widget')
+        app.directive('authservice-login-widget', function(){
+          return {
+            restrict: 'E',
+            scope: false,
+            templateUrl: 'assets/vendor/authservice/authservice-login-widget.html'
           }
         });
 

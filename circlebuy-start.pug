@@ -356,7 +356,6 @@ block content
   //- section
 
 
-  script(src="assets/scripts/tea-angular.js")
 
 
 block scripts
@@ -373,7 +372,7 @@ block scripts
      */
     var app = angular.module('myApp', ['ngSanitize']);
 
-    teaAngular.init(app);
+    teaservice.init(app);
 
     // Add the controller for this page
     app.controller('myCtrl', function($scope, teaService) {
@@ -861,5 +860,17 @@ block scripts
         }
 
     });
+
+
+    /*
+     *  Set up the login part at the top of the page.
+     */
+    authservice.init({
+      host: 'localhost',
+      port: 9090,
+      tenant: 'nodeclient',
+      pretend: true
+    });
+    console.log('Current user:', authservice.getCurrentUser());
 
   //- script.

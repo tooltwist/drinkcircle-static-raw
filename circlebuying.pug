@@ -966,8 +966,6 @@ block content
     //- modal-dialog
   //- modal
 
-  script(src="assets/scripts/tea-angular.js")
-
 block scripts
   // External Script goes here...
 
@@ -1021,7 +1019,7 @@ block scripts
      */
     var app = angular.module('myApp', ['ngSanitize']);
 
-    teaAngular.init(app);
+    teaservice.init(app);
 
     // Add the controller for this page
     app.controller('myCtrl', function($scope, teaService) {
@@ -1029,17 +1027,29 @@ block scripts
         // Look after the product_variant
         var NICE_PRODUCT_VARIANT_ID = 6180;
         /*
-        teaService.getProductAndDisplay({
+        teaService.getProductAndSetAngularVariables({
           productVariantId: NICE_PRODUCT_VARIANT_ID,
           needPricing: true
         }, $scope, teaService);*/
 
         // Look after the circle buys
-        teaService.getSharedOrdersAndDisplayAsCircleBuys({
+        teaService.getSharedOrdersAndSetAngularVariables({
           //productVariantId: NICE_PRODUCT_VARIANT_ID
         }, $scope, teaService);
 
     });
+
+
+    /*
+     *  Set up the login part at the top of the page.
+     */
+    authservice.init({
+      host: 'localhost',
+      port: 9090,
+      tenant: 'nodeclient',
+      pretend: true
+    });
+    console.log('Current user:', authservice.getCurrentUser());
 
   //- script.
 //- block scripts
