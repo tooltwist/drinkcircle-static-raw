@@ -13,21 +13,53 @@ block css
 
 block content
 
-  section.userprofile.request-list.simple
+  section.userprofile.request-list.simple(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
     .container
       .row
         .col-md-12
-          h3.title Create a circlebuy for Brokenwood - Graveyard Vineyard Shiraz
+          h3.title(ng-hide="!creating_a_new_circlebuy")
+            | Create a circlebuy for
+            =" "
+            strong {{variant.name}}
+          h3.title(ng-hide="creating_a_new_circlebuy")
+            | Join circlebuy for
+            =" "
+            strong {{variant.name}}
         //- col-md-12
       //- row
+
+      .card(ng-hide="loggedIn" role="alert")
+        .row
+          .col-md-12
+            // Alert box for login
+            .alert.alert-danger
+              // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
+              span Please Log in to create or join a Circlebuy
+            //- alert
+          //- col-md-12
+        //- row
+      //- card
+
       .card
         .row
           .col-md-9
+            // Alert box for order size
+            .alert(ng-hide="showOrderSizeAlert()" role="alert").alert-danger
+              // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
+              span Please select an Order Size
+            //- alert
             p
-              | Size&nbsp;
-              select.form-control.inline
-                option 10 cases
+            .form-group(id="so_new_orderSize_group" style="width:200px;").has-feedback
+              label(for="so_new_orderSize").control-label Order Size
+
+              // Display for new Circlebuy
+              select(ng-hide="!creating_a_new_circlebuy" ng-model="so_new_orderSize" ng-change="orderSizeChanged()").form-control.form-control
+                option(ng-repeat="pq in pricingQuantityList" value="{{pq.quantity}}" selected="selected") {{pq.quantity}} cases
               //- select
+              span(id="so_new_orderSize_glyphicon").glyphicon.form-control-feedback
+
+              // Display for existing Circlebuy
+              p(ng-hide="creating_a_new_circlebuy") {{so_existing_orderSize}} Cases
             //- p
             p.text-warning * All circlebuys will expire after 3 days from commencement if not completed.
           //- col-md-9
@@ -42,27 +74,66 @@ block content
         //- row
       //- card
       br
+
+
+
+      // "Your Order" section of the page
       h4 Your Order
       .card
+        .row
+          .col-md-12
+            // Alert box
+            .alert(ng-hide="showYourQuantityAlert()" role="alert").alert-danger
+              // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
+              span.sr-only Error:
+              span(id="order-alert-msg") Please select Your Quantity
+            //- .alert
         .row
           .col-md-4
             .form-group
               label Item
-              p.form-control-static Brokenwood - Graveyard Vineyard Shiraz
+              p.form-control-static {{variant.name}}
+              br
+              .card
+                small Pack size: {{variant.componentsQty}}
+                div(ng-hide="creating_a_new_circlebuy")
+                  small {{so_alreadyOrdered}} cases already ordered
+                  br
+                  small {{so_existing_orderSize-so_alreadyOrdered}} cases required to complete the order
             //- form-group
+            .form-group(ng-hide="true")
+              label Pack Size
+              p.form-control-static {{variant.componentsQty}} bottles
+            //- form-group
+            br
+            br
+
           //- col-md-4
+
+          // "Your Quantity" section
           .col-md-3
-            .form-group
+            .form-group(id="so_yourQuantity_group").has-feedback
               label Your quantity
-              select.form-control
-                option 3 cases
+              select.form-control(ng-model="so_yourQuantity")
+                option(ng-repeat="i in rangeForYourQuantity() track by $index" value="{{$index+1}}") {{$index+1}} cases
               //- select
+              span(id="so_yourQuantity_glyphicon" style="zpadding-left:10px;zright:auto;").glyphicon.form-control-feedback
             //- form-group
-            .form-group
-              label Quantity remaining
-              p.form-control-static 7 cases
-            //- form-group
+            // Alert box
+            .alert(ng-hide=" !enoughToCompeteTheOrder()" role="alert").alert-success
+              // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
+              span.sr-only Error:
+              span(id="order-alert-msg")
+              | Wonderful.
+              | We'll be able to complete the Circlebuy right now!
+            //- .alert
+          //- .col-md-3
+
+
+
           //- col-md-4
+
+          // Price calculation section
           .col-md-5
             .table-responsive
               table.table
@@ -74,8 +145,10 @@ block content
                 //- thead
                 tbody
                   tr
-                    td $119.94
-                    td $359.82
+                    td
+                      .shared-order-calc-field {{calc_price}}
+                    td
+                      .shared-order-calc-field {{calc_subtotal}}
                   //- tr
                   tr
                     td(colspan='2')
@@ -84,15 +157,18 @@ block content
                   //- tr
                   tr
                     td Subtotal
-                    td $359.82
+                    td
+                      .shared-order-calc-field {{calc_subtotal}}
                   //- tr
                   tr
                     td Shipping
-                    td $10.00
+                    td
+                      .shared-order-calc-field {{calc_shipping}}
                   //- tr
                   tr
                     td GST
-                    td $36.98
+                    td
+                      .shared-order-calc-field {{calc_gst}}
                   //- tr
                   tr
                     td(colspan='2')
@@ -104,9 +180,39 @@ block content
                       strong Grand Total (Incl. GST)
                     //- td
                     td
-                      strong $406.802
+                      strong
+                        .shared-order-calc-field {{calc_grandTotal}}
                     //- td
                   //- tr
+
+
+                  tr
+                    td
+                      strong Savings on RRP
+                    //- td
+                    td
+                      strong
+                        .shared-order-calc-field {{calc_rrpSaving}}
+                    //- td
+                  //- tr
+                  tr.hide
+                    td
+                      strong Saving on Shipping
+                    //- td
+                    td
+                      strong
+                        .shared-order-calc-field {{calc_shippingSaving}}
+                    //- td
+                  //- tr
+
+
+
+
+
+
+
+
+
                 //- tbody
               //- table
             //- table-responsive
@@ -116,21 +222,35 @@ block content
       br
       h4 Your Details
       .card
+
+        // Date of Birth
+        .alert(ng-hide="haveValidDateOfBirth()" role="alert").alert-danger
+          // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
+          span {{dateOfBirthMessage}}
+        //- alert
+        p
+          label Date of Birth *
         .row
           .col-md-3
             .form-group
-              label Date of Birth *
-              input.form-control(type='date')
+              input.form-control(type='date' ng-model="so_dateOfBirth")
             //- form-group
           //- col-md-4
         //- .row
         p Drinkcircle supports prohibiting alcohol and tobacco sales to minors.
         hr
+
+
+        // Billing Address
+        .alert(ng-hide="haveBillingAddress()" role="alert").alert-danger
+          // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
+          span Please select a billing address
+        //- alert
         p
           strong Billing Details
         //- p
         .row
-          .col-md-3
+          .col-md-3.so_billing_address_card(ng-click="setBillingAddress(10)" so_address_id="10")
             .alert.alert-warning
               a.text-danger.pull-right(href='#modal_coming_soon', data-toggle='modal')
                 i.fa.fa-times-circle
@@ -147,7 +267,7 @@ block content
               //- p
             //- alert
           //- col-md-3
-          .col-md-3
+          .col-md-3.so_billing_address_card(ng-click="setBillingAddress(11)" so_address_id="11")
             .alert.alert-warning
               a.text-danger.pull-right(href='#modal_coming_soon', data-toggle='modal')
                 i.fa.fa-times-circle
@@ -167,10 +287,17 @@ block content
         //- .row
         a.btn.btn-success.btn-sm(href='#modal_coming_soon', data-toggle='modal') Add a new address
         hr
+
+        // Ship-To address
+        .alert(ng-hide="haveShiptoAddress()" role="alert").alert-danger
+          // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
+          span Please select a Ship To address
+        //- alert
+        p
+          label Ship to
         .row
           .col-md-4
             .form-group
-              label Ship to
               select.form-control
                 option Other
               //- select
@@ -178,7 +305,7 @@ block content
           //- col-md-4
         //- row
         .row
-          .col-md-3
+          .col-md-3.so_shipto_address_card(ng-click="setShiptoAddress(12)" so_address_id="12")
             .alert.alert-warning
               a.text-danger.pull-right(href='#modal_coming_soon', data-toggle='modal')
                 i.fa.fa-times-circle
@@ -195,9 +322,9 @@ block content
               //- p
             //- alert
           //- col-md-3
-          .col-md-3
+          .col-md-3.so_shipto_address_card(ng-click="setShiptoAddress(13)" so_address_id="13")
             .alert.alert-warning
-              a.text-danger.pull-right(href='#modal_coming_soon', data-toggle='modal')
+              a.text-success.pull-right(href='#modal_coming_soon', data-toggle='modal')
                 i.fa.fa-times-circle
               //- a
               .clearfix
@@ -235,10 +362,13 @@ block content
 
       br
       .text-right
-        a.btn.btn-success.btn-lg(href='circlebuy-invites.html') Next
+        button.btn.btn-success.btn-lg(id="so_next_button" ng-click="nextButtonClicked()" ng-disabled="!haveRequiredInformation()" href='#') Next
+      a(id="so_link_to_next_page" nZg-hide="true" href='circlebuy-invites.html') next {{haveRequiredInformation()}}
       //- text-right
     //- container
   //- section
+
+
 
 
 block scripts
@@ -247,4 +377,534 @@ block scripts
     $(function () {
 
     });
+
+
+    /************************************************************
+     *
+     *    Angular code.
+     */
+    var app = angular.module('myApp', ['ngSanitize']);
+
+    teaservice.init(app);
+
+    // Add the controller for this page
+    app.controller('myCtrl', function($scope, teaService, $timeout) {
+
+      // Pre-create variables, so we don't get undefined
+      // errors when angular tries to draw the page before
+      // our TEA functions have returned with data.
+      $scope.sharedOrder = { };
+      $scope.creating_a_new_circlebuy = true;
+      $scope.so_new_orderSize = 0;
+      $scope.so_existing_orderSize = 0;
+      $scope.so_alreadyOrdered = 0;
+
+        // This code gets the "product" parameter from the
+        // URL so we can use it as productVariantId.
+        var productVariantId = NaN;
+        var sharedOrderId = NaN;
+        window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+          key = key.toLowerCase();
+          if (key === 'product') {
+            productVariantId = parseInt(value);
+          } else if (key === 'circlebuy') {
+            sharedOrderId = parseInt(value);
+          }
+        });
+
+        // During development only
+        var DEFAULT_PRODUCT_VARIANT_ID = 6180;
+        if (isNaN(productVariantId)) {
+          productVariantId = DEFAULT_PRODUCT_VARIANT_ID;
+        }
+        console.log('ZZZ productVariantId=' + productVariantId);
+        console.log('ZZZ sharedOrderId=' + sharedOrderId);
+
+        /*
+         *  If a circleBuy has been specified, we'll look up
+         *  the shared_order first, and use it to find the
+         *  productVariantId.
+         *
+         *  Otherwise, we'll work towards creating a new
+         *  shared_order based upon the specified product.
+         */
+
+         if ( !isNaN(sharedOrderId)) {
+
+
+
+           /*
+            *   VIEW AN EXISTING CIRCLEBUY.
+            *
+            *   Look up the sharedOrder.
+            */
+            $scope.creating_a_new_circlebuy = false;
+            console.log('looking up shared_order ', sharedOrderId)
+           teaService.getSharedOrdersAndSetAngularVariables({
+             sharedOrderId: sharedOrderId
+           }, $scope, teaService, function(sharedOrders){
+             console.log('sharedOrders=', sharedOrders)
+             productVariantId = sharedOrders[0].productVariant.productVariantId;
+             //alert('prodvar is ' + productVariantId)
+
+             // Now select the productVariant details
+             teaService.getProduct({
+               productVariantId: productVariantId,
+               needPricing: true
+             }).then(function(products){
+
+             /*teaService.getProductAndSetAngularVariables({
+               productVariantId: productVariantId,
+               needPricing: true
+             }, $scope, teaService, function gotProduct(product) {*/
+
+               // Back from getting the product details.
+               //ZZZZ Handle any error (indicated by product=null)
+               $scope.variant = products[0].variants[0]; // 1:1 in Drinkcircle
+               $scope.pricingQuantityList = products[0].variants[0].pricing[0].pricingQuantity;
+               $scope.sharedOrder.so_alreadyOrdered = 2;
+               //$scope.so_yourQuantity = '1';
+               $scope.junkChooks = 'MEOW';
+               console.log('so=', sharedOrders)
+
+               // Prevent the order size being changed
+               $scope.so_existing_orderSize = sharedOrders[0].sharedOrder.quantity;
+               $scope.finalOrderSize = sharedOrders[0].sharedOrder.quantity;
+               $scope.haveValidOrderSize = true;
+               $scope.so_alreadyOrdered = 2;///ZZZ Calculate this
+             });
+
+           });
+        } else {
+
+
+          /*
+           *    CREATE A NEW CIRCLEBUY
+           *
+           *    Look up the specified product variant.
+           */
+          $scope.creating_a_new_circlebuy = true;
+          teaService.getProduct({
+            productVariantId: productVariantId,
+            needPricing: true
+          }).then(function(products){
+
+          /*teaService.getProductAndSetAngularVariables({
+            productVariantId: productVariantId,
+            needPricing: true
+          }, $scope, teaService, function gotProduct(product) {*/
+
+            // Back from getting the product details.
+            //ZZZZ Handle any error (indicated by product=null)
+            $scope.variant = products[0].variants[0]; // 1:1 in Drinkcircle
+            $scope.pricingQuantityList = products[0].variants[0].pricing[0].pricingQuantity;
+            $scope.so_alreadyOrdered = 0;
+          });
+        }
+
+        /*
+         *  Set the Initial prices
+         */
+        $scope.calc_price = "$---.--";
+        $scope.calc_subtotal = "$---.--";
+        $scope.calc_shipping = "$---.--";
+        $scope.calc_gst = "$---.--";
+        $scope.calc_grandTotal = "$---.--";
+        $scope.calc_rrpSaving = "$---.--";
+        $scope.calc_shippingSaving = "$---.--";
+
+
+        // Remember when we have valid values
+        $scope.haveValidOrderSize = false;
+        $scope.haveValidYourQty = false;
+        $scope.haveValidDob = false;
+        $scope.haveValidBillingAddress = false;
+        $scope.haveValidShippingAddress = false;
+
+        /*
+         *  Look after the Order Size
+         */
+        $scope.showOrderSizeAlert = function() {
+          return $scope.haveValidOrderSize;
+        }
+
+        $scope.orderSizeChanged = function() {
+          var qty = $scope.so_new_orderSize;
+          if (qty) {
+            $('#so_new_orderSize_group').addClass('has-success').removeClass('has-error');
+            $('#so_new_orderSize_glyphicon').addClass('glyphicon-ok').removeClass('glyphicon-remove');
+            qty = parseInt(qty)
+            $scope.haveValidOrderSize = true;
+            $scope.finalOrderSize = qty;
+
+            // Calculate the prices
+            $scope.calculatePrices();
+            return true;
+          } else {
+            $('#so_new_orderSize_group').addClass('has-error').removeClass('has-success');
+            $('#so_new_orderSize_glyphicon').addClass('glyphicon-remove').removeClass('glyphicon-ok');
+            $("#order-alert-div").addClass('alert-danger').removeClass('alert-success');
+            $scope.haveValidOrderSize = false;
+            return false;
+          }
+        }
+
+        /*
+         *  Return an array with the same number of elements as
+         *  the maximum number in Your Quantity. This is a trick
+         *  used with Angular to allow ng-repeat to iterate over
+         *  a range of numbers.
+         */
+        $scope.rangeForYourQuantity = function() {
+          if ($scope.creating_a_new_circlebuy) {
+            var num = parseInt($scope.so_new_orderSize);
+            return new Array(num);
+          } else {
+            var num = $scope.so_existing_orderSize - $scope.so_alreadyOrdered;
+            return new Array(num);
+          }
+        }
+
+        /*
+         *  Work out what instructions to give to the user.
+         *  At the same time, display red/green indicators.
+         */
+        $scope.showYourQuantityAlert = function() {
+
+          // We won't ask for Your-Quantity until we have an Order Size
+          if ( !$scope.haveValidOrderSize) {
+            return true;
+          }
+
+          // Check the "Your Order" quantity.
+          var yourQty = $scope.so_yourQuantity;
+          if (yourQty) {
+            $('#so_yourQuantity_group').addClass('has-success').removeClass('has-error');
+            $('#so_yourQuantity_glyphicon').addClass('glyphicon-ok').removeClass('glyphicon-remove');
+            yourQty = parseInt(yourQty)
+            $scope.finalYourQuantity = yourQty;
+            $scope.haveValidYourQty = true;
+
+            // Calculate the prices
+            $scope.calculatePrices();
+          } else {
+            $('#so_yourQuantity_group').addClass('has-error').removeClass('has-success');
+            $('#so_yourQuantity_glyphicon').addClass('glyphicon-remove').removeClass('glyphicon-ok');
+            $("#order-alert-div").addClass('alert-danger').removeClass('alert-success');
+            $scope.haveValidYourQty = false;
+          }
+
+          // Return
+          return $scope.haveValidYourQty;
+        } //showYourQuantityAlert
+
+
+
+        /*
+         *  See if this order will complete the circleBuy.
+         */
+        $scope.enoughToCompeteTheOrder = function() {
+          if ($scope.haveValidOrderSize && $scope.haveValidYourQty && (authservice.getCurrentUser()!=null)) {
+            var totalOrdered = $scope.so_alreadyOrdered + $scope.finalYourQuantity;
+            return (totalOrdered >= $scope.finalOrderSize);
+          }
+          return false;
+        }
+
+
+
+        /*
+         *  Calculate the price of the order.
+         *  Note that this is not the final calculation, which
+         *  actually occurs on the server. Nevertheless it should
+         *  add up to the same amount.
+         */
+        $scope.calculatePrices = function() {
+
+          if ( !$scope.haveValidOrderSize) return;
+          if ( !$scope.haveValidYourQty) return;
+
+          // Collect what we need.
+          var orderSize = $scope.finalOrderSize;
+          var yourQty = $scope.finalYourQuantity;
+          var rrp = $scope.variant.manufacturerPrice;
+          var packSize = $scope.variant.componentsQty;
+          //console.log('-------- CALCULATE ---------')
+          //console.log('orderSize=' + orderSize);
+
+
+          // Find the price for this Order Size
+          var priceList = $scope.variant.pricing[0].pricingQuantity;
+          /*console.log('priceList=', priceList);*/
+          var found = false;
+          for (var i = 0; i < priceList.length; i++) {
+            var p = priceList[i];
+            if (p.quantity == orderSize) {
+              var price = p.price;
+              var pricingQuantityId = p.pricingQuantityId;
+              found = true;
+              break;
+            }
+          }
+          if ( !found) {
+            alert('Internal Error 387663');
+          }
+
+
+          // Call the server to update the shipping charge.
+          var shipping = 10.00;
+          var GST_RATE = 0.1000;
+
+
+
+          var pricePack = price * packSize;
+          var priceSubTotal = price * packSize * yourQty;
+          var subTotalWithShipping = priceSubTotal + shipping;
+          var gst = subTotalWithShipping * GST_RATE;
+          var grandTotal = subTotalWithShipping + gst;
+          //console.log('');
+          //console.log('price=' + accounting.formatMoney(price));
+          //console.log('pricePack=' + accounting.formatMoney(pricePack));
+          //console.log('priceSubTotal=' + accounting.formatMoney(priceSubTotal));
+          //console.log('subTotalWithShipping=' + accounting.formatMoney(subTotalWithShipping));
+          //console.log('gst=' + accounting.formatMoney(gst));
+          //console.log('grandTotal=' + accounting.formatMoney(grandTotal));
+
+          // Do the same calculation for RRP (Recommended Retail Price)
+          var rrpPack = rrp * packSize;
+          var rrpSubtotal = rrp * packSize * yourQty;
+          var rrpSubtotalWithShipping = rrpSubtotal + shipping;
+          var rrpGst = rrpSubtotalWithShipping * GST_RATE;
+          var rrpGrandTotal = rrpSubtotalWithShipping + rrpGst;
+          //console.log('');
+          //console.log('rrp=' + accounting.formatMoney(rrp));
+          //console.log('rrpPack=' + accounting.formatMoney(rrpPack));
+          //console.log('rrpSubtotal=' + accounting.formatMoney(rrpSubtotal));
+          //console.log('rrpSubtotalWithShipping=' + accounting.formatMoney(rrpSubtotalWithShipping));
+          //console.log('rrpGst=' + accounting.formatMoney(rrpGst));
+          //console.log('rrpGrandTotal=' + accounting.formatMoney(rrpGrandTotal));
+
+
+          // Work out the savings
+          var savingPack = rrpPack - pricePack;
+          var savingTotal = rrpGrandTotal - grandTotal;
+          //console.log('');
+          //console.log('savingPack=' + accounting.formatMoney(savingPack));
+          //console.log('savingTotal=' + accounting.formatMoney(savingTotal));
+
+          //console.log('');
+          //console.log('pricingQuantityId=' + pricingQuantityId);
+          $scope.finalPricingQuantityId = pricingQuantityId;
+
+          // Set the final values.
+          $scope.calc_price = accounting.formatMoney(price);
+          $scope.calc_subtotal = accounting.formatMoney(priceSubTotal);
+          $scope.calc_shipping = accounting.formatMoney(shipping);
+          $scope.calc_gst = accounting.formatMoney(gst);
+          $scope.calc_grandTotal = accounting.formatMoney(grandTotal);
+          $scope.calc_rrpSaving = accounting.formatMoney(savingTotal);
+          $scope.calc_shippingSaving = accounting.formatMoney(rrp);
+
+          if ($scope.haveValidOrderSize && $scope.haveValidYourQty) {
+            var totalOrdered = $scope.so_alreadyOrdered + $scope.finalYourQuantity;
+            return (totalOrdered >= $scope.finalOrderSize);
+          }
+          return false;
+        }
+
+
+        /*
+         *  Date of Birth handling.
+         */
+        $scope.dateOfBirthMessage = 'Please enter your date of birth';
+        $scope.haveValidDateOfBirth = function() {
+          if ($scope.so_dateOfBirth) {
+
+            var dob = moment($scope.so_dateOfBirth);
+            var turns18 = dob.add(18, 'years');
+            var now = moment();
+            var threeYearsAgo = moment().subtract(3, 'years');
+            var tenYearsAgo = moment().subtract(10, 'years');
+            var dob = moment($scope.so_dateOfBirth);
+
+            if (now.isBefore(dob)) {
+              $scope.dateOfBirthMessage = 'You haven\'t been born yet!';
+              return false;
+            }
+            else if (dob.isAfter(threeYearsAgo)) {
+              $scope.dateOfBirthMessage = 'You should learn to walk before you drink!';
+              return false;
+            }
+            else if (dob.isAfter(tenYearsAgo)) {
+              $scope.dateOfBirthMessage = 'Go climb a tree or something!';
+              return false;
+            }
+            else if (now.isBefore(turns18)) {
+              $scope.dateOfBirthMessage = 'Sorry, you are too young to buy alcohol.';
+              return false;
+            }
+
+            // Is over 18 years old
+            $scope.haveValidDob = true;
+            return true;
+          }
+
+          // dob not entered yet
+          return false;
+        }
+
+
+        /*
+         *  Billing Address handling.
+         */
+         $scope.haveBillingAddress = function() {
+           return ($scope.billingAddressId) ? true : false;
+         }
+        $scope.billingAddressId = null;
+        $scope.setBillingAddress = function(addressId) {
+          $scope.billingAddressId = addressId;
+          $scope.haveValidBillingAddress = true;
+          $('.so_billing_address_card').removeClass('so_chosen_address');
+          $('.so_billing_address_card .alert').addClass('alert-warning').removeClass('alert-success');
+          $('.so_billing_address_card[so_address_id='+addressId+']').addClass('so_chosen_address');
+          $('.so_billing_address_card[so_address_id='+addressId+'] .alert').removeClass('alert-warning').addClass('alert-success');
+        }
+
+
+        /*
+         *  Ship-To address handling.
+         */
+        $scope.shiptoAddressId = null;
+        $scope.setShiptoAddress = function(addressId) {
+          $scope.shiptoAddressId = addressId;
+          $scope.haveValidShippingAddress = true;
+          $('.so_shipto_address_card').removeClass('so_chosen_address');
+          $('.so_shipto_address_card .alert').addClass('alert-warning').removeClass('alert-success');
+          $('.so_shipto_address_card[so_address_id='+addressId+']').addClass('so_chosen_address');
+          $('.so_shipto_address_card[so_address_id='+addressId+'] .alert').removeClass('alert-warning').addClass('alert-success');
+        }
+        $scope.haveShiptoAddress = function() {
+          return ($scope.shiptoAddressId) ? true : false;
+        }
+
+
+
+        /*
+         *  Next button handling.
+         */
+        $scope.haveRequiredInformation = function() {
+          $scope.haveAllTheRequiredInformation = (
+            $scope.haveValidOrderSize
+            && $scope.haveValidYourQty
+            && $scope.haveValidDob
+            && $scope.haveValidBillingAddress
+            && $scope.haveValidShippingAddress
+          );
+          return $scope.haveAllTheRequiredInformation;
+        }
+
+        // Actual handling of the next button
+        $scope.nextButtonClicked = function() {
+
+          // In case the Next button somehow becomes enabled.
+          if ( !$scope.haveAllTheRequiredInformation) {
+            return false;
+          }
+
+          // Get details of the current user.
+          var user = authservice.getCurrentUser();
+          var customerId = user.ttuat;
+          var name = user.firstname;
+          var capitalized = name.replace(/\w\S*/g, function(txt){
+            // Handles multi-word names
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          });
+          var ownerLabel = capitalized + "'s";
+
+          console.log('customerId=' + customerId);
+          console.log('ownerLabel=' + ownerLabel);
+
+          if ($scope.creating_a_new_circlebuy) {
+            /*
+             *  Create a circlebuy, then the customer order.
+             */
+             teaService.newSharedOrder({
+               "customerId": customerId,
+               "pricingQuantityId": $scope.finalPricingQuantityId,
+               "quantity": $scope.finalOrderSize,
+               "ownerLabel": ownerLabel
+               //"expiresAt": "1970-00-00T00:00:00.000Z"
+             }, $scope, teaService).then(function(data){
+               if (data) {
+                 newSharedOrderId = data.sharedOrderId;
+                 alert('New CircleBuy number is ' + newSharedOrderId);
+
+                 // Jump to the next page.
+               //    $('#so_link_to_next_page')[0].click();
+                var newUrl = 'circlebuy-invites.html?circlebuy=' + newSharedOrderId;
+                console.log('Will jump to: ' + newUrl)
+                window.location.href = newUrl;
+                 /*return false;
+                 return true;*/
+               } else {
+                 // Could not create the new order.
+                 // An error message will have already been logged.
+                 alert('An error occurred creating the circlebuy. Please try again later.');
+               }
+               return false;
+             });
+
+          } else {
+            console.log('ok 0b');
+
+            /*
+             *  Add a customer order to the existing circlebuy.
+             */
+            alert('not creating order yet!');
+          }
+          return false;
+
+        } // nextButtonClicked()
+
+
+        /*
+         *  Convenience function used with ng-repeat to iterate X times
+         */
+        $scope.range = function(x) {
+          if (x) {
+            var num = parseInt(x)
+            if (num < 0) num = 0;
+            return new Array(num);
+          }
+          return [ ]; // num is undefined
+        }
+
+
+        /*
+         *  Set up the login part at the top of the page.
+         */
+        authservice.init({
+          host: 'localhost',
+          port: 9090,
+          tenant: 'nodeclient',
+          pretend: true,
+          onLoggedIn: function() {
+
+            // Use $timeout, which does the same as $apply, but gives
+            // this controller definition function time to complete.
+            // Otherwise we get an 'inprog' error from Angular.
+            $timeout(function(){
+              $scope.loggedIn = true;
+            }, 100);
+          },
+          onLoggedOut: function() {
+            $timeout(function(){
+              $scope.loggedIn = false;
+            }, 100);
+          }
+        });
+        console.log('Current user:', authservice.getCurrentUser());
+
+    });
+
   //- script.

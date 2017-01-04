@@ -512,13 +512,13 @@ block content
       nav.page
         ul
           li
-            a(href='drinks-red.html') Red
+            a(href='drinks.html?category=620') Red
           //- li
           li
-            a(href='drinks-white.html') White
+            a(href='drinks.html?category=610') White
           //- li
           li
-            a(href='drinks-beer.html') Beer
+            a(href='drinks.html?category=660') Beer
           //- li
           li
             a(href='drinks-spirits.html') Spirits
@@ -1613,5 +1613,18 @@ block scripts
         }
       });
     });
+
+
+    /*
+     *  Set up the login part at the top of the page.
+     */
+    authservice.init({
+      host: 'localhost',
+      port: 9090,
+      tenant: 'nodeclient',
+      pretend: true
+    });
+    console.log('Current user:', authservice.getCurrentUser());
+
   //- script.
 //- block scripts

@@ -557,10 +557,18 @@ block content
     //- container
   //- section
 
-  section.drinks
+  section.drinks(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
     .container
       .productdetails.search
         .row
+
+          // Render the circlebuys using widgets
+          //div(ng-repeat="sharedOrder in sharedOrders").col-md-6.col-sm-6.text-center.super-customized
+          div(ng-repeat="sharedOrder in sharedOrders").col-md-3.col-sm-6.text-center
+            circlebuy-widget
+
+
+          // Example widgets - Render using data in data/circlebuy.pug
           each item, index in circlebuy
             if circlebuy[index].catalog
               .col-md-3.col-sm-6.text-center
@@ -958,7 +966,6 @@ block content
     //- modal-dialog
   //- modal
 
-
 block scripts
   // External Script goes here...
 
@@ -1004,5 +1011,45 @@ block scripts
         }
       });
     });
+
+
+    /************************************************************
+     *
+     *    Angular code.
+     */
+    var app = angular.module('myApp', ['ngSanitize']);
+
+    teaservice.init(app);
+
+    // Add the controller for this page
+    app.controller('myCtrl', function($scope, teaService) {
+
+        // Look after the product_variant
+        var NICE_PRODUCT_VARIANT_ID = 6180;
+        /*
+        teaService.getProductAndSetAngularVariables({
+          productVariantId: NICE_PRODUCT_VARIANT_ID,
+          needPricing: true
+        }, $scope, teaService);*/
+
+        // Look after the circle buys
+        teaService.getSharedOrdersAndSetAngularVariables({
+          //productVariantId: NICE_PRODUCT_VARIANT_ID
+        }, $scope, teaService);
+
+    });
+
+
+    /*
+     *  Set up the login part at the top of the page.
+     */
+    authservice.init({
+      host: 'localhost',
+      port: 9090,
+      tenant: 'nodeclient',
+      pretend: true
+    });
+    console.log('Current user:', authservice.getCurrentUser());
+
   //- script.
 //- block scripts

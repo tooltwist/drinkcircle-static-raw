@@ -14,7 +14,7 @@ var dir = 'drinkcircle'; // project folder
 
 var paths = {
     // This must be in the right order, so linked files are processed first.
-    pug: ['includes/**/*.pug', 'layout/**/*.pug', './*.pug', '!**/_*.pug', '!node_modules/**/*'],
+    pug: ['includes/**/*.pug', 'assets/vendor/**/*.pug', 'layout/**/*.pug', 'partials/**/*.pug', './*.pug', '!**/_*.pug', '!node_modules/**/*'],
     scss: 'assets/css/**/*.scss',
     js: 'assets/scripts/**/*.js'
 }
@@ -122,9 +122,11 @@ var assets = [
     assetsBaseDir + '/css/**/*.css',
     assetsBaseDir + '/images/**/*.*',
     // assetsBaseDir + '/scripts/**/*.*',
-    assetsBaseDir + '/vendor/bootstrap/dist/**/*.*',
+    //assetsBaseDir + '/vendor/bootstrap/dist/**/*.*',
+    assetsBaseDir + '/vendor/**/*.*',
     assetsBaseDir + '/fonts/**/*.*',
     "!" + assetsBaseDir + '/css/*.scss',
+    "!" + assetsBaseDir + '/vendor/**/*.pug',
 ];
 gulp.task('copy', function() {
     gulp.src(assets, { base: './'})
@@ -136,11 +138,15 @@ gulp.task('copy', function() {
 // - ###########################################################################
 var bowerBaseDir = "./bower_components";
 var bower = [
+    bowerBaseDir + '/accounting/**/*.*',
+    bowerBaseDir + '/angular/**/*.*',
+    bowerBaseDir + '/angular-sanitize/**/*.*',
+    bowerBaseDir + '/animate.css/**/*.*',
     bowerBaseDir + '/bootstrap/dist/**/*.*',
+    bowerBaseDir + '/font-awesome/**/*.*',
     bowerBaseDir + '/jquery/dist/**/*.*',
     bowerBaseDir + '/jquery.cookie/**/*.*',
-    bowerBaseDir + '/animate.css/**/*.*',
-    bowerBaseDir + '/font-awesome/**/*.*',
+    bowerBaseDir + '/moment/**/*.*',
     bowerBaseDir + '/owl.carousel/dist/**/*.*',
     '!' + bowerBaseDir + '/jquery.cookie/*.json', // Exclude '.json' files
     '!' + bowerBaseDir + '/font-awesome/scss/**', // Exclude 'scss' folder

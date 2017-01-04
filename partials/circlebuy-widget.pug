@@ -1,0 +1,104 @@
+// Required sharedOrder, as returned by philChristmas/getSharedOrders
+// See productdetails2.pug for an example.
+.card_rounded
+  a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
+    big
+      span {{sharedOrder.productVariant.manufacturer}}
+        br
+        small.el {{sharedOrder.productVariant.name}}
+      //- span
+  //- a
+  hr
+  span
+    big {{sharedOrder.sharedOrder.ownerLabel}}&nbsp;
+      strong
+        big {{sharedOrder.sharedOrder.quantity}} pack&nbsp;
+      | circlebuy
+  .shortsummary
+    .sold
+      p.cases-sold sold
+      p.lead
+        span.green 7
+        br
+        small zzz
+        //- small cases
+      //- p
+    //- sold
+    .left
+      p left
+      p.lead
+        span.green 3
+        br
+        small zzz
+        //- small cases
+      //- p
+    //- left
+  //- shortsummary
+  p
+  .avatar
+    .img
+      .ring._70p
+      img(src='assets/images/circles/circles_8.png', alt='')
+    //- img
+    .countdown
+      //- span.time 32:12
+      br
+      p
+        big
+          i.fa.fa-clock-o
+          | &nbsp;
+          // This countdown timer gets updated by javascript
+          span(expiresAt="{{sharedOrder.sharedOrder.expiresAt}}").countdownTimer
+      //- p
+      //- span
+    //- countdown
+  //- avatar
+  br
+  status is {{sharedOrder.sharedOrder.status}}
+  br
+  p
+    a.button.inline.v8.joincirclebuy.thin-line(href='circlebuy-start.html?circleBuy={{sharedOrder.sharedOrder.sharedOrderId}}') view
+    | &nbsp;
+    a.button.inline.v7.joincirclebuy.thin-line(href="circlebuy-start.html?circleBuy={{sharedOrder.sharedOrder.sharedOrderId}}") join
+    | &nbsp;
+    a.button.inline.v8.joincirclebuy.thin-line(href="") watch
+  //- p
+  .circlebuy-table
+    .prod-details.deals
+      .label-qty.cols
+        strong Qty
+        br
+      //- qty
+      .label-bottle.cols
+        strong Bottle
+        br
+      //- label-bottle
+      .label-pack.cols
+        strong {{sharedOrder.productVariant.componentsQty}} Pack
+        br
+        //- span
+      //- price
+      .label-savings.cols
+        span
+          strong.green Save
+        br
+      //- savings
+    //- prod-details
+    .prod-details.deals.tr
+      .label-qty.cols
+        span {{sharedOrder.sharedOrder.quantity}}
+      //- qty
+      .label-bottle.cols
+        span {{sharedOrder.d_unitPrice}}
+      //- label-bottle
+      .label-pack.cols
+        span {{sharedOrder.d_packPrice}}
+        //- span
+      //- price
+      .label-savings.cols
+        strong.middle
+          big.lead {{sharedOrder.d_packSave}}
+      //- savings
+    //- prod-details
+  //- .circlebuy-table
+//- card_rounded

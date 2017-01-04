@@ -15,6 +15,8 @@ html(lang="en")
     link(href='bower_components/font-awesome/css/font-awesome.css', rel='stylesheet', type='text/css')
     link(href='bower_components/owl.carousel/dist/assets/owl.carousel.min.css', rel='stylesheet', type='text/css')
     link(href='bower_components/owl.carousel/dist/assets/owl.theme.default.min.css', rel='stylesheet', type='text/css')
+    link(href='assets/vendor/authservice/authservice.css', rel='stylesheet', type='text/css')
+
 
     //- IE10 viewport hack for Surface/desktop Windows 8 bug
     link(href='assets/css/ie10-viewport-bug-workaround.css', rel='stylesheet')
@@ -26,6 +28,16 @@ html(lang="en")
     <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    //
+    //	Prevent flashing of unstyled content (seeing the template before Angular.js runs).
+    //	See http://stackoverflow.com/questions/16074673/angularjs-strategy-to-prevent-flash-of-unstyled-content-for-a-class
+    //
+    style.
+      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+      display: none !important;
+      }
+
     block css
   body
     //- .loader
@@ -41,9 +53,16 @@ html(lang="en")
     script(src="bower_components/jquery/dist/jquery.js", type="text/javascript")
     script(src="bower_components/jquery.cookie/jquery.cookie.js", type="text/javascript")
     script(src="bower_components/owl.carousel/dist/owl.carousel.min.js", type="text/javascript")
+    script(src="/bower_components/accounting/accounting.min.js")
+    script(src="/bower_components/angular/angular.min.js")
+    script(src="/bower_components/angular-sanitize/angular-sanitize.min.js")
+    script(src="/bower_components/moment/min/moment.min.js")
     script(src="assets/vendor/bootstrap/dist/js/bootstrap.js", type="text/javascript")
     script(src="assets/scripts/ie10-viewport-bug-workaround.js", type="text/javascript")
     script(src="assets/scripts/main.js", type="text/javascript")
+    script(src="assets/vendor/teaservice/teaservice.js", type="text/javascript")
+    script(src="assets/vendor/authservice/authservice.js", type="text/javascript")
+
 
     // External Script goes here...
     block scripts

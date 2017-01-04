@@ -162,6 +162,17 @@ hr {
 					font-size: 14px;
 				}
 			}
+			a.navbar-drinktype {
+					color: rgb(65, 181, 75) !important;
+					zfont-weight: bold !important;
+					margin-top: 0px;
+					font-size: 10px;
+					@media screen and (min-width: 1199px) {
+						margin-top: 1px;
+						font-size: 12px;
+					}
+			}
+
 			> a {
 				color: #333;
 				text-align: center;
@@ -4118,4 +4129,10 @@ section {
 	.card_rounded {
 		padding: 5px 5px 0 5px;
 	}
+}
+
+// Added during philChristmas
+.shared-order-calc-field {
+	width: 60px;
+	text-align: right;
 }
