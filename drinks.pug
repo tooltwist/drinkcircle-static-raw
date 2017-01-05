@@ -615,7 +615,7 @@ block content
                     .buy.drop
                       ul
                         li
-                          a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                          a.thumb-action(ng-click="addToCompare(variant.productVariantId)", data-toggle='modal') Compare
                         //- li
                         li.price {{variant.d_price}}
                         //- li
@@ -2164,6 +2164,59 @@ block scripts
         });
         $scope.variants = variants;
       });
+
+
+      /*
+       *  Functions to keep track of which products will be compared.
+       */
+      var COMPARE_COOKIE = 'idsForCompare';
+      var compare_productVariantIds = [ ];
+      var cookie = authservice.getCookie(COMPARE_COOKIE);
+      if (cookie) {
+        compare_productVariantIds = cookie.split(',');
+        if (compare_productVariantIds.length == 1 && compare_productVariantIds[0] == '') {
+          compare_productVariantIds = [ ];
+        }
+      } else {
+        compare_productVariantIds = [ ];
+      }
+      console.log('ids=', compare_productVariantIds);
+
+      // Add a new product to compare
+      $scope.addToCompare = function(productVariantId) {
+        console.log('addToCompare ' + productVariantId);
+        // See if it's already in the list
+        for (var i = 0; i < compare_productVariantIds.length; i++) {
+          if (compare_productVariantIds[i] == productVariantId) {
+            console.log('ids=', compare_productVariantIds);
+            return;
+          }
+        }
+
+        compare_productVariantIds.unshift(productVariantId);
+        while (compare_productVariantIds.length > 3) {
+          compare_productVariantIds.pop();
+        }
+        console.log('ids=', compare_productVariantIds);
+
+        //ZZZ Should show 'modal_compare' first.
+        // Save the new cookie value.
+        var sep = '';
+        var cookie = '';
+        for (var i = 0; i < compare_productVariantIds.length; i++) {
+          cookie += sep + compare_productVariantIds[i];
+          sep = ',';
+        }
+        console.log('new cookie is ' + cookie + '.');
+        authservice.setCookie(COMPARE_COOKIE, cookie, 30); // keep it a maximum of a month
+
+        if (compare_productVariantIds.length > 1) {
+          window.location.href = 'compare.html';
+        } else {
+          alert('Select another drink to see the comparison');
+        }
+
+      }
 
 
 
