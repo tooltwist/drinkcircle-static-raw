@@ -15,7 +15,8 @@ $red		: #E93D3D;
 
 body {
 	font-family: 'Open Sans', sans-serif;
-  color: #5a5a5a;
+  // color: #5a5a5a;
+	color: #868686;
 	// background: #dadada;
 	// background: whitesmoke;
 	font-size: 16px;
@@ -180,8 +181,14 @@ hr {
 				font-weight: lighter;
 				& {
 					padding: 15px 10px;
+					&.info {
+						padding: 10px 10px;
+					}
 					@media screen and (min-width: 992px) {
 						padding: 15px 12px;
+						&.info {
+							padding: 10px 12px;
+						}
 					}
 				}
 				&:hover {
@@ -420,7 +427,7 @@ hr {
 				//
 				bottom: 60px;
 				@media screen and (min-width: 768px) {
-					bottom: 120px;
+					bottom: 155px;
 					// font-size: 42px;
 					font-size: 2.2vw;
 					line-height: 55px;
@@ -1972,6 +1979,9 @@ section {
 	&.inherit {
 		color: inherit;
 	}
+	&.black {
+		color: #868686;
+	}
 }
 .heading-center {
 	text-align: center;
@@ -2149,23 +2159,24 @@ section.productdetails {
 		& {
 			position: relative;
 		}
+		.sold, .left {
+			top: 100px;
+		}
 		.sold {
 			position: absolute;
 			left: 10px;
-			top: 52px;
-			font-weight: bold;
+			// font-weight: bold;
 		}
 		.left {
 			position: absolute;
 			right: 10px;
-			top: 52px;
-			font-weight: bold;
+			// font-weight: bold;
 		}
 		p {
 			margin-bottom: 0;
 		}
 		p.lead {
-			line-height: 16px;
+			line-height: 24px;
 			margin-top: 5px;
 			small {
 				font-size: 13px;
@@ -2173,8 +2184,8 @@ section.productdetails {
 		}
 		&:not(.cases-left) {
 			p.lead * {
-				color: inherit;
-				font-weight: bold;
+				// color: inherit;
+				// font-weight: bold;
 				font-size: 24px;
 			}
 		}
@@ -2229,7 +2240,7 @@ section.productdetails {
 				top: 10px;
 			}
 			a {
-				color: #fff;
+				// color: #fff;
 			}
 			.rate-counter {
 				margin-top: 30px;
@@ -2259,7 +2270,10 @@ section.productdetails {
 						line-height: 28px;
 						span {
 							display: block;
-							font-size: 14px;
+							font-size: 13px;
+							line-height: 12px;
+							margin-top: 10px;
+							font-weight: normal;
 						}
 					}
 				}
@@ -2273,6 +2287,11 @@ section.productdetails {
 		}
 		.inventory {
 			text-align: center;
+			> div:first-child {
+				@media screen and (min-width: 768px) {
+					border-right: 1px solid #eee;
+				}
+			}
 			h1 {
 				margin-top: 0;
 				margin-bottom: 10px;
@@ -2596,7 +2615,7 @@ section.productdetails {
 
 
 .bread a {
-	font-size: 14px;
+	font-size: 12px;
 	color: inherit;
 }
 .expand {
@@ -3770,7 +3789,7 @@ table {
 .pagenav {
 	border-bottom: 1px solid #ddd;
 	padding: 0;
-	margin-bottom: -25px;
+	// margin-bottom: -25px;
 	background: white;
 }
 nav {
@@ -3940,17 +3959,19 @@ section {
 
 
 .pdetail-info-text {
-	font-size: 24px;
+	font-size: 22px;
+	margin-top: 5px;
 }
 
 @media screen and (min-width: 768px) {
 	.product-detail-wrap {
-		margin-top: 31px;
+		margin-top: -50px;
 	}
 }
 
 .see-all-drinks {
-	top: 50px !important;
+	// margin-top: 10px;
+	top: 15px !important;
 }
 
 
@@ -3986,15 +4007,15 @@ section {
 	}
 	.label-qty {
 		width: 110px;
-		text-align: center;
+		// text-align: center;
 	}
 	.label-pack {
 		width: 110px;
-		text-align: center;
+		// text-align: center;
 	}
 	.label-savings {
 		width: 110px;
-		text-align: center;
+		// text-align: center;
 		.lead {
 			font-weight: bold;
 			color: #41B54B;
@@ -4003,7 +4024,7 @@ section {
 	}
 	.label-bottle {
 		width: 110px;
-		text-align: center;
+		// text-align: center;
 		.lead {
 			font-weight: bold;
 		}
@@ -4056,7 +4077,7 @@ section {
 		}
 	}
 	.sold, .left {
-		top: 70px !important;
+		// top: 70px !important;
 	}
 	.sold {
 		left: 6px !important;
@@ -4135,4 +4156,39 @@ section {
 .shared-order-calc-field {
 	width: 60px;
 	text-align: right;
+}
+
+
+.input-group-xs > .form-control, .input-group-xs > .input-group-addon, .input-group-xs > .input-group-btn > .btn {
+	height: 24px;
+	line-height: 0;
+}
+
+
+.circlebuy-pricebox {
+	background: whitesmoke;
+	border: 1px solid #ddd;
+	padding: 5px 10px;
+}
+
+.circlebuy-button-wrap {
+	margin-top: 10px;
+}
+
+.lnk-learn-about-circlebuying {
+	font-size: 12px;
+	top: auto !important;
+	bottom: 0;
+}
+
+hr.gray {
+	border-color: #ddd !important;
+}
+
+.drink-type {
+	// font-size: 12px;
+}
+
+.bottle-price {
+	margin-left: 50px;
 }

@@ -1,0 +1,860 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+
+  //- style
+
+
+block content
+
+  section.productdetails
+    .container
+      p.bread
+        a(href='#modal_coming_soon', data-toggle='modal') Red
+        | &nbsp;/&nbsp;
+        a(href='#modal_coming_soon', data-toggle='modal') Brokenwood
+        | &nbsp;/&nbsp;
+        a(href='#modal_coming_soon', data-toggle='modal')
+          strong Graveyard Vineyard Shiraz - 6 pack
+        //- a
+      //- p
+      //- bread
+      .row
+        .col-md-5.text-center
+          h1
+            span Brokenwood
+            br
+            strong
+              small Graveyard Vineyard Shiraz  - 6 pack
+            //- strong
+            br
+            p
+            .row.pdetail-info-text
+              .col-md-6.text-left
+                small
+                  | RRP $29.99&nbsp;
+                  span.pb / bottle
+                //- small
+              //- col-md-6
+              .col-md-6.text-right
+                small
+                  span.avl 500+ available / 319 sold
+                //- small
+              //- col-md-6
+            //- row
+          //- h1
+          hr
+          .stage.infos
+            a.button.inline.v8.absolute._left.see-all-drinks(href="shop.html") see all drinks
+            .stats
+              .rate-counter
+                .ring
+                  .count 94
+                    span points
+                //- ring
+              //- rate-counter
+            //- stats
+            img(src="//www.brokenwood.com.au/assets/images/products/pictures/GraveyardVineyardShiraz11.jpg", alt="")
+          //- stage
+          br
+          p
+        //- col-md-5
+        .col-md-7.product-detail-wrap
+          .infos
+            .row
+              .col-md-12
+                .inventory
+                  p.lead.text-center
+                    strong Option 1 : Buy now
+                  .pricing
+                    .row
+                      .col-md-4.col-sm-4
+                        fieldset.deals.card
+                          legend 1 case
+                          p.lead
+                              strong $25.99
+                          a.btn.btn-success(href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                          br
+                          | save&nbsp;
+                          p.lead.green.inline
+                            strong $4&nbsp;
+                          | / bottle
+                        //- deals
+                      //- col-md-4
+                      .col-md-4.col-sm-4
+                        fieldset.deals.card
+                          legend 5+ cases
+                          p.lead
+                              strong $21.99
+                          a.btn.btn-success(href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                          br
+                          | save&nbsp;
+                          p.lead.green.inline
+                            strong $8&nbsp;
+                          | / bottle
+                        //- deals
+                      //- col-md-4
+                      .col-md-4.col-sm-4
+                        fieldset.deals.card
+                          legend 10+ cases
+                          p.lead
+                              strong $19.99
+                          a.btn.btn-success(href="#", target="_blank")
+                            span.num buy now
+                          //- a
+                          br
+                          | save&nbsp;
+                          p.lead.green.inline
+                            strong $10&nbsp;
+                          | / bottle
+                        //- deals
+                      //- col-md-4
+                    .row
+                  //- pricing
+                //- inventory
+              //- col-md-12
+            //- row
+            hr
+
+            p.lead.text-center.relative
+              strong Option 2 : Join a circlebuy
+              a.button.inline.v8.absolute._right(href="circlebuys.html") learn more
+            //- p
+            .row.text-center
+              .col-md-4.col-md-offset-2
+                fieldset.deals.card
+                  legend 5 case circlebuy
+                  p.lead
+                    strong $21.99
+                  | save&nbsp;
+                  p.lead.green.inline
+                    strong $8&nbsp;
+                  | / bottle
+                //- deals
+              //- col
+              .col-md-4
+                fieldset.deals.card
+                  legend 10 case circlebuy
+                  p.lead
+                    strong $19.99
+                  | save&nbsp;
+                  p.lead.green.inline
+                    strong $10&nbsp;
+                  | / bottle
+                //- deals
+              //- col-md-5
+            //- row
+            br
+            .row
+              .col-md-4
+                //- p.lead.text-center.totalcbcount Duration: 72hrs
+              //- col-md-4
+              .col-md-4
+                p.lead.text-center.totalcbcount 84 circlebuys
+              //- col-md-4
+              .col-md-4
+                .text-right
+                  a.button.inline.v7(href="#") public
+                  | &nbsp;
+                  a.button.inline.v7(href="#") friends
+                //- text-right
+              //- col-md-4
+            //- row
+
+            .row
+              .col-md-6.col-sm-6.text-center
+                .card_rounded
+                  a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
+                    span Brokenwood
+                      br
+                      small.el Graveyard Vineyard Shiraz 2010
+                    //- span
+                  //- a
+                  hr
+                  span Adrian's circlebuy
+                    br
+                    | 10 cases -&nbsp;
+                    strong SAVE $8&nbsp;
+                    small /bottle
+                  hr
+                  .shortsummary
+                    .sold
+                      p.cases-sold sold
+                      p.lead
+                        span.green 7
+                        br
+                        //- small cases
+                      //- p
+                    //- sold
+                    .left
+                      p left
+                      p.lead
+                        span.green 3
+                        br
+                        //- small cases
+                      //- p
+                    //- left
+                  //- shortsummary
+                  p
+                  .avatar
+                    .img
+                      .ring._70p
+                      img(src='assets/images/circles/circles_8.png', alt='')
+                    //- img
+                    .countdown
+                      //- span.time 32:12
+                      br
+                      p
+                        i.fa.fa-clock-o
+                        span &nbsp;04:56.12
+                      //- p
+                      //- span
+                    //- countdown
+                  //- avatar
+                  br
+                  p
+                    a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
+                    | &nbsp;
+                    a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                    | &nbsp;
+                    a.button.inline.v8.joincirclebuy(href="") watch
+                  //- p
+                  p.cbpromo-price 6 pack - $119.94
+                  hr.short
+                  p.lead.cbprice
+                    strong  $19.99
+                    small &nbsp;/ bottle
+                  //- p
+                  //- big
+                //- card_rounded
+              //- col-md-3
+              .col-md-6.col-sm-6.text-center
+                .card_rounded
+                  a(href='#modal_preview_detail_sticks', data-toggle='modal')
+                    span Sticks
+                      br
+                      small.el Pinot Noir 2015
+                    //- span
+                  //- a
+                  hr
+                  span Sharmaine's circlebuy
+                    br
+                    | 10 cases -&nbsp;
+                    strong SAVE $8&nbsp;
+                    small /bottle
+                  hr
+                  .shortsummary
+                    .sold
+                      p.cases-sold sold
+                      p.lead
+                        span.green 5
+                        br
+                        //- small cases
+                      //- p
+                    //- sold
+                    .left
+                      p left
+                      p.lead
+                        span.green 5
+                        br
+                        //- small cases
+                      //- p
+                    //- left
+                  //- shortsummary
+                  p
+                  .avatar
+                    .img
+                      .ring._50p
+                      img(src='assets/images/circles/circles_1.png', alt='')
+                    //- img
+                    .countdown
+                      //- span.time 32:12
+                      br
+                      p
+                        i.fa.fa-clock-o
+                        span &nbsp;16:08.00
+                      //- p
+                      //- span
+                    //- countdown
+                  //- avatar
+                  br
+                  p
+                    a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
+                    | &nbsp;
+                    a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                    | &nbsp;
+                    a.button.inline.v8.joincirclebuy(href="") watch
+                  //- p
+                  p.cbpromo-price 12 pack - $179.88
+                  hr.short
+                  p.lead.cbprice
+                    strong  $14.99
+                    small &nbsp;/ bottle
+                  //- p
+                  //- big
+                //- card_rounded
+              //- col-md-3
+            //- row
+            br
+            .expand.text-center
+              a(href='#modal_coming_soon', data-toggle='modal')
+                | show more&nbsp;
+                i.fa.fa-caret-down
+            //- expand
+            hr
+            p.lead.text-center
+              strong Option 3 : Create a circlebuy
+              br
+              small(style='font-size: 16px;') creator bonus: 50% off first case
+            .text-center
+              a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") create
+              | &nbsp;
+              a.button.inline.v8(href="circlebuys.html") learn more
+            //- text-center
+            hr
+
+            .about
+              .tabs
+                ul.nav.nav-tabs(role='tablist')
+                  li.active(role='presentation')
+                    a(href='#pDetails', role='tab', data-toggle='tab') Product Details
+                  //- li
+                  li(role='presentation')
+                    a(href='#pTastingNotes', role='tab', data-toggle='tab') Tasting Notes
+                  //- li
+                  li(role='presentation')
+                    a(href='#pWineryInfo', role='tab', data-toggle='tab') Winery Information
+                  //- li
+                //- ul
+                .tab-content.card
+                  #pDetails.tab-pane.active(role='tabpanel')
+                    p.comment
+                      strong Brokenwood Graveyard Vineyard Shiraz&nbsp;
+                      | is a ripe and generous shiraz with lifted cherry and mint aromas nicely balanced with sweet chocolate notes on the nose and a soft rich palate with savoury cedary flavours and fine grained tannins on the finish.
+                    //- p
+                    .row
+                      .col-xs-4.col-md-4
+                        p
+                          strong.green variety
+                          br
+                          | Shiraz
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4
+                        p
+                          strong.green region
+                          br
+                          | Hunter Valley
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4
+                        p
+                          strong.green alcohol
+                          br
+                          | 14.5%
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4
+                        p
+                          strong.green vintage
+                          br
+                          | 2010
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4
+                        p
+                          strong.green shipping
+                          br
+                          | Free
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4(data-expand-items)
+                        p
+                          strong.green returns
+                          br
+                          | 60 days
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4(data-expand-items)
+                        p
+                          strong.green case size
+                          br
+                          | 12 bottles
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4(data-expand-items)
+                        p
+                          strong.green standard drinks
+                          br
+                          | 8
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4(data-expand-items)
+                        p
+                          strong.green food matching
+                          br
+                          | Osso Bucco, Lamb
+                        //- p
+                      //- col-md-4
+                      .col-xs-4.col-md-4
+                        p.share
+                          strong.green share
+                            br
+                            a(href="#", target="_blank")
+                              i.fa.fa-twitter
+                            //- a
+                            a(href="#", target="_blank")
+                              i.fa.fa-facebook
+                            //- a
+                            a(href="#", target="_blank")
+                              i.fa.fa-google-plus
+                            //- a
+                            a(href="#", target="_blank")
+                              i.fa.fa-envelope
+                            //- a
+                        //- p.share
+                      //- col-md-4
+                    //- row
+                    .expand.text-center
+                      a(href='#', data-expand)
+                        span.text more
+                        span.text(style='display: none') less
+                        | &nbsp;
+                        i.fa.fa-caret-down
+                      //- a
+                    //- expand
+                  //- tab-pane
+                  #pTastingNotes.tab-pane(role='tabpanel')
+
+                  //- tab-pane
+                  #pWineryInfo.tab-pane(role='tabpanel')
+
+                  //- tab-pane
+                //- tab-content
+              //- tabs
+            //- about
+            .reviews
+              .row
+                .col-md-7
+                  p.lead Customer Reviews &amp; Ratings
+                  a.popover_rating(href="#", data-toggle="popover", data-placement="bottom", data-title="Summary") 242 Ratings
+                    span.ratings
+                      table
+                        tr
+                          td(width="100")
+                            small 90 - 100
+                          //- td
+                          td(width="270")
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width: 100%')
+                                span.sr-only 100% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                          td.text-center(width="50")
+                            small 231
+                        //- tr
+                        tr
+                          td
+                            small 80 - 89
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='10', aria-valuemin='0', aria-valuemax='100', style='width: 10%')
+                                span.sr-only 10% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                          td.text-center
+                            small 10
+                        //- tr
+                        tr
+                          td
+                            small 70 - 79
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='1', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
+                                span.sr-only 1% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                          td.text-center
+                            small 1
+                        //- tr
+                        tr
+                          td
+                            small 60 - 69
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
+                                span.sr-only 0% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                          td.text-center
+                            small 0
+                        //- tr
+                        tr
+                          td
+                            small 60 below
+                          //- td
+                          td
+                            .progress
+                              .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
+                                span.sr-only 0% Complete (success)
+                              //- progress-bar
+                            //- progress
+                          //- td
+                          td.text-center
+                            small 0
+                        //- tr
+                      //- table
+                    //- ratings
+                  //- popover_rating
+                  br
+                  | 88 Reviews
+                //- col-md-6
+                .col-md-5
+                  .btn-review-wrap
+                    a.button.inline.v7(href="product-ratings.html") Write a review
+                    a.button.inline.v7(href="product-ratings.html") Rate product
+                  //- btn-review-wrap
+                //- col-md-6
+              //- row
+              .review
+                .list_groups
+                  .content
+                    .counter
+                      .ring
+                        //- img(src="assets/images/ring_silver.png", alt="")
+                        .count 96
+                      //- ring
+                    //- counter
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_1.jpg', alt='')
+                      span.form-control
+                        strong Quality Shiraz
+                        br
+                        small
+                          | by
+                          a(href="profile.html") Andrew Steer
+                          | | May 26, 2016
+                        //- small
+                        p.comment I really 'dig' this Shiraz. It's definitely 'one out of the box'. You can 'lay this one to rest' for a while or drink it right now!
+                      //- span
+                    //- input-group
+                  //- content
+                  .footer
+                    .row
+                      .col-md-12
+                        .right-to-center.basecolor
+                          small
+                            span.green
+                              a(href='#modal_coming_soon', data-toggle='modal') like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            span.green
+                              a(href='#modal_coming_soon', data-toggle='modal') comment
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-12
+                    //- row
+                  //- footer
+                //- list_groups
+                .list_groups
+                  .content
+                    .counter
+                      .ring
+                        //- img(src="assets/images/ring_silver.png", alt="")
+                        .count 91
+                      //- ring
+                    //- counter
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_2.jpg', alt='')
+                      span.form-control
+                        strong A beautiful wine
+                        br
+                        small
+                          | by
+                          a(href='#modal_coming_soon', data-toggle='modal') Carter Smith
+                          | | May 26, 2016
+                        //- small
+                        p.comment A beautiful Hunter Valley Red and very pleasing to the palate. Great value for the price.
+                      //- span
+                    //- input-group
+                  //- content
+                  .footer
+                    .row
+                      .col-md-12
+                        .right-to-center.basecolor
+                          small
+                            span.green
+                              a(href='#modal_coming_soon', data-toggle='modal') like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            span.green
+                              a(href='#modal_coming_soon', data-toggle='modal') comment
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-12
+                    //- row
+                  //- footer
+                //- list_groups
+                .list_groups
+                  .content
+                    .counter
+                      .ring
+                        //- img(src="assets/images/ring_silver.png", alt="")
+                        .count 82
+                      //- ring
+                    //- counter
+                    .input-group
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_5.jpg', alt='')
+                      span.form-control
+                        strong Very disappointing
+                        br
+                        small
+                          | by
+                          a(href='#modal_coming_soon', data-toggle='modal') Mary James
+                          | | May 26, 2016
+                        //- small
+                        p.comment Not up to the quality of previous vintages. Still a not a bad drop but not nearly as good as the 2012.
+                      //- span
+                    //- input-group
+                  //- content
+                  .footer
+                    .row
+                      .col-md-12
+                        .right-to-center.basecolor
+                          small
+                            span.green
+                              a(href='#modal_coming_soon', data-toggle='modal') like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            span.green
+                              a(href='#modal_coming_soon', data-toggle='modal') comment
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-12
+                    //- row
+                    .comment
+                      .list_groups
+                        .content
+                          .input-group
+                            span.input-group-addon
+                              .thumb
+                                .img
+                                  img(src='assets/images/users/user_7.jpg', alt='')
+                            span.form-control
+                              strong Comment: Very disappointing
+                              br
+                              small
+                                | by
+                                a(href='#modal_coming_soon', data-toggle='modal') Susie O'Brian
+                                | | May 26, 2016
+                              //- small
+                              p.comment I can't agree Mary. Like you I also enjoyed the previous vintages but I also loved this one. I've recommended this to several friends who have been very impressed.
+                            //- span
+                          //- input-group
+                        //- content
+                      //- list_groups
+                    //- comment
+                  //- footer
+                  .footer
+                    .row
+                      .col-md-12
+                        .right-to-center.basecolor
+                          small
+                            span.green
+                              a(href='#modal_coming_soon', data-toggle='modal') like
+                            //- strong
+                            | &nbsp;&nbsp;&nbsp;
+                            span.green
+                              a(href='#modal_coming_soon', data-toggle='modal') comment
+                            //- strong
+                          //- small
+                        //- right-to-center
+                      //- col-md-12
+                    //- row
+                  //- footer
+                //- list_groups
+                br
+                .expand.text-center
+                  a(href='#', data-toggle='collapse')
+                    | more&nbsp;
+                    i.fa.fa-caret-down
+                //- expand
+                hr
+
+                p.lead Discussions
+                .list_groups.discussions
+                  .content
+                    .commentbox
+                      .input-group
+                        span.input-group-addon
+                          .thumb
+                            .img
+                              img(src='assets/images/anonymous.png', alt='')
+                            //- img
+                          //- thumb
+                        //- span
+                        span.form-control
+                          .composer
+                            .head
+                              a(href='#modal_coming_soon', data-toggle='modal')
+                                i.fa.fa-pencil
+                                | Status
+                              //- a
+                              a(href='#modal_coming_soon', data-toggle='modal')
+                                i.fa.fa-picture-o
+                                | Photo/Video
+                              //- a
+                              a(href='#modal_coming_soon', data-toggle='modal')
+                                i.fa.fa-calendar-o
+                                | Event
+                              //- a
+                            //- head
+                            .content
+                              textarea.form-control(rows='4')
+                            //- content
+                            .controls
+                              a(href='#modal_coming_soon', data-toggle='modal')
+                                i.fa.fa-camera
+                              //- a
+                              a(href='#modal_coming_soon', data-toggle='modal')
+                                i.fa.fa-user-plus
+                              //- a
+                              a(href='#modal_coming_soon', data-toggle='modal')
+                                i.fa.fa-smile-o
+                              //- a
+                              a(href='#modal_coming_soon', data-toggle='modal')
+                                i.fa.fa-map-marker
+                              //- a
+                              a(href='#modal_coming_soon', data-toggle='modal')
+                                i.fa.fa-clock-o
+                              //- a
+                              a.post(href='#')
+                                i.fa.fa-send-o
+                                | Post
+                              //- a
+                            //- controls
+                          //- composer
+                        //- span
+                      //- input-group
+                    //- commentbox
+
+                    .input-group.discussion-row
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_1.jpg', alt='')
+                      span.form-control
+                        small
+                          | by
+                          a(href="profile") Andrew Steer
+                          | | May 25, 2016
+                        //- small
+                        p.comment Hi! has anybody tried this with waygu steak with asparagus saute potatoes?
+                      //- span
+                      .generic-controls
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          i.fa.fa-heart
+                          | Like
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          i.fa.fa-comment
+                          | Comment
+                      //- generic-controls
+                    //- input-group
+                    .input-group.discussion-row
+                      span.input-group-addon
+                        .thumb
+                          .img
+                            img(src='assets/images/users/user_2.jpg', alt='')
+                      span.form-control
+                        small
+                          | by
+                          a(href='#modal_coming_soon', data-toggle='modal') Carter Smith
+                          | | May 26, 2016
+                        //- small
+                        p.comment I had it with char grill ribeye fillet medium rare and i finished the whole bottle :)
+                      //- span
+                      .generic-controls
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          i.fa.fa-heart
+                          | Like
+                        a(href='#modal_coming_soon', data-toggle='modal')
+                          i.fa.fa-comment
+                          | Comment
+                      //- generic-controls
+                    //- input-group
+                  //- content
+                //- list_groups
+              //- review
+            //- reviews
+          //- infos
+        //- col-md-7
+      //- row
+    //- container
+  //- section
+
+block scripts
+  // External Script goes here...
+  script.
+    $(document).ready(function(){
+      //- $(window).on("load resize", function() {
+      //-   if ( $(this).width() > 991 ) {
+      //-     $('section.productdetails').outerHeight(function(){
+      //-       var top = $('nav.navbar').outerHeight();
+      //-       var bottom = $('footer').outerHeight(true);
+      //-       var screenHeight = $(window.top).height();
+      //-
+      //-       return (screenHeight - (top + bottom));
+      //-     });
+      //-     $('.product-detail-wrap, .productdetails .stage').height(function() {
+      //-       return $('section.productdetails').height() - $('.bread').outerHeight();
+      //-     });
+      //-   } else {
+      //-     $('section.productdetails, .product-detail-wrap, .productdetails .stage').height("");
+      //-   }
+      //- });
+    });
+
+    $(function () {
+      $('.popover_rating[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<span class="ratings">' + $(this).parent().find("span.ratings").html() + '</span>';
+        },
+        title: function(){
+      		return jQuery(this).data('title') + '<span class="close">&times;</span>';
+      	}
+      }).on('shown.bs.popover', function(e) {
+      	var popover = jQuery(this);
+      	$(this).parent().find('.popover span.close').on('click', function(e) {
+      		popover.popover('hide');
+      	});
+      }).click(function(e) {
+        e.preventDefault();
+      });
+    });
+  //- script.
+//- block scripts
