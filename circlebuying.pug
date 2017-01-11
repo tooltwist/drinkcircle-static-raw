@@ -612,20 +612,10 @@ block content
                   //- shortsummary
                   p
                   .avatar
-                    .img
-                      div(class=['ring', circlebuy[index].ring])
+                    .gauge
                       img(src=circlebuy[index].img, alt='')
-                    //- img
-                    .countdown
-                      //- span.time 32:12
-                      br
-                      p
-                        big
-                          i.fa.fa-clock-o
-                          span= " " + circlebuy[index].time
-                      //- p
-                      //- span
-                    //- countdown
+                      .circlebuyGauge(data-size=circlebuy[index].qty, data-sold=circlebuy[index].sold)
+                    //- gauge
                   //- avatar
                   br
                   p

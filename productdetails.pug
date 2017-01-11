@@ -220,20 +220,26 @@ block content
                   //- shortsummary
                   p
                   .avatar
-                    .img
-                      div(class=['ring _70p'])
+                    //- .img
+                    //-   div(class=['ring _70p'])
+                    //-   img(src='assets/images/circles/circles_8.png', alt='')
+                    //- //- img
+
+                    .gauge
                       img(src='assets/images/circles/circles_8.png', alt='')
-                    //- img
-                    .countdown
-                      //- span.time 32:12
-                      br
-                      p
-                        big
-                          i.fa.fa-clock-o
-                          span &nbsp;04:56.12
-                      //- p
-                      //- span
-                    //- countdown
+                      .circlebuyGauge(data-size='10', data-sold='7', data-left='3')
+                    //- gauge
+
+                    //- .countdown
+                    //-   //- span.time 32:12
+                    //-   br
+                    //-   p
+                    //-     big
+                    //-       i.fa.fa-clock-o
+                    //-       span &nbsp;04:56.12
+                    //-   //- p
+                    //-   //- span
+                    //- //- countdown
                   //- avatar
                   br
                   p
@@ -282,20 +288,24 @@ block content
                   //- shortsummary
                   p
                   .avatar
-                    .img
-                      div(class=['ring _40p'])
+                    .gauge
                       img(src='assets/images/circles/circles_1.png', alt='')
-                    //- img
-                    .countdown
-                      //- span.time 32:12
-                      br
-                      p
-                        big
-                          i.fa.fa-clock-o
-                          span &nbsp;04:56.12
-                      //- p
-                      //- span
-                    //- countdown
+                      .circlebuyGauge(data-size='5', data-sold='3')
+                    //- gauge
+                    //- .img
+                    //-   div(class=['ring _40p'])
+                    //-   img(src='assets/images/circles/circles_1.png', alt='')
+                    //- //- img
+                    //- .countdown
+                    //-   //- span.time 32:12
+                    //-   br
+                    //-   p
+                    //-     big
+                    //-       i.fa.fa-clock-o
+                    //-       span &nbsp;04:56.12
+                    //-   //- p
+                    //-   //- span
+                    //- //- countdown
                   //- avatar
                   br
                   p
@@ -667,6 +677,7 @@ block scripts
       //-     $('section.productdetails, .product-detail-wrap, .productdetails .stage').height("");
       //-   }
       //- });
+
     });
 
     $(function () {

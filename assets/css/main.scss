@@ -2376,7 +2376,8 @@ section.productdetails {
 		}
 		.avatar {
 			position: relative;
-			margin-bottom: 30px;
+			// margin-bottom: 30px;
+			// margin-bottom: 15px;
 			.img {
 				img {
 					padding: 35px;
@@ -4191,4 +4192,35 @@ hr.gray {
 
 .bottle-price {
 	margin-left: 50px;
+}
+
+
+.gauge {
+	width: 160px;
+	position: relative;
+	img {
+		position: absolute;
+		z-index: 1;
+    left: 0;
+    right: 0;
+    top: -12px;
+    bottom: 0;
+    @include box(70px);
+    margin: auto;
+    border-radius: 50%
+	}
+	.circlebuyGauge {
+		position: relative;
+		&:after {
+			font-family: 'FontAwesome';
+	    content: "\f017";
+	    position: absolute;
+	    bottom: 7px;
+	    left: 38px;
+	    font-size: 17px;
+		}
+		.dxg-title {
+    	transform: translate(90px, 177px);
+		}
+	}
 }

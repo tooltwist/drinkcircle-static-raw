@@ -73,6 +73,58 @@ var Main = (function () {
 				}
 			});
 
+			$(".circlebuyGauge").dxCircularGauge({
+        geometry: {
+          "endAngle": 300,
+          "startAngle": 240
+        },
+        rangeContainer: {
+          backgroundColor: '#fff',
+          offset: -35,
+          ranges: [
+            {
+              startValue: 0, endValue: null, color: '#4abd55'
+            }
+          ],
+          width: 17
+        },
+        redrawOnResize: true,
+        size: {
+          width: '100%',
+          height: '190'
+        },
+        scale: {
+          startValue: 0,
+          endValue: null,
+          majorTick: { tickInterval: 1 },
+          label: {
+            format: 'number',
+            font: {
+              color: '#000'
+            }
+          }
+        },
+        title: {
+          text: '04:56.12',
+          position: 'bottom-center',
+          font: {
+            color: '#868686',
+            size: '18px'
+          }
+        },
+        value: 0,
+        valueIndicator: {
+          type: 'rangeBar'
+        }
+      });
+
+      $('.circlebuyGauge').each(function() {
+        var size = $(this).data('size');
+        var sold = $(this).data('sold');
+        $(this).dxCircularGauge('instance').option('scale.endValue', size);
+        $(this).dxCircularGauge('instance').option('rangeContainer.ranges[0].endValue', sold);
+      });
+
 		},
 
 		//--------
