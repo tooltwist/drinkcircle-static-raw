@@ -1,0 +1,103 @@
+extends ../layout/layout_admin.pug
+
+block content
+      main.mdl-layout__content(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
+        .cma-page-header
+          h2 &nbsp;
+            // [spacer]
+        .mdl-grid.section-grid.raised
+          .mdl-cell.mdl-cell--2-col.mdl-cell--hide-tablet.mdl-cell--hide-phone.pressed
+            .cma-page-info
+              h5 Adding a Product
+              p
+                | To add a Product, on the right side of the Product list, a "Plus" button is available. Clicking on this button will redirect to Product Maintenance form.
+              h5 Editing a Product
+              p
+                | More option menu is available in each item on the list. Simply click on the more icon and select edit.
+          .mdl-cell.mdl-cell--9-col.mdl-card.mdl-shadow--2dp
+            table#cma-table-product-list.mdl-data-table(cellspacing='0', width='100%' datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" dt-columns="dtColumns")
+              thead
+                tr
+                  th ID
+                  th Name
+                  th Categories
+                  th Status
+                  th
+              tfoot
+                tr
+                  th ID
+                  th Name
+                  th Categories
+                  th Status
+                  th
+              tbody
+                tr(ng-repeat="product in products")
+                  td {{product.product_id}}
+                  td {{product.product_name}}
+                  td {{product.product_category}}
+                  td
+                    | {{product.status}}
+                  td.cma-row-controls
+                    md-menu
+                      md-button.md-icon-button(aria-label="More" ng-click="$mdOpenMenu()")
+                        i.material-icons more_vert
+                      md-menu-content
+                        md-menu-item
+                          md-button(aria-label="")
+                            | {{ product.status=="active" ? "Deactivate" : "Activate" }}
+                        md-menu-item
+                          md-button(ng-href="manage-products.html?{{product.product_id}}")
+                            | Edit
+                        md-menu-item
+                          md-button
+                            | Delete
+          .mdl-cell.mdl-cell--1-col.cma-btn-floating-add
+            a.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored(href='manage-products.html')
+              i.material-icons add
+        br
+
+block scripts
+  // External Script goes here...
+
+  script.
+    $.cookie('pageactive', '', {path: '/products-list.html'});
+
+    /*
+     *  Set up the login part at the top of the page.
+     */
+    authservice.init({
+      host: 'localhost',
+      port: 9090,
+      tenant: 'nodeclient',
+      pretend: true
+    });
+    console.log('Current user:', authservice.getCurrentUser());
+
+    /*
+     * Angular
+     */
+
+     var app = angular.module('myApp', ['datatables', 'ngMaterial']);
+
+     teaservice.init(app);
+
+     app.controller('myCtrl', function($scope, DTOptionsBuilder, DTColumnDefBuilder, DTColumnBuilder, teaService){
+        $scope.dtOptions = DTOptionsBuilder.newOptions();
+        var cellClass = " mdl-data-table__cell--non-numeric";
+        $scope.dtColumns = [
+            DTColumnBuilder.newColumn(0).withClass(cellClass),
+            DTColumnBuilder.newColumn(1).withClass(cellClass),
+            DTColumnBuilder.newColumn(2).withClass(cellClass),
+            DTColumnBuilder.newColumn(3).withClass(cellClass),
+            DTColumnBuilder.newColumn(4).withClass(cellClass)
+        ];
+        $scope.dtColumnDefs = [
+          DTColumnDefBuilder.newColumnDef(4).notSortable()
+        ];
+       teaService.getProductsBySupplier(authservice.getCurrentUser().ttuat)
+        .then(function(data){
+            $scope.products = data.products;
+            console.log('products: ');
+            console.log(data.products);
+        });
+     });

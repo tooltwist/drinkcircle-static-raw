@@ -14,7 +14,7 @@ var dir = 'drinkcircle'; // project folder
 
 var paths = {
     // This must be in the right order, so linked files are processed first.
-    pug: ['includes/**/*.pug', 'assets/vendor/**/*.pug', 'layout/**/*.pug', 'partials/**/*.pug', './*.pug', '!**/_*.pug', '!node_modules/**/*'],
+    pug: ['includes/**/*.pug', 'assets/vendor/**/*.pug', 'layout/**/*.pug', 'partials/**/*.pug', 'product_maintenance/**/*.pug', './*.pug', '!**/_*.pug', '!node_modules/**/*'],
     scss: 'assets/css/**/*.scss',
     js: 'assets/scripts/**/*.js'
 }
@@ -141,6 +141,10 @@ var bower = [
     bowerBaseDir + '/accounting/**/*.*',
     bowerBaseDir + '/angular/**/*.*',
     bowerBaseDir + '/angular-sanitize/**/*.*',
+    bowerBaseDir + '/angular-datatables/**/*.*',
+    bowerBaseDir + '/angular-material/**/*.*',
+    bowerBaseDir + '/angular-aria/**/*.*',
+    bowerBaseDir + '/angular-animate/**/*.*',
     bowerBaseDir + '/animate.css/**/*.*',
     bowerBaseDir + '/bootstrap/dist/**/*.*',
     bowerBaseDir + '/font-awesome/**/*.*',
