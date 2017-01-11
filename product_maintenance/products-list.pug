@@ -35,8 +35,7 @@ block content
                   td {{product.product_id}}
                   td {{product.product_name}}
                   td {{product.product_category}}
-                  td
-                    | {{product.status}}
+                  td {{product.status | capitalize}}
                   td.cma-row-controls
                     md-menu
                       md-button.md-icon-button(aria-label="More" ng-click="$mdOpenMenu()")
@@ -101,3 +100,9 @@ block scripts
             console.log(data.products);
         });
      });
+
+     app.filter('capitalize', function() {
+        return function(input) {
+          return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+        }
+    });
