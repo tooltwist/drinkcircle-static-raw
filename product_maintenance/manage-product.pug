@@ -14,13 +14,14 @@ block content
                     .cma-form-group
                       //- Product name
                       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
-                        | {{productName}}
-                        input#prod-name.mdl-textfield__input(type='text', ng-model='productName')
+                        input#prod-name.mdl-textfield__input(type='text', ng-model='product.name')
                         label.mdl-textfield__label(for='prod-name') Product name
-                      //- Manufacturer
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Brand
                       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
                           input#prod-mfr.mdl-textfield__input(type='text', value='')
-                          label.mdl-textfield__label(for='prod-mfr') Manufacturer
+                          label.mdl-textfield__label(for='prod-mfr') Brand
+                  .mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
                       //- Category
                       .mdl-textfield.centered
                         .cma-card.form
@@ -47,60 +48,116 @@ block content
                                   td
                                     md-checkbox.mdl-checkbox(ng-checked='exists(category, selected)', ng-click='toggle(category, selected)' aria-label="{{category.name}}")
                                   td.mdl-data-table__cell--non-numeric {{category.name}}
-                      //- Serial no.
-                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
-                        input#prod-serial.mdl-textfield__input(type='text', value='')
-                        label.mdl-textfield__label(for='prod-serial') Serial no.
+                  .mdl-grid.form-grid
+                    .mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Product Description
+                      .cma-form-group.cma-form-ckeditor
+                        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered.is-focused
+                          textarea#prod-short-description.mdl-textfield__input(type='text', rows='3', ng-model='product.shortDescription')
+                          label.mdl-textfield__label(for='prod-short-description') Short Description
+                        //- Product Details
+                        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered.is-focused
+                          textarea#prod-details.mdl-textfield__input(type='text', rows='8', ng-model='product.longDescription')
+                          label.mdl-textfield__label(for='prod-details') Long Description
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
                       //- Status
                       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
                         label.mdl-switch.mdl-js-switch.mdl-js-ripple-effect(for='var-switch-active')
                           span.mdl-switch__label Active
                           input#var-switch-active.mdl-switch__input(type='checkbox', checked='')
                   .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
-                    .cma-form-group
-                      //- Tags
+                      //- Status
                       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
-                        input#prod-tags.mdl-textfield__input(type='text', value='')
-                        label.mdl-textfield__label(for='prod-tags') Tags
-                      //- Meta Title
+                        label.mdl-switch.mdl-js-switch.mdl-js-ripple-effect(for='var-switch-shipping')
+                          span.mdl-switch__label Free Shipping
+                          input#var-switch-active.mdl-switch__input(type='checkbox', checked='')
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Serial no.
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') SKU
+                      //- Price
                       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
                         input#prod-meta-title.mdl-textfield__input(type='text', value='')
-                        label.mdl-textfield__label(for='prod-meta-title') Meta Title
+                        label.mdl-textfield__label(for='prod-meta-title') Price
                       //- Meta Description
                       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
                         input#prod-meta-description.mdl-textfield__input(type='text', value='')
-                        label.mdl-textfield__label(for='prod-meta-description') Meta Description
-                      //- Meta Keyword
+                        label.mdl-textfield__label(for='prod-meta-description') Width
+                      //- Weight
                       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
                         input#prod-meta-keyword.mdl-textfield__input(type='text', value='')
-                        label.mdl-textfield__label(for='prod-meta-keyword') Meta Keyword
-                      //- Supplier
+                        label.mdl-textfield__label(for='prod-meta-keyword') Weight
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Bar Code
                       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
-                        input#prod-supplier.mdl-textfield__input(type='text', value='')
-                        label.mdl-textfield__label(for='prod-supplier') Supplier
-                      //- Notes
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Bar Code
+                      //- RRP
                       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
-                        textarea#prod-notes.mdl-textfield__input(type='text', rows='5')
-                        label.mdl-textfield__label(for='prod-notes') Notes
-                .mdl-grid.form-grid
-                  .mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
-                    //- Product Description
-                    .cma-form-group.cma-form-ckeditor
-                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered.is-focused
-                        textarea#prod-short-description.mdl-textfield__input(type='text', rows='3')
-                        label.mdl-textfield__label(for='prod-short-description') Short Description
-                      //- Product Details
-                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered.is-focused
-                        textarea#prod-details.mdl-textfield__input(type='text', rows='8')
-                        label.mdl-textfield__label(for='prod-details') Product Details
+                        input#prod-meta-title.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-title') RRP / bottle
+                      //- Height
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-meta-description.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-description') Height(cm)
+                      //- Length
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-meta-keyword.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-keyword') Length
+                  //Specifications
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Varietal
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Varietal
+                      //- Style
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-meta-title.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-title') Style
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Pack Size
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Pack Size
+                      //- Alcohol Percentage
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-meta-title.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-title') Alcohol Percentage
+                  //WINERY INFORMATION
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Vineyard
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Varietal
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Wine Making
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Wine Making
+                  //TASTING NOTES
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Colour
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Colour
+                      //- Palate
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Palate
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Aroma
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Aroma
+                      //- Food Making
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Food Making
                 footer
                   span
-                    a.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent(href='/ttsvr/n/drinkpoint-webdesign-69')
-                      | Save
-                    a.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent(href='/ttsvr/n/drinkpoint-webdesign-69')
-                      | Save and Close
-                    a.mdl-button.mdl-js-button.mdl-js-ripple-effect(href='/ttsvr/n/drinkpoint-webdesign-69')
-                      | Cancel
+                    a.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent( ng-click="addProduct()" )
+                      | Submit
             md-tab(label='More Details')
               md-content.md-padding
                 .mdl-grid.form-grid
@@ -772,7 +829,31 @@ block scripts
           .backgroundPalette('white');
       });
      app.controller('myCtrl', function($scope, teaService){
+
+       $scope.product = {
+         name: "",
+         categoryIds: [1],
+         shortDescription: "This is a test short descript",
+         longDescription: "This is a not so very long LongDescription",
+         brandId: 61,
+         isDisplayed: true,
+         metaTitle: "ShirazTest",
+         metaDescription: "Brokenwood Shiraz",
+         metaKeyword: "Some keywords for SEO",
+         supplierId: 604,
+         notes: "This is a new test note"
+         //variants: [{},{}]
+       };
+
+       $scope.addProduct = function(){
+         teaService.addProduct($scope.product).then(function(data){
+           console.log($scope.product);
+           console.log('Response', data.productId);
+         });
+       };
+
        $scope.selected = [];
+
        teaService.getCategoryList()
         .then(function(data){
             $scope.categories = data.categories;
