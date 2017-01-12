@@ -848,7 +848,7 @@ block scripts
        var self = this;
        self.selected = [];
        self.categories = [];
-       self.parent_ids = [];
+       self.allcat = [];
         //this product object already has the same property names for calling TEA api
        $scope.product = {
          name: "",
@@ -916,11 +916,12 @@ block scripts
         };
 
         self.isChecked = function() {
-          return CheckboxService.isChecked(self.selected, self.categories);
+          return CheckboxService.isChecked(self.selected, self.allcat);
         };
 
         self.toggleAll = function() {
-          self.selected = CheckboxService.toggleAll(self.selected, self.categories);
+          self.selected = CheckboxService.toggleAll(self.selected, self.categories).selected;
+          self.allcat = CheckboxService.toggleAll(self.selected, self.categories).allcat;
         };
         
         self.expand = function(category){
@@ -959,16 +960,34 @@ block scripts
           },
 
           isChecked: function(selected, categories) {
-            return selected.length === categories.length;
+            return selected.length === categories.length && selected.length > 0;
           },
 
           toggleAll: function(selected, categories) {
-            if (selected.length === categories.length) {
+            var i = 0;
+            var count = categories.length;
+            var tempcat = angular.copy(categories);
+            var tempcatids = [];
+
+            for (i=0; i<count;i++){
+              if(tempcatids.indexOf(tempcat[i].category_id) === -1)
+                tempcatids.push(tempcat[i].category_id);
+              if(tempcat[i].subcategories){
+                angular.forEach(tempcat[i].subcategories.categories, function(subvalue, subindex){
+                  if(tempcatids.indexOf(subvalue.category_id) === -1)
+                    tempcatids.push(subvalue.category_id);
+                  tempcat.push(subvalue);
+                });
+              }
+              count = tempcat.length;
+            }
+
+            if (selected.length === tempcat.length) {
               selected = [];
             } else if (selected.length === 0 || selected.length > 0) {
-              selected = categories.slice(0);
+              selected = tempcatids.slice(0);
             }
-            return selected;
+            return {selected : selected, allcat: tempcatids};
           }
        }
      });
