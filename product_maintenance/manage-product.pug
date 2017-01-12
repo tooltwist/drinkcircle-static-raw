@@ -52,12 +52,16 @@ block content
 
                             //- Dynamic categories, no checkboxes
                             script(type='text/ng-template', id='tree_item_renderer.html').
-                                {{category.name}}
-                                <button ng-click="ctrl.expand(category)">v</button>
+                                <md-checkbox class="mdl-checkbox" ng-show="category.subcategories === undefined" ng-checked="ctrl.exists(category, ctrl.selected)" ng-click='ctrl.toggle(category, ctrl.selected)'> {{category.name}}</md-checkbox>
+                                {{category.subcategories !== undefined ? category.name : ""}}
+                                <button ng-click="ctrl.expand(category)" ng-show="category.subcategories !== undefined && (category.node === undefined || category.node.length === 0)">v</button>
+                                <button ng-click="ctrl.delete(category)" ng-show="category.node !== undefined && category.node.length > 0">x</button>
                                 <ul>
                                     <li ng-repeat="category in category.node" ng-include="'tree_item_renderer.html'"></li>
                                 </ul>
                             ul
+                              li
+                                md-checkbox.mdl-checkbox(ng-checked='ctrl.isChecked()', ng-click='ctrl.toggleAll()') Select All
                               li(ng-repeat='category in ctrl.categories', ng-include="'tree_item_renderer.html'")
                   .mdl-grid.form-grid
                     .mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
@@ -840,7 +844,7 @@ block scripts
           .backgroundPalette('white');
       });
       
-     app.controller('myCtrl', function($scope, teaService){
+     app.controller('myCtrl', function($scope, teaService, CheckboxService){
        var self = this;
        self.selected = [];
        self.categories = [];
@@ -894,7 +898,6 @@ block scripts
          });
        };
 
-       $scope.selected = [];
        teaService.getCategoryList()
         .then(function(data){
             self.categories = data.categories;
@@ -902,10 +905,10 @@ block scripts
         });
         
         self.toggle = function(item, list){
-          self.selected = CheckboxService.toggle(item, list);
+          self.selected = CheckboxService.toggle(item.category_id, list);
         };
         self.exists = function(item, list) {
-            return CheckboxService.exists(item, list);
+            return CheckboxService.exists(item.category_id, list);
         };
 
         self.isIndeterminate = function() {
@@ -927,6 +930,10 @@ block scripts
               category.node.push({category_id: value.category_id, name: value.name, subcategories : value.subcategories});
             });
           }
+        };
+
+        self.delete = function(category) {
+            category.node = [];
         };
      });
 
