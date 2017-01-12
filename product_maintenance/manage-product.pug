@@ -1,7 +1,7 @@
 extends ../layout/layout_admin.pug
 
 block content
-      main.mdl-layout__content(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
+      main.mdl-layout__content(ng-app="myApp" ng-controller="myCtrl as ctrl" ng-cloak)
         .cma-page-header.form
           h2 &nbsp;
             // [spacer]
@@ -35,19 +35,30 @@ block content
                                 span.text Add New
                                 i.material-icons add
                           .cma-card--content
-                            table.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.is-upgraded(data-upgraded=',MaterialDataTable')
-                              thead
-                                tr
-                                  th
-                                    md-checkbox.mdl-checkbox(aria-label='Select All', ng-checked='isChecked()', md-indeterminate='isIndeterminate()', ng-click='toggleAll()')
-                                  th.mdl-data-table__cell--non-numeric(width='95%')
-                                    span(ng-if='isChecked()') Un-
-                                    | Select All
-                              tbody
-                                tr(ng-repeat="category in categories")
-                                  td
-                                    md-checkbox.mdl-checkbox(ng-checked='exists(category, selected)', ng-click='toggle(category, selected)' aria-label="{{category.name}}")
-                                  td.mdl-data-table__cell--non-numeric {{category.name}}
+                            //- UI with checkbox
+                            //- table.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.is-upgraded(data-upgraded=',MaterialDataTable')
+                            //-   thead
+                            //-     tr
+                            //-       th
+                            //-         md-checkbox.mdl-checkbox(aria-label='Select All', ng-checked='isChecked()', md-indeterminate='isIndeterminate()', ng-click='toggleAll()')
+                            //-       th.mdl-data-table__cell--non-numeric(width='95%')
+                            //-         span(ng-if='isChecked()') Un-
+                            //-         | Select All
+                            //-   tbody
+                            //-     tr(ng-repeat="category in categories")
+                            //-       td
+                            //-         md-checkbox.mdl-checkbox(ng-checked='exists(category, selected)', ng-click='toggle(category, selected)' aria-label="{{category.name}}")
+                            //-       td.mdl-data-table__cell--non-numeric {{category.name}}
+
+                            //- Dynamic categories, no checkboxes
+                            script(type='text/ng-template', id='tree_item_renderer.html').
+                                {{category.name}}
+                                <button ng-click="ctrl.expand(category)">v</button>
+                                <ul>
+                                    <li ng-repeat="category in category.node" ng-include="'tree_item_renderer.html'"></li>
+                                </ul>
+                            ul
+                              li(ng-repeat='category in ctrl.categories', ng-include="'tree_item_renderer.html'")
                   .mdl-grid.form-grid
                     .mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
                       //- Product Description
@@ -787,7 +798,7 @@ block scripts
   // External Script goes here...
 
   script.
-    $.cookie('pageactive', '', {path: '/manage-products.html'});
+    $.cookie('pageactive', '', {path: '/manage-product.html'});
 
     /*
      *  Set up the login part at the top of the page.
@@ -828,8 +839,12 @@ block scripts
         $mdThemingProvider.theme('default')
           .backgroundPalette('white');
       });
+      
      app.controller('myCtrl', function($scope, teaService){
-
+       var self = this;
+       self.selected = [];
+       self.categories = [];
+       self.parent_ids = [];
         //this product object already has the same property names for calling TEA api
        $scope.product = {
          name: "",
@@ -880,12 +895,44 @@ block scripts
        };
 
        $scope.selected = [];
-
        teaService.getCategoryList()
         .then(function(data){
-            $scope.categories = data.categories;
-            $scope.selected = [];
-            $scope.toggle = function (item, list) {
+            self.categories = data.categories;
+            return self.categories;
+        });
+        
+        self.toggle = function(item, list){
+          self.selected = CheckboxService.toggle(item, list);
+        };
+        self.exists = function(item, list) {
+            return CheckboxService.exists(item, list);
+        };
+
+        self.isIndeterminate = function() {
+            return CheckboxService.isIndeterminate(self.selected, self.categories);
+        };
+
+        self.isChecked = function() {
+          return CheckboxService.isChecked(self.selected, self.categories);
+        };
+
+        self.toggleAll = function() {
+          self.selected = CheckboxService.toggleAll(self.selected, self.categories);
+        };
+        
+        self.expand = function(category){
+          category.node = [];          
+          if(category.subcategories){
+            angular.forEach(category.subcategories.categories, function(value, index){
+              category.node.push({category_id: value.category_id, name: value.name, subcategories : value.subcategories});
+            });
+          }
+        };
+     });
+
+     app.service('CheckboxService', function(){
+       return {
+          toggle: function (item, list) {
               var idx = list.indexOf(item);
               if (idx > -1) {
                 list.splice(idx, 1);
@@ -893,27 +940,28 @@ block scripts
               else {
                 list.push(item);
               }
-            };
+              return list;
+            },
 
-            $scope.exists = function (item, list) {
+          exists: function (item, list) {
               return list.indexOf(item) > -1;
-            };
+            },
 
-            $scope.isIndeterminate = function() {
-              return ($scope.selected.length !== 0 &&
-                  $scope.selected.length !== $scope.categories.length);
-            };
+          isIndeterminate: function(selected, categories) {
+            return (selected.length !== 0 && selected.length !== categories.length);
+          },
 
-            $scope.isChecked = function() {
-              return $scope.selected.length === $scope.categories.length;
-            };
+          isChecked: function(selected, categories) {
+            return selected.length === categories.length;
+          },
 
-            $scope.toggleAll = function() {
-              if ($scope.selected.length === $scope.categories.length) {
-                $scope.selected = [];
-              } else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
-                $scope.selected = $scope.categories.slice(0);
-              }
-            };
-        });
+          toggleAll: function(selected, categories) {
+            if (selected.length === categories.length) {
+              selected = [];
+            } else if (selected.length === 0 || selected.length > 0) {
+              selected = categories.slice(0);
+            }
+            return selected;
+          }
+       }
      });

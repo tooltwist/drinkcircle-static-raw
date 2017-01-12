@@ -45,7 +45,7 @@ block content
                           md-button(aria-label="")
                             | {{ product.status=="active" ? "Deactivate" : "Activate" }}
                         md-menu-item
-                          md-button(ng-href="manage-products.html?{{product.product_id}}")
+                          md-button(ng-href="manage-products.html?product={{product.product_id}}")
                             | Edit
                         md-menu-item
                           md-button
