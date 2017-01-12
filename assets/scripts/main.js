@@ -121,8 +121,9 @@ var Main = (function () {
       $('.circlebuyGauge').each(function() {
         var size = $(this).data('size');
         var sold = $(this).data('sold');
-        $(this).dxCircularGauge('instance').option('scale.endValue', size);
-        $(this).dxCircularGauge('instance').option('rangeContainer.ranges[0].endValue', sold);
+				var _this = $(this).dxCircularGauge('instance');
+        _this.option('scale.endValue', size);
+        _this.option('rangeContainer.ranges[0].endValue', sold);
       });
 
 		},
