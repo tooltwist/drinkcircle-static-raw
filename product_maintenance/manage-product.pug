@@ -70,7 +70,7 @@ block content
                       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
                         label.mdl-switch.mdl-js-switch.mdl-js-ripple-effect(for='var-switch-shipping')
                           span.mdl-switch__label Free Shipping
-                          input#var-switch-active.mdl-switch__input(type='checkbox', checked='')
+                          input#var-switch-shipping.mdl-switch__input(type='checkbox', checked='')
                   .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
                       //- Serial no.
                       .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
@@ -830,6 +830,7 @@ block scripts
       });
      app.controller('myCtrl', function($scope, teaService){
 
+        //this product object already has the same property names for calling TEA api
        $scope.product = {
          name: "",
          categoryIds: [1],
@@ -841,10 +842,36 @@ block scripts
          metaDescription: "Brokenwood Shiraz",
          metaKeyword: "Some keywords for SEO",
          supplierId: 604,
-         notes: "This is a new test note"
-         //variants: [{},{}]
+         notes: "This is a new test note" ,
+         /*"variants":[
+              {
+                 "name":"Shiraz 250ml XTest",
+                 "quantity":24,
+                 "lastPrice":20.00,
+                 "sku":"QWE123",
+                 "manufacturer":"Shiraz Manufacturing TestCorp",
+                 "barcode":"XYZ123",
+                 "tags":"shiraz, wine, red",
+                 "isFeaturedProduct":false,
+                 "isFree":false,
+                 "notes":"This is my test variant"
+              },
+              {
+                 "name":"Shiraz 300ml XYTest",
+                 "quantity":12,
+                 "lastPrice":21.00,
+                 "sku":"ASD456",
+                 "manufacturer":"Shiraz Manufacturing Corp.",
+                 "barcode":"XYZ456",
+                 "tags":"shiraz, wine, red",
+                 "isFeaturedProduct":false,
+                 "isFree":false,
+                 "notes":"This is another test variant"
+              }
+           ] */
        };
 
+       //pass the product object
        $scope.addProduct = function(){
          teaService.addProduct($scope.product).then(function(data){
            console.log($scope.product);
