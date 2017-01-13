@@ -557,14 +557,14 @@ block content
     //- container
   //- section
 
-  section.drinks(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
+  section.drinks()
     .container
       .productdetails.search
         .row
 
           // Render the circlebuys using widgets
           //div(ng-repeat="sharedOrder in sharedOrders").col-md-6.col-sm-6.text-center.super-customized
-          div(ng-repeat="sharedOrder in sharedOrders").col-md-3.col-sm-6.text-center
+          div(ng-repeat="sharedOrder in sharedOrders").col-md-3.col-sm-6.text-center.hide
             circlebuy-widget
 
 
