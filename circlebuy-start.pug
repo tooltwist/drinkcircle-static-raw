@@ -241,52 +241,52 @@ block content
         hr
 
 
-        // Billing Address
-        .alert(ng-hide="haveBillingAddress()" role="alert").alert-danger
-          // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
-          span Please select a billing address
-        //- alert
-        p
-          strong Billing Details
+        //- // Billing Address
+        //- .alert(ng-hide="haveBillingAddress()" role="alert").alert-danger
+        //-   // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
+        //-   span Please select a billing address
+        //- //- alert
         //- p
-        .row
-          .col-md-3.so_billing_address_card(ng-click="setBillingAddress(10)" so_address_id="10")
-            .alert.alert-warning
-              a.text-danger.pull-right(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-times-circle
-              //- a
-              .clearfix
-              p
-                | John Jones
-                br
-                | 423 5678
-                br
-                | 19 Beaudesert Rd. Brisbane,
-                br
-                | QLD 4757
-              //- p
-            //- alert
-          //- col-md-3
-          .col-md-3.so_billing_address_card(ng-click="setBillingAddress(11)" so_address_id="11")
-            .alert.alert-warning
-              a.text-danger.pull-right(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-times-circle
-              //- a
-              .clearfix
-              p
-                | John Jones
-                br
-                | 423 5678
-                br
-                | 32 Darwin St. North Brisbane,
-                br
-                | QLD 4747
-              //- p
-            //- alert
-          //- col-md-3
+        //-   strong Billing Details
+        //- //- p
         //- .row
-        a.btn.btn-success.btn-sm(href='#modal_coming_soon', data-toggle='modal') Add a new address
-        hr
+        //-   .col-md-3.so_billing_address_card(ng-click="setBillingAddress(10)" so_address_id="10")
+        //-     .alert.alert-warning
+        //-       a.text-danger.pull-right(href='#modal_coming_soon', data-toggle='modal')
+        //-         i.fa.fa-times-circle
+        //-       //- a
+        //-       .clearfix
+        //-       p
+        //-         | John Jones
+        //-         br
+        //-         | 423 5678
+        //-         br
+        //-         | 19 Beaudesert Rd. Brisbane,
+        //-         br
+        //-         | QLD 4757
+        //-       //- p
+        //-     //- alert
+        //-   //- col-md-3
+        //-   .col-md-3.so_billing_address_card(ng-click="setBillingAddress(11)" so_address_id="11")
+        //-     .alert.alert-warning
+        //-       a.text-danger.pull-right(href='#modal_coming_soon', data-toggle='modal')
+        //-         i.fa.fa-times-circle
+        //-       //- a
+        //-       .clearfix
+        //-       p
+        //-         | John Jones
+        //-         br
+        //-         | 423 5678
+        //-         br
+        //-         | 32 Darwin St. North Brisbane,
+        //-         br
+        //-         | QLD 4747
+        //-       //- p
+        //-     //- alert
+        //-   //- col-md-3
+        //- //- .row
+        //- a.btn.btn-success.btn-sm(href='#modal_coming_soon', data-toggle='modal') Add a new address
+        //- hr
 
         // Ship-To address
         .alert(ng-hide="haveShiptoAddress()" role="alert").alert-danger
@@ -354,7 +354,7 @@ block content
           .col-md-12
             .form-group
               label Comment for delivery
-              textarea.form-control(rows='3')
+              textarea.form-control(rows='3', ng-model="comment")
             //- form-group
           //- col-md-4
         //- row
@@ -518,7 +518,7 @@ block scripts
         $scope.haveValidOrderSize = false;
         $scope.haveValidYourQty = false;
         $scope.haveValidDob = false;
-        $scope.haveValidBillingAddress = false;
+        //$scope.haveValidBillingAddress = false;
         $scope.haveValidShippingAddress = false;
 
         /*
@@ -649,19 +649,19 @@ block scripts
           if ( !found) {
             alert('Internal Error 387663');
           }
-
-
           // Call the server to update the shipping charge.
           var shipping = 10.00;
           var GST_RATE = 0.1000;
-
-
 
           var pricePack = price * packSize;
           var priceSubTotal = price * packSize * yourQty;
           var subTotalWithShipping = priceSubTotal + shipping;
           var gst = subTotalWithShipping * GST_RATE;
           var grandTotal = subTotalWithShipping + gst;
+
+          var shippingExcl = shipping - (shipping * GST_RATE);
+          var shippingIncl = (shipping * GST_RATE);
+
           //console.log('');
           //console.log('price=' + accounting.formatMoney(price));
           //console.log('pricePack=' + accounting.formatMoney(pricePack));
@@ -673,6 +673,7 @@ block scripts
           // Do the same calculation for RRP (Recommended Retail Price)
           var rrpPack = rrp * packSize;
           var rrpSubtotal = rrp * packSize * yourQty;
+          var rrpSubtotalExclTac = rrpSubtotal - (rrpSubtotal * GST_RATE);
           var rrpSubtotalWithShipping = rrpSubtotal + shipping;
           var rrpGst = rrpSubtotalWithShipping * GST_RATE;
           var rrpGrandTotal = rrpSubtotalWithShipping + rrpGst;
@@ -699,11 +700,15 @@ block scripts
           // Set the final values.
           $scope.calc_price = accounting.formatMoney(price);
           $scope.calc_subtotal = accounting.formatMoney(priceSubTotal);
+          $scope.calc_subtotal_excl_tax = accounting.formatMoney(rrpSubtotalExclTac);
           $scope.calc_shipping = accounting.formatMoney(shipping);
+          $scope.calc_shipping_excl_tax = accounting.formatMoney(shippingExcl);
+          $scope.calc_shipping_incl_tax = accounting.formatMoney(shippingIncl);
           $scope.calc_gst = accounting.formatMoney(gst);
           $scope.calc_grandTotal = accounting.formatMoney(grandTotal);
           $scope.calc_rrpSaving = accounting.formatMoney(savingTotal);
           $scope.calc_shippingSaving = accounting.formatMoney(rrp);
+          $scope.gst_rate = GST_RATE;
 
           if ($scope.haveValidOrderSize && $scope.haveValidYourQty) {
             var totalOrdered = $scope.so_alreadyOrdered + $scope.finalYourQuantity;
@@ -754,21 +759,21 @@ block scripts
         }
 
 
-        /*
-         *  Billing Address handling.
-         */
-         $scope.haveBillingAddress = function() {
-           return ($scope.billingAddressId) ? true : false;
-         }
-        $scope.billingAddressId = null;
-        $scope.setBillingAddress = function(addressId) {
-          $scope.billingAddressId = addressId;
-          $scope.haveValidBillingAddress = true;
-          $('.so_billing_address_card').removeClass('so_chosen_address');
-          $('.so_billing_address_card .alert').addClass('alert-warning').removeClass('alert-success');
-          $('.so_billing_address_card[so_address_id='+addressId+']').addClass('so_chosen_address');
-          $('.so_billing_address_card[so_address_id='+addressId+'] .alert').removeClass('alert-warning').addClass('alert-success');
-        }
+        //- /*
+        //-  *  Billing Address handling.
+        //-  */
+        //-  $scope.haveBillingAddress = function() {
+        //-    return ($scope.billingAddressId) ? true : false;
+        //-  }
+        //- $scope.billingAddressId = null;
+        //- $scope.setBillingAddress = function(addressId) {
+        //-   $scope.billingAddressId = addressId;
+        //-   $scope.haveValidBillingAddress = true;
+        //-   $('.so_billing_address_card').removeClass('so_chosen_address');
+        //-   $('.so_billing_address_card .alert').addClass('alert-warning').removeClass('alert-success');
+        //-   $('.so_billing_address_card[so_address_id='+addressId+']').addClass('so_chosen_address');
+        //-   $('.so_billing_address_card[so_address_id='+addressId+'] .alert').removeClass('alert-warning').addClass('alert-success');
+        //- }
 
 
         /*
@@ -797,7 +802,7 @@ block scripts
             $scope.haveValidOrderSize
             && $scope.haveValidYourQty
             && $scope.haveValidDob
-            && $scope.haveValidBillingAddress
+            //&& $scope.haveValidBillingAddress
             && $scope.haveValidShippingAddress
           );
           return $scope.haveAllTheRequiredInformation;
@@ -826,7 +831,7 @@ block scripts
 
           if ($scope.creating_a_new_circlebuy) {
             /*
-             *  Create a circlebuy, then the customer order.
+             *  Create a shared order, then the customer order.
              */
              teaService.newSharedOrder({
                "customerId": customerId,
@@ -834,23 +839,67 @@ block scripts
                "quantity": $scope.finalOrderSize,
                "ownerLabel": ownerLabel
                //"expiresAt": "1970-00-00T00:00:00.000Z"
-             }, $scope, teaService).then(function(data){
-               if (data) {
-                 newSharedOrderId = data.sharedOrderId;
-                 alert('New CircleBuy number is ' + newSharedOrderId);
+            }, $scope, teaService).then(function(data){
 
-                 // Jump to the next page.
-               //    $('#so_link_to_next_page')[0].click();
-                var newUrl = 'circlebuy-invites.html?circlebuy=' + newSharedOrderId;
-                console.log('Will jump to: ' + newUrl)
-                window.location.href = newUrl;
-                 /*return false;
-                 return true;*/
-               } else {
-                 // Could not create the new order.
-                 // An error message will have already been logged.
-                 alert('An error occurred creating the circlebuy. Please try again later.');
-               }
+              if (data) {
+                /*
+                *  Create a circlebuy, then the customer order.
+                */
+                newSharedOrderId = data.sharedOrderId;
+                //alert('New CircleBuy number is ' + newSharedOrderId);
+                var circleBuy = {
+                    "customerId" : customerId, 
+                    "sharedOrderId" : newSharedOrderId, 
+                    "flow" : "PRE", 
+                    "action" : "A",
+                    "marketplace" : 1, 
+                    "currencyId" : 22, 
+                    "amountExclTax" : accounting.unformat($scope.calc_subtotal), 
+                    "taxType" : "G", 
+                    "taxAmount" : accounting.unformat($scope.calc_gst), 
+                    "amountInclTax" : accounting.unformat($scope.calc_subtotal), 
+                    "notes" : $scope.comment,
+                    "items" : [
+                      {
+                        "productVariantId" : productVariantId,
+                        "description" : "sample",
+                        "unitPrice" : accounting.unformat($scope.calc_price),
+                        "quantity" : $scope.so_yourQuantity,
+                        "taxExempted" : false,
+                        "priceIncludesTax" : true,
+                        "taxRate" : $scope.gst_rate,
+                        "amountExclTax" : accounting.unformat($scope.calc_subtotal),
+                        "taxAmount" : accounting.unformat($scope.calc_gst), 
+                        "amountInclTax" : accounting.unformat($scope.calc_subtotal), 
+                        "shippedQuantity" : null
+                      }
+                    ],
+                    "shippingCost" : {
+                      "unitPrice" : accounting.unformat($scope.calc_shippingSaving),
+                      "quantity" : 1,
+                      "taxExempted" : false,
+                      "priceIncludesTax" : true,
+                      "taxRate" : $scope.gst_rate,
+                      "amountExclTax" : accounting.unformat($scope.calc_shipping_excl_tax),
+                      "taxAmount" : accounting.unformat($scope.calc_shipping_incl_tax), 
+                      "amountInclTax" : accounting.unformat($scope.calc_shipping)
+                    }
+                  }
+
+                  teaService.addCircleBuy(circleBuy).then(function(data){
+                    if(data) {
+                      var newUrl = 'circlebuy-invites.html?circlebuy=' + newSharedOrderId;
+                      console.log('Will jump to: ' + newUrl)
+                      window.location.href = newUrl;
+                    } 
+                  });
+
+                } else {
+                    // Could not create the new order.
+                    // An error message will have already been logged.
+                    alert('An error occurred creating the circlebuy. Please try again later.');
+                }
+
                return false;
              });
 

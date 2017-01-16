@@ -223,7 +223,7 @@ var authservice = (function() {
 
           if (username == 'bob') {
             var user = {
-              ttuat: 901,
+              ttuat: 60,
               firstname: 'Bob',
               lastname: 'Bloggs',
               avatar: 'http://localhost:3030/assets/images/activity/img_advisor_2.jpg'
@@ -232,7 +232,7 @@ var authservice = (function() {
           } else if (username == 'jim') {
 
             var user = {
-              ttuat: 902,
+              ttuat: 61,
               firstname: 'Jim',
               lastname: 'Boots',
               avatar: 'http://localhost:3030/assets/images/activity/img_advisor_1.jpg'
@@ -240,7 +240,7 @@ var authservice = (function() {
           } else if (username == 'jill') {
 
             var user = {
-              ttuat: 903,
+              ttuat: 63,
               firstname: 'Jill',
               lastname: 'Jones',
               avatar: 'http://localhost:3030/assets/images/activity/img_advisor_2.jpg'

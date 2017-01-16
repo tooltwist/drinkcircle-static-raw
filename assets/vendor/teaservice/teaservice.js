@@ -312,6 +312,14 @@
           }
         });
 
+        app.directive('reviewWidget', function(){
+          return {
+            restrict: 'E',
+            scope: false,
+            templateUrl: 'review-widget.html'
+          }
+        });
+
 
           // Define 'teaService' to Angular.
         app.factory('teaService', function($http, $q) {
@@ -483,6 +491,29 @@
                   "access-token": "0613952f81da9b3d0c9e4e5fab123437",
                   "version": "2.0.0"
                 }
+              };
+
+              // Prepare the promise, so the caller can use .then(fn) to handle the result.
+              var promise = $http(req).then(handleSuccess, handleError);
+              return promise;
+            },
+
+            /**
+            *	Put a new circlebuy into TEA API.
+            *	Returns a promise (since $http(req) is asyncronous)
+            */
+            addCircleBuy: function addCircleBuy(jsonObject) {
+              var url = baseUrl + '/philChristmas_order/new';
+              console.log('url is ' + url);
+
+              var req = {
+                method: 'POST',
+                url: url,
+                headers: {
+                  "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+                  "version": "2.0.0"
+                },
+                data: jsonObject
               };
 
               // Prepare the promise, so the caller can use .then(fn) to handle the result.
