@@ -1,0 +1,120 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  section.userprofile.request-list.simple
+    .container
+      .row
+        .col-md-12
+          h3.title Invite friends to join your 10 case circlebuy - Sticks Pinot Noir
+        //- col-md-12
+      //- row
+      .card
+        .row
+          .col-md-6
+            h4 Invite by email
+            .clearfix
+            .input-group
+              input.form-control(type='text', placeholder='email address...')
+              span.input-group-btn
+                button.btn.btn-default(type='button') Add
+              //- span
+            //- input-group
+            p
+            .form-group
+              .card
+                .selection
+                  a(href='#modal_coming_soon', data-toggle='modal') &times;&nbsp;
+                  | fjay@gmail.com
+                //- selection
+                .selection
+                  a(href='#modal_coming_soon', data-toggle='modal') &times;&nbsp;
+                  | cchavez@yahoo.com
+                //- selection
+                .selection
+                  a(href='#modal_coming_soon', data-toggle='modal') &times;&nbsp;
+                  | hmell@gmail.com
+                //- selection
+              //- card
+            //- form-group
+          //- col-md-6
+          .col-md-6
+            h4 Invite drinkcircle friends
+            .clearfix
+            .input-group
+              input.form-control(type='text', placeholder='name...')
+              span.input-group-btn
+                button.btn.btn-default(type='button') Add
+                button.btn.btn-default(type='button') Add all Friends
+              //- span
+            //- input-group
+            p
+            .form-group
+              .card
+                .selection
+                  a(href='#modal_coming_soon', data-toggle='modal') &times;&nbsp;
+                  | Paul Peters
+                //- selection
+                .selection
+                  a(href='#modal_coming_soon', data-toggle='modal') &times;&nbsp;
+                  | Naveen Simons
+                //- selection
+                .selection
+                  a(href='#modal_coming_soon', data-toggle='modal') &times;&nbsp;
+                  | Samantha Davis
+                //- selection
+              //- card
+            //- form-group
+          //- col-md-6
+        //- row
+      //- card
+      hr
+      .row
+        .col-md-12
+          .text-center
+            .form-group
+              label
+                input(type='checkbox')
+                | &nbsp;&nbsp;
+                i.fa.fa-facebook-square.text-primary.fa-2x
+                h4 &nbsp;post to facebook
+              //- label
+        //- col-md-12
+      //- row
+      hr
+      div
+        .row
+          .col-md-12
+            .form-group
+              h4 Add personalised message:
+              textarea.form-control(rows='5')
+            //- form-group
+          //- col-md-12
+        //- row
+      //- div
+      br
+      .text-center
+        a.btn.btn-success.btn-lg(href='circlebuy-requests.html') create circlebuy &amp; send invites
+      //- text-right
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+
+    });
+  //- script.
