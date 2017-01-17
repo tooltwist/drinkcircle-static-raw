@@ -88,182 +88,7 @@
       //- btn-review-wrap
     //- col-md-6
   //- row
-  .review
-    .list_groups
-      .content
-        .counter
-          .ring
-            //- img(src="assets/images/ring_silver.png", alt="")
-            .count 96
-          //- ring
-        //- counter
-        .input-group
-          span.input-group-addon
-            .thumb
-              .img
-                img(src='assets/images/users/user_1.jpg', alt='')
-          span.form-control
-            strong Quality Shiraz
-            br
-            small
-              | by
-              a(href="profile.html") Andrew Steer
-              | | May 26, 2016
-            //- small
-            p.comment I really 'dig' this Shiraz. It's definitely 'one out of the box'. You can 'lay this one to rest' for a while or drink it right now!
-          //- span
-        //- input-group
-      //- content
-      .footer
-        .row
-          .col-md-12
-            .right-to-center.basecolor
-              small
-                span.green
-                  a(href='#modal_coming_soon', data-toggle='modal') like
-                //- strong
-                | &nbsp;&nbsp;&nbsp;
-                span.green
-                  a(href='#modal_coming_soon', data-toggle='modal') comment
-                //- strong
-              //- small
-            //- right-to-center
-          //- col-md-12
-        //- row
-      //- footer
-    //- list_groups
-    .list_groups
-      .content
-        .counter
-          .ring
-            //- img(src="assets/images/ring_silver.png", alt="")
-            .count 91
-          //- ring
-        //- counter
-        .input-group
-          span.input-group-addon
-            .thumb
-              .img
-                img(src='assets/images/users/user_2.jpg', alt='')
-          span.form-control
-            strong A beautiful wine
-            br
-            small
-              | by
-              a(href='#modal_coming_soon', data-toggle='modal') Carter Smith
-              | | May 26, 2016
-            //- small
-            p.comment A beautiful Hunter Valley Red and very pleasing to the palate. Great value for the price.
-          //- span
-        //- input-group
-      //- content
-      .footer
-        .row
-          .col-md-12
-            .right-to-center.basecolor
-              small
-                span.green
-                  a(href='#modal_coming_soon', data-toggle='modal') like
-                //- strong
-                | &nbsp;&nbsp;&nbsp;
-                span.green
-                  a(href='#modal_coming_soon', data-toggle='modal') comment
-                //- strong
-              //- small
-            //- right-to-center
-          //- col-md-12
-        //- row
-      //- footer
-    //- list_groups
-    .list_groups
-      .content
-        .counter
-          .ring
-            //- img(src="assets/images/ring_silver.png", alt="")
-            .count 82
-          //- ring
-        //- counter
-        .input-group
-          span.input-group-addon
-            .thumb
-              .img
-                img(src='assets/images/users/user_5.jpg', alt='')
-          span.form-control
-            strong Very disappointing
-            br
-            small
-              | by
-              a(href='#modal_coming_soon', data-toggle='modal') Mary James
-              | | May 26, 2016
-            //- small
-            p.comment Not up to the quality of previous vintages. Still a not a bad drop but not nearly as good as the 2012.
-          //- span
-        //- input-group
-      //- content
-      .footer
-        .row
-          .col-md-12
-            .right-to-center.basecolor
-              small
-                span.green
-                  a(href='#modal_coming_soon', data-toggle='modal') like
-                //- strong
-                | &nbsp;&nbsp;&nbsp;
-                span.green
-                  a(href='#modal_coming_soon', data-toggle='modal') comment
-                //- strong
-              //- small
-            //- right-to-center
-          //- col-md-12
-        //- row
-        .comment
-          .list_groups
-            .content
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/users/user_7.jpg', alt='')
-                span.form-control
-                  strong Comment: Very disappointing
-                  br
-                  small
-                    | by
-                    a(href='#modal_coming_soon', data-toggle='modal') Susie O'Brian
-                    | | May 26, 2016
-                  //- small
-                  p.comment I can't agree Mary. Like you I also enjoyed the previous vintages but I also loved this one. I've recommended this to several friends who have been very impressed.
-                //- span
-              //- input-group
-            //- content
-          //- list_groups
-        //- comment
-      //- footer
-      .footer
-        .row
-          .col-md-12
-            .right-to-center.basecolor
-              small
-                span.green
-                  a(href='#modal_coming_soon', data-toggle='modal') like
-                //- strong
-                | &nbsp;&nbsp;&nbsp;
-                span.green
-                  a(href='#modal_coming_soon', data-toggle='modal') comment
-                //- strong
-              //- small
-            //- right-to-center
-          //- col-md-12
-        //- row
-      //- footer
-    //- list_groups
-    br
-    .expand.text-center
-      a(href='#', data-toggle='collapse')
-        | more&nbsp;
-        i.fa.fa-caret-down
-    //- expand
-    hr
+  .review(id="reviews")
   //- review
 //- reviews
 
@@ -277,68 +102,63 @@ block scripts
 block scripts
   // External Script goes here...
   script(id='review', type='text/template')
-  <<#element>>
-  <div class="list_groups">
-      <div class="content">
-          <div class="counter">
-              <div class="ring">
-                  <div class="count">
-                      <<rating>>
-                  </div>
-              </div>
-          </div>
-          <div class="input-group">
-              <span class="input-group-addon">
-                  <div class="thumb">
-                      <div class="img">
-                          <img src="<<user.avatar>>" alt="">
-                      </div>
-                  </div>
-              </span>
-              <span class="form-control">
-                <strong>
-                  <<#title>>	
-                    <<title>><</title>>
-                  <<^title>>
-                    <<#extraProperties>>
-                      Review and Rating
-                    <</extraProperties>>
-                    <<^extraProperties>>
-                      Rating
-                    <</extraProperties>>
-                  <</title>>
-                </strong>
-                <br>
-                <small>by<a href="<<user.communityPage>>"><<user.firstName>> <<user.lastName>></a>| <<modifiedDateFromNow>></small>
-                <p class="comment">
-                  <<description>>
-                </p>
-                <<#extraProperties>>
+    <<#element>>
+    <div class="list_groups">
+        <div class="content">
+            <div class="counter">
+                <div class="ring">
+                    <div class="count">
+                        <<rating>>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <div class="thumb">
+                        <div class="img">
+                            <img src="<<user.avatar>>" alt="">
+                        </div>
+                    </div>
+                </span>
+                <span class="form-control">
+                  <strong>
+                    <<#title>>	
+                      <<title>><</title>>
+                    <<^title>>
+                      <<#extraProperties>>
+                        Review and Rating
+                      <</extraProperties>>
+                      <<^extraProperties>>
+                        Rating
+                      <</extraProperties>>
+                    <</title>>
+                  </strong>
+                  <br>
+                  <small>by<a href="<<user.communityPage>>"><<user.firstName>> <<user.lastName>></a>| <<modifiedDateFromNow>></small>
                   <p class="comment">
-                    <strong>I would recommend this drink to a friend</strong>
+                    <<description>>
                   </p>
-                <</extraProperties>>
-              </span>
-          </div>
-      </div>
-      <<#user.reviewOwner>>
-          <div class="footer">
-              <div class="row">
-                  <div class="col-md-12">
-                      <div class="right-to-center basecolor">
-                          <small><span class="green"><a href="{{scopes.rateProductUrl}}">edit</a></span>&nbsp;&nbsp;&nbsp;<span class="green"><a href="#">delete</a></span></small>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      <</user.reviewOwner>>
-  </div>
-  <</element>>  
-  //- script.
-//- block scripts
-
-block scripts
-  script(src='//127.0.0.1:4000/js/curia-0.1.2.js')
+                  <<#extraProperties>>
+                    <p class="comment">
+                      <strong>I would recommend this drink to a friend</strong>
+                    </p>
+                  <</extraProperties>>
+                </span>
+            </div>
+        </div>
+        <<#user.reviewOwner>>
+            <div class="footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="right-to-center basecolor">
+                            <small><span class="green"><a href="{{scopes.rateProductUrl}}">edit</a></span>&nbsp;&nbsp;&nbsp;<span class="green"><a href="#">delete</a></span></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <</user.reviewOwner>>
+    </div>
+    <</element>>  
   //- script.
 //- block scripts
 
@@ -352,7 +172,7 @@ block scripts
       */
       var app = angular.module('myApp', ['ngSanitize']);
 
-      crowdhoundservice.init(app);
+      crowdhoundservice.init();
 
       //- // Add the controller for this page
       //- app.controller('myCtrl', function($scope, crowdhoundservice) {

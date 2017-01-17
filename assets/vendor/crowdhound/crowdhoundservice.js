@@ -1,4 +1,13 @@
-var crowhoundservice = (function() {
+var crowdhoundservice = (function() {
+
+  var countAllReviewsAndRatings = 0;
+	var countAllRatings = 0;
+	var count90To100 = 0;
+	var count80To89 = 0;
+	var count70To79 = 0;
+  var count60to69 = 0;
+  var count60Andbelow = 0;
+	var reviwerCount = 0;
 
   function cookRatings(params, selection, callback){
     console.log('cooking product ratings');
@@ -11,7 +20,7 @@ var crowhoundservice = (function() {
       
       //check if user logged in owns the rating
       //this should have been in a different cooker
-      var userId = Login_config.getCurrentUser().userId;
+      var userId = '6C36ZESDCRHHKC5J9WPL927A'; //Login_config.getCurrentUser().userId;
       if(userId != ''){
         //check if user own the review
         if(userId == element.user.userId){
@@ -62,13 +71,21 @@ var crowhoundservice = (function() {
   }
   function loadReview() {
 
+          //getting product id from url
+          var productVariantId = 0;
+          window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+            if (key === 'product') {
+              productVariantId = parseInt(value);
+            }
+          });
+
           var elementId;
           var elementidHolder = $('#elementId').val();
           
           if(elementidHolder != null && elementidHolder != '') {
               elementId = parseInt(elementidHolder);
           } else {
-              elementId = '$product-'+$('#ratingsAndReviewProductId').val();
+              elementId = '$product-'+productVariantId;
           }
           
           params = {elementId : elementId, withChildren: true}; 
@@ -176,7 +193,7 @@ var crowhoundservice = (function() {
       var host = CHConfig.SERVER_URL;
       var port = CHConfig.SERVER_PORT;
       var tenant = CHConfig.TENANT_NAME;
-      var ttuat = Login_config.getCurrentUser().ttuat;
+      var ttuat = '6C36ZESDCRHHKC5J9WPL927A';//Login_config.getCurrentUser().ttuat;
         
 			var _curiaUrl;
 			// Prepare the configuration for Curia
@@ -196,16 +213,22 @@ var crowhoundservice = (function() {
         flat: false, 
         textonly: false,
         cookers: {
-            cook_avatars : cookAvatars, //definition is in the curia_js widget
-            cook_ratings : ProductReview.cookRatings
+            //cook_avatars : cookAvatars, //definition is in the curia_js widget
+            cook_ratings : cookRatings
         },
         themes : {
         "productReview": {
         "product-reviews_0" : "#reviewList",
                 "review_0" : "#review"
             }
-          }
+        }
 			};
+
+      // initialize curia
+      Curia.init(curiaConfig, function afterCuriaInit() {
+        loadReview();
+      });
+
     }
   }
 })();
