@@ -7,7 +7,7 @@ var crowdhoundservice = (function() {
 	var count70To79 = 0;
   var count60to69 = 0;
   var count60Andbelow = 0;
-	var reviwerCount = 0;
+	var reviewCount = 0;
 
   function cookRatings(params, selection, callback){
     console.log('cooking product ratings');
@@ -39,7 +39,7 @@ var crowdhoundservice = (function() {
                       var rating = data[0].score;
                       element.rating = rating;
                           
-                          reviwerCount += rating;
+                          reviewCount += rating;
                       //count all reviews and ratings
                       var reviewTxt = element.description;
                       if(reviewTxt != null && reviewTxt != ''){
@@ -137,8 +137,8 @@ var crowdhoundservice = (function() {
                           $('#allReviews').html(countAllReviewsAndRatings);
                           
                           //set rating of product
-                          if(reviwerCount > 0) {
-                              var productRating =  reviwerCount / countAllRatings;
+                          if(reviewCount > 0) {
+                              var productRating =  reviewCount / countAllRatings;
                               $('#product_rating').html(productRating.toFixed());
                               if(typeof(elementId) == 'string'){
                                   //show only when its in product details and not in product review page

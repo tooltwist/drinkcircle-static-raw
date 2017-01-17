@@ -51,7 +51,8 @@ block content
             .stats
               .rate-counter
                 .ring
-                  .count 94
+                  .count 
+                    div(id="product_rating") 94
                     span points
                 //- ring
               //- rate-counter
@@ -409,7 +410,7 @@ block scripts
   // External Script goes here...
   script.
     $(document).ready(function(){
-      crowdhoundservice.init();
+     // crowdhoundservice.init();
       //- $(window).on("load resize", function() {
       //-   if ( $(this).width() > 991 ) {
       //-     $('section.productdetails').outerHeight(function(){
@@ -426,25 +427,27 @@ block scripts
       //-     $('section.productdetails, .product-detail-wrap, .productdetails .stage').height("");
       //-   }
       //- });
-    });
-
-    $(function () {
-      $('.popover_rating[data-toggle="popover"]').popover({
-        html: true,
-        content : function() {
-          return '<span class="ratings">' + $(this).parent().find("span.ratings").html() + '</span>';
-        },
-        title: function(){
-      		return jQuery(this).data('title') + '<span class="close">&times;</span>';
-      	}
-      }).on('shown.bs.popover', function(e) {
-      	var popover = jQuery(this);
-      	$(this).parent().find('.popover span.close').on('click', function(e) {
-      		popover.popover('hide');
-      	});
-      }).click(function(e) {
-        e.preventDefault();
-      });
+      /*setTimeout(function() {
+        
+        $('.popover_rating[data-toggle="popover"]').popover({
+          html: true,
+          content : function() {
+            console.log($(this).parent().find("span.ratings").html())
+            return '<span class="ratings">' + $(this).parent().find("span.ratings").html() + '</span>';
+          },
+          title: function(){
+            return jQuery(this).data('title') + '<span class="close">&times;</span>';
+          }
+        }).on('shown.bs.popover', function(e) {
+          var popover = jQuery(this);
+          $(this).parent().find('.popover span.close').on('click', function(e) {
+            popover.popover('hide');
+          });
+        }).click(function(e) {
+          e.preventDefault();
+        });
+      },500);*/
+      
     });
 
 

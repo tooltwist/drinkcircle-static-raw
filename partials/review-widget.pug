@@ -2,7 +2,10 @@
   .row
     .col-md-7
       p.lead Customer Reviews &amp; Ratings
-      a.popover_rating(href="#", data-toggle="popover", data-placement="bottom", data-title="Summary") 242 Ratings
+      a.popover_rating(href="#", data-toggle="popover", data-placement="bottom", data-title="Summary")
+        span(id="allRatings") Ratings
+          0
+        |&nbsp;Ratings
         span.ratings
           table
             tr
@@ -11,13 +14,13 @@
               //- td
               td(width="270")
                 .progress
-                  .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width: 100%')
+                  .progress-bar.progress-bar-success(id="pcnt90To100", role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width: 100%')
                     span.sr-only 100% Complete (success)
                   //- progress-bar
                 //- progress
               //- td
               td.text-center(width="50")
-                small 231
+                small(id="count90To100") 231
             //- tr
             tr
               td
@@ -25,13 +28,13 @@
               //- td
               td
                 .progress
-                  .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='10', aria-valuemin='0', aria-valuemax='100', style='width: 10%')
+                  .progress-bar.progress-bar-success(id="pcnt80To89", role='progressbar', aria-valuenow='10', aria-valuemin='0', aria-valuemax='100', style='width: 10%')
                     span.sr-only 10% Complete (success)
                   //- progress-bar
                 //- progress
               //- td
               td.text-center
-                small 10
+                small(id="count80To89") 10
             //- tr
             tr
               td
@@ -39,13 +42,13 @@
               //- td
               td
                 .progress
-                  .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='1', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
+                  .progress-bar.progress-bar-success(id="pcnt70To79", role='progressbar', aria-valuenow='1', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
                     span.sr-only 1% Complete (success)
                   //- progress-bar
                 //- progress
               //- td
               td.text-center
-                small 1
+                small(id="count70To79") 1
             //- tr
             tr
               td
@@ -53,13 +56,13 @@
               //- td
               td
                 .progress
-                  .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
+                  .progress-bar.progress-bar-success(id="pcnt60To69", role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
                     span.sr-only 0% Complete (success)
                   //- progress-bar
                 //- progress
               //- td
               td.text-center
-                small 0
+                small(id="count60To69") 0
             //- tr
             tr
               td
@@ -67,19 +70,22 @@
               //- td
               td
                 .progress
-                  .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
+                  .progress-bar.progress-bar-success(id="pcnt60AndBelow", role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
                     span.sr-only 0% Complete (success)
                   //- progress-bar
                 //- progress
               //- td
               td.text-center
-                small 0
+                small(id="count60AndBelow") 0
             //- tr
           //- table
         //- ratings
       //- popover_rating
       br
-      | 88 Reviews
+      | 
+      span(id="allReviews") 
+        0
+      |&nbsp;Reviews
     //- col-md-6
     .col-md-5
       .btn-review-wrap
@@ -166,26 +172,47 @@ block scripts
   // External Script goes here...
   script.
     $(document).ready(function(){
+
+      $('.popover_rating[data-toggle="popover"]').popover({
+          html: true,
+          content : function() {
+            console.log($(this).parent().find("span.ratings").html())
+            return '<span class="ratings">' + $(this).parent().find("span.ratings").html() + '</span>';
+          },
+          title: function(){
+            return jQuery(this).data('title') + '<span class="close">&times;</span>';
+          }
+        }).on('shown.bs.popover', function(e) {
+          var popover = jQuery(this);
+          $(this).parent().find('.popover span.close').on('click', function(e) {
+            popover.popover('hide');
+          });
+        }).click(function(e) {
+          e.preventDefault();
+        });
+
+        crowdhoundservice.init();
       /************************************************************
       *
       *    Angular code.
       */
-      var app = angular.module('myApp', ['ngSanitize']);
+      //var app = angular.module('myApp', ['ngSanitize']);
 
-      crowdhoundservice.init();
+      
 
       //- // Add the controller for this page
       //- app.controller('myCtrl', function($scope, crowdhoundservice) {
       //-   //crowdhoundservice.loadReview();
       //- });
 
-      app.directive('reviewWidget', function(){
+      /*app.directive('reviewWidget', function(){
         return {
           restrict: 'E',
           scope: false,
           templateUrl: 'review-widget.html'
         }
-      });
+      });*/
+    });
 
   //- script.
 //- block scripts
