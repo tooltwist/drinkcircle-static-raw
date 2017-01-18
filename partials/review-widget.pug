@@ -1,4 +1,4 @@
-.reviews
+.reviews(ng-app="myApp")
   .row
     .col-md-7
       p.lead Customer Reviews &amp; Ratings
@@ -89,8 +89,8 @@
     //- col-md-6
     .col-md-5
       .btn-review-wrap
-        a.button.inline.v7(href="product-ratings.html") Write a review
-        a.button.inline.v7(href="product-ratings.html") Rate product
+        a.button.inline.v7(href="product-ratings.html", id='write-button') Write a review
+        //a.button.inline.v7(href="product-ratings.html") Rate product
       //- btn-review-wrap
     //- col-md-6
   //- row
@@ -191,7 +191,18 @@ block scripts
           e.preventDefault();
         });
 
-        crowdhoundservice.init();
+        chratingsandreview.init();
+
+        // URL so we can use it as productVariantId.
+        var productVariantId = NaN;
+        
+        window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+          if (key === 'product') {
+            productVariantId = parseInt(value);
+          }
+        });
+
+        $scope.productId=productVariantId;
       /************************************************************
       *
       *    Angular code.

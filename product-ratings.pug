@@ -13,7 +13,7 @@ block css
 
 block content
 
-  section.userprofile.simple
+  section.userprofile.simple(ng-app="myApp" ng-controller="myCtrl", min=0, max=100)
     .container
       .row
         .col-md-12
@@ -23,15 +23,7 @@ block content
       .card
         p Rate the product from 0 - 100
         .form-group
-          a(href='#modal_coming_soon', data-toggle='modal')
-            i.fa.fa-minus-circle
-          //- a
-          | &nbsp;
-          input(type='text', value='88')
-          | &nbsp;
-          a(href='#modal_coming_soon', data-toggle='modal')
-            i.fa.fa-plus-circle
-          //- a
+          div(ng-model='rating', rn-stepper='')
         //- form-group
         hr
         p
@@ -41,38 +33,97 @@ block content
           li Describe the product and specific details of your experience.
           li Be respectful.
           li Focus on the facts.
-          li Write at least 20 words.
         //- ol
         .row
           .col-md-6
             .form-group
               label Add a heading for you review
-              input.form-control(type='text')
+              input.form-control(type='text', id='reviewHeading')
             //- form-group
           //- col-md-6
         //- row
         .form-group
           label Your review
-          textarea.form-control(rows='5')
+          textarea.form-control(rows='5', id='review')
         //- form-group
         .checkbox
           label
-            input(type='checkbox')
+            input(type='checkbox', id='recommend-checkbox')
             | &nbsp;I would recommend this drink to a friend
           //- label
         //- checkbox
         .text-right
-          a.btn.btn-success(href='#modal_coming_soon', data-toggle='modal') Submit
+          a.btn.btn-success(data-toggle='modal', id='submit-product-rating') Submit
         //- text-right
       //- card
+      input#review-element-id(type='hidden', value='')
+
     //- container
   //- section
-
 
 block scripts
   // External Script goes here...
   script.
-    $(function () {
-
+    $(document).ready(function(){
+      var app = angular.module('myApp', ['ngSanitize']);
+      chwritereview.init();
     });
+
+    var app = angular.module('myApp', ['ngSanitize'])
+
+    .controller('myCtrl', function($scope) {
+      $scope.rating = 99;     
+    })
+
+    .directive('rnStepper', function() {
+        return {
+            restrict: 'AE',
+            scope: {
+                value: '=ngModel'
+            },
+            template: '<button ng-disabled="isOverMin()" ng-click="decrement()">-</button>' +
+                      '<div id="rate">{{ value }}</div>' +
+                      '<button ng-disabled="isOverMax()" ng-click="increment()">+</button>',
+            link: function(scope, iElement, iAttrs) {
+                scope.increment = function() {
+                    scope.value++;
+                }
+                scope.decrement = function() {
+                    scope.value--;
+                }
+                scope.isOverMin = function() {
+                   var disabled = false;
+                    if(scope.value <= 0) {
+                      disabled = true;
+                    }
+                    return disabled;
+                }
+                scope.isOverMax = function() {
+                    var disabled = false;
+                    if(scope.value >= 100) {
+                      disabled = true;
+                    }   
+                    return disabled;
+                }
+            }
+        };
+    });
+
+    /*
+    *  Set up the login part at the top of the page.
+    */
+    authservice.init({
+      host: 'localhost',
+      port: 9090,
+      tenant: 'nodeclient',
+      pretend: true,
+      onLoggedIn: function() {
+        console.log('logged in');
+      },
+      onLoggedOut: function() {
+        console.log('logged out');
+      }
+    });
+    console.log('Current user:', authservice.getCurrentUser());
   //- script.
+//- block scripts

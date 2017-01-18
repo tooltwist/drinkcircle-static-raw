@@ -149,6 +149,7 @@ var bower = [
     bowerBaseDir + '/moment/**/*.*',
     bowerBaseDir + '/owl.carousel/dist/**/*.*',
     bowerBaseDir + '/mustache.js/*.*',
+    bowerBaseDir + '/bootbox.js/*.*',
     '!' + bowerBaseDir + '/jquery.cookie/*.json', // Exclude '.json' files
     '!' + bowerBaseDir + '/font-awesome/scss/**', // Exclude 'scss' folder
     '!' + bowerBaseDir + '/font-awesome/less/**', // Exclude 'less' folder
