@@ -520,6 +520,38 @@
               var promise = $http(req).then(handleSuccess, handleError);
               return promise;
             },
+            checkRemainingSharedOrderQuantity : function(sharedOrderId){
+                var url = baseUrl + '/philChristmas/getRemainingQuantity';
+                
+                var req = {
+                  method: 'POST',
+                  url: url,
+                  headers: {
+                    "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+                    "version": "1.0.0"
+                  },
+                  data: {id : sharedOrderId}
+                };
+
+              var promise = $http(req).then(handleSuccess, handleError);
+              return promise;
+            },
+            completeSharedOrder : function(sharedOrderId){
+                var url = baseUrl + '/philChristmas/completed';
+                
+                var req = {
+                  method: 'POST',
+                  url: url,
+                  headers: {
+                    "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+                    "version": "1.0.0"
+                  },
+                  data: {id : sharedOrderId}
+                };
+
+                var promise = $http(req).then(handleSuccess, handleError);
+                return promise;
+            },
             // Other functions to be exposed by teaService.
             getSharedOrdersAndSetAngularVariables: getSharedOrdersAndSetAngularVariables,
 

@@ -431,7 +431,7 @@ block scripts
 
          if ( !isNaN(sharedOrderId)) {
 
-
+           $scope.sharedOrderId = sharedOrderId;
 
            /*
             *   VIEW AN EXISTING CIRCLEBUY.
@@ -462,7 +462,7 @@ block scripts
                //ZZZZ Handle any error (indicated by product=null)
                $scope.variant = products[0].variants[0]; // 1:1 in Drinkcircle
                $scope.pricingQuantityList = products[0].variants[0].pricing[0].pricingQuantity;
-               $scope.sharedOrder.so_alreadyOrdered = 2;
+               //$scope.sharedOrder.so_alreadyOrdered = 2;
                //$scope.so_yourQuantity = '1';
                $scope.junkChooks = 'MEOW';
                console.log('so=', sharedOrders)
@@ -471,7 +471,14 @@ block scripts
                $scope.so_existing_orderSize = sharedOrders[0].sharedOrder.quantity;
                $scope.finalOrderSize = sharedOrders[0].sharedOrder.quantity;
                $scope.haveValidOrderSize = true;
-               $scope.so_alreadyOrdered = 2;///ZZZ Calculate this
+               //$scope.so_alreadyOrdered = 2;///ZZZ Calculate this
+               return teaService.checkRemainingSharedOrderQuantity(sharedOrderId);
+             }).then(function(data){
+               //check remaining quantity
+               var quantity = data.quantity;
+               var remaining = data.remaining;
+               $scope.sharedOrder.so_alreadyOrdered = quantity - remaining
+               $scope.so_alreadyOrdered = quantity - remaining;
              });
 
            });
@@ -905,11 +912,73 @@ block scripts
 
           } else {
             console.log('ok 0b');
-
             /*
              *  Add a customer order to the existing circlebuy.
              */
-            alert('not creating order yet!');
+              
+              var sharedOrderId = $scope.sharedOrderId;
+              var circleBuy = {
+                  "customerId" : customerId, 
+                  "sharedOrderId" : $scope.sharedOrderId, 
+                  "flow" : "PRE", 
+                  "action" : "A",
+                  "marketplace" : 1, 
+                  "currencyId" : 22, 
+                  "amountExclTax" : accounting.unformat($scope.calc_subtotal), 
+                  "taxType" : "G", 
+                  "taxAmount" : accounting.unformat($scope.calc_gst), 
+                  "amountInclTax" : accounting.unformat($scope.calc_subtotal), 
+                  "notes" : $scope.comment,
+                  "items" : [
+                    {
+                      "productVariantId" : productVariantId,
+                      "description" : "sample",
+                      "unitPrice" : accounting.unformat($scope.calc_price),
+                      "quantity" : $scope.so_yourQuantity,
+                      "taxExempted" : false,
+                      "priceIncludesTax" : true,
+                      "taxRate" : $scope.gst_rate,
+                      "amountExclTax" : accounting.unformat($scope.calc_subtotal),
+                      "taxAmount" : accounting.unformat($scope.calc_gst), 
+                      "amountInclTax" : accounting.unformat($scope.calc_subtotal), 
+                      "shippedQuantity" : null
+                    }
+                  ],
+                  "shippingCost" : {
+                    "unitPrice" : accounting.unformat($scope.calc_shippingSaving),
+                    "quantity" : 1,
+                    "taxExempted" : false,
+                    "priceIncludesTax" : true,
+                    "taxRate" : $scope.gst_rate,
+                    "amountExclTax" : accounting.unformat($scope.calc_shipping_excl_tax),
+                    "taxAmount" : accounting.unformat($scope.calc_shipping_incl_tax), 
+                    "amountInclTax" : accounting.unformat($scope.calc_shipping)
+                  }
+                }
+
+                teaService.addCircleBuy(circleBuy).then(function(data){
+                  console.log("checking remaining circle buys");
+                  /*if(data) {
+                    var newUrl = 'circlebuy-invites.html?circlebuy=' + sharedOrderId;
+                    console.log('Will jump to: ' + newUrl)
+                    window.location.href = newUrl;
+                  } */
+                  //check to see how many left in the circle buy
+                  return teaService.checkRemainingSharedOrderQuantity(sharedOrderId);
+                }).then(function(data){
+                  var remaining = data.remaining;
+                  if(remaining <= 0){
+                    console.log("closing circle buy");
+                    //time to close the circle buy
+                    teaService.completeSharedOrder(sharedOrderId);
+                  }
+                }).then(function(){
+                   var newUrl = 'circlebuy-requests.html';
+                      console.log('Will jump to: ' + newUrl)
+                      window.location.href = newUrl;
+                });
+
+            //alert('not creating order yet!');
           }
           return false;
 
