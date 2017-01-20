@@ -9,7 +9,8 @@ var browserSync   = require('browser-sync').create();
 var autoprefixer = require('gulp-autoprefixer');
 var exec = require('child_process').exec;
 
-var root = '../ttstatic.github.io/'; // always add slash('/') at the end
+//var root = '../ttstatic.github.io/'; // always add slash('/') at the end
+var root = 'build/'; // always add slash('/') at the end
 var dir = 'drinkcircle'; // project folder
 
 var paths = {
@@ -149,6 +150,8 @@ var bower = [
     bowerBaseDir + '/bootstrap/dist/**/*.*',
     bowerBaseDir + '/font-awesome/**/*.*',
     bowerBaseDir + '/jquery/dist/**/*.*',
+    bowerBaseDir + '/typeahead.js/dist/**/*.*',
+    bowerBaseDir + '/ng-tags-input/**/*.*',
     bowerBaseDir + '/jquery.cookie/**/*.*',
     bowerBaseDir + '/moment/**/*.*',
     bowerBaseDir + '/owl.carousel/dist/**/*.*',

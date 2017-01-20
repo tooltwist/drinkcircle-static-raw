@@ -17,14 +17,16 @@
   "dependencies": {
     "jquery.cookie": "https://github.com/carhartl/jquery-cookie.git#~1.4.1",
     "font-awesome": "fontawesome#^4.5.0",
-    "jquery": "^2.2.3",
+    "jquery": "2.2.3",
     "animate.css": "git@github.com:daneden/animate.css.git#^3.5.1",
     "owl.carousel": "https://github.com/OwlCarousel2/OwlCarousel2.git#^2.1.6",
     "angular": "^1.6.1",
     "angular-sanitize": "^1.6.1",
     "accounting": "^0.3.2",
     "moment": "^2.17.1",
+    "typeahead.js": "^0.11.1",
     "angular-datatables": "^2.0.1",
-    "angular-material": "^1.1.1"
+    "angular-material": "^1.1.1",
+    "ng-tags-input": "3.1.1"
   }
 }

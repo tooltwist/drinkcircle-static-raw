@@ -1,3 +1,4 @@
             // // .pipe(debug({title:'pug-watch-2'}))
 /node_modules
 /bower_components
+/build
