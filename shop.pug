@@ -166,7 +166,7 @@ block content
                             li
                               a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
                             //- li
-                            li.price $39.99
+                            li.price {{displayPrice}}
                             //- li
                             li
                               a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
@@ -267,6 +267,18 @@ block scripts
             } else {
               variant.d_image = "NOTFOUND.jpg"; // ZZZZZ
             }
+            
+            //computation for display price
+            if(variant.pricing.length > 0){
+              var componentsQty = variant.componentsQty;
+              var pricingQuantity = variant.pricing[0].pricingQuantity;
+              var pricingQuantityLowestPrice = pricingQuantity[pricingQuantity.length - 1].price;
+              var displayPrice = (Math.ceil((pricingQuantityLowestPrice / componentsQty) * 100) / 100).toFixed(2);
+              $scope.displayPrice = accounting.formatMoney(displayPrice);
+              
+            }
+            
+
             variants.push(variant);
           });
         });
