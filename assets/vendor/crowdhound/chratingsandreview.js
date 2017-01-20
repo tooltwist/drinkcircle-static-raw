@@ -20,7 +20,7 @@ var chratingsandreview = (function() {
       
       //check if user logged in owns the rating
       //this should have been in a different cooker
-      var userId = '9E1SKOA3L0A91K0C1GOLT2C8'; //Login_config.getCurrentUser().userId;
+      var userId = 'QWER62I57JPR70WV7GN1SAK5'; //Login_config.getCurrentUser().userId;
       if(userId != ''){
         //check if user own the review
         if(userId == element.user.userId){

@@ -83,6 +83,7 @@ block scripts
             },
             template: '<button ng-disabled="isOverMin()" ng-click="decrement()">-</button>' +
                       '<div id="rate">{{ value }}</div>' +
+                      //'<input maxlength="3" size="4" type="number" id="rate" value="{{value}}"></input>' +
                       '<button ng-disabled="isOverMax()" ng-click="increment()">+</button>',
             link: function(scope, iElement, iAttrs) {
                 scope.increment = function() {

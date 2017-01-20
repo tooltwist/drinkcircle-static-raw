@@ -1,5 +1,4 @@
 var chwritereview = (function() {
-  var isEdit = false;
   var CHConfig = function(){
     var serverUrl = "//127.0.0.1:4000",
       apiVersion = "2.0",
@@ -20,7 +19,7 @@ var chwritereview = (function() {
       var host = CHConfig.SERVER_URL;
       var port = CHConfig.SERVER_PORT;
       var tenant = CHConfig.TENANT_NAME;
-      var ttuat = '9E1SKOA3L0A91K0C1GOLT2C8';
+      var ttuat = '0YFW4AUKIQXVTH15Z172DRBT';
     
       var _curiaUrl;
       // Prepare the configuration for Curia
