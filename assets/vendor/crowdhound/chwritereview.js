@@ -13,21 +13,21 @@ var chwritereview = (function() {
       API_URL: apiUrl,
             SERVER_PORT : port
     }
-  }();    
+  }();
 
   function initCuria() {
       var host = CHConfig.SERVER_URL;
       var port = CHConfig.SERVER_PORT;
       var tenant = CHConfig.TENANT_NAME;
       var ttuat = '0YFW4AUKIQXVTH15Z172DRBT';
-    
+
       var _curiaUrl;
       // Prepare the configuration for Curia
       var serverUrl = 'http:' + host;
       var apiVersion = '2.0'
-      
+
       console.log("_curiaUrl=" + CHConfig.API_URL + ".");
-        
+
       curiaConfig = {
             serverUrl : serverUrl,
             apiVersion : apiVersion,
@@ -35,7 +35,7 @@ var chwritereview = (function() {
             debug: false,
             authenticationToken : ttuat,
             urlive : false,
-            flat: false, 
+            flat: false,
             textonly: false,
             // cookers: {
                 //cook_avatars : cookAvatars, //definition is in the curia_js widget
@@ -47,7 +47,7 @@ var chwritereview = (function() {
                     //"review_0" : "#review",
                     //"options":  { flat: false, textonly: true, readonly: false },
               //}
-            
+
             //}
       };
 
@@ -57,7 +57,7 @@ var chwritereview = (function() {
         //ProductReview.loadReview();
       });
     }
-    
+
     function postRating() {
 
         //getting product id from url
@@ -70,7 +70,7 @@ var chwritereview = (function() {
 
         var title = $('#reviewHeading').val();
         console.log("title: " + title);
-        
+
         var review = $('#review').val();
         console.log("review: "+ review);
 
@@ -87,7 +87,7 @@ var chwritereview = (function() {
             "title": (title? title: " "),
             "description" : (review? review: " "),
             "extraProperties" : recommended,
-            
+
         };
         //add id to data if review already exists and pass it to PUT (edit)
         if(isEdit){
@@ -96,10 +96,10 @@ var chwritereview = (function() {
             //new review = pass an elementId or anchor
             data.anchor = "product-"+productId+"-reviewer-"+userId;
         }
-        
+
         //change method whether this is an edit or first review
         var ajaxType = elementId? "PUT": "POST";
-        
+
         $.ajax({
             type : ajaxType,
             url : url,
@@ -119,11 +119,20 @@ var chwritereview = (function() {
             }
         });
     }
-    
+
     function rate(pid, reviewId, score) {
         var userId = 61;
-        
-        Curia.select({elementId : '$product-'+pid, withChildren : false, level : 0}, function (err, selection){
+        var anchorType = 'product-reviews';
+        Curia.select({
+            elementId: '$product-'+pid,
+            withChildren: false,
+            level: 0
+        }, newAnchorType, function(err, selection) {
+            if (err) {
+                console.log('Error loading reviews', err);
+                return;
+            }
+
             var elementProductId = selection.elements[0].id;
             var params = {
                 aggregationElement: elementProductId,
@@ -131,7 +140,7 @@ var chwritereview = (function() {
                 aspect: 'ratings',
                 score: score
             }
-    
+
             jQuery.ajax({
                 url :  Curia.addAuthenticationToken(CHConfig.API_URL + "/vote"),
                 method : 'POST',
@@ -139,7 +148,7 @@ var chwritereview = (function() {
                 success : function(data, textStatus, xhr) {
                     if (xhr.status === 200) {
                         var productName = $('#title-product-name').text();
-                        var message = isEdit? 
+                        var message = isEdit?
                           "You have successfully updated a rating/ review for " + productName +"!" :
                           "You have successfully submitted a rating/ review for " + productName +"!" ;
                         bootbox.alert(message, function() {
@@ -158,11 +167,11 @@ var chwritereview = (function() {
 
     }
 
-          
+
     function showRatingRequiredAlert() {
         bootbox.alert("Please select a rating value for this product.", function(){});
     }
-    
+
     function populateReview(){
 
         //getting product id from url
@@ -179,15 +188,17 @@ var chwritereview = (function() {
         var params = {
             elementId: "$product-"+productId+"-reviewer-"+userId
         }
-        
-        Curia.select("$product-"+productId+"-reviewer-"+userId, function (err, selection){
+
+        var newAnchorType = 'review';
+        Curia.select("$product-"+productId+"-reviewer-"+userId, newAnchorType, function(err, selection) {
+
             if(err){
                 isEdit = false;
                 console.log("No items returned from select.")
             }else{
                 isEdit = true;
                 console.log("returned " +selection.elements.length+ " from select.");
-                var element = selection.elements[0]; 
+                var element = selection.elements[0];
                 $('#review-element-id').val(element.id);
 
                 $('#reviewHeading').val(element.title);
@@ -212,9 +223,9 @@ var chwritereview = (function() {
     }
   return {
     init: function() {
-      $(initCuria()); 
+      $(initCuria());
         $(populateReview() );
-        
+
         $('#submit-product-rating').on('click', function(){
             var loginId = 61;
             console.log("userid: " + 61);
@@ -222,7 +233,7 @@ var chwritereview = (function() {
                 $(showAlertNeedToLogin() );
                 return;
             }
-            
+
             var rating = $('#rate').html();
             if(rating) {
                 var proceedWithReview = checkReview();
@@ -231,7 +242,7 @@ var chwritereview = (function() {
             }
 
         } );
-        
+
         var checkReview = function () {
             var reviewHeading = $('#reviewHeading').val();
             var review = $('#review').val();
@@ -246,7 +257,7 @@ var chwritereview = (function() {
             }
             return false;
         };
-        
+
         var bootConfirm = function ( messageString, elementId ) {
 
         bootbox.confirm(  {
@@ -278,4 +289,3 @@ var chwritereview = (function() {
     }
   }
 })();
-
