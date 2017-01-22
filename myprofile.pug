@@ -13,7 +13,7 @@ block css
 
 block content
 
-  section.userprofile.myprofile.simple
+  section.userprofile.myprofile.simple(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
     .container
       .row
         .col-md-3
@@ -30,6 +30,9 @@ block content
               li.active(role="presentation")
                 a(href="#tab-personal-details", role="tab", data-toggle="tab") Personal Details
               //- li
+              li(role="presentation").hideZ.ZZZ
+                a(href="#tab-friends", role="tab", data-toggle="tab") Friends
+              //- li
               li(role="presentation")
                 a(href="#tab-billing-shipping", role="tab", data-toggle="tab") Billing &amp; Shipping
               //- li
@@ -44,6 +47,9 @@ block content
               //- li
             //- ul
         //- col-md-3
+
+
+        // "Personal Details" pane
         .col-md-9
           .tab-content
             .tab-pane.active#tab-personal-details(role="tabpanel")
@@ -52,17 +58,18 @@ block content
                   .col-md-6
                     .form-group
                       label(for='pd-fname') First Name
-                      input#pd-fname.form-control(type='text', placeholder='')
+                      input#pd-fname.form-control(type='text', placeholder='' value="{{user.user.user_first_name}}")
                     //- form-group
                   //- col-md-6
                   .col-md-6
                     .form-group
                       label(for='pd-lname') Last Name
-                      input#pd-lname.form-control(type='text', placeholder='')
+                      input#pd-lname.form-control(type='text', placeholder='' value="{{user.user.user_last_name}}")
                     //- form-group
                   //- col-md-6
                 //- row
-                .row
+
+                .row.hide.ZZZ
                   .col-md-3
                     .form-group
                       label(for='pd-bday') Date of Birth
@@ -70,18 +77,12 @@ block content
                     //- form-group
                   //- col-md-3
                 //- row
+
                 h3 Interests
                 .row
-                  .col-md-6
+                  .col-md-12
                     .form-group
-                      label(for='pd-indetails') Details
-                      input#pd-indetails.form-control(type='text', placeholder='')
-                    //- form-group
-                  //- col-md-6
-                  .col-md-6
-                    .form-group
-                      label(for='pd-tags') Tags
-                      input#pd-tags.form-control(type='text', placeholder='')
+                      tags-input#pd-indetails(ng-model="profile.interests",  display-property="value", type='text', placeholder='Add a tag')
                     //- form-group
                   //- col-md-6
                 //- row
@@ -91,6 +92,67 @@ block content
                 //- actions-wrap
               //- card
             //- tab-pane
+
+
+            // "Friends" pane
+            .tab-pane#tab-friends(role="tabpanel")
+              .row
+                .col-md-6
+                  .card
+                    h3 Friends
+                    .table-responsive
+                      table.table
+                        tr
+                          th Name
+                          th Id
+                        tr(ng-repeat="friend in friends")
+                          td {{friend.full_name}}
+                          td {{friend.entity_id}}
+                          td
+                            a.delete-address(ng-click="removeFriend(friend.entity_id)" href="#")
+                              i.fa.fa-trash
+
+                    .add-new-address
+                      a.btn.btn-warning(href="#myprofile-add-new-address", data-toggle="collapse") Add a friend&nbsp;
+                        i.fa.fa-plus
+                    //- add-new-address
+
+                    #myprofile-add-new-address.collapse.card
+                      .row
+                        .col-md-12
+                          p Name Search
+                          div#friend-search-input
+                            span.twitter-typeahead
+                              input.typeahead(type="text" placeholder="Name of Friend")
+                          p
+                          //- p
+
+
+                      //- row
+
+
+
+                      hr
+                      .actions-wrap
+                        a(ng-click="addFriend()" ng-hide="!havePossibleFriendSelected()" href="#").btn.btn-success Add
+                        | &nbsp;
+                        a.btn.btn-default(href="#") Cancel
+                      //- actions-wrap
+                    //- myprofile-add-new-address
+                .col-md-6
+                  .card
+                    h3 Friended By
+                    .table-responsive
+                      table.table
+                        tr
+                          th Name
+                          th Id
+                        tr(ng-repeat="friend in friendedBy")
+                          td {{friend.full_name}}
+                          td {{friend.entity_id}}
+            //- tab-pane
+
+            // "Billing" pane
             .tab-pane#tab-billing-shipping(role="tabpanel")
               .card
                 .myprofile-addresses
@@ -249,10 +311,12 @@ block content
               //- card
             //- tab-pane
 
+            // "Work" pane
             .tab-pane#tab-work(role="tabpanel")
               .card
                 .myprofile-work
-                  .media
+
+                  .media.hide.ZZZ
                     .media-left
                       a(href='#modal_coming_soon', data-toggle='modal')
                         img.media-object(src='http://placehold.it/50', alt='Company Logo')
@@ -270,7 +334,25 @@ block content
                         | » Support in using ToolTwist Designer Development Platform
                     //- media-body
                   //- media
-                  .media
+
+
+                  .media(ng_repeat="work in profile.employment")
+                    .media-left
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img.media-object(src='http://placehold.it/50', alt='Company Logo')
+                      //- a
+                    //- media-left
+                    .media-body
+                      h4.media-heading {{work.company}}
+                      small {{work.position}} &middot; {{work.duration}} &middot; {{work.location}}
+                      br
+                      small.text-muted
+                        | {{work.description}}
+                    //- media-body
+                  //- media
+
+
+                  .media.hide
                     .media-left
                       a(href='#modal_coming_soon', data-toggle='modal')
                         img.media-object(src='http://placehold.it/50', alt='Company Logo')
@@ -291,6 +373,8 @@ block content
                     //- media-body
                   //- media
                 //- myprofile-work
+
+
                 br
                 .add-new-work
                   a.btn.btn-warning(href="#myprofile-add-new-work", data-toggle="collapse") Add a new work&nbsp;
@@ -302,13 +386,13 @@ block content
                     .col-md-6
                       .form-group
                         label(for='pwork-company') Company
-                        input#pwork-company.form-control(type='text', placeholder='')
+                        input#pwork-company.form-control(type='text', placeholder='', ng-model="work_company")
                       //- form-group
                     //- col-md-6
                     .col-md-6
                       .form-group
                         label(for='pwork-position') Position
-                        input#pwork-position.form-control(type='text', placeholder='')
+                        input#pwork-position.form-control(type='text', placeholder='', ng-model="work_position")
                       //- form-group
                     //- col-md-6
                   //- row
@@ -316,7 +400,7 @@ block content
                     .col-md-6
                       .form-group
                         label(for='pwork-city') Location
-                        input#pwork-city.form-control(type='text', placeholder='')
+                        input#pwork-city.form-control(type='text', placeholder='', ng-model="work_location")
                       //- form-group
                     //- col-md-6
                   //- row
@@ -324,7 +408,7 @@ block content
                     .col-md-12
                       .form-group
                         label(for='pwork-description') Description
-                        textarea#pwork-description.form-control(rows="3")
+                        textarea#pwork-description.form-control(rows="3", ng-model="work_description")
                       //- form-group
                     //- col-md-12
                   //- row
@@ -334,7 +418,7 @@ block content
                         label(for='pwork-default-') Time Period:
                         .checkbox
                           label
-                            input(type='checkbox', value='')
+                            input(type='checkbox', value='', ng-model="work_currentEmployer")
                             | I currently work here
                           //- label
                         //- checkbox
@@ -345,20 +429,20 @@ block content
                     .col-md-3
                       .form-group
                         label(for='pwork-date-from') From
-                        input#pwork-date-from.form-control(type='date', placeholder='')
+                        input#pwork-date-from.form-control(type='date', placeholder='', ng-model="work_from")
                       //- form-group
                     //- col-md-3
                     .col-md-3
                       .form-group
                         label(for='pwork-date-to') to
-                        input#pwork-date-to.form-control(type='date', placeholder='')
+                        input#pwork-date-to.form-control(type='date', placeholder='', ng-model="work_to")
                       //- form-group
                     //- col-md-3
                   //- row
 
                   hr
                   .actions-wrap
-                    a.btn.btn-success(href="#") Save
+                    a.btn.btn-success(href="#" ng-click="addWork()") Save
                     | &nbsp;
                     a.btn.btn-default(href="#") Cancel
                   //- actions-wrap
@@ -366,10 +450,14 @@ block content
               //- card
             //- tab-pane
 
+
+            // "Education" pane
             .tab-pane#tab-education(role="tabpanel")
               .card
                 .myprofile-education
-                  .media
+
+
+                  .media.hide.ZZZ
                     .media-left
                       a(href='#modal_coming_soon', data-toggle='modal')
                         img.media-object(src='http://placehold.it/50', alt='Company Logo')
@@ -397,6 +485,27 @@ block content
                       small 2003 to Aug 2006 &middot; ...
                     //- media-body
                   //- media
+
+
+
+                  .media(ng-repeat="school in profile.education")
+                    .media-left
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img.media-object(src='http://placehold.it/50', alt='Company Logo')
+                      //- a
+                    //- media-left
+                    .media-body
+
+                      a.delete-education(href="#" ng-click="removeEducation(school.propertyId)")
+                        i.fa.fa-trash
+                      //- a
+
+                      h4.media-heading {{school.name}}
+                      small {{school.duration}} &middot; {{school.description}}
+                    //- media-body
+                  //- media
+
+
                   .media
                     .media-left
                       a(href='#modal_coming_soon', data-toggle='modal')
@@ -426,6 +535,9 @@ block content
                     //- media-body
                   //- media
                 //- myprofile-work
+
+
+
                 br
                 .add-new-education
                   a.btn.btn-warning(href="#myprofile-add-new-education", data-toggle="collapse") Add a new education&nbsp;
@@ -437,19 +549,19 @@ block content
                     .col-md-6
                       .form-group
                         label(for='peduc-school') School
-                        input#peduc-school.form-control(type='text', placeholder='')
+                        input#peduc-school.form-control(type='text', placeholder='', ng-model="school_name")
                       //- form-group
                     //- col-md-6
                     .col-md-3
                       .form-group
                         label(for='peduc-date-from') From
-                        input#peduc-date-from.form-control(type='date', placeholder='')
+                        input#peduc-date-from.form-control(type='date', placeholder='', ng-model="school_from")
                       //- form-group
                     //- col-md-3
                     .col-md-3
                       .form-group
                         label(for='peduc-date-to') To
-                        input#peduc-date-to.form-control(type='date', placeholder='')
+                        input#peduc-date-to.form-control(type='date', placeholder='', ng-model="school_to")
                       //- form-group
                     //- col-md-3
                   //- row
@@ -457,14 +569,14 @@ block content
                     .col-md-12
                       .form-group
                         label(for='peduc-description') Description
-                        textarea#peduc-description.form-control(rows="3")
+                        textarea#peduc-description.form-control(rows="3", ng-model="school_description")
                       //- form-group
                     //- col-md-12
                   //- row
 
                   hr
                   .actions-wrap
-                    a.btn.btn-success(href="#") Save
+                    a.btn.btn-success(ng-click="addEducation()" href="#") Save
                     | &nbsp;
                     a.btn.btn-default(href="#") Cancel
                   //- actions-wrap
@@ -472,6 +584,7 @@ block content
               //- card
             //- tab-pane
 
+            // "Login Details" pane
             .tab-pane#tab-login-details(role="tabpanel")
               .card
                 .row
@@ -516,6 +629,11 @@ block content
 
 
 block scripts
+
+
+  script(src="/bower_components/typeahead.js/dist/typeahead.bundle.min.js")
+  script(src="/bower_components/ng-tags-input/ng-tags-input.min.js")
+
   // External Script goes here...
   script.
     $(function () {
@@ -538,25 +656,561 @@ block scripts
     });
 
 
+    /************************************************************
+     *
+     *    Angular code.
+     */
+    var DUMMY_LOGIN = false;
+
+    // Tell Angular about this application
+    var app = angular.module('myApp', ['ngSanitize', 'ngTagsInput']);
+
+    // Add the controller for this page
+    app.controller('myCtrl', function($scope, $timeout /*, authserviceApi */) {
+
+      var PROPERTY_REALM_PROFILE = 'user.profile';
+      var PROPERTY_REALM_EDUCATION = 'user.education';
+      var PROPERTY_REALM_WORK = 'user.work';
+
+      // This code gets the "product" parameter from the
+      // URL so we can use it as productVariantId.
+      var productVariantId = NaN;
+      window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+        if (key === 'product') {
+          productVariantId = parseInt(value);
+        }
+      });
+      //console.log('Displaying the page for productVariantId=' + productVariantId);
+
+      // During development only
+      var DEFAULT_PRODUCT_VARIANT_ID = 6180;
+      if (isNaN(productVariantId)) {
+        productVariantId = DEFAULT_PRODUCT_VARIANT_ID;
+      }
+
+
+      authservice.init({
+        host: 'dcdev.authservice.io',
+        //port: 80,
+        /*host: 'localhost',
+        port: 9090,*/
+        tenant: 'nodeclient',
+        pretend: DUMMY_LOGIN,
+        onUserChange: function(user, stale) {
+
+          // If the current user came from the cookie, reload it
+          if (stale) {
+            console.log('Reloading stale user details (came from cookie)');
+            firstUser = false;
+            return authservice.reloadUser();
+          }
+
+          if (user) {
+            $timeout(function(){
+
+              // Logged in - have a current user
+              $scope.user = user;
+              //$scope.friends = user.;
+              $scope.loggedIn = true;
+
+
+              // Function to sort relationship records by name
+              var sortRelationshipSummaryByFullname = function(a, b) {
+                var name_a = (a.last_name && a.last_name != '') ? a.last_name : a.full_name;
+                var name_b = (b.last_name && b.last_name != '') ? b.last_name : b.full_name;
+
+                if (name_a < name_b)
+                  return -1;
+                if (name_a > name_b)
+                  return 1;
+                return 0;
+              };
+
+
+              // Get my friends
+              //console.log('onUserChange: logged in and got user:', user)
+              if (user.relationshipSummary.hasFriend) {
+                //console.log('onUserChange: user.relationshipSummary.hasFriend:', user.relationshipSummary.hasFriend)
+                var arrayOfFriends = user.relationshipSummary.hasFriend
+                arrayOfFriends.sort(sortRelationshipSummaryByFullname)
+                $scope.friends = arrayOfFriends
+              } else {
+                $scope.friends = [ ]
+              }
+
+              // Get those who have friended me
+              if (user.relationshipSummary.isFriendedBy) {
+                var arrayOfFriendedBy = user.relationshipSummary.isFriendedBy;
+                arrayOfFriendedBy.sort(sortRelationshipSummaryByFullname)
+                $scope.friendedBy = arrayOfFriendedBy
+              } else {
+                $scope.friendedBy = [ ]
+              }
+
+              // Get the properties for the user
+              $scope.profile = { };
+              if (user.propertySummary['drinkcircle.user.profile']) {
+                var props = user.propertySummary['drinkcircle.user.profile'];
+                $scope.userProfileProperties = props;
+                //console.log('Have user profile properties', props)
+
+                // Get the properties we use
+                var dobArray = props['dob']
+                if (dobArray && dobArray.length > 0) {
+                  $scope.profile.dob = dobArray[0].value;
+                }
+                var interestArray = props['interest']
+                if (interestArray) {
+                  $scope.profile.interests = interestArray;
+                }
+              }
+
+              // Look at education
+              $scope.profile.education = [ ];
+              if (user.propertySummary[PROPERTY_REALM_EDUCATION] && user.propertySummary[PROPERTY_REALM_EDUCATION].attended) {
+                var attended = user.propertySummary[PROPERTY_REALM_EDUCATION].attended;
+                for (var i = 0; i < attended .length; i++) {
+
+                  // Parse the JSON stored in the property.
+                  var schoolData = attended[i].value;
+                  try {
+                    var obj = JSON.parse(schoolData);
+                  } catch (e) {
+                    console.log('Invalid JSON for property ' + attended[i].property_id);
+                    continue;
+                  }
+
+                  if (obj.from || obj.to) {
+                    var fromS = obj.from ? moment(obj.from).format('MMM YYYY') : '?';
+                    var toS = obj.to ? moment(obj.to).format('MMM YYYY') : '?';
+                    var duration = fromS + ' - ' + toS;
+                  } else {
+                    var duration = '(date not specified)';
+                  }
+
+                  $scope.profile.education.push({
+                    propertyId: attended[i].property_id,
+                    name: obj.name,
+                    duration: duration,
+                    from: fromS,
+                    to: toS,
+                    description: obj.description
+                  });
+                }
+              }
+
+
+              // Look at employment
+              $scope.profile.employment = [ ];
+              if (user.propertySummary[PROPERTY_REALM_WORK] && user.propertySummary[PROPERTY_REALM_WORK].data) {
+                var employers = user.propertySummary[PROPERTY_REALM_WORK].data;
+                for (var i = 0; i < employers.length; i++) {
+
+                  // Parse the JSON stored in the property.
+                  var workData = employers[i].value;
+                  try {
+                    var obj = JSON.parse(workData);
+                  } catch (e) {
+                    console.log('Invalid JSON for property ' + attended[i].property_id);
+                    continue;
+                  }
+
+                  if (obj.from || obj.to) {
+                    var fromS = obj.from ? moment(obj.from).format('MMM YYYY') : '?';
+                    var toS = obj.to ? moment(obj.to).format('MMM YYYY') : '?';
+                    var duration = fromS + ' - ' + toS;
+                  } else {
+                    var duration = '(date not specified)';
+                  }
+
+                  $scope.profile.employment.push({
+                    propertyId: attended[i].property_id,
+                    company: obj.company,
+                    position: obj.position,
+                    location: obj.location,
+                    description: obj.description,
+                    currentlyEmployed: obj.currentlyEmployed,
+                    duration: duration,
+                    from: fromS,
+                    to: toS
+                  });
+                }
+              }
+
+            }, 100);
+          } else {
+
+            // Logged out - no current user
+            $timeout(function(){
+              $scope.user = null;
+              $scope.loggedIn = false;
+              $scope.friends = null;
+              $scope.friendedBy = null;
+              $scope.profile = null;
+            }, 100);
+          }
+        }
+      });
+
+
+
+
+      // Set up Autocomplete on the name select field
+      var substringMatcher = function() {
+
+        /*$scope.$apply(function(){
+          console.log('jiiijjjeeeejj')
+          });*/
+        return function findMatches(q, syncCb, cb) {
+
+          if (q.length < 2) {
+            //console.log('no query')
+            $timeout(function(){
+              $scope.friendCandidate = null
+            }, 50);
+            return syncCb([ ])
+          }
+
+          // Call the TEA API to get the potential friends
+          var params = {
+            //entityId: 901,
+            nameMatch: q,
+            needRelationships: false,
+            needProperties: false,
+            entityType: 'user',
+            limit: 10 // Maximum of users
+          };
+          authservice.getUser(params, function(users) {
+
+            // Return the
+            if (users == null || users.length == 0) {
+              console.log('no users')
+              $timeout(function(){
+                $scope.friendCandidate = null
+              }, 50);
+              return [ ];
+            }
+
+            // Sort the users
+            users.sort(function(a, b) {
+              // Should be by surname
+              if (a.full_name < b.full_name)
+                return -1;
+              if (a.full_name > b.full_name)
+                return 1;
+              return 0;
+            });
+
+            return cb(users)
+
+            /*console.log('\n\n\nREPLY FROM getUser:', users);
+            var matches = [ ];
+            for (var i = 0; i < users.length && i < 20; i++) {
+              var user = users[i]
+              var val = user.id + ':' + user.full_name
+
+              var obj = {
+                entity_id: user.id,
+                full_name: user.full_name
+              }
+              matches.push(obj)
+            }
+            console.log('matches=', matches)
+            cb(matches);*/
+
+          });
+
+        };
+      };
+
+      /*
+       *    Attach 'typeahead' to the friend search field
+       */
+      $('#friend-search-input .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 0
+      },
+      {
+        name: 'states',
+        source: substringMatcher(),
+        limit: Infinity,
+        display: function(user) {
+          console.log("  user ->", user)
+          //return user.full_name
+          return user.full_name + '  (' + user.id + ')'
+        }
+      });
+
+
+      /*
+       *  Select a friend from the search result
+       */
+      $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+        console.log('Selection: ', suggestion);
+        $timeout(function(){
+          $scope.friendCandidate = suggestion
+          }, 50);
+      });
+
+
+      /*
+       *  Return true if there is a friend selected
+       */
+      $scope.havePossibleFriendSelected = function() {
+        //console.log('havePossibleFriendSelected. friendCandidate=', $scope.friendCandidate)
+        if ($scope.friendCandidate) {
+          return true;
+        }
+        return false;
+      };
+
+      /*
+       *  Add the currently selected friend to the friends of the current user
+       */
+      $scope.addFriend = function() {
+        var me = authservice.getCurrentUser()
+        if (me) {
+          console.log('me=', me)
+          var currentUserId = me.id;
+        } else {
+          // No current user. We'll just ignore this request.
+          return;
+        }
+
+        // Have a current user
+        if ($scope.friendCandidate) {
+          console.log('Add as friend ', $scope.friendCandidate)
+          var params = {
+            entity_id_1: currentUserId,
+            entity_id_2: $scope.friendCandidate.id,
+            relationship_type: 'friend'
+          };
+          authservice.addRelationship(params, function(result) {
+
+            // Display the product details
+            console.log('\n\n\nREPLY FROM admin_addRelationship:', result);
+
+            // Reload the current user details
+            authservice.reloadUser();
+          });
+        }
+
+      }; // $scope.addFriend()
+
+
+      /*
+       *  Remove a friend
+       */
+      $scope.removeFriend = function(entity_id) {
+        console.log('Remove friend ', entity_id)
+        var me = authservice.getCurrentUser()
+        if (me) {
+          var currentUserId = me.id;
+        } else {
+          // No current user. We'll just ignore this request.
+          return;
+        }
+
+        // Remove the friend
+        var params = {
+          entity_id_1: currentUserId,
+          entity_id_2: entity_id,
+          relationship_type: 'friend'
+        };
+        authservice.removeRelationship(params, function(result) {
+
+          // Display the product details
+          console.log('\n\n\nREPLY FROM removeRelationship:', result);
+
+          // Reload the current user details
+          authservice.reloadUser();
+        });
+      } // removeFriend
+
+
+      $scope.addEducation = function() {
+
+        // Check we have a current user
+        var me = authservice.getCurrentUser()
+        if (me) {
+          var currentUserId = me.id;
+        } else {
+          // No current user. We'll just ignore this request.
+          return;
+        }
+
+        // Put the info about the school into a JSON string
+        var schoolData = {
+          name: $scope.school_name,
+          from: $scope.school_from,
+          to: $scope.school_to,
+          description: $scope.school_description
+        };
+        var json = JSON.stringify(schoolData);
+
+        // Add the new property.
+        var params = {
+          realm: PROPERTY_REALM_EDUCATION,
+          entity_id: currentUserId,
+          name: 'attended',
+          sequence: 0,
+          value: json
+        };
+        authservice.addProperty(params, function(result) {
+          // Reload the current user details
+          authservice.reloadUser();
+        });
+        return false;
+      }
+
+
+      $scope.removeEducation = function(propertyId) {
+        //alert('removeEducation(' + propertyId + ')');
+
+        // Check we have a current user
+        var me = authservice.getCurrentUser()
+        if (me) {
+          var currentUserId = me.id;
+        } else {
+          return; // No current user. We'll just ignore this request.
+        }
+
+
+        var arr = $('#modal_confirm_delete');
+        console.log('arr.length=' + arr.length);
+        $('#modal_confirm_delete').modal({ backdrop: 'static', keyboard: false })
+        .one('click', '#modal_confirm_delete_button', function (e) {
+
+            // Remove the education property.
+            var params = {
+              property_id: propertyId,
+              realm: PROPERTY_REALM_EDUCATION,
+              entity_id: currentUserId
+            };
+            authservice.removeProperty(params, function(result) {
+              authservice.reloadUser();
+            });
+        });
+        return false;
+      }
+
+
+      $scope.addWork = function() {
+
+        // Check we have a current user
+        var me = authservice.getCurrentUser()
+        if (me) {
+          var currentUserId = me.id;
+        } else {
+          // No current user. We'll just ignore this request.
+          return;
+        }
+
+        // Put the info about the school into a JSON string
+        var workData = {
+          company: $scope.work_company,
+          position: $scope.work_position,
+          location: $scope.work_description,
+          description: $scope.work_description,
+          from: $scope.work_from,
+          to: $scope.work_to
+        };
+        var json = JSON.stringify(workData);
+
+        // Add the new property.
+        var params = {
+          realm: PROPERTY_REALM_WORK,
+          entity_id: currentUserId,
+          name: 'data',
+          sequence: 0,
+          value: json
+        };
+        authservice.addProperty(params, function(result) {
+          authservice.reloadUser();
+        });
+        return false;
+      }
+
+
+      $scope.removeWork = function(propertyId) {
+        //alert('removeEducation(' + propertyId + ')');
+
+        // Check we have a current user
+        var me = authservice.getCurrentUser()
+        if (me) {
+          var currentUserId = me.id;
+        } else {
+          return; // No current user. We'll just ignore this request.
+        }
+
+
+        var arr = $('#modal_confirm_delete');
+        console.log('arr.length=' + arr.length);
+        $('#modal_confirm_delete').modal({ backdrop: 'static', keyboard: false })
+        .one('click', '#modal_confirm_delete_button', function (e) {
+
+            // Remove the education property.
+            var params = {
+              property_id: propertyId,
+              realm: PROPERTY_REALM_WORK,
+              entity_id: currentUserId
+            };
+            authservice.removeProperty(params, function(result) {
+              authservice.reloadUser();
+            });
+        });
+        return false;
+      }
+
+
+    });//- controller
+
 
     /*
      *  Set up the login part at the top of the page.
      */
-    authservice.init({
-      host: 'localhost',
-      port: 9090,
-      tenant: 'nodeclient',
-      pretend: true,
-      onLoggedIn: function(user) {
-        $('input#pd-fname').val(user.firstname);
-        $('input#pd-lname').val(user.lastname);
-      },
-      onLoggedOut: function() {
-        // Forward to the home page
-        window.location.href = 'index.html';
-      }
-    });
-    console.log('Current user:', authservice.getCurrentUser());
+
+
+    //- authservice.init({
+    //-   host: 'localhost',
+    //-   port: 9090,
+    //-   tenant: 'nodeclient',
+    //-   pretend: true,
+    //-   onLoggedIn: function() {
+    //-     console.log('logged in');
+    //-   },
+    //-   onLoggedOut: function() {
+    //-     console.log('logged out');
+    //-   }
+    //- });
+    //- console.log('Current user:', authservice.getCurrentUser());
+
+
+        /*
+         *  Set up the login part at the top of the page.
+         */
+        /*authservice.init({
+          host: 'localhost',
+          port: 9090,
+          tenant: 'nodeclient',
+          pretend: true,
+          onLoggedIn: function(user) {
+            $('input#pd-fname').val(user.firstname);
+            $('input#pd-lname').val(user.lastname);
+          },
+          onLoggedOut: function() {
+            // Forward to the home page
+            window.location.href = 'index.html';
+          }
+        });
+        console.log('Current user:', authservice.getCurrentUser());*/
+
+      //- script.
+    //- block scripts
+
+
+
 
 
   //- script.

@@ -1,0 +1,31 @@
+header.mdl-layout__header
+   .mdl-layout-icon
+   .mdl-layout__header-row
+      span.mdl-layout__title
+         span.wbdRichText
+            div Products
+      .mdl-layout-spacer
+      // Right aligned menu below button
+      .authservice-current-user-firstname.inline
+      button#user-drop-settings.mdl-button.mdl-js-button.mdl-button--icon
+         i.material-icons arrow_drop_down
+      ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='user-drop-settings')
+         li.mdl-menu__item
+            span.mdl-badge(data-badge='4') Notifications
+         li.mdl-menu__item
+            a(href='#') Products
+         li.mdl-menu__item
+            a(href='#') Categories
+         li.mdl-menu__item
+            a(href='#') Shipping
+         li.mdl-menu__item
+            a(href='#') Orders
+         li.mdl-menu__item
+            a(href='/ttsvr/n/ttauth2_logout') Logout
+.mdl-layout__drawer
+   span.mdl-layout__title
+      img(src='assets/images/logo_black.png')
+   nav.mdl-navigation
+      a.mdl-navigation__link(href='products-list.html') Products
+      a.mdl-navigation__link(href='/ttsvr/admin-category') Categories
+      a.mdl-navigation__link(href='/ttsvr/supplier-list') Supplier

@@ -534,27 +534,31 @@ block content
     //- container
   //- section
 
-  section.drinks.compare
+  section.drinks.compare(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
     .container
       .product-wrap
         h4 Compare Drinks
         p Select a maximum of 3 drinks to compare.
         .row.compare-summary
-          .col-md-4
+
+
+          .col-md-4(ng-repeat="variant in variants")
             .alert.alert-success
-              a.close(href='#modal_coming_soon', data-toggle='modal') &times;
-              strong Brokenwood
-              p Graveyard Vineyard
+              a.close(ng-click="removeFromCompare(variant)" href='#', data-toggle='modal') &times;
+              strong {{variant.manufacturer}}
+              p {{variant.name}}
             //- alert
           //- col-md-4
-          .col-md-4
+
+          // Dummy data
+          .col-md-4.hide
             .alert.alert-success
               a.close(href='#modal_coming_soon', data-toggle='modal') &times;
               strong Giant Steps
               p Pinot Noir
             //- alert
           //- col-md-4
-          .col-md-4
+          .col-md-4.hide
             .alert.alert-success
               a.close(href='#modal_coming_soon', data-toggle='modal') &times;
               strong Rosnay Organic
@@ -562,10 +566,14 @@ block content
             //- alert
           //- col-md-4
         //- row
-        a.btn.btn-success.btn-small(href='#modal_coming_soon', data-toggle='modal') Compare 3 drinks
+        a.btn.btn-success.btn-small(href='#modal_coming_soon', data-toggle='modal') Compare up to 3 drinks
         hr
         .row
-          .col-sm-6.col-md-4
+
+
+
+
+          .col-sm-6.col-md-4(ng-repeat="variant in variants")
             .product
               .thumb
                 .ctr
@@ -579,63 +587,15 @@ block content
                 .details
                   p
                   .name
-                    a(href='#modal_coming_soon', data-toggle='modal') Brokenwood
+                    a(href='#modal_coming_soon', data-toggle='modal') {{variant.manufacturer}}
                     br
-                    small Graveyard Vineyard
+                    small {{variant.name}}
                   //- name
                   table.table
-                    tr
-                      th Rating
-                      td 94 points
-                    //- tr
-                    tr
-                      th Variety
-                      td Shiraz
-                    //- tr
-                    tr
-                      th Region
-                      td Hunter Valley
-                    //- tr
-                    tr
-                      th Alcohol
-                      td 14.5%
-                    //- tr
-                    tr
-                      th Vintage
-                      td 2010
-                    //- tr
-                    tr
-                      th Shipping
-                      td Free
-                    //- tr
-                    tr
-                      th Returns
-                      td 60 days
-                    //- tr
-                    tr
-                      th Circlebuys
-                      td 84
-                    //- tr
-                    tr
-                      th No. Ratings
-                      td 242
-                    //- tr
-                    tr
-                      th No. Reviews
-                      td 88
-                    //- tr
-                    tr
-                      th Case Size
-                      td 12 bottles
-                    //- tr
-                    tr
-                      th Standard Drinks
-                      td 8
-                    //- tr
-                    tr
-                      th Food Matching
-                      td Osso Bucco, Lamb
-                    //- tr
+                    tr(ng-repeat="specname in uniqueSpecificationNames")
+                      th {{specname}}
+                      td {{getVariantSpec(variant,specname)}}
+
                     tr
                       th
                       td
@@ -647,7 +607,7 @@ block content
                         li
                           a.thumb-action(href='productdetails2.html') Buy
                         //- li
-                        li.price $19.99
+                        li.price {{formattedPrice(variant)}}
                         //- li
                         li
                           a.thumb-action(href='productdetails2.html') View
@@ -659,7 +619,12 @@ block content
               //- thumb
             //- product
           //- col
-          .col-sm-6.col-md-4
+
+
+
+
+          // Dummy data
+          .col-sm-6.col-md-4.hide
             .product
               .thumb
                 .ctr
@@ -753,7 +718,10 @@ block content
               //- thumb
             //- product
           //- col
-          .col-sm-6.col-md-4
+
+
+
+          .col-sm-6.col-md-4.hide
             .product
               .thumb
                 .ctr
@@ -900,16 +868,155 @@ block scripts
     });
 
 
+
+
+    /************************************************************
+     *
+     *    Angular code.
+     */
+    var app = angular.module('myApp', ['ngSanitize']);
+
+    teaservice.init(app);
+
+    // Add the controller for this page
+    app.controller('myCtrl', function($scope, teaService) {
+
+      // Get the products to compare from a cookie
+
+
+      // Start updating countdownTimers, even though
+      // we won't have any yet.
+      /*teaService.startCountdownTimers();*/
+
+
+      //var cookieValue = "6210,6260";
+      var COMPARE_COOKIE = 'idsForCompare';
+      var compare_productVariantIds = [ ];
+      var cookie = authservice.getCookie(COMPARE_COOKIE);
+      if (cookie) {
+        compare_productVariantIds = cookie.split(',');
+        if (compare_productVariantIds.length == 1 && compare_productVariantIds[0] == '') {
+          compare_productVariantIds = [ ];
+        }
+      } else {
+        compare_productVariantIds = [ ];
+      }
+      console.log('compare_productVariantIds=', compare_productVariantIds);
+
+
+
+
+
+
+      // Call the TEA API to get the product details
+      //var compare_productVariantIds = [ 6210, 6260 ];
+      // Display the current price nicely formatted.
+
+      if (compare_productVariantIds.length > 0) {
+
+        var params = {
+          productVariantId: compare_productVariantIds,
+          needImages: true,
+          needSpecifications: true
+        };
+        teaService.getProduct(params).then(function(products){
+
+          // Display the product details
+          console.log('\n\n\nREPLY FROM getProduct:', products);
+
+          //$scope.products = products;
+
+          // Create a list of the product variants
+          var variants = [ ];
+          for (var i = 0; i < products.length; i++) {
+            variants.push(products[i].variants[0]);
+          }
+          $scope.variants = variants;
+
+          // Create a complete list of specification fields
+          var hashOfVariantNames = [ ]; // hash of name -> name
+          for (var i = 0; i < variants.length; i++) {
+            var variant = variants[i];
+            variant.d_specIndex = [ ]; // name -> specification
+            for (var v = 0; v < variant.specifications.length; v++) {
+              var spec = variant.specifications[v];
+              var name = spec.name;
+              hashOfVariantNames[name] = name; // Add this to our unique list of names
+              variant.d_specIndex[name] = spec; // Add to the variant's index of specifications
+              //console.log('add spec', spec.name)
+            }
+          }
+          var uniqueSpecificationNames = [ ];
+          for (name in hashOfVariantNames) {
+            //console.log('--> ' + name);
+            uniqueSpecificationNames.push(name);
+          }
+          //console.log('full field list is:', uniqueSpecificationNames);
+          $scope.uniqueSpecificationNames = uniqueSpecificationNames;
+
+
+          // This function returns the value for a specific specification type,
+          // using the lookup index on the variant we created above.
+          $scope.getVariantSpec = function(variant, specname) {
+            var spec = variant.d_specIndex[specname];
+            if (spec) {
+              return spec.value;
+            } else {
+              return '';
+            }
+          }
+
+
+          // Remove a product from the comparison
+          $scope.removeFromCompare = function(variant) {
+            var productVariantId = variant.productVariantId;
+            for (var i = 0; i < compare_productVariantIds.length; i++) {
+              if (compare_productVariantIds[i] == productVariantId) {
+                compare_productVariantIds.splice(i, 1);
+                break;
+              }
+            }
+            console.log('compare_productVariantIds is now ', compare_productVariantIds);
+
+            // Save the new cookie
+            var sep = '';
+            var cookie = '';
+            for (var i = 0; i < compare_productVariantIds.length; i++) {
+              cookie += sep + compare_productVariantIds[i];
+              sep = ',';
+            }
+            console.log('new cookie is ' + cookie + '.');
+            authservice.setCookie(COMPARE_COOKIE, cookie, 30); // keep it a maximum of a month
+            window.location.reload(false);
+          }
+
+          $scope.formattedPrice = function(variant) {
+            return accounting.formatMoney(variant.lastPrice);
+          }
+
+        }); // GetProduct()
+      } //-compare_productVariantIds.length > 0
+    });
+
+
     /*
      *  Set up the login part at the top of the page.
      */
     authservice.init({
-      host: 'localhost',
-      port: 9090,
-      tenant: 'nodeclient',
-      pretend: true
+      // Environment specific values are defined in environment.js
+      host: AUTHSERVICE_HOST,
+      port: AUTHSERVICE_PORT,
+      tenant: AUTHSERVICE_TENANT,
+      pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
+      onUserChange: function(user, fromCookie) {
+        // If the current user came from the cookie, reload it
+        //if (fromCookie) {
+        //  console.log('Reloading user details (cookie details are just a summary)');
+        //  return authservice.reloadUser();
+        //}
+      }
     });
-    console.log('Current user:', authservice.getCurrentUser());
+
 
   //- script.
 //- block scripts

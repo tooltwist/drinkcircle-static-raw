@@ -1,0 +1,1002 @@
+extends ../layout/layout_admin.pug
+
+block content
+      main.mdl-layout__content(ng-app="myApp" ng-controller="myCtrl as ctrl" ng-cloak)
+        .cma-page-header.form
+          h2 &nbsp;
+            // [spacer]
+        .mdl-grid.form-grid.raised
+          md-tabs(md-dynamic-height='', md-border-bottom='').mdl-tabs.mdl-js-tabs.mdl-js-ripple-effect.mdl-card.mdl-shadow--2dp
+            md-tab(label='Product Details')
+              md-content.md-padding
+                .mdl-grid.form-grid
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                    .cma-form-group
+                      //- Product name
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-name.mdl-textfield__input(type='text', ng-model='product.name')
+                        label.mdl-textfield__label(for='prod-name') Product name
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Brand
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                          input#prod-mfr.mdl-textfield__input(type='text', value='')
+                          label.mdl-textfield__label(for='prod-mfr') Brand
+                  .mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Category
+                      .mdl-textfield.centered
+                        .cma-card.form
+                          .cma-card--title
+                            span
+                              | Category
+                            button#menu-add-new-category.mdl-button.mdl-js-button.mdl-button--icon
+                              i.material-icons more_vert
+                            ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='menu-add-new-category')
+                              li.mdl-menu__item
+                                span.text Add New
+                                i.material-icons add
+                          .cma-card--content
+                            //- UI with checkbox
+                            //- table.mdl-data-table.mdl-js-data-table.mdl-data-table--selectable.is-upgraded(data-upgraded=',MaterialDataTable')
+                            //-   thead
+                            //-     tr
+                            //-       th
+                            //-         md-checkbox.mdl-checkbox(aria-label='Select All', ng-checked='isChecked()', md-indeterminate='isIndeterminate()', ng-click='toggleAll()')
+                            //-       th.mdl-data-table__cell--non-numeric(width='95%')
+                            //-         span(ng-if='isChecked()') Un-
+                            //-         | Select All
+                            //-   tbody
+                            //-     tr(ng-repeat="category in categories")
+                            //-       td
+                            //-         md-checkbox.mdl-checkbox(ng-checked='exists(category, selected)', ng-click='toggle(category, selected)' aria-label="{{category.name}}")
+                            //-       td.mdl-data-table__cell--non-numeric {{category.name}}
+
+                            //- Dynamic categories, no checkboxes
+                            script(type='text/ng-template', id='tree_item_renderer.html').
+                                <md-checkbox class="mdl-checkbox" ng-show="category.subcategories === undefined" ng-checked="ctrl.exists(category, ctrl.selected)" ng-click='ctrl.toggle(category, ctrl.selected)'> {{category.name}}</md-checkbox>
+                                {{category.subcategories !== undefined ? category.name : ""}}
+                                <button ng-click="ctrl.expand(category)" ng-show="category.subcategories !== undefined && (category.node === undefined || category.node.length === 0)">v</button>
+                                <button ng-click="ctrl.delete(category)" ng-show="category.node !== undefined && category.node.length > 0">x</button>
+                                <ul>
+                                    <li ng-repeat="category in category.node" ng-include="'tree_item_renderer.html'"></li>
+                                </ul>
+                            ul
+                              li
+                                md-checkbox.mdl-checkbox(ng-checked='ctrl.isChecked()', ng-click='ctrl.toggleAll()') Select All
+                              li(ng-repeat='category in ctrl.categories', ng-include="'tree_item_renderer.html'")
+                  .mdl-grid.form-grid
+                    .mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Product Description
+                      .cma-form-group.cma-form-ckeditor
+                        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered.is-focused
+                          textarea#prod-short-description.mdl-textfield__input(type='text', rows='3', ng-model='product.shortDescription')
+                          label.mdl-textfield__label(for='prod-short-description') Short Description
+                        //- Product Details
+                        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered.is-focused
+                          textarea#prod-details.mdl-textfield__input(type='text', rows='8', ng-model='product.longDescription')
+                          label.mdl-textfield__label(for='prod-details') Long Description
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Status
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        label.mdl-switch.mdl-js-switch.mdl-js-ripple-effect(for='var-switch-active')
+                          span.mdl-switch__label Active
+                          input#var-switch-active.mdl-switch__input(type='checkbox', checked='')
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Status
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        label.mdl-switch.mdl-js-switch.mdl-js-ripple-effect(for='var-switch-shipping')
+                          span.mdl-switch__label Free Shipping
+                          input#var-switch-shipping.mdl-switch__input(type='checkbox', checked='')
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Serial no.
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') SKU
+                      //- Price
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-meta-title.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-title') Price
+                      //- Meta Description
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-meta-description.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-description') Width
+                      //- Weight
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-meta-keyword.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-keyword') Weight
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Bar Code
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Bar Code
+                      //- RRP
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-meta-title.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-title') RRP / bottle
+                      //- Height
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-meta-description.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-description') Height(cm)
+                      //- Length
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-meta-keyword.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-keyword') Length
+                  //Specifications
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Varietal
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Varietal
+                      //- Style
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-meta-title.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-title') Style
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Pack Size
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Pack Size
+                      //- Alcohol Percentage
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-meta-title.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-meta-title') Alcohol Percentage
+                  //WINERY INFORMATION
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Vineyard
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Varietal
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Wine Making
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Wine Making
+                  //TASTING NOTES
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Colour
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Colour
+                      //- Palate
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Palate
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                      //- Aroma
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Aroma
+                      //- Food Making
+                      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                        input#prod-serial.mdl-textfield__input(type='text', value='')
+                        label.mdl-textfield__label(for='prod-serial') Food Making
+                footer
+                  span
+                    a.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent( ng-click="addProduct()" )
+                      | Submit
+            md-tab(label='More Details')
+              md-content.md-padding
+                .mdl-grid.form-grid
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-title.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-title') Title
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-title.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-title') Sales Price
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-wholesale-price.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-wholesale-price') Wholesale Price
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-rrp.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-rrp') RRP
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-barcode.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-barcode') Barcode
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-free-dc-sku.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-free-dc-sku') drinkcircle SKU
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-free-mfr-sku.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-free-mfr-sku') Manufacturer SKU
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-free-supplier-sku.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-free-supplier-sku') Supplier SKU
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-free-width.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-free-width-cm') Width(cm)
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-free-height.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-free-height') Height(cm)
+                .mdl-grid.form-grid
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-weight.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-weight-g') Weight(g)
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-length.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-length') Length(cm)
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-quantity.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-quantity') Quantity
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fullwidth.centered
+                      input#cma-select-packaging-type.mdl-textfield__input(value='', type='text', readonly='', tabindex='-1')
+                      label(for='cma-select-packaging-type')
+                        i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+                      label.mdl-textfield__label(for='cma-select-packaging-type') Packaging Type
+                      ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='cma-select-packaging-type')
+                        li.mdl-menu__item Case
+                        li.mdl-menu__item Bottle
+                        li.mdl-menu__item Pack
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-vintage.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-vintage') Vintage
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-alcohol.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-alcohol') Alcohol
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-ph.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-ph') PH
+                    .mdl-textfield.centered.cma-combination
+                      table
+                        tr
+                          td
+                            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered.cma-text
+                              input#var-size.mdl-textfield__input(type='text', value='')
+                              label.mdl-textfield__label(for='var-size') Size
+                          td
+                            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fullwidth.centered.cma-dropdown
+                              input#cma-select-unit.mdl-textfield__input(value='', type='text', readonly='', tabindex='-1')
+                              label(for='cma-select-unit')
+                                i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+                              label.mdl-textfield__label(for='cma-select-unit') unit
+                              ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='cma-select-unit')
+                                li.mdl-menu__item ML
+                                li.mdl-menu__item L
+                                li.mdl-menu__item CC
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-region.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-region') Region
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-acidity.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-acidity') Acidity
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-residual-sugar.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-residual-sugar') Residual Sugar
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-closure.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-closure') Closure
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-tasting-notes.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-tasting-notes') Tasting Notes
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      input#var-variety.mdl-textfield__input(type='text', value='')
+                      label.mdl-textfield__label(for='var-variety') Variety
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      label.mdl-switch.mdl-js-switch.mdl-js-ripple-effect(for='var-switch-free-delivery')
+                        span.mdl-switch__label Free Delivery
+                        input#var-switch-free-delivery.mdl-switch__input(type='checkbox', checked='')
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.centered
+                      textarea#var-notes.mdl-textfield__input(type='text', rows='5')
+                      label.mdl-textfield__label(for='var-notes') Notes
+                    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.getmdl-select.getmdl-select__fullwidth.centered
+                      input#cma-select-promotion.mdl-textfield__input(value='', type='text', readonly='', tabindex='-1')
+                      label(for='cma-select-promotion')
+                        i.mdl-icon-toggle__label.material-icons keyboard_arrow_down
+                      label.mdl-textfield__label(for='cma-select-promotion') Promotion
+                      ul.mdl-menu.mdl-menu--bottom-left.mdl-js-menu(for='cma-select-promotion')
+                        li.mdl-menu__item ...
+                        li.mdl-menu__item ...
+                .mdl-grid.form-grid
+                  .mdl-cell.mdl-cell--12-col.mdl-card.mdl-shadow--2dp
+                    h5.cma-card-table-heading Circlebuy price
+                    table#cma-table-category-list.mdl-data-table(cellspacing='0', width='100%')
+                      thead
+                        tr
+                          th.mdl-data-table__cell--non-numeric(width='50') Quantity
+                          th.mdl-data-table__cell--non-numeric Price
+                          th(width='20')
+                      tfoot
+                        tr
+                          th.mdl-data-table__cell--non-numeric(width='50') Quantity
+                          th.mdl-data-table__cell--non-numeric Price
+                          th(width='20')
+                      tbody
+                        tr
+                          td.mdl-data-table__cell--non-numeric
+                            | 1-5
+                          td.mdl-data-table__cell--non-numeric.has-sub
+                            | $21.99
+                          td.cma-row-controls
+                            button#cma-menu-more-1.mdl-button.mdl-js-button.mdl-button--icon
+                              i.material-icons more_vert
+                            ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='cma-menu-more-1')
+                              li.mdl-menu__item
+                                | Edit
+                              li.mdl-menu__item
+                                | Delete
+                        tr
+                          td.mdl-data-table__cell--non-numeric
+                            | 6+
+                          td.mdl-data-table__cell--non-numeric.has-sub
+                            | $15.99
+                          td.cma-row-controls
+                            button#cma-menu-more-2.mdl-button.mdl-js-button.mdl-button--icon
+                              i.material-icons more_vert
+                            ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='cma-menu-more-2')
+                              li.mdl-menu__item
+                                | Edit
+                              li.mdl-menu__item
+                                | Delete
+                    .mdl-card__menu
+                      button.mdl-button.mdl-button--icon.mdl-js-button.mdl-js-ripple-effect
+                        i.material-icons add
+                .mdl-grid.form-grid
+                  .mdl-cell.mdl-cell--6-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                    .mdl-textfield.wrap.centered
+                      label.mdl-textfield__label Circlebuy Prices Expiry
+                      .mdl-grid
+                        .mdl-cell.mdl-cell--6-col
+                          .mdl-textfield.inner.mdl-js-textfield.mdl-textfield--floating-label.centered
+                            input#prod-expires.mdl-textfield__input(type='date', value='')
+                        .mdl-cell.mdl-cell--6-col
+                          .mdl-textfield.inner.mdl-js-textfield.mdl-textfield--floating-label.centered
+                            label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for='prod-no-expiry')
+                              input#prod-no-expiry.mdl-checkbox__input(type='checkbox')
+                              span.mdl-checkbox__label No Expiry
+                footer
+                  span
+                    a.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent(href='/ttsvr/n/drinkpoint-webdesign-69')
+                      | Save
+                    a.mdl-button.mdl-js-button.mdl-js-ripple-effect(href='/ttsvr/n/drinkpoint-webdesign-69')
+                      | Cancel
+            md-tab(label='Image Uploader')
+              md-content.md-padding
+                .mdl-grid.form-grid
+                  .mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-cell--12-col-phone
+                    .cma-file-uploader-drop-area
+                      button.mdl-button.mdl-js-button.cma-file-upload-btn(disabled='')
+                        i.material-icons cloud_upload
+                        span drop files to upload
+                    .cma-file-uploader--progress.mdl-card.mdl-shadow--2dp
+                      .mdl-card__supporting-text
+                        .cma-progress-item
+                          small 906704_10201102552868244_800581844_o.jpg
+                          .mdl-progress
+                            .progressbar.bar.bar1(style='width: 24%;')
+                            .bufferbar.bar.bar2(style='width: 100%;')
+                          small 24%
+                          a.clear.material-icons(href='#') clear
+                        .cma-progress-item
+                          small IMG_2056.JPG
+                          .mdl-progress
+                            .progressbar.bar.bar1(style='width: 50%;')
+                            .bufferbar.bar.bar2(style='width: 100%;')
+                          small 50%
+                          a.clear.material-icons(href='#') clear
+                        .cma-progress-item
+                          small maintenance-1-1472783129556.png
+                          .mdl-progress
+                            .progressbar.bar.bar1(style='width: 12%;')
+                            .bufferbar.bar.bar2(style='width: 100%;')
+                          small 12%
+                          a.clear.material-icons(href='#') clear
+                      .mdl-card__actions.mdl-card--border
+                        a.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent
+                          | Upload
+                  .mdl-cell.mdl-cell--12-col
+                    table#cma-table-uploaded-image.mdl-data-table(cellspacing='0', width='100%')
+                      thead
+                        tr
+                          th(width='100')
+                          th File Name
+                          th
+                      tfoot
+                        tr
+                          th(width='100')
+                          th File Name
+                          th
+                      tbody
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+                        tr
+                          td
+                            img(src='http://placehold.it/140x100')
+                          td 34973146_file_name.jpg
+                          td
+                            a.mdl-button.mdl-js-button.mdl-button--icon(href='#', data-upgraded=',MaterialButton')
+                              i.material-icons delete
+
+block scripts
+  // External Script goes here...
+
+  script.
+    $.cookie('pageactive', '', {path: '/manage-product.html'});
+
+
+    /*
+     *  Set up the login part at the top of the page.
+     */
+    authservice.init({
+      // Environment specific values are defined in environment.js
+      host: AUTHSERVICE_HOST,
+      port: AUTHSERVICE_PORT,
+      tenant: AUTHSERVICE_TENANT,
+      pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
+      onUserChange: function(user, fromCookie) {
+        // If the current user came from the cookie, reload it
+        //if (fromCookie) {
+        //  console.log('Reloading user details (cookie details are just a summary)');
+        //  return authservice.reloadUser();
+        //}
+      }
+    });
+
+
+    /*
+     * Angular
+     */
+
+     var app = angular.module('myApp', ['ngMaterial']);
+
+     teaservice.init(app);
+     app.config(function($mdThemingProvider) {
+       $mdThemingProvider.definePalette('white', {
+          '50': 'FFFFFF',
+          '100': 'FFFFFF',
+          '200': '000000',
+          '300': 'FFFFFF',
+          '400': 'FFFFFF',
+          '500': 'FFFFFF',
+          '600': 'FFFFFF',
+          '700': 'FFFFFF',
+          '800': 'FFFFFF',
+          '900': 'FFFFFF',
+          'A100': 'FFFFFF',
+          'A200': 'FFFFFF',
+          'A400': 'FFFFFF',
+          'A700': 'FFFFFF',
+          'contrastDefaultColor': 'dark'
+        });
+        $mdThemingProvider.theme('default')
+          .backgroundPalette('white');
+      });
+
+     app.controller('myCtrl', function($scope, teaService, CheckboxService){
+       var self = this;
+       self.selected = [];
+       self.categories = [];
+       self.allcat = [];
+        //this product object already has the same property names for calling TEA api
+       $scope.product = {
+         name: "",
+         categoryIds: [1],
+         shortDescription: "This is a test short descript",
+         longDescription: "This is a not so very long LongDescription",
+         brandId: 61,
+         isDisplayed: true,
+         metaTitle: "ShirazTest",
+         metaDescription: "Brokenwood Shiraz",
+         metaKeyword: "Some keywords for SEO",
+         supplierId: 604,
+         notes: "This is a new test note" ,
+         /*"variants":[
+              {
+                 "name":"Shiraz 250ml XTest",
+                 "quantity":24,
+                 "lastPrice":20.00,
+                 "sku":"QWE123",
+                 "manufacturer":"Shiraz Manufacturing TestCorp",
+                 "barcode":"XYZ123",
+                 "tags":"shiraz, wine, red",
+                 "isFeaturedProduct":false,
+                 "isFree":false,
+                 "notes":"This is my test variant"
+              },
+              {
+                 "name":"Shiraz 300ml XYTest",
+                 "quantity":12,
+                 "lastPrice":21.00,
+                 "sku":"ASD456",
+                 "manufacturer":"Shiraz Manufacturing Corp.",
+                 "barcode":"XYZ456",
+                 "tags":"shiraz, wine, red",
+                 "isFeaturedProduct":false,
+                 "isFree":false,
+                 "notes":"This is another test variant"
+              }
+           ] */
+       };
+
+       //pass the product object
+       $scope.addProduct = function(){
+         teaService.addProduct($scope.product).then(function(data){
+           console.log($scope.product);
+           console.log('Response', data.productId);
+         });
+       };
+
+       teaService.getCategoryList()
+        .then(function(data){
+            self.categories = data.categories;
+            return self.categories;
+        });
+
+        self.toggle = function(item, list){
+          self.selected = CheckboxService.toggle(item.category_id, list);
+        };
+        self.exists = function(item, list) {
+            return CheckboxService.exists(item.category_id, list);
+        };
+
+        self.isIndeterminate = function() {
+            return CheckboxService.isIndeterminate(self.selected, self.categories);
+        };
+
+        self.isChecked = function() {
+          return CheckboxService.isChecked(self.selected, self.allcat);
+        };
+
+        self.toggleAll = function() {
+          self.selected = CheckboxService.toggleAll(self.selected, self.categories).selected;
+          self.allcat = CheckboxService.toggleAll(self.selected, self.categories).allcat;
+        };
+
+        self.expand = function(category){
+          category.node = [];
+          if(category.subcategories){
+            angular.forEach(category.subcategories.categories, function(value, index){
+              category.node.push({category_id: value.category_id, name: value.name, subcategories : value.subcategories});
+            });
+          }
+        };
+
+        self.delete = function(category) {
+            category.node = [];
+        };
+     });
+
+     app.service('CheckboxService', function(){
+       return {
+          toggle: function (item, list) {
+              var idx = list.indexOf(item);
+              if (idx > -1) {
+                list.splice(idx, 1);
+              }
+              else {
+                list.push(item);
+              }
+              return list;
+            },
+
+          exists: function (item, list) {
+              return list.indexOf(item) > -1;
+            },
+
+          isIndeterminate: function(selected, categories) {
+            return (selected.length !== 0 && selected.length !== categories.length);
+          },
+
+          isChecked: function(selected, categories) {
+            return selected.length === categories.length && selected.length > 0;
+          },
+
+          toggleAll: function(selected, categories) {
+            var i = 0;
+            var count = categories.length;
+            var tempcat = angular.copy(categories);
+            var tempcatids = [];
+
+            for (i=0; i<count;i++){
+              if(tempcatids.indexOf(tempcat[i].category_id) === -1)
+                tempcatids.push(tempcat[i].category_id);
+              if(tempcat[i].subcategories){
+                angular.forEach(tempcat[i].subcategories.categories, function(subvalue, subindex){
+                  if(tempcatids.indexOf(subvalue.category_id) === -1)
+                    tempcatids.push(subvalue.category_id);
+                  tempcat.push(subvalue);
+                });
+              }
+              count = tempcat.length;
+            }
+
+            if (selected.length === tempcat.length) {
+              selected = [];
+            } else if (selected.length === 0 || selected.length > 0) {
+              selected = tempcatids.slice(0);
+            }
+            return {selected : selected, allcat: tempcatids};
+          }
+       }
+     });

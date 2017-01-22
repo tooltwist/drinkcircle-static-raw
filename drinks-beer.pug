@@ -1145,12 +1145,20 @@ block scripts
      *  Set up the login part at the top of the page.
      */
     authservice.init({
-      host: 'localhost',
-      port: 9090,
-      tenant: 'nodeclient',
-      pretend: true
+      // Environment specific values are defined in environment.js
+      host: AUTHSERVICE_HOST,
+      port: AUTHSERVICE_PORT,
+      tenant: AUTHSERVICE_TENANT,
+      pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
+      onUserChange: function(user, fromCookie) {
+        // If the current user came from the cookie, reload it
+        //if (fromCookie) {
+        //  console.log('Reloading user details (cookie details are just a summary)');
+        //  return authservice.reloadUser();
+        //}
+      }
     });
-    console.log('Current user:', authservice.getCurrentUser());
+
 
   //- script.
 //- block scripts

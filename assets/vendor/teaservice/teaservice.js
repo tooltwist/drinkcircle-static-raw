@@ -510,8 +510,8 @@ ZZZZZ*/
             },
 
             /**
-            *	Put a new product into TEA API.
-            *	Returns a promise (since $http(req) is asyncronous)
+            *	  Get categories list
+            *	  Returns a promise (since $http(req) is asyncronous)
             */
             getCategoryList: function getCategoryList() {
               var url = baseUrl + '/category/list';
@@ -536,6 +536,7 @@ ZZZZZ*/
               return promise;
             },
 
+
             /**
             *	Put a new circlebuy into TEA API.
             *	Returns a promise (since $http(req) is asyncronous)
@@ -558,6 +559,8 @@ ZZZZZ*/
               var promise = $http(req).then(handleSuccess, handleError);
               return promise;
             },
+
+
             checkRemainingSharedOrderQuantity : function(sharedOrderId){
               alert('checkRemainingSharedOrderQuantity()');
                 var url = baseUrl + '/philChristmas/getRemainingQuantity';
@@ -575,6 +578,8 @@ ZZZZZ*/
               var promise = $http(req).then(handleSuccess, handleError);
               return promise;
             },
+
+
             completeSharedOrder : function(sharedOrderId){
                 var url = baseUrl + '/philChristmas/completed';
 
@@ -591,6 +596,8 @@ ZZZZZ*/
                 var promise = $http(req).then(handleSuccess, handleError);
                 return promise;
             },
+
+
             // Other functions to be exposed by teaService.
             getSharedOrdersAndSetAngularVariables: getSharedOrdersAndSetAngularVariables,
 
