@@ -52,13 +52,15 @@
           var sharedOrders_longList = [ ];
           $.each(sharedOrders, function(index, sharedOrder) {
 
+            console.log('\n\n\n\nZZZ skipping teaService.checkRemainingSharedOrderQuantity()')
+/*
             teaService.checkRemainingSharedOrderQuantity(sharedOrder.sharedOrder.sharedOrderId).then(function(result){
               if(result.status == "success") {
                 sharedOrder.sold = parseInt(result.quantity) - parseInt(result.remaining);
                 sharedOrder.remaining = result.remaining;
               }
-            });  
-
+            });
+ZZZZZ*/
             if (index < NUM_IN_SHORT_LIST) {
               //console.log('adding so ' + sharedOrder.shared_order_id + 'to short list', sharedOrder);
               sharedOrders_shortList.push(sharedOrder);
@@ -581,8 +583,9 @@
               return promise;
             },
             checkRemainingSharedOrderQuantity : function(sharedOrderId){
+              alert('checkRemainingSharedOrderQuantity()');
                 var url = baseUrl + '/philChristmas/getRemainingQuantity';
-                
+
                 var req = {
                   method: 'POST',
                   url: url,
@@ -598,7 +601,7 @@
             },
             completeSharedOrder : function(sharedOrderId){
                 var url = baseUrl + '/philChristmas/completed';
-                
+
                 var req = {
                   method: 'POST',
                   url: url,
