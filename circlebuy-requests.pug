@@ -13,18 +13,18 @@ block css
 
 block content
 
-  section.userprofile.request-list.simple
+  section.userprofile.request-list.simple(ng-app="circlebuysList" ng-controller="circlebuysListCtrl as circlebuys")
     .container
       .row
         .col-md-12
-          .alert.alert-success
+          .alert.alert-success.hide
             | You have successfully accepted Jake Seri to join your&nbsp;
-            strong Brokenwood - Graveyard Vineyard Shiraz circlebuy
+            strong Brokenwood - Graveyard Vineyard Shiraz circlebuy 
             |.
           //- alert
         //- col-md-12
       //- row
-      h4 Joined circlebuys
+      h4 Your circlebuys
       .card
         .table-responsive
           table.table
@@ -42,28 +42,29 @@ block content
               //- tr
             //- thead
             tbody
-              tr
+              tr(ng-repeat="cb in circlebuys.sharedOrders")
                 td
-                  | Graveyard Vineyard Shiraz - 6 pack
+                  input(type="hidden", value="cb.shared_order_id")
+                  | {{cb.product_name}}
                 //- th
                 td
-                  | Adrian Mendez
+                  | {{cb.owner_first_name}}&nbsp;{{cb.owner_last_name}}
                 //- th
                 td
-                  | 10 cases
+                  | {{cb.shared_order_size}}&nbsp;cases
                 //- th
                 td
-                  | 3
+                  | {{cb.remaining}}
                 //- th
-                td 3
+                td {{cb.quantity_ordered}}
                 td
-                  | 07/20/2016 7:00 PM
-                //- th
-                td
-                  | 48hrs 12mins
+                  | {{cb.created_at | date : 'M/d/yy h:mm a' : '+0'}}
                 //- th
                 td
-
+                  | {{ circlebuys.timeLeft(cb.created_at) }}
+                //- th
+                td
+                  | {{cb.shared_order_status}}
                 //- th
                 td
                   .dropdown
@@ -78,7 +79,7 @@ block content
                   //- dropdown
                 //- th
               //- tr
-              tr
+              tr.hide
                 td
                   | Corona Extra - Imported Beers
                 //- th
@@ -118,154 +119,7 @@ block content
           //- table
         //- table-responsive
       //- card
-      br
-      h4 Created circlebuys
-      .card
-        .table-responsive
-          table.table
-            thead
-              tr
-                th Requester
-                th Product Name
-                th Owner
-                th Quantity
-                th Date Requested
-                th Status
-                th
-              //- tr
-            //- thead
-            tbody
-              tr
-                td
-                  | Jake Seri
-                //- th
-                td
-                  | Brokenwood - Graveyard Vineyard
-                //- th
-                td
-                  | Adrian Mendez
-                //- td
-                td
-                  | 3 cases
-                //- th
-                td
-                  | 07/05/2016 5:00 PM
-                //- th
-                td
-                  | Accepted
-                //- th
-                td
-                  //- a(href='#modal_coming_soon', data-toggle='modal') accept
-                //- th
-              //- tr
-              tr
-                td
-                  | Alvin Manalo
-                //- th
-                td
-                  | Brokenwood - Graveyard Vineyard
-                //- th
-                td
-                  | Adrian Mendez
-                //- td
-                td
-                  | 3 cases
-                //- th
-                td
-                  | 07/13/2016 4:10 PM
-                //- th
-                td
-                  | Pending
-                //- th
-                td
-                  .dropdown
-                    button.btn.btn-link.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                      i.fa.fa-ellipsis-v
-                    //- button
-                    ul.dropdown-menu.pull-right
-                      li
-                        a(href='#modal_coming_soon', data-toggle='modal') accept
-                      //- li
-                      li
-                        a(href='#modal_coming_soon', data-toggle='modal') reject
-                      //- li
-                    //- ul
-                  //- dropdown
-                //- th
-              //- tr
-              tr
-                td
-                  | Carlos Mejia
-                //- th
-                td
-                  | Brokenwood - Graveyard Vineyard
-                //- th
-                td
-                  | Adrian Mendez
-                //- td
-                td
-                  | 2 cases
-                //- th
-                td
-                  | 07/17/2016 12:00 PM
-                //- th
-                td
-                  | Rejected
-                //- th
-                td
-                  //- a(href='#modal_coming_soon', data-toggle='modal') reject
-                //- th
-              //- tr
-              tr
-                td
-                  | Jake Seri
-                //- th
-                td
-                  | Corona Extra - Imported Beers
-                //- th
-                td
-                  | Haley Page
-                //- td
-                td
-                  | 2 cases
-                //- th
-                td
-                  | 07/19/2016 1:02 PM
-                //- th
-                td
-                  | Accepted
-                //- th
-                td
-                  //- a(href='#modal_coming_soon', data-toggle='modal') accept
-                //- th
-              //- tr
-              tr
-                td
-                  | Frank Jose
-                //- th
-                td
-                  | Corona Extra - Imported Beers
-                //- th
-                td
-                  | Haley Page
-                //- td
-                td
-                  | 2 cases
-                //- th
-                td
-                  | 07/20/2016 7:00 PM
-                //- th
-                td
-                  | Rejected
-                //- th
-                td
-                  //- a(href='#modal_coming_soon', data-toggle='modal') reject
-                //- th
-              //- tr
-            //- tbody
-          //- table
-        //- table-responsive
-      //- card
+      
     //- container
   //- section
 
@@ -274,6 +128,49 @@ block scripts
   // External Script goes here...
   script.
     $(function () {
+      
+    });
+
+    $(document).ready(function(){
 
     });
+
+    var app = angular.module('circlebuysList', ['ngSanitize']);
+
+    teaservice.init(app);
+    
+    app.controller('circlebuysListCtrl', function($scope, teaService){
+        var self = this;
+
+        self.hello = "Hello World!";
+        self.sharedOrders = [];
+
+        teaService.getSharedOrdersByUser({
+          "memberId" : 61
+        }).then(function(sharedOrders){
+          self.sharedOrders = sharedOrders.sharedOrders;
+          console.log ("sharedOrders : ", sharedOrders);
+        });
+
+        self.timeLeft = function(created_date){
+         
+          var end_date = new Date(created_date);
+          end_date.setDate(end_date.getDate()+3); // + 3 to change to configurable
+
+          var date_now = new Date('2017-01-24T07:35:35.000Z')
+          var delta = (end_date - date_now) / 1000;
+          
+          var hours = Math.floor(delta / 3600) >= 0 ? Math.floor(delta / 3600) : 0;
+          delta -= hours * 3600;
+
+          var minutes = Math.floor(delta / 60) % 60 >= 0 ? Math.floor(delta / 60) % 60 : 0;
+          delta -= minutes * 60;
+
+          return hours + "hrs " +  minutes + "mins";
+        };
+
+
+    }); //- controller
+    
+
   //- script.

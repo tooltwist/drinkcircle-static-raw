@@ -419,7 +419,27 @@
               return promise;
             },
 
+             /**
+            *	Get shared order of a user
+            */
+            getSharedOrdersByUser: function getSharedOrderByUser(paramsToAPI) {
+              var url = baseUrl + '/philChristmas/getSharedOrderByMember';
+              console.log('url is ' + url)
 
+              var req = {
+                method: 'POST',
+                url: url,
+                headers: {
+                  "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+                  "version": "1.0.0"
+                },
+                data: paramsToAPI
+              };
+
+              // Prepare the promise, so the caller can use .then(fn) to handle the result.
+              var promise = $http(req).then(handleSuccess, handleError);
+              return promise;
+            },
 
             /**
             *	  Create a new shared_order.
