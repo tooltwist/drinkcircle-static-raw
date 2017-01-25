@@ -1027,7 +1027,13 @@ block scripts
         // Look after the circle buys
         teaService.getSharedOrdersAndSetAngularVariables({
           //productVariantId: NICE_PRODUCT_VARIANT_ID
-        }, $scope, teaService);
+        }, $scope, teaService, function(){
+          
+            setTimeout(function(){
+            console.log("asdasfas");
+            Main.circlebuyGaugeInit();
+            },3000);
+        });
 
     });
 

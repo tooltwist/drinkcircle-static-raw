@@ -91,9 +91,12 @@
             packSave = Math.ceil(packSave * 100) / 100; // round to nearest cent
             sharedOrder.d_packSave = accounting.formatMoney(packSave);
           });
+          
+         
 
           // Return the sharedOrders
           if (callback) {
+            console.log('return sharedoreders ');
             return callback(sharedOrders);
           }
         });
@@ -271,6 +274,7 @@
     function handleSuccess(response) {
       console.log('success:', response)
       return response.data;
+       
     }
 
     function handleError(response){
@@ -439,7 +443,7 @@
               // Prepare the promise, so the caller can use .then(fn) to handle the result.
               var promise = $http(req).then(handleSuccess, handleError);
               return promise;
-            },
+          },
 
             /**
             *	  Create a new shared_order.

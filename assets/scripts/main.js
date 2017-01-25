@@ -73,6 +73,12 @@ var Main = (function () {
 				}
 			});
 
+			Main.circlebuyGaugeInit();
+		
+		},
+
+		circlebuyGaugeInit : function(){
+
 			$(".circlebuyGauge").dxCircularGauge({
 				geometry: {
 				"endAngle": 300,
@@ -125,7 +131,7 @@ var Main = (function () {
        			 _this.option('scale.endValue', size);
         		_this.option('rangeContainer.ranges[0].endValue', sold);
 			});
-
+			
 		},
 
 		//--------
