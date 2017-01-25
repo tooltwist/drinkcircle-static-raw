@@ -82,7 +82,6 @@ block content
   //- banner-home
 
 
-
   section.userprofile.drinks.results
     .container
       .row
@@ -138,17 +137,17 @@ block content
             //- //- form-group
           //- form
           hr
-          .product-wrap(id='product-test', ng-app="myApp" ng-controller="myCtrl" ng-cloak)
+          .product-wrap(id='products', ng-app="myApp" ng-controller="myCtrl" ng-cloak, directive="")
            
             .row
               // 1 Product
               .col-sm-6.col-md-4(ng-repeat="variant in variants | orderBy:sortType:sortReverse" ng-cloak)
-                input.product-id(type='hidden', value='{{variant.productVariantId}}')
                 .product
+                  input.product-id(type='hidden', value='{{variant.productVariantId}}')
                   .thumb
                     .ctr
                       .count.product-rating
-                        span points
+                      span points
                       //- count
                     a(href='productdetails2.html?product={{variant.productVariantId}}')
                       //img.img-prod(src='//www.brokenwood.com.au/assets/images/products/pictures/CricketPitchRed1.jpg', alt='')
@@ -212,21 +211,19 @@ block content
 block scripts
   // External Script goes here...
   script.
-    $(document).ready(function(){
-      
-    });
+
 
    /************************************************************
      *
      *    Angular code.
      */
-    
+
     var app = angular.module('myApp', ['ngSanitize']);
-     teaservice.init(app);
+    teaservice.init(app);
     // Add the controller for this page
     app.controller('myCtrl', function($scope, teaService) {
 
-      
+       
       // This code gets the "product" parameter from the
       // URL so we can use it as productVariantId.
       var supplierId = null;
@@ -283,21 +280,31 @@ block scripts
           });
         });
         $scope.variants = variants;
+        
       });
 
       $scope.sortType     = 'name'; // set the default sort type
       $scope.sortReverse  = false;  // set the default sort order
 
-      chsearchresultrating.init();
       /*
       // Display the circle buys
       teaService.getSharedOrdersAndSetAngularVariables({
         productVariantId: productVariantId
       }, $scope, teaService);
       */
+
     });
 
-
+    app.directive('directive', function($timeout) {
+      return {
+        link: function(scope, element, attr) {
+          $timeout(function() {
+            chsearchresultrating.init();
+          }, 1000);
+        }
+      }
+    });
+    
     /*
      *  Set up the login part at the top of the page.
      */
@@ -309,5 +316,8 @@ block scripts
     });
     console.log('Current user:', authservice.getCurrentUser());
 
+    
+
+    
   //- script.
 //- block scripts
