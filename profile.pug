@@ -581,7 +581,7 @@ block content
             //- head
             .content.tab-content
               .tab-pane.active#composer-tab-status(role="tabpanel")
-                textarea.form-control(rows='2')
+                textarea.form-control(id="postMessage", rows='2')
               //- composer-tab-status
               .tab-pane#composer-tab-photo-video(role="tabpanel")
                 .drop-photo
@@ -647,226 +647,14 @@ block content
                 i.fa.fa-clock-o
               //- a
 
-              a.post(href="#")
+              a.post(href="javascript:void(0)", onclick="TimelinePost.postMessage()")
                 i.fa.fa-send-o
                 | Post
               //- a
             //- controls
           //- composer
 
-          .timeline
-            .content
-              .head
-                .user
-                  .img
-                    img(src="assets/images/users/user_3.jpg", alt="")
-                  //- img
-                  a(href="#", target="_blank") Darren Crone
-                //- user
-                .more
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    i.fa.fa-chevron-down
-                  //- a
-                //- more
-              //- header
-              .inner
-                .caption
-                  p Hey mate this came through this morning I'm down for 3 cases better jump on it straight away?
-                //- caption
-                .post
-                  .shared
-                    img(src="assets/images/activity/image-6.png", alt="")
-                    .caption
-                      .input-group
-                        span.input-group-addon
-                          .thumb
-                            .img
-                              img(src='assets/images/likes/likes_1.png', alt='')
-                            //- img
-                          //- thumb
-                        //- input-group-addon
-                        span.form-control
-                          a(href='seller.html')
-                            strong Brokenwood Wines
-                          //- a
-                          br
-                          | RRP $65 End of bin clearance exclusive to our circle followers $29 be quick 200 cases only...
-                          a(href="seller.html") See more
-                        //- span
-                      //- input-group
-                    //- caption
-                  //- shared
-                //- post
-                //- p.views
-                //-   //- small 361,733 Views
-                //- //- views
-                //- .description
-                //-   |
-                //- //- description
-              //- inner
-            //- content
-            .controls
-              a(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-heart
-                | Like
-              //- a
-              a(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-comment
-                | Comment
-              //- a
-              a(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-share
-                | Share
-              //- a
-            //- controls
-            .footer
-              .comments
-                .input-group
-                  span.input-group-addon
-                    .thumb
-                      .img
-                        img(src="assets/images/img_advisor_1.jpg", alt="")
-                      //- img
-                    //- thumb
-                  //- input-group-addon
-                  span.form-control
-                    strong
-                      a(href="profile.html") Andrew Steer
-                    //- strong
-                    | thanks for the heads up mate I just ordered 3 cases too. Passed it on Phil and Arv as well! Hope they're not too late it's nearly all gone!
-                    p
-                      a(href='#modal_coming_soon', data-toggle='modal') Like
-                      | &nbsp;&middot;&nbsp;
-                      a(href='#modal_coming_soon', data-toggle='modal') Reply
-                      | &middot;
-                      small &nbsp;May 15 at 10:55am
-                //- input-group
-                .input-group
-                  span.input-group-addon
-                    .thumb
-                      .img
-                        img(src="assets/images/users/user_4.jpg", alt="")
-                      //- img
-                    //- thumb
-                  //- input-group-addon
-                  span.form-control
-                    strong
-                      a(href="#", target="_blank") Phil Callender
-                    //- strong
-                    | thanks Darren just managed to get 2 cases but Arv missed out! Let me know if any other buys like that come up and I'll do the same.
-                    p
-                      a(href='#modal_coming_soon', data-toggle='modal') Like
-                      | &nbsp;&middot;&nbsp;
-                      a(href='#modal_coming_soon', data-toggle='modal') Reply
-                      | &middot;
-                      small &nbsp;May 15 at 11:23am
-                //- input-group
-              //- comments
-              .comment
-                .input-group
-                  span.input-group-addon
-                    .thumb
-                      .img
-                        img(src="assets/images/img_advisor_1.jpg", alt="")
-                      //- img
-                    //- thumb
-                  //- input-group-addon
-                  input.form-control(type='text', placeholder='Write a comment...')
-                  span.input-group-addon
-                    a(href='#modal_coming_soon', data-toggle='modal')
-                      i.fa.fa-camera
-                    //- a
-                  //- input-group-addon
-                //- input-group
-              //- comment
-            //- footer
-          //- timeline
-
-          .timeline
-            .content
-              .head
-                .user
-                  .img
-                    img(src="assets/images/producers/4p/logo.jpg", alt="")
-                  //- img
-                  a(href="#", target="_blank") 4 Pines Brewing Company
-                //- user
-                .more
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    i.fa.fa-chevron-down
-                  //- a
-                //- more
-              //- header
-              .inner
-                .caption
-                  //- p Hey mate this came through this morning I'm down for 3 cases better jump on it straight away?
-                //- caption
-                .post
-                  .shared
-                    img(src="assets/images/producers/4p/post1.jpg", alt="")
-                    .caption
-                      .input-group
-                        span.input-group-addon
-                          .thumb
-                            .img
-                              img(src='assets/images/producers/4p/logo.jpg', alt='')
-                            //- img
-                          //- thumb
-                        //- input-group-addon
-                        span.form-control
-                          a(href='seller.html')
-                            strong 4 Pines Brewing Company
-                          //- a
-                          br
-                          | Guess what Beer Lovers? American Amber Ale in a bottle! Ready to be filled tomorrow, ready to be...
-                          a(href="seller.html") See more
-                        //- span
-                      //- input-group
-                    //- caption
-                  //- shared
-                //- post
-                //- p.views
-                //-   //- small 361,733 Views
-                //- //- views
-                //- .description
-                //-   |
-                //- //- description
-              //- inner
-            //- content
-            .controls
-              a(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-heart
-                | Like
-              //- a
-              a(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-comment
-                | Comment
-              //- a
-              a(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-share
-                | Share
-              //- a
-            //- controls
-            .footer
-              .comment
-                .input-group
-                  span.input-group-addon
-                    .thumb
-                      .img
-                        img(src="assets/images/img_advisor_1.jpg", alt="")
-                      //- img
-                    //- thumb
-                  //- input-group-addon
-                  input.form-control(type='text', placeholder='Write a comment...')
-                  span.input-group-addon
-                    a(href='#modal_coming_soon', data-toggle='modal')
-                      i.fa.fa-camera
-                    //- a
-                  //- input-group-addon
-                //- input-group
-              //- comment
-            //- footer
-          //- timeline
+          div(id="timelineSection")
 
         //- col-md-6
         .col-md-3
@@ -1165,9 +953,10 @@ block content
 
 block scripts
   // External Script goes here...
+  script(src='assets/vendor/crowdhound/chUtil.js', type="text/javascript")
   script.
     $(document).ready(function(){
-
+        TimelinePost.init();
     });
 
 
@@ -1181,3 +970,100 @@ block scripts
       pretend: true
     });
     console.log('Current user:', authservice.getCurrentUser());
+
+  
+  //templates
+  script(id='timelineList', type='text/template')
+    <<{childrenHtml}>>
+
+
+  script(id='timelinePost', type='text/template')
+    <<#element>>
+      <div class="timeline" data-owner-id=<<user.userId>> data-post-id=<<id>>>
+          <div class="content">
+              <div class="head">
+                  <div class="user">
+                      <div class="img">
+                          <img class="minAvatar" src="<<user.avatar>>" alt="">
+                      </div>
+                      <a href="<<user.communityPage>>" target="_blank"><<user.firstName>> <<user.lastName>></a>
+                  </div>
+                  <div class="more">
+                      <ul class="nav navbar-nav navbar-right">
+                          <li class="dropdown">
+                              <ul class="dropdown-menu" style="top: 35px;">
+                              //{{#scopes.isUserLoggedIn}}
+                              //    <li><a id="deletePost" href="javascript:void(0);" onclick="TimelinePost.deletePost(<<id>>, <<parentId>>, <<rootId>>);">Delete</a></li>
+                              //    <li><a id="editPost" href="javascript:void(0);">Edit</a></li>   
+                              //{{/scopes.isUserLoggedIn}}
+                              //{{^scopes.isUserLoggedIn}}
+                                <li><a id="hidePost" href="javascript:void(0);">Hide</a></li> 
+                              //{{/scopes.isUserLoggedIn}}
+                              </ul>
+                              <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle info postToggle" data-toggle="dropdown" href="#" role="button"><i class="fa fa-chevron-down"></i></a>
+
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="inner">
+                  <div class="caption">
+                      <p>
+                          <<{description}>>
+                      </p>
+                  </div>
+                  <<{htmlLinkPost}>>
+              </div>
+              <div id="post-likes-<<id>>" style="display :<<#likes>>block<</likes>> <<^likes>>none<</likes>>;">
+                <br/>
+                <a href="#"><i class="fa fa-heart"></i>&nbsp;<span id="post-likes-counter-<<id>>"><<likes>></span></a>
+              </div>
+          </div>
+          <div class="controls">
+              <<^liked>>
+                <a id="post-like-anchor-<<id>>" href="javascript:void(0);" onclick="TimelinePost.like(<<id>>, 1);"><i class="fa fa-heart"></i>Like</a>
+              <</liked>>
+              <<#liked>>
+                <a id="post-like-anchor-<<id>>" href="javascript:void(0);" onclick="TimelinePost.like(<<id>>, 0);"><i class="fa fa-heart"></i>Unlike</a>
+              <</liked>>
+              <a href="javascript:void(0);" onclick="TimelinePost.toogleComment(<<id>>);"><i class="fa fa-comment"></i>Comment</a>
+              <div class="fb-share-button" data-href="<<user.shareLink>>/<<id>>" data-layout="button_count">
+              </div>
+          </div>
+          <div class="footer">
+              <div id="comments-<<id>>" class="comments">
+                  <<{childrenHtml}>>
+              </div>
+              <div id="comment-<<id>>" class="comment" style="display:none;">
+                  <div class="input-group">
+                      <span class="input-group-addon">
+                          <div class="thumb">
+                              <div class="img">
+                                  <img src="<<user.avatar>>" alt="">
+                              </div>
+                          </div>
+                      </span>
+                      <input class="form-control" type="text" placeholder="Write a comment..."><span class="input-group-addon"><a href="javascript:void(0);" onclick="TimelinePost.commentOnAPost(<<id>>)"><i class="fa fa-send"></i></a></span>
+                  </div>
+              </div>
+          </div>
+      </div>
+    <</element>>
+
+
+  script(id='timelinePostComment', type='text/template')
+    <<#element>>
+      <div class="input-group">
+          <span class="input-group-addon">
+              <div class="thumb">
+                    <div class="img">
+                        <img src="<<user.avatar>>" alt="">
+                    </div>
+              </div>
+              </span><span class="form-control"><strong><a href="<<user.communityPage>>"><<user.firstName>> <<user.lastName>></a></strong> <<description>>
+              <p>
+                  <a href="#">Like</a>&nbsp;·&nbsp;<a href="#">Reply</a>·<small>&nbsp<<createdDateFromNow>></small>
+              </p>
+          </span>
+      </div>
+    <</element>>
