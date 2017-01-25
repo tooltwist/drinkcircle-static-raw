@@ -520,7 +520,13 @@ block scripts
       // Display the circle buys
       teaService.getSharedOrdersAndSetAngularVariables({
         productVariantId: productVariantId
-      }, $scope, teaService);
+      }, $scope, teaService,function(){
+          
+            setTimeout(function(){
+            console.log("asdasfas");
+            Main.circlebuyGaugeInit();
+            },3000);
+        });
 
     });
 

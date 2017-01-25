@@ -1698,8 +1698,8 @@ section {
 			right: 15px;
 			@include box(140px);
 			background: white;
-	    border: 8px solid #41B54B;
-	    background-size: 100% 100%;
+			border: 8px solid #41B54B;
+			background-size: 100% 100%;
 			@include border-radius(50%);
 			img {
 				position: absolute;
@@ -1707,12 +1707,12 @@ section {
 			}
 			.count {
 				display: block;
-		    width: 100%;
-		    text-align: center;
-		    padding-top: 30px;
-		    font-size: 70px;
-		    font-weight: bold;
-		    line-height: 21px;
+				width: 100%;
+				text-align: center;
+				padding-top: 30px;
+				font-size: 70px;
+				font-weight: bold;
+				line-height: 21px;
 				span {
 					font-size: 14px;
 			    font-weight: normal;
@@ -1733,9 +1733,14 @@ section {
 				background-image: url($bg-ctr-bronze);
 			}
 		}
+		> a {
+			display: block;
+			min-height: 330px;
+		}
 		img.img-prod {
 			max-width: 100%;
-			min-width: 100%;
+			max-height: 360px;
+			// min-width: 100%;
 			// padding: 35px;
 			padding: 15px;
 			background: white;
@@ -2357,7 +2362,7 @@ section.productdetails {
 		}
 		.avatar {
 			position: relative;
-			margin-bottom: 30px;
+			// margin-bottom: 30px;
 			.img {
 				img {
 					padding: 35px;
@@ -4183,4 +4188,35 @@ div[rn-stepper] {
         box-sizing:border-box;
         
     }
+}
+
+
+.gauge {
+	width: 160px;
+	position: relative;
+	img {
+		position: absolute;
+		z-index: 1;
+    left: 0;
+    right: 0;
+    top: -12px;
+    bottom: 0;
+    @include box(70px);
+    margin: auto;
+    border-radius: 50%
+	}
+	.circlebuyGauge {
+		position: relative;
+		&:after {
+			font-family: 'FontAwesome';
+	    content: "\f017";
+	    position: absolute;
+	    bottom: 7px;
+	    left: 38px;
+	    font-size: 17px;
+		}
+		.dxg-title {
+    	transform: translate(90px, 177px);
+		}
+	}
 }

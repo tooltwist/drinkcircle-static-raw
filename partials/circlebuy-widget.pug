@@ -20,38 +20,25 @@
       p.lead
         span.green {{sharedOrder.sold}}
         br
-        small pack
-        //- small cases
-      //- p
+        //- p
     //- sold
     .left
       p left
       p.lead
         span.green {{sharedOrder.remaining}}
         br
-        small pack
-        //- small cases
       //- p
     //- left
   //- shortsummary
   p
   .avatar
-    .img
-      .ring._70p
+    .gauge
       img(src='assets/images/circles/circles_8.png', alt='')
-    //- img
-    .countdown
-      //- span.time 32:12
-      br
-      p
-        big
-          i.fa.fa-clock-o
-          | &nbsp;
-          // This countdown timer gets updated by javascript
-          span(expiresAt="{{sharedOrder.sharedOrder.expiresAt}}").countdownTimer
-      //- p
-      //- span
-    //- countdown
+      //-img
+      .gauge
+        .circlebuyGauge(data-size='{{sharedOrder.sharedOrder.quantity}}',data-sold='{{sharedOrder.sold}}')
+        //-circlebuyGauge
+      //-gauge
   //- avatar
   br
   status is {{sharedOrder.sharedOrder.status}}
