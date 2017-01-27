@@ -1007,7 +1007,7 @@ block scripts
               port: AUTHSERVICE_PORT,
               tenant: AUTHSERVICE_TENANT,
               pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
-              onUserChange: function(user, fromCookie) {
+              onUserChange: function(user, ttuat, fromCookie) {
                 // If the current user came from the cookie, reload it
                 //if (fromCookie) {
                 //  console.log('Reloading user details (cookie details are just a summary)');
@@ -1026,7 +1026,7 @@ block scripts
           port: AUTHSERVICE_PORT,
           tenant: AUTHSERVICE_TENANT,
           pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
-          onUserChange: function(user, fromCookie) {
+          onUserChange: function(user, ttuat, fromCookie) {
             // If the current user came from the cookie, reload it
             if (fromCookie) {
               console.log('Reloading user details (cookie details are just a summary)');
