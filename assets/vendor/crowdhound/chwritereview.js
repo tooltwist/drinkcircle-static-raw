@@ -20,7 +20,7 @@ var chwritereview = (function() {
 
     // Save the new element. With an update, a new element is created
     // if required when you provide and the anchor and the type.
-    CrowdHound_update(data, function(err) {
+    CrowdHound.update(data, function(err) {
       //alert('Finished update.')
       return callback(err);
     });
