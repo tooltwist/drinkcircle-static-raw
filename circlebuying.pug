@@ -17,7 +17,7 @@ block content
     //- banner-static
     h1.jumbo Join in the fun and save big time
       br
-      small circlebuying
+      small(style='font-size: 5.7vw;') circlebuying
     //- h1
 
     .action
@@ -606,20 +606,12 @@ block content
                   //- shortsummary
                   p
                   .avatar
-                    .img
-                      div(class=['ring', circlebuy[index].ring])
+                    //- .img
+                    //-  div(class=['ring', circlebuy[index].ring])
+                    .gauge
                       img(src=circlebuy[index].img, alt='')
-                    //- img
-                    .countdown
-                      //- span.time 32:12
-                      br
-                      p
-                        big
-                          i.fa.fa-clock-o
-                          span= " " + circlebuy[index].time
-                      //- p
-                      //- span
-                    //- countdown
+                      .circlebuyGauge(data-size=circlebuy[index].qty, data-sold=circlebuy[index].sold)
+                    //- gauge
                   //- avatar
                   br
                   p
@@ -1035,7 +1027,13 @@ block scripts
         // Look after the circle buys
         teaService.getSharedOrdersAndSetAngularVariables({
           //productVariantId: NICE_PRODUCT_VARIANT_ID
-        }, $scope, teaService);
+        }, $scope, teaService, function(){
+          
+            setTimeout(function(){
+            console.log("asdasfas");
+            Main.circlebuyGaugeInit();
+            },3000);
+        });
 
     });
 

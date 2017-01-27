@@ -1,0 +1,279 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  section.userprofile.request-list.simple
+    .container
+      .row
+        .col-md-12
+          .alert.alert-success
+            | You have successfully accepted Jake Seri to join your&nbsp;
+            strong Brokenwood - Graveyard Vineyard Shiraz circlebuy
+            |.
+          //- alert
+        //- col-md-12
+      //- row
+      h4 Joined circlebuys
+      .card
+        .table-responsive
+          table.table
+            thead
+              tr
+                th Product name
+                th Owner
+                th Qty
+                th Qty left
+                th My order
+                th Date created
+                th Time left
+                th Status
+                th 
+              //- tr
+            //- thead
+            tbody
+              tr
+                td
+                  | Graveyard Vineyard Shiraz - 6 pack
+                //- th
+                td
+                  | Adrian Mendez
+                //- th
+                td
+                  | 10 cases
+                //- th
+                td
+                  | 3
+                //- th
+                td 3
+                td
+                  | 07/20/2016 7:00 PM
+                //- th
+                td
+                  | 48hrs 12mins
+                //- th
+                td
+
+                //- th
+                td
+                  .dropdown
+                    button.btn.btn-link.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                      i.fa.fa-ellipsis-v
+                    //- button
+                    ul.dropdown-menu.pull-right
+                      li
+                        a(href='#modal_coming_soon', data-toggle='modal') remove
+                      //- li
+                    //- ul
+                  //- dropdown
+                //- th
+              //- tr
+              tr
+                td
+                  | Corona Extra - Imported Beers
+                //- th
+                td
+                  | Haley Page
+                //- th
+                td
+                  | 20 cases
+                //- th
+                td
+                  | 4
+                //- th
+                td 12
+                td
+                  | 07/23/2016 8:50 PM
+                //- th
+                td
+                  | 35hrs 16mins
+                //- th
+                td
+                  | Active
+                //- th
+                td
+                  .dropdown
+                    button.btn.btn-link.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                      i.fa.fa-ellipsis-v
+                    //- button
+                    ul.dropdown-menu.pull-right
+                      li
+                        a(href='#modal_coming_soon', data-toggle='modal') remove
+                      //- li
+                    //- ul
+                  //- dropdown
+                //- th
+              //- tr
+            //- tbody
+          //- table
+        //- table-responsive
+      //- card
+      br
+      h4 Created circlebuys
+      .card
+        .table-responsive
+          table.table
+            thead
+              tr
+                th Requester
+                th Product Name
+                th Owner
+                th Quantity
+                th Date Requested
+                th Status
+                th
+              //- tr
+            //- thead
+            tbody
+              tr
+                td
+                  | Jake Seri
+                //- th
+                td
+                  | Brokenwood - Graveyard Vineyard
+                //- th
+                td
+                  | Adrian Mendez
+                //- td
+                td
+                  | 3 cases
+                //- th
+                td
+                  | 07/05/2016 5:00 PM
+                //- th
+                td
+                  | Accepted
+                //- th
+                td
+                  //- a(href='#modal_coming_soon', data-toggle='modal') accept
+                //- th
+              //- tr
+              tr
+                td
+                  | Alvin Manalo
+                //- th
+                td
+                  | Brokenwood - Graveyard Vineyard
+                //- th
+                td
+                  | Adrian Mendez
+                //- td
+                td
+                  | 3 cases
+                //- th
+                td
+                  | 07/13/2016 4:10 PM
+                //- th
+                td
+                  | Pending
+                //- th
+                td
+                  .dropdown
+                    button.btn.btn-link.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                      i.fa.fa-ellipsis-v
+                    //- button
+                    ul.dropdown-menu.pull-right
+                      li
+                        a(href='#modal_coming_soon', data-toggle='modal') accept
+                      //- li
+                      li
+                        a(href='#modal_coming_soon', data-toggle='modal') reject
+                      //- li
+                    //- ul
+                  //- dropdown
+                //- th
+              //- tr
+              tr
+                td
+                  | Carlos Mejia
+                //- th
+                td
+                  | Brokenwood - Graveyard Vineyard
+                //- th
+                td
+                  | Adrian Mendez
+                //- td
+                td
+                  | 2 cases
+                //- th
+                td
+                  | 07/17/2016 12:00 PM
+                //- th
+                td
+                  | Rejected
+                //- th
+                td
+                  //- a(href='#modal_coming_soon', data-toggle='modal') reject
+                //- th
+              //- tr
+              tr
+                td
+                  | Jake Seri
+                //- th
+                td
+                  | Corona Extra - Imported Beers
+                //- th
+                td
+                  | Haley Page
+                //- td
+                td
+                  | 2 cases
+                //- th
+                td
+                  | 07/19/2016 1:02 PM
+                //- th
+                td
+                  | Accepted
+                //- th
+                td
+                  //- a(href='#modal_coming_soon', data-toggle='modal') accept
+                //- th
+              //- tr
+              tr
+                td
+                  | Frank Jose
+                //- th
+                td
+                  | Corona Extra - Imported Beers
+                //- th
+                td
+                  | Haley Page
+                //- td
+                td
+                  | 2 cases
+                //- th
+                td
+                  | 07/20/2016 7:00 PM
+                //- th
+                td
+                  | Rejected
+                //- th
+                td
+                  //- a(href='#modal_coming_soon', data-toggle='modal') reject
+                //- th
+              //- tr
+            //- tbody
+          //- table
+        //- table-responsive
+      //- card
+    //- container
+  //- section
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+
+    });
+  //- script.

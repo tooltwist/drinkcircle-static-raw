@@ -123,7 +123,7 @@ var assets = [
     assetsBaseDir + '/css/**/*.css',
     assetsBaseDir + '/images/**/*.*',
     // assetsBaseDir + '/scripts/**/*.*',
-    //assetsBaseDir + '/vendor/bootstrap/dist/**/*.*',
+    assetsBaseDir + '/vendor/bootstrap/dist/**/*.*',
     assetsBaseDir + '/vendor/**/*.*',
     assetsBaseDir + '/fonts/**/*.*',
     "!" + assetsBaseDir + '/css/*.scss',
@@ -157,6 +157,8 @@ var bower = [
     bowerBaseDir + '/owl.carousel/dist/**/*.*',
     bowerBaseDir + '/mustache.js/*.*',
     bowerBaseDir + '/bootbox.js/*.*',
+    bowerBaseDir + '/dx-chartjs/*dx.chartjs.js',
+    bowerBaseDir + '/globalize/**/*.*',
     '!' + bowerBaseDir + '/jquery.cookie/*.json', // Exclude '.json' files
     '!' + bowerBaseDir + '/font-awesome/scss/**', // Exclude 'scss' folder
     '!' + bowerBaseDir + '/font-awesome/less/**', // Exclude 'less' folder
