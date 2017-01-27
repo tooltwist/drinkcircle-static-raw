@@ -11,6 +11,9 @@ var authservice = (function() {
   // Current Access token
   var _ttuat = null;
 
+  // Maybe use Angular's $http object for AJAX calls.
+  var _$http = null;
+
 
   // Are we simulating?
   var _pretend = false;
@@ -84,75 +87,98 @@ var authservice = (function() {
   /*
    *  Perform an AJAX, using jQuery or Angular if available.
    */
-  function authservice_ajax_call(urlpath, params, $http_from_angular, callback) {
+  function authservice_ajax_call(method, urlpath, params, successCallback/*(response)*/, errorCallback/*(statusCode, statusText, error)*/) {
 
     var url = ENDPOINT + urlpath;
-    console.log('authservice_ajax_call()')
+    console.log('authservice_ajax_call(method, ' + urlpath + ')')
     console.log(url)
     console.log(params);
     console.log("vvvvvv calling vvvvvv");
 
-
     // See if this is an Angular AJAX call
-    if ($http_from_angular) {
+    if (_$http) {
       // Call the API to get the product details
       // ZZZZ This should use JSONP, as some browsers do not support CORS.
       // ZZZZ Unfortunately JSONP does not support headers, so we need
       // ZZZZ to pass details either in the url or the data. i.e. the
       // ZZZZ server requires changes.
+
+
+      /*
+       *  We'll use Angular's $http to call the authservice API.
+       *
+       *  See https://docs.angularjs.org/api/ng/service/$http
+       */
+console.log('*** Using Angular AJAX call');
       var req = {
         method: 'POST',
         url: url,
         data: params
       };
-      $http_from_angular(req).then(handleSuccess, handleError).then(function(result){
-        return callback(result);
+      _$http(req).then(function(response) { // success handler
+
+        // Successful AJAX call.
+        var data = response.data; // {string|Object} – The response body transformed with the transform functions.
+        console.log('success:', data)
+        return successCallback(data);
+
+      }, function(response) { // error handler
+
+        // Error during API call.
+        var statusCode = response.status; // {number} – HTTP status code of the response.
+        var statusText = response.statusText; // {string} – HTTP status text of the response.
+        var error = response.data; // Maybe an error object was returned.
+        if (errorCallback) {
+          return errorCallback(statusCode, statusText, error);
+        }
+
+        // We have no error callback, so we'll report the error here and return null data.
+        alert('An error occurred contacting Authservice.\nSee the Javascript console for details.')
+        console.log('statusCode:', response)
+        console.log('statusText:', statusText)
+        console.log('error:', error)
+        return successCallback(null);
       });
-    } else {
+
+
+    } else {  // Use jQuery AJAX.
 
       // We don't have Angular's $http, so use jQuery AJAX.
+      // See http://api.jquery.com/jquery.ajax/
+console.log('*** Using jQuery AJAX call');
       var json = JSON.stringify(params)
-
-      // Using CORS
-      //console.log('Using CORS');
       $.ajax({
         url: url,
-        type: "POST",
+        type: "POST", // Using CORS
         crossDomain: true,
+        async: true,
         data: json,
         dataType: "json",
         contentType: 'application/json',
-        success: function (response) {
-          // var resp = JSON.parse(response)
-          // alert(resp.status);
-          // console.log( "Login response: ", response);
-          // if (response.status == 'ok') {
-          //   // Logged in.
-          //   // Forward to some other page, or redraw this page.
-          //   var ttuat = response.ttuat;
-          //   console.log('ttuat=' + ttuat);
-          //   //window.location = '/african.html';
-          //   return;
-          // } else {
-          //   // Display an error message
-          //   $('#authservice-login-errmsg').show();
-          //   return;
-          // }
-          return callback(response);
+        success: function(response) {
+
+          // Successful AJAX call.
+          return successCallback(response);
         },
-        error: function (jqxhr, textStatus, error ) {
-          var err = textStatus + ", " + error;
-          console.log( "Request Failed: " + err );
-          console.log('jqxhr=', jqxhr);
-          console.log('textStatus=', textStatus);
-          console.log('error=', error);
-          alert('An error occurred while calling the authservice server. Please try again later.');
-          return callback(null);
+        error: function(jqxhr, textStatus, errorThrown) {
+
+          // Error during AJAX call.
+          var statusCode = jqxhr.status; // {number} – HTTP status code of the response.
+          var statusText = jqxhr.statusText; // {string} null, "timeout", "error", "abort", or "parsererror"
+          var error = errorThrown; // {string} "When an HTTP error occurs, errorThrown receives the textual portion of the HTTP status."
+          if (errorCallback) {
+            return errorCallback(statusCode, statusText, error);
+          }
+
+          // We have no error callback, so we'll report the error here and return null data.
+          alert('An error occurred contacting Authservice.\nSee the Javascript console for details.')
+          console.log('statusCode:', response)
+          console.log('statusText:', statusText)
+          console.log('error:', error)
+          return successCallback(null);
         }
       });
-
     }
-
   }
 
   /*
@@ -169,7 +195,8 @@ var authservice = (function() {
 
           // Dud cookie data
           console.log('Error parsing login cookie', e);
-          setCurrentUser(null, null, true);
+          var isFromCookie = true;
+          setCurrentUser(null, null, isFromCookie);
           return;
       }
 
@@ -190,8 +217,9 @@ var authservice = (function() {
       console.log('no login cookie');
     }
 
-    // no good cookie
-    setCurrentUser(null, null, true);
+    // not a good cookie
+    var isFromCookie = true;
+    setCurrentUser(null, null, isFromCookie);
   }
 
   /*
@@ -203,21 +231,17 @@ var authservice = (function() {
     if (_currentUser) {
 
       // Create a new object here, but not with all the details
-      var obj = {
-        //user: _currentUser,
+      var cookieObj = {
         user: {
           id: _currentUser.id,
-          full_name: _currentUser.full_name,
+          fullname: _currentUser.fullname,
           avatar: _currentUser.avatar,
-          user: {
-            user_first_name: _currentUser.user.user_first_name,
-            user_last_name: _currentUser.user.user_last_name
-          }
-          //userZ: _currentUser
+          firstname: _currentUser.firstname,
+          lastname: _currentUser.lastname
         },
         ttuat: _ttuat
       }
-      setCookie(LOGIN_DETAILS_COOKIE_NAME, JSON.stringify(obj), LOGIN_TIMEOUT_DAYS);
+      setCookie(LOGIN_DETAILS_COOKIE_NAME, JSON.stringify(cookieObj), LOGIN_TIMEOUT_DAYS);
     } else {
       // Remove the cookie
       setCookie(LOGIN_DETAILS_COOKIE_NAME, null, 0);
@@ -226,26 +250,23 @@ var authservice = (function() {
 
   function getCurrentUser() {
 
-    if (_currentUser) {
-      // Create a new object, so external code can't hack our values here.
-      var details = {
-        //ttuat: _currentUser.ttuat,
-        id: _currentEntityId,
-        firstname: _currentUser.firstname,
-        lastname: _currentUser.lastname,
-        avatar: _currentUser.avatar
-      };
-      return details;
-    } else {
+    //ZZZ We should return a clone so the original can't
+    // be easily modified hacked from outside code.
+    var clone = _currentUser;
+    return clone;
+  }
 
-      // No current user
-      return null;
-    }
+  function getCurrentUserId() {
+    return _currentUser ? _currentUser.id : 0;
+  }
+
+  function getUserAccessToken() {
+    return _ttuat;
   }
 
   function setCurrentUser(user, ttuat, fromCookie) {
     //console.log();
-    console.log('setCurrentUser(): ttuat=' + ttuat + ', user=', user)
+    console.log('++++++++>  setCurrentUser(): ttuat=' + ttuat + ', user=', user)
 
     // Change the current user.
     var oldCurrentUser = _currentUser;
@@ -270,12 +291,15 @@ var authservice = (function() {
       setCookieFromCurrentUser();
       $('.authservice-logged-in').show();
       $('.authservice-logged-out').hide();
-      $('.authservice-current-user-firstname').text(user.user.user_first_name);
-      $('.authservice-current-user-lastname').text(user.user.user_last_name);
+      $('.authservice-current-user-firstname').text(user.firstname);
+      $('.authservice-current-user-lastname').text(user.lastname);
       $('.authservice-current-user-avatar').attr('src', user.avatar).show();
 
       if (_onUserChange) { // && oldCurrentUser==null) {
-        (_onUserChange)(user, fromCookie);
+
+        var newUser = getCurrentUser(); // may be a clone
+        var newTtuat = _ttuat;
+        (_onUserChange)(newUser, newTtuat, fromCookie);
       }
     } else {
 
@@ -292,7 +316,7 @@ var authservice = (function() {
       $('.authservice-current-user-avatar').attr('src', '').hide();
       if (_onUserChange) { // && oldCurrentUser != null) {
         var fromCookie = false;
-        _onUserChange(null, fromCookie);
+        _onUserChange(null, null, fromCookie);
       }
     }
   }
@@ -333,17 +357,44 @@ var authservice = (function() {
 
 
 
+  // Create a new user object from the server-returned identity record.
+  function convertIdentityToUser(identity) {
+    var user = {
+      //ttuat: _currentUser.ttuat,
+      id: identity.id,
+      authority: identity.authority,
+      avatar: identity.avatar,
+      // not email, or email_status
+      //entityType: identity.entity_type_description,
+      fullname: identity.full_name,
+      status: identity.status,
+      type: identity.type
+    };
 
-  function handleSuccess(response) {
-    console.log('success:', response)
-    return response.data;
-  }
+    // Handle user specific fields
+    if (user.type == 'user') {
+      // user.fullname = identity.user.full_name;
+      // user.firstname = identity.user.first_name;
+      // user.lastname = identity.user.last_name;
+      user.locale = identity.user.locale;
+      user.location = identity.user.location;
+      user.timezone = identity.user.timezone;
+      user.firstname = identity.user.user_first_name;
+      user.gender = identity.user.user_gender;
+      user.languages = identity.user.user_languages;
+      user.lastname = identity.user.user_last_name;
+      user.mediaPage = identity.user.user_media_page;
+      user.middlename = identity.user.user_middle_name;
+    }
 
-  function handleError(response){
-    alert('An error occurred calling the TEA API.\nSee the Javascript console for details.')
-    console.log('failure:', response)
-    console.log('failure:', response.data.message)
-    return null;
+    // Copy over the relationships and properties
+    user.properties = identity.properties;
+    user.propertySummary = identity.propertySummary;
+    user.relationships = identity.relationships;
+    user.relationshipSummary = identity.relationshipSummary;
+    //user.privileges = identity.privileges;
+    //user.privilegeSummary = identity.privilegeSummary;
+    return user;
   }
 
 
@@ -358,6 +409,8 @@ var authservice = (function() {
     setCookie: setCookie,
     getCookie: getCookie,
     getCurrentUser: getCurrentUser,
+    getCurrentUserId: getCurrentUserId,
+    getUserAccessToken: getUserAccessToken,
 
     // admin_getUser: function(params, callback/*(err, user)*/) {
     //   authserviceApi.internal_admin_getUser(params).then(function(result){
@@ -378,7 +431,9 @@ var authservice = (function() {
       ENDPOINT = 'http://' + host + ':' + port + '/' + version + '/' + APIKEY;
       //console.log('endpoint = ' + ENDPOINT);
 
-
+      if (options.$http) {
+        _$http = options.$http;
+      }
       if (options.onUserChange) {
         _onUserChange = options.onUserChange;
       }
@@ -432,7 +487,8 @@ var authservice = (function() {
 
 
       $('#authservice-logout-button').click(function(){
-        setCurrentUser(null, null);
+        var isFromCookie = false;
+        setCurrentUser(null, null, isFromCookie);
         authservice.resetLoginMenu();
         return false;
       });
@@ -511,7 +567,8 @@ var authservice = (function() {
       if (_pretend) {
         console.log('seems we are pretending')
         var user = getDummyUser(username);
-        setCurrentUser(user, null);
+        var isFromCookie = false;
+        setCurrentUser(user, null, isFromCookie);
         //console.log('logged in now as', _currentUser);
         //authservice.resetLoginMenu();
         return successCallback(user);
@@ -525,13 +582,15 @@ var authservice = (function() {
         username: username,
         password: password
       };
-      authservice_ajax_call('/login', params, null, function(response) {
+      authservice_ajax_call('POST', '/login', params, function(response) {
 
           if (response.status == 'ok') {
+
             // Logged in.
-            var user = response.identity
+            var user = convertIdentityToUser(response.identity);
             var ttuat = response.ttuat;
-            setCurrentUser(user, ttuat);
+            var isFromCookie = false;
+            setCurrentUser(user, ttuat, isFromCookie);
             return successCallback(user);
           } else {
             // Display an error message
@@ -544,39 +603,69 @@ var authservice = (function() {
 
     reloadUser: function reloadUser(callback) {
       console.log('reloadUser');
-      if (_currentUser) {
 
-        if (_pretend) {
-          console.log('reloading dummy data')
-          var user = getDummyUser(_currentUser.username);
-          setCurrentUser(user);
-          return callback(user);
-        }
-
-
-        // Get the current user from the database again
-        var params = {
-          entityId: _currentEntityId,
-          needRelationships: true,
-          needProperties: true
-        };
-        authservice_ajax_call('/admin/getUser', params, null, function(users) {
-          //console.log('back from reload ', users)
-          var user = (users.length > 0) ? users[0] : null;
-          var fromCookie = false;
-          setCurrentUser(user, null, fromCookie);
-          if (callback) {
-            callback(user)
-          }
-        });
-      } else {
-
-        // There is no current user
-        setCurrentUser(null, null);
+      // See if there is a current user.
+      if (_currentUser == null) {
+        var user = null;
+        var ttuat = null;
+        var fromCookie = false;
+        setCurrentUser(user, ttuat, fromCookie);
         if (callback) {
           callback(null);
         }
       }
+
+      // Perhaps we're usifgn dummy data.
+      if (_pretend) {
+        console.log('reloading dummy data')
+        var user = getDummyUser(_currentUser.username);
+        var ttuat = null;
+        var isFromCookie = false;
+        setCurrentUser(user, ttuat, isFromCookie);
+        return callback(user);
+      }
+
+
+      // Get the current user from the database again
+      var params = {
+        ttuat: _ttuat,
+        //entityId: _currentEntityId,
+        needRelationships: true,
+        needProperties: true
+      };
+      authservice_ajax_call('POST', '/getIdentityWithAuthtoken', params, function(identities) {
+
+        // API call SUCCESS
+        console.log('back from /getIdentityWithAuthtoken ', identities)
+        if (identities && identities.length > 0) {
+
+          // Got the user.
+          console.log('User details reloaded.');
+          var user = convertIdentityToUser(identities[0]);
+          var ttuat = _ttuat;
+          var fromCookie = false;
+          setCurrentUser(user, ttuat, fromCookie);
+          if (callback) {
+            callback(user)
+          }
+        } else {
+
+          // Could not get the user. Must be logged out.
+          console.log('Could not reload user. Must have timed out.');
+          setCurrentUser(null, null, fromCookie);
+          if (callback) {
+            callback(null)
+          }
+        }
+      }, function(statusCode, statusText, error) {
+
+        // API call FAIL
+        console.log('Was not able to reload the user:', statusCode, statusText, console.error);
+        setCurrentUser(null, null, fromCookie);
+        if (callback) {
+          callback(null)
+        }
+      });
     },// reloadUser
 
 
@@ -612,7 +701,7 @@ var authservice = (function() {
 
     getUser: function getUser(params, callback/*(user)*/) {
       console.log('getUser()');
-      authservice_ajax_call('/admin/getUser', params, null, callback);
+      authservice_ajax_call('POST', '/admin/getUser', params, callback);
     }, //getUser
 
 
@@ -621,7 +710,7 @@ var authservice = (function() {
      */
     addRelationship: function addRelationship(params, callback/*(result)*/) {
       console.log('addRelationship()');
-      authservice_ajax_call('/admin/addRelationship', params, null, callback);
+      authservice_ajax_call('POST', '/admin/addRelationship', params, callback);
     },// addRelationship
 
 
@@ -630,7 +719,7 @@ var authservice = (function() {
      */
     removeRelationship: function removeRelationship(params, callback/*(result)*/) {
       console.log('removeRelationship()');
-      authservice_ajax_call('/admin/removeRelationship', params, null, callback);
+      authservice_ajax_call('POST', '/admin/removeRelationship', params, callback);
     },// addRelationship
 
 
@@ -640,7 +729,7 @@ var authservice = (function() {
      */
     addProperty: function addProperty(params, callback/*(result)*/) {
       console.log('addProperty()');
-      authservice_ajax_call('/admin/addProperty', params, null, callback);
+      authservice_ajax_call('POST', '/admin/addProperty', params, callback);
     },// addRelationship
 
 
@@ -649,7 +738,7 @@ var authservice = (function() {
      */
     removeProperty: function removeProperty(params, callback/*(result)*/) {
       console.log('removeProperty()');
-      authservice_ajax_call('/admin/removeProperty', params, null, callback);
+      authservice_ajax_call('POST', '/admin/removeProperty', params, callback);
     },// addRelationship
 
 
