@@ -31,20 +31,20 @@ var TimelinePost = (function() {
     }();
 
     return {
-        
+
         init : function(){
-            var host = CHConfig.SERVER_URL; 
+            var host = CHConfig.SERVER_URL;
         	var port = CHConfig.SERVER_PORT;
         	var tenant = CHConfig.TENANT_NAME;
         	var ttuat = Login_config.getCurrentUser().ttuat;
-        
+
 			var _curiaUrl;
 			// Prepare the configuration for Curia
         	var serverUrl = 'http:' + host;
         	var apiVersion = '2.0'
-        	
+
         	console.log("_curiaUrl=" + CHConfig.API_URL + ".");
-            
+
 			curiaConfig = {
                 serverUrl : serverUrl,
                 apiVersion : apiVersion,
@@ -53,7 +53,7 @@ var TimelinePost = (function() {
     //			development_userId : development_userId,
                 authenticationToken : ttuat,
                 urlive : false,
-                flat: false, 
+                flat: false,
                 textonly: false,
                 cookers: {
                     cook_post : TimelinePost.cookPost,
@@ -67,10 +67,10 @@ var TimelinePost = (function() {
                         "post_0" : "#timelinePost",
                         "comment_0" : "#timelinePostComment"
                 	}
-               
+
                 }
 			};
-			
+
 
             // initialize curia
             CrowdHound.init(curiaConfig, function afterCuriaInit() {
@@ -86,33 +86,33 @@ var TimelinePost = (function() {
 
              	TimelinePost.loadPost();
              	//TimelinePost.getFriendsPosts();
-              
+
              	$(document).on('keydown', '.comment .input-group input', function(event){
                     if(event.keyCode == 13){
                         $(this).siblings('.input-group-addon').find('a').trigger('click');
                     }
 				});
-              
+
             });
-            
+
 
 
         }, //end of init
-     
+
         post : function(){
             //check which action to do (post status, photos, events, etc ...)
-            
+
             if(TimelineUpload.uploadedFiles.length > 0){
                  TimelineUpload.savePhotosVideos();
             }else{
                 TimelinePost.postMessage();
             }
-            
+
         },
-        
+
         postMessage : function(){
             var message = $('#postMessage').val();
-           	
+
             if(message && message != ''){
                 var url = CrowdHound.addAuthenticationToken(CHConfig.API_URL + '/element');
                 var userId = Login_config.getCurrentUser().userId;
@@ -134,7 +134,7 @@ var TimelinePost = (function() {
                         if (messageResponse
                             && messageResponse.status
                             && messageResponse.status === "ok") {
-                            
+
                             //check message for any url links
                             //var urls = findUrls(message);
                             //if(urls.length == 1){
@@ -144,10 +144,10 @@ var TimelinePost = (function() {
                                 //just post the message
                                 TimelinePost.manualRenderPost(messageResponse.elementId, '#timelineSection');
                             //}
-                            
+
                             //clear textarea
                             $('#postMessage').val('');
-                           
+
                         } else {
                             //Alerts.showStandardError(".textarea");
                         }
@@ -158,18 +158,18 @@ var TimelinePost = (function() {
                         //Alerts.showStandardError(".textarea");
                     }
                 });
-                
+
             }
-            
+
         },
-      
-        
+
+
         deletePost : function(id, parent, root){
             var userId = Login_config.getCurrentUser().userId;
             var params = {};
             var method = 'op=drinkpoint_widgets.requestHandlers.userTimeline&subop=deletePost'
-				console.log("test delete");   
-                
+				console.log("test delete");
+
                 $.ajax({
                     type : 'POST',
                     url :  location.href.replace("#","")+"?"+method,
@@ -183,29 +183,29 @@ var TimelinePost = (function() {
                         if(data.status === "success"){
                             console.log(data.status);
                             $('div[data-post-id='+id+']').remove();
-                            
+
                         }
-                        
+
                     }
                 });
-                
-           
+
+
         },
-        
-        
+
+
         loadPost : function(){
             //var userId = $('#timeLineOwnerTtauthId').val();
             var userId = Login_config.getCurrentUser().userId;
             var params = {};
             var elementId = $('#eid').val();
-            
+
             var getFriendIds = function(){
                 var method = 'op=drinkpoint_widgets.requestHandlers.userTimeline&subop=getFriendsIds';
                 var customerIdStr = $('#customerId').val();
 
                 var friendIds = null;
                 $.ajax({
-                    async : false,
+                    async : true, // http://stackoverflow.com/a/29146183/1350573
                     type : 'POST',
                     url :  location.href.replace("#","")+"?"+method,
                     data : {
@@ -221,14 +221,14 @@ var TimelinePost = (function() {
                 console.log('friendIds:' + friendIds);
                 return friendIds;
             }();
-           
+
 
 
             if(elementId != null && elementId != ''){
             	params = {
             		elementId : elementId,
             		type : 'post',
-            		withChildren : true 
+            		withChildren : true
             	};
             }else{
 				var friendIds = getFriendIds;
@@ -240,7 +240,7 @@ var TimelinePost = (function() {
                     deleted : 0,
                 };
             }
-            
+
             CrowdHound.select(params, function (err, selection){
                 if(selection.elements.length > 0){
                     //cook the data 1st
@@ -255,37 +255,37 @@ var TimelinePost = (function() {
                                return;
                            }
                            console.log('finished rendered' + selection);
-                           
+
                            //init 3rd party plugins
                            //TimelinePost.initMagnificPopUp(selection);
                            //FB.XFBML.parse() //FB share button init
-                           
+
                        });
                    });
                 }
-                   
-                   
+
+
             });
         },
-        
-        
+
+
         cookPost : function (params, selection, callback) {
             //alert('invoked cooker');
             CrowdHound.traverse(selection, function cookPost(level, element, parent, next) {
-                
+
                 var message = element.description;
-                
+
                 if(element.children.length > 0){
-                    
+
                    	for (i = 0; i < element.children.length; i++) {
                         var childElement = element.children[i];
                         if(childElement.type === 'externalLink'){
-                            
+
                             var jsonData = jQuery.parseJSON(childElement.description);
                             element.htmlLinkPost = TimelinePost.constructPostLinkHTML(jsonData);
                             element.description = "";
                             break;
-                            
+
                         }else if(childElement.type === 'externalVideo'){
                             element.description = childElement.description;
                             break;
@@ -293,15 +293,15 @@ var TimelinePost = (function() {
                             var imageJsonArray = jQuery.parseJSON(childElement.description);
                             element.htmlLinkPost = TimelinePost.constructPostPhotosHTML(element.id, imageJsonArray);
                         }
-                        
+
                     }
-                    
+
                 }
-                
+
                 return next(null);
-                
+
             }, callback);
-    
+
 		},
         constructPostLinkHTML : function(data){
             var html = "<div class='shared'>"+
@@ -315,35 +315,35 @@ var TimelinePost = (function() {
 			"        </div>"+
 			"    </div>"+
 			"</div>";
-            
+
             return html;
         },
         constructPostPhotosHTML : function(parentId, data){
         	var totalNumberPhotos = data.length;
             var firstToSecondCol = 12;
             var thridToFifthCol = 12;
-            
+
             //determine the Col computation base on number of post photos
             if(totalNumberPhotos >= 2){
             	firstToSecondCol = 6;
             }
-            
+
             if(totalNumberPhotos >= 5){
             	thridToFifthCol = 4;
             }else if (totalNumberPhotos == 4){
             	thridToFifthCol = 6;
             }
-            
+
             var html = "<div class='post'>";
             html += "    <div id='post-photo-"+parentId+"' class='row photos'>";
-            
+
             for (var index = 0; index < data.length; index++){
             	if((index + 1) == 1 || (index + 1) == 2){
             		//first 2 photos
             		html += "        <div class='col-md-"+firstToSecondCol+" col-sm-"+firstToSecondCol+" col-xs-"+firstToSecondCol+" prev'><a href='"+data[index]+"'><img src='"+data[index]+"' style='width: 100%;'></a></div>";
             	}else if ((index +1) == 3 || (index +1) == 4 || (index +1) == 5){
             		html += "        <div class='col-md-"+thridToFifthCol+" col-sm-"+thridToFifthCol+" col-xs-"+thridToFifthCol+" prev'><a href='"+data[index]+"'><img src='"+data[index]+"' style='width: 100%;'></a>";
-            		
+
             		if((index +1) == 5 && totalNumberPhotos > 5){
             			html+= "<div class='more-photos'>+"+(totalNumberPhotos - 5)+"</div>";
             		}
@@ -356,7 +356,7 @@ var TimelinePost = (function() {
             html += "</div>";
             return html;
         },
-        
+
         savePostElement : function(elementId, url){
             $.ajax({
                 type : 'POST',
@@ -371,7 +371,7 @@ var TimelinePost = (function() {
 
                 }
             });
-            
+
 
         },
         manualRenderPost : function(elementId, htmlElementSelector){
@@ -391,17 +391,17 @@ var TimelinePost = (function() {
                                return;
                            }
                            console.log('finished rendered' + selection);
-                           
+
                            //init 3rd party plugins
                             //TimelinePost.initMagnificPopUp(selection);
                             //FB.XFBML.parse();
-                           
+
                        });
-                      
+
                    });
                 }
-                   
-                   
+
+
             });
         },
         toogleComment : function(elementId){
@@ -410,11 +410,11 @@ var TimelinePost = (function() {
         },
         commentOnAPost : function(parentId){
             var comment = $('#comment-'+parentId).find('div.input-group input').val();
-            
+
             if(comment && comment != ''){
                 var url = CrowdHound.addAuthenticationToken(CHConfig.API_URL + '/element');
                 var userId = Login_config.getCurrentUser().userId;
-                
+
                 var data = {
 					"type" : "comment",
                     "rootId" : parentId,
@@ -432,17 +432,17 @@ var TimelinePost = (function() {
                             && messageResponse.status === "ok") {
                             var elementId = messageResponse.elementId;
                             TimelinePost.manualRenderPost(elementId, '#comments-'+parentId);
-                            
+
                             //clear textarea
                             $('#comment-'+parentId).find('div.input-group input').val('');
                             TimelinePost.toogleComment(parentId);
-                            
+
                             //send notification via email to the owner of the post
                             var type="commented";
                             var ownerUserId = $('#comment-'+parentId).parents('.timeline:eq(0)').attr('data-owner-id');
-                            
+
                             sendEmailNotification(ownerUserId, userId, type, parentId);
-                
+
                         }
                     },
 
@@ -451,7 +451,7 @@ var TimelinePost = (function() {
                         //Alerts.showStandardError(".textarea");
                     }
                 });
-                
+
             }
         },
         like : function(parentId, score){
@@ -462,7 +462,7 @@ var TimelinePost = (function() {
        			aspect: 'like',
        			score: score
    			}
-            
+
             jQuery.ajax({
        			url :  CrowdHound.addAuthenticationToken(CHConfig.API_URL + "/vote"),
        			method : 'POST',
@@ -473,18 +473,18 @@ var TimelinePost = (function() {
                         if(likesCount == 0){
                             $('#post-likes-'+parentId).show();
                         }
-                        
+
                         if(score == 1){
                             likesCount = likesCount + 1;
                             $('#post-like-anchor-'+parentId).attr('onclick', 'TimelinePost.like('+parentId+',0)');
                             $('#post-like-anchor-'+parentId).html('<i class="fa fa-heart"></i>Unlike');
-                            
+
                             //send notification via email to the owner of the post
                             var type="liked";
                             var ownerUserId = $('#comment-'+parentId).parents('.timeline:eq(0)').attr('data-owner-id');
-                            
+
                             sendEmailNotification(ownerUserId, userId, type, parentId);
-                            
+
                         }else{
                             likesCount = likesCount - 1;
                             $('#post-like-anchor-'+parentId).attr('onclick', 'TimelinePost.like('+parentId+',1)');
@@ -500,14 +500,14 @@ var TimelinePost = (function() {
                             postCounterElement.fadeIn(300);
                         });
                         //$('#post-likes-counter-'+parentId).html(likesCount);
-                            
-                            
-                            
-                        
+
+
+
+
                     }
                 }
    			});
-            
+
         },
         cookLikes : function(params, selection, callback){
             console.log('cook_likes()');
@@ -587,14 +587,14 @@ var TimelinePost = (function() {
                     //nothing to cook just return;
                     return callback();
                 }
-                
+
             });// traverse
         },
         getLikesTotals : function(elementIds, type, callback, async) {
             if (elementIds != undefined) {
                 jQuery.ajax({
                     url :  CrowdHound.addAuthenticationToken(CHConfig.API_URL + "/vote/totals/" + elementIds + "/" + type),
-                    async : async == undefined ? true : async, 
+                    async : async == undefined ? true : async,
                     success : function(data, textStatus, xhr) {
                         if (xhr.status === 200) {
                             callback(data);
@@ -609,7 +609,7 @@ var TimelinePost = (function() {
             if (type == undefined || type == 'post') {
                 jQuery.ajax({
                     url :  CrowdHound.addAuthenticationToken(CHConfig.API_URL + "/votes/mine/" + elementIds),
-                    async : async == undefined ? true : async, 
+                    async : async == undefined ? true : async,
                     success : function(data, textStatus, xhr) {
                         if (xhr.status === 200) {
                             callback(data);
@@ -620,20 +620,20 @@ var TimelinePost = (function() {
                 callback();
             }
         },
-        
+
         postPhotosVideos : function (){
             var message = $('#postMessage').val();
             if(TimelineUpload.uploadedFiles.length > 0){
                 var uploadedFiles = TimelineUpload.uploadedFiles;
-                
+
                 var files = '';
             	var sep = '';
-            
+
                 for(index in uploadedFiles){
                     files += sep + uploadedFiles[index];
                     sep = ',';
                 }
-                
+
                 //start posting
                 var url = CrowdHound.addAuthenticationToken(CHConfig.API_URL + '/element');
                 var userId = Login_config.getCurrentUser().userId;
@@ -655,7 +655,7 @@ var TimelinePost = (function() {
                             && messageResponse.status
                             && messageResponse.status === "ok") {
                             TimelinePost.savePhotoElement(messageResponse.elementId,files);
-                
+
                         } else {
                             //Alerts.showStandardError(".textarea");
                         }
@@ -666,7 +666,7 @@ var TimelinePost = (function() {
                         //Alerts.showStandardError(".textarea");
                     }
                 });
-            
+
             }
         },
         savePhotoElement : function(elementId, files){
@@ -723,9 +723,9 @@ var TimelinePost = (function() {
 
 /* Script for photo upload
 var TimelineUpload = (function() {
-    
+
     var uploadedFiles = [];
-    
+
     return {
         uploadedFiles: uploadedFiles,
         //methods for file uploads here!!!
@@ -741,38 +741,38 @@ var TimelineUpload = (function() {
                         if (uploadedFiles[index] == photoObj.photo){
                             uploadedFiles.pop(index);
                             $(file.previewElement).remove();
-                            
+
                         }
                     }
-                   
-                    
+
+
                 },
                 success : function (file){
-                	
+
                     var photoObj = $.parseJSON(file.xhr.response);
                     uploadedFiles.push(photoObj.photo);
             	},
-                
+
                 canceled : function (file){
                     uploadedFiles = [];
                     $('.dz-preview.dz-processing.dz-image-preview').remove();
                     $(file.previewElement).remove();
                     this.emit("reset");
                 }
-            
+
             });
-            
+
         },
         savePhotosVideos : function (){
-            
+
             var files = '';
             var sep = '';
-            
+
             for(index in uploadedFiles){
                 files += sep + uploadedFiles[index];
                 sep = ',';
             }
-            
+
             if(files !=''){
                  jQuery.ajax({
                     type : 'POST',
@@ -791,7 +791,7 @@ var TimelineUpload = (function() {
                  });
         	}
         }
-        
+
     }
 }());
 */

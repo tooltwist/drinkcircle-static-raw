@@ -32,7 +32,7 @@ var crowdhoundservice = (function() {
       var elementId = element.id;
       jQuery.ajax({
               url :  Curia.addAuthenticationToken(CHConfig.API_URL + "/votes/" + elementId),
-              async : false,
+              async : true, // http://stackoverflow.com/a/29146183/1350573
               success : function(data, textStatus, xhr) {
                   if (xhr.status === 200) {
                     if(data.length > 0){

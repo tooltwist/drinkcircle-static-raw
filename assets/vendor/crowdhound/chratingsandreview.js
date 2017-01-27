@@ -33,11 +33,7 @@ var chratingsandreview = (function() {
       var elementId = element.id;
       jQuery.ajax({
               url :  Curia.addAuthenticationToken(CHConfig.API_URL + "/votes/" + elementId),
-<<<<<<< HEAD
               async : true, // http://stackoverflow.com/a/29146183/1350573
-=======
-              async : false,
->>>>>>> philChristmas
               success : function(data, textStatus, xhr) {
                   if (xhr.status === 200) {
                     if(data.length > 0){
@@ -102,25 +98,15 @@ var chratingsandreview = (function() {
 
           params = {
             elementId: elementId,
-<<<<<<< HEAD
             withChildren: true,
             type: 'product-reviews' // Used if a new anchor is created
           };
           CrowdHound.select(params, function(err, selection) {
-=======
-            withChildren: true
-          };
-          var newAnchorType = 'product-reviews';
-          Curia.select(params, newAnchorType, function(err, selection) {
->>>>>>> philChristmas
             if (err) {
               console.log('Error loading reviews', err);
               return;
             }
-<<<<<<< HEAD
 console.log('After selecting product reviews (but before cooking):', selection)
-=======
->>>>>>> philChristmas
             if (selection == null) {
               alert('Loading reviews failed (selection == null)');
             } else {
@@ -192,43 +178,41 @@ console.log('After selecting product reviews (but before cooking):', selection)
     }();
 
   return {
-<<<<<<< HEAD
-=======
-    init: function() {
-      var host = CHConfig.SERVER_URL;
-      var port = CHConfig.SERVER_PORT;
-      var tenant = CHConfig.TENANT_NAME;
-      var ttuat = 'WV0QU6NFJX0U7HHTZCAZM187';//Login_config.getCurrentUser().ttuat;
 
-			var _curiaUrl;
-			// Prepare the configuration for Curia
-      var serverUrl = 'http:' + host;
-      var apiVersion = '2.0'
-
-      console.log("_curiaUrl=" + CHConfig.API_URL + ".");
-
-      curiaConfig = {
-        serverUrl : serverUrl,
-        apiVersion : apiVersion,
-        tenantId : tenant,
-        debug: false,
-//			development_userId : development_userId,
-        authenticationToken : ttuat,
-        urlive : false,
-        flat: false,
-        textonly: false,
-        cookers: {
-            //cook_avatars : cookAvatars, //definition is in the curia_js widget
-            cook_ratings : cookRatings
-        },
-        themes : {
-            "productReview": {
-                "product-reviews_0" : "#reviewList",
-                "review_0" : "#review"
-            }
-        }
-			};
->>>>>>> philChristmas
+//     init: function() {
+//       var host = CHConfig.SERVER_URL;
+//       var port = CHConfig.SERVER_PORT;
+//       var tenant = CHConfig.TENANT_NAME;
+//       var ttuat = 'WV0QU6NFJX0U7HHTZCAZM187';//Login_config.getCurrentUser().ttuat;
+//
+// 			var _curiaUrl;
+// 			// Prepare the configuration for Curia
+//       var serverUrl = 'http:' + host;
+//       var apiVersion = '2.0'
+//
+//       console.log("_curiaUrl=" + CHConfig.API_URL + ".");
+//
+//       curiaConfig = {
+//         serverUrl : serverUrl,
+//         apiVersion : apiVersion,
+//         tenantId : tenant,
+//         debug: false,
+// //			development_userId : development_userId,
+//         authenticationToken : ttuat,
+//         urlive : false,
+//         flat: false,
+//         textonly: false,
+//         cookers: {
+//             //cook_avatars : cookAvatars, //definition is in the curia_js widget
+//             cook_ratings : cookRatings
+//         },
+//         themes : {
+//             "productReview": {
+//                 "product-reviews_0" : "#reviewList",
+//                 "review_0" : "#review"
+//             }
+//         }
+// 			};
 
     cookRatings: cookRatings,
 

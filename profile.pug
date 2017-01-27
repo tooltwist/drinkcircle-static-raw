@@ -978,11 +978,10 @@ block scripts
         //}
       }
     });
-<<<<<<< HEAD
-=======
+
     console.log('Current user:', authservice.getCurrentUser());
 
-  
+
   //templates
   script(id='timelineList', type='text/template')
     <<{childrenHtml}>>
@@ -1005,10 +1004,10 @@ block scripts
                               <ul class="dropdown-menu" style="top: 35px;">
                               //{{#scopes.isUserLoggedIn}}
                               //    <li><a id="deletePost" href="javascript:void(0);" onclick="TimelinePost.deletePost(<<id>>, <<parentId>>, <<rootId>>);">Delete</a></li>
-                              //    <li><a id="editPost" href="javascript:void(0);">Edit</a></li>   
+                              //    <li><a id="editPost" href="javascript:void(0);">Edit</a></li>
                               //{{/scopes.isUserLoggedIn}}
                               //{{^scopes.isUserLoggedIn}}
-                                <li><a id="hidePost" href="javascript:void(0);">Hide</a></li> 
+                                <li><a id="hidePost" href="javascript:void(0);">Hide</a></li>
                               //{{/scopes.isUserLoggedIn}}
                               </ul>
                               <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle info postToggle" data-toggle="dropdown" href="#" role="button"><i class="fa fa-chevron-down"></i></a>
@@ -1078,4 +1077,3 @@ block scripts
           </span>
       </div>
     <</element>>
->>>>>>> philChristmas

@@ -25,24 +25,14 @@ var ratingTotal = 0;
       var host = CHConfig.SERVER_URL;
       var port = CHConfig.SERVER_PORT;
       var tenant = CHConfig.TENANT_NAME;
-<<<<<<< HEAD
-      var ttuat = '0YFW4AUKIQXVTH15Z172DRBT';
-
-=======
       var ttuat = 'RJTDQGP394702Q31NDN72B53';
-    
->>>>>>> philChristmas
+
       var _curiaUrl;
       // Prepare the configuration for Curia
       var serverUrl = 'http:' + host;
       var apiVersion = '2.0';
-<<<<<<< HEAD
 
-      curiaConfig = {
-=======
-      
       crowdHoundConfig = {
->>>>>>> philChristmas
             serverUrl : serverUrl,
             apiVersion : apiVersion,
             tenantId : tenant,
@@ -52,28 +42,6 @@ var ratingTotal = 0;
             urlive : false,
             flat: false,
             textonly: false,
-<<<<<<< HEAD
-            // cookers: {
-                //cook_avatars : cookAvatars, //definition is in the curia_js widget
-                //cook_ratings : ProductReview.cookRatings
-            //},
-            //themes : {
-      //"productReview": {
-        //"product-reviews_0" : "#reviewList",
-                    //"review_0" : "#review",
-                    //"options":  { flat: false, textonly: true, readonly: false },
-              //}
-
-            //}
-      };
-
-
-      // initialize curia
-      alert('Before CH.init - loc #2')
-      Curia.init(curiaConfig, function afterCuriaInit() {
-        loadRatings();
-      });
-=======
             cookers: {
                 cook_ratings : cookRatings
             }
@@ -83,8 +51,9 @@ var ratingTotal = 0;
         CrowdHound.init(crowdHoundConfig, function afterCrowdHoundInit() {
             loadRatings();
         });
->>>>>>> philChristmas
     }
+
+
 function loadRatings(){
     $('#products .product-id').each(function() {
         var obj = $(this);
@@ -115,59 +84,31 @@ function loadRatings(){
 
 }
 function cookRatings(params, selection, callback){
-<<<<<<< HEAD
-    console.log('cooking product ratings');
-
-    //Reset Values
-    reviewCount = 0;
-    ratingCount = 0;
-    ratingTotal = 0;
-
-    CrowdHound.traverse(selection, function cookTopic(level, element, parent, next) {
-
-        //only get review elements
-        if (element.type != 'review' && element.deleted != 1) {
-            return next(null);
-        }
-
-
-        //call vote API to get rating
-        var elementId = element.id;
-        jQuery.ajax({
-            url :  CrowdHound.addAuthenticationToken(CHConfig.API_URL + "/votes/" + elementId),
-            async : false,
-            success : function(data, textStatus, xhr) {
-                if (xhr.status === 200) {
-                    if(data.length > 0){
-                        var rating = data[0].score;
-                        var reviewTxt = element.description;
-=======
             console.log('cooking product ratings');
-            
+
             //Reset Values
             reviewCount = 0;
             ratingCount = 0;
             ratingTotal = 0;
-            
+
             CrowdHound.traverse(selection, function cookTopic(level, element, parent, next) {
-                
+
                 //only get review elements
                 if (element.type != 'review' && element.deleted != 1) {
                     return next(null);
                 }
-                
-                
+
+
                 //call vote API to get rating
                 var elementId = element.id;
                 jQuery.ajax({
                     url :  CrowdHound.addAuthenticationToken(CHConfig.API_URL + "/votes/" + elementId),
-                    async : false, 
+                    async : true, // http://stackoverflow.com/a/29146183/1350573
                     success : function(data, textStatus, xhr) {
                         if (xhr.status === 200) {
                             if(data.length > 0){
                                 var rating = data[0].score;
                                 var reviewTxt = element.description;
->>>>>>> philChristmas
 
                                 element.rating = rating;
                                 ratingTotal += rating;
@@ -176,34 +117,19 @@ function cookRatings(params, selection, callback){
                                 if(reviewTxt != null && reviewTxt != ''){
                                    reviewCount++;
                                 }
-                                
+
                             }
                             return next(null);
                         }
-<<<<<<< HEAD
-
-                    }
-                    return next(null);
-                }
-            }
-        });
-
-    },
-    function(){
-        return callback(); //cooker is finished
-    });
- }
-=======
                     }
                 });
-                
+
             },
             function(){
                 return callback(); //cooker is finished
             });
         }
-        
->>>>>>> philChristmas
+
  return {
     init: function() {
     $(initCuria());
