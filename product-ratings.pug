@@ -21,11 +21,19 @@ block content
         //- col-md-12
       //- row
       .card
-        p Rate the product from 0 - 100
+        p
+          strong Your Rating
         .form-group
-          div(ng-model='rating', rn-stepper='')
+          //div(ng-model='rating', rn-stepper='')
+          select(ng-model='rating' ng-options="x for x in ratingOptions").inline
+          | &nbsp;&nbsp;out of 100
         //- form-group
-        hr
+        .text-right
+          a.btn.btn-success(ZZZdata-toggle="modal", ng-click="submitProductRating()") Submit Rating only
+      p &nbsp;
+
+
+      .card
         p
           strong Your Review (optional)
         //- p
@@ -38,22 +46,22 @@ block content
           .col-md-6
             .form-group
               label Add a heading for you review
-              input.form-control(type='text', id='reviewHeading')
+              input.form-control(ng-model="reviewHeading", type='text', id='reviewHeading')
             //- form-group
           //- col-md-6
         //- row
         .form-group
           label Your review
-          textarea.form-control(rows='5', id='review')
+          textarea.form-control(ng-model="reviewTxt", rows='5', id='review')
         //- form-group
         .checkbox
           label
-            input(type='checkbox', id='recommend-checkbox')
+            input(type='checkbox', ng-model="recommend", id='recommend-checkbox')
             | &nbsp;I would recommend this drink to a friend
           //- label
         //- checkbox
         .text-right
-          a.btn.btn-success(data-toggle='modal', id='submit-product-rating') Submit
+          a.btn.btn-success(data-toggle='modal', ng-click='submitProductRatingAndReview()') Submit Rating and Review
         //- text-right
       //- card
       input#review-element-id(type='hidden', value='')
@@ -64,67 +72,198 @@ block content
 block scripts
   // External Script goes here...
   script.
-    $(document).ready(function(){
-      var app = angular.module('myApp', ['ngSanitize']);
-      chwritereview.init();
-    });
-
-    var app = angular.module('myApp', ['ngSanitize'])
-
-    .controller('myCtrl', function($scope) {
-      $scope.rating = 99;     
-    })
-
-    .directive('rnStepper', function() {
-        return {
-            restrict: 'AE',
-            scope: {
-                value: '=ngModel'
-            },
-            template: '<button ng-disabled="isOverMin()" ng-click="decrement()">-</button>' +
-                      '<div id="rate">{{ value }}</div>' +
-                      //'<input maxlength="3" size="4" type="number" id="rate" value="{{value}}"></input>' +
-                      '<button ng-disabled="isOverMax()" ng-click="increment()">+</button>',
-            link: function(scope, iElement, iAttrs) {
-                scope.increment = function() {
-                    scope.value++;
-                }
-                scope.decrement = function() {
-                    scope.value--;
-                }
-                scope.isOverMin = function() {
-                   var disabled = false;
-                    if(scope.value <= 0) {
-                      disabled = true;
-                    }
-                    return disabled;
-                }
-                scope.isOverMax = function() {
-                    var disabled = false;
-                    if(scope.value >= 100) {
-                      disabled = true;
-                    }   
-                    return disabled;
-                }
-            }
-        };
-    });
 
     /*
-    *  Set up the login part at the top of the page.
-    */
-    authservice.init({
-      host: 'localhost',
-      port: 9090,
-      tenant: 'nodeclient',
-      pretend: true,
-      onLoggedIn: function() {
-        console.log('logged in');
-      },
-      onLoggedOut: function() {
-        console.log('logged out');
+     *    Set up Angular.
+     */
+    var app = angular.module('myApp', ['ngSanitize'])
+    app.controller('myCtrl', function($scope, $http) {
+
+
+      // This code gets the "product" parameter from the URL so we can use it as productVariantId.
+      var productVariantId = NaN;
+      window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+        if (key === 'product') {
+          productVariantId = parseInt(value);
+        }
+      });
+
+      // We should not be here without a product specified
+      if (isNaN(productVariantId) || productVariantId <= 0) {
+        window.location = '/index.html';
+        return;
       }
-    });
-    console.log('Current user:', authservice.getCurrentUser());
+
+      // Values for the rating dropdown.
+      $scope.noRatingSpecified = '--';
+      $scope.ratingOptions = [ '--', '100', '90', '80', '70', '60', '50', '40', '30', '20', '10', '0' ];
+      $scope.rating = '--';
+
+
+      /*
+       *  Initialize Authservice.
+       */
+      authservice.init({
+        // Environment specific values are defined in environment.js
+        host: AUTHSERVICE_HOST,
+        port: AUTHSERVICE_PORT,
+        tenant: AUTHSERVICE_TENANT,
+        pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
+        $http: $http, // Use Angular's $http for AJAX calls
+        onUserChange: function(user, ttuat, fromCookie) {
+
+          /*
+           *  This callback is called when we initialise Authservice, and also
+           *  any time the current user is changes. If the user is logged out
+           *  the both user and ttuat will be null.
+           *
+           *  If the current user record came from the cookie then it will be
+           *  a cut down version and will not have all the details we need. It
+           *  may also be out of date, so let's reload it from Authservice.
+           *  This will also ensure that the login has not timed out.
+           */
+          if (fromCookie) {
+            console.log('Reloading user details (cookie details are just a summary)');
+            return authservice.reloadUser();
+          }
+          if (user == null) {
+            console.log('logged out');
+            window.location = '/productDetails2.html?product='+productVariantId;
+            return;
+          }
+
+          console.log('Current user:', authservice.getCurrentUser());
+          console.log('User access token:', authservice.getUserAccessToken());
+
+
+          /*
+           *  Initialize CrowdHound
+           */
+          crowdhoundConfig = {
+            serverUrl : 'http://' + CROWDHOUND_HOST + ':' + CROWDHOUND_PORT,
+            apiVersion : CROWDHOUND_VERSION,
+            tenantId : CROWDHOUND_TENANT,
+            debug: false,
+            //authenticationToken : authservice.getUserAccessToken(),
+            authenticationToken: ttuat,
+            urlive : false,
+            flat: false,
+            textonly: false,
+            // cookers: {
+            //cook_avatars : cookAvatars, //definition is in the curia_js widget
+            //cook_ratings : ProductReview.cookRatings
+            //},
+            //themes : {
+            //"productReview": {
+            //"product-reviews_0" : "#reviewList",
+            //"review_0" : "#review",
+            //"options":  { flat: false, textonly: true, readonly: false },
+            //}
+
+            //}
+          };
+          CrowdHound.init(crowdhoundConfig, function afterCuriaInit() {
+
+            // Select any existing rating by this user.
+            //ZZZZZ
+            console.log('load review for ', authservice.getCurrentUser());
+
+            /*
+             *  Select any existing review for the user.
+             */
+            var userId = authservice.getCurrentUserId();
+            var anchor = "$product-"+productVariantId+"-reviewer-"+userId;
+            CrowdHound.select(anchor, function(err, selection) {
+              if (err) {
+                //ZZZ Maybe should jump to a different page?
+                alert('An error occurred while looking for any existing review.');
+                console.log('Had a problem selecting the review.', err);
+                return;
+              }
+
+              // No error, all is okay.
+              console.log('selection: ', selection);
+              if (selection && selection.elements.length >= 1) {
+
+                // Put the review on the screen
+                var element = selection.elements[0];
+                $scope.reviewHeading = element.title;
+                $scope.reviewTxt = element.description;
+                $scope.recommend = element.title;
+                $scope.recommend = (element.summary == 'true');
+                $scope.$apply();
+              }
+            });// select
+          });// CrowdHound.init
+        }// onUserChange
+      });// authservice.init
+
+
+
+      /*
+       *  Handler for "Save Rating and Review" button.
+       */
+      $scope.submitProductRatingAndReview = function submitProductRatingAndReview() {
+
+        // Check we have a user rating.
+        var rating = $scope.rating;
+        if (rating == $scope.noRatingSpecified) {
+          bootbox.alert("Please select a rating value for this product.", function(){});
+          return;
+        }
+
+        // Save the review.
+        var heading = $scope.reviewHeading;
+        var review = $scope.reviewTxt;
+        var recommended = $scope.recommend;
+        chwritereview.saveReview(productVariantId, heading, review, recommended, function(err) {
+          if (err) {
+            alert('Unable to save product review');
+            console.log('Unable to save review: ', err);
+          }
+
+          // Now save the rating.
+          chwritereview.saveRating(productVariantId, rating, function(err) {
+            if (err) {
+              alert('Unable to save product rating');
+              console.log('Unable to save rating: ', err);
+            } else {
+              // Review has been saved. Jump back to the product screen.
+              window.location = '/productDetails2.html?product='+productVariantId;
+            }
+          });// saveRating
+
+        });// saveReview
+
+      };// $scope.submitProductRatingAndReview
+
+
+      /*
+       *  Handler for "Save Rating" (but not review) button.
+       */
+      $scope.submitProductRating = function submitProductRating() {
+
+        // Check we have a user rating.
+        var rating = $scope.rating;
+        if (rating == $scope.noRatingSpecified) {
+          bootbox.alert("Please select a rating value for this product.", function(){});
+          return;
+        }
+
+        // Save the rating.
+        chwritereview.saveRating(productVariantId, rating, function(err) {
+          if (err) {
+            alert('Unable to save product rating');
+            console.log('Unable to save rating: ', err);
+          } else {
+            // Review has been saved. Jump back to the product screen.
+            window.location = '/productDetails2.html?product='+productVariantId;
+          }
+        });// saveRating
+
+      };// $scope.submitProductRating()
+
+    }); //app.controller('myCtrl')
+
   //- script.
 //- block scripts

@@ -11,6 +11,7 @@ var chratingsandreview = (function() {
 
   function cookRatings(params, selection, callback){
     console.log('cooking product ratings');
+
     CrowdHound.traverse(selection, function cookTopic(level, element, parent, next) {
 
       //only get review elements
@@ -32,7 +33,7 @@ var chratingsandreview = (function() {
       var elementId = element.id;
       jQuery.ajax({
               url :  Curia.addAuthenticationToken(CHConfig.API_URL + "/votes/" + elementId),
-              async : false,
+              async : true, // http://stackoverflow.com/a/29146183/1350573
               success : function(data, textStatus, xhr) {
                   if (xhr.status === 200) {
                     if(data.length > 0){
@@ -69,7 +70,12 @@ var chratingsandreview = (function() {
       return callback(); //cooker is finished
     });
   }
+
+
   function loadReview() {
+    //alert('chratingsandreview.loadReview()')
+
+      //ZZZZZ productVariantId should be a parameter of this function
 
           //getting product id from url
           var productVariantId = 0;
@@ -92,14 +98,15 @@ var chratingsandreview = (function() {
 
           params = {
             elementId: elementId,
-            withChildren: true
+            withChildren: true,
+            type: 'product-reviews' // Used if a new anchor is created
           };
-          var newAnchorType = 'product-reviews';
-          Curia.select(params, newAnchorType, function(err, selection) {
+          CrowdHound.select(params, function(err, selection) {
             if (err) {
               console.log('Error loading reviews', err);
               return;
             }
+console.log('After selecting product reviews (but before cooking):', selection)
             if (selection == null) {
               alert('Loading reviews failed (selection == null)');
             } else {
@@ -171,46 +178,12 @@ var chratingsandreview = (function() {
     }();
 
   return {
-    init: function() {
-      var host = CHConfig.SERVER_URL;
-      var port = CHConfig.SERVER_PORT;
-      var tenant = CHConfig.TENANT_NAME;
-      var ttuat = 'WV0QU6NFJX0U7HHTZCAZM187';//Login_config.getCurrentUser().ttuat;
 
-			var _curiaUrl;
-			// Prepare the configuration for Curia
-      var serverUrl = 'http:' + host;
-      var apiVersion = '2.0'
+    cookRatings: cookRatings,
 
-      console.log("_curiaUrl=" + CHConfig.API_URL + ".");
+    loadReview: loadReview,
 
-      curiaConfig = {
-        serverUrl : serverUrl,
-        apiVersion : apiVersion,
-        tenantId : tenant,
-        debug: false,
-//			development_userId : development_userId,
-        authenticationToken : ttuat,
-        urlive : false,
-        flat: false,
-        textonly: false,
-        cookers: {
-            //cook_avatars : cookAvatars, //definition is in the curia_js widget
-            cook_ratings : cookRatings
-        },
-        themes : {
-            "productReview": {
-                "product-reviews_0" : "#reviewList",
-                "review_0" : "#review"
-            }
-        }
-			};
-
-      // initialize curia
-      Curia.init(curiaConfig, function afterCuriaInit() {
-        loadReview();
-      });
-
-    }
+    //
+    nocomma: null
   }
 })();

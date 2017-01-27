@@ -82,14 +82,14 @@
         //- ratings
       //- popover_rating
       br
-      | 
-      span(id="allReviews") 
+      | &nbsp;
+      span(id="allReviews")
         0
       |&nbsp;Reviews
     //- col-md-6
     .col-md-5
       .btn-review-wrap
-        a.button.inline.v7(href="product-ratings.html", id='write-button') Write a review
+        a.button.inline.v7(href="product-ratings.html?product={{productVariantId}}", id='write-button') Write a review
         //a.button.inline.v7(href="product-ratings.html") Rate product
       //- btn-review-wrap
     //- col-md-6
@@ -128,7 +128,7 @@ block scripts
                 </span>
                 <span class="form-control">
                   <strong>
-                    <<#title>>	
+                    <<#title>>
                       <<title>><</title>>
                     <<^title>>
                       <<#extraProperties>>
@@ -164,7 +164,7 @@ block scripts
             </div>
         <</user.reviewOwner>>
     </div>
-    <</element>>  
+    <</element>>
   //- script.
 //- block scripts
 
@@ -191,11 +191,9 @@ block scripts
           e.preventDefault();
         });
 
-        chratingsandreview.init();
-
         // URL so we can use it as productVariantId.
         var productVariantId = NaN;
-        
+
         window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
           if (key === 'product') {
             productVariantId = parseInt(value);
@@ -209,7 +207,7 @@ block scripts
       */
       //var app = angular.module('myApp', ['ngSanitize']);
 
-      
+
 
       //- // Add the controller for this page
       //- app.controller('myCtrl', function($scope, crowdhoundservice) {

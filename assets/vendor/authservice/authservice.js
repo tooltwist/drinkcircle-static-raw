@@ -615,7 +615,7 @@ console.log('*** Using jQuery AJAX call');
         }
       }
 
-      // Perhaps we're usifgn dummy data.
+      // Perhaps we're using dummy data.
       if (_pretend) {
         console.log('reloading dummy data')
         var user = getDummyUser(_currentUser.username);

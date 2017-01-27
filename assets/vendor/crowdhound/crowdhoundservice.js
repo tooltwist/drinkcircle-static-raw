@@ -12,12 +12,12 @@ var crowdhoundservice = (function() {
   function cookRatings(params, selection, callback){
     console.log('cooking product ratings');
     CrowdHound.traverse(selection, function cookTopic(level, element, parent, next) {
-      
+
       //only get review elements
       if (element.type != 'review' && element.deleted != 1) {
               return next(null);
           }
-      
+
       //check if user logged in owns the rating
       //this should have been in a different cooker
       var userId = '6C36ZESDCRHHKC5J9WPL927A'; //Login_config.getCurrentUser().userId;
@@ -27,18 +27,18 @@ var crowdhoundservice = (function() {
           element.user.reviewOwner=true;
         }
       }
-      
+
       //call vote API to get rating
       var elementId = element.id;
       jQuery.ajax({
               url :  Curia.addAuthenticationToken(CHConfig.API_URL + "/votes/" + elementId),
-              async : false, 
+              async : false,
               success : function(data, textStatus, xhr) {
                   if (xhr.status === 200) {
                     if(data.length > 0){
                       var rating = data[0].score;
                       element.rating = rating;
-                          
+
                           reviewCount += rating;
                       //count all reviews and ratings
                       var reviewTxt = element.description;
@@ -63,7 +63,7 @@ var crowdhoundservice = (function() {
                   }
               }
           });
-      
+
     },
     function(){
       return callback(); //cooker is finished
@@ -81,14 +81,14 @@ var crowdhoundservice = (function() {
 
           var elementId;
           var elementidHolder = $('#elementId').val();
-          
+
           if(elementidHolder != null && elementidHolder != '') {
               elementId = parseInt(elementidHolder);
           } else {
               elementId = '$product-'+productVariantId;
           }
-          
-          params = {elementId : elementId, withChildren: true}; 
+
+          params = {elementId : elementId, withChildren: true};
           var url = CHConfig.API_URL + "/thread/" + elementId+"?newAnchorType=product-reviews";
           /*$.ajax({
               url: Curia.addAuthenticationToken(url),
@@ -108,11 +108,11 @@ var crowdhoundservice = (function() {
                           return;
                       }
                       console.log('finished rendered' + selection);
-                      
+
                   }); //end CrowdHound.render
               });//end CrowdHound.cook
           })*/
-          
+
           Curia.select(params, function (err, selection){
             if(selection == null){
               //means that this is the 1st time this page was visted time to create a new element for this product using /thread api
@@ -135,7 +135,7 @@ var crowdhoundservice = (function() {
                           //apply counts to their places
                           $('#allRatings').html(countAllRatings);
                           $('#allReviews').html(countAllReviewsAndRatings);
-                          
+
                           //set rating of product
                           if(reviewCount > 0) {
                               var productRating =  reviewCount / countAllRatings;
@@ -145,33 +145,33 @@ var crowdhoundservice = (function() {
                                 $('.rate-counter').show();
                               }
                           }
-                          
+
                           //set metrix
                           var pcnt90To100 = (count90To100 / countAllRatings) * 100;
-                          var pcnt80To89 = (count80To89 / countAllRatings) * 100;;
-                          var pcnt70To79 = (count70To79 / countAllRatings) * 100;;
-                          var pcnt60To69 = (count60to69 / countAllRatings) * 100;;
-                          var pcnt60Andbelow = (count60Andbelow / countAllRatings) * 100;; 
+                          var pcnt80To89 = (count80To89 / countAllRatings) * 100;
+                          var pcnt70To79 = (count70To79 / countAllRatings) * 100;
+                          var pcnt60To69 = (count60to69 / countAllRatings) * 100;
+                          var pcnt60Andbelow = (count60Andbelow / countAllRatings) * 100;
                           $('#pcnt90To100').attr('aria-valuenow', pcnt90To100).css('width',pcnt90To100+'%');
                           $('#pcnt80To89').attr('aria-valuenow', pcnt80To89).css('width',pcnt80To89+'%');
                           $('#pcnt70To79').attr('aria-valuenow', pcnt70To79).css('width',pcnt70To79+'%');
                           $('#pcnt60To69').attr('aria-valuenow', pcnt60To69).css('width',pcnt60To69+'%');
                           $('#pcnt60AndBelow').attr('aria-valuenow', pcnt60Andbelow).css('width',pcnt60Andbelow+'%');
-                          
+
                           $('#count90To100').html(count90To100);
                           $('#count80To89').html(count80To89);
                           $('#count70To79').html(count70To79);
                           $('#count60To69').html(count60to69);
                           $('#count60AndBelow').html(count60Andbelow);
-                          
+
                       }); //end CrowdHound.render
                   });//end CrowdHound.cook
             }
-              
+
           }); //end Curia.select
-          
+
       }
-      
+
     var CHConfig = function(){
       var serverUrl = "//127.0.0.1:4000",
         apiVersion = "2.0",
@@ -186,7 +186,7 @@ var crowdhoundservice = (function() {
         API_URL: apiUrl,
               SERVER_PORT : port
       }
-    }();    
+    }();
 
   return {
     init: function() {
@@ -194,14 +194,14 @@ var crowdhoundservice = (function() {
       var port = CHConfig.SERVER_PORT;
       var tenant = CHConfig.TENANT_NAME;
       var ttuat = '6C36ZESDCRHHKC5J9WPL927A';//Login_config.getCurrentUser().ttuat;
-        
+
 			var _curiaUrl;
 			// Prepare the configuration for Curia
       var serverUrl = 'http:' + host;
       var apiVersion = '2.0'
-      
+
       console.log("_curiaUrl=" + CHConfig.API_URL + ".");
-        
+
       curiaConfig = {
         serverUrl : serverUrl,
         apiVersion : apiVersion,
@@ -210,7 +210,7 @@ var crowdhoundservice = (function() {
 //			development_userId : development_userId,
         authenticationToken : ttuat,
         urlive : false,
-        flat: false, 
+        flat: false,
         textonly: false,
         cookers: {
             //cook_avatars : cookAvatars, //definition is in the curia_js widget
@@ -232,4 +232,3 @@ var crowdhoundservice = (function() {
     }
   }
 })();
-

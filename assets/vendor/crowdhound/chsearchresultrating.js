@@ -14,19 +14,19 @@ var chsearchresultrating = (function() {
       API_URL: apiUrl,
             SERVER_PORT : port
     }
-  }();    
+  }();
 
   function initCuria() {
       var host = CHConfig.SERVER_URL;
       var port = CHConfig.SERVER_PORT;
       var tenant = CHConfig.TENANT_NAME;
       var ttuat = '0YFW4AUKIQXVTH15Z172DRBT';
-    
+
       var _curiaUrl;
       // Prepare the configuration for Curia
       var serverUrl = 'http:' + host;
       var apiVersion = '2.0';
-      
+
       curiaConfig = {
             serverUrl : serverUrl,
             apiVersion : apiVersion,
@@ -34,7 +34,7 @@ var chsearchresultrating = (function() {
             debug: false,
             authenticationToken : ttuat,
             urlive : false,
-            flat: false, 
+            flat: false,
             textonly: false,
             // cookers: {
                 //cook_avatars : cookAvatars, //definition is in the curia_js widget
@@ -46,12 +46,13 @@ var chsearchresultrating = (function() {
                     //"review_0" : "#review",
                     //"options":  { flat: false, textonly: true, readonly: false },
               //}
-            
+
             //}
       };
 
 
       // initialize curia
+      alert('Before CH.init - loc #2')
       Curia.init(curiaConfig, function afterCuriaInit() {
         loadRatings();
       });
@@ -60,7 +61,7 @@ function loadRatings(){
     $('#product-test .product-id').each(function() {
         var obj = $(this);
         var elementId = '$product-'+obj.val();
-        params = {elementId : elementId, withChildren: true}; 
+        params = {elementId : elementId, withChildren: true};
         var url = CHConfig.API_URL + "/thread/" + elementId +"?newAnchorType=product-reviews";
         CrowdHound.select(params, function (err, selection){
             if(selection == null){
@@ -80,32 +81,32 @@ function loadRatings(){
                     obj.parents(".product").find(".review-total").html(reviewCount);
                 });
             }
-        
-        }); //end CrowdHound.select       
+
+        }); //end CrowdHound.select
     });
-    
+
 }
 function cookRatings(params, selection, callback){
     console.log('cooking product ratings');
-    
+
     //Reset Values
     reviewCount = 0;
     ratingCount = 0;
     ratingTotal = 0;
-    
+
     CrowdHound.traverse(selection, function cookTopic(level, element, parent, next) {
-        
+
         //only get review elements
         if (element.type != 'review' && element.deleted != 1) {
             return next(null);
         }
-        
-        
+
+
         //call vote API to get rating
         var elementId = element.id;
         jQuery.ajax({
             url :  CrowdHound.addAuthenticationToken(CHConfig.API_URL + "/votes/" + elementId),
-            async : false, 
+            async : false,
             success : function(data, textStatus, xhr) {
                 if (xhr.status === 200) {
                     if(data.length > 0){
@@ -119,23 +120,22 @@ function cookRatings(params, selection, callback){
                         if(reviewTxt != null && reviewTxt != ''){
                             reviewCount++;
                         }
-                        
+
                     }
                     return next(null);
                 }
             }
         });
-        
+
     },
     function(){
         return callback(); //cooker is finished
     });
- }  
+ }
  return {
     init: function() {
-    $(initCuria()); 
-        
+    $(initCuria());
+
     }
  }
 })();
-
