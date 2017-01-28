@@ -365,6 +365,8 @@ block content
 
       br
       .text-right
+        a.btn(data-toggle='modal', ng-click='backToProductPage()') Back to product page
+        | &nbsp;
         button.btn.btn-success.btn-lg(id="so_next_button" ng-click="nextButtonClicked()" ng-disabled="!haveRequiredInformation()" href='#') Next
       a(id="so_link_to_next_page" nZg-hide="true" href='circlebuy-invites.html') next {{haveRequiredInformation()}}
       //- text-right
@@ -735,8 +737,10 @@ block scripts
         $scope.haveValidDateOfBirth = function() {
 
           if ($scope.so_over18) {
+            $scope.haveValidDob = true;
             return true;
           }
+          $scope.haveValidDob = false;
           return false;
 
           /*
@@ -752,18 +756,22 @@ block scripts
 
             if (now.isBefore(dob)) {
               $scope.dateOfBirthMessage = 'You haven\'t been born yet!';
+              $scope.haveValidDob = false;
               return false;
             }
             else if (dob.isAfter(threeYearsAgo)) {
               $scope.dateOfBirthMessage = 'You should learn to walk before you drink!';
+              $scope.haveValidDob = false;
               return false;
             }
             else if (dob.isAfter(tenYearsAgo)) {
               $scope.dateOfBirthMessage = 'Go climb a tree or something!';
+              $scope.haveValidDob = false;
               return false;
             }
             else if (now.isBefore(turns18)) {
               $scope.dateOfBirthMessage = 'Sorry, you are too young to buy alcohol.';
+              $scope.haveValidDob = false;
               return false;
             }
 
@@ -773,6 +781,7 @@ block scripts
           }
 
           // dob not entered yet
+          $scope.haveValidDob = false;
           return false;
           */
         }
@@ -837,7 +846,7 @@ block scripts
 
           // Get details of the current user.
           var user = authservice.getCurrentUser();
-          var customerId = user.ttuat;
+          var customerId = user.id;
           var name = user.firstname;
           var capitalized = name.replace(/\w\S*/g, function(txt){
             // Handles multi-word names
@@ -917,6 +926,15 @@ block scripts
           return false;
 
         } // nextButtonClicked()
+        
+
+        /*
+         *  Handler for "Back to product page" button.
+         */
+        $scope.backToProductPage = function submitProductRatingAndReview() {
+          // Jump back to the product screen.
+          window.location = '/productDetails2.html?product='+productVariantId;
+        };
 
 
         /*

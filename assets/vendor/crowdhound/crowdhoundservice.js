@@ -133,8 +133,8 @@ var crowdhoundservice = (function() {
                           }
                           console.log('finished rendered' + selection);
                           //apply counts to their places
-                          $('#allRatings').html(countAllRatings);
-                          $('#allReviews').html(countAllReviewsAndRatings);
+                          $('#review-widget-number-of-ratings').html(countAllRatings);
+                          $('#review-widget-number-of-reviews').html(countAllReviewsAndRatings);
 
                           //set rating of product
                           if(reviewCount > 0) {

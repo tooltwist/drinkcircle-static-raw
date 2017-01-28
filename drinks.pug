@@ -578,7 +578,8 @@ block content
               input.product-id(type='hidden', value='{{variant.productVariantId}}')
               .thumb
                 .ctr
-                  .count.product-rating
+                  .count.product-rating.patch-in-average-product-rating(productVariantId="{{variant.productVariantId}}")
+                    | &nbsp;
                   span points
                   //- count
                 //- ctr
@@ -597,8 +598,9 @@ block content
                       //- col-md-6
                       .col-md-4.col-sm-4.col-xs-4
                         a(href='#modal_coming_soon', data-toggle='modal')
-                          big 242&nbsp;
-                          small ratings
+                          big.patch-in-number-of-product-ratings(productVariantId="{{variant.productVariantId}}")
+                          small &nbsp;rating
+                          small.patch-in-number-of-product-ratings-ess(productVariantId="{{variant.productVariantId}}")
                       //- col-md-6
                       .col-md-4.col-sm-4.col-xs-4
                         a(href='#modal_coming_soon', data-toggle='modal')
@@ -2053,6 +2055,8 @@ block content
 block scripts
   // External Script goes here...
   script(src='assets/vendor/crowdhound/chsearchresultrating.js', type="text/javascript")
+  script(src='assets/vendor/crowdhound/chratingsandreview.js', type="text/javascript")
+
 
   script.
     $(function () {
@@ -2136,7 +2140,7 @@ block scripts
 
 
 
-      // Get the product details from TEA.
+      // Get the details of products from TEA.
       teaService.getProduct({
 
         categoryId: categoryId,
@@ -2224,16 +2228,40 @@ block scripts
 
       }
 
-
       /*
-      // Display the circle buys
-      teaService.getSharedOrdersAndSetAngularVariables({
-        productVariantId: productVariantId
-      }, $scope, teaService);
-      */
-    });
+       *  Initialize CrowdHound and get the product ratings.
+       */
+      CrowdHound.init({
+            serverUrl : '//' + CROWDHOUND_HOST + ':' + CROWDHOUND_PORT,
+            apiVersion : CROWDHOUND_VERSION,
+            tenantId : CROWDHOUND_TENANT,
+            debug: false,
+            authenticationToken: authservice.getUserAccessToken(),
+            cookers: {
+                //cook_avatars : cookAvatars, //definition is in the curia_js widget
+                cook_ratings: chratingsandreview.cookRatings
+            },
+            themes : {
+                "productReview": {
+                    "product-reviews_0" : "#reviewList",
+                    "review_0" : "#review"
+                }
+            }
+      }, function afterCuriaInit() {
 
-    app.directive('directive', function($timeout) {
+        // Load the reviews
+        //chratingsandreview.loadReviews(productVariantId);
+
+        // Patch in the average ratings
+        setTimeout(function() {
+          chratingsandreview.patchInProductRatings();
+
+        }, 200);
+      }); // CrowdHound.init
+
+    });// app.controller('myCtrl'
+
+    /*app.directive('directive', function($timeout) {
       return {
         link: function(scope, element, attr) {
           $timeout(function() {
@@ -2241,7 +2269,7 @@ block scripts
           }, 1000);
         }
       }
-    });
+    });*/
 
     /*
      *  Set up the login part at the top of the page.
@@ -2260,7 +2288,6 @@ block scripts
         //}
       }
     });
-
 
   //- script.
 //- block scripts

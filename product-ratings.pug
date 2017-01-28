@@ -17,7 +17,7 @@ block content
     .container
       .row
         .col-md-12
-          h3.title Review for 2015 Cricket Pitch White
+          h3.title(ng-cloak) Review for {{variant0.name}}
         //- col-md-12
       //- row
       .card
@@ -61,6 +61,8 @@ block content
           //- label
         //- checkbox
         .text-right
+          a.btn(data-toggle='modal', ng-click='backToProductPage()') Back to product page
+          | &nbsp;
           a.btn.btn-success(data-toggle='modal', ng-click='submitProductRatingAndReview()') Submit Rating and Review
         //- text-right
       //- card
@@ -77,8 +79,11 @@ block scripts
     /*
      *    Set up Angular.
      */
-    var app = angular.module('myApp', ['ngSanitize'])
-    app.controller('myCtrl', function($scope, $http) {
+    var app = angular.module('myApp', ['ngSanitize']);
+
+    teaservice.init(app);
+
+    app.controller('myCtrl', function($scope, $http, teaService) {
 
 
       // This code gets the "product" parameter from the URL so we can use it as productVariantId.
@@ -97,12 +102,42 @@ block scripts
 
       // Values for the rating dropdown.
       $scope.noRatingSpecified = '--';
-      $scope.ratingOptions = [ '--', '100', '90', '80', '70', '60', '50', '40', '30', '20', '10', '0' ];
+      //$scope.ratingOptions = [ '--', '100', '90', '80', '70', '60', '50', '40', '30', '20', '10', '0' ];
+      $scope.ratingOptions = [ '--',
+            '100', '95', '90', '85', '80', '75', '70', '65', '60', '55',
+            '50', '45', '40', '35', '30', '25', '20', '15', '10', '5', '0' ];
       $scope.rating = '--';
 
 
       /*
+       *  Get the product details, just so we can put a heading on the page.
+       */
+      var params = {
+        productVariantId: productVariantId
+      };
+      teaService.getProduct(params).then(function(products) {
+
+        // Display the product details
+        console.log('\n\n\nREPLY FROM getProduct:', products);
+        if (products && products.length > 0 && products[0].variants.length > 0) {
+
+          // In Drinkcircle there is one-to-one between products and variants.
+          $scope.productVariantId = productVariantId;
+          $scope.product0 = products[0];
+          $scope.variant0 = products[0].variants[0];
+        } else {
+          // Could not find the product.
+          alert('Unknown product ' + productVariantId);
+          window.location = '/index.html';
+          return;
+        }
+      });
+
+
+      /*
        *  Initialize Authservice.
+       *  Once we have current user details, we can start displaying
+       *  the rating and review for the current user.
        */
       authservice.init({
         // Environment specific values are defined in environment.js
@@ -114,14 +149,15 @@ block scripts
         onUserChange: function(user, ttuat, fromCookie) {
 
           /*
-           *  This callback is called when we initialise Authservice, and also
-           *  any time the current user is changes. If the user is logged out
-           *  the both user and ttuat will be null.
+           *  This onUserChange callback is called when we initialise Authservice
+           *  and also whenever the current user is changed. If the user is
+           *  logged out the both user and ttuat will be null.
            *
            *  If the current user record came from the cookie then it will be
            *  a cut down version and will not have all the details we need. It
            *  may also be out of date, so let's reload it from Authservice.
-           *  This will also ensure that the login has not timed out.
+           *  This will also ensure that the login has not timed out. Reloading
+           *  will cause this function to be called again (without fromCookie set).
            */
           if (fromCookie) {
             console.log('Reloading user details (cookie details are just a summary)');
@@ -137,8 +173,11 @@ block scripts
           console.log('User access token:', authservice.getUserAccessToken());
 
 
+
           /*
-           *  Initialize CrowdHound
+           *  Okay, we are logged in and have the current user details.
+           *
+           *  Initialize CrowdHound, and then start getting stuff.
            */
           crowdhoundConfig = {
             serverUrl : 'http://' + CROWDHOUND_HOST + ':' + CROWDHOUND_PORT,
@@ -165,28 +204,24 @@ block scripts
           };
           CrowdHound.init(crowdhoundConfig, function afterCuriaInit() {
 
-            // Select any existing rating by this user.
-            //ZZZZZ
-            console.log('load review for ', authservice.getCurrentUser());
-
             /*
-             *  Select any existing review for the user.
+             *  Select any existing review for this current user.
              */
             var userId = authservice.getCurrentUserId();
             var anchor = "$product-"+productVariantId+"-reviewer-"+userId;
             CrowdHound.select(anchor, function(err, selection) {
               if (err) {
-                //ZZZ Maybe should jump to a different page?
+                // Error contacting service. This should not happen.
                 alert('An error occurred while looking for any existing review.');
                 console.log('Had a problem selecting the review.', err);
+                window.location = '/productDetails2.html?product='+productVariantId;
                 return;
               }
 
-              // No error, all is okay.
-              console.log('selection: ', selection);
+              // No error, put the review on the screen via the Angular model.
+              //console.log('selection: ', selection);
               if (selection && selection.elements.length >= 1) {
 
-                // Put the review on the screen
                 var element = selection.elements[0];
                 $scope.reviewHeading = element.title;
                 $scope.reviewTxt = element.description;
@@ -195,18 +230,46 @@ block scripts
                 $scope.$apply();
               }
             });// select
+
+            /*
+             *  Load any existing rating by the current user.
+             */
+            var anchor = '$product-rating-' + productVariantId;
+            CrowdHound.getMyVotes(anchor, function(err, votes) {
+              if (err) {
+                console.log('Error while selecting my votes:', err);
+                return;
+              }
+
+              // Find this user's previous vote.
+              //console.log('got my rating votes:', err, votes);
+              for (var i = 0; i < votes.length; i++) {
+                if (votes[i].aspect == 'percentage') {
+                  $scope.rating = ''+votes[i].score; // We use strings
+                  $scope.$apply();
+                  break;
+                }
+              }
+            });// getMyVotes
           });// CrowdHound.init
         }// onUserChange
       });// authservice.init
 
+
+      /*
+       *  Handler for "Back to product page" button.
+       */
+      $scope.backToProductPage = function submitProductRatingAndReview() {
+        // Jump back to the product screen.
+        window.location = '/productDetails2.html?product='+productVariantId;
+      };
 
 
       /*
        *  Handler for "Save Rating and Review" button.
        */
       $scope.submitProductRatingAndReview = function submitProductRatingAndReview() {
-
-        // Check we have a user rating.
+        // Check they've selected a user rating.
         var rating = $scope.rating;
         if (rating == $scope.noRatingSpecified) {
           bootbox.alert("Please select a rating value for this product.", function(){});
@@ -233,9 +296,7 @@ block scripts
               window.location = '/productDetails2.html?product='+productVariantId;
             }
           });// saveRating
-
         });// saveReview
-
       };// $scope.submitProductRatingAndReview
 
 
@@ -243,8 +304,7 @@ block scripts
        *  Handler for "Save Rating" (but not review) button.
        */
       $scope.submitProductRating = function submitProductRating() {
-
-        // Check we have a user rating.
+        // Check they've selected a user rating.
         var rating = $scope.rating;
         if (rating == $scope.noRatingSpecified) {
           bootbox.alert("Please select a rating value for this product.", function(){});
@@ -261,8 +321,8 @@ block scripts
             window.location = '/productDetails2.html?product='+productVariantId;
           }
         });// saveRating
-
       };// $scope.submitProductRating()
+
 
     }); //app.controller('myCtrl')
 

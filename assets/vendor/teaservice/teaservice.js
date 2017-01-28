@@ -53,14 +53,12 @@
           $.each(sharedOrders, function(index, sharedOrder) {
 
             console.log('\n\n\n\nZZZ skipping teaService.checkRemainingSharedOrderQuantity()')
-/*
             teaService.checkRemainingSharedOrderQuantity(sharedOrder.sharedOrder.sharedOrderId).then(function(result){
-              if(result.status == "success") {
+              if (result && result.status == "success") {
                 sharedOrder.sold = parseInt(result.quantity) - parseInt(result.remaining);
                 sharedOrder.remaining = result.remaining;
               }
             });
-ZZZZZ*/
             if (index < NUM_IN_SHORT_LIST) {
               //console.log('adding so ' + sharedOrder.shared_order_id + 'to short list', sharedOrder);
               sharedOrders_shortList.push(sharedOrder);
@@ -93,8 +91,8 @@ ZZZZZ*/
             packSave = Math.ceil(packSave * 100) / 100; // round to nearest cent
             sharedOrder.d_packSave = accounting.formatMoney(packSave);
           });
-          
-         
+
+
 
           // Return the sharedOrders
           if (callback) {
@@ -274,15 +272,15 @@ ZZZZZ*/
 
 
     function handleSuccess(response) {
-      console.log('success:', response)
+      //console.log('success:', response)
       return response.data;
-       
     }
 
     function handleError(response){
-      alert('An error occurred calling the TEA API.\nSee the Javascript console for details.')
+//      alert('An error occurred calling the TEA API.\nSee the Javascript console for details.')
       console.log('failure:', response)
-      console.log('failure:', response.data.message)
+      console.log('failure:', response.data)
+      //console.log('failure:', response.data.message)
       return null;
     }
 
@@ -586,7 +584,7 @@ ZZZZZ*/
 
 
             checkRemainingSharedOrderQuantity : function(sharedOrderId){
-              alert('checkRemainingSharedOrderQuantity()');
+              console.log('checkRemainingSharedOrderQuantity()');
                 var url = baseUrl + '/philChristmas/getRemainingQuantity';
 
                 var req = {

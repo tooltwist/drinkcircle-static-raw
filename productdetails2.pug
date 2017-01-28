@@ -52,7 +52,8 @@ block content
               .rate-counter
                 .ring
                   .count
-                    div(id="product_rating") 94
+                    // This value gets set from chratingsandreview.js
+                    div(id="product_rating") -
                     span points
                 //- ring
               //- rate-counter
@@ -401,11 +402,16 @@ block scripts
           //  console.log('Reloading user details (cookie details are just a summary)');
           //  return authservice.reloadUser();
           //}
-          if (user) {
-            $scope.loggedIn = true;
-          } else {
-            $scope.loggedIn = false;
-          }
+
+          setTimeout(function() {
+            if (user) {
+              $scope.loggedIn = true;
+              $scope.$apply();
+            } else {
+              $scope.loggedIn = false;
+              $scope.$apply();
+            }
+          }, 100);
 
 
 
@@ -424,7 +430,7 @@ block scripts
                 textonly: false,
                 cookers: {
                     //cook_avatars : cookAvatars, //definition is in the curia_js widget
-                    cook_ratings: chratingsandreview.cookRatings
+                    //cook_ratings: chratingsandreview.cookRatings
                 },
                 themes : {
                     "productReview": {
@@ -450,11 +456,24 @@ block scripts
           CrowdHound.init(crowdhoundConfig, function afterCuriaInit() {
 
             // Load the reviews
-            chratingsandreview.loadReview()
+            chratingsandreview.loadReviews(productVariantId);
 
           }); // CrowdHound.init
         }
       });
+
+
+
+
+
+      /*
+       *  Handler for "Write a review" button.
+       */
+      $scope.writeAReviewButton = function writeAReviewButton() {
+        // Jump to the review page.
+        window.location = '/product-ratings.html?product='+productVariantId;
+      };
+
     });// app.controller('myApp')
 
 

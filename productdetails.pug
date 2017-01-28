@@ -442,7 +442,7 @@ block content
               .row
                 .col-md-7
                   p.lead Customer Reviews &amp; Ratings
-                  a.popover_rating(href="#", data-toggle="popover", data-placement="bottom", data-title="Summary") 242 Ratings
+                  a.popover_rating_groups(href="#", data-toggle="popover", data-placement="bottom", data-title="Summary") 242 Ratings
                     span.ratings
                       table
                         tr
@@ -517,7 +517,7 @@ block content
                         //- tr
                       //- table
                     //- ratings
-                  //- popover_rating
+                  //- popover_rating_groups
                   br
                   | 88 Reviews
                 //- col-md-6
@@ -839,7 +839,7 @@ block scripts
     });
 
     $(function () {
-      $('.popover_rating[data-toggle="popover"]').popover({
+      $('.popover_rating_groups[data-toggle="popover"]').popover({
         html: true,
         content : function() {
           return '<span class="ratings">' + $(this).parent().find("span.ratings").html() + '</span>';
