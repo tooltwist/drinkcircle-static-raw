@@ -2,10 +2,13 @@
   .row
     .col-md-7
       p.lead Customer Reviews &amp; Ratings
-      a.popover_rating(href="#", data-toggle="popover", data-placement="bottom", data-title="Summary")
-        span(id="allRatings") Ratings
-          0
-        |&nbsp;Ratings
+      // The rating ranges can be displayed either on the page, or in a popover.
+
+      // option a: Show ratings in popover
+      //a.popover_rating_groups(href="#", data-toggle="popover", data-placement="bottom", data-title="Summary")
+
+      // option b: Show ratings on page
+      .inline_rating_groups
         span.ratings
           table
             tr

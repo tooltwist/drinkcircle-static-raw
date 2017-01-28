@@ -226,12 +226,31 @@
   }
 }
 
-// Review
-.popover_rating {
+// Show rating ranges in a popover
+// Don't use the inline below
+.popover_rating_groups {
 	.ratings {
 		& {
 			display: none;
 		}
+		.progress {
+			margin-bottom: 0;
+			height: 10px;
+			display: inline-block;
+			width: 100%;
+			vertical-align: middle;
+		}
+	}
+}
+
+// Show rating ranges on the page
+// Don't use the popover above
+.inline_rating_groups {
+	.ratings {
+    table {
+      margin-top: 8px;
+      margin-left: 10%;
+    }
 		.progress {
 			margin-bottom: 0;
 			height: 10px;
