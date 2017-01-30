@@ -631,6 +631,19 @@ ZZZZZ*/
                 var promise = $http(req).then(handleSuccess, handleError);
                 return promise;
             },
+            getSupplierAddresses : function(supplierId){
+                var req = {
+                  method: 'GET',
+                  url: baseUrl + '/supplier/' + supplierId + '/addresses',
+                  headers: {
+                    "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+                    "version": "1.0.0"
+                  }
+                };
+
+                var promise = $http(req).then(handleSuccess, handleError);
+                return promise;
+            },
             // Other functions to be exposed by teaService.
             getSharedOrdersAndSetAngularVariables: getSharedOrdersAndSetAngularVariables,
 

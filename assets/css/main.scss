@@ -763,7 +763,7 @@ hr {
 // SECTION =====================================================================
 section {
 	& {
-		padding: 45px 0;
+		padding: 20px 0;
 		// margin-top:
 	}
 	&.simple {
@@ -3355,9 +3355,23 @@ section {
 		& {
 			margin-top: 15px;
 		}
+		.maker-image-wrap {
+			min-height: 300px;
+			position: relative;
+			// background: whitesmoke;
+		}
 		img {
 			&.maker {
-				width: 100%;
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+
+				max-height: 100%;
+				max-width: 100%;
+				display: block;
 			}
 		}
 		.media-right {

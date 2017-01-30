@@ -88,7 +88,8 @@ block content
           .maker-list(ng-repeat="supplier in ctrl.supplierList")
             .row
               .col-md-5
-                img.maker(src='{{supplier.banner_s}}')
+                .maker-image-wrap
+                  img.maker(src='{{supplier.supplierDetail.banner_s}}')
                 p.visible-xs.visible-sm
               //- col-md-5
               .col-md-7
@@ -96,16 +97,16 @@ block content
                   .media-left
                     .picture
                       img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                      img.source(src='{{supplier.logo_s}}')
+                      img.source(src='{{supplier.supplierDetail.logo_s}}')
                     //- picture
                   //- media-left
                   .media-body
                     .media-right
                       //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
                       //| &nbsp;
-                      a.btn.btn-success.btn-xs(href='shop.html?supplier={{supplier.supplier_id_i}}') Go to Shop
+                      a.btn.btn-success.btn-xs(href='shop.html?supplier={{supplier.supplierDetail.supplier_id_i}}') Go to Shop
                     //- media-right
-                    h4.media-heading {{supplier.company_name_s}}
+                    h4.media-heading {{supplier.supplierDetail.company_name_s}}
                     .rating-status.md
                       span.left 4.6
                       .stars
@@ -121,7 +122,7 @@ block content
                   //- media-body
                 //- media
                 p.address
-                  strong 401-427 McDonalds Rd Pokolbin, New South Wales
+                  strong {{supplier.supplierAddress.street_address_1}} {{supplier.supplierAddress.street_address_2}} {{supplier.supplierAddress.city}} {{supplier.supplierAddress.state}} {{supplier.supplierAddress.postcode}}
                 //- p
                 p.summary Established in 1970, Brokenwood Wines is one of Australia’s most reputable wine labels and a must-visit while you’re in the Hunter Valley. Consistently listed as a 5 star winery.
                 p.summary Brokenwood is home to the famous Graveyard Vineyard Shiraz, the highly acclaimed ILR Reserve Semillon, and the popular Cricket Pitch range...&nbsp;
@@ -505,14 +506,31 @@ block scripts
           "facet":false,
           "facetFields":[]
       }
-
       teaService.search(query).then(function(data){
-        console.log(data.search.result);
-        vm.supplierList = data.search.result;
+        vm.supplierList = [];
+        var searchResult = data.search.result;
+
+        angular.forEach(searchResult, function(value){
+          var i = 0;
+          var result = [];    
+          result.supplierDetail = value;
+          teaService.getSupplierAddresses(value.supplier_id_i).then(function(data){
+            if(data) {
+              //Get first address for the meantime
+              var supplierAddress = [];       
+              supplierAddress.street_address_1 = data.addresses[0].street_address_1;
+              supplierAddress.street_address_2 = data.addresses[0].street_address_2;
+              supplierAddress.city = data.addresses[0].city;
+              supplierAddress.state = data.addresses[0].state;
+              supplierAddress.country = data.addresses[0].country;
+              supplierAddress.postcode = data.addresses[0].postcode;
+              result.supplierAddress = supplierAddress;
+              vm.supplierList.push(result);
+            }
+          });
+         });
       });
-
     });
-
 
     /*
      *  Set up the login part at the top of the page.
