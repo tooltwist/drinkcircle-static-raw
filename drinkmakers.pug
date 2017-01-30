@@ -8,10 +8,10 @@ block css
 
 block content
 
-  section
+  section(ng-app="myApp" ng-controller="drinkMakersController as ctrl" ng-cloak)
     .container
       .row
-        .col-md-3
+        //-.col-md-3
           .search-dropdown
             .dropdown-wrap
               strong(data-toggle='collapse', data-target='#collapse-category') Category
@@ -50,13 +50,13 @@ block content
             //- filters-wrap
           //- dc-filters-dropdown
         //- col-md-3
-        .col-md-9.card
+        .col-md-12.card
           p.text-center
             small
               a(href='drinkmakers.html') All Drinkmakers
           //- p
           h2.text-center Wine, Beer, Cider &amp; Spirit makers
-          .maker-filters
+          //-.maker-filters
             .input-group
               input.form-control(type='text', placeholder='Find a drinkmaker...')
               span.input-group-btn &nbsp;&nbsp;
@@ -85,10 +85,10 @@ block content
               //- select
             //- form-group
           //- form
-          .maker-list
+          .maker-list(ng-repeat="supplier in ctrl.supplierList")
             .row
               .col-md-5
-                img.maker(src='assets/images/makers/brokenwood/brokenwood.jpg')
+                img.maker(src='{{supplier.banner_s}}')
                 p.visible-xs.visible-sm
               //- col-md-5
               .col-md-7
@@ -96,16 +96,16 @@ block content
                   .media-left
                     .picture
                       img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                      img.source(src='assets/images/likes/likes_1.png')
+                      img.source(src='{{supplier.logo_s}}')
                     //- picture
                   //- media-left
                   .media-body
                     .media-right
                       //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
                       //| &nbsp;
-                      a.btn.btn-success.btn-xs(href='shop.html?supplier=604') Go to Shop
+                      a.btn.btn-success.btn-xs(href='shop.html?supplier={{supplier.supplier_id_i}}') Go to Shop
                     //- media-right
-                    h4.media-heading Brokenwood Wines
+                    h4.media-heading {{supplier.company_name_s}}
                     .rating-status.md
                       span.left 4.6
                       .stars
@@ -129,7 +129,7 @@ block content
               //- col-md-7
             //- row
           //- maker-list
-          .maker-list
+          //-.maker-list
             .row
               .col-md-5
                 img.maker(src='assets/images/makers/younghenrys/preview.jpg')
@@ -173,7 +173,7 @@ block content
               //- col-md-7
             //- row
           //- maker-list
-          .maker-list
+          //-.maker-list
             .row
               .col-md-5
                 img.maker(src='assets/images/producers/westwinds/preview.jpg')
@@ -216,7 +216,7 @@ block content
               //- col-md-7
             //- row
           //- maker-list
-          .maker-list
+          //-.maker-list
             .row
               .col-md-5
                 img.maker(src='assets/images/makers/rosnay/preview.jpg')
@@ -259,7 +259,7 @@ block content
               //- col-md-7
             //- row
           //- maker-list
-          .maker-list
+          //-.maker-list
             .row
               .col-md-5
                 img.maker(src='assets/images/producers/ar/preview.jpg')
@@ -302,7 +302,7 @@ block content
               //- col-md-7
             //- row
           //- maker-list
-          .maker-list
+          //-.maker-list
             .row
               .col-md-5
                 img.maker(src='assets/images/producers/gs/preview.jpg')
@@ -345,7 +345,7 @@ block content
               //- col-md-7
             //- row
           //- maker-list
-          .maker-list
+          //-.maker-list
             .row
               .col-md-5
                 img.maker(src='assets/images/producers/fg/preview.jpg')
@@ -389,7 +389,7 @@ block content
               //- col-md-7
             //- row
           //- maker-list
-          .maker-list
+          //-.maker-list
             .row
               .col-md-5
                 img.maker(src='assets/images/producers/4p/preview.jpg')
@@ -483,6 +483,34 @@ block scripts
       }).click(function(e) {
         e.preventDefault();
       });
+    });
+
+    //angular codes 
+    var app = angular.module('myApp', ['ngSanitize']);
+
+    teaservice.init(app);
+
+    //controller
+    app.controller('drinkMakersController', function($scope, teaService, $timeout) {
+      var vm = this;
+      //create a query for search 
+      var query= {  
+          "queryFields":[  
+              "supplier_name_s"
+          ],
+          "query":"", //empty string to find all suppliers
+          "start":0,
+          "sort":"",
+          "type":"supplier",
+          "facet":false,
+          "facetFields":[]
+      }
+
+      teaService.search(query).then(function(data){
+        console.log(data.search.result);
+        vm.supplierList = data.search.result;
+      });
+
     });
 
 

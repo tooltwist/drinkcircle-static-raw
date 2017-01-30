@@ -615,6 +615,22 @@ ZZZZZ*/
                 var promise = $http(req).then(handleSuccess, handleError);
                 return promise;
             },
+            search : function(query){
+              // this needs to be put in a function we are reapeating codes. Totaly ignored D.R.Y principle.
+              //does that mean we use W.E.T principle?
+                var req = {
+                  method: 'POST',
+                  url: baseUrl + '/search',
+                  headers: {
+                    "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+                    "version": "1.0.0"
+                  },
+                  data: query
+                };
+
+                var promise = $http(req).then(handleSuccess, handleError);
+                return promise;
+            },
             // Other functions to be exposed by teaService.
             getSharedOrdersAndSetAngularVariables: getSharedOrdersAndSetAngularVariables,
 
