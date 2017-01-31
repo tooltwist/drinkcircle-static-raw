@@ -1,0 +1,18 @@
+#!/bin/bash
+#	Publish the build directory to the S3 bucket.
+#
+#	http://drinkcircle-mvp.s3-website-ap-southeast-2.amazonaws.com/index.html
+#
+
+S3_BUCKET=s3://drinkcircle-mvp
+
+DIR=$(dirname $0)
+
+subpath=$1
+
+
+
+cd ${DIR}/build/drinkcircle
+echo "$" s3cmd --exclude=".git/*" sync ${REMOVE_OPT} ./${subpath} ${S3_BUCKET}/${subpath}
+         s3cmd --exclude=".git/*" sync ${REMOVE_OPT} ./${subpath} ${S3_BUCKET}/${subpath}
+
