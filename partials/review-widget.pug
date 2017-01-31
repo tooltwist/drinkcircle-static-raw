@@ -146,15 +146,15 @@ block scripts
                     <</title>>
                   </strong>
                   <br>
-                  <small>by<a href="<<user.communityPage>>"><<user.firstName>> <<user.lastName>></a>| <<modifiedDateFromNow>></small>
+                  <small>by<a href="/profile.html?user=<<user.userId>>"><<user.firstName>> <<user.lastName>></a>| <<modifiedDateFromNow>></small>
                   <p class="comment">
                     <<description>>
                   </p>
-                  <<#extraProperties>>
+                  <<#summary>>
                     <p class="comment">
                       <strong>I would recommend this drink to a friend</strong>
                     </p>
-                  <</extraProperties>>
+                  <</summary>>
                 </span>
             </div>
         </div>
