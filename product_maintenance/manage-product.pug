@@ -830,7 +830,11 @@ block scripts
 
      var app = angular.module('myApp', ['ngMaterial']);
 
-     teaservice.init(app);
+     teaservice.init({
+       host: TEASERVICE_HOST,
+       port: TEASERVICE_PORT,
+       accessToken: TEASERVICE_ACCESS_TOKEN
+     });
      app.config(function($mdThemingProvider) {
        $mdThemingProvider.definePalette('white', {
           '50': 'FFFFFF',

@@ -287,13 +287,15 @@
 
     return {
       init: function(config) {
-        console.log('teaservice.init()');
+        console.log('teaservice.init()', config);
 
         // Check the config
         var protocol = 'http';
-        var host = 'localhost';
-        // var host = '192.168.200.15';
-        var port = 3000;
+        var host = 'teaservice.io';
+        var port = 80;
+        var version = '2.0.0';
+        var accessToken = '';
+
         // var host = 'drinkcircle.teaservice.io';
         // var port = 80;
         if (config && config.host && config.host != host) {
@@ -302,8 +304,20 @@
         if (config && config.port && config.port != port) {
           port = config.port;
         }
-        var baseUrl = protocol + '://' + host + ':' + port;
+        if (config && config.version) {
+          version = config.version;
+        }
+        //var baseUrl = protocol + '://' + host + ':' + port;
+        var baseUrl = '//' + host + ':' + port;
         //console.log('baseUrl=' + baseUrl);
+
+        // Check the mandatory parameters
+        if (config.accessToken) {
+          accessToken = config.accessToken;
+        } else {
+          alert('Application error: Cannot initialise teaservice: accessToken is not defined');
+          return;
+        }
 
         // Add a directive for the sharedOrder widget
         app.directive('circlebuyWidget', function(){

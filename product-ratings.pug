@@ -81,7 +81,11 @@ block scripts
      */
     var app = angular.module('myApp', ['ngSanitize']);
 
-    teaservice.init(app);
+    teaservice.init({
+      host: TEASERVICE_HOST,
+      port: TEASERVICE_PORT,
+      accessToken: TEASERVICE_ACCESS_TOKEN
+    });
 
     app.controller('myCtrl', function($scope, $http, teaService) {
 
@@ -180,7 +184,7 @@ block scripts
            *  Initialize CrowdHound, and then start getting stuff.
            */
           crowdhoundConfig = {
-            serverUrl : 'http://' + CROWDHOUND_HOST + ':' + CROWDHOUND_PORT,
+            serverUrl : '//' + CROWDHOUND_HOST + ':' + CROWDHOUND_PORT,
             apiVersion : CROWDHOUND_VERSION,
             tenantId : CROWDHOUND_TENANT,
             debug: false,

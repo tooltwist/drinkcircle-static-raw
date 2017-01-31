@@ -1011,7 +1011,11 @@ block scripts
      */
     var app = angular.module('myApp', ['ngSanitize']);
 
-    teaservice.init(app);
+    teaservice.init({
+      host: TEASERVICE_HOST,
+      port: TEASERVICE_PORT,
+      accessToken: TEASERVICE_ACCESS_TOKEN
+    });
 
     // Add the controller for this page
     app.controller('myCtrl', function($scope, teaService) {
@@ -1028,7 +1032,7 @@ block scripts
         teaService.getSharedOrdersAndSetAngularVariables({
           //productVariantId: NICE_PRODUCT_VARIANT_ID
         }, $scope, teaService, function(){
-          
+
             setTimeout(function(){
             console.log("asdasfas");
             Main.circlebuyGaugeInit();

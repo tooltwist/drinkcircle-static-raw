@@ -428,7 +428,8 @@ console.log('*** Using jQuery AJAX call');
       var port = options.port ? options.port : 80;
       var version = options.version ? options.version : 'v1';
       var APIKEY = options.tenant;
-      ENDPOINT = 'http://' + host + ':' + port + '/' + version + '/' + APIKEY;
+      //ENDPOINT = 'http://' + host + ':' + port + '/' + version + '/' + APIKEY;
+      ENDPOINT = '//' + host + ':' + port + '/' + version + '/' + APIKEY;
       //console.log('endpoint = ' + ENDPOINT);
 
       if (options.$http) {

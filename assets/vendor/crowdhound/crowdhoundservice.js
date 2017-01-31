@@ -197,7 +197,8 @@ var crowdhoundservice = (function() {
 
 			var _curiaUrl;
 			// Prepare the configuration for Curia
-      var serverUrl = 'http:' + host;
+      //var serverUrl = 'http:' + host;
+      var serverUrl = host;
       var apiVersion = '2.0'
 
       console.log("_curiaUrl=" + CHConfig.API_URL + ".");

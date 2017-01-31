@@ -2108,7 +2108,11 @@ block scripts
      */
     var app = angular.module('myApp', ['ngSanitize']);
 
-    teaservice.init(app);
+    teaservice.init({
+      host: TEASERVICE_HOST,
+      port: TEASERVICE_PORT,
+      accessToken: TEASERVICE_ACCESS_TOKEN
+    });
 
     // Add the controller for this page
     app.controller('myCtrl', function($scope, teaService) {

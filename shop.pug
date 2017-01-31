@@ -138,7 +138,7 @@ block content
           //- form
           hr
           .product-wrap(id='products', ng-app="myApp" ng-controller="myCtrl" ng-cloak, directive="")
-           
+
             .row
               // 1 Product
               .col-sm-6.col-md-4(ng-repeat="variant in variants | orderBy:sortType:sortReverse" ng-cloak)
@@ -152,7 +152,7 @@ block content
                     a(href='productdetails2.html?product={{variant.productVariantId}}')
                       //img.img-prod(src='//www.brokenwood.com.au/assets/images/products/pictures/CricketPitchRed1.jpg', alt='')
                       img.img-prod(ng-src='{{variant.d_image}}', alt='')
-                    //- a                    
+                    //- a
                     // Edit
                     .details
                       p
@@ -219,11 +219,15 @@ block scripts
      */
 
     var app = angular.module('myApp', ['ngSanitize']);
-    teaservice.init(app);
+    teaservice.init({
+      host: TEASERVICE_HOST,
+      port: TEASERVICE_PORT,
+      accessToken: TEASERVICE_ACCESS_TOKEN
+    });
     // Add the controller for this page
     app.controller('myCtrl', function($scope, teaService) {
 
-       
+
       // This code gets the "product" parameter from the
       // URL so we can use it as productVariantId.
       var supplierId = null;
@@ -264,7 +268,7 @@ block scripts
             } else {
               variant.d_image = "NOTFOUND.jpg"; // ZZZZZ
             }
-            
+
             //computation for display price
             if(variant.pricing.length > 0){
               var componentsQty = variant.componentsQty;
@@ -272,15 +276,15 @@ block scripts
               var pricingQuantityLowestPrice = pricingQuantity[pricingQuantity.length - 1].price;
               var displayPrice = (Math.ceil((pricingQuantityLowestPrice / componentsQty) * 100) / 100).toFixed(2);
               $scope.displayPrice = accounting.formatMoney(displayPrice);
-              
+
             }
-            
+
 
             variants.push(variant);
           });
         });
         $scope.variants = variants;
-        
+
       });
 
       $scope.sortType     = 'name'; // set the default sort type
@@ -304,20 +308,20 @@ block scripts
         }
       }
     });
-    
+
     /*
      *  Set up the login part at the top of the page.
      */
     authservice.init({
-      host: 'localhost',
-      port: 9090,
-      tenant: 'nodeclient',
-      pretend: true
+      host: AUTHSERVICE_HOST,
+      port: AUTHSERVICE_PORT,
+      tenant: AUTHSERVICE_TENANT,
+      pretend: AUTHSERVICE_USE_DUMMY_LOGIN
     });
     console.log('Current user:', authservice.getCurrentUser());
 
-    
 
-    
+
+
   //- script.
 //- block scripts

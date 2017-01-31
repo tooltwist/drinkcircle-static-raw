@@ -87,7 +87,11 @@ block scripts
 
      var app = angular.module('myApp', ['datatables', 'ngMaterial']);
 
-     teaservice.init(app);
+     teaservice.init({
+       host: TEASERVICE_HOST,
+       port: TEASERVICE_PORT,
+       accessToken: TEASERVICE_ACCESS_TOKEN
+     });
 
      app.controller('myCtrl', function($scope, DTOptionsBuilder, DTColumnDefBuilder, DTColumnBuilder, teaService){
         $scope.dtOptions = DTOptionsBuilder.newOptions();

@@ -33,25 +33,31 @@ var TimelinePost = (function() {
     return {
 
         init : function(){
-            var host = CHConfig.SERVER_URL;
-        	var port = CHConfig.SERVER_PORT;
-        	var tenant = CHConfig.TENANT_NAME;
+          serverUrl : '//' + CROWDHOUND_HOST + ':' + CROWDHOUND_PORT,
+          apiVersion : CROWDHOUND_VERSION,
+          tenantId : CROWDHOUND_TENANT,
+          //   var host = CROWDHOUND_HOST;
+        	// var port = CHConfig.SERVER_PORT;
+        	// var tenant = CHConfig.TENANT_NAME;
         	var ttuat = Login_config.getCurrentUser().ttuat;
 
 			var _curiaUrl;
 			// Prepare the configuration for Curia
-        	var serverUrl = 'http:' + host;
+          //var serverUrl = 'http:' + host;
+          var serverUrl = host;
         	var apiVersion = '2.0'
 
         	console.log("_curiaUrl=" + CHConfig.API_URL + ".");
 
 			curiaConfig = {
-                serverUrl : serverUrl,
-                apiVersion : apiVersion,
-                tenantId : tenant,
+        serverUrl : CROWDHOUND_HOST,
+        serverUrl : CROWDHOUND_HOST,
+                apiVersion : CROWDHOUND_VERSION,
+                tenantId : CROWDHOUND_TENANT,
                 debug: false,
+                authenticationToken: authservice.getUserAccessToken(),
     //			development_userId : development_userId,
-                authenticationToken : ttuat,
+//                authenticationToken : ttuat,
                 urlive : false,
                 flat: false,
                 textonly: false,

@@ -19,7 +19,7 @@ block content
         .col-md-12
           .alert.alert-success.hide
             | You have successfully accepted Jake Seri to join your&nbsp;
-            strong Brokenwood - Graveyard Vineyard Shiraz circlebuy 
+            strong Brokenwood - Graveyard Vineyard Shiraz circlebuy
             |.
           //- alert
         //- col-md-12
@@ -38,7 +38,7 @@ block content
                 th Date created
                 th Time left
                 th Status
-                th 
+                th
               //- tr
             //- thead
             tbody
@@ -119,7 +119,7 @@ block content
           //- table
         //- table-responsive
       //- card
-      
+
     //- container
   //- section
 
@@ -128,7 +128,7 @@ block scripts
   // External Script goes here...
   script.
     $(function () {
-      
+
     });
 
     $(document).ready(function(){
@@ -137,8 +137,12 @@ block scripts
 
     var app = angular.module('circlebuysList', ['ngSanitize']);
 
-    teaservice.init(app);
-    
+    teaservice.init({
+      host: TEASERVICE_HOST,
+      port: TEASERVICE_PORT,
+      accessToken: TEASERVICE_ACCESS_TOKEN
+    });
+
     app.controller('circlebuysListCtrl', function($scope, teaService){
         var self = this;
 
@@ -153,13 +157,13 @@ block scripts
         });
 
         self.timeLeft = function(created_date){
-         
+
           var end_date = new Date(created_date);
           end_date.setDate(end_date.getDate()+3); // + 3 to change to configurable
 
           var date_now = new Date('2017-01-24T07:35:35.000Z')
           var delta = (end_date - date_now) / 1000;
-          
+
           var hours = Math.floor(delta / 3600) >= 0 ? Math.floor(delta / 3600) : 0;
           delta -= hours * 3600;
 
@@ -171,6 +175,6 @@ block scripts
 
 
     }); //- controller
-    
+
 
   //- script.
