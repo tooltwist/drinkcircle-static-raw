@@ -58,13 +58,13 @@ block content
                   .col-md-6
                     .form-group
                       label(for='pd-fname') First Name
-                      input#pd-fname.form-control(type='text', placeholder='' value="{{user.user.user_first_name}}")
+                      input#pd-fname.form-control(ng-model="firstname", type='text', placeholder='' value="{{user.user.user_first_name}}")
                     //- form-group
                   //- col-md-6
                   .col-md-6
                     .form-group
                       label(for='pd-lname') Last Name
-                      input#pd-lname.form-control(type='text', placeholder='' value="{{user.user.user_last_name}}")
+                      input#pd-lname.form-control(ng-model="lastname", type='text', placeholder='' value="{{user.user.user_last_name}}")
                     //- form-group
                   //- col-md-6
                 //- row
@@ -725,6 +725,9 @@ block scripts
                 return 0;
               };
 
+              $scope.firstname = user.firstname;
+              $scope.lastname = user.lastname;
+
 
               // Get my friends
               //console.log('onUserChange: logged in and got user:', user)
@@ -1165,45 +1168,6 @@ block scripts
 
     });//- controller
 
-
-    /*
-     *  Set up the login part at the top of the page.
-     */
-
-
-    //- authservice.init({
-    //-   host: 'localhost',
-    //-   port: 9090,
-    //-   tenant: 'nodeclient',
-    //-   pretend: true,
-    //-   onLoggedIn: function() {
-    //-     console.log('logged in');
-    //-   },
-    //-   onLoggedOut: function() {
-    //-     console.log('logged out');
-    //-   }
-    //- });
-    //- console.log('Current user:', authservice.getCurrentUser());
-
-
-        /*
-         *  Set up the login part at the top of the page.
-         */
-        /*authservice.init({
-          host: 'localhost',
-          port: 9090,
-          tenant: 'nodeclient',
-          pretend: true,
-          onLoggedIn: function(user) {
-            $('input#pd-fname').val(user.firstname);
-            $('input#pd-lname').val(user.lastname);
-          },
-          onLoggedOut: function() {
-            // Forward to the home page
-            window.location.href = 'index.html';
-          }
-        });
-        console.log('Current user:', authservice.getCurrentUser());*/
 
       //- script.
     //- block scripts
