@@ -72,6 +72,24 @@ var chratingsandreview = (function() {
     });
   }
 
+  function cookTagRecommendedReviews(params, selection, callback){
+
+     CrowdHound.traverse(selection, function cookTopic(level, element, parent, next) {
+       if (element.type != 'review' && element.deleted != 1) {
+        return next(null);
+      }
+
+      //added properties if review is recommended
+      element.recommended = element.summary == 'true' ? true : false;
+      return next(null);
+
+     },
+      function(){
+        return callback(); //cooker is finished
+      });
+
+  }
+
 
   function loadReviews(productVariantId) {
     //alert('chratingsandreview.loadReview(' + productVariantId + ')')
@@ -402,6 +420,7 @@ console.log('After selecting product reviews (but before cooking):', selection)
     //cookRatings: cookRatings,
 
     loadReviews: loadReviews,
+    cookTagRecommendedReviews : cookTagRecommendedReviews,
 
     //
     nocomma: null
