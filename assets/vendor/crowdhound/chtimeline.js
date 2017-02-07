@@ -1,24 +1,24 @@
 var TimelinePost = (function() {
 
     var CHConfig = function(){
-        var serverUrl = "//127.0.0.1:4000",
-        apiVersion = "2.0",
-
-        tenant = "drinkpoint",
-                port = "4000",
+        var serverUrl = "http://"+CROWDHOUND_HOST+":"+CROWDHOUND_PORT,
+        apiVersion = CROWDHOUND_VERSION,
+        tenant = CROWDHOUND_TENANT,
+        port = CROWDHOUND_PORT,
         apiUrl = [serverUrl, "api", apiVersion, tenant].join("/");
+
         return {
-        SERVER_URL: serverUrl,
-        API_VERSION: apiVersion,
-        TENANT_NAME: tenant,
-        API_URL: apiUrl,
-                SERVER_PORT : port
+            SERVER_URL: serverUrl,
+            API_VERSION: apiVersion,
+            TENANT_NAME: tenant,
+            API_URL: apiUrl,
+            SERVER_PORT : port
         }
     }();
 
     //temp var
     var Login_config = function(){
-        var ttuat = "30123DBGYF1222O8OXGN6JS7";
+        var ttuat = authservice.getUserAccessToken();
         var userId = 23;
         return {
             getCurrentUser : function(){
@@ -33,25 +33,24 @@ var TimelinePost = (function() {
     return {
 
         init : function(){
-          serverUrl : '//' + CROWDHOUND_HOST + ':' + CROWDHOUND_PORT,
-          apiVersion : CROWDHOUND_VERSION,
-          tenantId : CROWDHOUND_TENANT,
+          //serverUrl : '//' + CROWDHOUND_HOST + ':' + CROWDHOUND_PORT,
+          //apiVersion : CROWDHOUND_VERSION,
+          //tenantId : CROWDHOUND_TENANT,
           //   var host = CROWDHOUND_HOST;
-        	// var port = CHConfig.SERVER_PORT;
+            // var port = CHConfig.SERVER_PORT;
         	// var tenant = CHConfig.TENANT_NAME;
-        	var ttuat = Login_config.getCurrentUser().ttuat;
+        	//var ttuat = Login_config.getCurrentUser().ttuat;
 
-			var _curiaUrl;
+			//var _curiaUrl;
 			// Prepare the configuration for Curia
           //var serverUrl = 'http:' + host;
-          var serverUrl = host;
-        	var apiVersion = '2.0'
+          //var serverUrl = host;
+        	//var apiVersion = '2.0'
 
-        	console.log("_curiaUrl=" + CHConfig.API_URL + ".");
+        	//console.log("_curiaUrl=" + CHConfig.API_URL + ".");
 
 			curiaConfig = {
-        serverUrl : CROWDHOUND_HOST,
-        serverUrl : CROWDHOUND_HOST,
+                serverUrl : CHConfig.SERVER_URL,
                 apiVersion : CROWDHOUND_VERSION,
                 tenantId : CROWDHOUND_TENANT,
                 debug: false,
@@ -80,7 +79,7 @@ var TimelinePost = (function() {
 
             // initialize curia
             CrowdHound.init(curiaConfig, function afterCuriaInit() {
-                var userId = Login_config.getCurrentUser().userId;
+                var userId = authservice.getCurrentUser().id;
                 //make sure to have parent element per page
                 var url = CHConfig.API_URL + "/thread/$community-page-user-"+userId+"?newAnchorType=community-page-user";
                 $.ajax({
@@ -121,14 +120,14 @@ var TimelinePost = (function() {
 
             if(message && message != ''){
                 var url = CrowdHound.addAuthenticationToken(CHConfig.API_URL + '/element');
-                var userId = Login_config.getCurrentUser().userId;
+                var userId = authservice.getCurrentUser().id;
 
                 var data = {
 					"type" : "post",
                     "rootId" : "$community-page-user-"+userId,
                     "parentId" : "$community-page-user-"+userId,
                     "description" : message,
-                    "anchor" : 'community-page-post-'+userId,
+                    //"anchor" : 'community-page-post-'+userId,
                     "deleted" : 0
                 };
 
@@ -201,7 +200,7 @@ var TimelinePost = (function() {
 
         loadPost : function(){
             //var userId = $('#timeLineOwnerTtauthId').val();
-            var userId = Login_config.getCurrentUser().userId;
+            var userId = authservice.getCurrentUser().id;//Login_config.getCurrentUser().userId;
             var params = {};
             var elementId = $('#eid').val();
 
@@ -240,7 +239,7 @@ var TimelinePost = (function() {
 				var friendIds = getFriendIds;
                 console.log('friends are: '+friendIds);
                 params = {
-                    user: Login_config.getCurrentUser().userId, //friendIds.length<1? 0: friendIds,  //passing empty friend ids fetches all results so set to 0 to fetch none instead
+                    user: authservice.getCurrentUser().id, //friendIds.length<1? 0: friendIds,  //passing empty friend ids fetches all results so set to 0 to fetch none instead
                     type: 'post',
                     withChildren : true,
                     deleted : 0,
@@ -462,14 +461,49 @@ var TimelinePost = (function() {
         },
         like : function(parentId, score){
             var userId = Login_config.getCurrentUser().userId;
-			var params = {
-       			aggregationElement: parentId,
-       			voteElementId: parentId,
-       			aspect: 'like',
-       			score: score
-   			}
+			
+       		var	aggregationElementId = parentId;
+       		var	voteElementId = parentId;
+       		var	aspect = 'like';
+       		var	rating = score;
+   			
+            CrowdHound.saveVote(aggregationElementId, voteElementId, aspect, rating, null, function(err) {
+                
+                var likesCount = parseInt($('#post-likes-counter-'+parentId).html());
+                if(likesCount == 0){
+                    $('#post-likes-'+parentId).show();
+                }
 
-            jQuery.ajax({
+                if(score == 1){
+                    likesCount = likesCount + 1;
+                    $('#post-like-anchor-'+parentId).attr('onclick', 'TimelinePost.like('+parentId+',0)');
+                    $('#post-like-anchor-'+parentId).html('<i class="fa fa-heart"></i>Unlike');
+
+                    //send notification via email to the owner of the post
+                    var type="liked";
+                    var ownerUserId = $('#comment-'+parentId).parents('.timeline:eq(0)').attr('data-owner-id');
+
+                    sendEmailNotification(ownerUserId, userId, type, parentId);
+
+                }else{
+                    likesCount = likesCount - 1;
+                    $('#post-like-anchor-'+parentId).attr('onclick', 'TimelinePost.like('+parentId+',1)');
+                    $('#post-like-anchor-'+parentId).html('<i class="fa fa-heart"></i>Like');
+                    if(likesCount <= 0){
+                        $('#post-likes-'+parentId).hide();
+                    }
+                }
+
+                var postCounterElement = $('#post-likes-counter-'+parentId);
+                postCounterElement.fadeOut(300,function(){
+                    postCounterElement.html(likesCount);
+                    postCounterElement.fadeIn(300);
+                });
+
+                //return callback(err);
+            });
+
+            /*jQuery.ajax({
        			url :  CrowdHound.addAuthenticationToken(CHConfig.API_URL + "/vote"),
        			method : 'POST',
        			data : params,
@@ -512,7 +546,7 @@ var TimelinePost = (function() {
 
                     }
                 }
-   			});
+   			});*/
 
         },
         cookLikes : function(params, selection, callback){
@@ -561,34 +595,34 @@ var TimelinePost = (function() {
                             }
                         }
 
+                        TimelinePost.getMyLikes(ids, 'post', function(reply) {
+
+                            var index = [ ]; // elementId -> { elementId, num, total }
+                            for (var i = 0; i < reply.length; i++) {
+                                var rec = reply[i];
+                                index[rec.elementId] = rec;
+                            }
+
+                            for (var i = 0; i < posts.length; i++) {
+                                var element = posts[i];
+                                element.liked = false;
+                                for(var cnt = 0; cnt < reply.length; cnt++){
+                                    if(element.id == reply[cnt].voteElementId && reply[cnt].score != 0){
+                                        element.liked = true;
+                                    }
+                                }
+                            }
+
+                            // This cooker is finished.
+                            return callback();
+
+                        }, false); // getMyLikes
+
                         // This cooker is finished.
                         //return callback();
 
                     }, false);// getVoteTotals
 
-
-                    TimelinePost.getMyLikes(ids, 'post', function(reply) {
-
-                        var index = [ ]; // elementId -> { elementId, num, total }
-                        for (var i = 0; i < reply.length; i++) {
-                            var rec = reply[i];
-                            index[rec.elementId] = rec;
-                        }
-
-                        for (var i = 0; i < posts.length; i++) {
-                            var element = posts[i];
-                            element.liked = false;
-                            for(var cnt = 0; cnt < reply.length; cnt++){
-                                if(element.id == reply[cnt].voteElementId && reply[cnt].score != 0){
-                                    element.liked = true;
-                                }
-                            }
-                        }
-
-                        // This cooker is finished.
-                        return callback();
-
-                    }, false); // getMyLikes
                 }else{
                     //nothing to cook just return;
                     return callback();
@@ -598,7 +632,10 @@ var TimelinePost = (function() {
         },
         getLikesTotals : function(elementIds, type, callback, async) {
             if (elementIds != undefined) {
-                jQuery.ajax({
+                CrowdHound.getVoteTotals(elementIds, type, function(err,result){
+                    callback(result);
+                });
+                /*jQuery.ajax({
                     url :  CrowdHound.addAuthenticationToken(CHConfig.API_URL + "/vote/totals/" + elementIds + "/" + type),
                     async : async == undefined ? true : async,
                     success : function(data, textStatus, xhr) {
@@ -606,14 +643,17 @@ var TimelinePost = (function() {
                             callback(data);
                         }
                     }
-                });
+                });*/
             } else {
                 callback();
             }
         },
         getMyLikes : function(elementIds, type, callback, async) {
             if (type == undefined || type == 'post') {
-                jQuery.ajax({
+                CrowdHound.getMyVotes(elementIds, function(err, result){
+                    callback(result);
+                });
+                /*jQuery.ajax({
                     url :  CrowdHound.addAuthenticationToken(CHConfig.API_URL + "/votes/mine/" + elementIds),
                     async : async == undefined ? true : async,
                     success : function(data, textStatus, xhr) {
@@ -621,7 +661,7 @@ var TimelinePost = (function() {
                             callback(data);
                         }
                     }
-                });
+                });*/
             } else {
                 callback();
             }
