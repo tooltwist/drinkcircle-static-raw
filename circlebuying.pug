@@ -48,7 +48,7 @@ block content
                 input.form-control.input-lg(type='text', placeholder='Search circlebuys...')
                 span.input-group-btn &nbsp;&nbsp;
                 span.input-group-btn
-                  a.btn.btn-success.btn-lg(href='searchresult.html') Search
+                  a.btn.btn-success.btn-lg(href='#modal_coming_soon', data-toggle='modal') Search
                 //- span
                 a.link-1(href='#refineSearch', data-toggle='collapse') Refine Search
                 #drop_recent_search.search-dropdown.collapse
@@ -1002,6 +1002,17 @@ block scripts
           }
         }
       });
+
+      //search
+      $(".dc-filters").find("input.input-lg").keypress(function (e) {
+        var key = e.which;
+        if(key == 13)  // the enter key code
+          {
+            $(".dc-filters").find("span a").trigger("click");
+            return false;  
+          }
+      });
+
     });
 
 
