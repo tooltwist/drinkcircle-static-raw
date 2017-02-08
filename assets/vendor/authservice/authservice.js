@@ -293,7 +293,14 @@ console.log('*** Using jQuery AJAX call');
       $('.authservice-logged-out').hide();
       $('.authservice-current-user-firstname').text(user.firstname);
       $('.authservice-current-user-lastname').text(user.lastname);
-      $('.authservice-current-user-avatar').attr('src', user.avatar).show();
+
+      if(user.avatar) {
+        $('.authservice-current-user-avatar').attr('src', user.avatar).show();
+        $('.authservice-default-user-avatar').attr('src', user.avatar).hide();
+      } else {
+        $('.authservice-current-user-avatar').attr('src', user.avatar).hide();
+        $('.authservice-default-user-avatar').attr('src', user.avatar).show();
+      }
 
       if (_onUserChange) { // && oldCurrentUser==null) {
 

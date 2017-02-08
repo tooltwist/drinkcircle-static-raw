@@ -157,7 +157,7 @@ hr {
 	.navbar-nav {
 		> li {
 			a {
-				font-size: 11px;
+				font-size: 10px;
 				@media screen and (min-width: 1199px) {
 					font-size: 14px;
 				}
@@ -181,7 +181,7 @@ hr {
 				& {
 					padding: 15px 10px;
 					@media screen and (min-width: 992px) {
-						padding: 15px 12px;
+						padding: 12px 12px;
 					}
 				}
 				&:hover {
@@ -210,7 +210,7 @@ hr {
 					}
 				}
 				&.cart-icon {
-					font-size: 20px;
+					font-size: 23px;
 				}
 			}
 			&.active {
@@ -418,9 +418,9 @@ hr {
 				font-weight: 300;
 				z-index: 4;
 				//
-				bottom: 60px;
+				bottom: 50px;
 				@media screen and (min-width: 768px) {
-					bottom: 120px;
+					bottom: 105px;
 					// font-size: 42px;
 					font-size: 2.2vw;
 					line-height: 55px;
@@ -431,7 +431,7 @@ hr {
 				}
 				small {
 					display: block;
-					margin-top: 3.1vw;
+					margin-top: 1.1vw;
 					color: white;
 					font-size: 4vw;
 					// font-weight: 300;
@@ -926,6 +926,9 @@ section {
 				}
 			}
 			&.categories {
+				@media screen and (min-width: 1024px) {
+					height: 391px;	
+				}
 				.title {
 					text-align: center;
 					padding: 15px 0 0px;
@@ -980,7 +983,7 @@ section {
 					.shared {
 						> img {
 							position: relative;
-							top: -22px;
+							//top: -22px;
 						}
 					}
 				}
@@ -1092,7 +1095,7 @@ section {
 					}
 				}
 				footer {
-					bottom: 0;
+					bottom: -1px;
 					left: 0;
 					background: white;
 					padding: 22px;
@@ -1121,6 +1124,9 @@ section {
 					img {
 						position: relative;
 						top: -65px;
+						@media screen and (min-width: 768px) {
+							top: 0;
+						}
 					}
 				}
 			}
@@ -1201,9 +1207,10 @@ section {
 					font-weight: 600;
 				}
 				&.offset-img {
-					img {
-						position: relative;
-						top: -65px;
+					position: relative;
+					top: -65px;
+					@media screen and (min-width: 768px) {
+						top: 0;
 					}
 				}
 			}
@@ -1652,7 +1659,7 @@ section {
 						.ctr {
 							@include box(80px);
 							.count {
-								font-size: 36px;
+								font-size: 33px;
 								padding-top: 15px;
 								span {
 									margin-top: 0px;
@@ -2016,6 +2023,16 @@ footer {
 		display: inline-block;
 		width: 100%;
 		border: 1px solid #eee;
+		@media screen and (min-width: 768px) {
+			height: 406px;
+		}
+		@media screen and (min-width: 991px) {
+			height: 373px;
+		}
+		@media screen and (min-width: 1024px) {
+			height: 391px;	
+		}
+		
 	}
 	> a {
 		display: block;
@@ -2031,7 +2048,7 @@ footer {
 	.caption {
 		position: absolute;
 		width: 100%;
-		bottom: 0;
+		bottom: -1px;
 		padding: 0 10px;
 		// background: rgba(255,255,255,.9);
 		background: white;
@@ -2441,7 +2458,7 @@ section.productdetails {
 						font-size: 12px;
 						@media screen and (min-width: 425px) {
 							padding: 8px;
-							font-size: 24px;
+    						font-size: 2vh;
 						}
 					}
 				}
@@ -2624,7 +2641,7 @@ section.productdetails {
 			text-align: center;
 			width: 100%;
 			top: 0;
-			padding: 4px !important;
+			padding: 6px 4px !important;
 		}
 	}
 }
@@ -4222,5 +4239,9 @@ div[rn-stepper] {
 }
 
 .drinks_result .count {
+	padding-bottom: 10px;
+}
+
+.compare .count {
 	padding-bottom: 10px;
 }

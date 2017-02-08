@@ -578,11 +578,12 @@ block content
               .thumb
                 .ctr
                   .count.product-rating.patch-in-average-product-rating(productVariantId="{{variant.productVariantId}}")
-                    span points
+                    | &nbsp;
+                  span points
                   //- count
                 //- ctr
                 a(href='productdetails2.html')
-                  img.img-prod(src='//www.brokenwood.com.au/assets/images/products/pictures/GraveyardVineyardShiraz11.jpg', alt='')
+                  img.img-prod(src='{{variant.images[0].imagePath}}', alt='')
                 //- a
                 .details
                   p
