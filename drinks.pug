@@ -2214,6 +2214,8 @@ block scripts
         for (var i = 0; i < compare_productVariantIds.length; i++) {
           if (compare_productVariantIds[i] == productVariantId) {
             console.log('ids=', compare_productVariantIds);
+            //pop up message here
+             bootbox.alert("This item is already in your compare list.", function(){});
             return;
           }
         }
