@@ -59,7 +59,7 @@ block content
                 input.form-control.input-lg(type='text', placeholder='Search drinks...')
                 span.input-group-btn &nbsp;&nbsp;
                 span.input-group-btn
-                  a.btn.btn-success.btn-lg(href='#modal_coming_soon', data-toggle='modal') Search
+                  a.btn.btn-success.btn-lg(href='searchresult.html') Search
                 //- span
                 a.link-1(href='#refineSearch', data-toggle='collapse') Refine Search
                 #drop_recent_search.search-dropdown.collapse
@@ -578,9 +578,11 @@ block content
               input.product-id(type='hidden', value='{{variant.productVariantId}}')
               .thumb
                 .ctr
-                  .count.product-rating.patch-in-average-product-rating(productVariantId="{{variant.productVariantId}}")
+                  .count.product-rating.patch-in-average-product-rating(productVariantId="{{variant.productVariantId}}" style='display:none')
                     | &nbsp;
-                  span points
+                  span.pointContainer(style='display:none') points
+                  .first-rating(style='display:none')
+                    a(href="/productDetails2.html?product={{variant.productVariantId}}") Be the first to rate
                   //- count
                 //- ctr
                 a(href='productdetails2.html?product={{variant.productVariantId}}')
@@ -620,10 +622,10 @@ block content
                         li
                           a.thumb-action(ng-click="addToCompare(variant.productVariantId)", data-toggle='modal') Compare
                         //- li
-                        li.price {{variant.d_price}}
+                        li.price {{variant.displayPrice}}
                         //- li
                         li
-                          a.thumb-action(href='productdetails2.html') View
+                          a.thumb-action(href='/productDetails2.html?product={{variant.productVariantId}}') View
                         //- li
                       //- ul
                     //-buy
@@ -644,7 +646,7 @@ block content
               .thumb
                 .ctr
                   .count 95
-                    span points
+                    span.pointContainer points
                   //- count
                 //- ctr
                 a(href="productdetails-sticks.html")
@@ -2180,7 +2182,15 @@ block scripts
               variant.d_image = "NOTFOUND.jpg"; // ZZZZZ
             }
 
+            //computation for display price
+            if(variant.pricing.length > 0){
+              var componentsQty = variant.componentsQty;
+              var pricingQuantity = variant.pricing[0].pricingQuantity;
+              var pricingQuantityLowestPrice = pricingQuantity[pricingQuantity.length - 1].price;
+              //var displayPrice = (Math.ceil((pricingQuantityLowestPrice / componentsQty) * 100) / 100).toFixed(2);
+              variant.displayPrice = accounting.formatMoney(pricingQuantityLowestPrice);
 
+            }
 
             variants.push(variant);
           });
@@ -2215,7 +2225,7 @@ block scripts
           if (compare_productVariantIds[i] == productVariantId) {
             console.log('ids=', compare_productVariantIds);
             //pop up message here
-             bootbox.alert("This item is already in your compare list.", function(){});
+            bootbox.alert("This item is already in your compare list.", function(){});
             return;
           }
         }

@@ -53,8 +53,10 @@ block content
                 .ring
                   .count
                     // This value gets set from chratingsandreview.js
-                    div(id="product_rating") -
-                    span points
+                    div.product-rating(id="product_rating" style='display:none') -
+                    span.pointContainer(style='display:none') points
+                    .first-rating(style='display:none')
+                      a(href="/productDetails2.html?product={{variant.productVariantId}}") Be the first to rate
                 //- ring
               //- rate-counter
             //- stats

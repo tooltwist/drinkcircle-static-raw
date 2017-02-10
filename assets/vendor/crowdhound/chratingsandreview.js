@@ -120,7 +120,14 @@ var chratingsandreview = (function() {
            */
           var average = Math.round(t.total / t.num);
           $('#product_rating').html('' + average);
+          $('#product_rating').show();
+          $('.count .pointContainer').show();
 
+          if(average == 0) {
+            $('.count .product_rating').remove();
+            $('.count .pointContainer').remove();
+            $('.count .first-rating').show();
+          }
           /*
            *  Update the total number of votes (ratings).
            */
@@ -351,9 +358,18 @@ console.log('After selecting product reviews (but before cooking):', selection)
           console.log('++++> ' + productVariantId);
           var average = Math.round(t.total / t.num);
           var ess = (t.num == 1 ? '' : 's');
+  
           $('.patch-in-average-product-rating[productVariantId='+productVariantId+']').html(average);
+          $('.patch-in-average-product-rating[productVariantId='+productVariantId+']').show();
+          $('.pointContainer').show();
           $('.patch-in-number-of-product-ratings[productVariantId='+productVariantId+']').html(t.num);
           $('.patch-in-number-of-product-ratings-ess[productVariantId='+productVariantId+']').html(ess);
+
+          if(average == 0) {
+            $('.patch-in-average-product-rating').remove();
+            $('.pointContainer').remove();
+            $('.first-rating').show();
+          }
         }
       }
     });

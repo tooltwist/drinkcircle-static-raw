@@ -146,8 +146,11 @@ block content
                   input.product-id(type='hidden', value='{{variant.productVariantId}}')
                   .thumb
                     .ctr
-                      .count.product-rating
-                      span points
+                      .count.product-rating(style='display:none')
+                        | &nbsp;
+                      span.pointContainer(style='display:none') points
+                    .first-rating-small(style='display:none')
+                        a(href="/productDetails2.html?product={{variant.productVariantId}}") Be the first to rate
                       //- count
                     a(href='productdetails2.html?product={{variant.productVariantId}}')
                       //img.img-prod(src='//www.brokenwood.com.au/assets/images/products/pictures/CricketPitchRed1.jpg', alt='')
@@ -163,12 +166,12 @@ block content
                         .buy.drop
                           ul
                             li
-                              a.thumb-action(href='#modal_compare', data-toggle='modal') Compare
+                              a.thumb-action(ng-click="addToCompare(variant.productVariantId)", data-toggle='modal') Compare
                             //- li
-                            li.price {{displayPrice}}
+                            li.price {{variant.displayPrice}}
                             //- li
                             li
-                              a.thumb-action(href='#modal_coming_soon', data-toggle='modal') View / Buy
+                              a.thumb-action(href='/productDetails2.html?product={{variant.productVariantId}}', data-toggle='modal') View / Buy
                             //- li
                           //- ul
                         //-buy
@@ -274,8 +277,8 @@ block scripts
               var componentsQty = variant.componentsQty;
               var pricingQuantity = variant.pricing[0].pricingQuantity;
               var pricingQuantityLowestPrice = pricingQuantity[pricingQuantity.length - 1].price;
-              var displayPrice = (Math.ceil((pricingQuantityLowestPrice / componentsQty) * 100) / 100).toFixed(2);
-              $scope.displayPrice = accounting.formatMoney(displayPrice);
+              //var displayPrice = (Math.ceil((pricingQuantityLowestPrice / componentsQty) * 100) / 100).toFixed(2);
+              variant.displayPrice = accounting.formatMoney(pricingQuantityLowestPrice);
 
             }
 
@@ -290,6 +293,57 @@ block scripts
       $scope.sortType     = 'name'; // set the default sort type
       $scope.sortReverse  = false;  // set the default sort order
 
+      /*
+       *  Functions to keep track of which products will be compared.
+       */
+      var COMPARE_COOKIE = 'idsForCompare';
+      var compare_productVariantIds = [ ];
+      var cookie = authservice.getCookie(COMPARE_COOKIE);
+      if (cookie) {
+        compare_productVariantIds = cookie.split(',');
+        if (compare_productVariantIds.length == 1 && compare_productVariantIds[0] == '') {
+          compare_productVariantIds = [ ];
+        }
+      } else {
+        compare_productVariantIds = [ ];
+      }
+      console.log('ids=', compare_productVariantIds);
+
+      // Add a new product to compare
+      $scope.addToCompare = function(productVariantId) {
+        console.log('addToCompare ' + productVariantId);
+        // See if it's already in the list
+        for (var i = 0; i < compare_productVariantIds.length; i++) {
+          if (compare_productVariantIds[i] == productVariantId) {
+            console.log('ids=', compare_productVariantIds);
+            return;
+          }
+        }
+
+        compare_productVariantIds.unshift(productVariantId);
+        while (compare_productVariantIds.length > 3) {
+          compare_productVariantIds.pop();
+        }
+        console.log('ids=', compare_productVariantIds);
+
+        //ZZZ Should show 'modal_compare' first.
+        // Save the new cookie value.
+        var sep = '';
+        var cookie = '';
+        for (var i = 0; i < compare_productVariantIds.length; i++) {
+          cookie += sep + compare_productVariantIds[i];
+          sep = ',';
+        }
+        console.log('new cookie is ' + cookie + '.');
+        authservice.setCookie(COMPARE_COOKIE, cookie, 30); // keep it a maximum of a month
+
+        if (compare_productVariantIds.length > 1) {
+          window.location.href = 'compare.html';
+        } else {
+          alert('Select another drink to see the comparison');
+        }
+
+      }
       /*
       // Display the circle buys
       teaService.getSharedOrdersAndSetAngularVariables({

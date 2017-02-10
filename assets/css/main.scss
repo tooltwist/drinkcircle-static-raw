@@ -1649,6 +1649,17 @@ section {
 							margin-top: 13px;
 						}
 					}
+					.first-rating {
+						font-size: 17px;
+						margin-top: 25px;
+						font-weight: bold;
+						color: #41B54B !important;
+					}
+					.first-rating-small {
+						font-size: 11px;
+						margin-top: 18px;
+						font-weight: bold;
+					}
 				}
 			}
 		}
@@ -2282,6 +2293,13 @@ section.productdetails {
 						span {
 							display: block;
 							font-size: 14px;
+						}
+					}
+					.first-rating {
+						font-size: 17px;
+						font-weight: bold;
+						a {
+							color: #41B54B !important;
 						}
 					}
 				}
@@ -4226,14 +4244,14 @@ div[rn-stepper] {
 		position: relative;
 		&:after {
 			font-family: 'FontAwesome';
-	    content: "\f017";
-	    position: absolute;
-	    bottom: 7px;
-	    left: 38px;
-	    font-size: 17px;
+			content: "\f017";
+			position: absolute;
+			bottom: 4px;
+			left: 28px;
+			font-size: 17px;
 		}
 		.dxg-title {
-    	transform: translate(90px, 177px);
+    		transform: translate(90px, 177px);
 		}
 	}
 }
