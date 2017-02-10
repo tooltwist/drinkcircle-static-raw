@@ -280,10 +280,19 @@ block scripts
           return;
         }
 
-        // Save the review.
+        //validate if user has entered a title, description or would recommend this to a friend
         var heading = $scope.reviewHeading;
         var review = $scope.reviewTxt;
         var recommended = $scope.recommend;
+
+        if((heading === null || heading === '')
+         && (review === null || review === '') 
+         && recommended == false){
+            bootbox.alert("Please provide a title or a description for the review.", function(){});
+            return;
+        }
+
+        // Save the review.
         chwritereview.saveReview(productVariantId, heading, review, recommended, function(err) {
           if (err) {
             alert('Unable to save product review');

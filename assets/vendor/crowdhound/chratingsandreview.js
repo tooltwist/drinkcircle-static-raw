@@ -22,7 +22,7 @@ var chratingsandreview = (function() {
 
       //check if user logged in owns the rating
       //this should have been in a different cooker
-      var userId = 'QWER62I57JPR70WV7GN1SAK5'; //Login_config.getCurrentUser().userId;
+      var userId = authservice.getUserAccessToken(); //Login_config.getCurrentUser().userId;
       if(userId != ''){
         //check if user own the review
         if(userId == element.user.userId){
@@ -120,7 +120,14 @@ var chratingsandreview = (function() {
            */
           var average = Math.round(t.total / t.num);
           $('#product_rating').html('' + average);
+          $('#product_rating').show();
+          $('.count .pointContainer').show();
 
+          if(average == 0) {
+            $('.count .product_rating').remove();
+            $('.count .pointContainer').remove();
+            $('.count .first-rating').show();
+          }
           /*
            *  Update the total number of votes (ratings).
            */
@@ -351,9 +358,18 @@ console.log('After selecting product reviews (but before cooking):', selection)
           console.log('++++> ' + productVariantId);
           var average = Math.round(t.total / t.num);
           var ess = (t.num == 1 ? '' : 's');
+  
           $('.patch-in-average-product-rating[productVariantId='+productVariantId+']').html(average);
+          $('.patch-in-average-product-rating[productVariantId='+productVariantId+']').show();
+          $('.pointContainer').show();
           $('.patch-in-number-of-product-ratings[productVariantId='+productVariantId+']').html(t.num);
           $('.patch-in-number-of-product-ratings-ess[productVariantId='+productVariantId+']').html(ess);
+
+          if(average == 0) {
+            $('.patch-in-average-product-rating').remove();
+            $('.pointContainer').remove();
+            $('.first-rating').show();
+          }
         }
       }
     });
@@ -363,11 +379,10 @@ console.log('After selecting product reviews (but before cooking):', selection)
 
 
     var CHConfig = function(){
-      var serverUrl = "//127.0.0.1:4000",
-        apiVersion = "2.0",
-
-        tenant = "drinkpoint",
-              port = "4000",
+      var serverUrl = "http://"+CROWDHOUND_HOST+":"+CROWDHOUND_PORT,
+        apiVersion = CROWDHOUND_VERSION,
+        tenant = CROWDHOUND_TENANT,
+        port = CROWDHOUND_PORT,
         apiUrl = [serverUrl, "api", apiVersion, tenant].join("/");
       return {
         SERVER_URL: serverUrl,

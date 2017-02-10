@@ -173,11 +173,10 @@ var crowdhoundservice = (function() {
       }
 
     var CHConfig = function(){
-      var serverUrl = "//127.0.0.1:4000",
-        apiVersion = "2.0",
-
-        tenant = "drinkpoint",
-              port = "4000",
+      var serverUrl = "http://"+CROWDHOUND_HOST+":"+CROWDHOUND_PORT,
+        apiVersion = CROWDHOUND_VERSION,
+        tenant = CROWDHOUND_TENANT,
+        port = CROWDHOUND_PORT,
         apiUrl = [serverUrl, "api", apiVersion, tenant].join("/");
       return {
         SERVER_URL: serverUrl,
@@ -193,7 +192,7 @@ var crowdhoundservice = (function() {
       var host = CHConfig.SERVER_URL;
       var port = CHConfig.SERVER_PORT;
       var tenant = CHConfig.TENANT_NAME;
-      var ttuat = '6C36ZESDCRHHKC5J9WPL927A';//Login_config.getCurrentUser().ttuat;
+      var ttuat = authservice.getUserAccessToken();//Login_config.getCurrentUser().ttuat;
 
 			var _curiaUrl;
 			// Prepare the configuration for Curia

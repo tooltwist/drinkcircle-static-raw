@@ -1,4 +1,6 @@
 var TimelinePost = (function() {
+    var AUTHSERVICE_TTUAT = null;
+    var AUTHSERVICE_USERID = null;
 
     var CHConfig = function(){
         var serverUrl = "http://"+CROWDHOUND_HOST+":"+CROWDHOUND_PORT,
@@ -13,20 +15,6 @@ var TimelinePost = (function() {
             TENANT_NAME: tenant,
             API_URL: apiUrl,
             SERVER_PORT : port
-        }
-    }();
-
-    //temp var
-    var Login_config = function(){
-        var ttuat = authservice.getUserAccessToken();
-        var userId = 23;
-        return {
-            getCurrentUser : function(){
-                return {
-                    ttuat : ttuat,
-                    userId : userId
-                };
-            }
         }
     }();
 
@@ -79,9 +67,12 @@ var TimelinePost = (function() {
 
             // initialize curia
             CrowdHound.init(curiaConfig, function afterCuriaInit() {
-                var userId = authservice.getCurrentUser().id;
+                AUTHSERVICE_TTUAT = authservice.getUserAccessToken();
+                AUTHSERVICE_USERID = authservice.getCurrentUser().id;
+
+                
                 //make sure to have parent element per page
-                var url = CHConfig.API_URL + "/thread/$community-page-user-"+userId+"?newAnchorType=community-page-user";
+                var url = CHConfig.API_URL + "/thread/$community-page-user-"+AUTHSERVICE_USERID+"?newAnchorType=community-page-user";
                 $.ajax({
                       url: Curia.addAuthenticationToken(url),
                       dataType: 'json',
@@ -91,6 +82,16 @@ var TimelinePost = (function() {
 
              	TimelinePost.loadPost();
              	//TimelinePost.getFriendsPosts();
+
+                 //show of hide postComposer
+                 //check if user is logged in
+                 if(authservice.getCurrentUser() == null || (authservice.getCurrentUser().id != getUserId())){
+                     
+                     $("#postComposer").remove();
+
+                 }else{
+                     $("#postComposer").show();  
+                 }
 
              	$(document).on('keydown', '.comment .input-group input', function(event){
                     if(event.keyCode == 13){
@@ -120,7 +121,7 @@ var TimelinePost = (function() {
 
             if(message && message != ''){
                 var url = CrowdHound.addAuthenticationToken(CHConfig.API_URL + '/element');
-                var userId = authservice.getCurrentUser().id;
+                var userId = AUTHSERVICE_USERID;
 
                 var data = {
 					"type" : "post",
@@ -170,7 +171,7 @@ var TimelinePost = (function() {
 
 
         deletePost : function(id, parent, root){
-            var userId = Login_config.getCurrentUser().userId;
+            var userId = AUTHSERVICE_USERID;
             var params = {};
             var method = 'op=drinkpoint_widgets.requestHandlers.userTimeline&subop=deletePost'
 				console.log("test delete");
@@ -180,7 +181,7 @@ var TimelinePost = (function() {
                     url :  location.href.replace("#","")+"?"+method,
                     data : {
                         elementId: id,
-                        authenticationToken : Login_config.getCurrentUser().ttuat,
+                        authenticationToken : AUTHSERVICE_TTUAT,
                         parentId : parent,
                         rootId : root,
                     },
@@ -200,7 +201,7 @@ var TimelinePost = (function() {
 
         loadPost : function(){
             //var userId = $('#timeLineOwnerTtauthId').val();
-            var userId = authservice.getCurrentUser().id;//Login_config.getCurrentUser().userId;
+            var userId = getUserId();//Login_config.getCurrentUser().userId;
             var params = {};
             var elementId = $('#eid').val();
 
@@ -239,7 +240,7 @@ var TimelinePost = (function() {
 				var friendIds = getFriendIds;
                 console.log('friends are: '+friendIds);
                 params = {
-                    user: authservice.getCurrentUser().id, //friendIds.length<1? 0: friendIds,  //passing empty friend ids fetches all results so set to 0 to fetch none instead
+                    user: userId, //friendIds.length<1? 0: friendIds,  //passing empty friend ids fetches all results so set to 0 to fetch none instead
                     type: 'post',
                     withChildren : true,
                     deleted : 0,
@@ -369,7 +370,7 @@ var TimelinePost = (function() {
                 data : {
                     u: url,
                     pid : elementId,
-                    token : Login_config.getCurrentUser().ttuat
+                    token : AUTHSERVICE_TTUAT
                 },
                 success: function(data) {
                     TimelinePost.manualRenderPost(elementId, '#timelineSection');
@@ -418,7 +419,7 @@ var TimelinePost = (function() {
 
             if(comment && comment != ''){
                 var url = CrowdHound.addAuthenticationToken(CHConfig.API_URL + '/element');
-                var userId = Login_config.getCurrentUser().userId;
+                var userId = AUTHSERVICE_USERID;
 
                 var data = {
 					"type" : "comment",
@@ -460,7 +461,7 @@ var TimelinePost = (function() {
             }
         },
         like : function(parentId, score){
-            var userId = Login_config.getCurrentUser().userId;
+            var userId = AUTHSERVICE_USERID;
 			
        		var	aggregationElementId = parentId;
        		var	voteElementId = parentId;
@@ -682,7 +683,7 @@ var TimelinePost = (function() {
 
                 //start posting
                 var url = CrowdHound.addAuthenticationToken(CHConfig.API_URL + '/element');
-                var userId = Login_config.getCurrentUser().userId;
+                var userId = AUTHSERVICE_USERID;
 
                 var data = {
 					"type" : "post",
@@ -722,7 +723,7 @@ var TimelinePost = (function() {
                 data : {
                     files: files,
                     pid : elementId,
-                    token : Login_config.getCurrentUser().ttuat
+                    token : AUTHSERVICE_TTUAT
                 },
                 success: function(data) {
                     TimelinePost.manualRenderPost(elementId, '#timelineSection');
@@ -766,6 +767,30 @@ var TimelinePost = (function() {
         }
     }
 }());
+
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+
+function getUserId(){
+    var userId = authservice.getCurrentUser().id; //use current Login user
+    /*window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+        key = key.toLowerCase();
+        if (key === 'userid') {
+            userId = parseInt(value); // if userId is provided in the url use that instead
+        }
+
+        return userId;
+    });*/
+    var urlUserId = getUrlParameter("userId");    
+    if(urlUserId){
+        userId = urlUserId;
+    }
+    return userId;
+}
 
 /* Script for photo upload
 var TimelineUpload = (function() {
