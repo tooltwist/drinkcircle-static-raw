@@ -22,7 +22,7 @@ var chratingsandreview = (function() {
 
       //check if user logged in owns the rating
       //this should have been in a different cooker
-      var userId = 'QWER62I57JPR70WV7GN1SAK5'; //Login_config.getCurrentUser().userId;
+      var userId = authservice.getUserAccessToken(); //Login_config.getCurrentUser().userId;
       if(userId != ''){
         //check if user own the review
         if(userId == element.user.userId){
@@ -379,11 +379,10 @@ console.log('After selecting product reviews (but before cooking):', selection)
 
 
     var CHConfig = function(){
-      var serverUrl = "//127.0.0.1:4000",
-        apiVersion = "2.0",
-
-        tenant = "drinkpoint",
-              port = "4000",
+      var serverUrl = "http://"+CROWDHOUND_HOST+":"+CROWDHOUND_PORT,
+        apiVersion = CROWDHOUND_VERSION,
+        tenant = CROWDHOUND_TENANT,
+        port = CROWDHOUND_PORT,
         apiUrl = [serverUrl, "api", apiVersion, tenant].join("/");
       return {
         SERVER_URL: serverUrl,

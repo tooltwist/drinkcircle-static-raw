@@ -6,12 +6,11 @@ var ratingTotal = 0;
 
   var isEdit = false;
   var CHConfig = function(){
-    var serverUrl = "//127.0.0.1:4000",
-      apiVersion = "2.0",
-
-      tenant = "drinkpoint",
-            port = "4000",
-      apiUrl = [serverUrl, "api", apiVersion, tenant].join("/");
+      var serverUrl = "http://"+CROWDHOUND_HOST+":"+CROWDHOUND_PORT,
+        apiVersion = CROWDHOUND_VERSION,
+        tenant = CROWDHOUND_TENANT,
+        port = CROWDHOUND_PORT,
+        apiUrl = [serverUrl, "api", apiVersion, tenant].join("/");
     return {
       SERVER_URL: serverUrl,
       API_VERSION: apiVersion,
@@ -25,7 +24,7 @@ var ratingTotal = 0;
       var host = CHConfig.SERVER_URL;
       var port = CHConfig.SERVER_PORT;
       var tenant = CHConfig.TENANT_NAME;
-      var ttuat = 'RJTDQGP394702Q31NDN72B53';
+      var ttuat = authservice.getUserAccessToken();
 
       var _curiaUrl;
       // Prepare the configuration for Curia
@@ -73,7 +72,13 @@ function loadRatings(){
                     // Now display the data
                     var productRating =  ratingTotal / ratingCount;
                     if(ratingTotal > 0) {
+                        obj.parents(".product").find("#product_rating").show();
+                        obj.parents(".product").find(".pointContainer").show();
                         obj.parents(".product").find(".product-rating").html(productRating.toFixed());
+                    } else {
+                        obj.parents(".product").find(".product_rating").remove();
+                        obj.parents(".product").find(".pointContainer").remove();
+                        obj.parents(".product").find(".first-rating-small").show();
                     }
                     //obj.parents(".product").find(".rating-total").html(ratingCount);
                     //obj.parents(".product").find(".review-total").html(reviewCount);
