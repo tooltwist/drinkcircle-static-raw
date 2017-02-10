@@ -1,0 +1,816 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+
+    .mouse-pointer {
+      cursor: pointer;
+    }
+
+    .category-hierarchy {
+      list-style-type: none;
+      margin: 0;
+      padding-left: 20px;
+    }
+
+  //- style
+
+block content
+
+  section.userprofile.myprofile.simple(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
+    .container
+      .row
+        .col-md-3
+          .card.myprofile-menu
+            ul(role="tablist")
+              li.active(role="presentation")
+                a(href="#tab-tenant-details", role="tab", data-toggle="tab") Details
+              //- li
+
+              include ./includes/plugin-menuitems.pug
+
+
+              //li(role="presentation")
+              //  a(href="#tab-product-details", role="tab", data-toggle="tab") PRODUCT
+              //- li
+            //- ul
+          //- card
+          br
+
+        //- col-md-3
+
+
+        .col-md-9
+          .tab-content
+
+
+            // "Tenant Details" pane
+            .tab-pane.active#tab-tenant-details(role="tabpanel")
+              .card
+                .row
+                  .col-md-12
+                    h1 DrinkCircle Administration
+                    br
+                    | Select a topic on the left to maintain the Drinkcircle data.
+                    br
+                    br
+                    br
+                    br
+                    br
+                    br
+                    br
+                  //- col-md-6
+
+                //- row
+              //- card
+            //- tab-pane
+
+            include ./includes/plugin-menuitem-supplier.pug
+            include ./includes/plugin-menuitem-product.pug
+            include ./includes/plugin-menuitem-category.pug
+
+
+
+
+          //- tab-content
+        //- col-md-9
+      //- row
+    //- container
+  //- section
+
+
+
+
+
+block scripts
+
+  script(src="/bower_components/typeahead.js/dist/typeahead.bundle.min.js")
+  //script(src="assets/vendor/authservice/authservice-admin.js", type="text/javascript")
+  script(src="assets/vendor/authservice/authservice.js", type="text/javascript")
+  script(src="/bower_components/ckeditor/ckeditor.js")
+  script(src="/bower_components/angular-ckeditor/angular-ckeditor.min.js")
+
+  // External Script goes here...
+  script.
+    $(function () {
+
+      /*
+      $('.popover_price[data-toggle="popover"]').popover({
+        html: true,
+        content : function() {
+          return '<ul class="cost">' + $(this).parent().find("ul").html() + '</ul>';
+        },
+        title: function(){
+          return jQuery(this).data('title') + '<span class="close">&times;</span>';
+        }
+      }).on('shown.bs.popover', function(e) {
+        var popover = jQuery(this);
+        $(this).parent().find('.popover span.close').on('click', function(e) {
+          popover.popover('hide');
+        });
+      }).click(function(e) {
+        e.preventDefault();
+      });
+      */
+    });
+
+
+    /************************************************************
+     *
+     *    Angular code.
+     */
+    var DUMMY_LOGIN = false;
+
+    // Tell Angular about this application
+    //var app = angular.module('myApp', ['ngSanitize','toggle-switch']);
+    var app = angular.module('myApp', ['ngSanitize','ckeditor']);
+
+    // Add the controller for this page
+    app.controller('myCtrl', function($scope, $http, $timeout /*, authserviceApi */) {
+
+
+      $scope.content = "Hi there<br>Everyone!"
+
+
+
+      var PROPERTY_REALM_PROFILE = 'user.profile';
+      var PROPERTY_REALM_EDUCATION = 'user.education';
+      var PROPERTY_REALM_WORK = 'user.work';
+
+      // This code gets the "product" parameter from the
+      // URL so we can use it as productVariantId.
+      var productVariantId = NaN;
+      window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+        if (key === 'product') {
+          productVariantId = parseInt(value);
+        }
+      });
+      //console.log('Displaying the page for productVariantId=' + productVariantId);
+
+      // During development only
+      var DEFAULT_PRODUCT_VARIANT_ID = 6180;
+      if (isNaN(productVariantId)) {
+        productVariantId = DEFAULT_PRODUCT_VARIANT_ID;
+      }
+
+      authservice.init({
+        host: AUTHSERVICE_HOST,
+        port: AUTHSERVICE_PORT,
+        tenant: AUTHSERVICE_TENANT,
+        pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
+        onUserChange: function(user, ttuat, stale) {
+
+          // If the current user came from the cookie, reload it
+          if (stale) {
+            console.log('Reloading stale user details (came from cookie)');
+            firstUser = false;
+            return authservice.reloadUser();
+          }
+
+          if (user) {
+            $timeout(function(){
+        			// Logged in - have a current user
+        			$scope.user = user;
+        			//$scope.friends = user.;
+        			$scope.loggedIn = true;
+
+              $scope.current = {
+                heading: 'Administration'
+              };
+
+        			// Load the list of tenants
+
+              var params = {
+
+          		};
+
+              console.log('authservice=', authservice)
+          		authservice.authservice_ajax_call('POST', '/admin/getTenants', params, function(tenants) {
+                // Success
+        				console.log('tenats ', tenants)
+                $scope.tenants = tenants;
+                $scope.$apply()
+        			}, null); // Default error handling
+
+              $scope.tenantChanged = function() {
+                  console.log('new tenant is ', $scope.currentTenant);
+                  $scope.current.heading = "'" + $scope.currentTenant.tenant_name + "'";
+                  $scope.current.tenant_name = $scope.currentTenant.tenant_name;
+                  $scope.current.description = $scope.currentTenant.description;
+                  $scope.current.facebook_auth = $scope.currentTenant.facebook_auth;
+                  $scope.current.facebook_client_id = $scope.currentTenant.facebook_client_id;
+                  $scope.current.facebook_client_secret = $scope.currentTenant.facebook_client_secret;
+                  $scope.current.github_auth = $scope.currentTenant.github_auth;
+                  $scope.current.github_client_id = $scope.currentTenant.github_client_id;
+                  $scope.current.github_client_secret = $scope.currentTenant.github_client_secret;
+                  $scope.current.google_auth = $scope.currentTenant.google_auth;
+                  $scope.current.google_client_id = $scope.currentTenant.google_client_id;
+                  $scope.current.google_client_secret = $scope.currentTenant.google_client_secret;
+                  $scope.current.password_auth = $scope.currentTenant.password_auth;
+                  $scope.current.sms_auth = $scope.currentTenant.sms_auth;
+              };
+
+              return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //                       OLD STUFF BELOW HERE
+
+
+              // Function to sort relationship records by name
+              var sortRelationshipSummaryByFullname = function(a, b) {
+                var name_a = (a.last_name && a.last_name != '') ? a.last_name : a.full_name;
+                var name_b = (b.last_name && b.last_name != '') ? b.last_name : b.full_name;
+
+                if (name_a < name_b)
+                  return -1;
+                if (name_a > name_b)
+                  return 1;
+                return 0;
+              };
+
+
+              // Get my friends
+              console.log('onUserChange: logged in and got user:', user)
+              if (user.relationshipSummary.hasFriend) {
+                //console.log('onUserChange: user.relationshipSummary.hasFriend:', user.relationshipSummary.hasFriend)
+                var arrayOfFriends = user.relationshipSummary.hasFriend
+                arrayOfFriends.sort(sortRelationshipSummaryByFullname)
+                $scope.friends = arrayOfFriends
+              } else {
+                $scope.friends = [ ]
+              }
+
+              // Get those who have friended me
+              if (user.relationshipSummary.isFriendedBy) {
+                var arrayOfFriendedBy = user.relationshipSummary.isFriendedBy;
+                arrayOfFriendedBy.sort(sortRelationshipSummaryByFullname)
+                $scope.friendedBy = arrayOfFriendedBy
+              } else {
+                $scope.friendedBy = [ ]
+              }
+
+              // Get the properties for the user
+              $scope.profile = { };
+              if (user.propertySummary['drinkcircle.user.profile']) {
+                var props = user.propertySummary['drinkcircle.user.profile'];
+                $scope.userProfileProperties = props;
+                console.log('Have user profile properties', props)
+
+                // Get the properties we use
+                var dobArray = props['dob']
+                if (dobArray && dobArray.length > 0) {
+                  $scope.profile.dob = dobArray[0].value;
+                }
+                var interestArray = props['interest']
+                if (interestArray) {
+                  $scope.profile.interests = interestArray;
+                }
+              }
+
+              // Look at education
+              $scope.profile.education = [ ];
+              if (user.propertySummary[PROPERTY_REALM_EDUCATION] && user.propertySummary[PROPERTY_REALM_EDUCATION].attended) {
+                var attended = user.propertySummary[PROPERTY_REALM_EDUCATION].attended;
+                for (var i = 0; i < attended .length; i++) {
+
+                  // Parse the JSON stored in the property.
+                  var schoolData = attended[i].value;
+                  try {
+                    var obj = JSON.parse(schoolData);
+                  } catch (e) {
+                    console.log('Invalid JSON for property ' + attended[i].property_id);
+                    continue;
+                  }
+
+                  if (obj.from || obj.to) {
+                    var fromS = obj.from ? moment(obj.from).format('MMM YYYY') : '?';
+                    var toS = obj.to ? moment(obj.to).format('MMM YYYY') : '?';
+                    var duration = fromS + ' - ' + toS;
+                  } else {
+                    var duration = '(date not specified)';
+                  }
+
+                  $scope.profile.education.push({
+                    propertyId: attended[i].property_id,
+                    name: obj.name,
+                    duration: duration,
+                    from: fromS,
+                    to: toS,
+                    description: obj.description
+                  });
+                }
+              }
+
+
+              // Look at employment
+              $scope.profile.employment = [ ];
+              if (user.propertySummary[PROPERTY_REALM_WORK] && user.propertySummary[PROPERTY_REALM_WORK].data) {
+                var employers = user.propertySummary[PROPERTY_REALM_WORK].data;
+                for (var i = 0; i < employers.length; i++) {
+
+                  // Parse the JSON stored in the property.
+                  var workData = employers[i].value;
+                  console.log('workData is', workData)
+                  try {
+                    var obj = JSON.parse(workData);
+                  } catch (e) {
+                    console.log('Invalid JSON for property ' + attended[i].property_id);
+                    continue;
+                  }
+                  console.log('workData 2 is', obj)
+
+                  if (obj.from || obj.to) {
+                    var fromS = obj.from ? moment(obj.from).format('MMM YYYY') : '?';
+                    var toS = obj.to ? moment(obj.to).format('MMM YYYY') : '?';
+                    var duration = fromS + ' - ' + toS;
+                  } else {
+                    var duration = '(date not specified)';
+                  }
+
+                  $scope.profile.employment.push({
+                    propertyId: attended[i].property_id,
+                    company: obj.company,
+                    position: obj.position,
+                    location: obj.location,
+                    description: obj.description,
+                    currentlyEmployed: obj.currentlyEmployed,
+                    duration: duration,
+                    from: fromS,
+                    to: toS
+                  });
+                }
+                console.log('employment=', $scope.profile.employment)
+              }
+
+            }, 100);
+          } else {
+
+            // Logged out - no current user
+            $timeout(function(){
+              $scope.user = null;
+              $scope.loggedIn = false;
+              $scope.friends = null;
+              $scope.friendedBy = null;
+              $scope.profile = null;
+            }, 100);
+          }
+        }
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+      /*
+       *  Set up the menu items
+       */
+
+
+
+      PluginMenuItems.init($scope, $http, $timeout);
+
+
+
+
+
+
+
+
+
+      // Set up Autocomplete on the name select field
+      var substringMatcher = function() {
+
+        /*$scope.$apply(function(){
+          console.log('jiiijjjeeeejj')
+          });*/
+        return function findMatches(q, syncCb, cb) {
+
+          if (q.length < 2) {
+            //console.log('no query')
+            $timeout(function(){
+              $scope.friendCandidate = null
+            }, 50);
+            return syncCb([ ])
+          }
+
+          // Call the TEA API to get the potential friends
+          var params = {
+            //entityId: 901,
+            nameMatch: q,
+            needRelationships: false,
+            needProperties: false,
+            entityType: 'user',
+            limit: 10 // Maximum of users
+          };
+          authservice.getUser(params, function(users) {
+
+            // Return the
+            if (users == null || users.length == 0) {
+              console.log('no users')
+              $timeout(function(){
+                $scope.friendCandidate = null
+              }, 50);
+              return [ ];
+            }
+
+            // Sort the users
+            users.sort(function(a, b) {
+              // Should be by surname
+              if (a.full_name < b.full_name)
+                return -1;
+              if (a.full_name > b.full_name)
+                return 1;
+              return 0;
+            });
+
+            return cb(users)
+
+            /*console.log('\n\n\nREPLY FROM getUser:', users);
+            var matches = [ ];
+            for (var i = 0; i < users.length && i < 20; i++) {
+              var user = users[i]
+              var val = user.id + ':' + user.full_name
+
+              var obj = {
+                entity_id: user.id,
+                full_name: user.full_name
+              }
+              matches.push(obj)
+            }
+            console.log('matches=', matches)
+            cb(matches);*/
+
+          });
+
+        };
+      };
+
+      /*
+       *    Attach 'typeahead' to the friend search field
+       */
+      $('#friend-search-input .typeahead').typeahead({
+          hint: true,
+          highlight: true,
+          minLength: 0
+      },
+      {
+        name: 'states',
+        source: substringMatcher(),
+        limit: Infinity,
+        display: function(user) {
+          console.log("  user ->", user)
+          //return user.full_name
+          return user.full_name + '  (' + user.id + ')'
+        }
+      });
+
+
+      /*
+       *  Select a friend from the search result
+       */
+      $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+        console.log('Selection: ', suggestion);
+        $timeout(function(){
+          $scope.friendCandidate = suggestion
+          }, 50);
+      });
+
+
+      /*
+       *  Return true if there is a friend selected
+       */
+      $scope.havePossibleFriendSelected = function() {
+        //console.log('havePossibleFriendSelected. friendCandidate=', $scope.friendCandidate)
+        if ($scope.friendCandidate) {
+          return true;
+        }
+        return false;
+      };
+
+      /*
+       *  Add the currently selected friend to the friends of the current user
+       */
+      $scope.addFriend = function() {
+        var me = authservice.getCurrentUser()
+        if (me) {
+          console.log('me=', me)
+          var currentUserId = me.id;
+        } else {
+          // No current user. We'll just ignore this request.
+          return;
+        }
+
+        // Have a current user
+        if ($scope.friendCandidate) {
+          console.log('Add as friend ', $scope.friendCandidate)
+          var params = {
+            entity_id_1: currentUserId,
+            entity_id_2: $scope.friendCandidate.id,
+            relationship_type: 'friend'
+          };
+          authservice.addRelationship(params, function(result) {
+
+            // Display the product details
+            console.log('\n\n\nREPLY FROM admin_addRelationship:', result);
+
+            // Reload the current user details
+            authservice.reloadUser();
+          });
+        }
+
+      }; // $scope.addFriend()
+
+
+      /*
+       *  Remove a friend
+       */
+      $scope.removeFriend = function(entity_id) {
+        console.log('Remove friend ', entity_id)
+        var me = authservice.getCurrentUser()
+        if (me) {
+          var currentUserId = me.id;
+        } else {
+          // No current user. We'll just ignore this request.
+          return;
+        }
+
+        // Remove the friend
+        var params = {
+          entity_id_1: currentUserId,
+          entity_id_2: entity_id,
+          relationship_type: 'friend'
+        };
+        authservice.removeRelationship(params, function(result) {
+
+          // Display the product details
+          console.log('\n\n\nREPLY FROM removeRelationship:', result);
+
+          // Reload the current user details
+          authservice.reloadUser();
+        });
+      } // removeFriend
+
+
+      $scope.addEducation = function() {
+
+        // Check we have a current user
+        var me = authservice.getCurrentUser()
+        if (me) {
+          var currentUserId = me.id;
+        } else {
+          // No current user. We'll just ignore this request.
+          return;
+        }
+
+        // Put the info about the school into a JSON string
+        var schoolData = {
+          name: $scope.school_name,
+          from: $scope.school_from,
+          to: $scope.school_to,
+          description: $scope.school_description
+        };
+        var json = JSON.stringify(schoolData);
+
+        // Add the new property.
+        var params = {
+          realm: PROPERTY_REALM_EDUCATION,
+          entity_id: currentUserId,
+          name: 'attended',
+          sequence: 0,
+          value: json
+        };
+        authservice.addProperty(params, function(result) {
+          // Reload the current user details
+          authservice.reloadUser();
+        });
+        return false;
+      }
+
+
+      $scope.removeEducation = function(propertyId) {
+        //alert('removeEducation(' + propertyId + ')');
+
+        // Check we have a current user
+        var me = authservice.getCurrentUser()
+        if (me) {
+          var currentUserId = me.id;
+        } else {
+          return; // No current user. We'll just ignore this request.
+        }
+
+
+        var arr = $('#modal_confirm_delete');
+        console.log('arr.length=' + arr.length);
+        $('#modal_confirm_delete').modal({ backdrop: 'static', keyboard: false })
+        .one('click', '#modal_confirm_delete_button', function (e) {
+
+            // Remove the education property.
+            var params = {
+              property_id: propertyId,
+              realm: PROPERTY_REALM_EDUCATION,
+              entity_id: currentUserId
+            };
+            authservice.removeProperty(params, function(result) {
+              authservice.reloadUser();
+            });
+        });
+        return false;
+      }
+
+
+      $scope.addWork = function() {
+
+        // Check we have a current user
+        var me = authservice.getCurrentUser()
+        if (me) {
+          var currentUserId = me.id;
+        } else {
+          // No current user. We'll just ignore this request.
+          return;
+        }
+
+        // Put the info about the school into a JSON string
+        var workData = {
+          company: $scope.work_company,
+          position: $scope.work_position,
+          location: $scope.work_description,
+          description: $scope.work_description,
+          from: $scope.work_from,
+          to: $scope.work_to
+        };
+        var json = JSON.stringify(workData);
+
+        // Add the new property.
+        var params = {
+          realm: PROPERTY_REALM_WORK,
+          entity_id: currentUserId,
+          name: 'data',
+          sequence: 0,
+          value: json
+        };
+        authservice.addProperty(params, function(result) {
+          authservice.reloadUser();
+        });
+        return false;
+      }
+
+
+      $scope.removeWork = function(propertyId) {
+        //alert('removeEducation(' + propertyId + ')');
+
+        // Check we have a current user
+        var me = authservice.getCurrentUser()
+        if (me) {
+          var currentUserId = me.id;
+        } else {
+          return; // No current user. We'll just ignore this request.
+        }
+
+
+        var arr = $('#modal_confirm_delete');
+        console.log('arr.length=' + arr.length);
+        $('#modal_confirm_delete').modal({ backdrop: 'static', keyboard: false })
+        .one('click', '#modal_confirm_delete_button', function (e) {
+
+            // Remove the education property.
+            var params = {
+              property_id: propertyId,
+              realm: PROPERTY_REALM_WORK,
+              entity_id: currentUserId
+            };
+            authservice.removeProperty(params, function(result) {
+              authservice.reloadUser();
+            });
+        });
+        return false;
+      }
+
+
+    });//- controller
+
+
+    /*
+     *  Set up the login part at the top of the page.
+     */
+
+
+
+    $('#authservice-login-submit').click(function() {
+       var username = $('#authservice-login-username').val();
+       var password = $('#authservice-login-password').val();
+       //				alert('login(' + username + ', ' + password + ')');
+
+       authservice.login(username, password, function(user){
+         // Success
+         resetMenu();
+       }, function() {
+         // Fail
+         $('#authservice-login-errmsg').show();
+       })
+
+    });
+
+
+
+
+    function resetMenu() {
+      $('#authservice-login-button').show();
+      $('#authservice-login-div').show();
+      $('#authservice-forgot-button').show();
+      $('#authservice-forgot-div').hide();
+      $('#authservice-forgot-ok').hide();
+      $('#authservice-register-button').show();
+      $('#authservice-register-div').hide();
+      $('#authservice-register-ok').hide();
+
+      // Clear the username and password fields
+      $('#authservice-login-username').val('');
+      $('#authservice-login-password').val('');
+      $('#authservice-forgot-username').val('');
+      $('#authservice-register-username').val('');
+      $('#authservice-register-password').val('');
+
+
+      // hide the menu
+      // $('#authservice-user-dropdown').dropdown('toggle');
+      $('#authservice-user-dropdown').parent().removeClass('open');
+      // $('[data-toggle="dropdown"]').parent().removeClass('open');
+      return true;
+    }
+
+
+    //- authservice.init({
+    //-   host: 'localhost',
+    //-   port: 9090,
+    //-   tenant: 'nodeclient',
+    //-   pretend: true,
+    //-   onLoggedIn: function() {
+    //-     console.log('logged in');
+    //-   },
+    //-   onLoggedOut: function() {
+    //-     console.log('logged out');
+    //-   }
+    //- });
+    //- console.log('Current user:', authservice.getCurrentUser());
+
+
+        /*
+         *  Set up the login part at the top of the page.
+         */
+        /*authservice.init({
+          host: 'localhost',
+          port: 9090,
+          tenant: 'nodeclient',
+          pretend: true,
+          onLoggedIn: function(user) {
+            $('input#pd-fname').val(user.firstname);
+            $('input#pd-lname').val(user.lastname);
+          },
+          onLoggedOut: function() {
+            // Forward to the home page
+            window.location.href = 'index.html';
+          }
+        });
+        console.log('Current user:', authservice.getCurrentUser());*/
+
+      //- script.
+    //- block scripts
+
+
+
+
+
+  //- script.

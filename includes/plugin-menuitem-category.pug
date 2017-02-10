@@ -1,0 +1,245 @@
+// "Category Details" pane
+.tab-pane#tab-category-details(role="tabpanel")
+  .card
+    .row
+      .col-md-5
+        br
+        ul.category-hierarchy
+          li(ng-repeat="cat in categories")
+            a.mouse-pointer(ng-click="categorySelectButton(cat)") &nbsp;{{cat.name}}
+            ul.category-hierarchy
+              li(ng-repeat="cat2 in cat.children")
+                a.mouse-pointer(ng-click="categorySelectButton(cat2)") &nbsp;{{cat2.name}}
+                ul.category-hierarchy
+                  li(ng-repeat="cat3 in cat2.children")
+                    a.mouse-pointer(ng-click="categorySelectButton(cat3)") &nbsp;{{cat3.name}}
+                    ul.category-hierarchy
+                      li(ng-repeat="cat4 in cat3.children")
+                        a.mouse-pointer(ng-click="categorySelectButton(cat4)") &nbsp;{{cat4.name}}
+      //- col-md-6
+      .col-md-7
+        br
+        .form-group
+          label(for='cat-id`') Id
+          input#cat-id.form-control(type='text', placeholder='' ng_model="category.categoryId", readonly="readonly")
+          br
+
+          label(for='cat-name') Name
+          input#cat-name.form-control(type='text', placeholder='' ng_model="category.name")
+          br
+
+          label(for='cat-desc') Description
+          input#cat-desc.form-control(type='text', placeholder='' ng_model="category.description")
+          br
+
+        //- form-group
+
+        //- imagePath
+        //- isDeleted
+        //- metaDescription
+        //- metaKeywords
+        //- metaTitle
+        //- name
+        //- active
+
+      //- col-md-6
+
+    .row
+      .col-md-12
+        br
+        hr
+        .actions-wrap
+          a.btn(ng-click="categoryAddChild()" href="#" ng-disabled="!mayAddChild()") Add sub category
+          a.btn(ng-click="categoryAddSibling()" href="#") Add another category at this level
+          br
+          a.btn.btn-success(ng-click="categorySave()" href="#") Save changes
+  //- card
+//- tab-pane
+
+
+
+
+
+
+
+script.
+  var STORE_ID = 6;
+
+  /*if (typeof(menuItems) == 'undefined') {
+    menuItems = [ ];
+  }*/
+
+  PluginMenuItems.register({
+    id: '#tab-category-details',
+    label: 'Categories',
+    init: function($scope, $http, $timeout) {
+      console.log('init categories', $http)
+
+      function newCategory() {
+        return {
+          active: 0,
+          categoryId: 'new',
+          name: '',
+          description: '',
+          imagePath: '',
+          isDeleted: false,
+          //isLeaf: false,
+          //isRoot: false,
+          metaDescription: '',
+          metaKeywords: '',
+          metaTitle: '',
+          //ordering: false,
+          outOfStockLabel: '',
+          //parentId: null,
+          storeId: 1,
+          synchronized: 0,
+          teaIdAtSource: '',
+          thumbnailImage: ''
+        };
+      }
+
+      function findCategory(list, categoryId) {
+        console.log('findCategory(' + categoryId + ')', list)
+        for (var i = 0; i < list.length; i++) {
+          var cat = list[i];
+          if (cat.categoryId == categoryId) {
+            console.log('found')
+            return cat;
+          }
+
+          // Look at it's children
+          if (cat.children) {
+            var cat2 = findCategory(cat.children, categoryId);
+            if (cat2) {
+              console.log('found in child')
+              return cat2;
+            }
+          }
+        }
+        console.log('not found')
+        return null;
+      }
+
+      $scope.categorySelectButton = function(categoryId) {
+        //alert('cat ' + categoryId)
+        $scope.category = categoryId;
+      };
+
+      /*
+       *  Don't allow a child to be added if the parent is new.
+       */
+      $scope.mayAddChild = function() {
+        if ($scope.category && $scope.category.categoryId != 'new') {
+          return true;
+        }
+        return false;
+      };
+
+      $scope.categoryAddChild = function() {
+        if ( !$scope.mayAddChild()) {
+          return;
+        }
+        if (!$scope.category.children) {
+          $scope.category.children = [ ];
+        }
+        var newCat = newCategory();
+        newCat.parentId = $scope.category.categoryId;
+        $scope.category.children.push(newCat)
+        $scope.category = newCat;
+
+      };
+
+      $scope.categoryAddSibling = function() {
+        var parentId = $scope.category.parentId;
+        alert('parent=' + parentId)
+        if (parentId) {
+
+          var parent = findCategory($scope.categories, parentId);
+          if (parent) {
+            var newCat = newCategory();
+            newCat.parentId = parentId;
+            parent.children.push(newCat)
+            $scope.category = newCat;
+          }
+          else { console.log('parent not found'); }
+        } else {
+          // No parent, must be top level
+          var newCat = newCategory();
+          $scope.categories.push(newCat)
+          $scope.category = newCat;
+        }
+      };
+      $scope.categorySave = function() {
+
+      };
+
+
+
+
+
+      // Check the config
+      var protocol = 'http';
+      var host = 'localhost';
+      // var host = '192.168.200.15';
+      var port = 3000;
+      // var host = 'drinkcircle.teaservice.io';
+      // var port = 80;
+      /*if (config && config.host && config.host != host) {
+        host = config.host;
+      }
+      if (config && config.port && config.port != port) {
+        port = config.port;
+      }*/
+      var baseUrl = protocol + '://' + host + ':' + port;
+
+
+      // Load all the categories
+      var url = baseUrl + '/philChristmas/getCategories';
+
+      var params = {
+        op: 'everything',
+        storeId: STORE_ID
+      };
+      console.log('url is ' + url)
+      console.log('params is ', params)
+
+      // Call the API to get the product details
+      // ZZZZ This should use JSONP, as some browsers do not support CORS.
+      // ZZZZ Unfortunately JSONP does not support headers, so we need
+      // ZZZZ to pass details either in the url or the data. i.e. the
+      // ZZZZ server requires changes.
+      var req = {
+        method: 'POST',
+        url: url,
+        headers: {
+          "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+          "version": "2.0.0"
+        },
+        data: params
+      };
+
+      // Prepare the promise, so the caller can use .then(fn) to handle the result.
+      var promise = $http(req).then(function(response) {
+        console.log('success:', response)
+        $scope.categories = response.data;
+        $scope.category = $scope.categories[0];
+        //$scope.categoryIndex
+        $timeout(function() {
+          $scope.$apply();
+        }, 2000);
+        //return response.data;
+
+      }, function(response) {
+        alert('An error occurred calling the TEA API.\nSee the Javascript console for details.')
+        console.log('failure:', response)
+        console.log('failure:', response.data.message);
+      });
+      /*promise.then(function(reply) {
+        alert('got reply')
+      });*/
+
+    },
+    show: function($scope) {
+      alert('load categories')
+    }
+  });

@@ -1,0 +1,304 @@
+// "Supplier List" pane
+.tab-pane#tab-supplier-list(role="tabpanel")
+  .card(ng-hide=" !supplierShowList()")
+    .row
+      .col-md-12
+        h1 Suppliers
+        .form-group.hide
+          label(for='supplier-filter') Filter
+          input#supplier-filter.form-control(ng-model="supplierFilter" ng-change="supplierFilterChanged()" type='text', placeholder='Type part of the supplier name')
+        //- form-group
+        br
+        p(ng-repeat="supplier in suppliers")
+          a.mouse-pointer(ng-click="supplierSelect(supplier.supplierId)")
+            | {{supplier.supplierName}}
+          br
+      //- col-md-6
+
+    //hr
+    //- actions-wrap
+  //- card
+  //- tab-pane
+
+  // "Supplier Details" pane
+  //.tab-pane#tab-supplier-details(role="tabpanel")
+  .card(ng-hide="supplierShowList()")
+    .row
+      .col-md-12
+        h1 {{supplier.supplierName}} ({{supplier.supplierId}})
+        br
+        .form-group
+          //label(for='supplier-id') Supplier Id
+          //input#supplier-id.form-control(ng-model="supplier.supplierId" placeholder='Supplier id')
+          //br
+
+          label(for='supplier-supplierName') Supplier name
+          input#supplier-supplierName.form-control(ng-model="supplier.supplierName" placeholder='Supplier name')
+          br
+
+          label(for='supplier-companyName') Company name
+          input#supplier-companyName.form-control(ng-model="supplier.companyName" placeholder='Company name')
+          br
+
+          //label(for='supplier-storeId') Store id
+          //input#supplier-storeId.form-control(ng-model="supplier.storeId" placeholder='Store id')
+          //br
+
+          label(for='supplier-commissionRate') Commission rate
+          input#supplier-commissionRate.form-control(ng-model="supplier.commissionRate" placeholder='Commission rate')
+          br
+
+          label(for='supplier-logo') Logo
+          input#supplier-logo.form-control(ng-model="supplier.logo" placeholder='Logo')
+          br
+
+          label(for='supplier-banner') Banner
+          input#supplier-banner.form-control(ng-model="supplier.banner" placeholder='Banner')
+          br
+
+          label(for='supplier-contactEmail') Contact email
+          input#supplier-contactEmail.form-control(ng-model="supplier.contactEmail" placeholder='Contact email')
+          br
+
+          label(for='supplier-abn') ABN
+          input#supplier-abn.form-control(ng-model="supplier.abn" placeholder='ABN')
+          br
+
+          label(for='supplier-phone') Phone
+          input#supplier-phone.form-control(ng-model="supplier.phone" placeholder='Phone')
+          br
+
+          //-   is_active: 1,
+          //-   deleted: 0,
+          //-   type: '1,2,4',
+          //-
+          //-   created_at: null,
+          //-   created_by: null,
+          //-   modified_at: null,
+          //-   modified_by: null }
+
+
+
+
+        //- form-group
+      //- col-md-6
+
+    hr
+    .actions-wrap
+      a.btn(ng-click="supplierBackButton()") Back
+      a.btn.btn-success(ng-click="supplierSaveButton()") Save It
+    //- actions-wrap
+  //- card
+//- tab-pane
+
+
+
+script.
+
+
+  var STORE_ID = 6;
+
+  var supplierShowList = true;
+
+  if (typeof(menuItems) == 'undefined') {
+    menuItems = [ ];
+  }
+
+
+  (function(){
+
+    /*
+     *  Load the list of suppliers that match a filter.
+     */
+    function loadSuppliers($scope, $http, $timeout, filter) {
+      console.log('loadSuppliers(' + filter + ')');
+
+
+      /*
+       *  Return true or false, depending on whether we want to
+       *  show the supplier list, of a specific supplier details.
+       */
+      $scope.supplierShowList = function() {
+        return supplierShowList;
+      };
+
+
+      /*
+       *  Select a specific supplier to show it's details.
+       */
+      $scope.supplierSelect = function(supplierId) {
+
+        // find this supplier and make it the current supplier
+        for (var i = 0; i < $scope.suppliers.length; i++) {
+          var s = $scope.suppliers[i];
+          if (s.supplierId == supplierId) {
+            $scope.supplier = s;
+            break;
+          }
+        }
+
+        // Show the supplier details pane
+        supplierShowList = false;
+      };
+
+
+
+      /*
+       *  Load the list of suppliers.
+       */
+
+      // Check the config
+      var protocol = 'http';
+      var host = 'localhost';
+      var port = 3000;
+      var baseUrl = protocol + '://' + host + ':' + port;
+
+
+      // Load all the categories
+      var url = baseUrl + '/v3/getSupplier';
+      console.log('url is ' + url)
+
+      var params = {
+        storeId: STORE_ID
+      };
+
+      // Call the API to get the supplier details
+      // ZZZZ This should use JSONP, as some browsers do not support CORS.
+      // ZZZZ Unfortunately JSONP does not support headers, so we need
+      // ZZZZ to pass details either in the url or the data. i.e. the
+      // ZZZZ server requires changes.
+      var req = {
+        method: 'POST',
+        url: url,
+        headers: {
+          "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+          "version": "2.0.0"
+        },
+        data: params
+      };
+
+      $http(req).then(function(response) {
+        console.log('success:', response)
+        $scope.suppliers = response.data;
+        $scope.supplier = $scope.suppliers[0];
+        //$scope.categoryIndex
+        $timeout(function() {
+          $scope.$apply();
+        }, 2000);
+        //return response.data;
+
+      }, function(response) {
+        alert('An error occurred calling the TEA API.\nSee the Javascript console for details.')
+        console.log('failure:', response)
+        console.log('failure:', response.data.message);
+      });
+
+    }
+
+
+
+    /*
+     *  Now register this menu item to use the pane described above.
+     */
+    PluginMenuItems.register({
+      label: 'Suppliers',
+      id: '#tab-supplier-list',
+      init: function($scope, $http, $timeout) {
+
+        // Temporary, until we start using the filter below.
+        loadSuppliers($scope, $http, $timeout, '');
+
+
+        // This will be used when we have enough suppliers to need to filter
+        $scope.supplierFilterChanged = function() {
+
+          if ($scope.supplierFilter.length < 3) {
+            $scope.suppliers = [ ];
+            return;
+          }
+          loadSuppliers($scope, $http, $timeout, $scope.supplierFilter);
+        };
+
+
+
+        /*
+         *  Go back to showing the supplier list.
+         */
+        $scope.supplierBackButton = function() {
+          //alert('back()');
+          supplierShowList = true;
+          return false;
+        };
+
+
+
+        /*
+         *  Save the supplier details.
+         */
+        $scope.supplierSaveButton = function() {
+          //alert('Save');
+
+          // Check the config
+          var protocol = 'http';
+          var host = 'localhost';
+          var port = 3000;
+          var baseUrl = protocol + '://' + host + ':' + port;
+
+
+          // Load all the categories
+          var url = baseUrl + '/v3/saveSupplier';
+          console.log('url is ' + url)
+          var params = {
+            supplierId: $scope.supplier.supplierId,
+            supplierName: $scope.supplier.supplierName,
+            companyName: $scope.supplier.companyName,
+            storeId: STORE_ID,
+            commissionRate: $scope.supplier.commissionRate,
+            logo: $scope.supplier.logo,
+            banner: $scope.supplier.banner,
+            contactEmail: $scope.supplier.contactEmail,
+            abn: $scope.supplier.abn,
+            phone: $scope.supplier.phone
+            /*is_active
+            deleted
+            type
+            created_at
+            created_by
+            modified_at
+            modified_by*/
+          };
+          console.log('params=', params);
+          var req = {
+            method: 'POST',
+            url: url,
+            headers: {
+              "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+              "version": "2.0.0"
+            },
+            data: params
+          };
+          $http(req).then(function(response) {
+            console.log('success:', response)
+
+            // Jump back to the supplier list
+            $timeout(function() {
+              supplierShowList = true;
+            }, 100);
+
+
+          }, function(response) {
+            alert('An error occurred calling the TEA API.\nSee the Javascript console for details.')
+            console.log('failure:', response)
+            console.log('failure:', response.data.message);
+          });
+          return false;
+        };
+
+      },
+      reset: function() {
+        //alert('reset suppl')
+        supplierShowList = true;
+      }
+    });
+
+  })();

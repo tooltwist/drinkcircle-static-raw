@@ -146,6 +146,8 @@ var bower = [
     bowerBaseDir + '/angular-material/**/*.*',
     bowerBaseDir + '/angular-aria/**/*.*',
     bowerBaseDir + '/angular-animate/**/*.*',
+    bowerBaseDir + '/ckeditor/**/*.*',
+    bowerBaseDir + '/angular-ckeditor/**/*.*',
     bowerBaseDir + '/animate.css/**/*.*',
     bowerBaseDir + '/bootstrap/dist/**/*.*',
     bowerBaseDir + '/font-awesome/**/*.*',

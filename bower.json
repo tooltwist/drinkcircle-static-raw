@@ -32,7 +32,9 @@
     "angular-material": "^1.1.1",
     "ng-tags-input": "3.1.1",
     "dx-chartjs": "dx-chartjs#^13.2.8",
-    "globalize":"globalize#^0.1.1"
+    "globalize": "globalize#^0.1.1",
+    "ckeditor": "^4.6.2",
+    "angular-ckeditor": "^1.0.3"
   },
   "devDependencies": {
     "angular-mocks": "^1.6.1"

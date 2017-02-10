@@ -1,0 +1,270 @@
+// "Product List" pane
+.tab-pane#tab-product-list(role="tabpanel")
+  .card(ng-hide=" !productShowList()")
+    .row
+      .col-md-12
+        h1 Products
+        .form-group
+          label(for='product-filter') Filter
+          input#product-filter.form-control(ng-model="productFilter" ng-change="productFilterChanged()" type='text', placeholder='Type part of the product name or id')
+        //- form-group
+        br
+        p(ng-repeat="product in products")
+          a.mouse-pointer(ng-click="productSelect(product.productId)")
+            | {{product.name}}
+          br
+      //- col-md-12
+    //- row
+  //- card
+
+  .card(ng-hide="productShowList()")
+    .row
+      .col-md-12
+        h1 {{product.name}}
+        .form-group
+          label(for='product-id') Id
+          input#product-id.form-control(ng-model="product.productId" type='text', placeholder='Product Id', readonly='readonly')
+          br
+
+          label(for='product-name') Name
+          input#product-name.form-control(ng-model="product.name" type='text', placeholder='Name')
+          br
+
+          label(for='product-categories') Categories
+          input#product-categories.form-control(ng-model="product.categories" type='text', placeholder='categories')
+          br
+
+          label(for='product-popularity') Popularity
+          input#product-popularity.form-control(ng-model="product.popularity" type='text', placeholder='')
+          br
+
+          label(for='product-teaIdAtSource') TEA Id at source
+          input#product-teaIdAtSource.form-control(ng-model="product.teaIdAtSource" type='text', placeholder='teaIdAtSource')
+          br
+
+        h2 Descriptions
+        .form-group
+          label(for='product-shortDescription') Short Description
+          input#product-shortDescription.form-control(ng-model="product.shortDescription" type='text', placeholder='')
+          br
+
+          label(for='product-longDescription') Long Description
+          //input#product-longDescription.form-control(ng-model="product.longDescription" type='text', placeholder='')
+          // See https://github.com/lemonde/angular-ckeditor
+          div(ckeditor="ckeditorOptions", ng-model="product.longDescription", ready="onReady()")
+
+          br
+
+          label(for='product-notes') Notes
+          //input#product-notes.form-control(ng-model="product.notes" type='text', placeholder='Enter notes here')
+          // See https://github.com/lemonde/angular-ckeditor
+          div(ckeditor="ckeditorOptions", ng-model="product.notes", ready="onReady()")
+          br
+
+        h2 Metadata (for SEO)
+        .form-group
+          label(for='product-metaTitle') Title
+          input#product-metaTitle.form-control(ng-model="product.metaTitle" type='text', placeholder='metaTitle')
+          br
+
+          label(for='product-metaDescription') Description
+          input#product-metaDescription.form-control(ng-model="product.metaDescription" type='text', placeholder='')
+          br
+
+          label(for='product-metaKeywords') Keywords
+          input#product-metaKeywords.form-control(ng-model="product.metaKeywords" type='text', placeholder='')
+          br
+
+          //- isDeleted
+          //- isDisplayed
+
+
+        //- form-group
+      //- col-md-6
+
+    hr
+    .actions-wrap
+      a.btn(ng-click="productBackButton()") Back
+      a.btn.btn-success(ng-click="productSaveButton()") Save It
+    //- actions-wrap
+  //- card
+//- tab-pane
+
+
+
+script.
+  var STORE_ID = 6;
+
+  var productShowList = true;
+
+  if (typeof(menuItems) == 'undefined') {
+    menuItems = [ ];
+  }
+
+
+  (function(){
+
+    /*
+     *  Load the list of products that match a filter.
+     */
+    function loadProducts($scope, $http, $timeout, filter) {
+      console.log('loadProducts(' + filter + ')');
+
+      if (filter.length < 3) {
+        $scope.products = [ ];
+        return;
+      }
+
+      $scope.products = [
+        {
+          name: 'Hello'
+        }
+      ];
+
+
+
+      // Check the config
+      var protocol = 'http';
+      var host = 'localhost';
+      // var host = '192.168.200.15';
+      var port = 3000;
+      // var host = 'drinkcircle.teaservice.io';
+      // var port = 80;
+      /*if (config && config.host && config.host != host) {
+        host = config.host;
+      }
+      if (config && config.port && config.port != port) {
+        port = config.port;
+      }*/
+      var baseUrl = protocol + '://' + host + ':' + port;
+
+
+      // Load all the categories
+      var url = baseUrl + '/philChristmas/product';
+      console.log('url is ' + url)
+
+      var params = {
+        //productVariantId: 6180,
+        filter: filter
+      };
+
+      // Call the API to get the product details
+      // ZZZZ This should use JSONP, as some browsers do not support CORS.
+      // ZZZZ Unfortunately JSONP does not support headers, so we need
+      // ZZZZ to pass details either in the url or the data. i.e. the
+      // ZZZZ server requires changes.
+      var req = {
+        method: 'POST',
+        url: url,
+        headers: {
+          "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+          "version": "2.0.0"
+        },
+        data: params
+      };
+
+      // Prepare the promise, so the caller can use .then(fn) to handle the result.
+      var promise = $http(req).then(function(response) {
+        console.log('success:', response)
+        $scope.products = response.data;
+        $scope.product = $scope.products[0];
+        //$scope.categoryIndex
+        $timeout(function() {
+          $scope.$apply();
+        }, 2000);
+        //return response.data;
+
+      }, function(response) {
+        alert('An error occurred calling the TEA API.\nSee the Javascript console for details.')
+        console.log('failure:', response)
+        console.log('failure:', response.data.message);
+      });
+
+    }
+
+    PluginMenuItems.register({
+      label: 'Products',
+      id: '#tab-product-list',
+      init: function($scope, $http, $timeout) {
+
+
+        /*
+         *  Initialize ckeditor, using angular-ckeditor.
+         *  See https://github.com/lemonde/angular-ckeditor
+         *  The Toolbar can be configured using the toolbar configurator utility
+         *  at bower_components/ckeditor/samples/toolbarconfigurator/index.html
+         */
+        $scope.ckeditorOptions = {
+            language: 'en'
+        };
+        $scope.ckeditorOptions.toolbarGroups = [
+      		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+      		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+      		{ name: 'links', groups: [ 'links' ] },
+      		{ name: 'insert', groups: [ 'insert' ] },
+      		{ name: 'forms', groups: [ 'forms' ] },
+      		{ name: 'tools', groups: [ 'tools' ] },
+      		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+      		{ name: 'others', groups: [ 'others' ] },
+      		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+      		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+      		{ name: 'styles', groups: [ 'styles' ] },
+      		{ name: 'colors', groups: [ 'colors' ] },
+      		{ name: 'about', groups: [ 'about' ] }
+      	];
+      	$scope.ckeditorOptions.removeButtons = 'Underline,Subscript,Superscript,Strike,Maximize,Image,Table,HorizontalRule,SpecialChar,Link,Unlink,Anchor,Scayt,PasteFromWord,PasteText,Source,Styles,Format,About,Blockquote';
+
+        /*
+         *  When the user enters a search string, search for the product.
+         */
+        $scope.productFilterChanged = function() {
+          loadProducts($scope, $http, $timeout, $scope.productFilter);
+        }
+
+
+
+
+        /*
+         *  Go back to showing the supplier list.
+         */
+        $scope.productBackButton = function() {
+          //alert('back()');
+          productShowList = true;
+          return false;
+        };
+
+
+
+
+        /*
+         *  Return true or false, depending on whether we want to
+         *  show the supplier list, of a specific supplier details.
+         */
+        $scope.productShowList = function() {
+          return productShowList;
+        };
+
+
+        /*
+         *  Select a specific product to show it's details.
+         */
+        $scope.productSelect = function(productId) {
+
+          // find this product and make it the current supplier
+          for (var i = 0; i < $scope.products.length; i++) {
+            var p = $scope.products[i];
+            if (p.productId == productId) {
+              $scope.product = p;
+              break;
+            }
+          }
+
+          // Show the supplier details pane
+          productShowList = false;
+        }
+
+
+      }
+    });
+
+  })();
