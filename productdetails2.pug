@@ -52,7 +52,8 @@ block content
               .rate-counter
                 .ring
                   .count 94
-                    span points
+                  //- count
+                  .arc-text drinkers points
                 //- ring
               //- rate-counter
             //- stats
@@ -682,6 +683,8 @@ block scripts
   // External Script goes here...
   script.
     $(document).ready(function(){
+      
+      $('.rate-counter .ring .arc-text').circleType({radius: 48, dir:-1});
 
       //- $(window).on("load resize", function() {
       //-   if ( $(this).width() > 991 ) {

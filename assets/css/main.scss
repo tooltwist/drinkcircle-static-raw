@@ -16,7 +16,8 @@ $red		: #E93D3D;
 body {
 	font-family: 'Open Sans', sans-serif;
   // color: #5a5a5a;
-	color: #868686;
+	// color: #868686;
+	color: #5a5a5a;
 	// background: #dadada;
 	// background: whitesmoke;
 	font-size: 16px;
@@ -2259,11 +2260,20 @@ section.productdetails {
 						min-width: 112px;
 						max-width: 112px;
 					}
+					.arc-text {
+						position: absolute !important;
+						bottom: 0;
+						left: 0;
+						right: 0;
+						font-size: 12px;
+						font-weight: bold;
+					}
 					.count {
 						position: absolute;
 						width: 100%;
 						text-align: center;
-						padding-top: 26px;
+						// padding-top: 26px;
+						padding-top: 33px;
 						top: 0;
 						font-size: 50px;
 						font-weight: 700;
