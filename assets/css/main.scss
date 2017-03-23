@@ -2878,19 +2878,19 @@ section.productdetails {
 }
 
 .shopping-cart-view-more {
-	//display: inline-block;
-	margin-top: 7px;
-	color: #41b54b;
-	font-size: 14px;
-	cursor: pointer;
+	// float: right;
+	font-size: 12px;
+	margin-left: -0px !important;
+	// cursor: pointer;
 }
-// .view-more:hover {
-// 	color: blue;
-// }
 
 .shopping-cart-quantity {
 	width: 33px;
 }
+.shipto_address_card .alert {
+	min-height: 175px;
+}
+
 
 // MY PROFILE ======================================================================
 

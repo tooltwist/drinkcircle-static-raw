@@ -1,0 +1,590 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  section.userprofile.request-list.simple(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
+    .container
+      //- .row
+      //-   .col-md-8
+      //-     h3.title
+      //-       | My Shopping Cart
+      //-       span(ng-if="salesOrders.length > 1") s
+      //-   //- col-md-12
+      //- //- row
+
+
+      // "Your Order" section of the page
+      .row
+        .col-md-1
+
+        .col-md-9
+          h3.title
+            | Review Your Order
+            span(ng-if="salesOrders.length > 1") s
+
+          .card
+            .col-md-4
+              img.shopping-cart-logo(ng-src="{{currentSalesOrder.supplier.logo}}")
+              //img(src="{{currentSalesOrder.supplier.banner}}")
+
+            .col-md-8
+              h1 {{currentSalesOrder.supplier.supplier_name}}
+              | Order Id. 9165-{{currentSalesOrder.id}}
+            table.table
+              tr
+                th Description
+                th Qty
+                th Price
+                th Total
+              tr(ng-repeat="line in currentSalesOrder.lines")
+                td {{line.description}}
+                td {{line.quantity}}
+                td {{line.fmt_unit_price}}
+                td {{line.fmt_amount_excl_tax}}
+
+            .row
+              .col-md-6
+
+              // Totals section
+              .col-md-6
+                br
+                br
+                .table-responsive
+                  table.table
+                    tbody
+                      tr
+                        td Subtotal
+                        td
+                          .shared-order-calc-field {{currentSalesOrder.fmt_amount_excl_tax}}
+                      //- tr
+                      tr
+                        td Shipping
+                        td
+                          .shared-order-calc-field {{calc_shipping}}
+                      //- tr
+                      tr
+                        td GST
+                        td
+                          .shared-order-calc-field {{currentSalesOrder.fmt_tax_amount}}
+                      //- tr
+                      tr
+                        td(colspan='2')
+                          br
+                        //- td
+                      //- tr
+                      tr
+                        td
+                          strong Grand Total (Incl. GST)
+                        //- td
+                        td
+                          strong
+                            .shared-order-calc-field {{currentSalesOrder.fmt_amount_incl_tax}}
+                        //- td
+                      //- tr
+
+
+                      tr
+                        td
+                          strong Savings on RRP
+                        //- td
+                        td
+                          strong
+                            .shared-order-calc-field {{calc_rrpSaving}}
+                        //- td
+                      //- tr
+                      tr.hide
+                        td
+                          strong Saving on Shipping
+                        //- td
+                        td
+                          strong
+                            .shared-order-calc-field {{calc_shippingSaving}}
+                        //- td
+                      //- tr
+                    //- tbody
+                  //- table
+                //- table-responsive
+              //- col-md-6
+
+            .row
+              .col-md-12
+                hr
+
+
+
+                // Ship-To address
+                .alert(ng-hide="haveShipToAddress()" role="alert").alert-danger
+                  // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
+                  span {{ship_to_errormsg}}
+                //- alert
+
+                p
+                  label Ship to
+                .row
+
+                  .col-md-4.shipto_address_card(ng-repeat="address in addresses" ng-click="setShiptoAddress(address)")
+                    .alert(ng-class="[ {'alert-warning': address!=selectedAddress}, {'alert-success': address==selectedAddress&&address!=newAddress}, {'alert-info': address==selectedAddress && address==newAddress} ]")
+                      //- a.text-success.pull-right(href='#modal_coming_soon', data-toggle='modal')
+                      //-   i.fa.fa-times-circle
+                      //- a
+                      .clearfix
+                        div(ng-hide="address!=newAddress || selectedAddress==newAddress" style="text-align:center;padding:45px;")
+                          | Enter a New Address.
+                        p(ng-hide="!(address!=newAddress || selectedAddress==newAddress)")
+                          | {{address.ship_to_name}}
+                          br
+                          | {{address.ship_to_address_1}}
+                          br
+                          span(ng-hide="!address.ship_to_address_2")
+                            | {{address.ship_to_address_2}}
+                            br
+                          span(ng-hide="!address.ship_to_subdivision")
+                            | {{address.ship_to_subdivision}}
+                            br
+                          | {{address.ship_to_city_or_town}}
+                          br
+                          | {{address.ship_to_state}} {{address.ship_to_postcode}}
+                          br
+                          span(ng-hide="!address.ship_to_contact")
+                            br
+                            | contact: {{address.ship_to_contact}}
+                        //- p
+                        //a(ng-hide="address==newAddress || selectedAddress!=newAddress") copy
+                    //- alert
+                    div(ng-hide="address!=newAddress || selectedAddress!=newAddress" style="text-align:center;")
+                      i.fa.fa-chevron-up
+                      br
+                      br
+
+                  //- col-md-4
+
+
+
+                //- .row
+
+                //- a.btn.btn-success.btn-sm(href='#modal_coming_soon', data-toggle='modal') Add a new address
+
+            //.card.card-inverse.card-info(ng-hide="selectedAddress != newAddress")
+            .alert.alert-info(ng-hide="selectedAddress != newAddress")
+              form(name="aform")
+                .row
+                  .col-md-6
+                    .form-group(ng-class="{'has-error': !aform.name.$valid}")
+                      label Name
+                      input#new_ship_to_name.form-control(name="name" type="text" placeholder="Enter the delivery name" ng-model="newAddress.ship_to_name" required)
+                  .col-md-6
+                    .form-group(ng-class="{'has-error': !aform.contact.$valid}")
+                      label Contact
+                      input#new_ship_to_contact.form-control(name="contact" type="text" placeholder="Phone number or email" ng-model="newAddress.ship_to_contact" required)
+
+                .row
+                  .col-md-12
+                    .form-group(ng-class="{'has-error': !aform.address1.$valid}")
+                      //- label(for="exampleInputEmail1") Email address
+                      //- input.form-control(type="email" placeholder="Email")
+                      label Address
+                      input#new_ship_to_address_1.form-control(name="address1" type="text" placeholder="Address line 1" ng-model="newAddress.ship_to_address_1" required)
+                    .form-group
+                      label
+                      input#new_ship_to_address_2.form-control(name="address2" type="text" placeholder="Address line 2" ng-model="newAddress.ship_to_address_2")
+
+                .row
+                  .col-md-6(ng-hide="newAddress.ship_to_country_code == 'AU'")
+                    .form-group
+                      label Subdivision
+                      input#new_ship_to_subdivision.form-control(name="subdivision" type="text" placeholder="Subdivision" ng-model="newAddress.ship_to_subdivision")
+                  .col-md-6
+                    .form-group(ng-class="{'has-error': !aform.cityOrTown.$valid}")
+                      label Suburb
+                      input#new_ship_to_suburb.form-control(name="cityOrTown" type="text" placeholder="Suburb" ng-model="newAddress.ship_to_city_or_town" required)
+
+                .row
+                  .col-md-4
+                    .form-group(ng-class="{'has-error': !aform.countryCode.$valid}")
+                      label Country
+                      select#new_ship_to_country_code.form-control(name="countryCode" ng-model="newAddress.ship_to_country_code" required)
+                        option(value="AU") Australia
+                        option(value="NZ") New Zealand
+
+                  .col-md-4
+                    .form-group(ng-class="{'has-error': !aform.state.$valid}")
+                      label State
+                      select#new_ship_to_state.form-control(name="state" ng-model="newAddress.ship_to_state" required)
+                        option(value="") --Choose State--
+                        option(value="ACT") Australian Capital Territory
+                        option(value="NSW") New South Wales
+                        option(value="NT") Northern Territory
+                        option(value="QLD") Queensland
+                        option(value="SA") South Australia
+                        option(value="TAS") Tasmania
+                        option(value="VIC") Victoria
+                        option(value="WA") Western Australia
+
+                  .col-md-4
+                    .form-group(ng-class="{'has-error': !aform.postcode.$valid}")
+                      label Postcode
+                      input#new_ship_to_postcode.form-control(name="postcode" type="text" placeholder="Postcode" ng-model="newAddress.ship_to_postcode" required)
+                      //- label Country code
+                      //- input.form-control(type="text" placeholder="postcode")
+
+
+            // Delivery notes
+            .row
+              //- .col-md-4
+              //-   .form-group
+              //-     label Authority to Leave
+              //-     select.form-control
+              //-       option Yes
+              //-     //- select
+              //-   //- form-group
+              //- //- col-md-4
+              .col-md-12
+                hr
+                .form-group
+                  label Comment for delivery
+                  textarea.form-control(rows='3', ng-model="currentSalesOrder.notes")
+                //- form-group
+              //- col-md-12
+            //- row
+
+
+
+            // Date of Birth
+            .row
+              .col-md-12
+                hr
+                .alert(ng-hide="haveValidDateOfBirth()" role="alert").alert-danger
+                  // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
+                  span {{dateOfBirthMessage}}
+                //- alert
+                p
+                  label Date of Birth *
+                .row
+                  .col-md-12
+                    .form-group
+                      //input.form-control(type='date' ng-model="so_dateOfBirth")
+                      label.checkbox-inline
+                        input(type='checkbox' ng-model="so_over18")
+                        | &nbsp;I am more than 18 years old
+                    //- form-group
+                  //- col-md-4
+                //- .row
+                p Drinkcircle supports prohibiting alcohol and tobacco sales to minors.
+                //hr
+
+            .row
+              .col-md-12
+              .text-right
+                a.btn(href="/shopping-cart.html#order={{salesOrderId}}") Back to shopping cart
+                | &nbsp;
+                button.btn.btn-success.btn-lg(id="so_next_button" ng-click="nextButtonClicked()" ng-disabled="!haveRequiredInformation()" href='#') Proceed to Checkout
+                | &nbsp;&nbsp;&nbsp;&nbsp;
+                //a(id="so_link_to_next_page" nZg-hide="true" href='circlebuy-invites.html') next {{haveRequiredInformation()}}
+                br
+
+      //- card
+      //- text-right
+    //- container
+  //- section
+
+
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+
+    });
+
+
+    /************************************************************
+     *
+     *    Angular code.
+     */
+    var app = angular.module('myApp', ['ngSanitize']);
+
+    teaservice.init({
+      host: TEASERVICE_HOST,
+      port: TEASERVICE_PORT,
+      accessToken: TEASERVICE_ACCESS_TOKEN
+    });
+
+    // Add the controller for this page
+    app.controller('myCtrl', function($scope, teaService, $timeout) {
+
+      // Pre-create variables, so we don't get undefined
+      // errors when angular tries to draw the page before
+      // our TEA functions have returned with data.
+      $scope.sharedOrder = { };
+      /*$scope.creating_a_new_circlebuy = true;
+      $scope.so_new_orderSize = 0;
+      $scope.so_existing_orderSize = 0;
+      $scope.so_alreadyOrdered = 0;*/
+
+        // This code gets the "product" parameter from the
+        // URL so we can use it as productVariantId.
+        $scope.salesOrderId = NaN;
+        window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+          key = key.toLowerCase();
+          if (key === 'order') {
+            $scope.salesOrderId = parseInt(value);
+          }
+        });
+        if (isNaN($scope.salesOrderId)) {
+          window.location = '/shopping-cart.html';
+        }
+
+
+        $scope.newAddress = {
+
+        };
+
+        var addresses = [
+          {
+            ship_to_shared_order_address: false,
+            ship_to_country_code: 'AU',
+            ship_to_name: 'Mary Jones',
+            ship_to_contact: '423 5678',
+            ship_to_address_1: '19 Beaudesert Rd.',
+            ship_to_address_2: '',
+            ship_to_subdivision: '',
+            ship_to_city_or_town: 'Brisbane',
+            ship_to_state: 'QLD',
+            ship_to_postcode: '4757'
+          },
+          {
+            ship_to_shared_order_address: false,
+            ship_to_country_code: 'AU',
+            ship_to_name: 'John Jones',
+            ship_to_contact: '423 5678',
+            ship_to_address_1: '32 Darwin St. North',
+            ship_to_address_2: '',
+            ship_to_subdivision: '',
+            ship_to_city_or_town: 'Brisbane',
+            ship_to_state: 'QLD',
+            ship_to_postcode: '4747'
+
+          }
+        ];
+        addresses.push($scope.newAddress);
+        $scope.addresses = addresses;
+
+        if (addresses.length < 2) {
+          $scope.selectedAddress = $scope.newAddress;
+        }
+
+        /*
+         *  Select an address. If the address selected is the
+         *  new address placeholder, put the focus on the first field.
+         */
+        $scope.setShiptoAddress = function(address) {
+          $scope.selectedAddress = address;
+
+          if (address == $scope.newAddress) {
+            setTimeout(function(){
+              $('#new_ship_to_name').focus();
+            }, 100);
+          }
+          return false;
+        }
+
+        $scope.haveShipToAddress = function() {
+          if (!$scope.selectedAddress) {
+            if ($scope.addresses.length > 1) {
+              $scope.ship_to_errormsg = 'Please select a Shipping Address.';
+            } else {
+              $scope.ship_to_errormsg = 'Please provide a Shipping Address.';
+            }
+            $scope.haveValidShippingAddress = false;
+            return false;
+          }
+
+          if ($scope.selectedAddress==$scope.newAddress && !$scope.aform.$valid) {
+            $scope.ship_to_errormsg = 'Incomplete or invalid Shipping Address.';
+            $scope.haveValidShippingAddress = false;
+            return false;
+          }
+
+          $scope.haveValidShippingAddress = true;
+          return true;
+        }
+
+
+
+
+        /*
+         *  Date of Birth handling.
+         */
+        $scope.dateOfBirthMessage = 'You must be 18 or older to buy alcohol in Australia';
+        $scope.haveValidDateOfBirth = function() {
+
+          if ($scope.so_over18) {
+            $scope.haveValidDob = true;
+            return true;
+          }
+          $scope.haveValidDob = false;
+          return false;
+        }
+
+
+
+        /*
+         *  Next button handling.
+         */
+        $scope.haveRequiredInformation = function() {
+          $scope.haveAllTheRequiredInformation = (
+            $scope.loggedIn
+            /*&& $scope.haveValidOrderSize
+            && $scope.haveValidYourQty*/
+            && $scope.haveValidDob
+            //&& $scope.haveValidBillingAddress
+            && $scope.haveValidShippingAddress
+          );
+          return $scope.haveAllTheRequiredInformation;
+        }
+
+        // Actual handling of the next button
+        $scope.nextButtonClicked = function() {
+
+          // In case the Next button somehow becomes enabled.
+          if ( !$scope.haveAllTheRequiredInformation) {
+            return false;
+          }
+
+          alert('proceed!')
+        }
+
+        /*
+         *  If a circleBuy has been specified, we'll look up
+         *  the shared_order first, and use it to find the
+         *  productVariantId.
+         *
+         *  Otherwise, we'll work towards creating a new
+         *  shared_order based upon the specified product.
+         */
+
+         /*if ( !isNaN(sharedOrderId)) {
+
+           $scope.sharedOrderId = sharedOrderId;
+
+           /*
+            *   VIEW AN EXISTING CIRCLEBUY.
+            *
+            *   Look up the sharedOrder.
+            * /
+            $scope.creating_a_new_circlebuy = false;
+            console.log('looking up shared_order ', sharedOrderId)
+           teaService.getSharedOrdersAndSetAngularVariables({
+             sharedOrderId: sharedOrderId
+           }, $scope, teaService, function(sharedOrders){
+             console.log('sharedOrders=', sharedOrders)
+             productVariantId = sharedOrders[0].productVariant.productVariantId;
+             //alert('prodvar is ' + productVariantId)
+           });
+        } else {
+
+        }*/
+
+
+
+
+        /*
+         *  Convenience function used with ng-repeat to iterate X times
+         */
+        $scope.range = function(x) {
+          if (x) {
+            var num = parseInt(x)
+            if (num < 0) num = 0;
+            return new Array(num);
+          }
+          return [ ]; // num is undefined
+        }
+
+
+        /*
+         *  Set up the login part at the top of the page.
+         */
+        authservice.init({
+          // Environment specific values are defined in environment.js
+          host: AUTHSERVICE_HOST,
+          port: AUTHSERVICE_PORT,
+          tenant: AUTHSERVICE_TENANT,
+          pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
+          onUserChange: function(user, ttuat, fromCookie) {
+            // If the current user came from the cookie, reload it
+            if (fromCookie) {
+              console.log('Reloading user details (cookie details are just a summary)');
+              return authservice.reloadUser();
+            }
+            if (user) {
+
+              // Use $timeout, which does the same as $apply, but gives
+              // this controller definition function time to complete.
+              // Otherwise we get an 'inprog' error from Angular.
+              $timeout(function(){
+                $scope.loggedIn = true;
+
+                teaService.getSalesOrder({
+                  store_id: STORE_ID,
+                  user_id: authservice.getCurrentUser().id,
+                  sales_order_id: $scope.salesOrderId,
+                  status: 'QUOT' // Only shopping carts
+                }).then(function(orders){
+
+                  // Have the orders. Format money values
+                  console.log('orders:', orders);
+
+                  // Check the order was found
+                  if (orders.length != 1) {
+                    window.location = '/shopping-cart.html';
+                  }
+
+                  // Prepare the quotes for display
+                  var nonSharedOrders = [ ];
+                  orders.forEach(function(order){
+                    // Ignore shared orders
+                    if ( !order.shared_order_id) {
+                      order.fmt_amount_excl_tax = accounting.formatMoney(order.amount_excl_tax);
+                      order.fmt_amount_incl_tax = accounting.formatMoney(order.amount_incl_tax);
+                      order.fmt_tax_amount = accounting.formatMoney(order.tax_amount);
+                      order.lines.forEach(function(line){
+                        line.fmt_amount_excl_tax = accounting.formatMoney(line.amount_excl_tax);
+                        line.fmt_amount_incl_tax = accounting.formatMoney(line.amount_incl_tax);
+                        line.fmt_tax_amount = accounting.formatMoney(line.tax_amount);
+                        line.fmt_unit_price = accounting.formatMoney(line.unit_price);
+                        if (line.supplier) {
+                          order.supplier = line.supplier;
+                        }
+                      });
+                      nonSharedOrders.push(order);
+                    }
+                  });
+                  $scope.salesOrders = nonSharedOrders;
+                  $scope.currentSalesOrder = (nonSharedOrders.length > 0) ? nonSharedOrders[0] : null;
+                });
+              }, 100);
+
+            } else {
+              $timeout(function(){
+                $scope.loggedIn = false;
+              }, 100);
+            }
+          }
+        });
+        console.log('Current user:', authservice.getCurrentUser());
+
+    });
+
+  //- script.

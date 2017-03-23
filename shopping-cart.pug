@@ -16,19 +16,12 @@ block content
   section.userprofile.request-list.simple(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
     .container
       .row
-        .col-md-8
-          h3.title
-            | My Shopping Cart
-            span(ng-if="salesOrders.length > 1") s
-        //- col-md-12
-      //- row
-
-
-      // "Your Order" section of the page
-      .row
 
         // Menu of shopping carts - one per supplier
         .col-md-3
+          h3.title
+            | My Shopping Cart
+            span(ng-if="salesOrders.length > 1") s
           .card.shopping-cart-menu
             ul(role="tablist")
               li.active(ng-repeat="order in salesOrders" ng-click="setCurrentSalesOrder(order)" ng-class="{ 'not-current-order': order != currentSalesOrder }")
@@ -48,8 +41,11 @@ block content
             .col-md-8
               h1 {{currentSalesOrder.supplier.supplier_name}}
               | Order Id. 9165-{{currentSalesOrder.id}}
-              .shopping-cart-view-more(ng-click="jumpToSupplierPage(currentSalesOrder.supplier.id)")
-                | More from this drinkmaker
+              br
+              br
+              br
+              a.button.inline.v8.see-all-drinks.thin-line.shopping-cart-view-more(href="shop.html?supplier={{currentSalesOrder.supplier.id}}") see all drinks
+
             table.table
               tr
                 th Description
@@ -257,12 +253,9 @@ block scripts
             });
             */
 
-        $scope.jumpToSupplierPage = function(supplierId) {
-          window.location = '/shop.html?supplier=' + supplierId;
-        };
-
         $scope.setCurrentSalesOrder = function(order) {
           $scope.currentSalesOrder = order;
+          window.location.hash = '#supplier=' + order.supplier.id;
         }
 
         $scope.updateQty = function(salesOrderLine) {
@@ -319,6 +312,18 @@ block scripts
         }
 
         /*
+         *  Pressing the "Secure Checkout" button will take us to the
+         *  payment-summary page for the current order.
+         */
+        $scope.nextButtonClicked = function() {
+          if ($scope.currentSalesOrder) {
+            var url = '/payment-summary.html';
+            url += '?order=' + $scope.currentSalesOrder.id;
+            window.location = url;
+          }
+        }
+
+        /*
          *  Set up the login part at the top of the page.
          */
         authservice.init({
@@ -372,12 +377,21 @@ block scripts
                   /*
                    *  Pick a current sales_order.
                    */
-                  // See if the URL specifies a supplierId (e.g. #supplier=123)
+                  // See if the URL specifies a supplier or order (e.g. #supplier=123 or #order=123)
                   var supplierHash = '#supplier=';
+                  var orderHash = '#order=';
                   if (window.location.hash && window.location.hash.startsWith(supplierHash)) {
                     var supplierId = window.location.hash.substring(supplierHash.length);
                     nonSharedOrders.forEach(function(order) {
                       if (''+order.supplier.id == supplierId) {
+                        $scope.currentSalesOrder = order;
+                      }
+                    });
+                  }
+                  else if (window.location.hash && window.location.hash.startsWith(orderHash)) {
+                    var orderId = window.location.hash.substring(orderHash.length);
+                    nonSharedOrders.forEach(function(order) {
+                      if (''+order.id == orderId) {
                         $scope.currentSalesOrder = order;
                       }
                     });
