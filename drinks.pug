@@ -528,22 +528,22 @@ block content
           nav.page
             ul
               li
-                a(href='drinks.html?category=620') Red
+                a(href='drinks.html?category=1') Red
               //- li
               li
-                a(href='drinks.html?category=610') White
+                a(href='drinks.html?category=2') White
               //- li
               li
-                a(href='drinks.html?category=660') Beer
+                a(href='drinks.html?category=3') Beer
               //- li
               li
-                a(href='drinks-spirits.html') Spirits
+                a(href='drinks.html?category=4') Spirits
               //- li
               li
-                a(href='drinks-bubbles.html') Bubbles
+                a(href='drinks.html?category=5') Bubbles
               //- li
               li
-                a(href='drinks-cider.html') Cider
+                a(href='drinks.html?category=6') Cider
               //- li
             //- ul
           //- nav
@@ -579,10 +579,15 @@ block content
               .thumb
                 .ctr
                   .count.product-rating.patch-in-average-product-rating(productVariantId="{{variant.productVariantId}}" style='display:none')
-                    | &nbsp;
-                  span.pointContainer(style='display:none') points
-                  .first-rating(style='display:none')
-                    a(href="/productDetails2.html?product={{variant.productVariantId}}") Be the first to rate
+                    | -
+                  span.pointContainer(productVariantId="{{variant.productVariantId}}" style='display:none') points
+                  .first-rating(productVariantId="{{variant.productVariantId}}" style='display:none')
+                    a(href="/product-ratings.html?product={{variant.productVariantId}}")
+                      | Be the
+                      br
+                      | first
+                      br
+                      | to rate
                   //- count
                 //- ctr
                 a(href='productdetails2.html?product={{variant.productVariantId}}')
@@ -625,7 +630,7 @@ block content
                         li.price {{variant.displayPrice}}
                         //- li
                         li
-                          a.thumb-action(href='/productDetails2.html?product={{variant.productVariantId}}') View
+                          a.thumb-action(href='/productdetails2.html?product={{variant.productVariantId}}') View
                         //- li
                       //- ul
                     //-buy
@@ -2108,7 +2113,7 @@ block scripts
         if(key == 13)  // the enter key code
           {
             $(".dc-filters").find("span a").trigger("click");
-            return false;  
+            return false;
           }
       });
 
@@ -2169,9 +2174,11 @@ block scripts
         // Put all the variants in a single list
         var variants = [ ];
         $(products).each(function(index, product) {
-          console.log('-> GOT product ' + index, product);
+          //console.log('-> GOT product ' + index, product);
           $(product.variants).each(function(i, variant) {
+    if (variant.productVariantId == 193 || variant.productVariantId == 350) {
             console.log('  -> GOT variant ' + index, variant);
+    }
 
             // Decide what image to use
             //variant.d_image = '//www.brokenwood.com.au/assets/images/products/pictures/CricketPitchRed1.jpg';
@@ -2183,14 +2190,41 @@ block scripts
             }
 
             //computation for display price
-            if(variant.pricing.length > 0){
-              var componentsQty = variant.componentsQty;
-              var pricingQuantity = variant.pricing[0].pricingQuantity;
-              var pricingQuantityLowestPrice = pricingQuantity[pricingQuantity.length - 1].price;
-              //var displayPrice = (Math.ceil((pricingQuantityLowestPrice / componentsQty) * 100) / 100).toFixed(2);
-              variant.displayPrice = accounting.formatMoney(pricingQuantityLowestPrice);
+    if (variant.productVariantId == 193 || variant.productVariantId == 350) {
+        console.log('variant.pricing=', variant.pricing)
+    }
 
+            var lowestPrice = variant.lastPrice;
+            if (variant.pricing && variant.pricing.length > 0) {
+              for (var i = 0; i < variant.pricing.length; i++) {
+                var pricing = variant.pricing[i];
+
+                if (pricing.pricingQuantity && pricing.pricingQuantity.length > 0) {
+                  for (var j = 0; j < pricing.pricingQuantity.length; j++) {
+                    var price = pricing.pricingQuantity[j].price;
+                    if (price < lowestPrice) {
+                      lowestPrice = price;
+                    }
+                  }                  
+                }
+              }
+              //var componentsQty = variant.componentsQty;
+
+              /*
+              var pricingQuantity = variant.pricing[0].pricingQuantity;
+              if (pricingQuantity && pricingQuantity.length > 0) {
+                var pricingQuantityLowestPrice = pricingQuantity[pricingQuantity.length - 1].price;
+                variant.displayPrice = accounting.formatMoney(pricingQuantityLowestPrice);
+              } else {
+
+                // No volume pricing
+        console.log('No volume pricing')
+                variant.displayPrice = 'N/A';
+              }
+              //var displayPrice = (Math.ceil((pricingQuantityLowestPrice / componentsQty) * 100) / 100).toFixed(2);
+              */
             }
+            variant.displayPrice = accounting.formatMoney(lowestPrice);
 
             variants.push(variant);
           });

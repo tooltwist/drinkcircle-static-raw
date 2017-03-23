@@ -1,0 +1,213 @@
+// Pane for list
+.tab-pane#tab-supplier2-div(role="tabpanel")
+  .card(ng-hide=" !supplier2_listPaneIsVisible()")
+    .row
+      .col-md-12
+        h1 {{supplier2_viewLabel}} List
+
+        // A "filter" field, so the user can search
+        //- .form-group
+        //-   label(for='supplier2-filter') Filter
+        //-   input#supplier2-filter.form-control(ng-model="supplier2_filter" ng-change="supplier2_filterChanged()" type='text', placeholder='Type part of the supplier name')
+        //- //- form-group
+        br
+
+        // The fields generated from metadata are inserted here.
+        #supplier2_listDiv
+      //- col-md-12
+
+    //hr
+    //- actions-wrap
+  //- card
+  //- tab-pane
+
+  // Pane for single record
+  .card(ng-hide="supplier2_listPaneIsVisible()")
+    .row
+      .col-md-12
+        h1 {{supplier2_headingForRecordPane}}
+
+        // Buttons above
+        .actions-wrap
+          a.btn(ng-click="supplier2_backButton()") Back
+          a.btn.btn-success(ng-click="supplier2_saveButton()") Save
+        //- actions-wrap
+
+        // The fields generated from metadata are inserted here.
+        #supplier2_recordDiv
+
+        // Buttons below
+        hr
+        .actions-wrap
+          a.btn(ng-click="supplier2_backButton()") Back
+          a.btn.btn-success(ng-click="supplier2_saveButton()") Save
+      //- col-md-12
+    //- actions-wrap
+  //- card
+//- tab-pane
+
+
+
+script.
+
+
+  (function(){
+
+    const LABEL = 'Supplier List';
+    const VIEW = 'supplier';
+
+    /*
+     *  Now register this menu item to use the pane described above.
+     */
+    PluginMenuItems.register({
+
+      // Label displayed for the menu item
+      label: LABEL,
+
+      // Selector for the DIV that becomes visible for this menu item
+      id: '#tab-supplier2-div',
+
+      // Add any required logic to the menu option
+      init: function(context) {
+        var $scope = context.$scope;
+
+        /*
+         *  Load the initial records.
+         */
+        var params = { };
+        TooltwistViews.select(context, VIEW, params, supplier2_selectCallback);
+
+
+        /*
+         *  If we have enough characters, do a search.
+         */
+        $scope.supplier2_filterChanged = function() {
+
+          // Check we have enough characters.
+          if ($scope.supplier2_filter.length < 3) {
+            $scope.suppliers = [ ];
+            return;
+          }
+          var params = {
+            filter: $scope.supplier2_filter
+          };
+          TooltwistViews.select(context, VIEW, params, supplier2_selectCallback);
+        };// supplier2_filterChanged
+
+
+        /*
+         *  This function is called once we have the records.
+         */
+        function supplier2_selectCallback(err, data, metadata) {
+          console.log('data=', data);
+          console.log('metadata=', metadata);
+
+          data.sort(function(a, b){
+            var nameA = a.supplier_name.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.supplier_name.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) { return -1; }
+            if (nameA > nameB) { return 1; }
+            return 0;
+          });
+
+          $scope.supplier2_list = data;
+          $scope.supplier2_record = ($scope.supplier2_list.length > 0) ? $scope.supplier2_list[0] : null;
+          $scope.supplier2_viewLabel = metadata.label;
+
+          // Provide style options for displaying the list and record.
+          var displayOptions = {
+            listModel: 'supplier2_list',
+            listTableClasses: 'table-condensed table-hover',
+            listClickFunction: 'supplier2_listClick',
+            recordModel: 'supplier2_record',
+          };
+
+          // Add fields to the DOM for the list
+          var listDiv = $('#supplier2_listDiv');
+          var fields = TooltwistViews.fieldsForMode(metadata, 'list');
+          var html = TooltwistViews.htmlForAngular_list(metadata, fields, displayOptions);
+          listDiv.html(html);
+          // Ask Angular to bind our new DOM elements onto it's models.
+          context.$compile(listDiv)($scope);
+
+          // Add fields to the DOM for the record
+          var recordDiv = $('#supplier2_recordDiv');
+          var fields = TooltwistViews.fieldsForMode(metadata, 'record');
+          var html = TooltwistViews.htmlForAngular_edit(metadata, fields, displayOptions);
+          recordDiv.html(html);
+          // Ask Angular to bind our new DOM elements onto it's models.
+          context.$compile(recordDiv)($scope);
+        }// supplier2_selectCallback
+
+
+        /*
+         *  Handle a click on the list.
+         */
+        $scope.supplier2_listClick = function(record) {
+
+          // Set the current record.
+          // Show the single record pane.
+          // Set the label for the pane.
+          $scope.supplier2_record = record;
+    console.log('Set record:', record)
+          $scope.supplier2_showListPane = false;
+          $scope.supplier2_headingForRecordPane = record.name;
+        }// supplier2_listClick
+
+
+
+        /*
+         *  Go back to showing the supplier list.
+         */
+        $scope.supplier2_backButton = function() {
+          //alert('back()');
+          $scope.supplier2_showListPane = true;
+          return false;
+        };// supplier2_backButton
+
+
+
+        /*
+         *  Save the supplier details.
+         */
+        $scope.supplier2_saveButton = function() {
+          //alert('supplier2_saveButton()');
+          TooltwistViews.save(context, VIEW, $scope.supplier2_record, function(err, reply) {
+            console.log('save returned', err, reply);
+            // Jump back to the supplier list
+            context.$timeout(function() {
+              context.$scope.supplier2_showListPane = true;
+            }, 10);
+          });
+        }// supplier2_saveButton
+
+
+        /*
+         *  Return true when we want to show the list (rather than the record).
+         */
+        $scope.supplier2_listPaneIsVisible = function() {
+          return $scope.supplier2_showListPane;
+        }// supplier2_listPaneIsVisible
+
+      },// init
+
+      /*
+       *  When we switch menu option, we want to come back to the list.
+       */
+      reset: function(context) {
+        var $scope = context.$scope;
+        var $timeout = context.$timeout;
+
+        // This function might or might not have been called by Angular. The
+        // timeout function causes Angular to $apply() changes to the model,
+        // and also allows the current function to return, if it was called
+        // by Angular (for example, during page initialization), preventing
+        // and Angular $proc (???) error.
+        context.$timeout(function() {
+          $scope.supplier2_showListPane = true;
+        }, 10);
+      }// reset
+
+    });// PluginMenuItems.register()
+
+  })();

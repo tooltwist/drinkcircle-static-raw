@@ -1,0 +1,445 @@
+extends ./layout/layout_main.pug
+
+block css
+  style.
+    .logged-in {
+      display: block !important;
+    }
+    .logged-out {
+      display: none;
+    }
+  //- style
+
+
+block content
+
+  section.userprofile.request-list.simple(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
+    .container
+      .row
+        .col-md-8
+          h3.title
+            | My Shopping Cart
+            span(ng-if="salesOrders.length > 1") s
+        //- col-md-12
+      //- row
+
+
+      // "Your Order" section of the page
+      .row
+
+        // Menu of shopping carts - one per supplier
+        .col-md-3
+          .card.shopping-cart-menu
+            ul(role="tablist")
+              li.active(ng-repeat="order in salesOrders" ng-click="setCurrentSalesOrder(order)" ng-class="{ 'not-current-order': order != currentSalesOrder }")
+                div
+                  div.image-container
+                    img(width="80" ng-src="{{order.supplier.logo}}")
+                  div.supplier-name
+                    | {{order.supplier.supplier_name}}
+
+        // The tabs that shows a single shopping cart (i.e. sales_order with status 'QUOT')
+        .col-md-9
+          .card
+            .col-md-4
+              img.shopping-cart-logo(ng-src="{{currentSalesOrder.supplier.logo}}")
+              //img(src="{{currentSalesOrder.supplier.banner}}")
+
+            .col-md-8
+              h1 {{currentSalesOrder.supplier.supplier_name}}
+              | Order Id. 9165-{{currentSalesOrder.id}}
+              .shopping-cart-view-more(ng-click="jumpToSupplierPage(currentSalesOrder.supplier.id)")
+                | More from this drinkmaker
+            table.table
+              tr
+                th Description
+                th Qty
+                th Price
+                th Total
+                th
+              tr(ng-repeat="line in currentSalesOrder.lines")
+                td {{line.description}}
+                td
+                  span(ng-if="line.system_generated") {{line.quantity}}
+                  input.shopping-cart-quantity(ng-if="!line.system_generated" ng-model="line.quantity" ng-change="updateQty(line)")
+                td {{line.fmt_unit_price}}
+                td {{line.fmt_amount_excl_tax}}
+                td
+                  i.fa.fa-times(ng-if="!line.system_generated" aria-hidden="true" ng-click="removeSalesOrderLine(line)")
+
+            .row
+              .col-md-6
+
+              // Totals section
+              .col-md-6
+                br
+                br
+                .table-responsive
+                  table.table
+                    tbody
+                      tr
+                        td Subtotal
+                        td
+                          .shared-order-calc-field {{currentSalesOrder.fmt_amount_excl_tax}}
+                      //- tr
+                      tr
+                        td Shipping
+                        td
+                          .shared-order-calc-field {{calc_shipping}}
+                      //- tr
+                      tr
+                        td GST
+                        td
+                          .shared-order-calc-field {{currentSalesOrder.fmt_tax_amount}}
+                      //- tr
+                      tr
+                        td(colspan='2')
+                          br
+                        //- td
+                      //- tr
+                      tr
+                        td
+                          strong Grand Total (Incl. GST)
+                        //- td
+                        td
+                          strong
+                            .shared-order-calc-field {{currentSalesOrder.fmt_amount_incl_tax}}
+                        //- td
+                      //- tr
+
+
+                      tr
+                        td
+                          strong Savings on RRP
+                        //- td
+                        td
+                          strong
+                            .shared-order-calc-field {{calc_rrpSaving}}
+                        //- td
+                      //- tr
+                      tr.hide
+                        td
+                          strong Saving on Shipping
+                        //- td
+                        td
+                          strong
+                            .shared-order-calc-field {{calc_shippingSaving}}
+                        //- td
+                      //- tr
+                    //- tbody
+                  //- table
+                //- table-responsive
+
+                br
+                .text-right
+                  button.btn.btn-success.btn-lg(id="so_next_button" ng-click="nextButtonClicked()") Secure Checkout
+                br
+              //- col-md-6
+
+      //- card
+      //- text-right
+    //- container
+  //- section
+
+
+
+
+block scripts
+  // External Script goes here...
+  script.
+    $(function () {
+
+    });
+
+
+    /************************************************************
+     *
+     *    Angular code.
+     */
+    var app = angular.module('myApp', ['ngSanitize']);
+
+    teaservice.init({
+      host: TEASERVICE_HOST,
+      port: TEASERVICE_PORT,
+      accessToken: TEASERVICE_ACCESS_TOKEN
+    });
+
+    // Add the controller for this page
+    app.controller('myCtrl', function($scope, teaService, $timeout) {
+
+      // Pre-create variables, so we don't get undefined
+      // errors when angular tries to draw the page before
+      // our TEA functions have returned with data.
+      $scope.sharedOrder = { };
+      /*$scope.creating_a_new_circlebuy = true;
+      $scope.so_new_orderSize = 0;
+      $scope.so_existing_orderSize = 0;
+      $scope.so_alreadyOrdered = 0;*/
+
+        // This code gets the "product" parameter from the
+        // URL so we can use it as productVariantId.
+        /*
+        var productVariantId = NaN;
+        var sharedOrderId = NaN;
+        window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+          key = key.toLowerCase();
+          if (key === 'product') {
+            productVariantId = parseInt(value);
+          } else if (key === 'circlebuy') {
+            sharedOrderId = parseInt(value);
+          }
+        });
+        */
+
+        /*
+         *  If a circleBuy has been specified, we'll look up
+         *  the shared_order first, and use it to find the
+         *  productVariantId.
+         *
+         *  Otherwise, we'll work towards creating a new
+         *  shared_order based upon the specified product.
+         */
+
+         /*if ( !isNaN(sharedOrderId)) {
+
+           $scope.sharedOrderId = sharedOrderId;
+
+           /*
+            *   VIEW AN EXISTING CIRCLEBUY.
+            *
+            *   Look up the sharedOrder.
+            * /
+            $scope.creating_a_new_circlebuy = false;
+            console.log('looking up shared_order ', sharedOrderId)
+           teaService.getSharedOrdersAndSetAngularVariables({
+             sharedOrderId: sharedOrderId
+           }, $scope, teaService, function(sharedOrders){
+             console.log('sharedOrders=', sharedOrders)
+             productVariantId = sharedOrders[0].productVariant.productVariantId;
+             //alert('prodvar is ' + productVariantId)
+           });
+        } else {
+
+        }*/
+
+
+
+
+        /*
+         *  Convenience function used with ng-repeat to iterate X times
+         */
+        $scope.range = function(x) {
+          if (x) {
+            var num = parseInt(x)
+            if (num < 0) num = 0;
+            return new Array(num);
+          }
+          return [ ]; // num is undefined
+        }
+
+
+            /*
+             *  Set up the login part at the top of the page.
+             * /
+            authservice.init({
+              // Environment specific values are defined in environment.js
+              host: AUTHSERVICE_HOST,
+              port: AUTHSERVICE_PORT,
+              tenant: AUTHSERVICE_TENANT,
+              pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
+              onUserChange: function(user, ttuat, fromCookie) {
+                // If the current user came from the cookie, reload it
+                //if (fromCookie) {
+                //  console.log('Reloading user details (cookie details are just a summary)');
+                //  return authservice.reloadUser();
+                //}
+              }
+            });
+            */
+
+        $scope.jumpToSupplierPage = function(supplierId) {
+          window.location = '/shop.html?supplier=' + supplierId;
+        };
+
+        $scope.setCurrentSalesOrder = function(order) {
+          $scope.currentSalesOrder = order;
+        }
+
+        $scope.updateQty = function(salesOrderLine) {
+          console.log('saleOrderLine=', salesOrderLine, typeof(salesOrderLine));
+
+          // Use a timeout, so the user can enter multiple character before the
+          // update occurs.
+          //ZZZZ
+
+
+          var qty = parseInt(salesOrderLine.quantity);
+          if (isNaN(qty) || qty < 1) {
+            return;
+          }
+
+          // Update the sales_order_line
+          var params = {
+          	"store_id": STORE_ID,
+          	"user_id": authservice.getCurrentUser().id,
+          	"product_variant_id": salesOrderLine.product_variant_id,
+          	"quantity": qty
+          };
+          teaService.putSalesOrderLine(params).then(function(orders) {
+            /*console.log('Result of update is ', orders);*/
+            var url = '/shopping-cart.html';
+            url += '#supplier=' + $scope.currentSalesOrder.supplier.id;
+            window.location = url;
+            window.location.reload();
+          });
+        }
+
+
+        /*
+         *  Remove a sales_order_line.
+         */
+        $scope.removeSalesOrderLine = function(salesOrderLine) {
+          console.log('removeSalesOrderLine=', salesOrderLine, typeof(salesOrderLine));
+          // Update the sales_order_line
+          var params = {
+          	"store_id": STORE_ID,
+          	"user_id": authservice.getCurrentUser().id,
+          	"product_variant_id": salesOrderLine.product_variant_id,
+          	"quantity": 0
+          };
+          console.log('params=', params);
+          //return;
+          teaService.putSalesOrderLine(params).then(function(orders) {
+            /*console.log('Result of update is ', orders);*/
+            var url = '/shopping-cart.html';
+            url += '#supplier=' + $scope.currentSalesOrder.supplier.id;
+            window.location = url;
+            window.location.reload();
+          });
+        }
+
+        /*
+         *  Set up the login part at the top of the page.
+         */
+        authservice.init({
+          // Environment specific values are defined in environment.js
+          host: AUTHSERVICE_HOST,
+          port: AUTHSERVICE_PORT,
+          tenant: AUTHSERVICE_TENANT,
+          pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
+          onUserChange: function(user, ttuat, fromCookie) {
+            // If the current user came from the cookie, reload it
+            if (fromCookie) {
+              console.log('Reloading user details (cookie details are just a summary)');
+              return authservice.reloadUser();
+            }
+            if (user) {
+
+              // Use $timeout, which does the same as $apply, but gives
+              // this controller definition function time to complete.
+              // Otherwise we get an 'inprog' error from Angular.
+              $timeout(function(){
+                $scope.loggedIn = true;
+
+                teaService.getSalesOrder({
+                  store_id: STORE_ID,
+                  user_id: authservice.getCurrentUser().id
+                }).then(function(orders){
+
+                  // Have the orders. Format money values
+                  console.log('orders:', orders);
+                  var nonSharedOrders = [ ];
+                  orders.forEach(function(order){
+                    // Ignore shared orders
+                    if ( !order.shared_order_id) {
+                      order.fmt_amount_excl_tax = accounting.formatMoney(order.amount_excl_tax);
+                      order.fmt_amount_incl_tax = accounting.formatMoney(order.amount_incl_tax);
+                      order.fmt_tax_amount = accounting.formatMoney(order.tax_amount);
+                      order.lines.forEach(function(line){
+                        line.fmt_amount_excl_tax = accounting.formatMoney(line.amount_excl_tax);
+                        line.fmt_amount_incl_tax = accounting.formatMoney(line.amount_incl_tax);
+                        line.fmt_tax_amount = accounting.formatMoney(line.tax_amount);
+                        line.fmt_unit_price = accounting.formatMoney(line.unit_price);
+                        if (line.supplier) {
+                          order.supplier = line.supplier;
+                        }
+                      });
+                      nonSharedOrders.push(order);
+                    }
+                  });
+                  $scope.salesOrders = nonSharedOrders;
+
+                  /*
+                   *  Pick a current sales_order.
+                   */
+                  // See if the URL specifies a supplierId (e.g. #supplier=123)
+                  var supplierHash = '#supplier=';
+                  if (window.location.hash && window.location.hash.startsWith(supplierHash)) {
+                    var supplierId = window.location.hash.substring(supplierHash.length);
+                    nonSharedOrders.forEach(function(order) {
+                      if (''+order.supplier.id == supplierId) {
+                        $scope.currentSalesOrder = order;
+                      }
+                    });
+                  }
+                  if ( !$scope.currentSalesOrder) {
+                    $scope.currentSalesOrder = (nonSharedOrders.length > 0) ? nonSharedOrders[0] : null;
+                  }
+                });
+              }, 100);
+
+            } else {
+              $timeout(function(){
+                $scope.loggedIn = false;
+              }, 100);
+            }
+          }
+        });
+        console.log('Current user:', authservice.getCurrentUser());
+
+    });
+
+    function createOrder(sharedOrderId, customerId, productVariantId, angularScope){
+      var circleBuy = {
+            "customerId" : customerId,
+            "sharedOrderId" : sharedOrderId,
+            "flow" : "PRE",
+            "action" : "A",
+            "marketplace" : 1,
+            "currencyId" : 22,
+            "amountExclTax" : accounting.unformat(angularScope.calc_subtotal),
+            "taxType" : "G",
+            "taxAmount" : accounting.unformat(angularScope.calc_gst),
+            "amountInclTax" : accounting.unformat(angularScope.calc_subtotal),
+            "notes" : angularScope.comment,
+            "shipToSharedOrderAddress": true, // Tempory hack ZZZZZ
+            "items" : [
+              {
+                "productVariantId" : productVariantId,
+                "description" : "sample",
+                "unitPrice" : accounting.unformat(angularScope.calc_price),
+                "quantity" : angularScope.so_yourQuantity,
+                "taxExempted" : false,
+                "priceIncludesTax" : true,
+                "taxRate" : angularScope.gst_rate,
+                "amountExclTax" : accounting.unformat(angularScope.calc_subtotal),
+                "taxAmount" : accounting.unformat(angularScope.calc_gst),
+                "amountInclTax" : accounting.unformat(angularScope.calc_subtotal),
+                "shippedQuantity" : null
+              }
+            ],
+            "shippingCost" : {
+              "unitPrice" : accounting.unformat(angularScope.calc_shippingSaving),
+              "quantity" : 1,
+              "taxExempted" : false,
+              "priceIncludesTax" : true,
+              "taxRate" : angularScope.gst_rate,
+              "amountExclTax" : accounting.unformat(angularScope.calc_shipping_excl_tax),
+              "taxAmount" : accounting.unformat(angularScope.calc_shipping_incl_tax),
+              "amountInclTax" : accounting.unformat(angularScope.calc_shipping)
+            }
+          }
+          return circleBuy;
+    }
+
+  //- script.

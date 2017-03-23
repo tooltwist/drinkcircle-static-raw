@@ -112,8 +112,8 @@ var chratingsandreview = (function() {
        *  we need to display the groupings here as well.
        */
       //setTimeout(function() {
-        var t = totals[0];
-        if (t.num) {
+        if (totals && totals.length > 0 && totals[0].num) {
+          var t = totals[0];
 
           /*
            *  Update the average of ratings for this product.
@@ -181,12 +181,17 @@ var chratingsandreview = (function() {
           $('#count70To79').html(count70To79);
           $('#count60To69').html(count60to69);
           $('#count60AndBelow').html(count60AndBelow);
+        } else {
+
+          // No ratings for this product yet.
+          $('.count .product_rating').remove();
+          $('.count .pointContainer').remove();
+          $('.count .first-rating').show();
         }
 
       //}, 100);
 
     });// getVotesTotals
-
 
           // var elementId;
           // var elementidHolder = $('#elementId').val();
@@ -277,8 +282,13 @@ console.log('After selecting product reviews (but before cooking):', selection)
                       var anchor = '$product-rating-'+productVariantId;
                       CrowdHound.getVotes(anchor, function(err, votes) {
                         if (err) {
-                          console.log('Error selecting votes for ' + anchor, err);
-                          return;
+                          if (err.statusCode == 404) {
+                            // No votes yet.
+                            return;
+                          } else {
+                            console.log('Error selecting votes for ' + anchor, err);
+                            return;
+                          }
                         }
                         //console.log('votes:', votes);
                         // For each user's rating, patch values on the page
@@ -321,55 +331,88 @@ console.log('After selecting product reviews (but before cooking):', selection)
     var anchors = [ ]; // productVariantId -> anchor
     $('.patch-in-average-product-rating').each(function() {
       var productVariantId = $(this).attr('productVariantId');
-      console.log('productVariantId=' + productVariantId);
+      //console.log('productVariantId=' + productVariantId);
       if (productVariantId) {
         anchors[productVariantId] = '$product-rating-'+productVariantId;
       }
-      else { alert('no productVariantId'); }
+      else {
+        alert('no productVariantId');
+      }
     });
     //console.log('anchors=', anchors)
 
     // Prepare a list of anchors for these products to
     // use as the elementIds parameter to getVoteTotals().
+    var foundRating = [ ]; // productVariantId -> Y/N (did we set the rating)
     var elementIds = '';
     var sep = '';
     for (productVariantId in anchors) {
+      foundRating[productVariantId] = 'N';
       var anchor = anchors[productVariantId];
       elementIds += sep + anchor;
       sep = ',';
     }
 
+    // Check we have something to get the votes of.
     //console.log('elementIds is ' + elementIds)
+    if (elementIds == '') {
+      return;
+    }
 
+//alert('getting ratings for ' + elementIds)
     var aspect = 'percentage';
     CrowdHound.getVoteTotals(elementIds, aspect, function(err, totals) {
       if (err) {
         console.log('Error while selecting votes:', err);
         return;
       }
+      console.log('totals: ', totals);
+      console.log('totals: ', typeof(totals));
+      console.log('totals.length=' + totals.length);
+      if (typeof(totals) == 'string') {
+        totals = JSON.parse(totals);
+        console.log('totals: ', totals);
+        console.log('totals: ', typeof(totals));
+        console.log('totals.length=' + totals.length);
+      }
 
-      //console.log('totals=', totals);
-      // Patch the values into the UI
+      // Patch the rating values into the UI
       for (var i = 0; i < totals.length; i++) {
         var t = totals[i];
         if (t.anchor) {
+      console.log('t.anchor: ' + typeof(t.anchor));
           var offset = '$product-rating-'.length;
           var productVariantId = t.anchor.substring(offset);
+          foundRating[productVariantId] = 'Y';
           console.log('++++> ' + productVariantId);
           var average = Math.round(t.total / t.num);
           var ess = (t.num == 1 ? '' : 's');
-  
+
           $('.patch-in-average-product-rating[productVariantId='+productVariantId+']').html(average);
           $('.patch-in-average-product-rating[productVariantId='+productVariantId+']').show();
           $('.pointContainer').show();
           $('.patch-in-number-of-product-ratings[productVariantId='+productVariantId+']').html(t.num);
           $('.patch-in-number-of-product-ratings-ess[productVariantId='+productVariantId+']').html(ess);
 
-          if(average == 0) {
-            $('.patch-in-average-product-rating').remove();
-            $('.pointContainer').remove();
-            $('.first-rating').show();
+          if (average == 0) {
+            // $('.patch-in-average-product-rating').remove();
+            // $('.pointContainer').remove();
+            // $('.first-rating').show();
           }
+        }// if t.anchor
+      }// for totals
+
+      // For any productVariants without a rating, display the "be the first to rate" message.
+      for (productVariantId in foundRating) {
+        var found = foundRating[productVariantId];
+        if (found != 'Y') {
+          // $('.count .product_rating').remove();
+          // $('.count .pointContainer').remove();
+          // $('.count .first-rating').show();
+          $('.patch-in-average-product-rating[productVariantId='+productVariantId+']').remove();
+          $('.pointContainer[productVariantId='+productVariantId+']').remove();
+          $('.first-rating[productVariantId='+productVariantId+']').show();
+
         }
       }
     });

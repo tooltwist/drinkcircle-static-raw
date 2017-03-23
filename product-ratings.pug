@@ -169,7 +169,7 @@ block scripts
           }
           if (user == null) {
             console.log('logged out');
-            window.location = '/productDetails2.html?product='+productVariantId;
+            window.location = '/productdetails2.html?product='+productVariantId;
             return;
           }
 
@@ -218,7 +218,7 @@ block scripts
                 // Error contacting service. This should not happen.
                 alert('An error occurred while looking for any existing review.');
                 console.log('Had a problem selecting the review.', err);
-                window.location = '/productDetails2.html?product='+productVariantId;
+                window.location = '/productdetails2.html?product='+productVariantId;
                 return;
               }
 
@@ -265,7 +265,7 @@ block scripts
        */
       $scope.backToProductPage = function submitProductRatingAndReview() {
         // Jump back to the product screen.
-        window.location = '/productDetails2.html?product='+productVariantId;
+        window.location = '/productdetails2.html?product='+productVariantId;
       };
 
 
@@ -306,7 +306,7 @@ block scripts
               console.log('Unable to save rating: ', err);
             } else {
               // Review has been saved. Jump back to the product screen.
-              window.location = '/productDetails2.html?product='+productVariantId;
+              window.location = '/productdetails2.html?product='+productVariantId;
             }
           });// saveRating
         });// saveReview
@@ -331,7 +331,7 @@ block scripts
             console.log('Unable to save rating: ', err);
           } else {
             // Review has been saved. Jump back to the product screen.
-            window.location = '/productDetails2.html?product='+productVariantId;
+            window.location = '/productdetails2.html?product='+productVariantId;
           }
         });// saveRating
       };// $scope.submitProductRating()

@@ -13,942 +13,957 @@ block css
 
 block content
 
-  .banner.userprofile
-    .gradient
-    .info
+  div(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
+
+    .banner.userprofile
+      .gradient
+      .info
+        .container
+          .row
+            .col-sm-3.col-md-3
+              .photo
+                .img
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    i.fa.fa-camera
+                  //- a
+                  img(ng-src="{{user.avatar}}", alt="")
+                //- img
+                .name
+                  span {{user.full_name}}&nbsp;
+                  sup
+                    a(ng-hide="!isMyProfilePage()" href='/myProfile.html')
+                      i.fa.fa-pencil
+                      span edit profile
+                    //- a
+                  //- sup
+                //- name
+              //- photo
+            //- col-md-3
+          //- row
+          .row
+            .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
+              .userprofilemenu
+                nav.menu
+                  .btn-add-friend(ng-hide="isMyFriend()")
+                    a.btn.btn-success.btn-sm(href="#")
+                      i.fa.fa-user-plus
+                      | Add friend
+                    //- a
+                    | &nbsp;
+                    a.btn.btn-success.btn-sm(href="#")
+                      | Follow
+                    //- a
+                  //- btn-add-friend
+                  ul
+                    li
+                      a.active(href="#") Timeline
+                    //- li
+                    li
+                      a(href='#modal_coming_soon', data-toggle='modal') About
+                    //- li
+                    li
+                      a(href='#modal_coming_soon', data-toggle='modal') Circlebuys
+                    //- li
+                    li
+                      a(href='#modal_coming_soon', data-toggle='modal') Circles
+                    //- li
+                    li
+                      a(href='#modal_coming_soon', data-toggle='modal') Reviews
+                    //- li
+                    li
+                      a(href='#modal_coming_soon', data-toggle='modal') Activity
+                    //- li
+                  //- ul
+                //- nav
+              //- userprofilemenu
+            //- col-md-6
+          //- row
+        //- container
+      //- info
+    //- banner-home
+
+    section.userprofile
       .container
         .row
-          .col-sm-3.col-md-3
-            .photo
-              .img
+          .col-md-3
+            //- .search.circle
+            //-   a(href="#", target="_blank")
+            //-     i.fa.fa-search
+            //-   //- a
+            //-   input.form-control(type='text', placeholder='search the circle...')
+            //- //- search
+            .intro
+              a.btn.btn-success.btn-sm.btn-add-interests(ng-hide="!isMyProfilePage()" href="/myProfile.html", data-toggle="modal")
+                i.fa.fa-plus
+                | Add Interests
+              //- a
+              h4 Interests
+              p
+                span(ng-repeat="interest in profile.interests")
+                  a(href='#modal_coming_soon', data-toggle='modal') {{interest.value}}
+                  br
+                //- br
+                //- br
+                //- a(href='#modal_coming_soon', data-toggle='modal') Beer
+                //- br
+                //- a(href='#modal_coming_soon', data-toggle='modal') White Wine
+                //- br
+                //- a(href='#modal_coming_soon', data-toggle='modal') Travel
+                //- br
+                //- a(href='#modal_coming_soon', data-toggle='modal') Sport
+                //- br
+                //- a(href='#modal_coming_soon', data-toggle='modal') Music
+                //- br
+                //- a(href='#modal_coming_soon', data-toggle='modal') Movies
+                //- br
+                //- a(href='#modal_coming_soon', data-toggle='modal') Reading
+              //- p
+              hr
+              .info
+                p
+                  i.fa.fa-briefcase
+                  span Works at&nbsp;
+                  br
+                  span(ng-repeat="work in profile.work")
+                    span.text-muted {{work}}
+                    br
+                //- p
+              hr
+              .info
+                p
+                  i.fa.fa-graduation-cap
+                  span Studied at&nbsp;
+                  br
+                  span(ng-repeat="study in profile.education")
+                    span.text-muted {{study}}
+                    br
+                //- p
+              hr
+              .info
+                p
+                  i.fa.fa-home
+                  span Lives in&nbsp;
+                  span.text-muted Palm Beach, New South Wales, Australia
+                //- p
+                p
+                  i.fa.fa-map-marker
+                  span From&nbsp;
+                  span.text-muted Sydney, Australia
+                //- p
+              //- info
+            //- intro
+
+            .list_groups.groups
+              .head
+                h4
+                  a(href='#modal_coming_soon', data-toggle='modal') My circlebuys
+                  small (
+                    a(href='#modal_coming_soon', data-toggle='modal') 5
+                    | )
+                //- h4
+              //- head
+              .content
+                .productdetails
+                  .infos
+                    .text-center
+                      .card_rounded
+                        a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
+                          span Brokenwood
+                            br
+                            small.el Graveyard Vineyard Shiraz 2010
+                          //- span
+                        //- a
+                        hr
+                        span Adrian's circlebuy
+                          br
+                          | 10 cases -&nbsp;
+                          strong SAVE $8&nbsp;
+                          small /bottle
+                        hr
+                        .shortsummary
+                          .sold
+                            p.cases-sold sold
+                            p.lead
+                              span.green 7
+                              br
+                              //- small cases
+                            //- p
+                          //- sold
+                          .left
+                            p left
+                            p.lead
+                              span.green 3
+                              br
+                              //- small cases
+                            //- p
+                          //- left
+                        //- shortsummary
+                        p
+                        .avatar
+                          .img
+                            .ring._70p
+                            img(src='assets/images/circles/circles_8.png', alt='')
+                          //- img
+                          .countdown
+                            //- span.time 32:12
+                            br
+                            p
+                              i.fa.fa-clock-o
+                              span &nbsp;04:56.12
+                            //- p
+                            //- span
+                          //- countdown
+                        //- avatar
+                        br
+                        p
+                          a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
+                          | &nbsp;
+                          a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                          | &nbsp;
+                          a.button.inline.v8.joincirclebuy(href="") watch
+                        //- p
+                        p.cbpromo-price 6 pack - $119.94
+                        hr.short
+                        p.lead.cbprice
+                          strong  $19.99
+                          small &nbsp;/ bottle
+                        //- p
+                        //- big
+                      //- card_rounded
+                    //- text-center
+                  //- infos
+                //- productdetails
+              //- content
+              .more
+                a(href='#modal_coming_soon', data-toggle='modal') See all
+              //- more
+            //- list_groups
+
+            .list_groups.groups
+              .head
+                h4
+                  a(href='#modal_coming_soon', data-toggle='modal') My watchlist
+                  small (
+                    a(href='#modal_coming_soon', data-toggle='modal') 3
+                    | )
+                //- h4
+              //- head
+              .content
+                .productdetails
+                  .infos
+                    .text-center
+                      .card_rounded
+                        a(href='#modal_preview_detail_sticks', data-toggle='modal')
+                          span Sticks
+                            br
+                            small.el Pinot Noir 2015
+                          //- span
+                        //- a
+                        hr
+                        span Sharmaine's circlebuy
+                          br
+                          | 10 cases -&nbsp;
+                          strong SAVE $8&nbsp;
+                          small /bottle
+                        hr
+                        .shortsummary
+                          .sold
+                            p.cases-sold sold
+                            p.lead
+                              span.green 5
+                              br
+                              //- small cases
+                            //- p
+                          //- sold
+                          .left
+                            p left
+                            p.lead
+                              span.green 5
+                              br
+                              //- small cases
+                            //- p
+                          //- left
+                        //- shortsummary
+                        p
+                        .avatar
+                          .img
+                            .ring._50p
+                            img(src='assets/images/circles/circles_1.png', alt='')
+                          //- img
+                          .countdown
+                            //- span.time 32:12
+                            br
+                            p
+                              i.fa.fa-clock-o
+                              span &nbsp;16:08.00
+                            //- p
+                            //- span
+                          //- countdown
+                        //- avatar
+                        br
+                        p
+                          a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
+                          | &nbsp;
+                          a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
+                          | &nbsp;
+                          a.button.inline.v8.joincirclebuy(href="") watch
+                        //- p
+                        p.cbpromo-price 12 pack - $179.88
+                        hr.short
+                        p.lead.cbprice
+                          strong  $14.99
+                          small &nbsp;/ bottle
+                        //- p
+                        //- big
+                      //- card_rounded
+                    //- text-center
+                  //- infos
+                //- productdetails
+              //- content
+              .more
+                a(href='#modal_coming_soon', data-toggle='modal') See all
+              //- more
+            //- list_groups
+
+            .grid_groups.friends
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Friends
+                small (
+                  a(href='#modal_coming_soon', data-toggle='modal') 120
+                  | )
+              //- h4
+              .content
+                .container-fluid
+                  .row
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      .img
+                        img(src="assets/images/friends/friends_1.png", alt="")
+                      //- img
+                      .name
+                        span Michael B...
+                      //- name
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      .img
+                        img(src="assets/images/friends/friends_2.png", alt="")
+                      //- img
+                      .name
+                        span Georgia B...
+                      //- name
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      .img
+                        img(src="assets/images/friends/friends_3.png", alt="")
+                      //- img
+                      .name
+                        span Nick Byrne
+                      //- name
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      .img
+                        img(src="assets/images/friends/friends_4.png", alt="")
+                      //- img
+                      .name
+                        span Greg Stee...
+                      //- name
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      .img
+                        img(src="assets/images/friends/friends_5.png", alt="")
+                      //- img
+                      .name
+                        span Amity Dela...
+                      //- name
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      .img
+                        img(src="assets/images/friends/friends_6.png", alt="")
+                      //- img
+                      .name
+                        span Monica Ho...
+                      //- name
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      .img
+                        img(src="assets/images/friends/friends_7.png", alt="")
+                      //- img
+                      .name
+                        span Max Farrow
+                      //- name
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      .img
+                        img(src="assets/images/friends/friends_8.png", alt="")
+                      //- img
+                      .name
+                        span Michael Kay
+                      //- name
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      .img
+                        img(src="assets/images/friends/friends_9.png", alt="")
+                      //- img
+                      .name
+                        span Ian Nuttall
+                      //- name
+                    //- col-md-4
+                  //- row
+                //- container
+              //- content
+              .more
+                a(href='#modal_coming_soon', data-toggle='modal') See all
+              //- more
+            //- grid_groups
+            .list_groups.groups
+              .head
+                h4
+                  a(href='#modal_coming_soon', data-toggle='modal') Circles
+                  small (
+                    a(href='#modal_coming_soon', data-toggle='modal') 23
+                    | )
+                //- h4
+              //- head
+              .content
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/circles/circles_1.png', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong northern beaches shiraz lovers
+                    br
+                    | 897 members
+                    //- p
+                  //- span
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/circles/circles_2.png', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong sydney pinot drinkers
+                    br
+                    | 168 members
+                    //- p
+                  //- span
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/circles/circles_3.png', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong hunter valley red fans
+                    br
+                    | 753 members
+                    //- p
+                  //- span
+                //- input-group
+              //- content
+              .more
+                a(href='#modal_coming_soon', data-toggle='modal') See all
+              //- more
+            //- list_groups
+            .grid_groups.friends
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Photos
+                small (
+                  a(href='#modal_coming_soon', data-toggle='modal') 213
+                  | )
+              //- h4
+              .content
+                .container-fluid
+                  .row
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_1.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_2.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_3.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_4.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_5.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_6.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_7.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_8.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_9.png", alt="")
+                    //- col-md-4
+                  //- row
+                //- container
+              //- content
+              .more
+                a(href='#modal_coming_soon', data-toggle='modal') See all
+              //- more
+            //- grid_groups
+            .grid_groups.likes
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Likes
+                small (
+                  a(href='#modal_coming_soon', data-toggle='modal') 16
+                  | )
+              //- h4
+              .content
+                .container-fluid
+                  .row
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href="seller.html")
+                        img(src="assets/images/likes/likes_1.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_2.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_3.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_4.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_5.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_6.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_7.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_8.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_9.png", alt="")
+                      //- a
+                    //- col-md-4
+                  //- row
+                //- container
+              //- content
+              .more
+                a(href='#modal_coming_soon', data-toggle='modal') See all
+              //- more
+            //- grid_groups
+          //- col-md-3
+          .col-md-6(id="wallSection")
+            .composer(ng-hide="!isMyProfilePage()", id="postComposer", style="display:none;")
+              .head
+                a(href="#composer-tab-status", role="tab", data-toggle="tab")
+                  i.fa.fa-pencil
+                  | Status
+                a(href="#composer-tab-photo-video", role="tab", data-toggle="tab")
+                  i.fa.fa-picture-o
+                  | Photo/Video
+                a(href="#composer-tab-events", role="tab", data-toggle="tab")
+                  i.fa.fa-calendar-o
+                  | Events
+              //- head
+              .content.tab-content
+                .tab-pane.active#composer-tab-status(role="tabpanel")
+                  textarea.form-control(id="postMessage", rows='2')
+                //- composer-tab-status
+                .tab-pane#composer-tab-photo-video(role="tabpanel")
+                  .drop-photo
+                    i.fa.fa-picture-o
+                    br
+                    span Drag Photos/Videos Here
+                  //- event-photo
+                //- composer-tab-status
+                .tab-pane#composer-tab-events(role="tabpanel")
+                  .drop-photo
+                    i.fa.fa-picture-o
+                    br
+                    span Drag Event Photo Here
+                  //- event-photo
+                  .row
+                    .col-md-12
+                      .form-group
+                        label(for='composer-event-name') Event Name
+                        input#composer-event-name.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-12
+                    .col-md-12
+                      .form-group
+                        label(for='composer-location') Location
+                        input#composer-location.form-control(type='text', placeholder='')
+                      //- form-group
+                    //- col-md-12
+                    .col-md-6.col-sm-6.col-xs-6
+                      .form-group
+                        label(for='composer-event-date-from') From
+                        input#composer-event-date-from.form-control(type='date', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                    .col-md-6.col-sm-6.col-xs-6
+                      .form-group
+                        label(for='composer-event-date-to') to
+                        input#composer-event-date-to.form-control(type='date', placeholder='')
+                      //- form-group
+                    //- col-md-6
+                    .col-md-12
+                      .form-group
+                        label(for='composer-description') Description
+                        textarea#composer-description.form-control(rows="3")
+                      //- form-group
+                    //- col-md-12
+                  //- row
+                //- composer-tab-status
+              //- content
+              .controls
                 a(href='#modal_coming_soon', data-toggle='modal')
                   i.fa.fa-camera
                 //- a
-                img(src="assets/images/img_advisor_1.jpg", alt="")
-              //- img
-              .name
-                span Andrew Steer&nbsp;
-                sup
-                  a(href='#modal_coming_soon', data-toggle='modal')
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  i.fa.fa-user-plus
+                //- a
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  i.fa.fa-smile-o
+                //- a
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  i.fa.fa-map-marker
+                //- a
+                a(href='#modal_coming_soon', data-toggle='modal')
+                  i.fa.fa-clock-o
+                //- a
+
+                a.post(href="javascript:void(0)", onclick="TimelinePost.postMessage()")
+                  i.fa.fa-send-o
+                  | Post
+                //- a
+              //- controls
+            //- composer
+
+            div(id="timelineSection")
+
+          //- col-md-6
+          .col-md-3
+
+            .list_groups.toppicks
+              .head
+                h4
+                  a.pull-right(href='#modal_edit_toppicks', data-toggle='modal')
                     i.fa.fa-pencil
-                    span edit profile
                   //- a
-                //- sup
-              //- name
-            //- photo
+                  a(href='#modal_coming_soon', data-toggle='modal') My TOP 10
+                //- h4
+              //- head
+              hr
+              .content
+                .media
+                  .media-left
+                    h4 1.&nbsp;
+                    img.media-object(src='assets/images/products/p14.jpg', alt='')
+                  //- media-left
+                  .media-body
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong Young Henrys
+                    //- a
+                    br
+                    small Natural Lager
+
+                    .points
+                      span 96
+                      small points
+                    //- points
+                  //- media-body
+                //- media
+                .media
+                  .media-left
+                    h4 2.&nbsp;
+                    img.media-object(src='assets/images/products/p10.jpg', alt='')
+                  //- media-left
+                  .media-body
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong Somerby
+                    //- a
+                    br
+                    small Apple Cider
+
+                    .points
+                      span 93
+                      small points
+                    //- points
+                  //- media-body
+                //- media
+                .media
+                  .media-left
+                    h4 3.&nbsp;
+                    img.media-object(src='assets/images/products/p2.jpg', alt='')
+                  //- media-left
+                  .media-body
+                    a(href='productdetails2.html')
+                      strong Brokenwood
+                    //- a
+                    br
+                    small Graveyard Vineyard Shiraz
+
+                    .points
+                      span 94
+                      small points
+                    //- points
+                  //- media-body
+                //- media
+              //- content
+              //- .search
+              //-   input.form-control(type='text', placeholder='search reviews...')
+              //- //- search
+              .more
+                a(href='#modal_coming_soon', data-toggle='modal') See all
+              //- more
+            //- feed
+
+            .list_groups.reviews
+              .head
+                h4
+                  a(href='#modal_coming_soon', data-toggle='modal') Reviews
+                  small (
+                    a(href='#modal_coming_soon', data-toggle='modal') 55
+                    | )
+                //- h4
+              //- head
+              .content
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/products/bottle8.png', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong Corona Extra
+                    //- a
+                    br
+                    | Imported Beer
+                    //- p
+                  //- span
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/products/bottle1.png', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href='productdetails2.html')
+                      strong Brokenwood
+                    //- a
+                    br
+                    | Graveyard Vineyard Shiraz
+                    //- p
+                  //- span
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/products/bottle7.png', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong Chivas Regal
+                    //- a
+                    br
+                    | 12 Year Old Scotch Whisky 700ml
+                    //- p
+                  //- span
+                //- input-group
+              //- content
+              .search
+                input.form-control(type='text', placeholder='search reviews...')
+              //- search
+              .more
+                a(href='#modal_coming_soon', data-toggle='modal') See all
+              //- more
+            //- feed
+
+            .list_groups.feed
+              .head
+                h4
+                  a(href='#modal_coming_soon', data-toggle='modal') Latest activity
+              //- head
+              .content
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/activity/img_advisor_2.jpg', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong Rodan Luzuriaga
+                    | likes a photo.
+                    //- p
+                  //- span
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/anonymous.png', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href="profile.html")
+                      strong Andrew Steer
+                    | commented on his own post.
+                    //- p
+                  //- span
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/activity/img_advisor_2.jpg', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong Rodan Luzuriaga
+                    | shared a post.
+                    //- p
+                  //- span
+                //- input-group
+              //- content
+            //- feed
+
+            .list_search_groups.messaging
+              .head
+                h4 Live chat
+              //- head
+              .content
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/users/user_3.jpg', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a.online(href="#") Darren Crone
+                    small online
+                    //- p
+                  //- span
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/users/user_2.jpg', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a.offline(href="#") Rodan Luzuriaga
+                    small 2hours ago
+                    //- p
+                  //- span
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/users/user_1.jpg', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a.online(href="profile.html") Andrew Steer
+                    small online
+                    //- p
+                  //- span
+                //- input-group
+              //- content
+              .search
+                input.form-control(type='text')
+                a.new(href="#")
+                  i.fa.fa-pencil-square-o
+                //- a
+              //- search
+            //- messaging
+            .list_groups.events
+              .head
+                h4
+                  a(href='#modal_coming_soon', data-toggle='modal') Events
+              //- head
+              .content
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/likes/likes_1.png', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong brokenwood wine tasting
+                    br
+                    | 401-407 mcdonalds rd pokolbin nsw
+                    br
+                    small Saturday October 10th 2pm
+                    //- p
+                  //- span
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/likes/likes_2.png', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong margan wines wedding
+                    br
+                    | 1238 milbrodale rd broke nsw
+                    br
+                    small Saturday October 24th 4pm
+                    //- p
+                  //- span
+                //- input-group
+              //- content
+            //- list_groups
           //- col-md-3
         //- row
-        .row
-          .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
-            .userprofilemenu
-              nav.menu
-                .btn-add-friend
-                  a.btn.btn-success.btn-sm(href="#")
-                    i.fa.fa-user-plus
-                    | Add friend
-                  //- a
-                  | &nbsp;
-                  a.btn.btn-success.btn-sm(href="#")
-                    | Follow
-                  //- a
-                //- btn-add-friend
-                ul
-                  li
-                    a.active(href="#") Timeline
-                  //- li
-                  li
-                    a(href='#modal_coming_soon', data-toggle='modal') About
-                  //- li
-                  li
-                    a(href='#modal_coming_soon', data-toggle='modal') Friends
-                  //- li
-                  li
-                    a(href='#modal_coming_soon', data-toggle='modal') Circlebuys
-                  //- li
-                  li
-                    a(href='#modal_coming_soon', data-toggle='modal') Circles
-                  //- li
-                  li
-                    a(href='#modal_coming_soon', data-toggle='modal') Reviews
-                  //- li
-                //- ul
-              //- nav
-            //- userprofilemenu
-          //- col-md-6
-        //- row
       //- container
-    //- info
-  //- banner-home
-
-  section.userprofile
-    .container
-      .row
-        .col-md-3
-          //- .search.circle
-          //-   a(href="#", target="_blank")
-          //-     i.fa.fa-search
-          //-   //- a
-          //-   input.form-control(type='text', placeholder='search the circle...')
-          //- //- search
-          .intro
-            a.btn.btn-success.btn-sm.btn-add-interests(href="#interests", data-toggle="modal")
-              i.fa.fa-plus
-              | Add Interests
-            //- a
-            h4 Interests
-            p
-              a(href='#modal_coming_soon', data-toggle='modal') Red Wine
-              br
-              a(href='#modal_coming_soon', data-toggle='modal') Beer
-              br
-              a(href='#modal_coming_soon', data-toggle='modal') White Wine
-              br
-              a(href='#modal_coming_soon', data-toggle='modal') Travel
-              br
-              a(href='#modal_coming_soon', data-toggle='modal') Sport
-              br
-              a(href='#modal_coming_soon', data-toggle='modal') Music
-              br
-              a(href='#modal_coming_soon', data-toggle='modal') Movies
-              br
-              a(href='#modal_coming_soon', data-toggle='modal') Reading
-            //- p
-            hr
-            .info
-              p
-                i.fa.fa-briefcase
-                span Works at&nbsp;
-                span.text-muted drinkcircle
-              //- p
-              p
-                i.fa.fa-graduation-cap
-                span Studied at&nbsp;
-                span.text-muted Pittwater High School
-              //- p
-              p
-                i.fa.fa-home
-                span Lives in&nbsp;
-                span.text-muted Palm Beach, New South Wales, Australia
-              //- p
-              p
-                i.fa.fa-map-marker
-                span From&nbsp;
-                span.text-muted Sydney, Australia
-              //- p
-            //- info
-          //- intro
-
-          .list_groups.groups
-            .head
-              h4
-                a(href='#modal_coming_soon', data-toggle='modal') My circlebuys
-                small (
-                  a(href='#modal_coming_soon', data-toggle='modal') 5
-                  | )
-              //- h4
-            //- head
-            .content
-              .productdetails
-                .infos
-                  .text-center
-                    .card_rounded
-                      a(href='#modal_preview_detail_brokenwood', data-toggle='modal')
-                        span Brokenwood
-                          br
-                          small.el Graveyard Vineyard Shiraz 2010
-                        //- span
-                      //- a
-                      hr
-                      span Adrian's circlebuy
-                        br
-                        | 10 cases -&nbsp;
-                        strong SAVE $8&nbsp;
-                        small /bottle
-                      hr
-                      .shortsummary
-                        .sold
-                          p.cases-sold sold
-                          p.lead
-                            span.green 7
-                            br
-                            //- small cases
-                          //- p
-                        //- sold
-                        .left
-                          p left
-                          p.lead
-                            span.green 3
-                            br
-                            //- small cases
-                          //- p
-                        //- left
-                      //- shortsummary
-                      p
-                      .avatar
-                        .img
-                          .ring._70p
-                          img(src='assets/images/circles/circles_8.png', alt='')
-                        //- img
-                        .countdown
-                          //- span.time 32:12
-                          br
-                          p
-                            i.fa.fa-clock-o
-                            span &nbsp;04:56.12
-                          //- p
-                          //- span
-                        //- countdown
-                      //- avatar
-                      br
-                      p
-                        a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                        | &nbsp;
-                        a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                        | &nbsp;
-                        a.button.inline.v8.joincirclebuy(href="") watch
-                      //- p
-                      p.cbpromo-price 6 pack - $119.94
-                      hr.short
-                      p.lead.cbprice
-                        strong  $19.99
-                        small &nbsp;/ bottle
-                      //- p
-                      //- big
-                    //- card_rounded
-                  //- text-center
-                //- infos
-              //- productdetails
-            //- content
-            .more
-              a(href='#modal_coming_soon', data-toggle='modal') See all
-            //- more
-          //- list_groups
-
-          .list_groups.groups
-            .head
-              h4
-                a(href='#modal_coming_soon', data-toggle='modal') My watchlist
-                small (
-                  a(href='#modal_coming_soon', data-toggle='modal') 3
-                  | )
-              //- h4
-            //- head
-            .content
-              .productdetails
-                .infos
-                  .text-center
-                    .card_rounded
-                      a(href='#modal_preview_detail_sticks', data-toggle='modal')
-                        span Sticks
-                          br
-                          small.el Pinot Noir 2015
-                        //- span
-                      //- a
-                      hr
-                      span Sharmaine's circlebuy
-                        br
-                        | 10 cases -&nbsp;
-                        strong SAVE $8&nbsp;
-                        small /bottle
-                      hr
-                      .shortsummary
-                        .sold
-                          p.cases-sold sold
-                          p.lead
-                            span.green 5
-                            br
-                            //- small cases
-                          //- p
-                        //- sold
-                        .left
-                          p left
-                          p.lead
-                            span.green 5
-                            br
-                            //- small cases
-                          //- p
-                        //- left
-                      //- shortsummary
-                      p
-                      .avatar
-                        .img
-                          .ring._50p
-                          img(src='assets/images/circles/circles_1.png', alt='')
-                        //- img
-                        .countdown
-                          //- span.time 32:12
-                          br
-                          p
-                            i.fa.fa-clock-o
-                            span &nbsp;16:08.00
-                          //- p
-                          //- span
-                        //- countdown
-                      //- avatar
-                      br
-                      p
-                        a.button.inline.v8.joincirclebuy(href='productdetails2.html') view
-                        | &nbsp;
-                        a.button.inline.v7.joincirclebuy(href="circlebuy-start.html") join
-                        | &nbsp;
-                        a.button.inline.v8.joincirclebuy(href="") watch
-                      //- p
-                      p.cbpromo-price 12 pack - $179.88
-                      hr.short
-                      p.lead.cbprice
-                        strong  $14.99
-                        small &nbsp;/ bottle
-                      //- p
-                      //- big
-                    //- card_rounded
-                  //- text-center
-                //- infos
-              //- productdetails
-            //- content
-            .more
-              a(href='#modal_coming_soon', data-toggle='modal') See all
-            //- more
-          //- list_groups
-
-          .grid_groups.friends
-            h4
-              a(href='#modal_coming_soon', data-toggle='modal') Friends
-              small (
-                a(href='#modal_coming_soon', data-toggle='modal') 120
-                | )
-            //- h4
-            .content
-              .container-fluid
-                .row
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    .img
-                      img(src="assets/images/friends/friends_1.png", alt="")
-                    //- img
-                    .name
-                      span Michael B...
-                    //- name
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    .img
-                      img(src="assets/images/friends/friends_2.png", alt="")
-                    //- img
-                    .name
-                      span Georgia B...
-                    //- name
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    .img
-                      img(src="assets/images/friends/friends_3.png", alt="")
-                    //- img
-                    .name
-                      span Nick Byrne
-                    //- name
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    .img
-                      img(src="assets/images/friends/friends_4.png", alt="")
-                    //- img
-                    .name
-                      span Greg Stee...
-                    //- name
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    .img
-                      img(src="assets/images/friends/friends_5.png", alt="")
-                    //- img
-                    .name
-                      span Amity Dela...
-                    //- name
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    .img
-                      img(src="assets/images/friends/friends_6.png", alt="")
-                    //- img
-                    .name
-                      span Monica Ho...
-                    //- name
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    .img
-                      img(src="assets/images/friends/friends_7.png", alt="")
-                    //- img
-                    .name
-                      span Max Farrow
-                    //- name
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    .img
-                      img(src="assets/images/friends/friends_8.png", alt="")
-                    //- img
-                    .name
-                      span Michael Kay
-                    //- name
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    .img
-                      img(src="assets/images/friends/friends_9.png", alt="")
-                    //- img
-                    .name
-                      span Ian Nuttall
-                    //- name
-                  //- col-md-4
-                //- row
-              //- container
-            //- content
-            .more
-              a(href='#modal_coming_soon', data-toggle='modal') See all
-            //- more
-          //- grid_groups
-          .list_groups.groups
-            .head
-              h4
-                a(href='#modal_coming_soon', data-toggle='modal') Circles
-                small (
-                  a(href='#modal_coming_soon', data-toggle='modal') 23
-                  | )
-              //- h4
-            //- head
-            .content
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/circles/circles_1.png', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    strong northern beaches shiraz lovers
-                  br
-                  | 897 members
-                  //- p
-                //- span
-              //- input-group
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/circles/circles_2.png', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    strong sydney pinot drinkers
-                  br
-                  | 168 members
-                  //- p
-                //- span
-              //- input-group
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/circles/circles_3.png', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    strong hunter valley red fans
-                  br
-                  | 753 members
-                  //- p
-                //- span
-              //- input-group
-            //- content
-            .more
-              a(href='#modal_coming_soon', data-toggle='modal') See all
-            //- more
-          //- list_groups
-          .grid_groups.friends
-            h4
-              a(href='#modal_coming_soon', data-toggle='modal') Photos
-              small (
-                a(href='#modal_coming_soon', data-toggle='modal') 213
-                | )
-            //- h4
-            .content
-              .container-fluid
-                .row
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    img(src="assets/images/photos/photos_1.png", alt="")
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    img(src="assets/images/photos/photos_2.png", alt="")
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    img(src="assets/images/photos/photos_3.png", alt="")
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    img(src="assets/images/photos/photos_4.png", alt="")
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    img(src="assets/images/photos/photos_5.png", alt="")
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    img(src="assets/images/photos/photos_6.png", alt="")
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    img(src="assets/images/photos/photos_7.png", alt="")
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    img(src="assets/images/photos/photos_8.png", alt="")
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    img(src="assets/images/photos/photos_9.png", alt="")
-                  //- col-md-4
-                //- row
-              //- container
-            //- content
-            .more
-              a(href='#modal_coming_soon', data-toggle='modal') See all
-            //- more
-          //- grid_groups
-          .grid_groups.likes
-            h4
-              a(href='#modal_coming_soon', data-toggle='modal') Likes
-              small (
-                a(href='#modal_coming_soon', data-toggle='modal') 16
-                | )
-            //- h4
-            .content
-              .container-fluid
-                .row
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    a(href="seller.html")
-                      img(src="assets/images/likes/likes_1.png", alt="")
-                    //- a
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    a(href='#modal_coming_soon', data-toggle='modal')
-                      img(src="assets/images/likes/likes_2.png", alt="")
-                    //- a
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    a(href='#modal_coming_soon', data-toggle='modal')
-                      img(src="assets/images/likes/likes_3.png", alt="")
-                    //- a
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    a(href='#modal_coming_soon', data-toggle='modal')
-                      img(src="assets/images/likes/likes_4.png", alt="")
-                    //- a
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    a(href='#modal_coming_soon', data-toggle='modal')
-                      img(src="assets/images/likes/likes_5.png", alt="")
-                    //- a
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    a(href='#modal_coming_soon', data-toggle='modal')
-                      img(src="assets/images/likes/likes_6.png", alt="")
-                    //- a
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    a(href='#modal_coming_soon', data-toggle='modal')
-                      img(src="assets/images/likes/likes_7.png", alt="")
-                    //- a
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    a(href='#modal_coming_soon', data-toggle='modal')
-                      img(src="assets/images/likes/likes_8.png", alt="")
-                    //- a
-                  //- col-md-4
-                  .col-xs-4.col-sm-4.col-md-4.thumb
-                    a(href='#modal_coming_soon', data-toggle='modal')
-                      img(src="assets/images/likes/likes_9.png", alt="")
-                    //- a
-                  //- col-md-4
-                //- row
-              //- container
-            //- content
-            .more
-              a(href='#modal_coming_soon', data-toggle='modal') See all
-            //- more
-          //- grid_groups
-        //- col-md-3
-        .col-md-6(id="wallSection")
-          .composer(id="postComposer", style="display:none;")
-            .head
-              a(href="#composer-tab-status", role="tab", data-toggle="tab")
-                i.fa.fa-pencil
-                | Status
-              a(href="#composer-tab-photo-video", role="tab", data-toggle="tab")
-                i.fa.fa-picture-o
-                | Photo/Video
-              a(href="#composer-tab-events", role="tab", data-toggle="tab")
-                i.fa.fa-calendar-o
-                | Events
-            //- head
-            .content.tab-content
-              .tab-pane.active#composer-tab-status(role="tabpanel")
-                textarea.form-control(id="postMessage", rows='2')
-              //- composer-tab-status
-              .tab-pane#composer-tab-photo-video(role="tabpanel")
-                .drop-photo
-                  i.fa.fa-picture-o
-                  br
-                  span Drag Photos/Videos Here
-                //- event-photo
-              //- composer-tab-status
-              .tab-pane#composer-tab-events(role="tabpanel")
-                .drop-photo
-                  i.fa.fa-picture-o
-                  br
-                  span Drag Event Photo Here
-                //- event-photo
-                .row
-                  .col-md-12
-                    .form-group
-                      label(for='composer-event-name') Event Name
-                      input#composer-event-name.form-control(type='text', placeholder='')
-                    //- form-group
-                  //- col-md-12
-                  .col-md-12
-                    .form-group
-                      label(for='composer-location') Location
-                      input#composer-location.form-control(type='text', placeholder='')
-                    //- form-group
-                  //- col-md-12
-                  .col-md-6.col-sm-6.col-xs-6
-                    .form-group
-                      label(for='composer-event-date-from') From
-                      input#composer-event-date-from.form-control(type='date', placeholder='')
-                    //- form-group
-                  //- col-md-6
-                  .col-md-6.col-sm-6.col-xs-6
-                    .form-group
-                      label(for='composer-event-date-to') to
-                      input#composer-event-date-to.form-control(type='date', placeholder='')
-                    //- form-group
-                  //- col-md-6
-                  .col-md-12
-                    .form-group
-                      label(for='composer-description') Description
-                      textarea#composer-description.form-control(rows="3")
-                    //- form-group
-                  //- col-md-12
-                //- row
-              //- composer-tab-status
-            //- content
-            .controls
-              a(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-camera
-              //- a
-              a(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-user-plus
-              //- a
-              a(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-smile-o
-              //- a
-              a(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-map-marker
-              //- a
-              a(href='#modal_coming_soon', data-toggle='modal')
-                i.fa.fa-clock-o
-              //- a
-
-              a.post(href="javascript:void(0)", onclick="TimelinePost.postMessage()")
-                i.fa.fa-send-o
-                | Post
-              //- a
-            //- controls
-          //- composer
-
-          div(id="timelineSection")
-
-        //- col-md-6
-        .col-md-3
-
-          .list_groups.toppicks
-            .head
-              h4
-                a.pull-right(href='#modal_edit_toppicks', data-toggle='modal')
-                  i.fa.fa-pencil
-                //- a
-                a(href='#modal_coming_soon', data-toggle='modal') My TOP 10
-              //- h4
-            //- head
-            hr
-            .content
-              .media
-                .media-left
-                  h4 1.&nbsp;
-                  img.media-object(src='assets/images/products/p14.jpg', alt='')
-                //- media-left
-                .media-body
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    strong Young Henrys
-                  //- a
-                  br
-                  small Natural Lager
-
-                  .points
-                    span 96
-                    small points
-                  //- points
-                //- media-body
-              //- media
-              .media
-                .media-left
-                  h4 2.&nbsp;
-                  img.media-object(src='assets/images/products/p10.jpg', alt='')
-                //- media-left
-                .media-body
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    strong Somerby
-                  //- a
-                  br
-                  small Apple Cider
-
-                  .points
-                    span 93
-                    small points
-                  //- points
-                //- media-body
-              //- media
-              .media
-                .media-left
-                  h4 3.&nbsp;
-                  img.media-object(src='assets/images/products/p2.jpg', alt='')
-                //- media-left
-                .media-body
-                  a(href='productdetails2.html')
-                    strong Brokenwood
-                  //- a
-                  br
-                  small Graveyard Vineyard Shiraz
-
-                  .points
-                    span 94
-                    small points
-                  //- points
-                //- media-body
-              //- media
-            //- content
-            //- .search
-            //-   input.form-control(type='text', placeholder='search reviews...')
-            //- //- search
-            .more
-              a(href='#modal_coming_soon', data-toggle='modal') See all
-            //- more
-          //- feed
-
-          .list_groups.reviews
-            .head
-              h4
-                a(href='#modal_coming_soon', data-toggle='modal') Reviews
-                small (
-                  a(href='#modal_coming_soon', data-toggle='modal') 55
-                  | )
-              //- h4
-            //- head
-            .content
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/products/bottle8.png', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    strong Corona Extra
-                  //- a
-                  br
-                  | Imported Beer
-                  //- p
-                //- span
-              //- input-group
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/products/bottle1.png', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href='productdetails2.html')
-                    strong Brokenwood
-                  //- a
-                  br
-                  | Graveyard Vineyard Shiraz
-                  //- p
-                //- span
-              //- input-group
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/products/bottle7.png', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    strong Chivas Regal
-                  //- a
-                  br
-                  | 12 Year Old Scotch Whisky 700ml
-                  //- p
-                //- span
-              //- input-group
-            //- content
-            .search
-              input.form-control(type='text', placeholder='search reviews...')
-            //- search
-            .more
-              a(href='#modal_coming_soon', data-toggle='modal') See all
-            //- more
-          //- feed
-
-          .list_groups.feed
-            .head
-              h4
-                a(href='#modal_coming_soon', data-toggle='modal') Latest activity
-            //- head
-            .content
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/activity/img_advisor_2.jpg', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    strong Rodan Luzuriaga
-                  | likes a photo.
-                  //- p
-                //- span
-              //- input-group
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/img_advisor_1.jpg', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href="profile.html")
-                    strong Andrew Steer
-                  | commented on his own post.
-                  //- p
-                //- span
-              //- input-group
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/activity/img_advisor_2.jpg', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    strong Rodan Luzuriaga
-                  | shared a post.
-                  //- p
-                //- span
-              //- input-group
-            //- content
-          //- feed
-
-          .list_search_groups.messaging
-            .head
-              h4 Live chat
-            //- head
-            .content
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/users/user_3.jpg', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a.online(href="#") Darren Crone
-                  small online
-                  //- p
-                //- span
-              //- input-group
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/users/user_2.jpg', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a.offline(href="#") Rodan Luzuriaga
-                  small 2hours ago
-                  //- p
-                //- span
-              //- input-group
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/users/user_1.jpg', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a.online(href="profile.html") Andrew Steer
-                  small online
-                  //- p
-                //- span
-              //- input-group
-            //- content
-            .search
-              input.form-control(type='text')
-              a.new(href="#")
-                i.fa.fa-pencil-square-o
-              //- a
-            //- search
-          //- messaging
-          .list_groups.events
-            .head
-              h4
-                a(href='#modal_coming_soon', data-toggle='modal') Events
-            //- head
-            .content
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/likes/likes_1.png', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    strong brokenwood wine tasting
-                  br
-                  | 401-407 mcdonalds rd pokolbin nsw
-                  br
-                  small Saturday October 10th 2pm
-                  //- p
-                //- span
-              //- input-group
-              .input-group
-                span.input-group-addon
-                  .thumb
-                    .img
-                      img(src='assets/images/likes/likes_2.png', alt='')
-                    //- img
-                  //- thumb
-                span.form-control
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    strong margan wines wedding
-                  br
-                  | 1238 milbrodale rd broke nsw
-                  br
-                  small Saturday October 24th 4pm
-                  //- p
-                //- span
-              //- input-group
-            //- content
-          //- list_groups
-        //- col-md-3
-      //- row
-    //- container
-  //- section
+    //- section
 
 
 block scripts
@@ -956,30 +971,232 @@ block scripts
   script(src='assets/vendor/crowdhound/chUtil.js', type="text/javascript")
   script(src='assets/vendor/crowdhound/chtimeline.js', type="text/javascript")
   script.
-   
+
+
     /*
-     *  Set up the login part at the top of the page.
+     *  See if this page is showing the profile of a specific user.
+     *  This code gets the "user" parameter from the url.
      */
-    authservice.init({
-      // Environment specific values are defined in environment.js
-      host: AUTHSERVICE_HOST,
-      port: AUTHSERVICE_PORT,
-      tenant: AUTHSERVICE_TENANT,
-      pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
-      onUserChange: function(user, ttuat, fromCookie) {
-        // If the current user came from the cookie, reload it
-        //if (fromCookie) {
-        //  console.log('Reloading user details (cookie details are just a summary)');
-        //  return authservice.reloadUser();
-        //}
+    var userId = NaN;
+    window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+      if (key === 'user') {
+        userId = parseInt(value);
       }
     });
+    console.log('Displaying the page for userId=' + userId);
 
-    console.log('Current user:', authservice.getCurrentUser());
 
-    $(document).ready(function(){
-        TimelinePost.init();
+    /************************************************************
+     *
+     *    Angular code.
+     */
+    var app = angular.module('myApp', ['ngSanitize']);
+
+    teaservice.init({
+      host: TEASERVICE_HOST,
+      port: TEASERVICE_PORT,
+      accessToken: TEASERVICE_ACCESS_TOKEN
     });
+
+    // Add the controller for this page
+    app.controller('myCtrl', function($scope, $timeout, teaService) {
+
+
+      /*
+       *  Set up the login part at the top of the page.
+       */
+      authservice.init({
+        // Environment specific values are defined in environment.js
+        host: AUTHSERVICE_HOST,
+        port: AUTHSERVICE_PORT,
+        tenant: AUTHSERVICE_TENANT,
+        pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
+        onUserChange: function(loggedInUser, ttuat, fromCookie) {
+
+          //alert('onUserChange');
+          console.log('*** current user:', loggedInUser);
+          console.log('*** required user: ' + userId);
+
+          if (isNaN(userId)) {
+            if (loggedInUser) {
+              // If no userId was specified by the URL, show the current user.
+              userId = loggedInUser.id;
+            } else {
+
+              // Should not have got here. Redirect to another page.
+              alert('Need to redirect.');
+            }
+          }
+
+          // Load the requested user
+          var params = {
+            entityId: userId,
+            //nameMatch: q,
+            needRelationships: true,
+            needProperties: true,
+            entityType: 'user',
+            limit: 10 // Maximum of users
+          };
+          authservice.getUser(params, function(users) {
+
+            // Return the
+            if (users == null || users.length == 0) {
+              console.log('no users')
+              //ZZZZ redirect somewhere
+              /*$timeout(function(){
+                $scope.friendCandidate = null
+              }, 50);*/
+              return [ ];
+            }
+
+            // We have a user to display
+            console.log('----->', users[0])
+            $timeout(function(){
+              setUserDetails(users[0]);
+
+            }, 50);
+          });
+        }
+      });
+
+
+
+      $(document).ready(function(){
+          //TimelinePost.init();
+      });
+
+
+
+
+
+      function setUserDetails(user) {
+        console.log('setUserDetails(): ', user);
+
+        if ( !user.avatar) {
+          user.avatar = 'assets/images/anonymous.png';
+        }
+
+        // Is this my profile page?
+        $scope.isMyProfilePage = function() {
+          var currentUser = authservice.getCurrentUser();
+          console.log('Current user:', authservice.getCurrentUser(), user);
+          return (currentUser && currentUser.id == user.id);
+        };
+
+        // Get the properties for the user
+        $scope.profile = { };
+        if (user.propertySummary['drinkcircle.user.profile']) {
+          var props = user.propertySummary['drinkcircle.user.profile'];
+          $scope.userProfileProperties = props;
+          //console.log('Have user profile properties', props)
+
+          /*// Get the properties we use
+          var dobArray = props['dob']
+          if (dobArray && dobArray.length > 0) {
+            $scope.profile.dob = dobArray[0].value;
+          }*/
+          var interestArray = props['interest']
+          if (interestArray) {
+            $scope.profile.interests = interestArray;
+          }
+        }
+
+
+              var PROPERTY_REALM_PROFILE = 'user.profile';
+              var PROPERTY_REALM_EDUCATION = 'user.education';
+              var PROPERTY_REALM_WORK = 'user.work';
+
+
+        // Get the ids of the friends
+        var userIdsForWall = '' + userId;
+        if (user.relationshipSummary.hasFriend) {
+          //console.log('onUserChange: user.relationshipSummary.hasFriend:', user.relationshipSummary.hasFriend)
+          var arrayOfFriends = user.relationshipSummary.hasFriend
+          //arrayOfFriends.sort(sortRelationshipSummaryByFullname)
+          console.log('friends=', arrayOfFriends);
+          $scope.friends = arrayOfFriends
+
+          for (var i = 0; i < $scope.friends.length; i++) {
+            userIdsForWall += ',' + $scope.friends[i].entity_id;
+          }
+
+        } else {
+          $scope.friends = [ ]
+        }
+        console.log('ids for wall=' +  userIdsForWall);
+
+
+        $scope.isMyFriend = function() {
+          return $scope.isMyProfilePage();
+
+          var currentUser = authservice.getCurrentUser();
+          if (currentUser) {
+            for (var i = 0; i < $scope.friends.length; i++) {
+              if ($scope.friends[i].entity_id == currentUser.id) {
+                alert('is a friend already')
+                return true;
+              }
+            }
+          }
+          return false;
+        };
+
+
+        // Load the Time line
+        setTimeout(function() {
+          TimelinePost.init(userId, userIdsForWall);
+        }, 2000);
+
+
+
+        // Look at employment
+        //$scope.profile.employment = [ ];
+        $scope.profile.work = [ ];
+        if (user.propertySummary[PROPERTY_REALM_WORK] && user.propertySummary[PROPERTY_REALM_WORK].data) {
+          var employers = user.propertySummary[PROPERTY_REALM_WORK].data;
+          for (var i = 0; i < employers.length; i++) {
+
+            // Parse the JSON stored in the property.
+            var workData = employers[i].value;
+            try {
+              var obj = JSON.parse(workData);
+            } catch (e) {
+              console.log('Invalid JSON for property ' + employers[i].property_id);
+              continue;
+            }
+            $scope.profile.work.push(obj.company);
+          }
+          console.log('work=', $scope.profile.work);
+        }
+
+
+        // Look at education
+        $scope.profile.education = [ ];
+        if (user.propertySummary[PROPERTY_REALM_EDUCATION] && user.propertySummary[PROPERTY_REALM_EDUCATION].attended) {
+          var attended = user.propertySummary[PROPERTY_REALM_EDUCATION].attended;
+          for (var i = 0; i < attended .length; i++) {
+
+            // Parse the JSON stored in the property.
+            var schoolData = attended[i].value;
+            try {
+              var obj = JSON.parse(schoolData);
+            } catch (e) {
+              console.log('Invalid JSON for property ' + attended[i].property_id);
+              continue;
+            }
+            $scope.profile.education.push(obj.name);
+          }
+          console.log('education=', $scope.profile.education);
+        }
+
+
+
+        $scope.user = user;
+      }
+
+
+
+    });// app.controller
 
 
   //templates
@@ -996,7 +1213,7 @@ block scripts
                       <div class="img">
                           <img class="minAvatar" src="<<user.avatar>>" alt="">
                       </div>
-                      <a href="<<user.communityPage>>" target="_blank"><<user.firstName>> <<user.lastName>></a>
+                      <a href="/profile.html?user=<<user.userId>>"><<user.firstName>> <<user.lastName>></a>
                   </div>
                   <div class="more">
                       <ul class="nav navbar-nav navbar-right">

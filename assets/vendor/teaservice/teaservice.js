@@ -31,10 +31,15 @@
      *    - sharedOrder.d_packSave
      */
     function getSharedOrdersAndSetAngularVariables(paramsForAPI, $scope, teaService, callback/*(sharedOrders)*/) {
+        console.log('getSharedOrdersAndSetAngularVariables');
 
-        console.log('getSharedOrdersAndSetAngularVariables', callback)
         // Call the TEA API to get the product details
-        teaService.getSharedOrders(paramsForAPI).then(function(sharedOrders){
+        teaService.getSharedOrders(paramsForAPI).then(function getSharedOrders_cb(sharedOrders){
+
+
+          console.log('getSharedOrders returned:', sharedOrders);
+          if (sharedOrders == null) sharedOrders = [ ];
+
 
           $scope.sharedOrders_num = sharedOrders.length;
 
@@ -96,7 +101,6 @@
 
           // Return the sharedOrders
           if (callback) {
-            console.log('return sharedoreders ');
             return callback(sharedOrders);
           }
         });
@@ -381,14 +385,14 @@
             },
 
             /**
-            *	Get details about a product from the TEA API.
+            *	Get details about a supplier(s) from the TEA API.
             *	Returns a promise (since $http(req) is asyncronous)
             */
-            getSupplierProducts: function getSupplierProducts(params) {
-              var url = baseUrl + '/search';
+            getSupplier: function getSupplier(params) {
+              var url = baseUrl + '/v3/getSupplier';
               console.log('url is ' + url)
 
-              // Call the API to get the Supplier's product list
+              // Call the API to get the product details
               // ZZZZ This should use JSONP, as some browsers do not support CORS.
               // ZZZZ Unfortunately JSONP does not support headers, so we need
               // ZZZZ to pass details either in the url or the data. i.e. the
@@ -401,6 +405,91 @@
                   "version": "2.0.0"
                 },
                 data: params
+              };
+
+              // Prepare the promise, so the caller can use .then(fn) to handle the result.
+              var promise = $http(req).then(handleSuccess, handleError);
+              return promise;
+            },
+
+            /**
+            *	Get details about a product from the TEA API.
+            *	Returns a promise (since $http(req) is asyncronous)
+            */
+            // getSupplierProducts: function getSupplierProducts(params) {
+            //   var url = baseUrl + '/search';
+            //   console.log('url is ' + url)
+            //
+            //   // Call the API to get the Supplier's product list
+            //   // ZZZZ This should use JSONP, as some browsers do not support CORS.
+            //   // ZZZZ Unfortunately JSONP does not support headers, so we need
+            //   // ZZZZ to pass details either in the url or the data. i.e. the
+            //   // ZZZZ server requires changes.
+            //   var req = {
+            //     method: 'POST',
+            //     url: url,
+            //     headers: {
+            //       "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+            //       "version": "2.0.0"
+            //     },
+            //     data: params
+            //   };
+            //
+            //   // Prepare the promise, so the caller can use .then(fn) to handle the result.
+            //   var promise = $http(req).then(handleSuccess, handleError);
+            //   return promise;
+            // },
+
+
+            /**
+            *	Get details about a salesOrder from the TEA API.
+            *	Returns a promise (since $http(req) is asyncronous)
+            */
+            getSalesOrder: function getSalesOrder(paramsToAPI) {
+              var url = baseUrl + '/v3/getSalesOrder';
+              console.log('url is ' + url)
+
+              // Call the API to get the product details
+              // ZZZZ This should use JSONP, as some browsers do not support CORS.
+              // ZZZZ Unfortunately JSONP does not support headers, so we need
+              // ZZZZ to pass details either in the url or the data. i.e. the
+              // ZZZZ server requires changes.
+              var req = {
+                method: 'POST',
+                url: url,
+                headers: {
+                  "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+                  "version": "2.0.0"
+                },
+                data: paramsToAPI
+              };
+
+              // Prepare the promise, so the caller can use .then(fn) to handle the result.
+              var promise = $http(req).then(handleSuccess, handleError);
+              return promise;
+            },
+
+            /**
+            *	Create/update/delete the salesOrderLine from a product variant.
+            *	Returns a promise (since $http(req) is asyncronous)
+            */
+            putSalesOrderLine: function putSalesOrderLine(paramsToAPI) {
+              var url = baseUrl + '/v3/putSalesOrderLine';
+              console.log('url is ' + url)
+
+              // Call the API to get the product details
+              // ZZZZ This should use JSONP, as some browsers do not support CORS.
+              // ZZZZ Unfortunately JSONP does not support headers, so we need
+              // ZZZZ to pass details either in the url or the data. i.e. the
+              // ZZZZ server requires changes.
+              var req = {
+                method: 'POST',
+                url: url,
+                headers: {
+                  "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+                  "version": "2.0.0"
+                },
+                data: paramsToAPI
               };
 
               // Prepare the promise, so the caller can use .then(fn) to handle the result.
@@ -457,7 +546,7 @@
               // Prepare the promise, so the caller can use .then(fn) to handle the result.
               var promise = $http(req).then(handleSuccess, handleError);
               return promise;
-          },
+            },
 
             /**
             *	  Create a new shared_order.

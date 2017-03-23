@@ -172,7 +172,7 @@ console.log('*** Using jQuery AJAX call');
 
           // We have no error callback, so we'll report the error here and return null data.
           alert('An error occurred contacting Authservice.\nSee the Javascript console for details.')
-          console.log('statusCode:', response)
+          console.log('statusCode:', statusCode)
           console.log('statusText:', statusText)
           console.log('error:', error)
           return successCallback(null);

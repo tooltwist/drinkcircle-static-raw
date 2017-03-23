@@ -15,7 +15,17 @@ var dir = 'drinkcircle'; // project folder
 
 var paths = {
     // This must be in the right order, so linked files are processed first.
-    pug: ['includes/**/*.pug', 'assets/vendor/**/*.pug', 'layout/**/*.pug', 'partials/**/*.pug', 'product_maintenance/**/*.pug', './*.pug', '!**/_*.pug', '!node_modules/**/*'],
+    pug: [
+      'includes/**/*.pug',
+      'assets/vendor/**/*.pug',
+      'layout/**/*.pug',
+      'partials/**/*.pug',
+      'product_maintenance/**/*.pug',
+      './*.pug',
+      '!**/_*.pug',
+      '!node_modules/**/*',
+      '!assets/vendor/tooltwist-views-client/boilerplate/**/*',
+    ],
     scss: 'assets/css/**/*.scss',
     js: 'assets/scripts/**/*.js'
 }

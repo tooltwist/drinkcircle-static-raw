@@ -1,0 +1,208 @@
+// Pane for list
+.tab-pane#tab-generic-list(role="tabpanel")
+  .card(ng-hide=" !generic_listPaneIsVisible()")
+    .row
+      .col-md-12
+        h1 {{generic_viewLabel}} List
+
+        // A "filter" field, so the user can search
+        //- .form-group
+        //-   label(for='generic-filter') Filter
+        //-   input#generic-filter.form-control(ng-model="generic_filter" ng-change="generic_filterChanged()" type='text', placeholder='Type part of the supplier name')
+        //- //- form-group
+        br
+
+        // The fields generated from metadata are inserted here.
+        #generic_listDiv
+      //- col-md-12
+
+    //hr
+    //- actions-wrap
+  //- card
+  //- tab-pane
+
+  // Pane for single record
+  .card(ng-hide="generic_listPaneIsVisible()")
+    .row
+      .col-md-12
+        h1 {{generic_headingForRecordPane}}
+
+        // Buttons above
+        .actions-wrap
+          a.btn(ng-click="generic_backButton()") Back
+          a.btn.btn-success(ng-click="generic_saveButton()") Save
+        //- actions-wrap
+
+        // The fields generated from metadata are inserted here.
+        #generic_recordDiv
+
+        // Buttons below
+        hr
+        .actions-wrap
+          a.btn(ng-click="generic_backButton()") Back
+          a.btn.btn-success(ng-click="generic_saveButton()") Save
+      //- col-md-12
+    //- actions-wrap
+  //- card
+//- tab-pane
+
+
+
+script.
+
+
+  var STORE_ID = 6;
+
+  if (typeof(menuItems) == 'undefined') {
+    menuItems = [ ];
+  }
+
+
+
+
+
+
+  (function(){
+
+    const LABEL = 'Generic';
+    const VIEW = 'product';
+
+    /*
+     *  Now register this menu item to use the pane described above.
+     */
+    PluginMenuItems.register({
+      label: LABEL,
+
+      id: '#tab-generic-list',
+
+      init: function(context) {
+        var $scope = context.$scope;
+
+        /*
+         *  Load the initial records.
+         */
+        var params = { };
+        TooltwistViews.select(context, VIEW, params, generic_selectCallback);
+
+
+        /*
+         *  If we have enough characters, do a search.
+         */
+        $scope.generic_filterChanged = function() {
+
+          // Check we have enough characters.
+          if ($scope.generic_filter.length < 3) {
+            $scope.suppliers = [ ];
+            return;
+          }
+          var params = {
+            filter: $scope.generic_filter
+          };
+          TooltwistViews.select(context, VIEW, params, generic_selectCallback);
+        };// generic_filterChanged
+
+
+        /*
+         *  This function is called once we have the records.
+         */
+        function generic_selectCallback(err, data, metadata) {
+          console.log('data=', data);
+          console.log('metadata=', metadata);
+
+          $scope.generic_list = data;
+          $scope.generic_record = ($scope.generic_list.length > 0) ? $scope.generic_list[0] : null;
+          $scope.generic_viewLabel = metadata.label;
+
+          // Provide style options for displaying the list and record.
+          var displayOptions = {
+            listTableClasses: 'table-condensed table-hover',
+            listClickFunction: 'generic_listClick'
+          };
+
+          // Add fields to the DOM for the list
+          var listDiv = $('#generic_listDiv');
+          var fields = TooltwistViews.fieldsForMode(metadata, 'list');
+          var html = TooltwistViews.htmlForAngular_list(metadata, fields, displayOptions);
+          listDiv.html(html);
+          // Ask Angular to bind our new DOM elements onto it's models.
+          context.$compile(listDiv)($scope);
+
+          // Add fields to the DOM for the record
+          var recordDiv = $('#generic_recordDiv');
+          var fields = TooltwistViews.fieldsForMode(metadata, 'record');
+          var html = TooltwistViews.htmlForAngular_edit(metadata, fields, displayOptions);
+          recordDiv.html(html);
+          // Ask Angular to bind our new DOM elements onto it's models.
+          context.$compile(recordDiv)($scope);
+        }// generic_selectCallback
+
+
+        /*
+         *  Handle a click on the list.
+         */
+        $scope.generic_listClick = function(record) {
+
+          // Set the current record.
+          // Show the single record pane.
+          // Set the label for the pane.
+          $scope.generic_record = record;
+          $scope.generic_showListPane = false;
+          $scope.generic_headingForRecordPane = record.name;
+        }// generic_listClick
+
+
+
+        /*
+         *  Go back to showing the supplier list.
+         */
+        $scope.generic_backButton = function() {
+          //alert('back()');
+          $scope.generic_showListPane = true;
+          return false;
+        };// generic_backButton
+
+
+
+        /*
+         *  Save the supplier details.
+         */
+        $scope.generic_saveButton = function() {
+          //alert('generic_saveButton()');
+          TooltwistViews.save(context, VIEW, $scope.generic_record, function(err, reply) {
+            console.log('save returned', err, reply);
+            // Jump back to the supplier list
+            context.$timeout(function() {
+              context.$scope.generic_showListPane = true;
+            }, 10);
+          });
+        }// generic_saveButton
+
+
+        /*
+         *  Return true when we want to show the list (rather than the record).
+         */
+        $scope.generic_listPaneIsVisible = function() {
+          return $scope.generic_showListPane;
+        }// generic_listPaneIsVisible
+
+      },
+
+      /*
+       *  When we switch menu option, we want to come back to the list.
+       */
+      reset: function(context) {
+        var $scope = context.$scope;
+        var $timeout = context.$timeout;
+
+        // This function might or might not have been called by Angular. The
+        // timeout function causes Angular to $apply() changes to the model,
+        // and also allows the current function to return, if it was called
+        // by Angular (for example, during page initialization), preventing
+        // and Angular $proc (???) error.
+        context.$timeout(function() {
+          $scope.generic_showListPane = true;
+        }, 10);
+      }
+    });
+
+  })();

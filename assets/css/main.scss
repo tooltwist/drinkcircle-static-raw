@@ -927,7 +927,7 @@ section {
 			}
 			&.categories {
 				@media screen and (min-width: 1024px) {
-					height: 391px;	
+					height: 391px;
 				}
 				.title {
 					text-align: center;
@@ -1651,9 +1651,16 @@ section {
 					}
 					.first-rating {
 						font-size: 17px;
-						margin-top: 25px;
-						font-weight: bold;
-						color: #41B54B !important;
+						margin-top: 18px;
+						font-weight: normal;
+						line-height: normal;
+						a {
+							//color: #5a5a5a !important;
+							color: #41B54B !important;
+						}
+						a:hover {
+							text-decoration: none;
+						}
 					}
 					.first-rating-small {
 						font-size: 11px;
@@ -1758,6 +1765,7 @@ section {
 		img.img-prod {
 			max-width: 100%;
 			max-height: 360px;
+			min-height: 360px;
 			// min-width: 100%;
 			// padding: 35px;
 			padding: 15px;
@@ -2041,9 +2049,9 @@ footer {
 			height: 373px;
 		}
 		@media screen and (min-width: 1024px) {
-			height: 391px;	
+			height: 391px;
 		}
-		
+
 	}
 	> a {
 		display: block;
@@ -2227,6 +2235,15 @@ section.productdetails {
 		display: inline-block;
 		position: relative;
 		width: 100%;
+		//max-height: 900px;
+		.img-responsive {
+	    display: block;
+	    width: auto;
+			//height: 300px;
+	    max-height: 800px;
+			margin-left: auto;
+	    margin-right: auto;
+		}
 		.card_rounded {
 			hr {
 				margin: 10px 0;
@@ -2297,9 +2314,15 @@ section.productdetails {
 					}
 					.first-rating {
 						font-size: 17px;
-						font-weight: bold;
+						margin-top: -8px;
+						font-weight: normal;
+						line-height: normal;
 						a {
+							//color: #5a5a5a;
 							color: #41B54B !important;
+						}
+						a:hover {
+							text-decoration: none;
 						}
 					}
 				}
@@ -2425,7 +2448,7 @@ section.productdetails {
 		}
 	}
 	.button {
-		font-size: 14px;
+		font-size: 12px;
 	}
 	.about {
 		p.desc {
@@ -2627,6 +2650,7 @@ section.productdetails {
 			color: white;
 			background: #348f3b;
 			border-color: #348f3b;
+			cursor: pointer;
 		}
 	}
 	&.thin-line {
@@ -2763,6 +2787,110 @@ section.productdetails {
 	}
 }
 
+// SHOPPING CART ======================================================================
+.shopping-cart-menu {
+	&.card {
+		padding: 0;
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			li {
+				height: 80px;
+				position: relative;
+				cursor: pointer;
+				// border: solid 1px #41b54b;
+				border: solid 1px #555;
+				background-color: #f0f0f0;
+				box-sizing: content-box;
+				padding: 2px;
+
+				// .not-current-order {
+				// 	opacity: 0.4;
+				// 	filter: alpha(opacity=40); /* For IE8 and earlier */
+				// }
+				.image-container {
+					display: inline-block;
+					width: 80px;
+					height: 80px;
+					background-color: #ffffff;
+					float: left;
+					margin-right: 8px;
+					padding: 0px;
+				}
+				img {
+					display: inline-block !important;
+					max-height: 80px;
+					max-width: 80px;
+					width: 80px !important;
+					// margin-left: 0px;
+					// margin-right: 10px;
+					// float: left;
+					cursor: pointer;
+				}
+				a {
+					//color: #a6a6a6;
+					//color: red;
+					display: block;
+					// padding: 15px 25px;
+					text-decoration: none;
+					cursor: pointer;
+				}
+				.supplier-name {
+					// display: inline-block !important;
+					//color: black;
+					// background-color: pink;
+					font-weight: bold;
+					padding-top: 5px;
+					font-size: 13px;
+				}
+				&:hover a, &.active a {
+					color: gray;
+					background: #f5f5f5;
+					cursor: pointer;
+				}
+				// &.active:after {
+				// 	font-family: FontAwesome;
+				// 	content: "\f054";
+				// 	position: absolute;
+				// 	top: 15px;
+				// 	right: -22px;
+				// }
+			}
+			li.not-current-order {
+				opacity: 0.4;
+				filter: alpha(opacity=40); /* For IE8 and earlier */
+				background-color: #ffffff;
+				border-left: none;
+				border-top: none;
+				border-right: none;
+				// border-bottom: solid 1px #f5f5f5;
+				border-bottom: solid 1px #ccc;
+			}
+		}
+	}
+}
+
+.shopping-cart-logo {
+	max-height: 192px;
+	max-width: 192px;
+	padding-bottom: 10px;
+}
+
+.shopping-cart-view-more {
+	//display: inline-block;
+	margin-top: 7px;
+	color: #41b54b;
+	font-size: 14px;
+	cursor: pointer;
+}
+// .view-more:hover {
+// 	color: blue;
+// }
+
+.shopping-cart-quantity {
+	width: 33px;
+}
 
 // MY PROFILE ======================================================================
 
@@ -3991,6 +4119,8 @@ section {
 
 .see-all-drinks {
 	top: 50px !important;
+	background-color: white;
+	margin-left: 5px;
 }
 
 

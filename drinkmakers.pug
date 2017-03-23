@@ -8,7 +8,7 @@ block css
 
 block content
 
-  section
+  section(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
     .container
       .row
         .col-md-3
@@ -85,10 +85,12 @@ block content
               //- select
             //- form-group
           //- form
-          .maker-list
+
+
+          .maker-list(ng-repeat="supplier in suppliers")
             .row
               .col-md-5
-                img.maker(src='assets/images/makers/brokenwood/brokenwood.jpg')
+                img.maker(src='{{supplier.directory_photo}}')
                 p.visible-xs.visible-sm
               //- col-md-5
               .col-md-7
@@ -96,16 +98,16 @@ block content
                   .media-left
                     .picture
                       img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                      img.source(src='assets/images/likes/likes_1.png')
+                      img.source(src='{{supplier.logo}}')
                     //- picture
                   //- media-left
                   .media-body
                     .media-right
                       //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
                       //| &nbsp;
-                      a.btn.btn-success.btn-xs(href='shop.html?supplier=604') Go to Shop
+                      a.btn.btn-success.btn-xs(href='shop.html?supplier={{supplier.id}}') Go to Shop
                     //- media-right
-                    h4.media-heading Brokenwood Wines
+                    h4.media-heading {{supplier.supplier_name}}
                     .rating-status.md
                       span.left 4.6
                       .stars
@@ -123,317 +125,322 @@ block content
                 p.address
                   strong 401-427 McDonalds Rd Pokolbin, New South Wales
                 //- p
-                p.summary Established in 1970, Brokenwood Wines is one of Australia’s most reputable wine labels and a must-visit while you’re in the Hunter Valley. Consistently listed as a 5 star winery.
-                p.summary Brokenwood is home to the famous Graveyard Vineyard Shiraz, the highly acclaimed ILR Reserve Semillon, and the popular Cricket Pitch range...&nbsp;
-                  a(href='seller.html') read more
+                p.summary {{supplier.story}}
+                  //a(href='seller.html') read more
               //- col-md-7
             //- row
           //- maker-list
-          .maker-list
-            .row
-              .col-md-5
-                img.maker(src='assets/images/makers/younghenrys/preview.jpg')
-                p.visible-xs.visible-sm
-              //- col-md-5
-              .col-md-7
-                .media
-                  .media-left
-                    .picture
-                      img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                      img.source(src='assets/images/makers/younghenrys/logo.jpg')
-                    //- picture
-                  //- media-left
-                  .media-body
-                    .media-right
-                      //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                      //| &nbsp;
-                      a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
-                    //- media-right
-                    h4.media-heading Young Henrys
-                    .rating-status.md
-                      span.left 4.8
-                      .stars
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star-half-o
-                      //- stars
-                      span.right.sm
-                        a(href='#modal_coming_soon', data-toggle='modal') 417 reviews
-                    //- rating-status
-                  //- media-body
-                //- media
-                p.address
-                  strong 76 Wilford Street Newtown, New South Wales
-                //- p
-                p.summary Like most good stories, ours started over a beer. Meeting on opposite sides of the bar, Richard Adamson and Oscar McMahon got talking. It turned out they both shared a love of beer and a view that the Sydney beer scene was behind the times.
-                p.summary It should, they thought, be more adventurous, innovative and fun. Since Richard knew how to brew and Oscar knew all the....&nbsp;
-                  a(href='seller-yh.html') read more
-              //- col-md-7
-            //- row
-          //- maker-list
-          .maker-list
-            .row
-              .col-md-5
-                img.maker(src='assets/images/producers/westwinds/preview.jpg')
-                p.visible-xs.visible-sm
-              //- col-md-5
-              .col-md-7
-                .media
-                  .media-left
-                    .picture
-                      img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                      img.source(src='assets/images/producers/westwinds/logo.png')
-                    //- picture
-                  //- media-left
-                  .media-body
-                    .media-right
-                      //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                      //| &nbsp;
-                      a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
-                    //- media-right
-                    h4.media-heading The West Winds Gin
-                    .rating-status.md
-                      span.left 4.9
-                      .stars
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                      //- stars
-                      span.right.sm
-                        a(href='#modal_coming_soon', data-toggle='modal') 22 reviews
-                    //- rating-status
-                  //- media-body
-                //- media
-                p.address
-                  strong Margaret River, Western Australia
-                //- p
-                p.summary We named our Gin 'The West Winds' in a tribute to the breezes that enabled explorers &amp; merchants from the safe havens of Europe to explore the New World in pursuit of gold in the form of spices, botanicals and luxuriant exotica. Our gin reflects the bold and adventurous nature of the traders and has pure Margaret River water at it's core...&nbsp;
-                  a(href='seller-ww.html') read more
-              //- col-md-7
-            //- row
-          //- maker-list
-          .maker-list
-            .row
-              .col-md-5
-                img.maker(src='assets/images/makers/rosnay/preview.jpg')
-                p.visible-xs.visible-sm
-              //- col-md-5
-              .col-md-7
-                .media
-                  .media-left
-                    .picture
-                      img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                      img.source(src='assets/images/makers/rosnay/logo.jpg')
-                    //- picture
-                  //- media-left
-                  .media-body
-                    .media-right
-                      //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                      //| &nbsp;
-                      a.btn.btn-success.btn-xs(href='shop.html?supplier=605') Go to Shop
-                    //- media-right
-                    h4.media-heading Rosnay Organic
-                    .rating-status.md
-                      span.left 5
-                      .stars
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                      //- stars
-                      span.right.sm
-                        a(href='#modal_coming_soon', data-toggle='modal') 8 reviews
-                    //- rating-status
-                  //- media-body
-                //- media
-                p.address
-                  strong 510 Rivers Road Canowindra, New South Wales
-                //- p
-                p.summary Rosnay was established by the Statham family at Canowindra, NSW, in 1996, and since 2000 the farm has been a source of many fine organic wines and olive products. Richard and Florence Statham began the project in 1995, and when they found the property in 1996 they named it Rosnay, after Florence's grandfather, Alberic Dulong de Rosnay, who had a vineyard in the French Beaujolais...&nbsp;
-                  a(href='seller-ro.html') read more
-              //- col-md-7
-            //- row
-          //- maker-list
-          .maker-list
-            .row
-              .col-md-5
-                img.maker(src='assets/images/producers/ar/preview.jpg')
-                p.visible-xs.visible-sm
-              //- col-md-5
-              .col-md-7
-                .media
-                  .media-left
-                    .picture
-                      img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                      img.source(src='assets/images/producers/ar/logo.jpg')
-                    //- picture
-                  //- media-left
-                  .media-body
-                    .media-right
-                      //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                      //| &nbsp;
-                      a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
-                    //- media-right
-                    h4.media-heading Archie Rose Distilling Co.
-                    .rating-status.md
-                      span.left 5
-                      .stars
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                      //- stars
-                      span.right.sm
-                        a(href='#modal_coming_soon', data-toggle='modal') 112 reviews
-                    //- rating-status
-                  //- media-body
-                //- media
-                p.address
-                  strong Rosebery, New South Wales, Australia
-                //- p
-                p.summary Archie Rose – Reigniting Sydney’s rich history in distilling. Archie Rose distills and bottles spirits by hand to be shared in good company. 18+ only...&nbsp;
-                  a(href='seller-ar.html') read more
-              //- col-md-7
-            //- row
-          //- maker-list
-          .maker-list
-            .row
-              .col-md-5
-                img.maker(src='assets/images/producers/gs/preview.jpg')
-                p.visible-xs.visible-sm
-              //- col-md-5
-              .col-md-7
-                .media
-                  .media-left
-                    .picture
-                      img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                      img.source(src='assets/images/producers/gs/logo.jpg')
-                    //- picture
-                  //- media-left
-                  .media-body
-                    .media-right
-                      //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                      //| &nbsp;
-                      a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
-                    //- media-right
-                    h4.media-heading Giant Steps Wines
-                    .rating-status.md
-                      span.left 5
-                      .stars
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                      //- stars
-                      span.right.sm
-                        a(href='#modal_coming_soon', data-toggle='modal') 29 reviews
-                    //- rating-status
-                  //- media-body
-                //- media
-                p.address
-                  strong 336 Maroondah Highway Healesville, Victoria
-                //- p
-                p.summary When the saxophonist John Coltrane split with Miles Davis in the late 50s, he wasted little time releasing his visionary Giant Steps album. Owner Phil Sexton is a jazz fan and was inspired by the album and Coltrane's foresight. When he sold his Devil's Lair vineyard in Margaret River to relocate and replant in the Yarra Valley, he named his wine in Coltrane's honour...&nbsp;
-                  a(href='seller-gs.html') read more
-              //- col-md-7
-            //- row
-          //- maker-list
-          .maker-list
-            .row
-              .col-md-5
-                img.maker(src='assets/images/producers/fg/preview.jpg')
-                p.visible-xs.visible-sm
-              //- col-md-5
-              .col-md-7
-                .media
-                  .media-left
-                    .picture
-                      img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                      img.source(src='assets/images/producers/fg/logo.jpg')
-                    //- picture
-                  //- media-left
-                  .media-body
-                    .media-right
-                      //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                      //| &nbsp;
-                      a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
-                    //- media-right
-                    h4.media-heading Five Geese Wines
-                    .rating-status.md
-                      span.left 5
-                      .stars
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                      //- stars
-                      span.right.sm
-                        a(href='#modal_coming_soon', data-toggle='modal') 29 reviews
-                    //- rating-status
-                  //- media-body
-                //- media
-                p.address
-                  strong McLaren Vale Region, Australia
-                //- p
-                p.summary The beauty of Five Geese spans across 32 Hectares of vineyards located in the McLaren Vale region of South Australia.
-                p Nestled in the north-eastern end of the Willunga basin, Blewitt Springs lies about 180m above sea level. This slightly higher elevation provides a cooler climate than nearby McLaren Vale and Willunga. With cooler temperatures and moderating afternoon sea breezes...&nbsp;
-                  a(href='seller-fg.html') read more
-              //- col-md-7
-            //- row
-          //- maker-list
-          .maker-list
-            .row
-              .col-md-5
-                img.maker(src='assets/images/producers/4p/preview.jpg')
-                p.visible-xs.visible-sm
-              //- col-md-5
-              .col-md-7
-                .media
-                  .media-left
-                    .picture
-                      img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                      img.source(src='assets/images/producers/4p/logo.jpg')
-                    //- picture
-                  //- media-left
-                  .media-body
-                    .media-right
-                      //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                      //| &nbsp;
-                      a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
-                    //- media-right
-                    h4.media-heading 4 Pines Brewing Company
-                    .rating-status.md
-                      span.left 5
-                      .stars
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                      //- stars
-                      span.right.sm
-                        a(href='#modal_coming_soon', data-toggle='modal') 46 reviews
-                    //- rating-status
-                  //- media-body
-                //- media
-                p.address
-                  strong 4F/9-13 Winbourne Rd Brookvale NSW 2100
-                //- p
-                p.summary We really, really love good beer.
-                p Our goal is to introduce people who have never experienced such flavours &amp; aromas, to beer – &amp; turn them into beer lovers who have a genuine appreciation for how good it can be!
-                p According to Australian law we are required to comply with responsible drinking...&nbsp;
-                  a(href='seller-4p.html') read more
-              //- col-md-7
-            //- row
-          //- maker-list
+
+
+          #dummySuppliers.hide
+            .maker-list.
+              .row
+                .col-md-5
+                  img.maker(src='assets/images/makers/younghenrys/preview.jpg')
+                  p.visible-xs.visible-sm
+                //- col-md-5
+                .col-md-7
+                  .media
+                    .media-left
+                      .picture
+                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
+                        img.source(src='assets/images/makers/younghenrys/logo.jpg')
+                      //- picture
+                    //- media-left
+                    .media-body
+                      .media-right
+                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
+                        //| &nbsp;
+                        a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
+                      //- media-right
+                      h4.media-heading Young Henrys
+                      .rating-status.md
+                        span.left 4.8
+                        .stars
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star-half-o
+                        //- stars
+                        span.right.sm
+                          a(href='#modal_coming_soon', data-toggle='modal') 417 reviews
+                      //- rating-status
+                    //- media-body
+                  //- media
+                  p.address
+                    strong 76 Wilford Street Newtown, New South Wales
+                  //- p
+                  p.summary Like most good stories, ours started over a beer. Meeting on opposite sides of the bar, Richard Adamson and Oscar McMahon got talking. It turned out they both shared a love of beer and a view that the Sydney beer scene was behind the times.
+                  p.summary It should, they thought, be more adventurous, innovative and fun. Since Richard knew how to brew and Oscar knew all the....&nbsp;
+                    a(href='seller-yh.html') read more
+                //- col-md-7
+              //- row
+            //- maker-list
+            .maker-list
+              .row
+                .col-md-5
+                  img.maker(src='assets/images/producers/westwinds/preview.jpg')
+                  p.visible-xs.visible-sm
+                //- col-md-5
+                .col-md-7
+                  .media
+                    .media-left
+                      .picture
+                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
+                        img.source(src='assets/images/producers/westwinds/logo.png')
+                      //- picture
+                    //- media-left
+                    .media-body
+                      .media-right
+                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
+                        //| &nbsp;
+                        a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
+                      //- media-right
+                      h4.media-heading The West Winds Gin
+                      .rating-status.md
+                        span.left 4.9
+                        .stars
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                        //- stars
+                        span.right.sm
+                          a(href='#modal_coming_soon', data-toggle='modal') 22 reviews
+                      //- rating-status
+                    //- media-body
+                  //- media
+                  p.address
+                    strong Margaret River, Western Australia
+                  //- p
+                  p.summary We named our Gin 'The West Winds' in a tribute to the breezes that enabled explorers &amp; merchants from the safe havens of Europe to explore the New World in pursuit of gold in the form of spices, botanicals and luxuriant exotica. Our gin reflects the bold and adventurous nature of the traders and has pure Margaret River water at it's core...&nbsp;
+                    a(href='seller-ww.html') read more
+                //- col-md-7
+              //- row
+            //- maker-list
+            .maker-list
+              .row
+                .col-md-5
+                  img.maker(src='assets/images/makers/rosnay/preview.jpg')
+                  p.visible-xs.visible-sm
+                //- col-md-5
+                .col-md-7
+                  .media
+                    .media-left
+                      .picture
+                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
+                        img.source(src='assets/images/makers/rosnay/logo.jpg')
+                      //- picture
+                    //- media-left
+                    .media-body
+                      .media-right
+                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
+                        //| &nbsp;
+                        a.btn.btn-success.btn-xs(href='shop.html?supplier=605') Go to Shop
+                      //- media-right
+                      h4.media-heading Rosnay Organic
+                      .rating-status.md
+                        span.left 5
+                        .stars
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                        //- stars
+                        span.right.sm
+                          a(href='#modal_coming_soon', data-toggle='modal') 8 reviews
+                      //- rating-status
+                    //- media-body
+                  //- media
+                  p.address
+                    strong 510 Rivers Road Canowindra, New South Wales
+                  //- p
+                  p.summary Rosnay was established by the Statham family at Canowindra, NSW, in 1996, and since 2000 the farm has been a source of many fine organic wines and olive products. Richard and Florence Statham began the project in 1995, and when they found the property in 1996 they named it Rosnay, after Florence's grandfather, Alberic Dulong de Rosnay, who had a vineyard in the French Beaujolais...&nbsp;
+                    a(href='seller-ro.html') read more
+                //- col-md-7
+              //- row
+            //- maker-list
+            .maker-list
+              .row
+                .col-md-5
+                  img.maker(src='assets/images/producers/ar/preview.jpg')
+                  p.visible-xs.visible-sm
+                //- col-md-5
+                .col-md-7
+                  .media
+                    .media-left
+                      .picture
+                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
+                        img.source(src='assets/images/producers/ar/logo.jpg')
+                      //- picture
+                    //- media-left
+                    .media-body
+                      .media-right
+                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
+                        //| &nbsp;
+                        a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
+                      //- media-right
+                      h4.media-heading Archie Rose Distilling Co.
+                      .rating-status.md
+                        span.left 5
+                        .stars
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                        //- stars
+                        span.right.sm
+                          a(href='#modal_coming_soon', data-toggle='modal') 112 reviews
+                      //- rating-status
+                    //- media-body
+                  //- media
+                  p.address
+                    strong Rosebery, New South Wales, Australia
+                  //- p
+                  p.summary Archie Rose – Reigniting Sydney’s rich history in distilling. Archie Rose distills and bottles spirits by hand to be shared in good company. 18+ only...&nbsp;
+                    a(href='seller-ar.html') read more
+                //- col-md-7
+              //- row
+            //- maker-list
+            .maker-list
+              .row
+                .col-md-5
+                  img.maker(src='assets/images/producers/gs/preview.jpg')
+                  p.visible-xs.visible-sm
+                //- col-md-5
+                .col-md-7
+                  .media
+                    .media-left
+                      .picture
+                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
+                        img.source(src='assets/images/producers/gs/logo.jpg')
+                      //- picture
+                    //- media-left
+                    .media-body
+                      .media-right
+                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
+                        //| &nbsp;
+                        a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
+                      //- media-right
+                      h4.media-heading Giant Steps Wines
+                      .rating-status.md
+                        span.left 5
+                        .stars
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                        //- stars
+                        span.right.sm
+                          a(href='#modal_coming_soon', data-toggle='modal') 29 reviews
+                      //- rating-status
+                    //- media-body
+                  //- media
+                  p.address
+                    strong 336 Maroondah Highway Healesville, Victoria
+                  //- p
+                  p.summary When the saxophonist John Coltrane split with Miles Davis in the late 50s, he wasted little time releasing his visionary Giant Steps album. Owner Phil Sexton is a jazz fan and was inspired by the album and Coltrane's foresight. When he sold his Devil's Lair vineyard in Margaret River to relocate and replant in the Yarra Valley, he named his wine in Coltrane's honour...&nbsp;
+                    a(href='seller-gs.html') read more
+                //- col-md-7
+              //- row
+            //- maker-list
+            .maker-list
+              .row
+                .col-md-5
+                  img.maker(src='assets/images/producers/fg/preview.jpg')
+                  p.visible-xs.visible-sm
+                //- col-md-5
+                .col-md-7
+                  .media
+                    .media-left
+                      .picture
+                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
+                        img.source(src='assets/images/producers/fg/logo.jpg')
+                      //- picture
+                    //- media-left
+                    .media-body
+                      .media-right
+                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
+                        //| &nbsp;
+                        a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
+                      //- media-right
+                      h4.media-heading Five Geese Wines
+                      .rating-status.md
+                        span.left 5
+                        .stars
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                        //- stars
+                        span.right.sm
+                          a(href='#modal_coming_soon', data-toggle='modal') 29 reviews
+                      //- rating-status
+                    //- media-body
+                  //- media
+                  p.address
+                    strong McLaren Vale Region, Australia
+                  //- p
+                  p.summary The beauty of Five Geese spans across 32 Hectares of vineyards located in the McLaren Vale region of South Australia.
+                  p Nestled in the north-eastern end of the Willunga basin, Blewitt Springs lies about 180m above sea level. This slightly higher elevation provides a cooler climate than nearby McLaren Vale and Willunga. With cooler temperatures and moderating afternoon sea breezes...&nbsp;
+                    a(href='seller-fg.html') read more
+                //- col-md-7
+              //- row
+            //- maker-list
+            .maker-list
+              .row
+                .col-md-5
+                  img.maker(src='assets/images/producers/4p/preview.jpg')
+                  p.visible-xs.visible-sm
+                //- col-md-5
+                .col-md-7
+                  .media
+                    .media-left
+                      .picture
+                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
+                        img.source(src='assets/images/producers/4p/logo.jpg')
+                      //- picture
+                    //- media-left
+                    .media-body
+                      .media-right
+                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
+                        //| &nbsp;
+                        a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
+                      //- media-right
+                      h4.media-heading 4 Pines Brewing Company
+                      .rating-status.md
+                        span.left 5
+                        .stars
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                          i.fa.fa-star
+                        //- stars
+                        span.right.sm
+                          a(href='#modal_coming_soon', data-toggle='modal') 46 reviews
+                      //- rating-status
+                    //- media-body
+                  //- media
+                  p.address
+                    strong 4F/9-13 Winbourne Rd Brookvale NSW 2100
+                  //- p
+                  p.summary We really, really love good beer.
+                  p Our goal is to introduce people who have never experienced such flavours &amp; aromas, to beer – &amp; turn them into beer lovers who have a genuine appreciation for how good it can be!
+                  p According to Australian law we are required to comply with responsible drinking...&nbsp;
+                    a(href='seller-4p.html') read more
+                //- col-md-7
+              //- row
+            //- maker-list
+
+
+
           hr
           nav.text-center(aria-label='...')
             ul.pagination.pagination-sm
@@ -483,6 +490,38 @@ block scripts
       }).click(function(e) {
         e.preventDefault();
       });
+    });
+
+
+
+
+    /************************************************************
+     *
+     *    Angular code.
+     */
+    var app = angular.module('myApp', ['ngSanitize']);
+
+    teaservice.init({
+      host: TEASERVICE_HOST,
+      port: TEASERVICE_PORT,
+      accessToken: TEASERVICE_ACCESS_TOKEN
+    });
+
+    // Add the controller for this page
+    app.controller('myCtrl', function($scope, teaService) {
+
+      // Get the details of suppliers from TEA.
+      var categoryId = '1';
+      console.log('hi 1')
+      teaService.getSupplier({
+        storeId: 6
+        /*categoryId: categoryId,
+        needPricing: true,
+        needImages: true*/
+      }).then(function(suppliers){
+        console.log('BACK NOW', suppliers);
+        $scope.suppliers = suppliers;
+      });//getSuppliers
     });
 
 

@@ -831,7 +831,8 @@ block scripts
          */
         $scope.haveRequiredInformation = function() {
           $scope.haveAllTheRequiredInformation = (
-            $scope.haveValidOrderSize
+            $scope.loggedIn
+            && $scope.haveValidOrderSize
             && $scope.haveValidYourQty
             && $scope.haveValidDob
             //&& $scope.haveValidBillingAddress
@@ -869,7 +870,9 @@ block scripts
                "customerId": customerId,
                "pricingQuantityId": $scope.finalPricingQuantityId,
                "quantity": $scope.finalOrderSize,
-               "ownerLabel": ownerLabel
+               "ownerLabel": ownerLabel,
+               "shipToAddressRule": 'P', // Preferred - prefer orders ship to shared order address
+               "shipToSharedOrderAddress": true
                //"expiresAt": "1970-00-00T00:00:00.000Z"
             }, $scope, teaService).then(function(data){
 
@@ -937,7 +940,7 @@ block scripts
          */
         $scope.backToProductPage = function submitProductRatingAndReview() {
           // Jump back to the product screen.
-          window.location = '/productDetails2.html?product='+productVariantId;
+          window.location = '/productdetails2.html?product='+productVariantId;
         };
 
 
@@ -1021,6 +1024,7 @@ block scripts
             "taxAmount" : accounting.unformat(angularScope.calc_gst),
             "amountInclTax" : accounting.unformat(angularScope.calc_subtotal),
             "notes" : angularScope.comment,
+            "shipToSharedOrderAddress": true, // Tempory hack ZZZZZ
             "items" : [
               {
                 "productVariantId" : productVariantId,

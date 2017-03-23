@@ -8,14 +8,17 @@ script.
   //alert('plugin-menus 2')
 
 
-  var PluginMenuItems = (function() {
+    var PluginMenuItems = (function() {
     console.log('pluginMenuItems constructor()');
 
     // Private variables
     var menuItems = [ ];
-    var _$scope;
-    var _$http;
-    var _$timeout;
+    var _context = {
+      /*$scope: null,
+      $http: null,
+      $timeout: null,
+      $compile: null*/
+    };
 
     // Return the object.
     return {
@@ -33,23 +36,21 @@ script.
        *  should happen after the individual menu
        *  items have registered themselves.
        */
-      init: function init($scope, $http, $timeout) {
+      //init: function init($scope, $http, $timeout, $compile) {
+      init: function init(context) {
 
         console.log('pluginMenuItems.init()');
 
-        _$scope = $scope;
-        _$http = $http;
-        _$timeout = $timeout;
-
+        _context = context;
 
         // Initialise the menu items.
         for (var i = 0; i < menuItems.length; i++) {
           var item = menuItems[i];
           if (item.init) {
-            item.init($scope, $http, $timeout);
+            item.init(_context);
           }
         }
-        $scope.menuItems = menuItems;
+        context.$scope.menuItems = menuItems;
       },
 
 
@@ -61,7 +62,8 @@ script.
           for (var i = 0; i < menuItems.length; i++) {
             var item = menuItems[i];
             if (item.reset) {
-              item.reset(_$scope, _$http, _$timeout);
+              //console.log('_context=', _context);
+              item.reset(_context);
             }
           }
         }

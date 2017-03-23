@@ -20,7 +20,9 @@ var TimelinePost = (function() {
 
     return {
 
-        init : function(){
+        init: function(userIdForPage, userIdsForWall) {
+          console.log('-------------------------------------');
+          console.log('TimelinePost(' + userIdForPage + ', ' + userIdsForWall + ')');
           //serverUrl : '//' + CROWDHOUND_HOST + ':' + CROWDHOUND_PORT,
           //apiVersion : CROWDHOUND_VERSION,
           //tenantId : CROWDHOUND_TENANT,
@@ -37,73 +39,181 @@ var TimelinePost = (function() {
 
         	//console.log("_curiaUrl=" + CHConfig.API_URL + ".");
 
-			curiaConfig = {
-                serverUrl : CHConfig.SERVER_URL,
-                apiVersion : CROWDHOUND_VERSION,
-                tenantId : CROWDHOUND_TENANT,
-                debug: false,
-                authenticationToken: authservice.getUserAccessToken(),
-    //			development_userId : development_userId,
-//                authenticationToken : ttuat,
-                urlive : false,
-                flat: false,
-                textonly: false,
-                cookers: {
-                    cook_post : TimelinePost.cookPost,
-                    cook_likes : TimelinePost.cookLikes,
-                    //cook_avatars : cookAvatars
-                },
-                themes : {
-					"timeline": {
-                        "community-page-user_0" : "#timelineList",
-						//"wrapper" : "#timelineList",
-                        "post_0" : "#timelinePost",
-                        "comment_0" : "#timelinePostComment"
-                	}
+          var curiaConfig = {
+            // serverUrl : "http://"+CROWDHOUND_HOST+":"+CROWDHOUND_PORT,
+            // //serverUrl : CHConfig.SERVER_URL,
+            // apiVersion : CROWDHOUND_VERSION,
+            // tenantId : CROWDHOUND_TENANT,
+            // debug: false,
 
-                }
-			};
-
-
-            // initialize curia
-            CrowdHound.init(curiaConfig, function afterCuriaInit() {
-                AUTHSERVICE_TTUAT = authservice.getUserAccessToken();
-                AUTHSERVICE_USERID = authservice.getCurrentUser().id;
-
-                
-                //make sure to have parent element per page
-                var url = CHConfig.API_URL + "/thread/$community-page-user-"+AUTHSERVICE_USERID+"?newAnchorType=community-page-user";
-                $.ajax({
-                      url: Curia.addAuthenticationToken(url),
-                      dataType: 'json',
-                  })
+            serverUrl : '//' + CROWDHOUND_HOST + ':' + CROWDHOUND_PORT,
+            apiVersion : CROWDHOUND_VERSION,
+            tenantId : CROWDHOUND_TENANT,
+            debug: false,
 
 
 
-             	TimelinePost.loadPost();
-             	//TimelinePost.getFriendsPosts();
+            authenticationToken: authservice.getUserAccessToken(),
+            //			development_userId : development_userId,
+            //                authenticationToken : ttuat,
+            urlive : false,
+            flat: false,
+            textonly: false,
+            cookers: {
+              cook_post : TimelinePost.cookPost,
+              cook_likes : TimelinePost.cookLikes,
+              //cook_avatars : cookAvatars
+            },
+            themes : {
+              "timeline": {
+                "community-page-user_0" : "#timelineList",
+                //"wrapper" : "#timelineList",
+                "post_0" : "#timelinePost",
+                "comment_0" : "#timelinePostComment"
+              }
 
-                 //show of hide postComposer
-                 //check if user is logged in
-                 if(authservice.getCurrentUser() == null || (authservice.getCurrentUser().id != getUserId())){
-                     
-                     $("#postComposer").remove();
+            }
+          };
 
-                 }else{
-                     $("#postComposer").show();  
-                 }
 
-             	$(document).on('keydown', '.comment .input-group input', function(event){
-                    if(event.keyCode == 13){
-                        $(this).siblings('.input-group-addon').find('a').trigger('click');
-                    }
-				});
+          // initialize curia
+          CrowdHound.init(curiaConfig, function afterCuriaInit() {
+            AUTHSERVICE_TTUAT = authservice.getUserAccessToken();
+            AUTHSERVICE_USERID = authservice.getCurrentUser().id;
 
+
+            // Make sure we have a parent element per page
+            var url = CHConfig.API_URL + "/thread/$community-page-user-"+AUTHSERVICE_USERID+"?newAnchorType=community-page-user";
+            $.ajax({
+              url: Curia.addAuthenticationToken(url),
+              dataType: 'json',
             });
 
 
 
+            TimelinePost.loadPost(userIdForPage, userIdsForWall);
+            //TimelinePost.getFriendsPosts();
+
+            //show or hide postComposer
+            //check if user is logged in
+            if (authservice.getCurrentUser() == null || (authservice.getCurrentUser().id != getUserId())){
+
+              $("#postComposer").remove();
+
+            }else{
+              $("#postComposer").show();
+            }
+
+            $(document).on('keydown', '.comment .input-group input', function(event){
+              if(event.keyCode == 13){
+                $(this).siblings('.input-group-addon').find('a').trigger('click');
+              }
+            });
+          });
         }, //end of init
+
+
+
+
+
+      loadPost: function(userIdForPage, userIdsForWall) {
+        console.log('loadPost(' + userIdForPage + ', ' + userIdsForWall + ')');
+
+        //var userId = $('#timeLineOwnerTtauthId').val();
+        //var userId = getUserId();//Login_config.getCurrentUser().userId;
+        //var params = {};
+        //var elementId = $('#eid').val();
+
+        /*
+        var getFriendIds = (function() {
+          var method = 'op=drinkpoint_widgets.requestHandlers.userTimeline&subop=getFriendsIds';
+          var customerIdStr = $('#customerId').val();
+
+          var friendIds = null;
+          $.ajax({
+            async : true, // http://stackoverflow.com/a/29146183/1350573
+            type : 'POST',
+            url :  location.href.replace("#","")+"?"+method,
+            data : {
+              customerIdStr : customerIdStr
+            },
+            success: function(data) {
+              if(data.status === "success"){
+                var idList = data.friendIds;
+                friendIds= idList.substring(1, idList.length - 1);
+              }
+            }
+          });
+          console.log('friendIds:' + friendIds);
+          return friendIds;
+        })();
+        */
+
+
+
+        // if (elementId != null && elementId != ''){
+        //   params = {
+        //     elementId : elementId,
+        //     type : 'post',
+        //     withChildren : true
+        //   };
+        // } else {
+          //var friendIds = getFriendIds;
+          console.log('friends are: '+userIdsForWall);
+          params = {
+            //user: userId, //friendIds.length<1? 0: friendIds,  //passing empty friend ids fetches all results so set to 0 to fetch none instead
+            user: userIdsForWall,
+            type: 'post',
+            withChildren : true,
+            //deleted : 0,
+          };
+        // }
+        console.log('params=', params);
+
+        CrowdHound.select(params, function(err, selection){
+          console.log('after select:', err, selection);
+          if (err) {
+            console.log('Error during select: ', err);
+            return;
+          }
+
+          if (selection.elements.length > 0){
+            //cook the data 1st
+            CrowdHound.cook({ }, selection, function(err, selection) {
+              console.log('after cooking:', err, selection);
+              if (err) {
+                console.log('Error during cook: ', err);
+                return;
+              }
+
+              // Now display the data
+              CrowdHound.render({
+                target: '#timelineSection',
+                theme: 'timeline'
+              }, selection, function(err, selection) {
+                if (err) {
+                  console.log('Error during display: ', err);
+                  return;
+                }
+                console.log('finished rendered' + selection);
+
+                //init 3rd party plugins
+                //TimelinePost.initMagnificPopUp(selection);
+                //FB.XFBML.parse() //FB share button init
+
+              });// render
+            });// cook
+          }// length > 0
+
+
+        });
+      },
+
+
+
+
+
+
 
         post : function(){
             //check which action to do (post status, photos, events, etc ...)
@@ -171,6 +281,7 @@ var TimelinePost = (function() {
 
 
         deletePost : function(id, parent, root){
+          alert('BAD URL 1');
             var userId = AUTHSERVICE_USERID;
             var params = {};
             var method = 'op=drinkpoint_widgets.requestHandlers.userTimeline&subop=deletePost'
@@ -199,131 +310,63 @@ var TimelinePost = (function() {
         },
 
 
-        loadPost : function(){
-            //var userId = $('#timeLineOwnerTtauthId').val();
-            var userId = getUserId();//Login_config.getCurrentUser().userId;
-            var params = {};
-            var elementId = $('#eid').val();
-
-            var getFriendIds = function(){
-                var method = 'op=drinkpoint_widgets.requestHandlers.userTimeline&subop=getFriendsIds';
-                var customerIdStr = $('#customerId').val();
-
-                var friendIds = null;
-                $.ajax({
-                    async : true, // http://stackoverflow.com/a/29146183/1350573
-                    type : 'POST',
-                    url :  location.href.replace("#","")+"?"+method,
-                    data : {
-                        customerIdStr : customerIdStr
-                    },
-                    success: function(data) {
-                        if(data.status === "success"){
-                            var idList = data.friendIds;
-                            friendIds= idList.substring(1, idList.length - 1);
-                        }
-                    }
-                });
-                console.log('friendIds:' + friendIds);
-                return friendIds;
-            }();
 
 
 
-            if(elementId != null && elementId != ''){
-            	params = {
-            		elementId : elementId,
-            		type : 'post',
-            		withChildren : true
-            	};
-            }else{
-				var friendIds = getFriendIds;
-                console.log('friends are: '+friendIds);
-                params = {
-                    user: userId, //friendIds.length<1? 0: friendIds,  //passing empty friend ids fetches all results so set to 0 to fetch none instead
-                    type: 'post',
-                    withChildren : true,
-                    deleted : 0,
-                };
+        cookPost: function (params, selection, callback) {
+          //alert('invoked cooker');
+          CrowdHound.traverse(selection, function cookPost(level, element, parent, next) {
+
+            var message = element.description;
+
+            if(element.children.length > 0){
+
+              for (i = 0; i < element.children.length; i++) {
+                var childElement = element.children[i];
+                if (childElement.type === 'externalLink'){
+
+                  var jsonData = jQuery.parseJSON(childElement.description);
+                  element.htmlLinkPost = TimelinePost.constructPostLinkHTML(jsonData);
+                  element.description = "";
+                  break;
+                }
+                else if(childElement.type === 'externalVideo'){
+                  element.description = childElement.description;
+                  break;
+                }
+                else if (childElement.type === 'uploadedPhotos'){
+                  var imageJsonArray = jQuery.parseJSON(childElement.description);
+                  element.htmlLinkPost = TimelinePost.constructPostPhotosHTML(element.id, imageJsonArray);
+                }
+
+              }
+
             }
 
-            CrowdHound.select(params, function (err, selection){
-                if(selection.elements.length > 0){
-                    //cook the data 1st
-                   CrowdHound.cook({ }, selection, function(err, selection) {
-                       // Now display the data
-                       CrowdHound.render({
-                           target: '#timelineSection',
-                           theme: 'timeline'
-                       }, selection, function(err, selection) {
-                           if (err) {
-                               console.log('Error during display: ', err);
-                               return;
-                           }
-                           console.log('finished rendered' + selection);
+            return next(null);
 
-                           //init 3rd party plugins
-                           //TimelinePost.initMagnificPopUp(selection);
-                           //FB.XFBML.parse() //FB share button init
+          }, callback);
 
-                       });
-                   });
-                }
+        },// cookPost
 
+        constructPostLinkHTML: function(data) {
+          var html = "<div class='shared'>"+
+          "	<img src='"+data.image+"' alt=''>"+
+          "    <div class='caption'>"+
+          "         <div class='input-group'>"+
+          "        	<span class='form-control'>"+
+          "        		<a href='"+data.redirectUrl+"' target='_blank'><strong>"+data.title+"</strong></a>"+
+          "        		<br>"+ data.description +
+          "        	</span>"+
+          "        </div>"+
+          "    </div>"+
+          "</div>";
 
-            });
-        },
+          return html;
+        },// constructPostLinkHTML
 
 
-        cookPost : function (params, selection, callback) {
-            //alert('invoked cooker');
-            CrowdHound.traverse(selection, function cookPost(level, element, parent, next) {
 
-                var message = element.description;
-
-                if(element.children.length > 0){
-
-                   	for (i = 0; i < element.children.length; i++) {
-                        var childElement = element.children[i];
-                        if(childElement.type === 'externalLink'){
-
-                            var jsonData = jQuery.parseJSON(childElement.description);
-                            element.htmlLinkPost = TimelinePost.constructPostLinkHTML(jsonData);
-                            element.description = "";
-                            break;
-
-                        }else if(childElement.type === 'externalVideo'){
-                            element.description = childElement.description;
-                            break;
-                        }else if (childElement.type === 'uploadedPhotos'){
-                            var imageJsonArray = jQuery.parseJSON(childElement.description);
-                            element.htmlLinkPost = TimelinePost.constructPostPhotosHTML(element.id, imageJsonArray);
-                        }
-
-                    }
-
-                }
-
-                return next(null);
-
-            }, callback);
-
-		},
-        constructPostLinkHTML : function(data){
-            var html = "<div class='shared'>"+
-			"	<img src='"+data.image+"' alt=''>"+
-			"    <div class='caption'>"+
-			"         <div class='input-group'>"+
-			"        	<span class='form-control'>"+
-			"        		<a href='"+data.redirectUrl+"' target='_blank'><strong>"+data.title+"</strong></a>"+
-			"        		<br>"+ data.description +
-			"        	</span>"+
-			"        </div>"+
-			"    </div>"+
-			"</div>";
-
-            return html;
-        },
         constructPostPhotosHTML : function(parentId, data){
         	var totalNumberPhotos = data.length;
             var firstToSecondCol = 12;
@@ -364,6 +407,7 @@ var TimelinePost = (function() {
         },
 
         savePostElement : function(elementId, url){
+          alert('BAD URL 2');
             $.ajax({
                 type : 'POST',
                 url : '?op=drinkpoint_widgets.requestHandlers.crowdhound&subop=saveMetaData',
@@ -379,42 +423,49 @@ var TimelinePost = (function() {
             });
 
 
-        },
+        },// savePostElement
+
+
+
         manualRenderPost : function(elementId, htmlElementSelector){
-            //insert blank div element at the top of #timelineSection
-            $(htmlElementSelector).prepend('<div></div>');
-            CrowdHound.select({elementId : elementId ,withChildren: true}, function (err, selection){
-                if(selection.elements.length > 0){
-                    //cook the data 1st
-                   CrowdHound.cook({ }, selection, function(err, selection) {
-                       // Now display the data
-                      CrowdHound.render({
-                           target: htmlElementSelector+' div:first',
-                           theme: 'timeline'
-                       }, selection, function(err, selection) {
-                           if (err) {
-                               console.log('Error during display: ', err);
-                               return;
-                           }
-                           console.log('finished rendered' + selection);
+          //insert blank div element at the top of #timelineSection
+          $(htmlElementSelector).prepend('<div></div>');
+          CrowdHound.select({elementId : elementId ,withChildren: true}, function (err, selection){
+            if(selection.elements.length > 0){
+              //cook the data 1st
+              CrowdHound.cook({ }, selection, function(err, selection) {
+                // Now display the data
+                CrowdHound.render({
+                  target: htmlElementSelector+' div:first',
+                  theme: 'timeline'
+                }, selection, function(err, selection) {
+                  if (err) {
+                    console.log('Error during display: ', err);
+                    return;
+                  }
+                  console.log('finished rendered' + selection);
 
-                           //init 3rd party plugins
-                            //TimelinePost.initMagnificPopUp(selection);
-                            //FB.XFBML.parse();
+                  //init 3rd party plugins
+                  //TimelinePost.initMagnificPopUp(selection);
+                  //FB.XFBML.parse();
 
-                       });
+                });// render
+              });// cook
+            } // length > 0
+          });// select
+        },// manualRenderPost
 
-                   });
-                }
 
 
-            });
-        },
+
         toogleComment : function(elementId){
             $('#comment-'+elementId).toggle();
             $('#comment-'+elementId).find('div.input-group input').focus();
         },
+
+
         commentOnAPost : function(parentId){
+          alert('commentOnAPost');
             var comment = $('#comment-'+parentId).find('div.input-group input').val();
 
             if(comment && comment != ''){
@@ -422,11 +473,20 @@ var TimelinePost = (function() {
                 var userId = AUTHSERVICE_USERID;
 
                 var data = {
-					"type" : "comment",
+          					"type" : "comment",
                     "rootId" : parentId,
                     "parentId" : parentId,
                     "description" : comment,
                 };
+
+                /*
+                "type" : "post",
+                "rootId" : "$community-page-user-"+userId,
+                "parentId" : "$community-page-user-"+userId,
+                "description" : message,
+                //"anchor" : 'community-page-post-'+userId,
+                "deleted" : 0
+                */
 
                 $.ajax({
                     type : "POST",
@@ -460,16 +520,20 @@ var TimelinePost = (function() {
 
             }
         },
-        like : function(parentId, score){
+
+
+
+
+        like: function(parentId, score){
             var userId = AUTHSERVICE_USERID;
-			
+
        		var	aggregationElementId = parentId;
        		var	voteElementId = parentId;
        		var	aspect = 'like';
        		var	rating = score;
-   			
+
             CrowdHound.saveVote(aggregationElementId, voteElementId, aspect, rating, null, function(err) {
-                
+
                 var likesCount = parseInt($('#post-likes-counter-'+parentId).html());
                 if(likesCount == 0){
                     $('#post-likes-'+parentId).show();
@@ -717,6 +781,7 @@ var TimelinePost = (function() {
             }
         },
         savePhotoElement : function(elementId, files){
+          alert('BAD URL 3');
             $.ajax({
                 type : 'POST',
                 url : '?op=drinkpoint_widgets.requestHandlers.crowdhound&subop=createPhotosCHElement',
@@ -785,7 +850,7 @@ function getUserId(){
 
         return userId;
     });*/
-    var urlUserId = getUrlParameter("userId");    
+    var urlUserId = getUrlParameter("userId");
     if(urlUserId){
         userId = urlUserId;
     }

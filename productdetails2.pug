@@ -24,23 +24,28 @@ block content
       .row
         .col-md-5.text-center
           h1
-            span {{variant.manufacturer}}
+            span {{variant0.manufacturer}}
             br
             strong
-              small {{variant.name}}
+              small {{variant0.name}}
             //- strong
             br
             p
             .row.pdetail-info-text
               .col-md-6.text-left
-                small
-                  | RRP {{pricingInfo.rrp}}&nbsp;
+                small(ng-if="_showRrp")
+                  | RRP {{_unitRrp}}&nbsp;
                   span.pb / bottle
                 //- small
               //- col-md-6
+              //- .col-md-6.text-right
+              //-   small
+              //-     span.avl {{variant.quantity}} available / 319 sold
+              //-   //- small
+              //- //- col-md-6
               .col-md-6.text-right
                 small
-                  span.avl {{variant.quantity}} available / 319 sold
+                  span.avl Pack size: {{variant0.componentsQty}}
                 //- small
               //- col-md-6
             //- row
@@ -56,18 +61,126 @@ block content
                     div.product-rating(id="product_rating" style='display:none') -
                     span.pointContainer(style='display:none') points
                     .first-rating(style='display:none')
-                      a(href="/productDetails2.html?product={{variant.productVariantId}}") Be the first to rate
+                      a(href="/product-ratings.html?product={{variant0.productVariantId}}")
+                        | Be the
+                        br
+                        | first
+                        br
+                        | to rate
                 //- ring
               //- rate-counter
             //- stats
-            img(ng-src="{{variant0_image}}", alt="")
+            img.img-responsive(ng-src="{{variant0_image}}", alt="")
           //- stage
           br
           p
         //- col-md-5
         .col-md-7.product-detail-wrap
           .infos
+
             .row
+              .col-md-12
+                .inventory
+                  p.lead.text-center
+                    strong Option 1 : Buy now
+                  .pricing
+                    .row
+                      .col-md-4.col-sm-4
+                        fieldset.deals.card
+                          legend 1 case
+                          p.lead
+                              strong {{_unitPrice}}
+                          a.btn.btn-success(href="#" ng-click="buyNow(1)")
+                            span.num buy now
+                          //- a
+                          br
+                          .lead.green.inline &nbsp;
+                          span(ng-if="_showRrp")
+                            | save&nbsp;
+                            p.lead.green.inline
+                              strong {{_saving}}&nbsp;
+                            | / case
+                          | &nbsp;
+                        //- deals
+                      //- col-md-4
+
+
+
+                      .col-md-4.col-sm-4(ng-repeat="pricingQty in pricing0.pricingQuantity")
+                        fieldset.deals.card
+                          legend {{pricingQty.quantity}}+ cases
+                          p.lead
+                              strong {{pricingQty._unitPrice}}
+                          a.btn.btn-success(href="#", ng-click="buyNow(pricingQty.quantity)")
+                            span.num buy now
+                          //- a
+                          br
+                          .lead.green.inline &nbsp;
+                          span(ng-if="pricingQty._showSaving")
+                            | save&nbsp;
+                            p.lead.green.inline
+                              strong {{pricingQty._saving}}&nbsp;
+                            | / case
+                        //- deals
+                      //- col-md-4
+
+
+                    .row
+                  //- pricing
+                //- inventory
+              //- col-md-12
+            //- row
+
+            div(ng-hide="pricing0==null")
+              hr
+              p.lead.text-center.relative
+                strong Option 2 : Start a circlebuy
+                a.button.inline.v8.absolute._right(href="circlebuys.html") learn more
+              //- p
+              .row.text-center
+
+                .col-md-4(ng-repeat="pricingQty in pricing0.pricingQuantity" ng-if="pricingQty.sharedSaleOk != 0")
+                  fieldset.deals.card
+                    legend {{pricingQty.quantity}} case circlebuy
+                    p.lead
+                      strong {{pricingQty._unitPrice}}
+                    .circlebuy-button-wrap
+                      a.button.inline.v7.joincirclebuy.thin-line(href='circlebuy-join.html')
+                        | view
+                      a.button.inline.v7.joincirclebuy.thin-line(href='circlebuy-start.html?product={{variant0.productVariantId}}')
+                        | create
+                    //- a
+                    //- a
+                    .lead.green.inline &nbsp;
+                    span(ng-if="pricingQty._showSaving")
+                      | save&nbsp;
+                      p.lead.green.inline
+                        strong {{pricingQty._saving}}&nbsp;
+                      | / case
+                  //- deals
+                //- col
+
+
+                //- .col-md-4
+                //-   fieldset.deals.card
+                //-     legend 10 case circlebuy
+                //-     p.lead
+                //-       strong $19.99
+                //-     | save&nbsp;
+                //-     p.lead.green.inline
+                //-       strong $10&nbsp;
+                //-     | / bottle
+                  //- deals
+                //- col-md-5
+              //- row
+              br
+
+
+
+
+
+            // The old pricing list
+            .row.hide
               .col-md-12
                 .inventory
                   .pricing
@@ -130,47 +243,57 @@ block content
                 //- inventory
               //- col-md-12
             //- row
-            hr
-            .row
-              .col-md-4
-                //- p.lead.text-center.totalcbcount Duration: 72hrs
-              //- col-md-4
-              .col-md-4
-                p.lead.text-center.totalcbcount {{sharedOrders_num}} circlebuys to join
-              //- col-md-4
-              .col-md-4
-                //- .text-right
-                //-   a.button.inline.v7(href="#") public
-                //-   | &nbsp;
-                //-   a.button.inline.v7(href="#") friends
-                //- //- text-right
-              //- col-md-4
-            //- row
+
+            // CIRCLE BUYS TO JOIN
+            div(ng-hide="sharedOrders_num < 1")
+              hr
+              p.lead.text-center.relative
+                strong Option 3 : Join a circlebuy
+                a.button.inline.v8.absolute._right(href="circlebuys.html") learn more
+              //- p
+
+              .row
+                .col-md-4
+                  //- p.lead.text-center.totalcbcount Duration: 72hrs
+                //- col-md-4
+                .col-md-4(ng-hide="sharedOrders_num > 0")
+                  p.lead.text-center.totalcbcount No circlebuys currently in progress for this product
+                //- col-md-4
+                .col-md-4(ng-hide="sharedOrders_num < 1")
+                  p.lead.text-center.totalcbcount {{sharedOrders_num}} circlebuys to join
+                //- col-md-4
+                .col-md-4
+                  //- .text-right
+                  //-   a.button.inline.v7(href="#") public
+                  //-   | &nbsp;
+                  //-   a.button.inline.v7(href="#") friends
+                  //- //- text-right
+                //- col-md-4
+              //- row
 
 
-            //
-            // Circle Buys short list, initially displayed
-            //
-            .row
+              //
+              // Circle Buys short list, initially displayed
+              //
+              .row(ng-hide="sharedOrders_num < 1")
 
-              div(ng-repeat="sharedOrder in sharedOrders_shortList").col-md-6.col-sm-6.text-center.super-customized
-                circlebuy-widget
-
-            //- row
-            br
-
-
-            // Circle Buys long list, initially hidden
-            .expand.text-center
-              a(href='#initiallyHiddenCircleBuys', data-toggle='collapse')
-                | more&nbsp;
-                i.fa.fa-caret-down
-            //- expand
-            .row(id="initiallyHiddenCircleBuys" class="collapse")
-              div(ng-repeat="sharedOrder in sharedOrders_longList").col-md-6.col-sm-6.text-center.super-customized
+                div(ng-repeat="sharedOrder in sharedOrders_shortList").col-md-6.col-sm-6.text-center.super-customized
+                  circlebuy-widget
                 br
-                circlebuy-widget
-            //- row
+              //- row
+
+
+              // Circle Buys long list, initially hidden
+              .expand.text-center(ng-hide="sharedOrders_num < 3")
+                a(href='#initiallyHiddenCircleBuys', data-toggle='collapse')
+                  | more&nbsp;
+                  i.fa.fa-caret-down
+              //- expand
+              .row(id="initiallyHiddenCircleBuys" class="collapse")
+                div(ng-repeat="sharedOrder in sharedOrders_longList").col-md-6.col-sm-6.text-center.super-customized
+                  br
+                  circlebuy-widget
+              //- row
 
 
             // Product Details / Tasting Notes / Winery Information
@@ -191,8 +314,11 @@ block content
                 .tab-content.card
                   #pDetails.tab-pane.active(role='tabpanel')
                     p.comment
-                      strong Brokenwood Graveyard Vineyard Shiraz&nbsp;
-                      | is a ripe and generous shiraz with lifted cherry and mint aromas nicely balanced with sweet chocolate notes on the nose and a soft rich palate with savoury cedary flavours and fine grained tannins on the finish.
+                      br
+                      | {{product0.longDescription}}
+                      br
+                      br
+                      br
                     //- p
                     .row
                       .col-xs-4.col-md-4
@@ -286,12 +412,29 @@ block content
                       //- a
                     //- expand
                   //- tab-pane
+
                   #pTastingNotes.tab-pane(role='tabpanel')
-
+                    br
+                    | {{product0.notes}}
+                    br
+                    br
+                    br
+                    br
+                    br
                   //- tab-pane
+
+                  // Winery Information
                   #pWineryInfo.tab-pane(role='tabpanel')
-
+                    br
+                    | No information available at this time.
+                    br
+                    br
+                    br
+                    br
+                    br
+                    br
                   //- tab-pane
+
                 //- tab-content
               //- tabs
             //- about
@@ -375,6 +518,53 @@ block scripts
 
           // Set the pricing information.
           $scope.pricingInfo = teaService.calculatePriceTable($scope.variant0);
+
+
+          // Do a few calculations here
+          $scope._rrp = accounting.formatMoney($scope.variant0.manufacturerPrice);
+          var rrp = $scope.variant0.manufacturerPrice;
+          var unitRrp = $scope.variant0.manufacturerPrice / $scope.variant0.componentsQty;
+          var ourPrice = $scope.variant0.lastPrice;
+          var unitPrice = $scope.variant0.lastPrice / $scope.variant0.componentsQty;
+          $scope._unitRrp = accounting.formatMoney(unitRrp);
+          $scope._ourPrice = accounting.formatMoney(ourPrice);
+          $scope._unitPrice = accounting.formatMoney(unitPrice);
+
+          // See if we save anything.
+          var saving = $scope.variant0.manufacturerPrice - $scope.variant0.lastPrice;
+          var unitSaving = saving / $scope.variant0.componentsQty;
+          if (unitSaving > 1.0) {
+            $scope._showRrp = true;
+            $scope._saving = accounting.formatMoney(saving, { precision: 0 });
+            $scope._unitSaving = accounting.formatMoney(unitSaving, { precision: 0 });
+            var basePriceForSavingCalculation = $scope.variant0.manufacturerPrice;
+          } else {
+            // We cost more than RRP
+            $scope._showRrp = false;
+            $scope._saving = '';
+            $scope._unitSaving = '';
+            var basePriceForSavingCalculation = $scope.variant0.lastPrice;
+          }
+
+          // Add the saving to the pricing_qty records.
+          if ($scope.variant0.pricing.length > 0) {
+            $scope.pricing0 = $scope.variant0.pricing[0];
+            $scope.pricing0.pricingQuantity.forEach(function(pq) {
+              var ourPrice = pq.price;
+              var unitPrice = pq.price / $scope.variant0.componentsQty;
+              pq._ourprice = accounting.formatMoney(unitPrice);
+              pq._unitPrice = accounting.formatMoney(unitPrice);
+
+              // See if we save anything
+              var saving = basePriceForSavingCalculation - pq.price;
+              var unitSaving = saving / $scope.variant0.componentsQty;
+              if (unitSaving > 1.0) {
+                pq._showSaving = true;
+                pq._saving = accounting.formatMoney(saving, { precision: 0 });
+              }
+            });// Next pq
+          }
+          //ZZZZZ
         } else {
           //ZZZ Redirect to an error page or something.
           alert('unknown product variant ' + productVariantId);
@@ -478,6 +668,24 @@ block scripts
       $scope.writeAReviewButton = function writeAReviewButton() {
         // Jump to the review page.
         window.location = '/product-ratings.html?product='+productVariantId;
+      };
+
+      /*
+       *  Handler to buy the product right now.
+       */
+      $scope.buyNow = function(qty) {
+
+        // Add this item to a shopping cart
+        teaService.putSalesOrderLine({
+          "store_id": STORE_ID,
+          "user_id": authservice.getCurrentUser().id,
+          "product_variant_id": $scope.variant0.productVariantId,
+          "quantity": qty
+        }).then(function(orders) {
+          /*console.log('Result of update is ', orders);*/
+          window.location = '/shopping-cart.html#supplier=' + $scope.product0.supplierId;
+        });
+
       };
 
     });// app.controller('myApp')

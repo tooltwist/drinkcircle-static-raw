@@ -1,0 +1,205 @@
+// Pane for list
+.tab-pane#tab-@NAME@-div(role="tabpanel")
+  .card(ng-hide=" !@NAME@_listPaneIsVisible()")
+    .row
+      .col-md-12
+        h1 {{@NAME@_viewLabel}} List
+
+        // A "filter" field, so the user can search
+        //- .form-group
+        //-   label(for='@NAME@-filter') Filter
+        //-   input#@NAME@-filter.form-control(ng-model="@NAME@_filter" ng-change="@NAME@_filterChanged()" type='text', placeholder='Type part of the supplier name')
+        //- //- form-group
+        br
+
+        // The fields generated from metadata are inserted here.
+        #@NAME@_listDiv
+      //- col-md-12
+
+    //hr
+    //- actions-wrap
+  //- card
+  //- tab-pane
+
+  // Pane for single record
+  .card(ng-hide="@NAME@_listPaneIsVisible()")
+    .row
+      .col-md-12
+        h1 {{@NAME@_headingForRecordPane}}
+
+        // Buttons above
+        .actions-wrap
+          a.btn(ng-click="@NAME@_backButton()") Back
+          a.btn.btn-success(ng-click="@NAME@_saveButton()") Save
+        //- actions-wrap
+
+        // The fields generated from metadata are inserted here.
+        #@NAME@_recordDiv
+
+        // Buttons below
+        hr
+        .actions-wrap
+          a.btn(ng-click="@NAME@_backButton()") Back
+          a.btn.btn-success(ng-click="@NAME@_saveButton()") Save
+      //- col-md-12
+    //- actions-wrap
+  //- card
+//- tab-pane
+
+
+
+script.
+
+
+  (function(){
+
+    const LABEL = '@NAME@';
+    const VIEW = 'product';
+
+    /*
+     *  Now register this menu item to use the pane described above.
+     */
+    PluginMenuItems.register({
+
+      // Label displayed for the menu item
+      label: LABEL,
+
+      // Selector for the DIV that becomes visible for this menu item
+      id: '#tab-@NAME@-div',
+
+      // Add any required logic to the menu option
+      init: function(context) {
+        var $scope = context.$scope;
+
+        /*
+         *  Load the initial records.
+         */
+        var params = { };
+        TooltwistViews.select(context, VIEW, params, @NAME@_selectCallback);
+
+
+        /*
+         *  If we have enough characters, do a search.
+         */
+        $scope.@NAME@_filterChanged = function() {
+
+          // Check we have enough characters.
+          if ($scope.@NAME@_filter.length < 3) {
+            $scope.suppliers = [ ];
+            return;
+          }
+          var params = {
+            filter: $scope.@NAME@_filter
+          };
+          TooltwistViews.select(context, VIEW, params, @NAME@_selectCallback);
+        };// @NAME@_filterChanged
+
+
+        /*
+         *  This function is called once we have the records.
+         */
+        function @NAME@_selectCallback(err, data, metadata) {
+          console.log('data=', data);
+          console.log('metadata=', metadata);
+
+          $scope.@NAME@_list = data;
+          $scope.@NAME@_record = ($scope.@NAME@_list.length > 0) ? $scope.@NAME@_list[0] : null;
+          $scope.@NAME@_viewLabel = metadata.label;
+
+          // Provide style options for displaying the list and record.
+          var displayOptions = {
+            listModel: '@NAME@_list',
+            listTableClasses: 'table-condensed table-hover',
+            listClickFunction: '@NAME@_listClick'
+            recordModel: '@NAME@_list',
+          };
+
+          // Add fields to the DOM for the list
+          var listDiv = $('#@NAME@_listDiv');
+          var fields = TooltwistViews.fieldsForMode(metadata, 'list');
+          var html = TooltwistViews.htmlForAngular_list(metadata, fields, displayOptions);
+          listDiv.html(html);
+          // Ask Angular to bind our new DOM elements onto it's models.
+          context.$compile(listDiv)($scope);
+
+          // Add fields to the DOM for the record
+          var recordDiv = $('#@NAME@_recordDiv');
+          var fields = TooltwistViews.fieldsForMode(metadata, 'record');
+          var html = TooltwistViews.htmlForAngular_edit(metadata, fields, displayOptions);
+          recordDiv.html(html);
+          // Ask Angular to bind our new DOM elements onto it's models.
+          context.$compile(recordDiv)($scope);
+        }// @NAME@_selectCallback
+
+
+        /*
+         *  Handle a click on the list.
+         */
+        $scope.@NAME@_listClick = function(record) {
+
+          // Set the current record.
+          // Show the single record pane.
+          // Set the label for the pane.
+          $scope.@NAME@_record = record;
+          $scope.@NAME@_showListPane = false;
+          $scope.@NAME@_headingForRecordPane = record.name;
+        }// @NAME@_listClick
+
+
+
+        /*
+         *  Go back to showing the supplier list.
+         */
+        $scope.@NAME@_backButton = function() {
+          //alert('back()');
+          $scope.@NAME@_showListPane = true;
+          return false;
+        };// @NAME@_backButton
+
+
+
+        /*
+         *  Save the supplier details.
+         */
+        $scope.@NAME@_saveButton = function() {
+          //alert('@NAME@_saveButton()');
+          TooltwistViews.save(context, VIEW, $scope.@NAME@_record, function(err, reply) {
+            console.log('save returned', err, reply);
+            // Jump back to the supplier list
+            context.$timeout(function() {
+              context.$scope.@NAME@_showListPane = true;
+            }, 10);
+
+          });
+        }// @NAME@_saveButton
+
+
+        /*
+         *  Return true when we want to show the list (rather than the record).
+         */
+        $scope.@NAME@_listPaneIsVisible = function() {
+          return $scope.@NAME@_showListPane;
+        }// @NAME@_listPaneIsVisible
+
+      },// init
+
+      /*
+       *  When we switch menu option, we want to come back to the list.
+       */
+      reset: function(context) {
+        var $scope = context.$scope;
+        var $timeout = context.$timeout;
+
+        // This function might or might not have been called by Angular. The
+        // timeout function causes Angular to $apply() changes to the model,
+        // and also allows the current function to return, if it was called
+        // by Angular (for example, during page initialization), preventing
+        // and Angular $proc (???) error.
+        context.$timeout(function() {
+          $scope.@NAME@_showListPane = true;
+        }, 10);
+      }// reset
+
+    });// PluginMenuItems.register()
+
+  })();

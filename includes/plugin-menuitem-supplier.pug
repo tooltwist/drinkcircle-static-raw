@@ -26,7 +26,10 @@
     .row
       .col-md-12
         h1 {{supplier.supplierName}} ({{supplier.supplierId}})
-        br
+        //br
+        .actions-wrap
+          a.btn(ng-click="supplierBackButton()") Back
+          a.btn.btn-success(ng-click="supplierSaveButton()") Save
         .form-group
           //label(for='supplier-id') Supplier Id
           //input#supplier-id.form-control(ng-model="supplier.supplierId" placeholder='Supplier id')
@@ -86,7 +89,7 @@
     hr
     .actions-wrap
       a.btn(ng-click="supplierBackButton()") Back
-      a.btn.btn-success(ng-click="supplierSaveButton()") Save It
+      a.btn.btn-success(ng-click="supplierSaveButton()") Save
     //- actions-wrap
   //- card
 //- tab-pane
@@ -95,8 +98,6 @@
 
 script.
 
-
-  var STORE_ID = 6;
 
   var supplierShowList = true;
 
@@ -110,9 +111,8 @@ script.
     /*
      *  Load the list of suppliers that match a filter.
      */
-    function loadSuppliers($scope, $http, $timeout, filter) {
+    function loadSuppliers($scope, context, filter) {
       console.log('loadSuppliers(' + filter + ')');
-
 
       /*
        *  Return true or false, depending on whether we want to
@@ -149,8 +149,10 @@ script.
 
       // Check the config
       var protocol = 'http';
-      var host = 'localhost';
-      var port = 3000;
+      /*var host = 'localhost';
+      var port = 3000;*/
+      var host = context.TEASERVICE_HOST;
+      var port = context.TEASERVICE_PORT;
       var baseUrl = protocol + '://' + host + ':' + port;
 
 
@@ -159,7 +161,7 @@ script.
       console.log('url is ' + url)
 
       var params = {
-        storeId: STORE_ID
+        storeId: context.STORE_ID
       };
 
       // Call the API to get the supplier details
@@ -177,12 +179,12 @@ script.
         data: params
       };
 
-      $http(req).then(function(response) {
+      context.$http(req).then(function(response) {
         console.log('success:', response)
         $scope.suppliers = response.data;
         $scope.supplier = $scope.suppliers[0];
         //$scope.categoryIndex
-        $timeout(function() {
+        context.$timeout(function() {
           $scope.$apply();
         }, 2000);
         //return response.data;
@@ -203,10 +205,12 @@ script.
     PluginMenuItems.register({
       label: 'Suppliers',
       id: '#tab-supplier-list',
-      init: function($scope, $http, $timeout) {
+      init: function(context) {
+        var $scope = context.$scope;
+
 
         // Temporary, until we start using the filter below.
-        loadSuppliers($scope, $http, $timeout, '');
+        loadSuppliers($scope, context, '');
 
 
         // This will be used when we have enough suppliers to need to filter
@@ -216,7 +220,7 @@ script.
             $scope.suppliers = [ ];
             return;
           }
-          loadSuppliers($scope, $http, $timeout, $scope.supplierFilter);
+          loadSuppliers($scope, context, $scope.supplierFilter);
         };
 
 
@@ -240,8 +244,11 @@ script.
 
           // Check the config
           var protocol = 'http';
-          var host = 'localhost';
-          var port = 3000;
+          /*var host = 'localhost';
+          var port = 3000;*/
+          var host = context.TEASERVICE_HOST;
+          var port = context.TEASERVICE_PORT;
+
           var baseUrl = protocol + '://' + host + ':' + port;
 
 
@@ -252,7 +259,7 @@ script.
             supplierId: $scope.supplier.supplierId,
             supplierName: $scope.supplier.supplierName,
             companyName: $scope.supplier.companyName,
-            storeId: STORE_ID,
+            storeId: context.STORE_ID,
             commissionRate: $scope.supplier.commissionRate,
             logo: $scope.supplier.logo,
             banner: $scope.supplier.banner,
@@ -277,11 +284,11 @@ script.
             },
             data: params
           };
-          $http(req).then(function(response) {
+          context.$http(req).then(function(response) {
             console.log('success:', response)
 
             // Jump back to the supplier list
-            $timeout(function() {
+            context.$timeout(function() {
               supplierShowList = true;
             }, 100);
 
@@ -295,7 +302,8 @@ script.
         };
 
       },
-      reset: function() {
+      reset: function(context) {
+        var $scope = context.$scope;
         //alert('reset suppl')
         supplierShowList = true;
       }

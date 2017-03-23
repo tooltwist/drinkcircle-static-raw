@@ -78,6 +78,28 @@ block content
                   //- col-md-3
                 //- row
 
+                h3 About Me
+                .row
+                  .col-md-12
+                    .form-group
+                      label(for='pd-about') About Me
+                      textarea.form-control#pd-about(ng-model="profile.about", rows='5', placeholder='Tell people a little about yourself')
+                    //- form-group
+                h3 Location
+                .row
+                  .col-md-6
+                    .form-group
+                      label(for='pd-liveIn') I live in
+                      input#pd-liveIn.form-control(ng-model="profile.liveIn" type='text', placeholder='e.g. Baulkam Hills, Sydney, Australia')
+                    //- form-group
+                  .col-md-6
+                    .form-group
+                      label(for='pd-comeFrom') I come from
+                      input#pd-comeFrom.form-control(ng-model='profile.comeFrom', type='text', placeholder='e.g. Sydney, Australia')
+                    //- form-group
+                  //- col-md-12
+                //- row
+
                 h3 Interests
                 .row
                   .col-md-12
@@ -813,7 +835,7 @@ block scripts
                   try {
                     var obj = JSON.parse(workData);
                   } catch (e) {
-                    console.log('Invalid JSON for property ' + attended[i].property_id);
+                    console.log('Invalid JSON for property ' + employers[i].property_id);
                     continue;
                   }
 
@@ -826,7 +848,7 @@ block scripts
                   }
 
                   $scope.profile.employment.push({
-                    propertyId: attended[i].property_id,
+                    propertyId: employers[i].property_id,
                     company: obj.company,
                     position: obj.position,
                     location: obj.location,
@@ -873,7 +895,7 @@ block scripts
             return syncCb([ ])
           }
 
-          // Call the TEA API to get the potential friends
+          // Call authservice.io to get the potential friends
           var params = {
             //entityId: 901,
             nameMatch: q,

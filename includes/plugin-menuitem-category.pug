@@ -1,38 +1,92 @@
 // "Category Details" pane
-.tab-pane#tab-category-details(role="tabpanel")
+.tab-pane#tab-category-pane(role="tabpanel")
   .card
     .row
       .col-md-5
         br
         ul.category-hierarchy
           li(ng-repeat="cat in categories")
-            a.mouse-pointer(ng-click="categorySelectButton(cat)") &nbsp;{{cat.name}}
+            a.mouse-pointer(ng-click="categorySelectButton(cat)" ng-class="{'category-selected': cat == category}") &nbsp;{{cat.name}}
             ul.category-hierarchy
               li(ng-repeat="cat2 in cat.children")
-                a.mouse-pointer(ng-click="categorySelectButton(cat2)") &nbsp;{{cat2.name}}
+                a.mouse-pointer(ng-click="categorySelectButton(cat2)" ng-class="{'category-selected': cat2.categoryId == category.categoryId}") &nbsp;{{cat2.name}}
                 ul.category-hierarchy
                   li(ng-repeat="cat3 in cat2.children")
-                    a.mouse-pointer(ng-click="categorySelectButton(cat3)") &nbsp;{{cat3.name}}
+                    a.mouse-pointer(ng-click="categorySelectButton(cat3)" ng-class="{'category-selected': cat3.categoryId == category.categoryId}") &nbsp;{{cat3.name}}
                     ul.category-hierarchy
                       li(ng-repeat="cat4 in cat3.children")
-                        a.mouse-pointer(ng-click="categorySelectButton(cat4)") &nbsp;{{cat4.name}}
+                        a.mouse-pointer(ng-click="categorySelectButton(cat4)" ng-class="{'category-selected': cat4.categoryId == category.categoryId}") &nbsp;{{cat4.name}}
       //- col-md-6
       .col-md-7
-        br
-        .form-group
-          label(for='cat-id`') Id
-          input#cat-id.form-control(type='text', placeholder='' ng_model="category.categoryId", readonly="readonly")
-          br
+        ul.nav.nav-tabs
+          li.active
+            a(href="#tab-category-details" data-toggle="tab") Details
+          li
+            a(href="#tab-category-specifications" data-toggle="tab") Specifications
 
-          label(for='cat-name') Name
-          input#cat-name.form-control(type='text', placeholder='' ng_model="category.name")
-          br
+        .tab-content.clearfix
 
-          label(for='cat-desc') Description
-          input#cat-desc.form-control(type='text', placeholder='' ng_model="category.description")
-          br
+          // Category details pane
+          #tab-category-details.tab-pane.active
+            br
+            .form-group
+              label(for='cat-id`') CatId
+              input#cat-id.form-control(type='text', placeholder='' ng_model="category.categoryId", readonly="readonly")
+              br
 
-        //- form-group
+              label(for='cat-name') Name
+              input#cat-name.form-control(type='text', placeholder='' ng_model="category.name")
+              br
+
+              label(for='cat-desc') Description
+              input#cat-desc.form-control(type='text', placeholder='' ng_model="category.description")
+              br
+
+          //- form-group
+
+          // Category specifications pane
+          #tab-category-specifications.tab-pane
+            h3 {{category.name}}
+            table.table.table-condensed
+              tr
+                th Name
+                th Id
+                th Data type
+                th
+
+              // Row showing the
+              tr(ng-repeat-start="type in categorySpecificationTypes")
+                td(style="border:none;" ng-class="strikethroughClassIf_is_deleted(type)") {{type.name}}
+                td(style="border:none;" ng-class="strikethroughClassIf_is_deleted(type)") {{type.category_specification_type_id}}
+                //td(style="border:none;" ng-class="strikethroughClassIf_is_deleted(type)") {{type.specification_type_id}}
+                td.category-spec-type(style="border:none;" ng-class="strikethroughClassIf_is_deleted(type)")
+                  p(ng-if="type.data_type == 'OPT'")
+                    a(data-toggle="collapse" href="#category-type-options-div-{{type.category_specification_type_id}}") show options
+                  p(ng-if="type.data_type != 'OPT'")
+                    | {{categorySpecificationTypes_typestr(type)}}
+                td(style="border:none;")
+                  span.glyphicon.glyphicon-trash.delete-button(ng-if="!type.is_deleted" aria-hidden="true" ng-click="catSpecType_toggleDelete(type)")
+                  span.glyphicon.glyphicon-trash.restore-button(ng-if="type.is_deleted" aria-hidden="true" ng-click="catSpecType_toggleDelete(type)")
+
+              // Row to show options, if there are any.
+              // Note that this repeats with the tr above, using to the ng-repeat-start and ng-repeat-end.
+              tr.collapse(ng-repeat-end id="category-type-options-div-{{type.category_specification_type_id}}")
+                td(colspan="5" style="border:none;padding-left:50px;")
+                  p.alert.alert-warning(ng-if="!type.options")
+                    | No options specified
+                  table.table.table-bordered(ng-if="type.options")
+                    tr(ng-repeat="option in type.options")
+                      td(ng-class="strikethroughClassIf_is_deleted(option)") {{option.name}}
+                      td
+                        span(ng-class="strikethroughClassIf_is_deleted(option)") {{option.category_specification_option_id}}
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.glyphicon.glyphicon-trash.delete-button(ng-if="!option.is_deleted" aria-hidden="true" ng-click="catSpecOption_toggleDelete(option)")
+                        span.glyphicon.glyphicon-trash.restore-button(ng-if="option.is_deleted" aria-hidden="true" ng-click="catSpecOption_toggleDelete(option)")
+
+                      //td {{option.sequence}}
+
+
+
 
         //- imagePath
         //- isDeleted
@@ -63,17 +117,27 @@
 
 
 script.
-  var STORE_ID = 6;
-
-  /*if (typeof(menuItems) == 'undefined') {
-    menuItems = [ ];
-  }*/
 
   PluginMenuItems.register({
-    id: '#tab-category-details',
+    id: '#tab-category-pane',
     label: 'Categories',
-    init: function($scope, $http, $timeout) {
-      console.log('init categories', $http)
+    init: function(context) {
+      console.log('init categories', context.$http)
+
+      var $scope = context.$scope;
+
+
+      //var protocol = 'http';
+      var host = context.TEASERVICE_HOST;
+      var port = context.TEASERVICE_PORT;
+      //var baseUrl = protocol + '://' + host + ':' + port;
+      var baseUrl = '//' + host + ':' + port;
+
+
+
+
+
+
 
       function newCategory() {
         return {
@@ -120,9 +184,207 @@ script.
         return null;
       }
 
-      $scope.categorySelectButton = function(categoryId) {
-        //alert('cat ' + categoryId)
-        $scope.category = categoryId;
+      $scope.categorySelectButton = function(category) {
+        console.log('categorySelectButton()', category);
+        $scope.category = category;
+
+        // Load the specification types for this category
+        var url = baseUrl + '/v3/getCategorySpecificationTypes';
+
+
+        var params = {
+          storeId: context.STORE_ID,
+          category_id: category.categoryId
+        };
+        console.log('url is ' + url)
+        console.log('params is ', params)
+
+        // Call the API to get the product details
+        // ZZZZ This should use JSONP, as some browsers do not support CORS.
+        // ZZZZ Unfortunately JSONP does not support headers, so we need
+        // ZZZZ to pass details either in the url or the data. i.e. the
+        // ZZZZ server requires changes.
+        var req = {
+          method: 'POST',
+          url: url,
+          headers: {
+            "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+            "version": "2.0.0"
+          },
+          data: params
+        };
+
+        // Prepare the promise, so the caller can use .then(fn) to handle the result.
+        var promise = context.$http(req).then(function(response) {
+          console.log('success:', response)
+
+          // Returns property types for multiple categoryIds.
+          // Choose ours (which should be the only one).
+
+          // Get the types and sort them (we won't trust the API to do this)
+          var types = response.data[''+category.categoryId];
+          if (!types) types = [ ];
+          types.sort(function(a, b) {
+            var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+            var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) { return -1; }
+            if (nameA > nameB) { return 1; }
+            return 0;
+          });
+
+          // Sort any options
+          types.forEach(function(type) {
+            if (type.options) {
+              type.options.sort(function(a, b) {
+                // Sort by sequence number. If the sequence
+                // numbers are the same - sort by name.
+                var rv = a.sequence - b.sequence;
+          rv = 0;
+                if (rv != 0) { return rv; }
+                var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) { return -1; }
+                if (nameA > nameB) { return 1; }
+                return 0;
+              });
+            }
+          });
+          $scope.categorySpecificationTypes = types;
+
+          console.log('#### Setting categorySpecificationTypes', $scope.categorySpecificationTypes);
+          context.$timeout(function() {
+            $scope.$apply();
+          }, 2000);
+          //return response.data;
+
+        }, function(response) {
+          alert('An error occurred calling the TEA API.\nSee the Javascript console for details.')
+          console.log('failure:', response)
+          console.log('failure:', response.data.message);
+        });
+      };
+
+      $scope.strikethroughClassIf_is_deleted = function(obj) {
+        return (obj.is_deleted) ? 'deleted-item-in-list' : '';
+      };
+
+      $scope.categorySpecificationTypes_typestr = function(type) {
+        var str = '';
+        if (type.data_type == 'INT') {
+
+          // Integer values
+          if (type.int_min && type.int_max) {
+            str += '(' + type.int_min + ' - ' + type.int_max + ')';
+          }
+          else if (type.int_min && !type.int_max) {
+            str += '(> ' + type.int_min + ')';
+          }
+          else if (!type.int_min && type.int_max) {
+            str += '(< ' + type.int_min + ')';
+          } else {
+            //str += 'integer ';
+          }
+          if (type.uom) {
+            str += ' ' + type.uom;
+          }
+        }
+        else if (type.data_type == 'DEC') {
+
+          // Decimal values
+          if (type.dec_min && type.dec_max) {
+            str += '(' + type.dec_min + ' - ' + type.dec_max + ')';
+          }
+          else if (type.dec_min && !type.dec_max) {
+            str += '(> ' + type.dec_min + ')';
+          }
+          else if (!type.dec_min && type.dec_max) {
+            str += '(< ' + type.dec_min + ')';
+          } else {
+            //str = 'decimal';
+          }
+          if (type.uom) {
+            str += ' ' + type.uom;
+          }
+        }
+        else if (type.data_type == 'TXT') {
+          //str += 'text ';
+          if (type.uom) {
+            str += ' ' + type.uom;
+          }
+        }
+        return str;
+      };
+
+
+      /*
+       *  The user has clicked on the trash can beside the Category Specification Type,
+       *  so toggle the 'is_deleted' flag for that type in the database.
+       */
+      $scope.catSpecType_toggleDelete = function(type) {
+        console.log('$$$$$$$$$$$$', type)
+        console.log('Z1 catSpecType_toggleDelete(' + type.category_specification_type_id + ')', typeof(type.is_deleted), type.is_deleted);
+        newDeletedValue = (typeof(type.is_deleted)=='undefined' || type.is_deleted == 0) ? 1 : 0;
+        console.log('new is:', typeof(type.is_deleted), type.is_deleted);
+
+        // Prepare the request.
+        var url = baseUrl + '/admin/categorySpecificationType_delete/save';
+        var req = {
+          method: 'POST',
+          url: url,
+          headers: {
+            "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+            "version": "2.0.0"
+          },
+          data: {
+            "category_specification_type_id": type.category_specification_type_id,
+          	"is_deleted": newDeletedValue
+          }
+        };
+
+        // Call the server
+        context.$http(req).then(function(response) {
+          type.is_deleted = newDeletedValue; // All ok. update the screen.
+        }, function(response) {
+          alert('An error occurred calling the TEA API.\nSee the Javascript console for details.')
+          console.log('failure:', response)
+          console.log('failure:', response.data.message);
+        });
+      };
+
+
+
+      /*
+       *  The user has clicked on the trash can beside a Category Specification Option,
+       *  so toggle the 'is_deleted' flag for that option in the database.
+       */
+      $scope.catSpecOption_toggleDelete = function(option) {
+
+        // Decide what the new value should be
+        var newDeletedValue = (typeof(option.is_deleted)=='undefined' || option.is_deleted == 0) ? 1 : 0;
+
+        // Prepare the request.
+        var url = baseUrl + '/admin/categorySpecificationOption_delete/save';
+        var req = {
+          method: 'POST',
+          url: url,
+          headers: {
+            "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+            "version": "2.0.0"
+          },
+          data: {
+            "category_specification_option_id": option.category_specification_option_id,
+          	"is_deleted": newDeletedValue
+          }
+        };
+
+        // Call the server
+        context.$http(req).then(function(response) {
+          option.is_deleted = newDeletedValue; // All ok. update the screen.
+        }, function(response) {
+          alert('An error occurred calling the TEA API.\nSee the Javascript console for details.')
+          console.log('failure:', response)
+          console.log('failure:', response.data.message);
+        });
       };
 
       /*
@@ -177,28 +439,13 @@ script.
 
 
 
-      // Check the config
-      var protocol = 'http';
-      var host = 'localhost';
-      // var host = '192.168.200.15';
-      var port = 3000;
-      // var host = 'drinkcircle.teaservice.io';
-      // var port = 80;
-      /*if (config && config.host && config.host != host) {
-        host = config.host;
-      }
-      if (config && config.port && config.port != port) {
-        port = config.port;
-      }*/
-      var baseUrl = protocol + '://' + host + ':' + port;
-
 
       // Load all the categories
       var url = baseUrl + '/philChristmas/getCategories';
 
       var params = {
         op: 'everything',
-        storeId: STORE_ID
+        storeId: context.STORE_ID
       };
       console.log('url is ' + url)
       console.log('params is ', params)
@@ -219,12 +466,12 @@ script.
       };
 
       // Prepare the promise, so the caller can use .then(fn) to handle the result.
-      var promise = $http(req).then(function(response) {
+      var promise = context.$http(req).then(function(response) {
         console.log('success:', response)
         $scope.categories = response.data;
-        $scope.category = $scope.categories[0];
+        $scope.category = null;//$scope.categories[0];
         //$scope.categoryIndex
-        $timeout(function() {
+        context.$timeout(function() {
           $scope.$apply();
         }, 2000);
         //return response.data;
