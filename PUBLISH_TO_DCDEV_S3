@@ -12,7 +12,8 @@ subpath=$1
 
 
 
-cd ${DIR}/build/drinkcircle
-echo "$" s3cmd --exclude=".git/*" sync ${REMOVE_OPT} ./${subpath} ${S3_BUCKET}/${subpath}
-         s3cmd --exclude=".git/*" sync ${REMOVE_OPT} ./${subpath} ${S3_BUCKET}/${subpath}
+echo "$" cd ${DIR}/build/drinkcircle
+         cd ${DIR}/build/drinkcircle
+echo "$" s3cmd --exclude=".git/*" --exclude assets/scripts/environment.js sync ${REMOVE_OPT} ./${subpath} ${S3_BUCKET}/${subpath}
+         s3cmd --exclude=".git/*" --exclude assets/scripts/environment.js sync ${REMOVE_OPT} ./${subpath} ${S3_BUCKET}/${subpath}
 
