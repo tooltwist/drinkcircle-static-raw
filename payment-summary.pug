@@ -264,7 +264,7 @@ block content
             .row
               .col-md-12
                 hr
-                .alert(ng-hide="haveValidDateOfBirth()" role="alert").alert-danger
+                .alert.alert-danger(ng-hide="haveValidDateOfBirth()" role="alert")
                   // span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
                   span {{dateOfBirthMessage}}
                 //- alert
@@ -285,13 +285,20 @@ block content
 
             .row
               .col-md-12
-              .text-right
-                a.btn(href="/shopping-cart.html#order={{salesOrderId}}") Back to shopping cart
-                | &nbsp;
-                button.btn.btn-success.btn-lg(id="so_next_button" ng-click="nextButtonClicked()" ng-disabled="!haveRequiredInformation()" href='#') Proceed to Checkout
-                | &nbsp;&nbsp;&nbsp;&nbsp;
-                //a(id="so_link_to_next_page" nZg-hide="true" href='circlebuy-invites.html') next {{haveRequiredInformation()}}
-                br
+                hr
+                .text-center
+                  a.btn(href="/shopping-cart.html#order={{salesOrderId}}") Back to shopping cart
+                  br
+                  br
+                  #paypal-button-container(style="display: table; margin: 0 auto;" ng-hide="!haveRequiredInformation()")
+                  //- .alert.alert-danger.inline(ng-hide="haveRequiredInformation()" role="alert")
+                  //-   | Correct the errors above to continue Checkout.
+                  //- br
+                  //- br
+                  button.btn.btn-info(ng-hide="haveRequiredInformation()" ng-click="true") Correct the errors above to continue Checkout.
+
+
+
 
       //- card
       //- text-right
@@ -303,6 +310,8 @@ block content
 
 block scripts
   // External Script goes here...
+  script(src="https://www.paypalobjects.com/api/checkout.js", type="text/javascript")
+
   script.
     $(function () {
 
@@ -585,6 +594,72 @@ block scripts
         });
         console.log('Current user:', authservice.getCurrentUser());
 
-    });
+
+
+      /*
+       *  Client-side PayPal payment-summary
+       *  See https://developer.paypal.com/demo/checkout/#/pattern/client
+       */
+
+      // Render the PayPal button
+
+      paypal.Button.render({
+
+          // Set your environment
+
+          env: 'sandbox', // sandbox | production
+
+          // Specify the style of the button
+          style: {
+              label: 'checkout', // checkout || credit
+              size:  'medium',    // tiny | small | medium
+              shape: 'rect',     // pill | rect
+              color: 'blue'      // gold | blue | silver
+          },
+
+          // PayPal Client IDs - replace with your own
+          // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+
+          client: {
+            //sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+            sandbox:    'Aa3SnLKTVGgYIO1byRkgxpAoNj5fqZaFnA3MGUGpfD6EzcjJvYHKcMLKxbCiLYHXzf608S4oJfMm4phM',
+            production: 'Aco85QiB9jk8Q3GdsidqKVCXuPAAVbnqm0agscHCL2-K2Lu2L6MxDU2AwTZa-ALMn_N0z-s2MXKJBxqJ'
+          },
+
+          // Wait for the PayPal button to be clicked
+
+          payment: function() {
+
+              // Payment amount
+              var total = $scope.currentSalesOrder.amount_incl_tax;
+              alert('total is ' + total)
+
+              // Make a client-side call to the REST api to create the payment
+
+              return paypal.rest.payment.create(this.props.env, this.props.client, {
+                  transactions: [
+                      {
+                          amount: { total: total, currency: 'AUD' }
+                      }
+                  ]
+              });
+          },
+
+          // Wait for the payment to be authorized by the customer
+
+          onAuthorize: function(data, actions) {
+
+              // Execute the payment
+
+              return actions.payment.execute().then(function() {
+                  document.querySelector('#paypal-button-container').innerText = 'Payment Complete!';
+              });
+          }
+
+      }, '#paypal-button-container');
+
+
+    });// app.controller
+
 
   //- script.
