@@ -1,105 +1,137 @@
 .reviews(ng-app="myApp")
   .row
-    .col-md-7
+    .col-md-12
       p.lead Customer Reviews &amp; Ratings
-      // The rating ranges can be displayed either on the page, or in a popover.
 
-      // option a: Show ratings in popover
-      //a.popover_rating_groups(href="#", data-toggle="popover", data-placement="bottom", data-title="Summary")
+  .row
+    .col-md-12
 
-      // option b: Show ratings on page
+      // Float the rating button to the right
+      .btn-review-wrap.right(style="float: right")
+        a.button.inline.v7(ng-click="writeAReviewButton()" ng-hide="!loggedIn") Rate this product
+        a.button.inline.v7(ng-hide="loggedIn") Log in to Rate this product
+
+      // Show the number of ratings
+      .review-widget-no-ratings
+        | No ratings yet
+        br
+        small.green &nbsp;&nbsp;&nbsp;&nbsp;Be the first to rate this product!
+      .review-widget-have-ratings
+        #review-widget-number-of-ratings
+
+  .row
+    .col-md-9.col-sm-5
       .inline_rating_groups
-        | Drinker's Points (value for money) - &nbsp;
-        span#review-widget-number-of-ratings
-          | 0 ratings
-        span.ratings
-          table
-            tr
-              td(width="100")
-                small 95 - 100
-              //- td
-              td(width="270")
-                .progress
-                  .progress-bar.progress-bar-success(id="pcnt90To100", role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
-                    span.sr-only 100% Complete (success)
-                  //- progress-bar
-                //- progress
-              //- td
-              td.text-center(width="50")
-                small(id="count90To100") 0
-            //- tr
-            tr
-              td
-                small 85 - 90
-              //- td
-              td
-                .progress
-                  .progress-bar.progress-bar-success(id="pcnt80To89", role='progressbar', aria-valuenow='10', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
-                    span.sr-only 10% Complete (success)
-                  //- progress-bar
-                //- progress
-              //- td
-              td.text-center
-                small(id="count80To89") 0
-            //- tr
-            tr
-              td
-                small 75 - 80
-              //- td
-              td
-                .progress
-                  .progress-bar.progress-bar-success(id="pcnt70To79", role='progressbar', aria-valuenow='1', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
-                    span.sr-only 1% Complete (success)
-                  //- progress-bar
-                //- progress
-              //- td
-              td.text-center
-                small(id="count70To79") 0
-            //- tr
-            tr
-              td
-                small 65 - 70
-              //- td
-              td
-                .progress
-                  .progress-bar.progress-bar-success(id="pcnt60To69", role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
-                    span.sr-only 0% Complete (success)
-                  //- progress-bar
-                //- progress
-              //- td
-              td.text-center
-                small(id="count60To69") 0
-            //- tr
-            tr
-              td
-                small 60 below
-              //- td
-              td
-                .progress
-                  .progress-bar.progress-bar-success(id="pcnt60AndBelow", role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
-                    span.sr-only 0% Complete (success)
-                  //- progress-bar
-                //- progress
-              //- td
-              td.text-center
-                small(id="count60AndBelow") 0
-            //- tr
-          //- table
-        //- ratings
-      //- popover_rating_groups
-      br
-      | &nbsp;
-      span#review-widget-number-of-reviews
-        | 0 Reviews
-    //- col-md-6
-    .col-md-5
-      .btn-review-wrap
+        .review-widget-have-ratings
+          span.ratings
+            table
+              tr
+                td(colspan="3")
+                  small.green Drinker's Points (value for money)
+              tr
+                td(width="100")
+                  small 95 - 100
+                //- td
+                td(width="270")
+                  .progress
+                    .progress-bar.progress-bar-success(id="pcnt90To100", role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
+                      span.sr-only 100% Complete (success)
+                    //- progress-bar
+                  //- progress
+                //- td
+                td.text-center(width="50")
+                  small(id="count90To100") 0
+              //- tr
+              tr
+                td
+                  small 85 - 90
+                //- td
+                td
+                  .progress
+                    .progress-bar.progress-bar-success(id="pcnt80To89", role='progressbar', aria-valuenow='10', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
+                      span.sr-only 10% Complete (success)
+                    //- progress-bar
+                  //- progress
+                //- td
+                td.text-center
+                  small(id="count80To89") 0
+              //- tr
+              tr
+                td
+                  small 75 - 80
+                //- td
+                td
+                  .progress
+                    .progress-bar.progress-bar-success(id="pcnt70To79", role='progressbar', aria-valuenow='1', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
+                      span.sr-only 1% Complete (success)
+                    //- progress-bar
+                  //- progress
+                //- td
+                td.text-center
+                  small(id="count70To79") 0
+              //- tr
+              tr
+                td
+                  small 65 - 70
+                //- td
+                td
+                  .progress
+                    .progress-bar.progress-bar-success(id="pcnt60To69", role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
+                      span.sr-only 0% Complete (success)
+                    //- progress-bar
+                  //- progress
+                //- td
+                td.text-center
+                  small(id="count60To69") 0
+              //- tr
+              tr
+                td
+                  small 60 below
+                //- td
+                td
+                  .progress
+                    .progress-bar.progress-bar-success(id="pcnt60AndBelow", role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 1%')
+                      span.sr-only 0% Complete (success)
+                    //- progress-bar
+                  //- progress
+                //- td
+                td.text-center
+                  small(id="count60AndBelow") 0
+              //- tr
+            //- table
+          //- ratings
+        //- review-widget-have-ratings
+        br
+        br
+      //- inline_rating_groups
+      //- col-md-9
+  //- row
+
+
+  .row
+
+    // Reviews summary
+    .col-md-12
+
+      // Float the review button to the right
+      .btn-review-wrap(style="float: right;")
         a.button.inline.v7(ng-click="writeAReviewButton()" ng-hide="!loggedIn") Write a review
         a.button.inline.v7(ng-hide="loggedIn") Log in to Write a review
         //a.button.inline.v7(href="product-ratings.html") Rate product
-      //- btn-review-wrap
-    //- col-md-6
+
+      // Show the number of reviews
+      .review-widget-have-reviews(style="display:none;")
+        | &nbsp;
+        span#review-widget-number-of-reviews
+          | 0 Reviews
+      .review-widget-no-reviews(style="display:none;")
+        | No reviews yet
+        br
+        small.green &nbsp;&nbsp;&nbsp;&nbsp;Feel free to write the first review.
+    //- col-md-12
   //- row
+
+  // The actual reviews get displayed here
   .review(id="reviews")
   //- review
 //- reviews

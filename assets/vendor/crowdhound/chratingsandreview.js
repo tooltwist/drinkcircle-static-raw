@@ -110,9 +110,13 @@ var chratingsandreview = (function() {
        *  Display the average rating and grouping of values.
        *  We normally use patchInProductRatings() for this, but
        *  we need to display the groupings here as well.
+       *
+       *  Use setTimeout to give the page time to update (e.g. Angular delay).
        */
-      //setTimeout(function() {
+      setTimeout(function() {
         if (totals && totals.length > 0 && totals[0].num) {
+
+          // We have ratings
           var t = totals[0];
 
           /*
@@ -123,16 +127,20 @@ var chratingsandreview = (function() {
           $('#product_rating').show();
           $('.count .pointContainer').show();
 
-          if(average == 0) {
+          if (average == 0) {
             $('.count .product_rating').remove();
             $('.count .pointContainer').remove();
             $('.count .first-rating').show();
           }
+
           /*
            *  Update the total number of votes (ratings).
            */
           var label = '' + t.num + ' Rating' + (t.num==1 ? '' : 's');
-          $('#review-widget-number-of-ratings').html(label);
+          console.log('Patch: #review-widget-number-of-ratings = ' + label);
+          $('#review-widget-number-of-ratings').html(label).show();
+          $('.review-widget-have-ratings').show();
+          $('.review-widget-no-ratings').hide();
 
           /*
            *  Group the ratings into groupings to create a bar graph.
@@ -155,11 +163,18 @@ var chratingsandreview = (function() {
           //   + count60to69 + ', '
           //   + count60AndBelow);
 
-          var pcnt90To100 = (count90To100 / t.num) * 100;
-          var pcnt80To89 = (count80To89 / t.num) * 100;
-          var pcnt70To79 = (count70To79 / t.num) * 100;
-          var pcnt60To69 = (count60to69 / t.num) * 100;
-          var pcnt60AndBelow = (count60AndBelow / t.num) * 100;
+          // Distribute the scores amount the columns, however if
+          // we have less than three votes we need it to look sparse.
+          var tmpTotal = t.num;
+          if (tmpTotal < 3) {
+            tmpTotal = 3;
+          }
+
+          var pcnt90To100 = (count90To100 / tmpTotal) * 100;
+          var pcnt80To89 = (count80To89 / tmpTotal) * 100;
+          var pcnt70To79 = (count70To79 / tmpTotal) * 100;
+          var pcnt60To69 = (count60to69 / tmpTotal) * 100;
+          var pcnt60AndBelow = (count60AndBelow / tmpTotal) * 100;
 
           // console.log('Ratios are: '
           //   + pcnt90To100 + ', '
@@ -187,9 +202,12 @@ var chratingsandreview = (function() {
           $('.count .product_rating').remove();
           $('.count .pointContainer').remove();
           $('.count .first-rating').show();
+
+          $('.review-widget-have-ratings').hide();
+          $('.review-widget-no-ratings').show();
         }
 
-      //}, 100);
+      }, 100); // setTimeout
 
     });// getVotesTotals
 
@@ -216,15 +234,29 @@ var chratingsandreview = (function() {
 
             /*
              *  Update the number of reviews.
+             *
+             *  Wait a bit to give the page a chance to load.
              */
-            console.log('reviews selection=', selection);
-            var reviewsRoot = selection.elements[0];
-            var numReviews = reviewsRoot.children.length;
-            var label = '' + numReviews + ' Review' + (numReviews==1 ? '' : 's');
-            $('#review-widget-number-of-reviews').html(label);
+            //console.log('reviews selection=', selection);
+            setTimeout(function() {
+              var reviewsRoot = selection.elements[0];
+              var numReviews = reviewsRoot.children.length;
+              var label = '' + numReviews + ' Review' + (numReviews==1 ? '' : 's');
+              console.log('Patch: #review-widget-number-of-reviews = ' + label);
+              $('#review-widget-number-of-reviews').html(label);
+              if (numReviews > 0) {
+                // Have reviews
+                $('.review-widget-have-reviews').show();
+                $('.review-widget-no-reviews').hide();
+              } else {
+                // No reviews
+                $('.review-widget-have-reviews').hide();
+                $('.review-widget-no-reviews').show();
+              }
+            }, 100);
 
 
-console.log('After selecting product reviews (but before cooking):', selection)
+            //console.log('After selecting product reviews (but before cooking):', selection)
             if (selection == null) {
               alert('Loading reviews failed (selection == null)');
               return;
@@ -295,6 +327,7 @@ console.log('After selecting product reviews (but before cooking):', selection)
                         for (var i = 0; i < votes.length; i++) {
                           var classname = '.review-widget-rating-user-' + votes[i].userId;
                           var rating = votes[i].score;
+                          console.log('Patch: ' + classname + ' = ' + rating);
                           $(classname).html('' + rating);
                         }
                       });
@@ -328,10 +361,11 @@ console.log('After selecting product reviews (but before cooking):', selection)
     //console.log('patchInProductRatings()');
 
     // Get a list of unique productVariantId.
+    console.log('Patching in Ratings where class is .patch-in-average-product-rating');
     var anchors = [ ]; // productVariantId -> anchor
     $('.patch-in-average-product-rating').each(function() {
       var productVariantId = $(this).attr('productVariantId');
-      //console.log('productVariantId=' + productVariantId);
+      //console.log('Patch in Ratings for productVariantId=' + productVariantId);
       if (productVariantId) {
         anchors[productVariantId] = '$product-rating-'+productVariantId;
       }
@@ -412,7 +446,7 @@ console.log('After selecting product reviews (but before cooking):', selection)
           $('.patch-in-average-product-rating[productVariantId='+productVariantId+']').remove();
           $('.pointContainer[productVariantId='+productVariantId+']').remove();
           $('.first-rating[productVariantId='+productVariantId+']').show();
-
+          $('.first-rating-small[productVariantId='+productVariantId+']').show();
         }
       }
     });
