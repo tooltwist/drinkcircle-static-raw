@@ -55,7 +55,8 @@
           }
           var sharedOrders_shortList = [ ];
           var sharedOrders_longList = [ ];
-          $.each(sharedOrders, function(index, sharedOrder) {
+          sharedOrders.forEach(function(sharedOrder, index) {
+          //$.each(sharedOrders, function(index, sharedOrder) {
 
             console.log('\n\n\n\nZZZ skipping teaService.checkRemainingSharedOrderQuantity()')
             teaService.checkRemainingSharedOrderQuantity(sharedOrder.sharedOrder.sharedOrderId).then(function(result){
@@ -77,20 +78,22 @@
           $scope.sharedOrders_longList = sharedOrders_longList;
 
           // Calculate the derived (d_) values
-          $.each(sharedOrders, function(index, sharedOrder) {
+          sharedOrders.forEach(function(sharedOrder, index) {
+          // $.each(sharedOrders, function(index, sharedOrder) {
 
             // Recommended retail price
             var rrp = sharedOrder.productVariant.manufacturerPrice;
             var packSize = sharedOrder.productVariant.componentsQty;
-            var rrpPack = rrp * packSize;
+            var rrpPack = rrp;
 
             // Work out the bottle and pack price, and the saving
             var qty = sharedOrder.pricingQuantity.quantity;
             var price = sharedOrder.pricingQuantity.price;
             unitPrice = Math.ceil(price * 100) / 100; // round to nearest cent
+            unitPrice = price / packSize;
             sharedOrder.d_unitPrice = accounting.formatMoney(unitPrice);
-            var packPrice = price * packSize;
-            packPrice = Math.ceil(packPrice * 100) / 100; // round to nearest cent
+            var packPrice = price;
+            //packPrice = Math.ceil(packPrice * 100) / 100; // round to nearest cent
             sharedOrder.d_packPrice = accounting.formatMoney(packPrice);
             var packSave = rrpPack - packPrice;
             packSave = Math.ceil(packSave * 100) / 100; // round to nearest cent
@@ -362,7 +365,8 @@
             */
             getProduct: function getProduct(params) {
               var url = baseUrl + '/philChristmas/product';
-              console.log('url is ' + url)
+              console.log('CALLING ' + url)
+              console.log('params:', params);
 
               // Call the API to get the product details
               // ZZZZ This should use JSONP, as some browsers do not support CORS.
@@ -468,6 +472,42 @@
               var promise = $http(req).then(handleSuccess, handleError);
               return promise;
             },
+
+
+
+            /**
+            *	Update salesOrder details.
+            * Note that the original sales_order is actually created by adding
+            * a sales_order_line to a non-existant sales order.
+            *	Returns a promise (since $http(req) is asyncronous)
+            */
+            putSalesOrder: function putSalesOrder(paramsToAPI) {
+              console.log('teaservice.putSalesOrder()', paramsToAPI);
+
+              var url = baseUrl + '/v3/putSalesOrder';
+              console.log('url is ' + url)
+
+              // Call the API to get the product details
+              // ZZZZ This should use JSONP, as some browsers do not support CORS.
+              // ZZZZ Unfortunately JSONP does not support headers, so we need
+              // ZZZZ to pass details either in the url or the data. i.e. the
+              // ZZZZ server requires changes.
+              var req = {
+                method: 'POST',
+                url: url,
+                headers: {
+                  "access-token": "0613952f81da9b3d0c9e4e5fab123437",
+                  "version": "2.0.0"
+                },
+                data: paramsToAPI
+              };
+
+              // Prepare the promise, so the caller can use .then(fn) to handle the result.
+              var promise = $http(req).then(handleSuccess, handleError);
+              return promise;
+            },
+
+
 
             /**
             *	Create/update/delete the salesOrderLine from a product variant.

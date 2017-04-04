@@ -128,7 +128,10 @@ hr {
 	.navbar-brand {
 		& {
 			color: $base;
-			padding: 8px 15px;
+			padding-top: 14px;
+			padding-bottom: 2px;
+			padding-left: 15px;
+			padding-right: 15px;
 			width: 70%;
 			position: absolute;
 			left: 0;
@@ -210,7 +213,13 @@ hr {
 					}
 				}
 				&.cart-icon {
-					font-size: 23px;
+					//font-size: 23px;
+					font-size: 24px;
+					@media screen and (min-width: 1199px) {
+						// margin-top: 1px;
+						font-size: 36px;
+					}
+
 				}
 			}
 			&.active {
@@ -537,7 +546,8 @@ hr {
 			overflow: visible;
 		}
 		&.seller {
-			background: #41B54B url($bg-seller) center center no-repeat;
+			//background: #41B54B url($bg-seller) center center no-repeat;
+			background: #41B54B center center no-repeat;
 			background-size: cover;
 		}
 		&.seller.dc {
@@ -598,6 +608,8 @@ hr {
 				bottom: 80px;
 				left: 0;
 				right: 0;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 				& {
 					@media screen and (min-width: 768px) {
 						bottom: 0;
@@ -1644,10 +1656,18 @@ section {
 				.ctr {
 					@include box(110px);
 					.count {
-						font-size: 62px;
+						padding-top: 26px;
+						font-size: 54px;
 						span {
 							margin-top: 13px;
 						}
+					}
+					.pointContainer {
+						display: block;
+						padding-top: 4px;
+						font-size: 11px;
+						line-height: 12px;
+						font-weight: normal;
 					}
 					.first-rating {
 						font-size: 17px;
@@ -1663,9 +1683,10 @@ section {
 						}
 					}
 					.first-rating-small {
-						font-size: 11px;
-						margin-top: 18px;
-						font-weight: bold;
+						margin-top: 11px;
+						font-size: 13px;
+						line-height: 120%;
+						font-weight: normal;
 					}
 				}
 			}
@@ -1676,9 +1697,11 @@ section {
 					.thumb {
 						.ctr {
 							@include box(80px);
+							border: 6px solid #41B54B;
+
 							.count {
-								font-size: 33px;
-								padding-top: 15px;
+								font-size: 32px;
+								padding-top: 12px;
 								span {
 									margin-top: 0px;
 								}
@@ -1847,7 +1870,6 @@ section {
 		.pricing {
 			.buy {
 				&.card {
-
 				}
 				&.drop {
 					& {
@@ -1991,6 +2013,9 @@ section {
 
 // COLORS ======================================================================
 .color {
+	&.black {
+		color: #868686;
+	}
 	&.blue {
 		color: #1A93D1;
 	}
@@ -2206,19 +2231,19 @@ section.productdetails {
 			margin-bottom: 0;
 		}
 		p.lead {
-			line-height: 16px;
+			line-height: 24px;
 			margin-top: 5px;
 			small {
 				font-size: 13px;
 			}
 		}
-		&:not(.cases-left) {
-			p.lead * {
-				color: inherit;
-				font-weight: bold;
-				font-size: 24px;
-			}
-		}
+		// &:not(.cases-left) {
+		// 	p.lead * {
+		// 		color: inherit;
+		// 		font-weight: bold;
+		// 		font-size: 24px;
+		// 	}
+		// }
 		.cases-left * {
 			font-weight: bold;
 		}
@@ -2249,7 +2274,7 @@ section.productdetails {
 				margin: 10px 0;
 			}
 			border-color: #41B54B;
-			// background: #ececec;
+			background: whitesmoke;
 			margin: 15px 0;
 			@media screen and (min-width: 768px) {
 				margin: 0;
@@ -2275,7 +2300,7 @@ section.productdetails {
 			& {
 				text-align: center;
 				position: absolute;
-				right: 40px;
+				right: 20px;
 				top: 10px;
 			}
 			a {
@@ -2302,14 +2327,17 @@ section.productdetails {
 						position: absolute;
 						width: 100%;
 						text-align: center;
-						padding-top: 26px;
+						padding-top: 24px;
 						top: 0;
-						font-size: 50px;
+						font-size: 54px;
 						font-weight: 700;
 						line-height: 28px;
 						span {
 							display: block;
-							font-size: 14px;
+							padding-top: 11px;
+							font-size: 12px;
+							line-height: 12px;
+							font-weight: normal;
 						}
 					}
 					.first-rating {
@@ -2345,6 +2373,48 @@ section.productdetails {
 					vertical-align: middle;
 				}
 			}
+			.circlebuy-pricebox {
+				// box-sizing: padding-box;
+				border-radius: 0px;
+				border-style: solid;
+				border-width: 1px;
+				border-color: rgb(221, 221, 221);
+				background-color: whitesmoke;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				padding-left: 10px;
+				padding-right: 10px;
+				// margin-right: 1px;
+				// margin-bottom: 1px;
+				//color: #5a5a5a;
+
+
+				.deal-qty {
+					font-size: 14px;
+					line-height: 150%;
+					//color: #5a5a5a;
+				}
+				.deal-unit-price {
+					font-size: 15px;
+					line-height: 150%;
+					//color: #5a5a5a;
+				}
+				.deal-our-price {
+					//color: #5a5a5a;
+					font-size: 17px;
+					line-height: 150%;
+					font-weight: bold;
+				}
+				.deal-num-circlebuys {
+					font-size: 12px;
+					line-height: 150%;
+				}
+				.deal-saving {
+					font-size: 12px;
+					color: #aaa;
+					line-height: 150%;
+				}
+			}
 			.pricing {
 				table {
 					width: 100%;
@@ -2374,6 +2444,16 @@ section.productdetails {
 			}
 			span.pb {
 				font-size: 14px;
+			}
+			.lnk-learn-about-circlebuying {
+		    font-size: 12px;
+		    top: auto !important;
+				//position: absolute;
+				//right: 0px;
+		    bottom: 0;
+			}
+			.circlebuy-button-wrap {
+				padding: 5px;
 			}
 		}
 		.active-circles {
@@ -2463,6 +2543,16 @@ section.productdetails {
 				}
 			}
 		}
+	}
+
+	#pDetails {
+		min-height: 200px;
+	}
+	#pTastingNotes {
+		min-height: 200px;
+	}
+	#pWineryInfo {
+		min-height: 200px;
 	}
 	.reviews {
 		padding: 15px 0;
@@ -2789,6 +2879,7 @@ section.productdetails {
 
 // SHOPPING CART ======================================================================
 .shopping-cart-menu {
+	margin-top: 20px;
 	&.card {
 		padding: 0;
 		ul {
@@ -2858,7 +2949,7 @@ section.productdetails {
 				// }
 			}
 			li.not-current-order {
-				opacity: 0.4;
+				opacity: 0.5;
 				filter: alpha(opacity=40); /* For IE8 and earlier */
 				background-color: #ffffff;
 				border-left: none;
@@ -3513,6 +3604,68 @@ section {
 }
 
 .maker-list {
+	margin-bottom: 10px;
+
+	.maker-description {
+		//max-height: 240px !important;
+		//height: 160px !important;
+		//width: 300px !important;
+		padding-right: 5px;
+		//overflow: scroll;
+
+
+		.summary-frame {
+
+			$font-size : 14px;
+			$line-height: 1.4;
+
+			//border: solid 1px #ddd;
+			//background-color: yellow;
+
+			font-size: $font-size;
+			line-height: $line-height;
+
+			&.initial-fixed-size {
+				height: 115px;
+				overflow: visible;
+			}
+			$lines-to-show: 6;
+
+			.summary {
+				&.constrained {
+					display: block; /* Fallback for non-webkit */
+					display: -webkit-box;
+					//height: 100px;
+					max-width: 400px;
+					height: $font-size*$line-height*$lines-to-show - 2; /* Fallback for non-webkit */
+					margin: 0 auto;
+					font-size: $font-size;
+					line-height: $line-height;
+					-webkit-line-clamp: $lines-to-show;
+					-webkit-box-orient: vertical;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					//background-color: red;
+				}
+			}
+		}
+		.maker-more {
+			margin-top: 0px;
+			cursor: pointer;
+			font-size: 12px;
+		}
+
+		.summaryZ {
+			display:inline-block;
+			text-overflow: ellipsis;
+			background-color: green;
+			height: 100px !important;
+			width: 300px !important;
+			overflow: hidden;
+			//white-space: nowrap;
+		}
+	}
+
 	font-size: 14px;
 	> .row {
 		& {
@@ -3961,6 +4114,9 @@ nav {
 					color: inherit;
 					text-transform: uppercase;
 					text-decoration: none;
+					&.green {
+						color: $green;
+					}
 				}
 				&:hover {
 					a {
@@ -4108,12 +4264,12 @@ section {
 
 
 .pdetail-info-text {
-	font-size: 24px;
-}
+	font-size: 22px;
+	margin-top: 5px;}
 
 @media screen and (min-width: 768px) {
-	.product-detail-wrap {
-		margin-top: 31px;
+	.product-detail-wrap h1 {
+		margin-top: 0px;
 	}
 }
 
@@ -4226,7 +4382,7 @@ section {
 		}
 	}
 	.sold, .left {
-		top: 70px !important;
+		top: 100px !important;
 	}
 	.sold {
 		left: 6px !important;
@@ -4309,7 +4465,8 @@ section {
 
 
 body {
- font-family: 'Roboto', sans-serif;
+	// font-family: 'Roboto', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -4358,6 +4515,7 @@ div[rn-stepper] {
 
 .gauge {
 	width: 160px;
+	height: 190px;
 	position: relative;
 	img {
 		position: absolute;
@@ -4380,6 +4538,9 @@ div[rn-stepper] {
 			left: 28px;
 			font-size: 17px;
 		}
+		.dxg-range-container {
+			min-height: 160px;
+		}
 		.dxg-title {
     		transform: translate(90px, 177px);
 		}
@@ -4392,4 +4553,10 @@ div[rn-stepper] {
 
 .compare .count {
 	padding-bottom: 10px;
+}
+
+circlebuy-widget {
+	.bottle-price {
+    margin-left: 50px;
+	}
 }

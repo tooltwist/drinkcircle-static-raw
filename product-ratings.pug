@@ -22,30 +22,43 @@ block content
       //- row
       .card
         p
-          strong Your Rating
-        .form-group
-          //div(ng-model='rating', rn-stepper='')
-          select(ng-model='rating' ng-options="x for x in ratingOptions").inline
-          | &nbsp;&nbsp;out of 100
-        //- form-group
-        .text-right
-          a.btn.btn-success(ZZZdata-toggle="modal", ng-click="submitProductRating()") Submit Rating only
+        .row
+          .col-md-8
+            strong.green Your Rating
+            br
+            small
+              | How do you rate this wine, in terms of "value for money"?
+              br
+              br
+            .form-group
+              select(ng-model='rating' ng-options="x for x in ratingOptions").inline
+              | &nbsp;&nbsp;out of 100
+            //- form-group
+            small
+              br
+              | (We call the average of these ratings "Drinkpoints")
+              br
+              br
+          .col-md-4
+            .text-right
+              a.btn.btn-success(ZZZdata-toggle="modal", ng-click="submitProductRating()") Submit Rating only
       p &nbsp;
 
 
       .card
         p
-          strong Your Review (optional)
+          strong.green Your Review (optional)
         //- p
-        ol
-          li Describe the product and specific details of your experience.
-          li Be respectful.
-          li Focus on the facts.
+        small
+          ol
+            li Describe the product and specific details of your experience.
+            li Be respectful.
+            li Focus on the facts.
         //- ol
         .row
           .col-md-6
             .form-group
-              label Add a heading for you review
+              label Add a heading for your review
               input.form-control(ng-model="reviewHeading", type='text', id='reviewHeading')
             //- form-group
           //- col-md-6
@@ -286,7 +299,7 @@ block scripts
         var recommended = $scope.recommend;
 
         if((heading === null || heading === '')
-         && (review === null || review === '') 
+         && (review === null || review === '')
          && recommended == false){
             bootbox.alert("Please provide a title or a description for the review.", function(){});
             return;

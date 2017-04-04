@@ -31,7 +31,7 @@ block content
       br
       small Discover. Share. Enjoy.
     //- h1
-    .action
+    .action.authservice-logged-out
       a.btn.btn-success.btn-lg(href='#modal_signup', data-toggle='modal')
         i.fa.fa-envelope
         span.hidden-xs &nbsp;&nbsp;&nbsp;Signup with Email
@@ -874,7 +874,7 @@ block scripts
         if(key == 13)  // the enter key code
           {
             $(".dc-filters").find("span a").trigger("click");
-            return false;  
+            return false;
           }
       });
 

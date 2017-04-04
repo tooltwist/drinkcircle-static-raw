@@ -11,7 +11,7 @@ block content
 
   section.productdetails(ng-app="myApp" ng-controller="myCtrl" ng-cloak)
     .container
-      p.bread(ng-repeat="breadcrumbs in product0.breadcrumbs")
+      p.bread(ng-repeat="breadcrumbs in product0.breadcrumbs").hide
         span(ng-repeat="crumb in breadcrumbs.breadcrumbs")
           a( href='drinks.html?category={{crumb.categoryId}}', data-toggle='modal') {{crumb.name}}
           | &nbsp;/&nbsp;
@@ -19,11 +19,22 @@ block content
           a(href='#', data-toggle='modal')
             strong {{variant0.name}}
           //- a
-      //- p
-      //- bread
+        //- span
+      //- p.bread
       .row
         .col-md-5.text-center
-          h1
+          p.bread(ng-repeat="breadcrumbs in product0.breadcrumbs")
+            span(ng-repeat="crumb in breadcrumbs.breadcrumbs")
+              a( href='drinks.html?category={{crumb.categoryId}}', data-toggle='modal') {{crumb.name}}
+              | &nbsp;/&nbsp;
+            span
+              a(href='#', data-toggle='modal')
+                strong {{variant0.name}}
+              //- a
+            //- span
+          //- p.bread
+
+          h1.hide
             span {{variant0.manufacturer}}
             br
             strong
@@ -50,16 +61,20 @@ block content
               //- col-md-6
             //- row
           //- h1
-          hr
+          hr.hide
+          br
+
           .stage.infos
-            a.button.inline.v8.absolute._left.see-all-drinks.thin-line(href="shop.html") see all drinks
             .stats
               .rate-counter
                 .ring
                   .count
                     // This value gets set from chratingsandreview.js
                     div.product-rating(id="product_rating" style='display:none') -
-                    span.pointContainer(style='display:none') points
+                    span.pointContainer(style='display:none')
+                      | drinker's
+                      br
+                      | points
                     .first-rating(style='display:none')
                       a(href="/product-ratings.html?product={{variant0.productVariantId}}")
                         | Be the
@@ -76,53 +91,101 @@ block content
           p
         //- col-md-5
         .col-md-7.product-detail-wrap
-          .infos
+          h1.text-center.relative
+            span {{variant0.manufacturer}}
+            a.button.inline.v8.Zjoincirclebuy.thin-line.Zsee-all-drinks.absolute._right(href="/shop.html?supplier={{product0.supplierId}}") go to shop
+            br
+            strong
+              small {{variant0.name}}
 
+
+            .pdetail-info-text
+              small(ng-if="_showRrp")
+                | RRP {{_unitRrp}}&nbsp;
+                span.pb
+                  | / bottle
+              | &nbsp;&nbsp;&nbsp;
+              small
+                span.avl.hide
+                  | 500+ available / 319 sold
+              | &nbsp;&nbsp;&nbsp;
+              small
+                span.avl.green
+                  | Shipping - Free
+
+
+          .infos
+            .inventory
+              h4.green
+                strong buy now
             .row
               .col-md-12
                 .inventory
-                  p.lead.text-center
-                    strong Option 1 : Buy now
                   .pricing
                     .row
-                      .col-md-4.col-sm-4
-                        fieldset.deals.card
-                          legend 1 case
-                          p.lead
-                              strong {{_unitPrice}}
-                          a.btn.btn-success(href="#" ng-click="buyNow(1)")
-                            span.num buy now
-                          //- a
-                          br
-                          .lead.green.inline &nbsp;
-                          span(ng-if="_showRrp")
-                            | save&nbsp;
-                            p.lead.green.inline
-                              strong {{_saving}}&nbsp;
-                            | / case
-                          | &nbsp;
-                        //- deals
-                      //- col-md-4
+
+                      // Single (non-volume) buy-now price
+                      .circlebuy-pricebox.col-md-3.col-sm-3.col-xs-6
+                        fieldset.green
+                          small
+                            .deal-qty
+                              | {{variant0._qtyRange}}
+                              small &nbsp;case
+                              small(ng-if="variant0._qtyRangePlural") s
+                            .deal-unit-price
+                              | {{_unitPrice}} x {{variant0.componentsQty}}
+                            .deal-our-price
+                              | {{_ourPrice}}
+                            .deal-saving
+                              span(ng-if="_showRrp")
+                                | save {{_saving}} per case
+                          //- small
+                        //- fieldset
+                      //- circlebuy-pricebox
 
 
+                      // Volume buy-now price
+                      .circlebuy-pricebox.col-md-3.col-sm-3.col-xs-6(ng-repeat="pricingQty in pricing0.pricingQuantity")
+                        fieldset
+                          small
+                            .deal-qty
+                              | {{pricingQty._qtyRange}}
+                              small &nbsp;cases
+                            .deal-unit-price {{pricingQty._unitPrice}} x {{variant0.componentsQty}}
+                            .deal-our-price {{pricingQty._ourPrice}}
+                            .deal-saving
+                              span(ng-if="pricingQty._showSaving")
+                                | save {{pricingQty._saving}} per case
+                          //- small
+                        //- fieldset
+                      //- circlebuy-pricebox
 
-                      .col-md-4.col-sm-4(ng-repeat="pricingQty in pricing0.pricingQuantity")
-                        fieldset.deals.card
-                          legend {{pricingQty.quantity}}+ cases
-                          p.lead
-                              strong {{pricingQty._unitPrice}}
-                          a.btn.btn-success(href="#", ng-click="buyNow(pricingQty.quantity)")
-                            span.num buy now
-                          //- a
-                          br
-                          .lead.green.inline &nbsp;
-                          span(ng-if="pricingQty._showSaving")
-                            | save&nbsp;
-                            p.lead.green.inline
-                              strong {{pricingQty._saving}}&nbsp;
-                            | / case
-                        //- deals
-                      //- col-md-4
+                  br
+                  div.forms
+                    .authservice-logged-out
+                      h4.green
+                        | -- Please sign in to place an order --
+                    .authservice-logged-in
+                      center
+                        table
+                          tbody
+                            tr
+                              td(width="70") quantity:
+                              td.text-center(width="100")
+                                .input-group.input-group-sm.input-group-xs
+                                  span.input-group-btn
+                                    button.btn.btn-default(type="button" ng-click="updateBuyNowQty(-1)") -
+                                  input.form-control.text-center(type="text" placeholder="1" ng-model="buyNowQty")
+                                  span.input-group-btn
+                                    button.btn.btn-default(type="button" ng-click="updateBuyNowQty(+1)") +
+                              td.text-right(width="100")
+                                  a.button.inline.v7.joincirclebuy.thin-line(href="" ng-click="buyNow()") buy now
+
+                          //-tr
+                        //-tbody
+                      //- table
+                    //- center
+                  //-div
 
 
                     .row
@@ -131,14 +194,47 @@ block content
               //- col-md-12
             //- row
 
-            div(ng-hide="pricing0==null")
+            .inventory(ng-hide="pricing0==null")
               hr
-              p.lead.text-center.relative
-                strong Option 2 : Start a circlebuy
-                a.button.inline.v8.absolute._right(href="circlebuys.html") learn more
-              //- p
-              .row.text-center
 
+
+
+
+
+
+
+
+
+
+
+              h4.green.relative
+                strong circlebuy
+                a.green.lnk-learn-about-circlebuying.absolute._right(href="circlebuys.html") learn more
+
+              // Shared order pricing
+              .pricing
+                .row.text-center
+                  .circlebuy-pricebox.col-md-4.col-sm-4.col-xs-6(ng-repeat="pricingQty in pricing0.pricingQuantity" ng-if="pricingQty.sharedSaleOk != 0")
+                    fieldset
+                      small
+                        .deal-qty
+                          | {{pricingQty.quantity}}
+                          small &nbsp;cases
+                        .deal-unit-price {{pricingQty._unitPrice}} x {{variant0.componentsQty}}
+                        .deal-our-price {{pricingQty._ourPrice}}
+                        .deal-saving
+                          span(ng-if="pricingQty._showSaving")
+                            | save {{pricingQty._saving}} per case
+                        .deal-num-circlebuys.hide
+                          | {{pricingQty._activeSharedBuys}} 67 circlebuys
+                    .circlebuy-button-wrap
+                      //- a.button.inline.v7.joincirclebuy.thin-line(href='circlebuy-join.html')
+                      //-   | view
+                      a.button.inline.v7.joincirclebuy.thin-line(href='circlebuy-start.html?product={{variant0.productVariantId}}')
+                        | create circlebuy
+
+
+              .row.text-center.hide
                 .col-md-4(ng-repeat="pricingQty in pricing0.pricingQuantity" ng-if="pricingQty.sharedSaleOk != 0")
                   fieldset.deals.card
                     legend {{pricingQty.quantity}} case circlebuy
@@ -246,11 +342,11 @@ block content
 
             // CIRCLE BUYS TO JOIN
             div(ng-hide="sharedOrders_num < 1")
-              hr
-              p.lead.text-center.relative
-                strong Option 3 : Join a circlebuy
-                a.button.inline.v8.absolute._right(href="circlebuys.html") learn more
-              //- p
+              //- hr
+              //- p.lead.text-center.relative
+              //-   strong Option 3 : Join a circlebuy
+              //-   a.button.inline.v8.absolute._right(href="circlebuys.html") learn more
+              //- //- p
 
               .row
                 .col-md-4
@@ -260,7 +356,10 @@ block content
                   p.lead.text-center.totalcbcount No circlebuys currently in progress for this product
                 //- col-md-4
                 .col-md-4(ng-hide="sharedOrders_num < 1")
-                  p.lead.text-center.totalcbcount {{sharedOrders_num}} circlebuys to join
+                  p.lead.text-center.totalcbcount
+                    span {{sharedOrders_num}} circlebuy
+                    span(ng-hide="sharedOrders_num < 1") s
+                    span &nbsp;to join
                 //- col-md-4
                 .col-md-4
                   //- .text-right
@@ -311,7 +410,10 @@ block content
                     a(href='#pWineryInfo', role='tab', data-toggle='tab') Winery Information
                   //- li
                 //- ul
+
                 .tab-content.card
+
+                  // Product Details tab
                   #pDetails.tab-pane.active(role='tabpanel')
                     p.comment
                       br
@@ -413,6 +515,7 @@ block content
                     //- expand
                   //- tab-pane
 
+                  // Tasting notes tab
                   #pTastingNotes.tab-pane(role='tabpanel')
                     br
                     | {{product0.notes}}
@@ -423,12 +526,11 @@ block content
                     br
                   //- tab-pane
 
-                  // Winery Information
+                  // Winery Information tab
                   #pWineryInfo.tab-pane(role='tabpanel')
                     br
-                    | No information available at this time.
-                    br
-                    br
+                    | {{supplier0.story}}
+                    //- | No information available at this time.
                     br
                     br
                     br
@@ -507,6 +609,7 @@ block scripts
           // In Drinkcircle there is one-to-one between products and variants.
           $scope.productVariantId = productVariantId;
           $scope.product0 = products[0];
+          $scope.supplier0 = products[0].supplier;
           $scope.variant0 = products[0].variants[0];
 
           // See if we have an image for this product variant
@@ -517,7 +620,7 @@ block scripts
           }
 
           // Set the pricing information.
-          $scope.pricingInfo = teaService.calculatePriceTable($scope.variant0);
+          //$scope.pricingInfo = teaService.calculatePriceTable($scope.variant0);
 
 
           // Do a few calculations here
@@ -552,7 +655,7 @@ block scripts
             $scope.pricing0.pricingQuantity.forEach(function(pq) {
               var ourPrice = pq.price;
               var unitPrice = pq.price / $scope.variant0.componentsQty;
-              pq._ourprice = accounting.formatMoney(unitPrice);
+              pq._ourPrice = accounting.formatMoney(ourPrice);
               pq._unitPrice = accounting.formatMoney(unitPrice);
 
               // See if we save anything
@@ -563,6 +666,41 @@ block scripts
                 pq._saving = accounting.formatMoney(saving, { precision: 0 });
               }
             });// Next pq
+
+
+            // Set the quantity range (e.g. x - y, or x+) for each price
+            $scope.variant0._qtyRange = '1+';
+            $scope.variant0._qtyRangePlural = true;
+            $scope.pricing0.pricingQuantity.forEach(function(pq, index) {
+              var qty = pq.quantity;
+              pq._qtyRange = '' + qty + '+';
+
+              if (index == 0) {
+                // Set the range for the single, non-quantity price
+                if (qty == 2) {
+                  $scope.variant0._qtyRange = '1';
+                  $scope.variant0._qtyRangePlural = false;
+                } else {
+                  $scope.variant0._qtyRange = '1 - ' + (qty - 1);
+                }
+              } else {
+
+                // Set the range for a quantity price
+                var previous = $scope.pricing0.pricingQuantity[index - 1];
+                //console.log('PREVIOUS=', previous)
+                var previousQty = previous.quantity;
+
+                if (qty == (previousQty + 1)) {
+                  previous._qtyRange = '' + previousQty;
+                } else {
+                  previous._qtyRange = '' + previousQty + ' - ' + (qty - 1);
+                }
+              }
+            });
+
+
+
+
           }
           //ZZZZZ
         } else {
@@ -670,20 +808,45 @@ block scripts
         window.location = '/product-ratings.html?product='+productVariantId;
       };
 
-      /*
-       *  Handler to buy the product right now.
-       */
-      $scope.buyNow = function(qty) {
 
-        // Add this item to a shopping cart
+      /*
+       *  Handlers to buy the product right now.
+       */
+      $scope.buyNowQty = 1;
+      // + and - buttons
+      $scope.updateBuyNowQty = function(increment) {
+        var qty = parseInt($scope.buyNowQty) + increment;
+        if (isNaN(qty) || qty < 1) {
+          $scope.buyNowQty = 1;
+          return;
+        }
+        $scope.buyNowQty = '' + qty;
+      }
+      // Add this item to a shopping cart
+      $scope.buyNow = function() {
+
+        //alert('buyNow. Qty=' + $scope.buyNowQty + ', product=' + $scope.variant0.productVariantId)
+        var qty = parseInt($scope.buyNowQty);
+        if (isNaN(qty) || qty < 1) {
+          $scope.buyNowQty = 1;
+          return;
+        }
         teaService.putSalesOrderLine({
           "store_id": STORE_ID,
           "user_id": authservice.getCurrentUser().id,
           "product_variant_id": $scope.variant0.productVariantId,
           "quantity": qty
         }).then(function(orders) {
-          /*console.log('Result of update is ', orders);*/
-          window.location = '/shopping-cart.html#supplier=' + $scope.product0.supplierId;
+
+          if (orders == null) {
+            // An error occurred.
+            alert('Error: Could not create order.');
+            return;
+          }
+          console.log('Result of update is ', orders);
+          var url = '/shopping-cart.html#supplier=' + $scope.product0.supplierId;
+          //alert('url=' + url)
+          window.location = url;
         });
 
       };
