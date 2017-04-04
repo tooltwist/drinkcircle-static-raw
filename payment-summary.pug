@@ -361,6 +361,7 @@ block scripts
         };
 
         var addresses = [
+        /*
           {
             ship_to_shared_order_address: false,
             ship_to_country_code: 'AU',
@@ -386,6 +387,7 @@ block scripts
             ship_to_postcode: '4747'
 
           }
+          */
         ];
         addresses.push($scope.newAddress);
         $scope.addresses = addresses;
@@ -549,7 +551,7 @@ block scripts
                   store_id: STORE_ID,
                   user_id: authservice.getCurrentUser().id,
                   sales_order_id: $scope.salesOrderId,
-                  status: 'QUOT' // Only shopping carts
+                  //status: 'QUOT' // Only shopping carts
                 }).then(function(orders){
 
                   // Have the orders. Format money values
@@ -599,6 +601,7 @@ block scripts
       /*
        *  Client-side PayPal payment-summary
        *  See https://developer.paypal.com/demo/checkout/#/pattern/client
+       *  https://developer.paypal.com/docs/integration/direct/express-checkout/integration-jsv4/advanced-payments-api/
        */
 
       // Render the PayPal button
@@ -622,27 +625,187 @@ block scripts
 
           client: {
             //sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
-            sandbox:    'Aa3SnLKTVGgYIO1byRkgxpAoNj5fqZaFnA3MGUGpfD6EzcjJvYHKcMLKxbCiLYHXzf608S4oJfMm4phM',
+            //sandbox:    'Aa3SnLKTVGgYIO1byRkgxpAoNj5fqZaFnA3MGUGpfD6EzcjJvYHKcMLKxbCiLYHXzf608S4oJfMm4phM',
+            sandbox:    'AZgbBIFKR4JDl2zf_KWcQsj4SC0XF5fqv8SG_rXTH4JHrwpYs66ossCRCBIQ3TmrYXDyBrSTNO0L3U2Z',
+
+
             production: 'Aco85QiB9jk8Q3GdsidqKVCXuPAAVbnqm0agscHCL2-K2Lu2L6MxDU2AwTZa-ALMn_N0z-s2MXKJBxqJ'
           },
 
           // Wait for the PayPal button to be clicked
+          // See https://developer.paypal.com/docs/integration/direct/express-checkout/integration-jsv4/upgrade-integration/
+          payment: function payment(resolve, reject) {
+            console.log('payment()');
 
-          payment: function() {
+            var env = this.props.env;
+            var client = this.props.client;
+
+            // Save the address details
+            var params = {
+            	store_id: STORE_ID,
+              user_id: authservice.getCurrentUser().id,
+              sales_order_id: $scope.salesOrderId,
+
+              // Now the new address details.
+              ship_to_name: $scope.newAddress.ship_to_name,
+              ship_to_contact: $scope.newAddress.ship_to_contact,
+              ship_to_address_1: $scope.newAddress.ship_to_address_1,
+              ship_to_address_2: $scope.newAddress.ship_to_address_2,
+              ship_to_subdivision: $scope.newAddress.ship_to_subdivision,
+              ship_to_city_or_town: $scope.newAddress.ship_to_city_or_town,
+              ship_to_country_code: $scope.newAddress.ship_to_country_code,
+              ship_to_state: $scope.newAddress.ship_to_state,
+              ship_to_postcode: $scope.newAddress.ship_to_postcode,
+              notes: $scope.currentSalesOrder.notes,
+              over18: $scope.so_over18,
+
+              // Set the status to 'Prepaying'. This is the status
+              // between Quote (QUOT) and Prepaid (PPAD). The details of
+              // this order will be checked before this status gets set.
+              status: 'PPYG'
+            };
+
+            teaService.putSalesOrder(params).then(function _putSalesOrder(payment) {
+              console.log('\nXXXXXXXXXXXXX\n\nResult of putSalesOrder: ', payment);
+
+              if (payment == null) {
+                return reject(new Error('Unable to create payment on server.'));
+              }
+              return resolve(payment.id);
+              /*var url = '/shopping-cart.html';
+              url += '#supplier=' + $scope.currentSalesOrder.supplier.id;
+              window.location = url;
+              window.location.reload();*/
+
+
+              // Now prepare the payment with Paypal.
 
               // Payment amount
               var total = $scope.currentSalesOrder.amount_incl_tax;
-              alert('total is ' + total)
+              //total = '99.00';
+              //alert('total is ' + total)
+
+              var details = {
+                "transactions": [{
+                    "item_list": {
+                        "items": [
+                        /*
+                          {
+                              "name": "Duck's feet",
+                              //"sku": "item",
+                              //"price": "2.00",
+                              "price": total,
+                              "currency": "AUD",
+                              "quantity": 1
+                          },
+                          {
+                              "name": "Sausage Skins",
+                              //"sku": "item",
+                              "price": "13.00",
+                              "currency": "AUD",
+                              "quantity": 3
+                          }
+                          */
+                        ]
+                    },
+                    "amount": {
+                        "currency": "AUD",
+                        //"total": "41.00",
+                        "total": total,
+                        //total: $scope.currentSalesOrder.fmt_amount_incl_tax,
+                        "details" : {
+                          //"subtotal": "41.00"
+                          "subtotal": total
+                          //subtotal: $scope.currentSalesOrder.fmt_amount_incl_tax
+                        }
+                    },
+                    "description": "A description."
+                }]
+
+                  /*transactions: [
+                      {
+                          amount: { total: total, currency: 'AUD' },
+                          description: "Payment to the Drinkmaker.",
+                          "item_list": {
+                            "items": [
+                              {
+                                "name": "hat",
+                                "description": "Brown hat.",
+                                "quantity": "1",
+                                "price": "180",
+                                "tax": "18",
+                                //"sku": "1",
+                                "currency": "AUD"
+                              },
+                              /*
+                              {
+                                "name": "handbag",
+                                "description": "Black handbag.",
+                                "quantity": "1",
+                                "price": "15",
+                                "tax": "0.02",
+                                "sku": "product34",
+                                "currency": "AUD"
+                              }
+                              * /
+                            ],
+                            "shipping_address": {
+                              "recipient_name": "Brian Robinson",
+                              "line1": "4th Floor",
+                              "line2": "Unit #34",
+                              "city": "San Jose",
+                              "country_code": "US",
+                              "postal_code": "95131",
+                              "phone": "011862212345678",
+                              "state": "CA"
+                            }
+                            /*
+                            * /
+                          }// item_list
+                      }
+                  ],*/
+
+              };
+
+
+              $scope.currentSalesOrder.lines.forEach(function(line, index){
+                if (index > 0)
+                return;
+                //line.fmt_amount_excl_tax = accounting.formatMoney(line.amount_excl_tax);
+                //line.fmt_amount_incl_tax = accounting.formatMoney(line.amount_incl_tax);
+                //line.fmt_tax_amount = accounting.formatMoney(line.tax_amount);
+                //line.fmt_unit_price = accounting.formatMoney(line.unit_price);
+                //if (line.supplier) {
+                //  order.supplier = line.supplier;
+                //}
+
+                /*td {{line.description}}
+                td {{line.quantity}}
+                td {{line.fmt_unit_price}}
+                td {{line.fmt_amount_excl_tax}}*/
+
+                details.transactions[0].item_list.items.push({
+                    "name": line.description,
+                    //"description": line.description,
+                    "quantity": line.quantity,
+                    //quantity: 1,
+                    "price": line.unit_price,
+                    //price: total,
+                    //"tax": line.fmt_tax_amount,
+                    tax: line.tax_amount / line.quantity,
+                    //"sku": "1",
+                    "currency": "AUD"
+                });
+
+              });
+              console.log('\n\n\nXXXXXXXXXXXXX\ndetails=', details)
 
               // Make a client-side call to the REST api to create the payment
+              //ZZZZ
+              return paypal.rest.payment.create(env, client, details);
+            });
 
-              return paypal.rest.payment.create(this.props.env, this.props.client, {
-                  transactions: [
-                      {
-                          amount: { total: total, currency: 'AUD' }
-                      }
-                  ]
-              });
+
           },
 
           // Wait for the payment to be authorized by the customer
