@@ -12,208 +12,231 @@ block css
 
 
 block content
+  div(ng-app="myApp" ng-controller="myCtrl" ng-cloak, directive="")
 
-  .banner.userprofile.seller
-    .gradient
-    .info
+    .banner.userprofile.seller(style="background: url({{supplier.banner}});")
+      .gradient
+      .info
+        .container
+          .row
+            .col-sm-3.col-md-3
+              .photo
+                .img.square
+                  a(href='#modal_coming_soon', data-toggle='modal')
+                    i.fa.fa-camera
+                  //- a
+                  img(src="{{supplier.logo}}", alt="")
+                //- img
+                .name
+                  span {{supplier.supplier_name}}&nbsp;
+                  sup
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      i.fa.fa-pencil
+                      span edit profile
+                    //- a
+                  //- sup
+                  br
+                  small.hide.NOTYET
+                    | Winery &amp; Vineyard
+                  br
+                //- name
+              //- photo
+            //- col-md-3
+          //- row
+          .row
+            .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
+              .userprofilemenu
+                nav.menu
+                  .btn-add-friend.hide.NOTYET
+                    | &nbsp;
+                    a.btn.btn-success.btn-sm(href="#")
+                      | Follow
+                    //- a
+                  //- btn-add-friend
+                  ul
+                    li
+                      a.active(href="shop.html") Shop
+                    //- li
+                    //- li
+                    //-   a(href='#modal_coming_soon', data-toggle='modal') Shipping
+                    //- //- li
+                    //- li
+                    //-   a(href='#modal_coming_soon', data-toggle='modal') Return Policy
+                    //- //- li
+                    //- li
+                    //-   a(href='#modal_coming_soon', data-toggle='modal') Circlebuys
+                    //- //- li
+                    //- li
+                    //-   a(href='#modal_coming_soon', data-toggle='modal') Contact Us
+                    //- //- li
+                    //- li
+                    //-   a(href='#modal_coming_soon', data-toggle='modal') About Us
+                    //- //- li
+                    //- li
+                    //-   a(href="seller.html") News Feed
+                    //- //- li
+                  //- ul
+                //- nav
+              //- userprofilemenu
+            //- col-md-6
+          //- row
+        //- container
+      //- info
+    //- banner-home
+
+
+    section.userprofile.drinks.results
       .container
         .row
-          .col-sm-3.col-md-3
-            .photo
-              .img.square
-                a(href='#modal_coming_soon', data-toggle='modal')
-                  i.fa.fa-camera
-                //- a
-                img(src="assets/images/producers/brokenwood/logo.jpg", alt="")
-              //- img
-              .name
-                span Brokenwood Wines&nbsp;
-                sup
-                  a(href='#modal_coming_soon', data-toggle='modal')
-                    i.fa.fa-pencil
-                    span edit profile
-                  //- a
-                //- sup
-                br
-                small Winery &amp; Vineyard
-              //- name
-            //- photo
+
+          // Options on the left side
+          .col-md-3
+            br
+            .search.form-icon
+              a.icon(href='#', target='_blank')
+                i.fa.fa-search
+              //- a
+              input.form-control(type='text', placeholder='search {{supplier.supplier_name}}...')
+            //- search
+            .seller-categories
+              h3 Wines
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Cricket Pitch
+              //- h4
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Varietal
+              //- h4
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Single Vineyard
+              //- h4
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Icon
+              //- h4
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Dessert
+              //- h4
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Packs &amp; Specials
+              //- h4
+            //- card
           //- col-md-3
-        //- row
-        .row
-          .col-sm-9.col-md-9.col-sm-offset-3.col-md-offset-3
-            .userprofilemenu
-              nav.menu
-                .btn-add-friend
-                  | &nbsp;
-                  a.btn.btn-success.btn-sm(href="#")
-                    | Follow
+
+          // Right side with products - the main part of the page
+          .col-md-9
+            br
+            form.form-inline.hide.NOTYET
+              .form-group
+                label(for='exampleInputName2') Sort by
+                select.form-control
+                  //- option Highest rated
+                  //- option Most reviews
+                  option(ng-click=" sortType='name' ; sortReverse=false ") A to Z
+                  option(ng-click=" sortType='name' ; sortReverse=true ") Z to A
+                //- select
+              //- form-group
+              //- .form-group
+              //-   label(for='exampleInputEmail2') Show
+              //-   select.form-control
+              //-     option 15
+              //-     option 50
+              //-     option 100
+              //-   //- select
+              //- //- form-group
+            //- form
+            hr
+
+            // The actual product list
+            .product-wrap#products
+
+              .row
+
+
+                // Loop through our product variants
+
+                .col-sm-6.col-md-4(ng-repeat="variant in variants | orderBy:sortType:sortReverse" ng-cloak)
+                  .product
+                    input.product-id(type='hidden', value='{{variant.productVariantId}}')
+                    .thumb
+                      .ctr
+                        .count.product-rating.patch-in-average-product-rating(productVariantId="{{variant.productVariantId}}" style='display:none')
+                          | -
+                        span.pointContainer(productVariantId="{{variant.productVariantId}}" style='display:none')
+                          | drinker's
+                          br
+                          | points
+                        //.first-rating-small(productVariantId="{{variant.productVariantId}}" style='display:none')
+                        .first-rating-small(productVariantId="{{variant.productVariantId}}" style='display:none')
+                          a(href="/product-ratings.html?product={{variant.productVariantId}}")
+                            | Be the
+                            br
+                            | first
+                            br
+                            | to rate
+                        //- count
+                      a(href='productdetails2.html?product={{variant.productVariantId}}')
+                        img.img-prod(ng-src='{{variant.d_image}}', alt='')
+                      //- a
+                      // Edit
+                      .details
+                        p
+                        .name
+                          a(href='productdetails2.html?product={{variant.productVariantId}}') {{variant.manufacturer}}
+                          br
+                          small {{variant.name}}
+                        //- name
+                        .pricing
+                          .buy.drop
+                            ul
+                              li
+                                a.thumb-action(ng-click="addToCompare(variant.productVariantId)", data-toggle='modal') Compare
+                              //- li
+                              li.price {{variant.displayPrice}}
+                              //- li
+                              li
+                                a.thumb-action(href='/productdetails2.html?product={{variant.productVariantId}}', data-toggle='modal') View / Buy
+                              //- li
+                            //- ul
+                          //-buy
+                        //- pricing
+                      //- details
+                    //- thumb
+                  //- product
+                //- col
+              //- row
+            //- product-wrap
+            hr.hide.NOTYET
+            nav.text-center(aria-label='...').hide.NOTYET
+              ul.pagination.pagination-sm
+                li
+                  a(href='#', aria-label='Previous')
+                    span(aria-hidden='true') «
+                li
+                  a(href='#modal_coming_soon', data-toggle='modal') 1
+                li
+                  a(href='#modal_coming_soon', data-toggle='modal') 2
+                li
+                  a(href='#modal_coming_soon', data-toggle='modal') 3
+                li
+                  a(href='#modal_coming_soon', data-toggle='modal') 4
+                li
+                  a(href='#modal_coming_soon', data-toggle='modal') 5
+                li
+                  a(href='#', aria-label='Next')
+                    span(aria-hidden='true') »
                   //- a
-                //- btn-add-friend
-                ul
-                  li
-                    a.active(href="shop.html") Shop
-                  //- li
-                  //- li
-                  //-   a(href='#modal_coming_soon', data-toggle='modal') Shipping
-                  //- //- li
-                  //- li
-                  //-   a(href='#modal_coming_soon', data-toggle='modal') Return Policy
-                  //- //- li
-                  //- li
-                  //-   a(href='#modal_coming_soon', data-toggle='modal') Circlebuys
-                  //- //- li
-                  //- li
-                  //-   a(href='#modal_coming_soon', data-toggle='modal') Contact Us
-                  //- //- li
-                  //- li
-                  //-   a(href='#modal_coming_soon', data-toggle='modal') About Us
-                  //- //- li
-                  //- li
-                  //-   a(href="seller.html") News Feed
-                  //- //- li
-                //- ul
-              //- nav
-            //- userprofilemenu
-          //- col-md-6
+                //- li
+              //- ul
+            //- nav
+          //- col-md-9
         //- row
       //- container
-    //- info
-  //- banner-home
-
-
-  section.userprofile.drinks.results
-    .container
-      .row
-        .col-md-3
-          br
-          .search.form-icon
-            a.icon(href='#', target='_blank')
-              i.fa.fa-search
-            //- a
-            input.form-control(type='text', placeholder='search brokenwood...')
-          //- search
-          .seller-categories
-            h3 Wines
-            h4
-              a(href='#modal_coming_soon', data-toggle='modal') Cricket Pitch
-            //- h4
-            h4
-              a(href='#modal_coming_soon', data-toggle='modal') Varietal
-            //- h4
-            h4
-              a(href='#modal_coming_soon', data-toggle='modal') Single Vineyard
-            //- h4
-            h4
-              a(href='#modal_coming_soon', data-toggle='modal') Icon
-            //- h4
-            h4
-              a(href='#modal_coming_soon', data-toggle='modal') Dessert
-            //- h4
-            h4
-              a(href='#modal_coming_soon', data-toggle='modal') Packs &amp; Specials
-            //- h4
-          //- card
-        //- col-md-3
-        .col-md-9
-          br
-          form.form-inline
-            .form-group
-              label(for='exampleInputName2') Sort by
-              select.form-control
-                //- option Highest rated
-                //- option Most reviews
-                option(ng-click=" sortType='name' ; sortReverse=false ") A to Z
-                option(ng-click=" sortType='name' ; sortReverse=true ") Z to A
-              //- select
-            //- form-group
-            //- .form-group
-            //-   label(for='exampleInputEmail2') Show
-            //-   select.form-control
-            //-     option 15
-            //-     option 50
-            //-     option 100
-            //-   //- select
-            //- //- form-group
-          //- form
-          hr
-          .product-wrap(id='products', ng-app="myApp" ng-controller="myCtrl" ng-cloak, directive="")
-
-            .row
-              // 1 Product
-              .col-sm-6.col-md-4(ng-repeat="variant in variants | orderBy:sortType:sortReverse" ng-cloak)
-                .product
-                  input.product-id(type='hidden', value='{{variant.productVariantId}}')
-                  .thumb
-                    .ctr
-                      .count.product-rating(style='display:none')
-                        | &nbsp;
-                      span.pointContainer(style='display:none') points
-                      .first-rating-small(style='display:none')
-                        a(href="/productdetails2.html?product={{variant.productVariantId}}") Be the first to rate
-                      //- count
-                    a(href='productdetails2.html?product={{variant.productVariantId}}')
-                      //img.img-prod(src='//www.brokenwood.com.au/assets/images/products/pictures/CricketPitchRed1.jpg', alt='')
-                      img.img-prod(ng-src='{{variant.d_image}}', alt='')
-                    //- a
-                    // Edit
-                    .details
-                      p
-                      .name
-                        a(href='productdetails2.html?product={{variant.productVariantId}}') {{variant.name}}
-                      //- name
-                      .pricing
-                        .buy.drop
-                          ul
-                            li
-                              a.thumb-action(ng-click="addToCompare(variant.productVariantId)", data-toggle='modal') Compare
-                            //- li
-                            li.price {{variant.displayPrice}}
-                            //- li
-                            li
-                              a.thumb-action(href='/productdetails2.html?product={{variant.productVariantId}}', data-toggle='modal') View / Buy
-                            //- li
-                          //- ul
-                        //-buy
-                      //- pricing
-                    //- details
-                  //- thumb
-                //- product
-              //- col
-            //- row
-          //- product-wrap
-          hr
-          nav.text-center(aria-label='...')
-            ul.pagination.pagination-sm
-              li
-                a(href='#', aria-label='Previous')
-                  span(aria-hidden='true') «
-              li
-                a(href='#modal_coming_soon', data-toggle='modal') 1
-              li
-                a(href='#modal_coming_soon', data-toggle='modal') 2
-              li
-                a(href='#modal_coming_soon', data-toggle='modal') 3
-              li
-                a(href='#modal_coming_soon', data-toggle='modal') 4
-              li
-                a(href='#modal_coming_soon', data-toggle='modal') 5
-              li
-                a(href='#', aria-label='Next')
-                  span(aria-hidden='true') »
-                //- a
-              //- li
-            //- ul
-          //- nav
-        //- col-md-9
-      //- row
-    //- container
-  //- section
+    //- section
 
 
 block scripts
   // External Script goes here...
   script(src='assets/vendor/crowdhound/chsearchresultrating.js', type="text/javascript")
+  script(src='assets/vendor/crowdhound/chratingsandreview.js', type="text/javascript")
   script.
 
 
@@ -221,13 +244,14 @@ block scripts
      *
      *    Angular code.
      */
-
     var app = angular.module('myApp', ['ngSanitize']);
+
     teaservice.init({
       host: TEASERVICE_HOST,
       port: TEASERVICE_PORT,
       accessToken: TEASERVICE_ACCESS_TOKEN
     });
+
     // Add the controller for this page
     app.controller('myCtrl', function($scope, teaService) {
 
@@ -250,22 +274,34 @@ block scripts
         supplierId = DEFAULT_CATEGORY_ID;
       }
 
+
+
+
+
       // Get the product details from TEA.
       teaService.getProduct({
+        //categoryId: 5,
         supplierId: supplierId,
         needPricing: true,
-        needImages: true
+        needImages: true,
+        needSpecifications: true
       }).then(function(products){
-        console.log('BACK NOW', products);
+        console.log('BACK FROM getProduct():', products);
 
         // Put all the variants in a single list
         var variants = [ ];
         $(products).each(function(index, product) {
-          console.log('-> GOT product ' + index, product);
+
+          // These will all be for the same supplier.
+          $scope.supplier = product.supplier;
+
+          //console.log('-> GOT product ' + index, product);
           $(product.variants).each(function(i, variant) {
+    if (variant.productVariantId == 193 || variant.productVariantId == 350) {
             console.log('  -> GOT variant ' + index, variant);
+    }
+
             // Decide what image to use
-            //variant.d_image = '//www.brokenwood.com.au/assets/images/products/pictures/CricketPitchRed1.jpg';
             if (variant.images && variant.images.length > 0) {
               //console.log('image is:' + variant.images[0].imagePath + ':')
               variant.d_image = variant.images[0].imagePath;
@@ -274,21 +310,31 @@ block scripts
             }
 
             //computation for display price
-            if(variant.pricing.length > 0){
-              var componentsQty = variant.componentsQty;
-              var pricingQuantity = variant.pricing[0].pricingQuantity;
-              var pricingQuantityLowestPrice = pricingQuantity[pricingQuantity.length - 1].price;
-              //var displayPrice = (Math.ceil((pricingQuantityLowestPrice / componentsQty) * 100) / 100).toFixed(2);
-              variant.displayPrice = accounting.formatMoney(pricingQuantityLowestPrice);
-
+            if (variant.productVariantId == 193 || variant.productVariantId == 350) {
+                console.log('variant.pricing=', variant.pricing)
             }
 
+            var lowestPrice = variant.lastPrice;
+            if (variant.pricing && variant.pricing.length > 0) {
+              for (var i = 0; i < variant.pricing.length; i++) {
+                var pricing = variant.pricing[i];
+
+                if (pricing.pricingQuantity && pricing.pricingQuantity.length > 0) {
+                  for (var j = 0; j < pricing.pricingQuantity.length; j++) {
+                    var price = pricing.pricingQuantity[j].price;
+                    if (price < lowestPrice) {
+                      lowestPrice = price;
+                    }
+                  }
+                }
+              }
+            }
+            variant.displayPrice = accounting.formatMoney(lowestPrice);
 
             variants.push(variant);
           });
         });
         $scope.variants = variants;
-
       });
 
       $scope.sortType     = 'name'; // set the default sort type
@@ -317,6 +363,8 @@ block scripts
         for (var i = 0; i < compare_productVariantIds.length; i++) {
           if (compare_productVariantIds[i] == productVariantId) {
             console.log('ids=', compare_productVariantIds);
+            //pop up message here
+            bootbox.alert("This item is already in your compare list.", function(){});
             return;
           }
         }
@@ -345,6 +393,41 @@ block scripts
         }
 
       }
+
+
+      /*
+       *  Initialize CrowdHound and get the product ratings.
+       */
+      CrowdHound.init({
+            serverUrl : '//' + CROWDHOUND_HOST + ':' + CROWDHOUND_PORT,
+            apiVersion : CROWDHOUND_VERSION,
+            tenantId : CROWDHOUND_TENANT,
+            debug: false,
+            authenticationToken: authservice.getUserAccessToken(),
+            cookers: {
+                //cook_avatars : cookAvatars, //definition is in the curia_js widget
+                cook_ratings: chratingsandreview.cookRatings
+            },
+            themes : {
+                "productReview": {
+                    "product-reviews_0" : "#reviewList",
+                    "review_0" : "#review"
+                }
+            }
+      }, function afterCuriaInit() {
+
+        // Load the reviews
+        //chratingsandreview.loadReviews(productVariantId);
+
+        // Patch in the average ratings
+        setTimeout(function() {
+          chratingsandreview.patchInProductRatings();
+
+        }, 1000);
+      }); // CrowdHound.init
+
+
+
       /*
       // Display the circle buys
       teaService.getSharedOrdersAndSetAngularVariables({
@@ -354,15 +437,15 @@ block scripts
 
     });
 
-    app.directive('directive', function($timeout) {
+    /*app.directive('directive', function($timeout) {
       return {
         link: function(scope, element, attr) {
           $timeout(function() {
-            chsearchresultrating.init();
+    //ZZZ        chsearchresultrating.init();
           }, 1000);
         }
       }
-    });
+    });*/
 
     /*
      *  Set up the login part at the top of the page.
@@ -371,12 +454,16 @@ block scripts
       host: AUTHSERVICE_HOST,
       port: AUTHSERVICE_PORT,
       tenant: AUTHSERVICE_TENANT,
-      pretend: AUTHSERVICE_USE_DUMMY_LOGIN
+      pretend: AUTHSERVICE_USE_DUMMY_LOGIN,
+      onUserChange: function(user, ttuat, fromCookie) {
+        // If the current user came from the cookie, reload it
+        //if (fromCookie) {
+        //  console.log('Reloading user details (cookie details are just a summary)');
+        //  return authservice.reloadUser();
+        //}
+      }
     });
-    console.log('Current user:', authservice.getCurrentUser());
-
-
-
+    //console.log('Current user:', authservice.getCurrentUser());
 
   //- script.
 //- block scripts
