@@ -15,36 +15,44 @@ block content
           .search-dropdown
             .dropdown-wrap
               strong(data-toggle='collapse', data-target='#collapse-category') Category
-              #collapse-category.collpase.in
+              #collapse-category.collapse.in
                 ul
+                  //- li(ng-repeat="category in categories")
+                  //-   input.category-checkbox(type='checkbox' value="{{category.id}}" ng-click="categorySelection()")
+                  //-   | {{category.name}}
+                  //- //- li
+
                   li
-                    input(type='checkbox')
-                    | Red Wine
-                  //- li
+                    input.category-checkbox(type='checkbox' value="{{CATEGORY_RED}}" ng-click="categorySelection()" ng-checked="categorySelected(CATEGORY_RED)")
+                    span(ng-class="{green: categorySelected(CATEGORY_RED, true)}") Red Wine
                   li
-                    input(type='checkbox')
-                    | White Wine
-                  //- li
+                    input.category-checkbox(type='checkbox' value="{{CATEGORY_WHITE}}" ng-click="categorySelection()" ng-checked="categorySelected(CATEGORY_WHITE)")
+                    span(ng-class="{green: categorySelected(CATEGORY_WHITE, true)}") White Wine
                   li
-                    input(type='checkbox')
-                    | Beer
-                  //- li
+                    input.category-checkbox(type='checkbox' value="{{CATEGORY_BEER}}" ng-click="categorySelection()" ng-checked="categorySelected(CATEGORY_BEER)")
+                    span(ng-class="{green: categorySelected(CATEGORY_BEER, true)}") Beer
                   li
-                    input(type='checkbox')
-                    | Cider
-                  //- li
+                    input.category-checkbox(type='checkbox' value="{{CATEGORY_SPIRITS}}" ng-click="categorySelection()" ng-checked="categorySelected(CATEGORY_SPIRITS)")
+                    span(ng-class="{green: categorySelected(CATEGORY_SPIRITS, true)}") Spirits
                   li
-                    input(type='checkbox')
-                    | Spirits
-                  //- li
+                    input.category-checkbox(type='checkbox' value="{{CATEGORY_BUBBLES}}" ng-click="categorySelection()" ng-checked="categorySelected(CATEGORY_BUBBLES)")
+                    span(ng-class="{green: categorySelected(CATEGORY_BUBBLES, true)}") Bubbles
                   li
-                    input(type='checkbox')
-                    | Bubbles
-                  //- li
+                    input.category-checkbox(type='checkbox' value="{{CATEGORY_CIDER}}" ng-click="categorySelection()" ng-checked="categorySelected(CATEGORY_CIDER)")
+                    span(ng-class="{green: categorySelected(CATEGORY_CIDER, true)}") Cider
+                  li.hide.NOTYET
+                    input.category-checkbox(type='checkbox' value="{{CATEGORY_ORGANIC}}" ng-click="categorySelection()" ng-checked="categorySelected(CATEGORY_ORGANIC)")
+                    span(ng-class="{green: categorySelected(CATEGORY_ORGANIC, true)}") Organic
                   li
-                    input(type='checkbox')
-                    | Organic
-                  //- li
+                    input.category-checkbox(type='checkbox' value="{{CATEGORY_FORTIFIED}}" ng-click="categorySelection()" ng-checked="categorySelected(CATEGORY_FORTIFIED)")
+                    span(ng-class="{green: categorySelected(CATEGORY_FORTIFIED, true)}") Fortified
+                  li.hide.NOTYET
+                    input.category-checkbox(type='checkbox' value="{{CATEGORY_DESSERT}}" ng-click="categorySelection()" ng-checked="categorySelected(CATEGORY_DESSERT)")
+                    span(ng-class="{green: categorySelected(CATEGORY_DESSERT, true)}") Dessert
+                  li.hide.NOTYET
+                    input.category-checkbox(type='checkbox' value="{{CATEGORY_LIQUEUR}}" ng-click="categorySelection()" ng-checked="categorySelected(CATEGORY_LIQUEUR)")
+                    span(ng-class="{green: categorySelected(CATEGORY_LIQUEUR, true)}") Liqueur
+
                 //- ul
               //- collpase
             //- filters-wrap
@@ -57,16 +65,20 @@ block content
           //- p
           h2.text-center Wine, Beer, Cider &amp; Spirit makers
           .maker-filters
-            .input-group
-              input.form-control(type='text', placeholder='Find a drinkmaker...')
-              span.input-group-btn &nbsp;&nbsp;
-              span.input-group-btn
-                a.btn.btn-success(href='#modal_coming_soon', data-toggle='modal') Search
-              //- span
-            //- input-group
+            form
+              .form-group
+                .input-group.dc-filters
+                  input#searchButton.form-control(type='text', placeholder='Find a drinkmaker...' ng-model="filter" autocomplete="off")
+                  span.input-group-btn &nbsp;&nbsp;
+                  span.input-group-btn
+                    button.btn.btn-success(type="submit" ng-click="searchButton()") Search
+                  //- span
+                //- input-group
+              //- form-group
+            //- form
           //- maker-filters
           hr
-          form.form-inline
+          form.form-inline.hide.NOTYET
             .form-group
               label(for='exampleInputName2') Sort by
               select.form-control
@@ -87,75 +99,42 @@ block content
           //- form
 
 
+          .text-center.green(ng-hide="suppliers.length > 0 || !filter")
+            br
+            br
+            h4 Sorry, no suppliers were found matching: {{filter}}
+            br
+            br
+            br
+            br
           .maker-list(ng-repeat="supplier in suppliers")
             .row
+
+              // Image
               .col-md-5
                 img.maker(src='{{supplier.directory_photo}}')
                 p.visible-xs.visible-sm
               //- col-md-5
+
+              // Description
               .col-md-7
-                .media
-                  .media-left
-                    .picture
-                      img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                      img.source(src='{{supplier.logo}}')
-                    //- picture
-                  //- media-left
-                  .media-body
-                    .media-right
-                      //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                      //| &nbsp;
-                      a.btn.btn-success.btn-xs(href='shop.html?supplier={{supplier.id}}') Go to Shop
-                    //- media-right
-                    h4.media-heading {{supplier.supplier_name}}
-                    .rating-status.md
-                      span.left 4.6
-                      .stars
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star
-                        i.fa.fa-star-half-o
-                      //- stars
-                      span.right.sm
-                        a(href='#modal_coming_soon', data-toggle='modal') 162 reviews
-                    //- rating-status
-                  //- media-body
-                //- media
-                p.address
-                  strong 401-427 McDonalds Rd Pokolbin, New South Wales
-                //- p
-                p.summary {{supplier.story}}
-                  //a(href='seller.html') read more
-              //- col-md-7
-            //- row
-          //- maker-list
-
-
-          #dummySuppliers.hide
-            .maker-list.
-              .row
-                .col-md-5
-                  img.maker(src='assets/images/makers/younghenrys/preview.jpg')
-                  p.visible-xs.visible-sm
-                //- col-md-5
-                .col-md-7
+                .maker-description
                   .media
                     .media-left
                       .picture
                         img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                        img.source(src='assets/images/makers/younghenrys/logo.jpg')
+                        img.source(src='{{supplier.logo}}')
                       //- picture
                     //- media-left
                     .media-body
                       .media-right
                         //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
                         //| &nbsp;
-                        a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
+                        a.btn.btn-success.btn-xs(href='shop.html?supplier={{supplier.id}}') Go to Shop
                       //- media-right
-                      h4.media-heading Young Henrys
+                      h4.media-heading {{supplier.supplier_name}}
                       .rating-status.md
-                        span.left 4.8
+                        span.left 4.6
                         .stars
                           i.fa.fa-star
                           i.fa.fa-star
@@ -164,285 +143,24 @@ block content
                           i.fa.fa-star-half-o
                         //- stars
                         span.right.sm
-                          a(href='#modal_coming_soon', data-toggle='modal') 417 reviews
+                          a(href='#modal_coming_soon', data-toggle='modal') 162 reviews
                       //- rating-status
                     //- media-body
                   //- media
-                  p.address
-                    strong 76 Wilford Street Newtown, New South Wales
+                  p.address.hide.NOTYET
+                    strong 401-427 McDonalds Rd Pokolbin, New South Wales
                   //- p
-                  p.summary Like most good stories, ours started over a beer. Meeting on opposite sides of the bar, Richard Adamson and Oscar McMahon got talking. It turned out they both shared a love of beer and a view that the Sydney beer scene was behind the times.
-                  p.summary It should, they thought, be more adventurous, innovative and fun. Since Richard knew how to brew and Oscar knew all the....&nbsp;
-                    a(href='seller-yh.html') read more
-                //- col-md-7
-              //- row
-            //- maker-list
-            .maker-list
-              .row
-                .col-md-5
-                  img.maker(src='assets/images/producers/westwinds/preview.jpg')
-                  p.visible-xs.visible-sm
-                //- col-md-5
-                .col-md-7
-                  .media
-                    .media-left
-                      .picture
-                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                        img.source(src='assets/images/producers/westwinds/logo.png')
-                      //- picture
-                    //- media-left
-                    .media-body
-                      .media-right
-                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                        //| &nbsp;
-                        a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
-                      //- media-right
-                      h4.media-heading The West Winds Gin
-                      .rating-status.md
-                        span.left 4.9
-                        .stars
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                        //- stars
-                        span.right.sm
-                          a(href='#modal_coming_soon', data-toggle='modal') 22 reviews
-                      //- rating-status
-                    //- media-body
-                  //- media
-                  p.address
-                    strong Margaret River, Western Australia
-                  //- p
-                  p.summary We named our Gin 'The West Winds' in a tribute to the breezes that enabled explorers &amp; merchants from the safe havens of Europe to explore the New World in pursuit of gold in the form of spices, botanicals and luxuriant exotica. Our gin reflects the bold and adventurous nature of the traders and has pure Margaret River water at it's core...&nbsp;
-                    a(href='seller-ww.html') read more
-                //- col-md-7
-              //- row
-            //- maker-list
-            .maker-list
-              .row
-                .col-md-5
-                  img.maker(src='assets/images/makers/rosnay/preview.jpg')
-                  p.visible-xs.visible-sm
-                //- col-md-5
-                .col-md-7
-                  .media
-                    .media-left
-                      .picture
-                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                        img.source(src='assets/images/makers/rosnay/logo.jpg')
-                      //- picture
-                    //- media-left
-                    .media-body
-                      .media-right
-                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                        //| &nbsp;
-                        a.btn.btn-success.btn-xs(href='shop.html?supplier=605') Go to Shop
-                      //- media-right
-                      h4.media-heading Rosnay Organic
-                      .rating-status.md
-                        span.left 5
-                        .stars
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                        //- stars
-                        span.right.sm
-                          a(href='#modal_coming_soon', data-toggle='modal') 8 reviews
-                      //- rating-status
-                    //- media-body
-                  //- media
-                  p.address
-                    strong 510 Rivers Road Canowindra, New South Wales
-                  //- p
-                  p.summary Rosnay was established by the Statham family at Canowindra, NSW, in 1996, and since 2000 the farm has been a source of many fine organic wines and olive products. Richard and Florence Statham began the project in 1995, and when they found the property in 1996 they named it Rosnay, after Florence's grandfather, Alberic Dulong de Rosnay, who had a vineyard in the French Beaujolais...&nbsp;
-                    a(href='seller-ro.html') read more
-                //- col-md-7
-              //- row
-            //- maker-list
-            .maker-list
-              .row
-                .col-md-5
-                  img.maker(src='assets/images/producers/ar/preview.jpg')
-                  p.visible-xs.visible-sm
-                //- col-md-5
-                .col-md-7
-                  .media
-                    .media-left
-                      .picture
-                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                        img.source(src='assets/images/producers/ar/logo.jpg')
-                      //- picture
-                    //- media-left
-                    .media-body
-                      .media-right
-                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                        //| &nbsp;
-                        a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
-                      //- media-right
-                      h4.media-heading Archie Rose Distilling Co.
-                      .rating-status.md
-                        span.left 5
-                        .stars
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                        //- stars
-                        span.right.sm
-                          a(href='#modal_coming_soon', data-toggle='modal') 112 reviews
-                      //- rating-status
-                    //- media-body
-                  //- media
-                  p.address
-                    strong Rosebery, New South Wales, Australia
-                  //- p
-                  p.summary Archie Rose – Reigniting Sydney’s rich history in distilling. Archie Rose distills and bottles spirits by hand to be shared in good company. 18+ only...&nbsp;
-                    a(href='seller-ar.html') read more
-                //- col-md-7
-              //- row
-            //- maker-list
-            .maker-list
-              .row
-                .col-md-5
-                  img.maker(src='assets/images/producers/gs/preview.jpg')
-                  p.visible-xs.visible-sm
-                //- col-md-5
-                .col-md-7
-                  .media
-                    .media-left
-                      .picture
-                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                        img.source(src='assets/images/producers/gs/logo.jpg')
-                      //- picture
-                    //- media-left
-                    .media-body
-                      .media-right
-                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                        //| &nbsp;
-                        a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
-                      //- media-right
-                      h4.media-heading Giant Steps Wines
-                      .rating-status.md
-                        span.left 5
-                        .stars
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                        //- stars
-                        span.right.sm
-                          a(href='#modal_coming_soon', data-toggle='modal') 29 reviews
-                      //- rating-status
-                    //- media-body
-                  //- media
-                  p.address
-                    strong 336 Maroondah Highway Healesville, Victoria
-                  //- p
-                  p.summary When the saxophonist John Coltrane split with Miles Davis in the late 50s, he wasted little time releasing his visionary Giant Steps album. Owner Phil Sexton is a jazz fan and was inspired by the album and Coltrane's foresight. When he sold his Devil's Lair vineyard in Margaret River to relocate and replant in the Yarra Valley, he named his wine in Coltrane's honour...&nbsp;
-                    a(href='seller-gs.html') read more
-                //- col-md-7
-              //- row
-            //- maker-list
-            .maker-list
-              .row
-                .col-md-5
-                  img.maker(src='assets/images/producers/fg/preview.jpg')
-                  p.visible-xs.visible-sm
-                //- col-md-5
-                .col-md-7
-                  .media
-                    .media-left
-                      .picture
-                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                        img.source(src='assets/images/producers/fg/logo.jpg')
-                      //- picture
-                    //- media-left
-                    .media-body
-                      .media-right
-                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                        //| &nbsp;
-                        a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
-                      //- media-right
-                      h4.media-heading Five Geese Wines
-                      .rating-status.md
-                        span.left 5
-                        .stars
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                        //- stars
-                        span.right.sm
-                          a(href='#modal_coming_soon', data-toggle='modal') 29 reviews
-                      //- rating-status
-                    //- media-body
-                  //- media
-                  p.address
-                    strong McLaren Vale Region, Australia
-                  //- p
-                  p.summary The beauty of Five Geese spans across 32 Hectares of vineyards located in the McLaren Vale region of South Australia.
-                  p Nestled in the north-eastern end of the Willunga basin, Blewitt Springs lies about 180m above sea level. This slightly higher elevation provides a cooler climate than nearby McLaren Vale and Willunga. With cooler temperatures and moderating afternoon sea breezes...&nbsp;
-                    a(href='seller-fg.html') read more
-                //- col-md-7
-              //- row
-            //- maker-list
-            .maker-list
-              .row
-                .col-md-5
-                  img.maker(src='assets/images/producers/4p/preview.jpg')
-                  p.visible-xs.visible-sm
-                //- col-md-5
-                .col-md-7
-                  .media
-                    .media-left
-                      .picture
-                        img.placeholder.sm(src='http://placehold.it/150', alt='placeholder')
-                        img.source(src='assets/images/producers/4p/logo.jpg')
-                      //- picture
-                    //- media-left
-                    .media-body
-                      .media-right
-                        //a.btn.btn-success.btn-xs(href='seller.html') Go to Profile
-                        //| &nbsp;
-                        a.btn.btn-success.btn-xs(href='shop.html?supplier=603') Go to Shop
-                      //- media-right
-                      h4.media-heading 4 Pines Brewing Company
-                      .rating-status.md
-                        span.left 5
-                        .stars
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                          i.fa.fa-star
-                        //- stars
-                        span.right.sm
-                          a(href='#modal_coming_soon', data-toggle='modal') 46 reviews
-                      //- rating-status
-                    //- media-body
-                  //- media
-                  p.address
-                    strong 4F/9-13 Winbourne Rd Brookvale NSW 2100
-                  //- p
-                  p.summary We really, really love good beer.
-                  p Our goal is to introduce people who have never experienced such flavours &amp; aromas, to beer – &amp; turn them into beer lovers who have a genuine appreciation for how good it can be!
-                  p According to Australian law we are required to comply with responsible drinking...&nbsp;
-                    a(href='seller-4p.html') read more
-                //- col-md-7
-              //- row
-            //- maker-list
+                  .summary-frame.initial-fixed-size
+                    p.summary.size-unrestrained {{supplier.story}}
+                  a.maker-more(style="display:none;") read more
+                //- maker-description
 
+              //- col-md-7
+            //- row
+          //- maker-list
 
-
-          hr
-          nav.text-center(aria-label='...')
+          hr.hide.NOTYET
+          nav.text-center(aria-label='...').hide.NOTYET
             ul.pagination.pagination-sm
               li
                 a(href='#', aria-label='Previous')
@@ -510,19 +228,232 @@ block scripts
     // Add the controller for this page
     app.controller('myCtrl', function($scope, teaService) {
 
+
+      // This code checks for parameters in the URL
+      var option_categoriesById = { };
+      var option_categoryIds = null;
+      var option_filter = null;
+      console.log('window.location=' + window.location + '.')
+      window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+        //console.log('xx:' + key + ':' + value + ':');
+        if (key === 'category') {
+          option_categoryIds = value;
+          var arr = value.split(',');
+          arr.forEach(function(categoryId) {
+            option_categoriesById[categoryId.trim()] = true;
+          });
+        }
+        else if (key === 'filter') {
+          option_filter = value;
+        }
+      });
+      console.log('Displaying the page for categoryId=' + option_categoryIds);
+      console.log('Displaying the page for filter=' + option_filter);
+      $scope.filter = option_filter;
+
       // Get the details of suppliers from TEA.
       var categoryId = '1';
-      console.log('hi 1')
-      teaService.getSupplier({
-        storeId: 6
+      var options = {
+        storeId: 6,
         /*categoryId: categoryId,
         needPricing: true,
         needImages: true*/
-      }).then(function(suppliers){
-        console.log('BACK NOW', suppliers);
+        needCategories: true
+      };
+      if (option_filter) {
+        options.filter = option_filter;
+      }
+      if (option_categoryIds) {
+        options.categoryId = option_categoryIds;
+      }
+      teaService.getSupplier(options).then(function(suppliers){
+        console.log('BACK FROM getSupplier', suppliers);
         $scope.suppliers = suppliers;
+
+
+        $scope.CATEGORY_RED = CATEGORY_RED;
+        $scope.CATEGORY_WHITE = CATEGORY_WHITE;
+        $scope.CATEGORY_BEER = CATEGORY_BEER;
+        $scope.CATEGORY_SPIRITS = CATEGORY_SPIRITS;
+        $scope.CATEGORY_BUBBLES = CATEGORY_BUBBLES;
+        $scope.CATEGORY_CIDER = CATEGORY_CIDER;
+        $scope.CATEGORY_ORGANIC = CATEGORY_ORGANIC;
+        $scope.CATEGORY_OTHER = CATEGORY_OTHER;
+        $scope.CATEGORY_FORTIFIED = CATEGORY_FORTIFIED;
+        $scope.CATEGORY_DESSERT = CATEGORY_DESSERT;
+        $scope.CATEGORY_LIQUEUR = CATEGORY_LIQUEUR;
+
+
+
+        // Get a unique list of categories for these suppliers
+        /*var categoriesById = { };
+        suppliers.forEach(function(supplier) {
+          console.log('supplier is ', supplier)
+          if (supplier.categories) {
+            console.log('categories=', supplier.categories);
+            for (categoryId in supplier.categories) {
+              var categoryName = supplier.categories[categoryId];
+              console.log('  ' + categoryId + ' => ' + categoryName);
+              categoriesById[categoryId] = categoryName;
+            }
+          }
+        });*/
+
+        /*// Create a sorted list of categories
+        var categories = [ ];
+        for (categoryId in categoriesById) {
+          var categoryName = categoriesById[categoryId];
+          categories.push({
+            id: categoryId,
+            name: categoryName
+          });
+        }
+        categories.sort(function(c1, c2) {
+          if (c1.name < c2.name) return -1;
+          if (c1.name > c2.name) return +1;
+          return 0;
+        });
+        $scope.categories = categories;*/
+
+        /*$scope.categoryInList = function(categoryId) {
+          //console.log('categoryInList(' + categoryId + ')')
+          if (categoriesById[categoryId]) {
+            //console.log('- yep')
+            return true;
+          }
+          //console.log('- nope')
+          return false;
+        }*/
+
+        // Is the categoryId one of the those in our selection criteria.
+        $scope.categorySelected = function(categoryId, includeNoneSelected) {
+          if (includeNoneSelected && option_categoryIds == null) {
+            return true;
+          }
+          if (option_categoriesById[''+categoryId]) {
+            return true;
+          }
+          return false;
+        }
+
+
+
+        /*
+         *  Trim the height of the text for each supplier if it is
+         *  too long. To do this, we place the summary inside a frame.
+         *
+         *  The frame is initially fixed size, with hidden overflow. This
+         *  allows us to see if the summary is longer than the frame.
+         *
+         *  Solutions:
+         *    1. Summary is shorter than the frame - do nothing.
+         *    2. Summary is longer than the frame:
+         *      - remove the fixed size and hidden overflow from the frame.
+         *      - make the more / less button visible, with two modes:
+         *            a) collapsed, with constrained size for the summary.
+         *            b) expanded, with no constrained of size for the summary.
+         */
+        setTimeout(function() {
+          $('.maker-description').each(function() {
+            var description = $(this);
+            var frame = description.find('.summary-frame');
+            var summary = description.find('.summary');
+            var more = description.find('a.maker-more');
+
+            // See if the summary is too big
+            if (summary.height() > frame.height()) {
+              $(summary).addClass('constrained');
+              more.show();
+            }
+            $(frame).removeClass('initial-fixed-size');
+          });
+        }, 200);
+
+        $('div.container').on('click', '.maker-more', function() {
+          var more = $(this);
+          var description = more.closest('.maker-description');
+          var summary = description.find('.summary');
+
+          // Toggle the 'constrained' class and button label
+          if (summary.hasClass('constrained')) {
+            summary.removeClass('constrained');
+            more.html('read less');
+          } else {
+            summary.addClass('constrained');
+            more.html('read more');
+          }
+        });
+
       });//getSuppliers
+
+
+      /*
+       *  Handler for the 'search' button.
+       */
+      $scope.searchButton = function() {
+        reloadPage();
+      };
+
+      /*
+       *  Category checkbox has been clicked.
+       */
+      $scope.categorySelection = function() {
+        reloadPage();
+      };
+
+
+      /*
+       *  Reload the page, with the new selection criteria.
+       */
+      function reloadPage() {
+        //alert('reload page');
+        var url = 'drinkmakers.html';
+        var sep = '?';
+        /*if (option_categoryId) {
+          url += sep + 'category=' + option_categoryId;
+          sep = '&';
+        }*/
+
+        // Perhaps specify the filter
+        if ($scope.filter) {
+          url += sep + 'filter=' + $scope.filter;//ZZZZZ Need Url encoding
+          sep = '&';
+        }
+
+        // Find any selected categories
+        var elements = $('.category-checkbox:checked');
+        console.log('selected= ' + elements.length);
+        var sep2 = '';
+        var categoryIds = '';
+        for (var i = 0; i < elements.length; i++) {
+          var categoryId = $(elements[i]).attr('value');
+          categoryIds += sep2 + categoryId;
+          sep2 = ',';
+        }
+        console.log('categoryIds=', categoryIds)
+        if (categoryIds) {
+          url += sep + 'category=' + categoryIds;
+          sep = '&';
+        }
+
+        // Relaod with the new criteria
+        window.location.href = url;
+      }
     });
+
+
+
+    /*
+     *  Put focus on the search button.
+     */
+    setTimeout(function() {
+      $('#searchButton').focus();
+      //if (option_filter) {
+      //  $('html, body').animate({
+      //    scrollTop: $("#searchArea").offset().top - 92
+      //  }, 500);
+      //}
+    }, 100);
 
 
     /*
