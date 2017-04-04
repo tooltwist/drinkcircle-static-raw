@@ -31,9 +31,37 @@ block content
                   div.supplier-name
                     | {{order.supplier.supplier_name}}
 
-        // The tabs that shows a single shopping cart (i.e. sales_order with status 'QUOT')
+        // The tabs that each show a single shopping cart (i.e. sales_order with status 'QUOT')
         .col-md-9
-          .card
+
+          // Display a message if there are no sales_orders
+          .card(ng-hide="salesOrders.length > 0")
+            .row
+              .col-md-2
+              .col-md-8
+                br
+                br
+                h4.green You currently have no shopping carts
+                p.small
+                  | When you make a purchase at Drinkcircle.com, you are
+                  | buying direct from the drink maker. If you are preparing
+                  | to buy from multiple drink makers, we will create multiple
+                  | shopping carts and show them on the left.
+                p.small
+                  | Each shopping cart will result in a separate payment,
+                  | which goes directly to the suppplier, and you will receive
+                  | a separate invoice for each order.
+                p.small
+                  | To add items to your shopping cart, go to the page that
+                  | describes a drink, and press the "Buy Now" button, or
+                  | better yet, start or join a CircleBuy.
+                  br
+                  br
+                  br
+                  br
+
+          // We have sales_orders
+          .card(ng-hide="!salesOrders || salesOrders.length == 0")
             .col-md-4
               img.shopping-cart-logo(ng-src="{{currentSalesOrder.supplier.logo}}")
               //img(src="{{currentSalesOrder.supplier.banner}}")
@@ -45,6 +73,8 @@ block content
               br
               br
               a.button.inline.v8.see-all-drinks.thin-line.shopping-cart-view-more(href="shop.html?supplier={{currentSalesOrder.supplier.id}}") see all drinks
+              br
+              br
 
             table.table
               tr
@@ -54,14 +84,15 @@ block content
                 th Total
                 th
               tr(ng-repeat="line in currentSalesOrder.lines")
-                td {{line.description}}
+                td
+                  a(href="productdetails2.html?product={{line.product_variant_id}}") {{line.description}}
                 td
                   span(ng-if="line.system_generated") {{line.quantity}}
                   input.shopping-cart-quantity(ng-if="!line.system_generated" ng-model="line.quantity" ng-change="updateQty(line)")
                 td {{line.fmt_unit_price}}
                 td {{line.fmt_amount_excl_tax}}
                 td
-                  i.fa.fa-times(ng-if="!line.system_generated" aria-hidden="true" ng-click="removeSalesOrderLine(line)")
+                  i.fa.fa-times(ng-if="!line.system_generated" aria-hidden="true" ng-click="removeSalesOrderLine(line)" style="cursor:pointer;")
 
             .row
               .col-md-6
