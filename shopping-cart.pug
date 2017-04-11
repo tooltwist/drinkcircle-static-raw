@@ -35,7 +35,7 @@ block content
         .col-md-9
 
           // Display a message if there are no sales_orders
-          .card(ng-hide="salesOrders.length > 0")
+          .card(ng-hide="salesOrders==null || salesOrders.length > 0")
             .row
               .col-md-2
               .col-md-8
