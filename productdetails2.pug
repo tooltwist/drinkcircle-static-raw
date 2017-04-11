@@ -579,12 +579,10 @@ block scripts
           productVariantId = parseInt(value);
         }
       });
-      //console.log('Displaying the page for productVariantId=' + productVariantId);
-
-      // During development only
-      var DEFAULT_PRODUCT_VARIANT_ID = 6180;
       if (isNaN(productVariantId)) {
-        productVariantId = DEFAULT_PRODUCT_VARIANT_ID;
+        // No product has been specified
+        window.location = '/drinks.html';
+        return;
       }
 
 
@@ -697,15 +695,12 @@ block scripts
                 }
               }
             });
-
-
-
-
           }
-          //ZZZZZ
         } else {
-          //ZZZ Redirect to an error page or something.
-          alert('unknown product variant ' + productVariantId);
+
+          // Product was not found.
+          window.location = '/drinks.html';
+          return;
         }
       });
 

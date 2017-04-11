@@ -2171,8 +2171,8 @@ block scripts
       console.log('Displaying the page for categoryId=' + option_categoryId);
 
       // During development only
-      var DEFAULT_CATEGORY_ID = 1;
       if ( !option_categoryId) {
+        var DEFAULT_CATEGORY_ID = [ CATEGORY_RED, CATEGORY_WHITE, CATEGORY_BEER ].join(',');
         option_categoryId = DEFAULT_CATEGORY_ID;
       }
       $scope.categoryId = option_categoryId;
