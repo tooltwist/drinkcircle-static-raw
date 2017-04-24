@@ -184,40 +184,47 @@ block content
                         .shared-order-calc-field {{calc_grandTotal}}
                     //- td
                   //- tr
-
-
-                  tr
-                    td
-                      strong Savings on RRP
-                    //- td
-                    td
-                      strong
-                        .shared-order-calc-field {{calc_rrpSaving}}
-                    //- td
-                  //- tr
-                  tr.hide
-                    td
-                      strong Saving on Shipping
-                    //- td
-                    td
-                      strong
-                        .shared-order-calc-field {{calc_shippingSaving}}
-                    //- td
-                  //- tr
-
-
-
-
-
-
-
-
-
                 //- tbody
               //- table
             //- table-responsive
+            
           //- col-md-4
         //- row
+        
+        
+        // Display the savings
+        .row(ng-hide="!calc_totalSavings || calc_totalSavings == '-'")
+          .col-md-6.text-center.col-md-offset-3
+            h3.green.text-center Why you love Drink Circle...
+            br
+            .text-justify
+              | RRP for this product is {{calc_rrp}} per case, but&nbsp;
+              span.inline(ng-hide="calc_savingsDirect == '-'")
+                | {{calc_savingsDirectPrefix}}
+                .green.inline {{calc_savingsDirect}}&nbsp;
+                | a case by buying direct from the drink maker
+              span.inline(ng-hide="calc_savingsVolume == '-'")
+                | {{calc_savingsVolumePrefix}}
+                .green.inline {{calc_savingsVolume}}&nbsp;
+                | a case by buying in bulk with your friends
+              span.inline(ng-hide="calc_savingsShipping == '-'")
+                | {{calc_savingsShippingPrefix}}
+                .green.inline {{calc_savingsShipping}}&nbsp;
+                | a case by shipping to the same address
+              span.inline .
+                
+              br
+              br
+            strong.text-center
+              | The total savings on this order will be
+              .green.inline {{calc_totalSavings}}
+              | .
+              br
+              br
+              
+      
+        //- .row
+        
       //- card
       br
       h4 Your Details
@@ -473,7 +480,6 @@ block scripts
                $scope.pricingQuantityList = products[0].variants[0].pricing[0].pricingQuantity;
                //$scope.sharedOrder.so_alreadyOrdered = 2;
                //$scope.so_yourQuantity = '1';
-               $scope.junkChooks = 'MEOW';
                console.log('so=', sharedOrders)
 
                // Prevent the order size being changed
@@ -644,9 +650,11 @@ block scripts
           var orderSize = $scope.finalOrderSize;
           var yourQty = $scope.finalYourQuantity;
           var rrp = $scope.variant.manufacturerPrice;
+          var singleCasePrice = $scope.variant.lastPrice;
           var packSize = $scope.variant.componentsQty;
           //console.log('-------- CALCULATE ---------')
           //console.log('orderSize=' + orderSize);
+          
 
 
           // Find the price for this Order Size
@@ -665,12 +673,13 @@ block scripts
           if ( !found) {
             alert('Internal Error 387663');
           }
+
           // Call the server to update the shipping charge.
           var shipping = 10.00;
           var GST_RATE = 0.1000;
 
-          var pricePack = price * packSize;
-          var priceSubTotal = price * packSize * yourQty;
+          var pricePack = price;
+          var priceSubTotal = price * yourQty;
           var subTotalWithShipping = priceSubTotal + shipping;
           var gst = subTotalWithShipping * GST_RATE;
           var grandTotal = subTotalWithShipping + gst;
@@ -687,8 +696,8 @@ block scripts
           //console.log('grandTotal=' + accounting.formatMoney(grandTotal));
 
           // Do the same calculation for RRP (Recommended Retail Price)
-          var rrpPack = rrp * packSize;
-          var rrpSubtotal = rrp * packSize * yourQty;
+          var rrpPack = rrp;
+          var rrpSubtotal = rrp * yourQty;
           var rrpSubtotalExclTac = rrpSubtotal - (rrpSubtotal * GST_RATE);
           var rrpSubtotalWithShipping = rrpSubtotal + shipping;
           var rrpGst = rrpSubtotalWithShipping * GST_RATE;
@@ -725,6 +734,52 @@ block scripts
           $scope.calc_rrpSaving = accounting.formatMoney(savingTotal);
           $scope.calc_shippingSaving = accounting.formatMoney(rrp);
           $scope.gst_rate = GST_RATE;
+          
+          
+          // Work out the savings:
+          //  - from RRP
+          //  - volumn price
+          //  - combined shipping (later)
+          //ZZZZ Check with no RRP
+          $scope.calc_rrp = accounting.formatMoney(rrp);
+          var prefix = "you are saving";
+          var savingsDirect = (rrp - singleCasePrice) * (1.0 + GST_RATE);
+        //savingsDirect = 0;
+          if (savingsDirect <= 0) {
+            savingsDirect = 0;
+            $scope.calc_savingsDirect = '-';
+          } else {
+            $scope.calc_savingsDirectPrefix = prefix;
+            prefix = ", and you are saving a further";
+            $scope.calc_savingsDirect = accounting.formatMoney(savingsDirect);            
+          }
+          var savingsVolume = (singleCasePrice - price) * (1.0 + GST_RATE);
+        //savingsVolume = 0;
+
+          if (savingsVolume <= 0) {
+            savingsVolume = 0;
+            $scope.calc_savingsVolume = '-';
+          } else {
+            $scope.calc_savingsVolumePrefix = prefix;
+            prefix = ", and you are also saving";
+            $scope.calc_savingsVolume = accounting.formatMoney(savingsVolume);
+          }
+          var savingsShipping = 10;
+        savingsShipping = 0;
+          if (savingsShipping <= 0) {
+            savingsShipping = 0;
+            $scope.calc_savingsShipping = '-';
+          } else {
+            $scope.calc_savingsShippingPrefix = prefix;
+            $scope.calc_savingsShipping = accounting.formatMoney(savingsShipping);
+          }
+          var totalSavings = (savingsDirect + savingsVolume + savingsShipping) * orderSize;
+          if (totalSavings <= 0) {
+            $scope.calc_totalSavings = '-';
+          } else {
+            $scope.calc_totalSavings = accounting.formatMoney(totalSavings);
+          }
+
 
           if ($scope.haveValidOrderSize && $scope.haveValidYourQty) {
             var totalOrdered = $scope.so_alreadyOrdered + $scope.finalYourQuantity;

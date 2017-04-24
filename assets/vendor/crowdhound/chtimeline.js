@@ -228,7 +228,6 @@ var TimelinePost = (function() {
         },
 
         postMessage : function(){
-          alert('postMessage()')
             var message = $('#postMessage').val();
 
             if(message && message != ''){
