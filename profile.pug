@@ -59,19 +59,19 @@ block content
                       a.active(href="#") Timeline
                     //- li
                     li
-                      a(href='#modal_coming_soon', data-toggle='modal') About
+                      a(href='#modal_coming_soon', data-toggle='modal').hide.NOTYET About
                     //- li
                     li
-                      a(href='#modal_coming_soon', data-toggle='modal') Circlebuys
+                      a(href='#modal_coming_soon', data-toggle='modal').hide.NOTYET Circlebuys
                     //- li
                     li
-                      a(href='#modal_coming_soon', data-toggle='modal') Circles
+                      a(href='#modal_coming_soon', data-toggle='modal').hide.NOTYET Circles
                     //- li
                     li
-                      a(href='#modal_coming_soon', data-toggle='modal') Reviews
+                      a(href='#modal_coming_soon', data-toggle='modal').hide.NOTYET Reviews
                     //- li
                     li
-                      a(href='#modal_coming_soon', data-toggle='modal') Activity
+                      a(href='#modal_coming_soon', data-toggle='modal').hide.NOTYET Activity
                     //- li
                   //- ul
                 //- nav
@@ -85,14 +85,17 @@ block content
     section.userprofile
       .container
         .row
-          .col-md-3
+          .col-md-3.hidden-xs.hidden-sm
             //- .search.circle
             //-   a(href="#", target="_blank")
             //-     i.fa.fa-search
             //-   //- a
             //-   input.form-control(type='text', placeholder='search the circle...')
             //- //- search
-            .intro
+            
+            
+            // Interests section
+            .intro.hidden-xs.hidden-sm
               a.btn.btn-success.btn-sm.btn-add-interests(ng-hide="!isMyProfilePage()" href="/myProfile.html", data-toggle="modal")
                 i.fa.fa-plus
                 | Add Interests
@@ -153,7 +156,9 @@ block content
               //- info
             //- intro
 
-            .list_groups.groups
+
+            // My Circlebuys section
+            .list_groups.groups.hidden-xs.hidden-sm
               .head
                 h4
                   a(href='#modal_coming_soon', data-toggle='modal') My circlebuys
@@ -239,7 +244,9 @@ block content
               //- more
             //- list_groups
 
-            .list_groups.groups
+
+            // My watchlist section
+            .list_groups.groups.hidden-xs.hidden-sm.hide.NOTYET
               .head
                 h4
                   a(href='#modal_coming_soon', data-toggle='modal') My watchlist
@@ -325,7 +332,9 @@ block content
               //- more
             //- list_groups
 
-            .grid_groups.friends
+
+            // Friends section
+            .grid_groups.friends.hidden-xs.hidden-sm
               h4
                 a(href='#modal_coming_soon', data-toggle='modal') Friends
                 small (
@@ -414,7 +423,10 @@ block content
                 a(href='#modal_coming_soon', data-toggle='modal') See all
               //- more
             //- grid_groups
-            .list_groups.groups
+            
+            
+            // Circles section
+            .list_groups.groups.hidden-xs.hidden-sm.hide.NOTYET
               .head
                 h4
                   a(href='#modal_coming_soon', data-toggle='modal') Circles
@@ -474,137 +486,249 @@ block content
                 a(href='#modal_coming_soon', data-toggle='modal') See all
               //- more
             //- list_groups
-            .grid_groups.friends
-              h4
-                a(href='#modal_coming_soon', data-toggle='modal') Photos
-                small (
-                  a(href='#modal_coming_soon', data-toggle='modal') 213
-                  | )
-              //- h4
+            
+
+            // Latest Activity section
+            .list_groups.feed.hide.NOTYET
+              .head
+                h4
+                  a(href='#modal_coming_soon', data-toggle='modal') Latest activity
+              //- head
               .content
-                .container-fluid
-                  .row
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      img(src="assets/images/photos/photos_1.png", alt="")
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      img(src="assets/images/photos/photos_2.png", alt="")
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      img(src="assets/images/photos/photos_3.png", alt="")
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      img(src="assets/images/photos/photos_4.png", alt="")
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      img(src="assets/images/photos/photos_5.png", alt="")
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      img(src="assets/images/photos/photos_6.png", alt="")
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      img(src="assets/images/photos/photos_7.png", alt="")
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      img(src="assets/images/photos/photos_8.png", alt="")
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      img(src="assets/images/photos/photos_9.png", alt="")
-                    //- col-md-4
-                  //- row
-                //- container
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/activity/img_advisor_2.jpg', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong Rodan Luzuriaga
+                    | likes a photo.
+                    //- p
+                  //- span
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/anonymous.png', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href="profile.html")
+                      strong Andrew Steer
+                    | commented on his own post.
+                    //- p
+                  //- span
+                //- input-group
+                .input-group
+                  span.input-group-addon
+                    .thumb
+                      .img
+                        img(src='assets/images/activity/img_advisor_2.jpg', alt='')
+                      //- img
+                    //- thumb
+                  span.form-control
+                    a(href='#modal_coming_soon', data-toggle='modal')
+                      strong Rodan Luzuriaga
+                    | shared a post.
+                    //- p
+                  //- span
+                //- input-group
               //- content
-              .more
-                a(href='#modal_coming_soon', data-toggle='modal') See all
-              //- more
-            //- grid_groups
-            .grid_groups.likes
-              h4
-                a(href='#modal_coming_soon', data-toggle='modal') Likes
-                small (
-                  a(href='#modal_coming_soon', data-toggle='modal') 16
-                  | )
-              //- h4
-              .content
-                .container-fluid
-                  .row
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      a(href="seller.html")
-                        img(src="assets/images/likes/likes_1.png", alt="")
-                      //- a
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      a(href='#modal_coming_soon', data-toggle='modal')
-                        img(src="assets/images/likes/likes_2.png", alt="")
-                      //- a
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      a(href='#modal_coming_soon', data-toggle='modal')
-                        img(src="assets/images/likes/likes_3.png", alt="")
-                      //- a
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      a(href='#modal_coming_soon', data-toggle='modal')
-                        img(src="assets/images/likes/likes_4.png", alt="")
-                      //- a
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      a(href='#modal_coming_soon', data-toggle='modal')
-                        img(src="assets/images/likes/likes_5.png", alt="")
-                      //- a
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      a(href='#modal_coming_soon', data-toggle='modal')
-                        img(src="assets/images/likes/likes_6.png", alt="")
-                      //- a
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      a(href='#modal_coming_soon', data-toggle='modal')
-                        img(src="assets/images/likes/likes_7.png", alt="")
-                      //- a
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      a(href='#modal_coming_soon', data-toggle='modal')
-                        img(src="assets/images/likes/likes_8.png", alt="")
-                      //- a
-                    //- col-md-4
-                    .col-xs-4.col-sm-4.col-md-4.thumb
-                      a(href='#modal_coming_soon', data-toggle='modal')
-                        img(src="assets/images/likes/likes_9.png", alt="")
-                      //- a
-                    //- col-md-4
-                  //- row
-                //- container
-              //- content
-              .more
-                a(href='#modal_coming_soon', data-toggle='modal') See all
-              //- more
-            //- grid_groups
+            //- feed
+
+            
           //- col-md-3
-          .col-md-6(id="wallSection")
+
+
+          //
+          // Wall part of the page (down the middle)
+          //
+          .col-md-6.col-sm-8(id="wallSection")
             .composer(ng-hide="!isMyProfilePage()", id="postComposer", style="display:none;")
               .head
-                a(href="#composer-tab-status", role="tab", data-toggle="tab")
+                a#composer-status-button(href="#composer-tab-status", role="tab", data-toggle="tab")
                   i.fa.fa-pencil
                   | Status
                 a(href="#composer-tab-photo-video", role="tab", data-toggle="tab")
                   i.fa.fa-picture-o
                   | Photo/Video
-                a(href="#composer-tab-events", role="tab", data-toggle="tab")
+                a(href="#composer-tab-events", role="tab", data-toggle="tab").hide.NOTYET
                   i.fa.fa-calendar-o
                   | Events
               //- head
               .content.tab-content
+
+
+                // Status tab
                 .tab-pane.active#composer-tab-status(role="tabpanel")
-                  textarea.form-control(id="postMessage", rows='2')
+                  textarea.form-control(id="postMessage" rows='2' ng-model="message" placeholder="Enter your description here")
                 //- composer-tab-status
+
+
+                // Photo tab
                 .tab-pane#composer-tab-photo-video(role="tabpanel")
-                  .drop-photo
+                  //- .drop-photo
+                  //-   i.fa.fa-picture-o
+                  //-   br
+                  //-   span Drag Photos/Videos Here (1)
+                  //- //- drop-photo
+
+                  //.button(ngf-select="upload($file)" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" Zngf-resize="{width: 100, height: 100}")
+                  //div(ngf-drop="uploadFiles($files)" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-pattern="'image/*,application/pdf'") DRAG
+                  //br
+
+                  //.drop-photo(ngf-select="upload($file)" ngf-drop="uploadFiles($files)" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-pattern="'image/*,video/*'")
+                  .drop-photo(ngf-select ngf-drop class="drop-box" ng-model="file" ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-pattern="'image/*,video/*'" ng-hide="!showDropArea()")
+
                     i.fa.fa-picture-o
                     br
-                    span Drag Photos/Videos Here
-                  //- event-photo
-                //- composer-tab-status
+                    span Select File
+                    span(ng-show="dropAvailable") &nbsp;or Drop File
+                  //- drop-photo
+
+                  img(ngf-src="file || '/assets/images/cleardot.png'" class="img-responsive" style="max-height: 400px")
+                  video(controls ngf-src="file")
+                  #percentage
+                    #progress(ng-hide="!showProgressBar()")
+                      .small.green
+                        br
+                        | Loading {{filename}}
+                        | &nbsp;&nbsp;&nbsp; size={{filesize}} bytes
+                        | &nbsp;&nbsp;&nbsp; ({{getPercentage()}}% complete)
+                        br
+                        .progress(style="height: 10px;")
+                          .progress-bar.progress-bar-striped.active(role="progressbar" aria-valuenow="{{getPercentage()}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width : ( getPercentage() + '%' ) }")
+                            .sr-only {{getPercentage()}}% Complete (warning)
+                    #processing(ng-hide="!showProcessing()")
+                      .small.green
+                        br
+                        i.fa.fa-refresh.fa-spin.fa-fw
+                        //  .sr-only Loading...
+                        | Processing image
+
+
+                  //- | Image thumbnail:
+                  //- img(ngf-thumbnail="file || '/thumb.jpg'" Zstyle="width:200px;")
+                  //- br
+                  //- br
+
+
+
+                  br
+                  textarea.form-control(rows='2' ng-model="message" placeholder="Enter your description here")
+
+
+                  //- .drop-photo(ngf-select ngf-drop="uploadFiles($files)" ng-model="files" ngf-model-invalid="invalidFiles",
+                  //-   ngf-model-options="modelOptionsObj",
+                  //-   ngf-multiple="false" ngf-pattern="'image/*,video/*'" ngf-accept="acceptSelect",
+                  //-   ng-disabled="disabled" ngf-capture="camera",
+                  //-   ngf-drag-over-class="'dragover'",
+                  //-   ngf-fix-orientation="orientation",
+                  //-   ngf-max-files="1",
+                  //-   ngf-ignore-invalid="1",
+                  //-   ngf-allow-dir="false" Zclass="drop-box" ngf-drop-available="dropAvailable")
+                  //-
+                  //-   i.fa.fa-picture-o
+                  //-   br
+                  //-   span Select File
+                  //-   span(ng-show="dropAvailable") &nbsp;or Drop File
+                  //-   //span Drag Photos/Videos Here
+                  //- //- drop-photo
+
+                  //- #backend_upload
+                  //-   h1 New Photo
+                  //-   h2 Image file is uploaded through the server
+                  //-   form(action="http://localhost:4000/junkphotos" enctype="multipart/form-data" method="post")
+                  //-     .form_line
+                  //-       label(for="photo_title") Title:
+                  //-       .form_controls
+                  //-         input#photo_title(name="title" size="30" type="text" value="<%=photo.title%>")
+                  //-     .form_line
+                  //-       label(for="photo_image") Image:
+                  //-       .form_controls
+                  //-         input#photo_image(name="image" type="file")
+                  //-         input#photo_image_cache(name="image_cache" type="hidden")
+                  //-     .form_line
+                  //-       .form_controls
+                  //-         input(name="commit" type="submit" value="Submit Photo")
+                  //-     input#direct(name="direct" type="hidden")
+
+
+                  //-   // See https://github.com/danialfarid/ng-file-upload
+                  //-   // Upload on form submit or button click
+                  //-   br
+                  //-   br
+                  //-   br
+                  //-   | ----
+                  //-   br
+                  //-   form(Zng-app="fileUpload" Zng-controller="MyCtrl" name="form")
+                  //-     // Single Image with validations
+                  //-     .button(ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" Zngf-resize="{width: 100, height: 100}")
+                  //-       | Select Single
+                  //-     br
+                  //-     br
+                  //-
+                  //-     // Multiple files
+                  //-     .button(ngf-select ng-model="files" ngf-multiple="true")
+                  //-       | Select Multiple
+                  //-     br
+                  //-     br
+                  //-
+                  //-     | Drop files:
+                  //-     div(ngf-drop ng-model="files" class="drop-box")
+                  //-       | Drop
+                  //-       br
+                  //-       br
+                  //-     br
+                  //-     br
+                  //-     button(type="submit" ng-click="submit()")
+                  //-       | submit
+                  //-   //- form
+                  //-
+                  //-   // Upload right away after file selection:
+                  //-   .button(ngf-select="upload($file)")
+                  //-     | Upload on file select single
+                  //-   br
+                  //-   br
+                  //-
+                  //-   .button(ngf-select="uploadFiles($files)" multiple="multiple")
+                  //-     | Upload on file select multiple
+                  //-   br
+                  //-   br
+                  //-
+                  //-   | Drop File:
+                  //-   div(ngf-drop="uploadFiles($files)" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-pattern="'image/*,application/pdf'")
+                  //-     | Drop Images or PDFs files here
+                  //-     br
+                  //-   br
+                  //-   br
+                  //-   div(ngf-no-file-drop)
+                  //-     | File Drag/Drop is not supported for this browser
+                  //-
+                  //-   | Image thumbnail:
+                  //-   img(ngf-thumbnail="file || '/thumb.jpg'" Zstyle="width:200px;")
+                  //-   br
+                  //-   br
+                  //-
+                  //-   | Audio preview:
+                  //-   audio(controls ngf-src="file")
+                  //-   br
+                  //-   br
+                  //-
+                  //-   | Video preview:
+                  //-   video(controls ngf-src="file")
+                  //-   br
+                  //-   br
+                  //- //- form
+
+                //- composer-tab-photo-video
+
+
+                // Events tab
                 .tab-pane#composer-tab-events(role="tabpanel")
                   .drop-photo
                     i.fa.fa-picture-o
@@ -643,26 +767,34 @@ block content
                       //- form-group
                     //- col-md-12
                   //- row
-                //- composer-tab-status
+                //- composer-tab-events
+
               //- content
               .controls
-                a(href='#modal_coming_soon', data-toggle='modal')
+                // The next line sets the height of the footer,
+                // when all else is hidden
+                a &nbsp;
+
+                a(href='#modal_coming_soon', data-toggle='modal').hide
                   i.fa.fa-camera
                 //- a
-                a(href='#modal_coming_soon', data-toggle='modal')
+                a(href='#modal_coming_soon', data-toggle='modal').hide
                   i.fa.fa-user-plus
                 //- a
-                a(href='#modal_coming_soon', data-toggle='modal')
+                a(href='#modal_coming_soon', data-toggle='modal').hide
                   i.fa.fa-smile-o
                 //- a
-                a(href='#modal_coming_soon', data-toggle='modal')
+                a(href='#modal_coming_soon', data-toggle='modal').hide
                   i.fa.fa-map-marker
                 //- a
-                a(href='#modal_coming_soon', data-toggle='modal')
+                a(href='#modal_coming_soon', data-toggle='modal').hide
                   i.fa.fa-clock-o
                 //- a
 
-                a.post(href="javascript:void(0)", onclick="TimelinePost.postMessage()")
+                a.post(ng-click="cancelPost()" ng-hide="!haveMessage()")
+                  i.fa.fa-remove
+                  | Cancel
+                a.post(ng-click="uploadPost(message, file)" ng-hide="!haveMessage()")
                   i.fa.fa-send-o
                   | Post
                 //- a
@@ -672,18 +804,26 @@ block content
             div(id="timelineSection")
 
           //- col-md-6
-          .col-md-3
+          
+          
+          
+          //
+          //  Right hand column
+          //
+          .col-md-3.col-sm-4
 
+
+            // Top 10 section
             .list_groups.toppicks
               .head
                 h4
-                  a.pull-right(href='#modal_edit_toppicks', data-toggle='modal')
+                  a.pull-right(href='#modal_edit_toppicks', data-toggle='modal').hide.NOTYET
                     i.fa.fa-pencil
                   //- a
                   a(href='#modal_coming_soon', data-toggle='modal') My TOP 10
                 //- h4
               //- head
-              hr
+              hr.hide.NOTYET
               .content
                 .media
                   .media-left
@@ -748,6 +888,8 @@ block content
               //- more
             //- feed
 
+
+            // Reviews section
             .list_groups.reviews
               .head
                 h4
@@ -807,66 +949,129 @@ block content
                   //- span
                 //- input-group
               //- content
-              .search
+              .search.hide.NOTYET
                 input.form-control(type='text', placeholder='search reviews...')
               //- search
               .more
                 a(href='#modal_coming_soon', data-toggle='modal') See all
               //- more
             //- feed
-
-            .list_groups.feed
-              .head
-                h4
-                  a(href='#modal_coming_soon', data-toggle='modal') Latest activity
-              //- head
+            
+            
+            // Photos section
+            .grid_groups.friends
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Photos
+                small (
+                  a(href='#modal_coming_soon', data-toggle='modal') 213
+                  | )
+              //- h4
               .content
-                .input-group
-                  span.input-group-addon
-                    .thumb
-                      .img
-                        img(src='assets/images/activity/img_advisor_2.jpg', alt='')
-                      //- img
-                    //- thumb
-                  span.form-control
-                    a(href='#modal_coming_soon', data-toggle='modal')
-                      strong Rodan Luzuriaga
-                    | likes a photo.
-                    //- p
-                  //- span
-                //- input-group
-                .input-group
-                  span.input-group-addon
-                    .thumb
-                      .img
-                        img(src='assets/images/anonymous.png', alt='')
-                      //- img
-                    //- thumb
-                  span.form-control
-                    a(href="profile.html")
-                      strong Andrew Steer
-                    | commented on his own post.
-                    //- p
-                  //- span
-                //- input-group
-                .input-group
-                  span.input-group-addon
-                    .thumb
-                      .img
-                        img(src='assets/images/activity/img_advisor_2.jpg', alt='')
-                      //- img
-                    //- thumb
-                  span.form-control
-                    a(href='#modal_coming_soon', data-toggle='modal')
-                      strong Rodan Luzuriaga
-                    | shared a post.
-                    //- p
-                  //- span
-                //- input-group
+                .container-fluid
+                  .row
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_1.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_2.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_3.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_4.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_5.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_6.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_7.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_8.png", alt="")
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      img(src="assets/images/photos/photos_9.png", alt="")
+                    //- col-md-4
+                  //- row
+                //- container
               //- content
-            //- feed
+              .more
+                a(href='#modal_coming_soon', data-toggle='modal') See all
+              //- more
+            //- grid_groups
+            
+            
+            // Likes section
+            .grid_groups.likes
+              h4
+                a(href='#modal_coming_soon', data-toggle='modal') Likes
+                small (
+                  a(href='#modal_coming_soon', data-toggle='modal') 16
+                  | )
+              //- h4
+              .content
+                .container-fluid
+                  .row
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href="seller.html")
+                        img(src="assets/images/likes/likes_1.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_2.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_3.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_4.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_5.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_6.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_7.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_8.png", alt="")
+                      //- a
+                    //- col-md-4
+                    .col-xs-4.col-sm-4.col-md-4.thumb
+                      a(href='#modal_coming_soon', data-toggle='modal')
+                        img(src="assets/images/likes/likes_9.png", alt="")
+                      //- a
+                    //- col-md-4
+                  //- row
+                //- container
+              //- content
+              .more
+                a(href='#modal_coming_soon', data-toggle='modal') See all
+              //- more
+            //- grid_groups
 
-            .list_search_groups.messaging
+
+            // Chat section
+            .list_search_groups.messaging.hide.NOTYET
               .head
                 h4 Live chat
               //- head
@@ -918,7 +1123,9 @@ block content
                 //- a
               //- search
             //- messaging
-            .list_groups.events
+            
+            // Events section
+            .list_groups.events.hide.NOTYET
               .head
                 h4
                   a(href='#modal_coming_soon', data-toggle='modal') Events
@@ -970,6 +1177,11 @@ block scripts
   // External Script goes here...
   script(src='assets/vendor/crowdhound/chUtil.js', type="text/javascript")
   script(src='assets/vendor/crowdhound/chtimeline.js', type="text/javascript")
+
+  // See https://github.com/danialfarid/ng-file-upload
+  //script(src='bower_components/ng-file-upload/ng-file-upload-shim.min.js', type="text/javascript")
+  script(src='bower_components/ng-file-upload/ng-file-upload.min.js', type="text/javascript")
+  script(src='bower_components/cloudinary/js/jquery.cloudinary.js', type="text/javascript")
   script.
 
 
@@ -990,7 +1202,7 @@ block scripts
      *
      *    Angular code.
      */
-    var app = angular.module('myApp', ['ngSanitize']);
+    var app = angular.module('myApp', ['ngSanitize', 'ngFileUpload']);
 
     teaservice.init({
       host: TEASERVICE_HOST,
@@ -999,7 +1211,166 @@ block scripts
     });
 
     // Add the controller for this page
-    app.controller('myCtrl', function($scope, $timeout, teaService) {
+    app.controller('myCtrl', function($scope, $timeout, teaService, Upload) {
+
+
+
+
+
+
+      /*
+       *  File uploading stuff.
+       *  See https://github.com/danialfarid/ng-file-upload
+       */
+      $scope.uploadPost = function(message, file) {
+        console.log('upload()');
+
+        var url = 'http://localhost:4000/api/2.0/drinkpoint/element?authenticationToken=U0X11WJTRM1DWIC74N1MJBQP';
+
+        //var message = $scope.message;
+        var data = {
+          "type" : "post",
+          "rootId" : "$community-page-user-"+userId,
+          "parentId" : "$community-page-user-"+userId,
+          "description" : message,
+          //"anchor" : 'community-page-post-'+userId,
+          "deleted" : 0
+        };
+
+        console.log('url is ' + url);
+        console.log('data is ', data);
+        console.log('file is ', file);
+
+
+        // See if we have a photo or video to load.
+        var activeTabId = $(".composer .tab-pane.active").attr('id');
+        if (file && activeTabId === 'composer-tab-photo-video') {
+
+          // Have an image being loaded
+          $scope.filesize = accounting.formatNumber(file.size);
+          $scope.filename = file.name;
+          data.file = file;
+          Upload.upload({
+              //url: 'http://localhost:4000/junkphotos',
+              url: url,
+              data: data
+          }).then(function (resp) {
+            console.log('resp: ', resp);
+              console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+
+              // Reload the posts
+              TimelinePost.manualRenderPost(resp.data.elementId, '#timelineSection');
+              $timeout(function(){
+                $scope.message = '';
+                $scope.file = null;
+                $scope.progressPercentage = null; // hide the progress bar again
+                $('#composer-status-button').tab('show');
+              }, 1);
+
+          }, function (resp) {
+              console.log('Error status: ' + resp.status);
+          }, function (evt) {
+            console.log('evt=', evt);
+            // Show the image loading progress
+            var perc = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + perc + '% ' + evt.config.data.file.name);
+            $timeout(function(){
+              $scope.progressPercentage = perc;
+            }, 1);
+          });
+        } else {
+
+          // No image being loaded
+          $.ajax({
+              type : "POST",
+              url : url,
+              data : data,
+              success : function(messageResponse) {
+                  if (messageResponse
+                      && messageResponse.status
+                      && messageResponse.status === "ok") {
+
+                      //check message for any url links
+                      //var urls = findUrls(message);
+                      //if(urls.length == 1){
+                          //found a url now we save an element
+                      //    TimelinePost.savePostElement(messageResponse.elementId, urls[0]);
+                      //}else{
+                          //just post the message
+                          TimelinePost.manualRenderPost(messageResponse.elementId, '#timelineSection');
+                      //}
+
+                      //clear textarea
+                      $timeout(function(){
+                        $scope.message = '';
+                        $scope.file = null;
+                        $scope.progressPercentage = null; // hide the progress bar again
+                        $('#composer-status-button').tab('show');
+                      }, 1);
+
+                  } else {
+                      //Alerts.showStandardError(".textarea");
+                  }
+              },
+
+              error : function(qXHR, textStatus, errorThrown) {
+                  console.log('An error occurred while posting.\n  status: ' + qXHR.status + "\n  responseText: ", qXHR.responseText);
+                  //Alerts.showStandardError(".textarea");
+              }
+          });
+
+        }
+
+      };
+      
+      $scope.cancelPost = function() {
+        $scope.file = null;
+        $scope.progressPercentage = null;
+        $('#composer-status-button').tab('show');
+      }
+      
+      $scope.haveMessage = function() {
+        console.log('message is ', $scope.message);
+        console.log('file is ', $scope.file);
+        return (
+          $scope.file
+          || ($scope.message && $scope.message != '')
+        );
+      }
+
+      $scope.showDropArea = function() {
+        if ($scope.file) {
+          return false;
+        }
+        return true;
+      }
+
+      $scope.showImage = function() {
+        if ($scope.file) {
+          return true;
+        }
+        return false;
+      }
+
+      $scope.showProgressBar = function() {
+        return (
+          $scope.file
+          && $scope.progressPercentage
+          && $scope.progressPercentage < 100
+        );
+      }
+
+      $scope.showProcessing = function() {
+        return (
+          $scope.file
+          && $scope.progressPercentage
+          && $scope.progressPercentage == 100
+        );
+      }
+
+      $scope.getPercentage = function() {
+        return $scope.progressPercentage;
+      }
 
 
       /*
@@ -1058,7 +1429,7 @@ block scripts
           });
         }
       });
-
+      return; //ZZZZ
 
 
       $(document).ready(function(){
@@ -1079,7 +1450,7 @@ block scripts
         // Is this my profile page?
         $scope.isMyProfilePage = function() {
           var currentUser = authservice.getCurrentUser();
-          console.log('Current user:', authservice.getCurrentUser(), user);
+          //console.log('Current user:', authservice.getCurrentUser(), user);
           return (currentUser && currentUser.id == user.id);
         };
 
@@ -1194,8 +1565,6 @@ block scripts
         $scope.user = user;
       }
 
-
-
     });// app.controller
 
 
@@ -1206,7 +1575,13 @@ block scripts
 
   script(id='timelinePost', type='text/template')
     <<#element>>
+
+
       <div class="timeline" data-owner-id=<<user.userId>> data-post-id=<<id>>>
+          <<#_cloudinaryImage_raw>>
+            <img class="img-responsive" src="<<_cloudinaryImage_lowquality>>" srcset="<<_cloudinaryImage_320>> 320w, <<_cloudinaryImage_480>> 480w, <<_cloudinaryImage_768>> 768w, <<_cloudinaryImage_992>> 992w, <<_cloudinaryImage_1200>> 1200w, <<_cloudinaryImage_1920>> 1920w" sizes="(max-width: 30em) 30em, 100vw" style="width:100%;">
+          <</_cloudinaryImage_raw>>
+
           <div class="content">
               <div class="head">
                   <div class="user">
