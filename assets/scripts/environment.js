@@ -8,14 +8,14 @@ if (LOCAL_DEPLOYENT) {
   // Local Authservice
   var AUTHSERVICE_HOST = 'localhost';
   var AUTHSERVICE_PORT = 9090;
-  var AUTHSERVICE_TENANT = 'nodeclient';
+  var AUTHSERVICE_TENANT = 'API1AM6O86YHI8FA6TPSBA05C8FV4';
   var AUTHSERVICE_USE_DUMMY_LOGIN = false;
 
   // Local Crowdhound
   var CROWDHOUND_HOST = 'localhost';
-  var CROWDHOUND_PORT = 4000;
+  var CROWDHOUND_PORT = 7000;
   var CROWDHOUND_VERSION = "2.0";
-  var CROWDHOUND_TENANT = 'drinkpoint';
+  var CROWDHOUND_TENANT = 'API10O0X1NS8FWUTO3FXKN15ZOR09';
 
   // Local TEAservice
   var TEASERVICE_HOST = 'localhost';

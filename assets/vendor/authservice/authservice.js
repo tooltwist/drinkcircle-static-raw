@@ -570,7 +570,6 @@ console.log('*** Using jQuery AJAX call');
 
 
     login: function login(username, password, successCallback, failCallback) {
-
       // If we are pretending, get the user details now.
       if (_pretend) {
         console.log('seems we are pretending')
@@ -588,6 +587,7 @@ console.log('*** Using jQuery AJAX call');
        */
       var params = {
         username: username,
+        email: username,
         password: password
       };
       authservice_ajax_call('POST', '/login', params, function(response) {
